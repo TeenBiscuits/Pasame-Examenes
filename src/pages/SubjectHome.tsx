@@ -3,6 +3,7 @@ import { getSubject, getAllQuestions } from "../subjects";
 import { getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
 import { useT } from "../i18n/hooks";
+import { track } from "../lib/umami";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
@@ -76,6 +77,7 @@ export default function SubjectHome() {
             key={exam.year}
             to={`/${subject.id}/exam/${exam.year}`}
             className="block p-6 rounded-xl border-2 border-gray-200 hover:border-blue-400 bg-white hover:bg-blue-50/30 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-200"
+            onClick={() => track("exam_card_click", { subjectId: subject.id, year: exam.year })}
           >
             <div className="text-2xl mb-2" role="img" aria-hidden="true">
               📝
@@ -101,6 +103,7 @@ export default function SubjectHome() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-150"
+              onClick={() => track("pdf_download", { subjectId: subject.id, year: exam.year })}
             >
               <span role="img" aria-hidden="true">📄</span>{" "}
               {exam.title} {t.subjectHome.pdf}

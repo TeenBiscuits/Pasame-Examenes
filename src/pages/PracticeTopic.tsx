@@ -5,6 +5,7 @@ import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
+import { track } from "../lib/umami";
 
 const getNow = () => Date.now();
 
@@ -81,6 +82,8 @@ export default function PracticeTopic() {
     for (const q of questions) {
       score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
     }
+    const answeredCount = Object.values(answers).filter(a => a && a.trim() !== "").length;
+    track("practice_submit", { subjectId: subject.id, topic: topic || "", score, maxScore: questions.reduce((s, q) => s + q.points, 0), questionsCount: questions.length, answered: answeredCount });
     saveAttempt(subject.id, {
       id,
       exam: "practice",
@@ -96,6 +99,7 @@ export default function PracticeTopic() {
 
   const handleSelfGrade = (questionId: string, grade: "correct" | "incorrect") => {
     if (!subject) return;
+    track("practice_self_grade", { subjectId: subject.id, topic: topic || "", questionId, grade });
     setSelfGrades((prev) => {
       const next = { ...prev, [questionId]: grade };
       let score = 0;
@@ -203,7 +207,7 @@ export default function PracticeTopic() {
       <div className="flex justify-between mt-6">
         <button
           className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
-          onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
+          onClick={() => { const nextIndex = Math.max(0, currentIndex - 1); track("practice_navigate", { direction: "prev", fromIndex: currentIndex, toIndex: nextIndex }); setCurrentIndex(nextIndex); }}
           disabled={currentIndex === 0}
         >
           {t.practice.previous}
@@ -212,7 +216,7 @@ export default function PracticeTopic() {
           {answers[currentQuestion.id] && (
             <button
               className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors"
-              onClick={() => handleAnswer(currentQuestion.id, "")}
+              onClick={() => { track("practice_clear_answer", { questionId: currentQuestion.id }); handleAnswer(currentQuestion.id, ""); }}
             >
               {t.practice.clear}
             </button>
@@ -228,9 +232,7 @@ export default function PracticeTopic() {
         </div>
         <button
           className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
-          onClick={() =>
-            setCurrentIndex((i) => Math.min(questions.length - 1, i + 1))
-          }
+          onClick={() => { const nextIndex = Math.min(questions.length - 1, currentIndex + 1); track("practice_navigate", { direction: "next", fromIndex: currentIndex, toIndex: nextIndex }); setCurrentIndex(nextIndex); }}
           disabled={currentIndex === questions.length - 1}
         >
           {t.practice.next}

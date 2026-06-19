@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Question } from "../data/types";
 import { useT } from "../i18n/hooks";
+import { track } from "../lib/umami";
 
 interface QuestionCardProps {
   question: Question;
@@ -46,6 +47,7 @@ function MCQuestion({
             className={className}
             onClick={() => {
               if (showResult) return;
+              track("question_answer", { questionId: question.id, type: "mc", answer: letter });
               onAnswer(question.id, letter);
             }}
             disabled={!!showResult}
@@ -90,7 +92,11 @@ function TextQuestion({
           <button
             type="button"
             className="text-sm text-blue-600 hover:text-blue-700 font-medium focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-blue-200 transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              const next = !isOpen;
+              track(next ? "solution_toggle" : "solution_toggle", { questionId: question.id, action: next ? "open" : "close" });
+              setIsOpen(next);
+            }}
           >
             {isOpen ? t.questionCard.closeSolution : t.questionCard.openSolution}
           </button>
@@ -117,7 +123,7 @@ function TextQuestion({
                   <div className="flex gap-2">
                     <button
                       type="button"
-                      onClick={() => onSelfGrade(question.id, "correct")}
+                      onClick={() => { track("self_grade", { questionId: question.id, grade: "correct" }); onSelfGrade(question.id, "correct"); }}
                       className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 transition-colors focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none ${
                         selfGrade === "correct"
                           ? "bg-green-50 border-green-500 text-green-700"
@@ -128,7 +134,7 @@ function TextQuestion({
                     </button>
                     <button
                       type="button"
-                      onClick={() => onSelfGrade(question.id, "incorrect")}
+                      onClick={() => { track("self_grade", { questionId: question.id, grade: "incorrect" }); onSelfGrade(question.id, "incorrect"); }}
                       className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none ${
                         selfGrade === "incorrect"
                           ? "bg-red-50 border-red-500 text-red-700"
@@ -205,7 +211,7 @@ function MatchingQuestion({
                   <button
                     key={letter}
                     className={cls}
-                    onClick={() => handleSelect(item, letter)}
+                    onClick={() => { track("question_answer", { questionId: question.id, type: "matching", item, answer: letter }); handleSelect(item, letter); }}
                     disabled={!!showResult}
                     aria-label={`Match ${item} to ${letter}`}
                   >

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import type { SubjectMeta } from "../data/types";
 import { getAllQuestions } from "../subjects";
 import { useT } from "../i18n/hooks";
+import { track } from "../lib/umami";
 
 interface SubjectCardProps {
   subject: SubjectMeta;
@@ -16,6 +17,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
     <Link
       to={`/${subject.id}`}
       className="block p-5 rounded-xl border-2 border-gray-200 hover:border-blue-400 bg-white hover:bg-blue-50/30 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-200"
+      onClick={() => track("subject_card_click", { subjectId: subject.id })}
     >
       <div className="flex items-start justify-between mb-3">
         <span className="text-2xl" role="img" aria-hidden="true">

@@ -5,6 +5,7 @@ import type { Question, Exam } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
+import { track } from "../lib/umami";
 
 const getNow = () => Date.now();
 
@@ -60,6 +61,7 @@ export default function ExamSimulation() {
   const [started, setStarted] = useState(false);
   const startTimeRef = useRef<number>(0);
   const [attemptId, setAttemptId] = useState<string>("");
+  const timeUpTrackedRef = useRef(false);
 
   useEffect(() => {
     if (!subject || !examInfo) {
@@ -83,6 +85,13 @@ export default function ExamSimulation() {
     return () => clearInterval(timer);
   }, [started, submitted]);
 
+  useEffect(() => {
+    if (timeLeft === 0 && started && !submitted && !timeUpTrackedRef.current) {
+      timeUpTrackedRef.current = true;
+      track("exam_time_up", { subjectId: subject?.id || "", year: year || "", questionsCount: questions.length });
+    }
+  }, [timeLeft, started, submitted]);
+
   const handleAnswer = useCallback(
     (questionId: string, answer: string) => {
       setAnswers((prev) => ({ ...prev, [questionId]: answer }));
@@ -102,6 +111,8 @@ export default function ExamSimulation() {
     for (const q of questions) {
       score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
     }
+    const answeredCount = Object.values(answers).filter(a => a && a.trim() !== "").length;
+    track("exam_submit", { subjectId: subject.id, year: year || "", score, maxScore: totalPoints, timeSpent: elapsed, questionsCount: questions.length, answered: answeredCount });
     saveAttempt(subject.id, {
       id,
       exam: year,
@@ -117,6 +128,7 @@ export default function ExamSimulation() {
 
   const handleSelfGrade = (questionId: string, grade: "correct" | "incorrect") => {
     if (!subject || !year) return;
+    track("exam_self_grade", { subjectId: subject.id, year: year || "", questionId, grade });
     setSelfGrades((prev) => {
       const next = { ...prev, [questionId]: grade };
       const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
@@ -139,6 +151,7 @@ export default function ExamSimulation() {
   };
 
   const handleStart = () => {
+    track("exam_start", { subjectId: subject?.id || "", year: year || "", questionsCount: questions.length, totalPoints });
     setStarted(true);
     startTimeRef.current = getNow();
   };
@@ -296,7 +309,7 @@ export default function ExamSimulation() {
       <div className="flex justify-between mt-6">
         <button
           className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
-          onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
+          onClick={() => { const nextIndex = Math.max(0, currentIndex - 1); track("exam_navigate", { direction: "prev", fromIndex: currentIndex, toIndex: nextIndex }); setCurrentIndex(nextIndex); }}
           disabled={currentIndex === 0}
         >
           {t.exam.previous}
@@ -313,9 +326,7 @@ export default function ExamSimulation() {
         </div>
         <button
           className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
-          onClick={() =>
-            setCurrentIndex((i) => Math.min(questions.length - 1, i + 1))
-          }
+          onClick={() => { const nextIndex = Math.min(questions.length - 1, currentIndex + 1); track("exam_navigate", { direction: "next", fromIndex: currentIndex, toIndex: nextIndex }); setCurrentIndex(nextIndex); }}
           disabled={currentIndex === questions.length - 1}
         >
           {t.exam.next}

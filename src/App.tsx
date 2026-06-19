@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import SubjectHome from "./pages/SubjectHome";
@@ -6,6 +7,17 @@ import PracticeHome from "./pages/PracticeHome";
 import PracticeTopic from "./pages/PracticeTopic";
 import ExamSimulation from "./pages/ExamSimulation";
 import { useT } from "./i18n/hooks";
+import { track } from "./lib/umami";
+
+function PageViewTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    track("page_view", { path: location.pathname });
+  }, [location.pathname]);
+
+  return null;
+}
 
 function Footer() {
   const t = useT();
@@ -18,6 +30,7 @@ function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded px-2 py-1 transition-colors"
+          onClick={() => track("external_link_click", { target: "github" })}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +57,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900 font-sans">
+        <PageViewTracker />
         <Header />
         <main className="flex-grow">
           <Routes>

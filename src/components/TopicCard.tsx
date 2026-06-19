@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { Topic } from "../data/types";
+import { track } from "../lib/umami";
 
 interface TopicCardProps {
   subjectId: string;
@@ -37,6 +38,7 @@ export default function TopicCard({
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
       className={`block p-5 rounded-xl border-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-200 ${colorMap[topic.color] || colorMap.blue}`}
+      onClick={() => track("topic_card_click", { subjectId, topic: topic.key })}
     >
       <div className="flex items-start justify-between mb-3">
         <span className="text-2xl" role="img" aria-hidden="true">
