@@ -1,0 +1,64 @@
+import { Link } from "react-router-dom";
+import type { Topic } from "../data/types";
+
+interface TopicCardProps {
+  subjectId: string;
+  topic: Topic;
+  questionCount: number;
+  pointsCount: number;
+  progress?: number;
+}
+
+const colorMap: Record<string, string> = {
+  blue: "border-blue-200 hover:border-blue-400 bg-blue-50/50 hover:bg-blue-50",
+  indigo:
+    "border-indigo-200 hover:border-indigo-400 bg-indigo-50/50 hover:bg-indigo-50",
+  green:
+    "border-green-200 hover:border-green-400 bg-green-50/50 hover:bg-green-50",
+  purple:
+    "border-purple-200 hover:border-purple-400 bg-purple-50/50 hover:bg-purple-50",
+  pink: "border-pink-200 hover:border-pink-400 bg-pink-50/50 hover:bg-pink-50",
+  amber:
+    "border-amber-200 hover:border-amber-400 bg-amber-50/50 hover:bg-amber-50",
+  red: "border-red-200 hover:border-red-400 bg-red-50/50 hover:bg-red-50",
+  cyan: "border-cyan-200 hover:border-cyan-400 bg-cyan-50/50 hover:bg-cyan-50",
+  orange:
+    "border-orange-200 hover:border-orange-400 bg-orange-50/50 hover:bg-orange-50",
+};
+
+export default function TopicCard({
+  subjectId,
+  topic,
+  questionCount,
+  pointsCount,
+  progress,
+}: TopicCardProps) {
+  return (
+    <Link
+      to={`/${subjectId}/practice/${topic.key}`}
+      className={`block p-5 rounded-xl border-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-200 ${colorMap[topic.color] || colorMap.blue}`}
+    >
+      <div className="flex items-start justify-between mb-3">
+        <span className="text-2xl" role="img" aria-hidden="true">
+          {topic.icon}
+        </span>
+        <span className="text-xs text-gray-500 font-medium">
+          {questionCount} questions · {pointsCount}p
+        </span>
+      </div>
+      <h3 className="font-semibold text-gray-900 text-sm mb-2">
+        {topic.label}
+      </h3>
+      {progress !== undefined && (
+        <div className="mt-2">
+          <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-blue-500 rounded-full transition-all duration-500"
+              style={{ width: `${Math.min(progress, 100)}%` }}
+            />
+          </div>
+        </div>
+      )}
+    </Link>
+  );
+}

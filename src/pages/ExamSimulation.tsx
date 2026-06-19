@@ -1,0 +1,349 @@
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { getSubject, getQuestionsByExam } from "../subjects";
+import type { Question } from "../data/types";
+import { saveAttempt } from "../data/store";
+import QuestionCard from "../components/QuestionCard";
+
+const getNow = () => Date.now();
+
+function gradeQuestion(
+  question: Question,
+  answer: string,
+  selfGrade?: "correct" | "incorrect",
+): number {
+  if (!answer || answer.trim() === "") return 0;
+  if (question.type === "mc") {
+    return answer === question.correctAnswer ? question.points : 0;
+  }
+  if (question.type === "matching") {
+    try {
+      const user = JSON.parse(answer) as Record<string, string>;
+      const correct = question.correctAnswer as Record<string, string>;
+      const items = Object.keys(correct);
+      let correctCount = 0;
+      for (const item of items) {
+        if (user[item] === correct[item]) correctCount++;
+      }
+      return Math.round((correctCount / items.length) * question.points);
+    } catch {
+      return 0;
+    }
+  }
+  if (question.type === "text" || question.type === "calculation") {
+    return selfGrade === "correct" ? question.points : 0;
+  }
+  return 0;
+}
+
+export default function ExamSimulation() {
+  const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
+  const navigate = useNavigate();
+
+  const subject = subjectId ? getSubject(subjectId) : undefined;
+  const questions = useMemo(
+    () => (subject && year ? getQuestionsByExam(subject.id, year) : []),
+    [subject, year],
+  );
+  const examInfo = useMemo(
+    () => subject?.exams.find((e) => e.year === year),
+    [subject, year],
+  );
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [selfGrades, setSelfGrades] = useState<
+    Record<string, "correct" | "incorrect">
+  >({});
+  const [submitted, setSubmitted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(
+    (examInfo?.durationMinutes || 120) * 60,
+  );
+  const [started, setStarted] = useState(false);
+  const startTimeRef = useRef<number>(0);
+  const [attemptId, setAttemptId] = useState<string>("");
+
+  useEffect(() => {
+    if (!subject || !examInfo) {
+      navigate("/");
+    }
+  }, [subject, examInfo, navigate]);
+
+  const totalPoints = questions.reduce((s, q) => s + q.points, 0);
+
+  useEffect(() => {
+    if (!started || submitted) return;
+    const timer = setInterval(() => {
+      setTimeLeft((t) => {
+        if (t <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [started, submitted]);
+
+  const handleAnswer = useCallback(
+    (questionId: string, answer: string) => {
+      setAnswers((prev) => ({ ...prev, [questionId]: answer }));
+    },
+    [setAnswers],
+  );
+
+  const handleSubmit = () => {
+    if (!subject || !year) return;
+
+    // Add confirmation modal
+    if (
+      !window.confirm(
+        "Are you sure you want to submit your exam? You won't be able to change your answers.",
+      )
+    ) {
+      return;
+    }
+
+    const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
+    const id = getNow().toString();
+    setAttemptId(id);
+    let score = 0;
+    for (const q of questions) {
+      score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
+    }
+    saveAttempt(subject.id, {
+      id,
+      exam: year,
+      mode: "exam",
+      date: new Date().toISOString(),
+      score,
+      maxScore: totalPoints,
+      answers,
+      timeSpent: elapsed,
+    });
+    setSubmitted(true);
+  };
+
+  const handleSelfGrade = (
+    questionId: string,
+    grade: "correct" | "incorrect",
+  ) => {
+    if (!subject || !year) return;
+    setSelfGrades((prev) => {
+      const next = { ...prev, [questionId]: grade };
+      const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
+      let score = 0;
+      for (const q of questions) {
+        score += gradeQuestion(q, answers[q.id] || "", next[q.id]);
+      }
+      saveAttempt(subject.id, {
+        id: attemptId || getNow().toString(),
+        exam: year,
+        mode: "exam",
+        date: new Date().toISOString(),
+        score,
+        maxScore: totalPoints,
+        answers,
+        timeSpent: elapsed,
+      });
+      return next;
+    });
+  };
+
+  const handleStart = () => {
+    setStarted(true);
+    startTimeRef.current = getNow();
+  };
+
+  const formatTime = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
+
+  if (questions.length === 0 || !subject || !examInfo) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
+        <p className="text-gray-500">No questions found for this exam.</p>
+        <Link
+          to={subject ? `/${subject.id}` : "/"}
+          className="text-blue-600 hover:underline mt-4 inline-block"
+        >
+          Back to Home
+        </Link>
+      </div>
+    );
+  }
+
+  if (!started) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-16">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {examInfo.title}
+          </h1>
+          <p className="text-gray-500 mb-8">
+            {subject.name} ({subject.courseCode})
+          </p>
+        </div>
+        <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm space-y-4">
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <span className="text-gray-500">Questions</span>
+              <p className="font-semibold">{questions.length}</p>
+            </div>
+            <div>
+              <span className="text-gray-500">Total Points</span>
+              <p className="font-semibold">{totalPoints}p</p>
+            </div>
+            <div>
+              <span className="text-gray-500">Pass</span>
+              <p className="font-semibold">{examInfo.passPoints}p</p>
+            </div>
+            <div>
+              <span className="text-gray-500">Time Limit</span>
+              <p className="font-semibold">
+                {examInfo.durationMinutes} minutes
+              </p>
+            </div>
+          </div>
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
+            This simulation mirrors the real exam format. For open-ended
+            questions, self-grade your answers against the model solutions shown
+            after submission. MC and matching questions are auto-graded.
+          </div>
+          <button
+            className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors font-medium"
+            onClick={handleStart}
+          >
+            Start Exam
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const currentQuestion = questions[currentIndex];
+  const currentTopic = subject.topics.find(
+    (t) => t.key === currentQuestion.topic,
+  );
+
+  const getScore = () => {
+    let score = 0;
+    for (const q of questions) {
+      score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
+    }
+    return score;
+  };
+
+  const score = getScore();
+
+  return (
+    <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="flex items-center justify-between mb-6 sticky top-14 bg-gray-50 py-3 -mx-4 px-4 z-40 border-b border-gray-200">
+        <div>
+          <span className="text-lg font-bold text-gray-900">
+            {examInfo.title}
+          </span>
+          <span className="text-sm text-gray-500 ml-3">
+            {totalPoints}p total
+          </span>
+        </div>
+        <div className="flex items-center gap-4">
+          {!submitted && (
+            <span
+              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "text-red-600" : "text-gray-700"}`}
+            >
+              {formatTime(timeLeft)}
+            </span>
+          )}
+          {submitted && (
+            <span
+              className={`text-sm font-bold px-3 py-1 rounded ${score >= examInfo.passPoints ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}
+            >
+              {score}/{totalPoints}p{" "}
+              {score >= examInfo.passPoints ? "(PASS)" : "(FAIL)"}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {submitted && (
+        <div className="mb-6 p-4 rounded-lg bg-blue-50 border border-blue-200 text-sm">
+          <p className="font-semibold text-blue-900 mb-1">
+            Exam Submitted. Score: {score}/{totalPoints} (
+            {Math.round((score / totalPoints) * 100)}%)
+          </p>
+          <p className="text-blue-700">
+            Pass threshold: {examInfo.passPoints}p. Review your answers below.
+            Open-ended questions show model answers for self-grading.
+          </p>
+        </div>
+      )}
+
+      <div className="flex gap-1 mb-6 overflow-x-auto pb-2">
+        {questions.map((q, i) => {
+          const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
+          const isCurrent = i === currentIndex;
+          let cls =
+            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors cursor-pointer";
+          if (isCurrent) cls += " bg-blue-600 text-white border-blue-600";
+          else if (isAnswered)
+            cls += " bg-green-50 border-green-300 text-green-700";
+          else cls += " border-gray-200 text-gray-500 hover:border-gray-400";
+          return (
+            <button
+              key={q.id}
+              className={cls}
+              onClick={() => setCurrentIndex(i)}
+            >
+              {i + 1}
+            </button>
+          );
+        })}
+      </div>
+
+      <QuestionCard
+        question={currentQuestion}
+        index={currentIndex}
+        total={questions.length}
+        topicLabel={currentTopic?.label || currentQuestion.topic}
+        onAnswer={handleAnswer}
+        savedAnswer={answers[currentQuestion.id]}
+        showResult={submitted}
+        selfGrade={selfGrades[currentQuestion.id]}
+        onSelfGrade={handleSelfGrade}
+      />
+
+      <div className="flex justify-between mt-6">
+        <button
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
+          onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
+          disabled={currentIndex === 0}
+        >
+          Previous
+        </button>
+        <div className="flex gap-2">
+          {!submitted && (
+            <button
+              className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition-colors font-medium"
+              onClick={handleSubmit}
+            >
+              Submit Exam
+            </button>
+          )}
+        </div>
+        <button
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
+          onClick={() =>
+            setCurrentIndex((i) => Math.min(questions.length - 1, i + 1))
+          }
+          disabled={currentIndex === questions.length - 1}
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  );
+}
