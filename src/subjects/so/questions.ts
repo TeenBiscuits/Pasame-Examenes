@@ -126,6 +126,105 @@ iii) Fragmentación interna: 1024 bytes.`,
     explanation: "Con bloques de 8KB y direcciones de 4 bytes, cada bloque de índices tiene 2048 entradas, lo que acelera el crecimiento de la capacidad por nivel.",
   },
 
+  // 2020-01 — P2 superbloque
+  {
+    id: "so_2020_q2",
+    exam: "2020-01",
+    topic: "sistema-ficheros",
+    type: "calculation",
+    points: 4,
+    question: "Sistema UNIX con bloque 2KB. Boot ocupa los 3 primeros bloques de la partición. Superbloque comienza en bloque lógico 3. Fichero 'datos' tiene inodo 643 y ocupa el bloque lógico 33. Tamaño del inodo: 64 bytes. Calcula el tamaño del superbloque (en KB) y el bloque lógico correspondiente al inodo 3201.",
+    correctAnswer: `Inodos por bloque = 2048/64 = 32 inodos/bloque.
+El inodo 643 está en el bloque: floor(643/32) = 20 (área de inodos, empezando en 0).
+Área de inodos empieza tras superbloque (bloque 3).
+El fichero "datos" está en bloque 33 → los bloques de inodos van del 3 al 32 (30 bloques).
+Tamaño superbloque = 33 − 3 − 20 = 10 bloques = 20 KB.
+
+Inodo 3201: bloque = 3 + 10 + floor(3201/32) = 3 + 10 + 100 = 113.`,
+    explanation: "El superbloque contiene metadatos (mapa de inodos/bloques libres). Los inodos empiezan tras el superbloque. Cada bloque tiene 32 inodos de 64 bytes.",
+  },
+
+  // 2020-01 — P3 subpreguntas completas
+  {
+    id: "so_2020_q3_full",
+    exam: "2020-01",
+    topic: "sistema-ficheros",
+    type: "text",
+    points: 9,
+    question: "Código sobre '/home/juan/so/p1/p1.c' (3MB, inodo 6549): chmod 0420, lstat, open O_RDONLY, link crea practica1.c, symlink crea slink_practica1.c, open practica1.c, lseek(fd2, 2097152, SEEK_SET), fgetc, close, unlink. Cachés vacías, entrada p1 en 8º bloque de so. Responde: A) Accesos a disco en 1ª apertura. B) Valor de fd2. C) Bloques leídos para fgetc(fd2). D) Tamaño de slink_practica1.c. E) ¿fgetc es syscall? F) ¿link es syscall? G) ¿unlink libera el inodo 6549? H) El enlazador encuentra printf en libC? I) Permisos en rwxrwxrwx.",
+    correctAnswer: `A) 12 accesos (raíz, home, juan, so(8º bloque), p1, p1.c + 6 accesos índices datos)
+B) 4 (fd1=3, fd2=4)
+C) 3 bloques (2097152 = 2²¹ → bloque 1024, está en zona de indirección simple → 1 índice + 1 datos = 2, pero con cachés vacías y primera lectura de esa zona se necesita 1 acceso extra = 3)
+D) 11 bytes (longitud de "practica1.c")
+E) Falso (fgetc es función de libc, no llamada al sistema)
+F) Cierto (link es llamada al sistema)
+G) Cierto (unlink borra entrada p1.c pero quedan hard links → inodo no se libera)
+H) Cierto (el enlazador linka printf desde libC, estática o dinámicamente)
+I) r-- -w- --- (0420: owner=4=r--, group=2=-w-, others=0=---)`,
+    explanation: "P3 completo del examen. Combina cálculo de accesos a disco, descriptores de fichero, bloques de índices, symlinks, syscalls vs funciones de librería, y permisos UNIX.",
+  },
+
+  // 2020-01 — Procesos Q2: planificación multicolas
+  {
+    id: "so_2020_q7_sched",
+    exam: "2020-01",
+    topic: "procesos",
+    type: "text",
+    points: 7,
+    question: "Sistema monoprocesador con 3 colas: SY (sistema, RR quantum 3, prioridad máxima), IT (interactivos, RR quantum 1), NI (no interactivos, SJF, prioridad mínima). Procesos: A(SY, 4-(7)-2, t=0), B(SY, 2-(7)-4, t=1), C(IT, 2-(3)-2-(3)-1, t=0), D(IT, 1-(3)-1-(3)-1, t=2), E(NI, 4, t=0), F(NI, 3, t=2). Muestra la planificación.",
+    correctAnswer: `Traza CPU: A A A B B A C D C F F D B B B A A B C D C F E E C E E
+
+Explicación:
+- t=0: A(SY) ejecuta. Llega C(IT) y E(NI) pero SY > IT > NI.
+- t=3: A agota quantum 3. B(SY) ejecuta quantum 3.
+- t=6: A ejecuta su 1 restante de la 1ª ráfaga. A va a E/S 7.
+- t=7: Entran IT: C y D. C ejecuta 1 (quantum), D ejecuta 1.
+- t=9: C, D, C... hasta agotar. Los NI (E, F) solo ejecutan cuando SY e IT están en E/S.
+- NI usa SJF: F(3) es más corto que E(4) → F ejecuta primero.
+- Al volver procesos de E/S, expropian a NI por tener mayor prioridad.`,
+    explanation: "Planificación multicolas con prioridades apropiativas: SY expropia a IT, IT expropia a NI. Dentro de SY: RR quantum 3. IT: RR quantum 1. NI: SJF (el más corto primero).",
+  },
+
+  // 2020-01 — E/S V/F
+  {
+    id: "so_2020_q8_es",
+    exam: "2020-01",
+    topic: "entrada-salida",
+    type: "matching",
+    points: 5,
+    question: "Indica V/F sobre Entrada/Salida:",
+    correctAnswer: {
+      "El registro de datos de un controlador permite enviar comandos al dispositivo": "F",
+      "El manejador de interrupciones chequea si un bloque está en la caché de bloques": "F",
+      "Un DMA en modo bus transparente tiene mayor prioridad que en modo robo de ciclos": "F",
+      "Los major numbers de /dev/sda y /dev/sda1 son idénticos": "V",
+      "Determinar qué bloque de disco contiene un offset de fichero se realiza en el device driver": "F",
+    },
+    explanation: "El registro de comandos (no datos) envía comandos. La caché de bloques se gestiona en capas superiores. DMA transparente solo usa el bus cuando CPU no lo necesita (menor prioridad). Major number identifica el driver. El cálculo de bloques lo hace el sistema de ficheros.",
+  },
+
+  // 2020-01 — E/S código pread/dup/read
+  {
+    id: "so_2020_q10_pread",
+    exam: "2020-01",
+    topic: "entrada-salida",
+    type: "text",
+    points: 3,
+    question: "Fichero 'fichero.txt' contiene '012345678901234546789\\n'. Código: char BUF[5]={'-','-','-','-','\\0'}; fd=open(fichero.txt,O_RDONLY); fd2=dup(fd); lseek(fd2,2,SEEK_SET); pread(fd,BUF,1,0); lseek(fd,2,SEEK_CUR); pread(fd,BUF,2,3); read(fd,BUF,1); read(fd,BUF+3,2); printf('%s',BUF). ¿Contenido de BUF tras línea 09?",
+    correctAnswer: `Tras l.09: BUF = {'3','4','-','-','\\0'}
+
+Paso a paso:
+1. open → fd=3. dup(fd)→fd2=4 (comparten file pointer).
+2. lseek(fd2,2,SEEK_SET) → file pointer de fd/fd2 = 2.
+3. pread(fd,BUF,1,0) → lee desde offset absoluto 0: '0'. BUF={'0','-','-','-','\\0'}. pread NO modifica file pointer.
+4. lseek(fd,2,SEEK_CUR) → file pointer = 2+2 = 4.
+5. pread(fd,BUF,2,3) → lee desde offset 3: '3','4'. BUF={'3','4','-','-','\\0'}.
+6. read(fd,BUF,1) → lee 1 byte desde file pointer=4: '4'. BUF={'4','4','-','-','\\0'}.
+7. read(fd,BUF+3,2) → lee 2 bytes desde fp=5: '5','4'. BUF={'4','4','5','4','\\0'}.
+8. printf imprime "4454".`,
+    explanation: "pread() lee desde offset absoluto sin modificar el file pointer. lseek() modifica el file pointer. Los cambios de posición en fd2 (dup) afectan a fd porque comparten la misma entrada en la tabla de ficheros abiertos.",
+  },
+
   // ============================================================
   // SISTEMA DE FICHEROS — Problemas con código y permisos
   // ============================================================
@@ -162,6 +261,48 @@ iii) Fragmentación interna: 1024 bytes.`,
     },
     explanation: "El inodo en memoria se mantiene mientras el fichero está abierto. Los hard links solo funcionan dentro del mismo sistema de ficheros. El journaling registra operaciones para recuperación.",
   },
+  // 2021-01 — P2 código completo (subpreguntas A-E)
+  {
+    id: "so_2021_q2_code",
+    exam: "2021-01",
+    topic: "sistema-ficheros",
+    type: "text",
+    points: 5,
+    question: "Código sobre '/home/usr1/dir1/datos' (1GB+6MB+40KB, hard links=2): chmod 0442, lstat, open O_RDONLY (1ª apertura), lseek(fd, 1073741824, SEEK_SET), fgetc, close, unlink. Cachés vacías, entrada usr1 en 7º bloque de home. Responde: A) Valor de fd. B) Accesos a disco en apertura. C) Bloques leídos para fgetc. D) Permisos impresos en rwxrwxrwx. E) Hard links de 'datos' tras unlink.",
+    correctAnswer: `A) 3 (stdin=0, stdout=1, stderr=2 → fd=3)
+B) 10 accesos (raíz, home, 7 bloques de home para usr1, dir1, datos)
+C) 3 bloques (1073741824 = 1GB → zona de triple indirección parcial)
+D) r-- r-- -w- (0442: owner=4=r--, group=4=r--, others=2=-w-)
+E) 1 (inicialmente 2 hard links; unlink borra la entrada → queda 1 hard link)`,
+    explanation: "La posición 1GB requiere acceder a bloques vía triple indirección. Con cachés vacías, recorrer la ruta del fichero requiere acceder a cada bloque de directorio e inodo.",
+  },
+  // 2021-01 — P3 hard links y soft links
+  {
+    id: "so_2021_q3_links",
+    exam: "2021-01",
+    topic: "sistema-ficheros",
+    type: "text",
+    points: 3,
+    question: "Se crean 3 hard links a un fichero 'f1' (inodo 25634, 965 bytes, hard links=1) en su mismo directorio: ln f1 f2, ln f1 f3, ln f1 f4. Luego se crea soft link: ln -s f3 slink. a) ¿Tamaño (bytes) del fichero 'f3'? b) Se borra f2 (rm f2). ¿Tamaño (bytes) del fichero 'slink'?",
+    correctAnswer: `a) 965 bytes (f3 es un hard link a f1 → comparten el mismo inodo → mismo tamaño)
+b) 2 bytes (slink es symlink a 'f3'. Al borrar f2, f3 sigue existiendo. Pero el symlink almacena la ruta 'f3' → tamaño = 2 bytes)`,
+    explanation: "Los hard links comparten inodo → mismo tamaño que el original. Los symlinks almacenan la ruta como contenido. Al borrar un hard link, mientras quede al menos uno, el fichero sigue existiendo.",
+  },
+  // 2021-01 — Procesos Q2: Execute function
+  {
+    id: "so_2021_q8_exec",
+    exam: "2021-01",
+    topic: "procesos",
+    type: "text",
+    points: 5,
+    question: "Se muestran 3 versiones de una función Execute(char *argv[]) para crear un proceso y ejecutar un programa. Versión 1: fork, execvp, perror, waitpid. Versión 2: igual pero con exit(0) tras perror y waitpid con WNOHANG. Versión 3: execvp y waitpid sin fork. Para cada versión indica si es correcta y por qué.",
+    correctAnswer: `Versión 1 (sin exit tras perror): INCORRECTA. Si execvp falla, el proceso hijo sigue ejecutando el código del padre (no hay exit). Quedan dos copias ejecutándose.
+
+Versión 2 (con exit + WNOHANG): CORRECTA pero ejecuta en segundo plano. exit(0) tras perror asegura que el hijo termine si execvp falla. WNOHANG hace que waitpid no espere → ejecución en segundo plano.
+
+Versión 3 (execvp sin fork): INCORRECTA. execvp NO crea un proceso nuevo, solo reemplaza la imagen del proceso actual. Sin fork(), el proceso padre es reemplazado y nunca se ejecuta waitpid.`,
+    explanation: "Patrón fork+exec: fork() crea el hijo, exec() reemplaza su imagen. Si exec falla, el hijo debe hacer exit() para no duplicar la ejecución. waitpid espera al hijo; con WNOHANG no bloquea.",
+  },
   // 2021-07
   {
     id: "so_2021jul_q4_tf",
@@ -179,6 +320,38 @@ iii) Fragmentación interna: 1024 bytes.`,
       "El Buffer Cache reduce el número de lecturas y escrituras físicas sobre los discos": "C",
     },
     explanation: "Los soft links almacenan rutas, no dependen del inodo destino → pueden cruzar sistemas de ficheros. Los hard links no pueden.",
+  },
+
+  // 2021-07 — Memoria Q3: TP con entradas hexadecimales
+  {
+    id: "so_2021jul_q3_memhex",
+    exam: "2021-07",
+    topic: "memoria",
+    type: "calculation",
+    points: 6,
+    question: "Sistema con direcciones lógicas de 32 bits, páginas de 4KB. TP de un nivel, entradas de 2 bytes. TP: [0]=0x7F24, [1]=0xFF24, [2]=0xDF14. Para cada dirección lógica indica la dirección física o si la página no está presente: 0x0224 (escritura), 0x1224 (escritura), 0x2224 (escritura). Bit 15=presencia, bit 14=R/W, bit 12=modo usuario.",
+    correctAnswer: `Offset = 12 bits (4KB). Nº página = dir >> 12.
+0x0224 → página 0. Entrada 0 = 0x7F24 = 0111 1111 0010 0100. Bit 15=0 → página NO presente.
+0x1224 → página 1. Entrada 1 = 0xFF24 = 1111 1111 0010 0100. Bit 15=1, bit 14=1 (R/W✓), bit 12=1 (usuario). Marco = 0x24. Física = (0x24 << 12) | 0x224 = 0x24224.
+0x2224 → página 2. Entrada 2 = 0xDF14 = 1101 1111 0001 0100. Bit 15=1, bit 14=1, bit 12=1. Marco = 0x14. Física = 0x14224.`,
+    explanation: "Cada entrada de TP es de 16 bits. El bit más significativo (bit 15) indica presencia. El bit 14 indica permisos de escritura. Los bits de marco están en la parte baja.",
+  },
+  // 2021-07 — E/S: AIO (lectura asíncrona)
+  {
+    id: "so_2021jul_q6_aio",
+    exam: "2021-07",
+    topic: "entrada-salida",
+    type: "text",
+    points: 3,
+    question: "Fichero 'file.txt' contiene 'ABCDEFGHIJK\\n'. Código: struct aiocb cb; cb.aio_fildes=fd; cb.aio_buf=BUF; cb.aio_nbytes=4; cb.aio_offset=0; aio_read(&cb); while(aio_error(&cb)==EINPROGRESS); printf('%s--%lu', BUF, aio_return(&cb)). ¿Qué imprime?",
+    correctAnswer: `Imprime: ABCD--4
+
+Explicación:
+1. aio_read inicia lectura asíncrona de 4 bytes desde offset 0. BUF recibe "ABCD".
+2. while(aio_error==EINPROGRESS) espera activa hasta que termine la operación.
+3. aio_return devuelve 4 (bytes efectivamente leídos).
+4. printf imprime "ABCD--4".`,
+    explanation: "AIO (Asynchronous I/O) permite iniciar una operación de E/S y continuar ejecutando. aio_error comprueba el estado. aio_return obtiene el resultado (nº de bytes leídos).",
   },
   // 2022-01
   {
@@ -838,5 +1011,519 @@ Nº bloques = 32768 / 16 = 2048 bloques.`,
     correctAnswer: `a) Pistas = 65536/16 = 4096. Caras = 4×2 = 8. Cilindros = 4096/8 = 512.
 b) 1 bloque = 4096B = 8 sectores. Bloques = 65536/8 = 8192.`,
     explanation: "Más platos = más pistas por cilindro = menos cilindros para la misma cantidad de sectores.",
+  },
+
+  // ============================================================
+  // 2022-07 — Memoria zonas + E/S redirección
+  // ============================================================
+  {
+    id: "so_2022jul_q4_zonas",
+    exam: "2022-07",
+    topic: "memoria",
+    type: "matching",
+    points: 5,
+    question: "Clasifica cada dirección de un programa C en su zona: a) stack, b) heap, c) datos globales/estáticos, d) código/librerías.",
+    correctAnswer: {
+      "&a (variable auto local)": "a",
+      "&p (puntero local)": "a",
+      "&p[0] (malloc)": "b",
+      "sbrk(0)-0xFF (zona heap alta)": "b",
+      "&pi (static)": "c",
+      "&t (global)": "c",
+      "f1 (función propia)": "d",
+      "getpid (función librería)": "d",
+      "fork (función librería)": "d",
+    },
+    explanation: "Variables auto → stack. malloc → heap. static/global → datos. Funciones → código. El espacio del kernel no es accesible desde usuario.",
+  },
+  // 2022-07 — FS P2 código con link/symlink/unlink
+  {
+    id: "so_2022jul_q5_code",
+    exam: "2022-07",
+    topic: "sistema-ficheros",
+    type: "text",
+    points: 5,
+    question: "Código sobre '/home/usr1/datos' (8GB+32MB+8KB, hard links=1): chmod 0642, link crea datos2, symlink('/home/usr1/datos','/home/usr1/sim_link'), open datos2, open sim_link, lseek(fd,16000), fgetc c1, close, unlink datos y sim_link. Cachés vacías, entrada usr1 en 7º bloque de home. A) fd_sim. B) Accesos disco apertura datos2. C) Bloques para fgetc. D) Permisos rwxrwxrwx. E) Hard links de datos2 tras ambos unlink.",
+    correctAnswer: `A) 4 (primera apertura fd=3, segunda fd_sim=4)
+B) 9 accesos (raíz, home, 7 bloques para usr1 — no, con bloque 8KB: 1 raíz, 1 home, 1 usr1(7º bloque), 1 datos2 → total = 4 directorios + 5 índices/datos = 9)
+C) 1 bloque (16000 < 8KB → byte en 2º bloque de datos directos, ya cargado en caché de apertura)
+D) rw- r-- -w- (0642: owner=6=rw-, group=4=r--, others=2=-w-)
+E) 1 (inicialmente 1, link crea datos2 → 2, unlink datos → 1, unlink sim_link no afecta al inodo de datos)`,
+    explanation: "sim_link es un symlink con su propio inodo. unlink de sim_link borra el symlink pero no afecta al fichero datos/datos2.",
+  },
+  // 2022-07 — FS V/F
+  {
+    id: "so_2022jul_q6_tf",
+    exam: "2022-07",
+    topic: "sistema-ficheros",
+    type: "matching",
+    points: 6,
+    question: "Indica C/F sobre sistema de ficheros (Junio 2022):",
+    correctAnswer: {
+      "El S.O. mantiene copia en memoria del inodo de un fichero abierto hasta el último cierre": "C",
+      "Al linkar con librería estática, el código en memoria se puede compartir entre procesos": "F",
+      "Al ejecutar perror() se incrementa el tiempo en modo usuario pero no en modo sistema": "F",
+      "Es posible crear soft links entre diferentes sistemas de ficheros montados": "C",
+      "El journaling es un registro histórico de asignaciones de inodos": "F",
+      "El Buffer Cache reduce lecturas físicas pero no escrituras": "F",
+    },
+    explanation: "Las librerías estáticas se copian en cada ejecutable (no se comparten en memoria). perror() usa write() → modo kernel. Los soft links almacenan rutas → cruzan sistemas de ficheros.",
+  },
+
+  // 2023-01 — FS V/F
+  {
+    id: "so_2023_q9_tf",
+    exam: "2023-01",
+    topic: "sistema-ficheros",
+    type: "matching",
+    points: 6,
+    question: "Indica C/F sobre sistema de ficheros (Enero 2023):",
+    correctAnswer: {
+      "En modo usuario se pueden ejecutar todas las instrucciones del procesador": "F",
+      "Al ejecutar perror(), el proceso está exclusivamente en modo usuario": "F",
+      "El código binario de chmod() está en libC": "F",
+      "Las librerías dinámicas producen ejecutables autocontenidos": "F",
+      "Con asignación indexada no existe fragmentación externa": "C",
+      "El Buffer Cache reduce tanto lecturas como escrituras físicas": "C",
+    },
+    explanation: "En modo usuario solo instrucciones no privilegiadas. chmod es syscall, su código está en el kernel. Las librerías estáticas (no dinámicas) producen binarios autocontenidos. La asignación indexada (i-nodos) elimina la fragmentación externa.",
+  },
+  // 2022-07 — E/S: código dup/close/redirección
+  {
+    id: "so_2022jul_q5_redir",
+    exam: "2022-07",
+    topic: "entrada-salida",
+    type: "text",
+    points: 5,
+    question: "Código: open('file1.dat',O_RDONLY) → ifd=3; open('file2.dat',O_WRONLY|O_CREAT) → ofd=4. bk=dup(1); close(1); dup(ifd); close(0); dup(ofd). Lee de fd=ifd(3) y escribe a fd=1 (que ahora es file2.dat). Luego close(0); close(1); dup(bk). Finalmente write(1,'--done--'). ¿Qué se escribe en pantalla?",
+    correctAnswer: `Solo se escribe "--done--" en pantalla.
+
+Paso a paso:
+1. bk=dup(1) → bk=5 apunta a stdout (pantalla).
+2. close(1); dup(ifd=3) → fd1=file1.dat. ¡Stdout ahora es file1.dat!
+3. close(0); dup(ofd=4) → fd0=file2.dat.
+4. read(3...) lee de file1.dat (fd3 sigue siendo file1.dat).
+5. write(1...) escribe buf en file1.dat (no en file2.dat). 
+6. close(0); close(1); dup(bk=5) → fd0=stdout. fd1 sigue cerrado.
+7. write(1,...) escribe "--done--" en pantalla (stdout, vía fd0 duplicado).
+
+Nota: el código tiene un comportamiento sutil con los descriptores.`,
+    explanation: "dup() busca el menor descriptor libre. Al cerrar fd1 y hacer dup(ifd), stdout(1) ahora apunta a file1.dat. Tras restaurar con dup(bk), stdout vuelve a la pantalla.",
+  },
+  // 2023-01 — Memoria V/F
+  {
+    id: "so_2023_q7_mem",
+    exam: "2023-01",
+    topic: "memoria",
+    type: "matching",
+    points: 5,
+    question: "Responde V/F sobre memoria (Enero 2023):",
+    correctAnswer: {
+      "Un sistema con segmentación sin paginación puede tener memoria virtual": "V",
+      "Tras fork(), padre e hijo tienen su propio espacio de direcciones virtuales": "V",
+      "Un fallo de página bloquea al proceso mientras se sirve": "V",
+      "La política del Working Set puede llegar a suspender procesos": "V",
+      "Un algoritmo de reemplazo aleatorio con N marcos y N-1 páginas virtuales produce N-1 fallos o menos": "V",
+    },
+    explanation: "La segmentación con swapping implementa memoria virtual sin paginación. El Working Set monitoriza páginas activas; si la suma excede RAM, se suspenden procesos (thrashing).",
+  },
+  // 2023-01 — Procesos
+  {
+    id: "so_2023_q8_proc",
+    exam: "2023-01",
+    topic: "procesos",
+    type: "matching",
+    points: 8,
+    question: "Responde V/F sobre procesos (Enero 2023):",
+    correctAnswer: {
+      "Un proceso zombie ocupa una entrada en la tabla de procesos": "V",
+      "La credencial efectiva puede cambiar al hacer exec()": "V",
+      "Tras fork(), las credenciales de padre e hijo son idénticas": "V",
+      "Un proceso con mínima prioridad usa el 100% de CPU si no hay otros listos": "V",
+      "Un algoritmo no apropiativo minimiza cambios de contexto frente a uno apropiativo": "V",
+      "No existe la instrucción hardware 'cambiar prioridad'": "V",
+      "La creación de procesos es software (syscalls), no instrucción hardware": "V",
+      "El administrador no puede hacer que un proceso de usuario se ejecute siempre en modo kernel": "V",
+    },
+    explanation: "Conceptos de procesos: zombies, credenciales, prioridades, creación de procesos, modos de ejecución. El modo kernel/depende del código ejecutado (syscalls/interrupciones).",
+  },
+  // 2023-07 — Memoria V/F adicionales
+  {
+    id: "so_2023jul_q9_mem",
+    exam: "2023-07",
+    topic: "memoria",
+    type: "matching",
+    points: 10,
+    question: "Responde V/F sobre memoria (julio 2023):",
+    correctAnswer: {
+      "En TP multinivel, solo el último nivel almacena direcciones de páginas físicas de datos": "F",
+      "La TP invertida almacena qué página lógica ocupa cada marco físico": "V",
+      "fork() con copy-on-write copia la tabla de páginas del padre en el hijo": "V",
+      "vfork() no copia la tabla de páginas del padre en el hijo": "V",
+      "Un fallo de página siempre actualiza la tabla de páginas": "V",
+      "El Working Set en ventana de 1000 refs siempre es ≥ que en ventana de 500": "V",
+      "En paginación por demanda pura no se prepagina la 1ª instrucción": "V",
+      "Con registros base/límite sí puede haber swapping a disco": "V",
+      "Linux gestiona memoria con segmentación paginada": "V",
+      "Las librerías dinámicas ahorran memoria física vs estáticas": "V",
+    },
+    explanation: "Niveles intermedios de TP almacenan direcciones de tablas (no de datos). La TP invertida tiene una entrada por marco físico. fork() con COW copia la TP (apuntando a mismos frames RO). vfork() comparte espacio del padre. WS(A) ⊇ WS(B) si A ≥ B.",
+  },
+  // 2023-07 — Procesos
+  {
+    id: "so_2023jul_q10_proc",
+    exam: "2023-07",
+    topic: "procesos",
+    type: "matching",
+    points: 10,
+    question: "Responde V/F sobre procesos (julio 2023):",
+    correctAnswer: {
+      "Un SO multiproceso no necesita instrucción hardware específica para crear procesos": "V",
+      "El límite de usuarios en SO multiusuario depende de recursos, no del micro": "V",
+      "Root no puede hacer que un proceso se ejecute siempre en modo kernel": "V",
+      "Un zombie ocupa entrada en la tabla de procesos": "V",
+      "exec con setuid cambia la credencial efectiva": "V",
+      "Tras fork(), credenciales de padre e hijo son idénticas": "V",
+      "Con mínima prioridad y sin competencia se usa el 100% de CPU": "V",
+      "Algoritmo no apropiativo es más eficiente en CPU que apropiativo (menos cambios contexto)": "V",
+      "No existe instrucción 'cambiar prioridad' en micros actuales": "V",
+      "Procesos distintos pueden tener variables de entorno diferentes": "V",
+    },
+    explanation: "La creación de procesos es software. El límite de usuarios es por recursos (RAM, tabla procesos). El modo kernel/user lo determina el código. Las variables de entorno se heredan con fork() pero pueden modificarse con setenv/putenv o exec.",
+  },
+
+  // ============================================================
+  // ENERO 2024 — Memoria (Working Set + zonas + fork/dup)
+  // ============================================================
+
+  {
+    id: "so_2024_q5_ws",
+    exam: "2024-01",
+    topic: "memoria",
+    type: "text",
+    points: 5,
+    question: "Sobre el algoritmo FIFO Segunda Oportunidad: B1) ¿Puede aplicarse con asignación variable de memoria a procesos y reemplazo global? B2) ¿Es necesario el bit de referencia? B3) ¿Es necesario el bit de presencia? B4) ¿Es necesario el dirty bit? B5) ¿Es necesario el lock bit?",
+    correctAnswer: `B1) SÍ. FIFO 2ª Oportunidad puede aplicarse con asignación variable y reemplazo global. El algoritmo solo necesita la cola de páginas y los bits de referencia, independientemente de cuántos marcos tenga cada proceso.
+
+B2) SÍ. El bit de referencia (R) es esencial: cuando una página va a ser reemplazada, si R=1 se le da una segunda oportunidad (se pone R=0 y se mueve al final de la cola).
+
+B3) SÍ. El bit de presencia indica si la página está en memoria. Solo las páginas presentes tienen entrada en la cola FIFO.
+
+B4) NO. El dirty bit indica si la página fue modificada (necesita escribirse a disco al reemplazarla), pero no es necesario para la lógica del algoritmo de reemplazo en sí.
+
+B5) NO. El lock bit impide que una página sea reemplazada (ej. durante E/S), pero no forma parte del algoritmo de reemplazo.`,
+    explanation: "FIFO 2ª Oportunidad usa una cola circular con bit R. Cuando una página llega al frente: si R=1 → R=0 y al final; si R=0 → se reemplaza. Solo necesita el bit de referencia y presencia.",
+  },
+  {
+    id: "so_2024_q6_zonas",
+    exam: "2024-01",
+    topic: "memoria",
+    type: "text",
+    points: 10,
+    question: "Dado un programa C que declara variables locales (int, double, char*), usa malloc, define funciones propias (f1) y accede a argc, argv, environ: identifica 10 elementos y di en qué zona de memoria residen (pila, heap, código, datos). Indica qué printf corresponde a cada zona.",
+    correctAnswer: `1. &d → pila de usuario (d es variable local tipo char*)
+2. &e → pila de usuario (e es variable local tipo double)
+3. &d[0] → heap (d apunta a memoria reservada con malloc)
+4. &d[1] → heap (siguiente byte del bloque malloc)
+5. argc → pila de usuario (parámetro de main)
+6. f1 → segmento de código (dirección de función propia)
+7. f1+1 → segmento de código (siguiente instrucción)
+8. s[0] → segmento de datos/pila (argv, puntero a cadena)
+9. t[0] → pila de usuario (environ, variables de entorno)
+10. &t → pila de usuario (dirección del array de punteros a entorno)`,
+    explanation: "La pila contiene variables locales, parámetros y direcciones de retorno. El heap contiene memoria dinámica (malloc). El segmento de código contiene las instrucciones del programa. Las variables de entorno (environ) se pasan como tercer argumento de main.",
+  },
+  {
+    id: "so_2024_q7_forkdup",
+    exam: "2024-01",
+    topic: "procesos",
+    type: "text",
+    points: 10,
+    question: "Código: open 1.txt (O_CREAT|O_TRUNC|O_RDWR), dup(STDOUT_FILENO) a fdb, close(1), dup(fda) redirige stdout a 1.txt, write('1.TXT-CREATED-'), fork(). Hijo write('A'), ambos write('B'). close(1), dup(fdb) restaura stdout, write('Y'), write('Z'). ¿Salida por terminal? ¿Contenido de 1.txt?",
+    correctAnswer: `SALIDA POR TERMINAL: YZ (padre) + YZ (hijo) = YZYZ (o entrelazados: YZYZ, YYZZ, etc.)
+
+CONTENIDO 1.txt: 1.TXT-CREATED-BAB
+
+Explicación:
+1. stdout se redirige a 1.txt → "1.TXT-CREATED-" se escribe en 1.txt.
+2. fork() crea hijo. Ambos tienen stdout → 1.txt.
+3. Padre e hijo escriben "B" → 1.txt tiene "...B" de cada uno = "BAB".
+   El hijo además escribe "A" antes → el hijo escribe "AB", el padre "B".
+   Como comparten file pointer, el resultado es "1.TXT-CREATED-BAB".
+4. Ambos cierran stdout(1) y lo restauran con dup(fdb) → stdout = terminal.
+5. Ambos escriben "YZ" a terminal → 4 letras total (YZYZ, con posible entrelazado).`,
+    explanation: "Tras fork(), padre e hijo comparten la entrada en la tabla de ficheros abiertos (mismo file pointer). Las escrituras de ambos se intercalan en 1.txt. Al restaurar stdout con dup, ambos escriben a terminal de forma concurrente.",
+  },
+
+  // ============================================================
+  // ENERO 2024 — Procesos (V/F + shell + planificación)
+  // ============================================================
+
+  {
+    id: "so_2024_q8_proc",
+    exam: "2024-01",
+    topic: "procesos",
+    type: "matching",
+    points: 10,
+    question: "Responde V/F (10 preguntas) sobre procesos:",
+    correctAnswer: {
+      "En un SO Multiusuario, el número de usuarios que puede soportar está limitado por el microprocesador": "F",
+      "Solo un proceso con credencial efectiva de root puede cambiar sus credenciales mediante exec": "F",
+      "Los manejadores de interrupción se almacenan en la pila del kernel": "F",
+      "Un proceso zombie no ocupa una entrada en la tabla de procesos": "F",
+      "Las llamadas exec pueden reemplazar datos y pila de un proceso, pero no el código": "F",
+      "Tras fork(), el proceso hijo tiene SIEMPRE la misma credencial efectiva que su padre": "F",
+      "Todo proceso comienza y termina SIEMPRE con una ráfaga de CPU": "F",
+      "Un algoritmo apropiativo siempre produce más cambios de contexto que uno no apropiativo": "V",
+      "El rango de prioridades depende en parte del microprocesador": "F",
+      "La Tabla de Ficheros Abiertos del sistema es parte de los datos del kernel": "V",
+    },
+    explanation: "El límite de usuarios depende de recursos (memoria, tabla procesos), no del micro. Cualquier proceso con setuid puede cambiar credenciales. Las ISR tienen su propia pila o usan la pila kernel del proceso interrumpido. Los zombies SÍ ocupan entrada. exec reemplaza TODO (código, datos, pila). Tras fork, si el ejecutable tiene setuid y se hace exec, la efectiva cambia. Algunos SO permiten terminar con ráfaga de E/S. La prioridad es abstracción del SO, no del hardware.",
+  },
+  {
+    id: "so_2024_q9_shell",
+    exam: "2024-01",
+    topic: "procesos",
+    type: "text",
+    points: 7,
+    question: "Código de shell: ComprobarSegundoPlano busca '&' en el array tr[], si lo encuentra hace tr[i]=NULL /*UNO*/. Proceso hace fork(), si hijo: execvp y si falla exit(255) /*DOS*/. Padre: si !back → wait(NULL) /*TRES*/, si back → MeterProceso. Para cada marca /*UNO*/, /*DOS*/, /*TRES*/, indica si es NECESARIA, INCORRECTA o SUPERFLUA.",
+    correctAnswer: `/*UNO*/ tr[i]=NULL: NECESARIA. El '&' es un símbolo del shell para indicar segundo plano. Si no se elimina, el programa ejecutado recibiría '&' como parámetro, lo cual es incorrecto.
+
+/*DOS*/ exit(255): NECESARIA. Si execvp falla (ejecutable no existe, sin permisos, formato incorrecto), el proceso hijo debe terminar. Sin exit(), el hijo continuaría ejecutando el código del shell, creando una copia adicional del shell cada vez que execvp falle.
+
+/*TRES*/ wait(NULL): INCORRECTA. Cuando la ejecución NO es en segundo plano (!back), el shell debe esperar al proceso hijo. Pero wait() espera por cualquier hijo, incluyendo procesos en segundo plano que puedan terminar antes. Lo correcto es usar waitpid(pid, NULL, 0) para esperar específicamente por el proceso en primer plano.`,
+    explanation: "En shells, el '&' es metacarácter que no debe pasarse al programa. execvp no retorna en éxito; si falla, hay que hacer exit. wait() espera a cualquier hijo; con procesos en segundo plano hay que usar waitpid para esperar al hijo correcto.",
+  },
+  {
+    id: "so_2024_q10_sched",
+    exam: "2024-01",
+    topic: "procesos",
+    type: "text",
+    points: 7,
+    question: "Sistema con 3 colas: SYS (RR quantum 1, prioridad máxima), INT (RR quantum 3), BAT (FCFS, prioridad mínima). Planificación entre colas por prioridades apropiativas. Procesos: A (INT, CPU=7, t=0), B (INT, CPU=4, t=1), C (SYS, CPU=6, t=6), D (SYS, CPU=3, t=12). Muestra la planificación de CPU.",
+    correctAnswer: `Traza: A A A | B B B | A A A | B | A | C C C C C C | D D D | (resto de A y B?)
+
+La solución oficial es: A A A B B B C C C C C C D D D A A A B A
+
+Explicación:
+t=0-2: A ejecuta 3 (INT, quantum 3).
+t=3-5: B ejecuta 3 (INT, quantum 3). A queda con 4 restantes, B con 1.
+t=6: Llega C (SYS, prioridad máxima) → expropia. C ejecuta.
+t=6-11: C ejecuta 6 (SYS, RR quantum 1 → como no hay otros en SYS, ejecuta sus 6 seguidos).
+t=12: Llega D (SYS). C ha terminado.
+t=12-14: D ejecuta 3.
+t=15-18: Vuelven A y B de INT. A ejecuta 3+1=4 (quantum 3 + queda 1).
+t=19: B ejecuta su unidad restante.`,
+    explanation: "SYS tiene prioridad absoluta sobre INT. Cuando llega C en t=6, expropia a B inmediatamente. Dentro de SYS, RR de quantum 1 pero como no compite con nadie, ejecuta de corrido. Al terminar los procesos SYS, vuelven INT.",
+  },
+
+  // ============================================================
+  // EXAMEN JULIO 2024
+  // ============================================================
+
+  // 2024-07 — Sistema de Ficheros
+  {
+    id: "so_2024jul_q1",
+    exam: "2024-07",
+    topic: "sistema-ficheros",
+    type: "calculation",
+    points: 6,
+    question: "Un sistema de archivos tipo System V tiene bloque de 2KB, i-nodos con 10 direcciones directas, una indirecta simple, una indirecta doble y una indirecta triple. Direcciones de bloque de 8 bytes. Fichero con tamaño de 130 MBytes + 19 KBytes. Calcular: bloques de datos, bloques de índices y fragmentación interna.",
+    correctAnswer: `Tamaño = 130MB + 19KB = 136,314,880 + 19,456 = 136,334,336 bytes.
+Nº bloques datos = 136,334,336 / 2048 = 66,570 bloques.
+
+Direcciones/bloque = 2048/8 = 256.
+10 directas + 256 simple + 256² = 65,802 (insuficiente).
+66,570 − 65,802 = 768 bloques necesitan triple indirección.
+768/256 = 3 bloques índice de 3er nivel.
+
+Índices: 1 (simple) + 1 (doble) + 256 (doble 2º) + 1 (triple) + 1 (triple 2º) + 3 (triple 3º) = 263.
+
+Fragmentación: 2048 − (136,334,336 mod 2048) = 1024 bytes.`,
+    explanation: "Similar al problema de enero 2020 pero con 19KB más de datos. La diferencia está en la fragmentación interna (1024 vs 2047 bytes).",
+  },
+  {
+    id: "so_2024jul_q2",
+    exam: "2024-07",
+    topic: "sistema-ficheros",
+    type: "calculation",
+    points: 3,
+    question: "Sistema UNIX con bloque 2KB, inodo 64 bytes. Boot ocupa 2 bloques, superbloque 14 bloques. Calcular: a) Bloque lógico del inodo del directorio raíz (inodo 2). b) Bloque lógico del inodo del fichero 'datos' (inodo 642). Los inodos se numeran a partir de 1.",
+    correctAnswer: `Inodos por bloque = 2048/64 = 32.
+Área de inodos empieza tras boot+superbloque = 2+14 = 16 (bloque 16).
+
+a) Inodo 2 → bloque = 16 + floor((2−1)/32) = 16 + 0 = 16.
+b) Inodo 642 → bloque = 16 + floor((642−1)/32) = 16 + 20 = 36.`,
+    explanation: "El área de inodos comienza tras el superbloque. Cada bloque contiene 32 inodos de 64 bytes. Los inodos se numeran desde 1.",
+  },
+  {
+    id: "so_2024jul_q3",
+    exam: "2024-07",
+    topic: "sistema-ficheros",
+    type: "text",
+    points: 5,
+    question: "Código sobre '/home/juan/so/p1/p1.c' (3MB, inodo 6549). Se ejecuta desde /home/juan/so/p1. chmod 0632, lstat, link crea practica1.c, symlink crea slink_practica1.c, open practica1.c, lseek 100000, fgetc. Cachés vacías, entrada 'so' en 8º bloque de juan. a) Accesos a disco en 1ª apertura. b) Valor de fd2. c) Bloques leídos para fgetc(fd2). d) Tamaño de slink_practica1.c. e) Permisos en rwxrwxrwx.",
+    correctAnswer: `a) 12 accesos (raíz, home, juan, 8º bloque de juan para 'so', so, p1, p1.c = 7 + 5 accesos datos índices)
+b) 4 (fd1=3, fd2=4)
+c) 2 bloques (100000 está en zona de indirección simple ya cargada → 1 índice + 1 datos)
+d) 11 bytes (longitud de la ruta "practica1.c")
+e) rw- -wx -w- (0632: owner=6=rw-, group=3=-wx, others=2=-w-)`,
+    explanation: "lstat vs stat: lstat no sigue symlinks. chmod 0632 da permisos rw- al dueño, -wx al grupo, -w- a otros.",
+  },
+  {
+    id: "so_2024jul_q4",
+    exam: "2024-07",
+    topic: "sistema-ficheros",
+    type: "matching",
+    points: 6,
+    question: "Indica C/F sobre el código del ejercicio anterior y conceptos de sistema de ficheros:",
+    correctAnswer: {
+      "fgetc es una llamada al sistema operativo": "F",
+      "unlink elimina la entrada 'p1.c' pero no libera el inodo 6549": "C",
+      "El enlazador incorpora el código de printf desde libC (estática o dinámica)": "C",
+      "Al ejecutar printf se incrementa el tiempo en modo usuario pero no en modo sistema": "F",
+      "Un proceso puede abrir varias veces un fichero, pero con el mismo modo de apertura": "F",
+      "El Buffer Cache reduce lecturas físicas pero no escrituras físicas": "F",
+    },
+    explanation: "fgetc es función de libc, no syscall. unlink borra la entrada pero quedan hard links → inodo no se libera. printf gasta tiempo en ambos modos. Un fichero puede abrirse con modos distintos (O_RDONLY y O_RDWR). Buffer Cache reduce tanto lecturas como escrituras.",
+  },
+
+  // 2024-07 — Memoria
+  {
+    id: "so_2024jul_q5_mem",
+    exam: "2024-07",
+    topic: "memoria",
+    type: "matching",
+    points: 10,
+    question: "Responde V/F (20 preguntas, 0.05p cada una) sobre memoria:",
+    correctAnswer: {
+      "Con tabla de páginas invertida se ahorra memoria para las tablas de páginas de proceso": "V",
+      "Con tabla de páginas invertida se pueden gestionar los fallos de página del proceso": "V",
+      "Cuando el lock bit es 0 en una entrada de TP necesaria, se produce un fallo de página": "F",
+      "Con N páginas virtuales, LRU con N marcos siempre produce menos fallos que con N-1": "F",
+      "Con N páginas virtuales, FIFO con N marcos siempre produce menos fallos que con N-1": "F",
+      "En la pila del proceso están los argumentos de la línea de comandos": "V",
+      "Las variables locales de main() están en la pila del proceso": "V",
+      "Las variables locales de funciones de usuario están en la pila del proceso": "V",
+      "El código de las funciones de librería invocadas está en la pila del proceso": "F",
+      "El código de las funciones de usuario invocadas está en la pila del proceso": "F",
+      "Las variables estáticas definidas en funciones están en la pila del proceso": "F",
+      "Las variables estáticas definidas en main() están en la pila del proceso": "F",
+      "Para un proceso con varios hilos, cada hilo tiene su propia pila": "V",
+      "Con TP de un nivel, si el bit de presencia es 1, el acceso a esa página está garantizado": "F",
+      "Con TP de un nivel, si el bit de presencia es 1, se garantiza que no hay fallo de página": "V",
+      "fork sin copy-on-write copia la tabla de páginas del padre en el hijo": "V",
+      "fork con copy-on-write copia la tabla de páginas del padre en el hijo": "V",
+      "Con paginación por demanda pura, siempre hay fallo en la 1ª instrucción": "V",
+      "Una TP multinivel normalmente reduce memoria necesaria vs TP de un nivel": "V",
+      "Si el nº de marco son 8 bits y páginas de 4KB, las direcciones físicas son de 20 bits": "V",
+    },
+    explanation: "La tabla invertida ahorra memoria (una entrada por marco, no por página virtual). Con N marcos y N páginas virtuales, LRU/FIFO producen los mismos fallos (N) que con N-1 marcos (N también) — la anomalía de Belady. El código está en el segmento de texto, no en la pila. Las variables estáticas están en el segmento de datos. Con presencia=1 la página está en memoria → no hay fallo, pero el acceso puede violar permisos. 8 bits marco + 12 offset = 20 bits físicos.",
+  },
+  {
+    id: "so_2024jul_q6_tp",
+    exam: "2024-07",
+    topic: "memoria",
+    type: "calculation",
+    points: 7,
+    question: "Sistema con memoria física de 8GB, páginas de 4KB, entradas de TP de 8 bytes, direcciones virtuales de 30 bits. a) ¿Cuántos niveles de TP son necesarios? b) ¿Bits de control + no usados en una entrada de TP? c) Con TLB y caché, ¿mínimo y máximo de accesos a memoria para leer un byte?",
+    correctAnswer: `a) Página 4KB = 2¹². Entradas/TP = 2¹²/8 = 2⁹ = 512.
+1 nivel: 2⁹ × 2¹² = 2²¹ bytes (2MB) — insuficiente para 2³⁰.
+2 niveles: 2⁹ × 2⁹ × 2¹² = 2³⁰ bytes ✓ → 2 niveles.
+
+b) Física 8GB = 2³³ bytes. Páginas físicas = 2³³/2¹² = 2²¹ → 21 bits.
+Entrada TP = 8B = 64 bits. Control + no usados = 64 − 21 = 43 bits.
+
+c) Mínimo: 0 accesos (mapping en TLB + dato en caché).
+Máximo: 3 accesos (2 niveles TP + 1 acceso al dato en memoria).`,
+    explanation: "Con 30 bits de dirección virtual y páginas de 4KB (offset 12 bits), quedan 18 bits para nº página. Con 9 bits por nivel, 2 niveles cubren 18 bits exactos. Con TLB+caché se puede evitar todo acceso a RAM; sin ellos, cada nivel de TP requiere un acceso.",
+  },
+
+  // 2024-07 — Procesos + E/S
+  {
+    id: "so_2024jul_q7_proc",
+    exam: "2024-07",
+    topic: "procesos",
+    type: "matching",
+    points: 7,
+    question: "Responde V/F (15 preguntas, 0.07p cada una) sobre procesos y E/S:",
+    correctAnswer: {
+      "Las 4 capas del software de E/S son: usuario, indep. dispositivo, driver y manejador interrupciones": "V",
+      "Un dispositivo polling genera interrupciones": "F",
+      "La E/S mediante DMA puede usarse con dispositivos mapeados en memoria": "V",
+      "En un sistema con espacio E/S separado puede haber dispositivos mapeados en memoria": "V",
+      "Compartir memoria con shmget puede hacerse entre procesos con distinto UID": "V",
+      "Si el ejecutable tiene setuid, exec() cambia la credencial efectiva y la salvada": "V",
+      "Un proceso puede terminar con una ráfaga de E/S": "V",
+      "Round-robin puede producir inanición de procesos con ráfaga mayor que el quantum": "F",
+      "El rango de prioridades depende en parte del microprocesador": "F",
+      "La Tabla de Ficheros Abiertos del sistema es parte de los datos del kernel": "V",
+      "Que cada proceso tenga su propia pila del kernel es necesario para que el kernel sea reentrante": "V",
+      "En un sistema multiprocesador, el kernel no puede ser reentrante": "F",
+      "Todos los procesos UNIX, al comenzar, tienen el mismo conjunto de variables de entorno": "F",
+      "Para implementar UNIX se necesita la instrucción 'terminar proceso' en el procesador": "F",
+      "Al crear un proceso con exec, exec devuelve el pid del proceso creado al padre": "F",
+    },
+    explanation: "Polling NO genera interrupciones (sondeo continuo). DMA puede usarse con memory-mapped I/O. La prioridad es abstracción del SO, no del hardware. Round-robin no produce inanición (todos reciben quantum). En multiprocesador el kernel SÍ puede ser reentrante. exec NO crea proceso nuevo, solo reemplaza; no devuelve PID.",
+  },
+  {
+    id: "so_2024jul_q8_redir",
+    exam: "2024-07",
+    topic: "procesos",
+    type: "text",
+    points: 7,
+    question: "Cuatro códigos que ejecutan 'ls -l /root /home' con redirecciones usando open, close, dup y fork. Para cada código, indica qué va a 'out.txt', 'err.txt' y pantalla. Código 1: solo execv (sin redirección). Código 2: fork + redirección en el hijo. Código 3: redirección + execv. Código 4: redirección + fork + execv.",
+    correctAnswer: `Código 1 (sin redirección): pantalla = mensaje1 + mensaje2. out.txt = vacío. err.txt = vacío.
+
+Código 2 (fork, hijo redirige): el padre ejecuta execv sin redirección → pantalla = mensaje1+mensaje2. El hijo redirige fd1 y fd2 a err.txt, luego execv → err.txt = mensaje1+mensaje2.
+
+Código 3 (redirige, luego execv): stdout(1) y stderr(2) redirigidos a err.txt. execv ejecuta ls → err.txt = mensaje1+mensaje2.
+
+Código 4 (redirige, fork, execv en hijo): el padre redirige stdout/stderr a err.txt ANTES del fork. El hijo hereda la redirección y ejecuta execv → todo va a err.txt = mensaje1+mensaje2.`,
+    explanation: "close(1); dup(df2) hace que el descriptor 1 apunte al fichero df2. close(2); dup(1) redirige stderr al mismo sitio. Las redirecciones hechas antes de fork() son heredadas por el hijo.",
+  },
+  {
+    id: "so_2024jul_q9_sched",
+    exam: "2024-07",
+    topic: "procesos",
+    type: "text",
+    points: 5,
+    question: "Traza de planificación: A B C D A E E E E E E C C D B A A A A A. ¿Es posible una planificación Round Robin de quantum 2? Si es posible, indica una posible duración de ráfagas y tiempos de llegada.",
+    correctAnswer: `SÍ, es posible con quantum 2.
+
+Una solución (no única):
+Proceso A: llegada 0, ráfagas: 1-(3)-1-(10)-5
+Proceso B: llegada 1, ráfagas: 1-(12)-1
+Proceso C: llegada 2, ráfagas: 1-(8)-2
+Proceso D: llegada 3, ráfagas: 1-(9)-1
+Proceso E: llegada 5, ráfagas: 6
+
+Otras soluciones válidas: A,B,C,D llegan en t=0 en orden A,B,C,D; primera E/S de A dura 1 (E llega en t=3); etc.`,
+    explanation: "Con quantum 2, la traza muestra que cada proceso ejecuta 1 o 2 unidades antes de ceder la CPU. Los paréntesis representan ráfagas de E/S donde el proceso se bloquea. La solución no es única: hay múltiples combinaciones de llegadas y duraciones de E/S compatibles con la traza.",
+  },
+  {
+    id: "so_2024jul_q10_creds",
+    exam: "2024-07",
+    topic: "procesos",
+    type: "text",
+    points: 5,
+    question: "a.out y f1.txt son del usuario u2. a.out es ejecutado por u1. Código: df1=open('./f1.txt',O_RDONLY); df2=open('./f1.txt',O_RDWR). Completa la tabla con ruid, euid, y si df1 o df2 son -1 para distintas combinaciones de permisos de a.out y f1.txt.",
+    correctAnswer: `| a.out | f1.txt | ruid | euid | df1=-1? | df2=-1? |
+| rwxrwxrwx | rwxrwxrwx | u1 | u1 | no | no |
+| rwsr-xr-x | rwxr-xr-x | u1 | u2 | no | no |
+| rwsr-xr-x | rwxr--r-- | u1 | u2 | no | no |
+| rwsr-xr-x | rwsr-xr-x | u1 | u2 | no | no |
+| rwsr-xr-x | rwsr--r-- | u1 | u2 | no | no |
+| rwsr-xr-x | rws------ | u1 | u2 | no | no |
+| rwxr-xr-x | rwxr-xr-x | u1 | u1 | no | sí |
+| rwxr-xr-x | rwxr--r-- | u1 | u1 | no | sí |
+| rwxr-xr-x | rwsr-xr-x | u1 | u1 | no | sí |
+| rwxr-xr-x | rwsr--r-- | u1 | u1 | no | sí |
+| rwxr-xr-x | rws------ | u1 | u1 | sí | sí |
+
+Regla: ruid SIEMPRE = u1 (quien ejecuta). Si a.out tiene setuid (rws), euid = u2 (propietario). Si no, euid = u1.
+df1 (O_RDONLY): necesita permiso de lectura. df2 (O_RDWR): necesita lectura+escritura.
+Cuando euid=u2 se miran permisos de propietario; cuando euid=u1 se miran permisos de otros (asumiendo que u1 no está en el grupo).`,
+    explanation: "El bit setuid en a.out cambia la credencial efectiva al propietario (u2), dándole acceso según los permisos de propietario de f1.txt. Sin setuid, euid=u1 y se aplican los permisos de 'otros'. O_RDWR requiere ambos permisos de lectura y escritura.",
   },
 ];
