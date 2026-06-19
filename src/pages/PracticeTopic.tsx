@@ -4,6 +4,7 @@ import { getSubject, getQuestionsByTopic } from "../subjects";
 import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
+import { useT } from "../i18n/hooks";
 
 const getNow = () => Date.now();
 
@@ -37,27 +38,23 @@ function gradeQuestion(
 }
 
 export default function PracticeTopic() {
-  const { subjectId, topic } = useParams<{
-    subjectId: string;
-    topic: string;
-  }>();
+  const { subjectId, topic } = useParams<{ subjectId: string; topic: string }>();
   const navigate = useNavigate();
+  const t = useT();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const questions = useMemo(
-    () => (subject && topic ? getQuestionsByTopic(subject.id, topic) : []),
+    () => (subject && topic) ? getQuestionsByTopic(subject.id, topic) : [],
     [subject, topic],
   );
   const topicInfo = useMemo(
-    () => subject?.topics.find((t) => t.key === topic),
+    () => subject?.topics.find((tp) => tp.key === topic),
     [subject, topic],
   );
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [selfGrades, setSelfGrades] = useState<
-    Record<string, "correct" | "incorrect">
-  >({});
+  const [selfGrades, setSelfGrades] = useState<Record<string, "correct" | "incorrect">>({});
   const [submitted, setSubmitted] = useState(false);
   const [attemptId, setAttemptId] = useState<string>("");
 
@@ -73,7 +70,7 @@ export default function PracticeTopic() {
     (questionId: string, answer: string) => {
       setAnswers((prev) => ({ ...prev, [questionId]: answer }));
     },
-    [setAnswers],
+    [],
   );
 
   const handleSubmit = () => {
@@ -97,10 +94,7 @@ export default function PracticeTopic() {
     setSubmitted(true);
   };
 
-  const handleSelfGrade = (
-    questionId: string,
-    grade: "correct" | "incorrect",
-  ) => {
+  const handleSelfGrade = (questionId: string, grade: "correct" | "incorrect") => {
     if (!subject) return;
     setSelfGrades((prev) => {
       const next = { ...prev, [questionId]: grade };
@@ -125,12 +119,12 @@ export default function PracticeTopic() {
   if (questions.length === 0 || !subject) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-16 text-center">
-        <p className="text-gray-500">No questions found for this topic.</p>
+        <p className="text-gray-500">{t.practice.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
           className="text-blue-600 hover:underline mt-4 inline-block"
         >
-          Back to Home
+          {t.practice.backToHome}
         </Link>
       </div>
     );
@@ -153,25 +147,22 @@ export default function PracticeTopic() {
           to={`/${subject.id}`}
           className="text-sm text-blue-600 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-md px-1"
         >
-          &larr; Back to Topics
+          {t.practice.backToTopics}
         </Link>
         <h1 className="text-2xl font-bold text-gray-900 mt-2">
           {topicInfo?.icon} {topicInfo?.label || topic}
         </h1>
         <p className="text-sm text-gray-500 mt-1">
-          {questions.length} questions &middot; {totalPoints} points total
+          {questions.length} {t.subjectCard.questions} &middot; {totalPoints} {t.practice.pointsTotal}
         </p>
       </div>
 
       {submitted && (
         <div className="mb-6 p-4 rounded-lg bg-blue-50 border border-blue-200">
           <p className="font-semibold text-blue-900">
-            Score: {getScore()} / {totalPoints} points
+            {t.practice.score}: {getScore()} {t.exam.outOf} {totalPoints} {t.practice.points}
           </p>
-          <p className="text-sm text-blue-700 mt-1">
-            Review your answers below. Green = correct answers. Only
-            multiple-choice and matching questions are auto-graded.
-          </p>
+          <p className="text-sm text-blue-700 mt-1">{t.practice.allCorrect}</p>
         </div>
       )}
 
@@ -215,7 +206,7 @@ export default function PracticeTopic() {
           onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
           disabled={currentIndex === 0}
         >
-          Previous
+          {t.practice.previous}
         </button>
         <div className="flex gap-2">
           {answers[currentQuestion.id] && (
@@ -223,7 +214,7 @@ export default function PracticeTopic() {
               className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors"
               onClick={() => handleAnswer(currentQuestion.id, "")}
             >
-              Clear
+              {t.practice.clear}
             </button>
           )}
           {!submitted && (
@@ -231,7 +222,7 @@ export default function PracticeTopic() {
               className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors"
               onClick={handleSubmit}
             >
-              Submit & Show Answers
+              {t.practice.submit}
             </button>
           )}
         </div>
@@ -242,7 +233,7 @@ export default function PracticeTopic() {
           }
           disabled={currentIndex === questions.length - 1}
         >
-          Next
+          {t.practice.next}
         </button>
       </div>
     </div>

@@ -1,0 +1,47 @@
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useCallback, type ReactNode } from "react";
+import { en, type Translations } from "./en";
+import { es } from "./es";
+
+export type Lang = "en" | "es";
+
+const translations: Record<Lang, Translations> = { en, es };
+
+export interface I18nContextType {
+  t: Translations;
+  lang: Lang;
+  setLang: (lang: Lang) => void;
+}
+
+export const I18nContext = createContext<I18nContextType>({
+  t: en,
+  lang: "en",
+  setLang: () => {},
+});
+
+function getInitialLang(): Lang {
+  try {
+    const stored = localStorage.getItem("lang");
+    if (stored === "en" || stored === "es") return stored;
+  } catch { /* localStorage unavailable */ }
+  const nav = navigator.language.toLowerCase();
+  if (nav.startsWith("es")) return "es";
+  return "en";
+}
+
+export function I18nProvider({ children }: { children: ReactNode }) {
+  const [lang, setLangState] = useState<Lang>(getInitialLang);
+
+  const setLang = useCallback((l: Lang) => {
+    setLangState(l);
+    try {
+      localStorage.setItem("lang", l);
+    } catch { /* localStorage unavailable */ }
+  }, []);
+
+  return (
+    <I18nContext.Provider value={{ t: translations[lang], lang, setLang }}>
+      {children}
+    </I18nContext.Provider>
+  );
+}

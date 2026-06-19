@@ -1,10 +1,12 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import { getSubject } from "../subjects";
+import { useT, useLang } from "../i18n/hooks";
 
 export default function Header() {
   const location = useLocation();
   const { subjectId } = useParams<{ subjectId?: string }>();
-
+  const t = useT();
+  const { lang, setLang } = useLang();
   const subject = subjectId ? getSubject(subjectId) : null;
 
   return (
@@ -22,32 +24,41 @@ export default function Header() {
             className="w-7 h-8"
             aria-hidden="true"
           />
-          Pasame Examenes
+          {t.home.title}
         </Link>
-        {subject && (
-          <nav className="flex items-center gap-2 sm:gap-4 text-sm">
-            <Link
-              to={`/${subjectId}`}
-              className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors ${
-                location.pathname === `/${subjectId}`
-                  ? "bg-blue-50 text-blue-700"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              {subject.courseCode} Home
-            </Link>
-            <Link
-              to={`/${subjectId}/practice`}
-              className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors ${
-                location.pathname.startsWith(`/${subjectId}/practice`)
-                  ? "bg-blue-50 text-blue-700"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              Practice
-            </Link>
-          </nav>
-        )}
+        <div className="flex items-center gap-2 sm:gap-4 text-sm">
+          {subject && (
+            <nav className="flex items-center gap-2 sm:gap-4 text-sm">
+              <Link
+                to={`/${subjectId}`}
+                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors ${
+                  location.pathname === `/${subjectId}`
+                    ? "bg-blue-50 text-blue-700"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                {t.header.home}
+              </Link>
+              <Link
+                to={`/${subjectId}/practice`}
+                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors ${
+                  location.pathname.startsWith(`/${subjectId}/practice`)
+                    ? "bg-blue-50 text-blue-700"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                {t.header.practice}
+              </Link>
+            </nav>
+          )}
+          <button
+            className="px-2 py-1 text-xs font-medium rounded border border-gray-200 hover:bg-gray-100 transition-colors"
+            onClick={() => setLang(lang === "en" ? "es" : "en")}
+            aria-label={lang === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
+          >
+            {lang === "en" ? "🇪🇸 ES" : "🇬🇧 EN"}
+          </button>
+        </div>
       </div>
     </header>
   );

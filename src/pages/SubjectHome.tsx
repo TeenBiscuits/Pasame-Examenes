@@ -2,30 +2,34 @@ import { useParams, Link } from "react-router-dom";
 import { getSubject, getAllQuestions } from "../subjects";
 import { getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
+import { useT } from "../i18n/hooks";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
+  const t = useT();
   const subject = subjectId ? getSubject(subjectId) : undefined;
 
   if (!subject) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
-          Subject Not Found
-        </h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-4">{t.subjectHome.notFound}</h1>
         <Link to="/" className="text-blue-600 hover:underline">
-          Return to Home
+          {t.subjectHome.returnHome}
         </Link>
       </div>
     );
   }
 
   const allQuestions = getAllQuestions(subject.id);
-  const totalPoints = allQuestions.reduce((s, q) => s + q.points, 0);
-  const progress = getTopicProgress(
-    subject.id,
-    allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
-  );
+  const progress = getTopicProgress(subject.id, allQuestions.map(q => ({ topic: q.topic, points: q.points })));
+
+  const description = (() => {
+    const totalPoints = allQuestions.reduce((s, q) => s + q.points, 0);
+    if (subject.id === "so") {
+      return `Practica ${allQuestions.length} preguntas de examen (${totalPoints} puntos en total) con autocorrección para preguntas tipo test y de emparejar.`;
+    }
+    return `Practice for this subject. ${totalPoints} points across ${allQuestions.length} questions.`;
+  })();
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -37,13 +41,12 @@ export default function SubjectHome() {
           {subject.name}
         </h1>
         <p className="text-gray-600 max-w-xl mx-auto">
-          Practice for {subject.name}. {totalPoints} points across{" "}
-          {allQuestions.length} questions.
+          {description}
         </p>
       </div>
 
       <h2 className="text-lg font-semibold text-gray-900 mb-4">
-        Practice by Topic
+        {t.subjectHome.practiceByTopic}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
         {subject.topics.map((topic) => {
@@ -65,10 +68,10 @@ export default function SubjectHome() {
       </div>
 
       <h2 className="text-lg font-semibold text-gray-900 mb-4">
-        Full Exam Simulations
+        {t.subjectHome.examSimulations}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-        {subject.exams.map((exam) => (
+        {subject.exams.map(exam => (
           <Link
             key={exam.year}
             to={`/${subject.id}/exam/${exam.year}`}
@@ -85,25 +88,22 @@ export default function SubjectHome() {
 
       <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-10">
         <h3 className="font-semibold text-gray-900 mb-2">
-          Original Exam Documents
+          {t.subjectHome.originalExams}
         </h3>
         <p className="text-sm text-gray-600 mb-4">
-          Download or view the original PDF exams that these practice questions
-          and simulations are based on.
+          {t.subjectHome.examDocsDescription}
         </p>
         <div className="flex flex-wrap gap-4">
-          {subject.exams.map((exam) => (
-            <a
+          {subject.exams.map(exam => (
+             <a
               key={exam.year}
               href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-150"
             >
-              <span role="img" aria-hidden="true">
-                📄
-              </span>{" "}
-              {exam.title} PDF
+              <span role="img" aria-hidden="true">📄</span>{" "}
+              {exam.title} {t.subjectHome.pdf}
             </a>
           ))}
         </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Question } from "../data/types";
+import { useT } from "../i18n/hooks";
 
 interface QuestionCardProps {
   question: Question;
@@ -53,16 +54,6 @@ function MCQuestion({
               {letter}
             </span>
             <span className="flex-1">{opt}</span>
-            {showResult && isCorrect && (
-              <span className="text-green-600 text-xs font-bold ml-2 shrink-0">
-                Correct
-              </span>
-            )}
-            {showResult && isSelected && !isCorrect && (
-              <span className="text-red-600 text-xs font-bold ml-2 shrink-0">
-                Your answer
-              </span>
-            )}
           </button>
         );
       })}
@@ -79,12 +70,11 @@ function TextQuestion({
   onSelfGrade,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useT();
 
   return (
     <div>
-      <label htmlFor={`answer-${question.id}`} className="sr-only">
-        Your answer
-      </label>
+      <label htmlFor={`answer-${question.id}`} className="sr-only">Your answer</label>
       <textarea
         id={`answer-${question.id}`}
         className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-400 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none resize-y min-h-[120px] text-sm"
@@ -102,13 +92,13 @@ function TextQuestion({
             className="text-sm text-blue-600 hover:text-blue-700 font-medium focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-blue-200 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? "Close Solution" : "Open Solutions"}
+            {isOpen ? t.questionCard.closeSolution : t.questionCard.openSolution}
           </button>
 
           {isOpen && (
             <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 space-y-3">
               <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">
-                Model Solution
+                {t.questionCard.modelSolution}
               </h4>
               <pre className="p-3 bg-white rounded border border-gray-100 text-xs whitespace-pre-wrap font-sans text-gray-700">
                 {typeof question.correctAnswer === "string"
@@ -122,7 +112,7 @@ function TextQuestion({
               {onSelfGrade && (
                 <div className="pt-2 border-t border-gray-200">
                   <p className="text-xs font-semibold text-gray-700 mb-2">
-                    Grade your answer:
+                    {t.questionCard.gradeAnswer}
                   </p>
                   <div className="flex gap-2">
                     <button
@@ -134,7 +124,7 @@ function TextQuestion({
                           : "bg-white border-gray-200 text-gray-600 hover:bg-green-50/50 hover:border-green-300"
                       }`}
                     >
-                      ✓ Correct
+                      {t.questionCard.correct}
                     </button>
                     <button
                       type="button"
@@ -145,7 +135,7 @@ function TextQuestion({
                           : "bg-white border-gray-200 text-gray-600 hover:bg-red-50/50 hover:border-red-300"
                       }`}
                     >
-                      ✗ Incorrect
+                      {t.questionCard.incorrect}
                     </button>
                   </div>
                 </div>
@@ -209,8 +199,7 @@ function MatchingQuestion({
                 } else if (chosen) {
                   cls += " bg-blue-50 border-blue-400 text-blue-700";
                 } else {
-                  cls +=
-                    " border-gray-200 text-gray-500 hover:border-gray-400 bg-white";
+                  cls += " border-gray-200 text-gray-500 hover:border-gray-400 bg-white";
                 }
                 return (
                   <button
@@ -288,7 +277,7 @@ export default function QuestionCard(props: QuestionCardProps) {
               {question.table.rows.map((row, ri) => (
                 <tr key={ri} className="hover:bg-gray-50/50 transition-colors">
                   {row.map((cell, ci) => (
-                    <td
+                     <td
                       key={ci}
                       className="px-4 py-2 text-gray-700 whitespace-nowrap"
                     >

@@ -1,9 +1,10 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getSubject, getQuestionsByExam } from "../subjects";
-import type { Question } from "../data/types";
+import type { Question, Exam } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
+import { useT } from "../i18n/hooks";
 
 const getNow = () => Date.now();
 
@@ -39,26 +40,23 @@ function gradeQuestion(
 export default function ExamSimulation() {
   const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
   const navigate = useNavigate();
+  const t = useT();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const questions = useMemo(
-    () => (subject && year ? getQuestionsByExam(subject.id, year) : []),
+    () => (subject && year) ? getQuestionsByExam(subject.id, year) : [],
     [subject, year],
   );
   const examInfo = useMemo(
-    () => subject?.exams.find((e) => e.year === year),
+    () => subject?.exams.find((e: Exam) => e.year === year),
     [subject, year],
   );
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [selfGrades, setSelfGrades] = useState<
-    Record<string, "correct" | "incorrect">
-  >({});
+  const [selfGrades, setSelfGrades] = useState<Record<string, "correct" | "incorrect">>({});
   const [submitted, setSubmitted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(
-    (examInfo?.durationMinutes || 120) * 60,
-  );
+  const [timeLeft, setTimeLeft] = useState((examInfo?.durationMinutes || 120) * 60);
   const [started, setStarted] = useState(false);
   const startTimeRef = useRef<number>(0);
   const [attemptId, setAttemptId] = useState<string>("");
@@ -89,20 +87,13 @@ export default function ExamSimulation() {
     (questionId: string, answer: string) => {
       setAnswers((prev) => ({ ...prev, [questionId]: answer }));
     },
-    [setAnswers],
+    [],
   );
 
   const handleSubmit = () => {
     if (!subject || !year) return;
 
-    // Add confirmation modal
-    if (
-      !window.confirm(
-        "Are you sure you want to submit your exam? You won't be able to change your answers.",
-      )
-    ) {
-      return;
-    }
+    if (!window.confirm(t.exam.submitConfirm)) return;
 
     const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
     const id = getNow().toString();
@@ -124,10 +115,7 @@ export default function ExamSimulation() {
     setSubmitted(true);
   };
 
-  const handleSelfGrade = (
-    questionId: string,
-    grade: "correct" | "incorrect",
-  ) => {
+  const handleSelfGrade = (questionId: string, grade: "correct" | "incorrect") => {
     if (!subject || !year) return;
     setSelfGrades((prev) => {
       const next = { ...prev, [questionId]: grade };
@@ -165,12 +153,12 @@ export default function ExamSimulation() {
   if (questions.length === 0 || !subject || !examInfo) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-16 text-center">
-        <p className="text-gray-500">No questions found for this exam.</p>
+        <p className="text-gray-500">{t.exam.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
           className="text-blue-600 hover:underline mt-4 inline-block"
         >
-          Back to Home
+          {t.exam.backToHome}
         </Link>
       </div>
     );
@@ -180,9 +168,7 @@ export default function ExamSimulation() {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {examInfo.title}
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{examInfo.title}</h1>
           <p className="text-gray-500 mb-8">
             {subject.name} ({subject.courseCode})
           </p>
@@ -190,34 +176,30 @@ export default function ExamSimulation() {
         <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm space-y-4">
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <span className="text-gray-500">Questions</span>
+              <span className="text-gray-500">{t.exam.questions}</span>
               <p className="font-semibold">{questions.length}</p>
             </div>
             <div>
-              <span className="text-gray-500">Total Points</span>
+              <span className="text-gray-500">{t.exam.totalPoints}</span>
               <p className="font-semibold">{totalPoints}p</p>
             </div>
             <div>
-              <span className="text-gray-500">Pass</span>
+              <span className="text-gray-500">{t.exam.pass}</span>
               <p className="font-semibold">{examInfo.passPoints}p</p>
             </div>
             <div>
-              <span className="text-gray-500">Time Limit</span>
-              <p className="font-semibold">
-                {examInfo.durationMinutes} minutes
-              </p>
+              <span className="text-gray-500">{t.exam.timeLimit}</span>
+              <p className="font-semibold">{examInfo.durationMinutes} {t.exam.minutes}</p>
             </div>
           </div>
           <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
-            This simulation mirrors the real exam format. For open-ended
-            questions, self-grade your answers against the model solutions shown
-            after submission. MC and matching questions are auto-graded.
+            {t.exam.simulationNote}
           </div>
           <button
             className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors font-medium"
             onClick={handleStart}
           >
-            Start Exam
+            {t.exam.startExam}
           </button>
         </div>
       </div>
@@ -225,9 +207,7 @@ export default function ExamSimulation() {
   }
 
   const currentQuestion = questions[currentIndex];
-  const currentTopic = subject.topics.find(
-    (t) => t.key === currentQuestion.topic,
-  );
+  const currentTopic = subject.topics.find(tp => tp.key === currentQuestion.topic);
 
   const getScore = () => {
     let score = 0;
@@ -243,11 +223,9 @@ export default function ExamSimulation() {
     <div className="max-w-3xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6 sticky top-14 bg-gray-50 py-3 -mx-4 px-4 z-40 border-b border-gray-200">
         <div>
-          <span className="text-lg font-bold text-gray-900">
-            {examInfo.title}
-          </span>
+          <span className="text-lg font-bold text-gray-900">{examInfo.title}</span>
           <span className="text-sm text-gray-500 ml-3">
-            {totalPoints}p total
+            {totalPoints}p {t.exam.total}
           </span>
         </div>
         <div className="flex items-center gap-4">
@@ -263,7 +241,7 @@ export default function ExamSimulation() {
               className={`text-sm font-bold px-3 py-1 rounded ${score >= examInfo.passPoints ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}
             >
               {score}/{totalPoints}p{" "}
-              {score >= examInfo.passPoints ? "(PASS)" : "(FAIL)"}
+              {score >= examInfo.passPoints ? t.exam.pass_ : t.exam.fail}
             </span>
           )}
         </div>
@@ -272,12 +250,11 @@ export default function ExamSimulation() {
       {submitted && (
         <div className="mb-6 p-4 rounded-lg bg-blue-50 border border-blue-200 text-sm">
           <p className="font-semibold text-blue-900 mb-1">
-            Exam Submitted. Score: {score}/{totalPoints} (
+            {t.exam.submitted} {t.exam.score}: {score}{t.exam.outOf}{totalPoints} (
             {Math.round((score / totalPoints) * 100)}%)
           </p>
           <p className="text-blue-700">
-            Pass threshold: {examInfo.passPoints}p. Review your answers below.
-            Open-ended questions show model answers for self-grading.
+            {t.exam.passThreshold}: {examInfo.passPoints}p. {t.exam.reviewNote}
           </p>
         </div>
       )}
@@ -322,7 +299,7 @@ export default function ExamSimulation() {
           onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
           disabled={currentIndex === 0}
         >
-          Previous
+          {t.exam.previous}
         </button>
         <div className="flex gap-2">
           {!submitted && (
@@ -330,7 +307,7 @@ export default function ExamSimulation() {
               className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition-colors font-medium"
               onClick={handleSubmit}
             >
-              Submit Exam
+              {t.exam.submitExam}
             </button>
           )}
         </div>
@@ -341,7 +318,7 @@ export default function ExamSimulation() {
           }
           disabled={currentIndex === questions.length - 1}
         >
-          Next
+          {t.exam.next}
         </button>
       </div>
     </div>

@@ -1,10 +1,10 @@
-# Contributing to Pasame Examenes
+# Contributing to Pásame Exámenes
 
 Thanks for helping grow this open-source exam practice platform!
 
 ## Project Overview
 
-Pasame Examenes is a client-side SPA built with Vite, React, TypeScript, and Tailwind CSS v4. There is no backend — all data lives in TypeScript files and user progress is saved to localStorage.
+Pásame Exámenes is a client-side SPA built with Vite, React, TypeScript, and Tailwind CSS v4. There is no backend — all data lives in TypeScript files and user progress is saved to localStorage.
 
 Each university subject is a self-contained folder under `src/subjects/` with its own questions, metadata, and assets. New subjects are auto-discovered at build time via Vite's `import.meta.glob`.
 

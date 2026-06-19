@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import type { SubjectMeta } from "../data/types";
 import { getAllQuestions } from "../subjects";
+import { useT } from "../i18n/hooks";
 
 interface SubjectCardProps {
   subject: SubjectMeta;
 }
 
 export default function SubjectCard({ subject }: SubjectCardProps) {
+  const t = useT();
   const qs = getAllQuestions(subject.id);
   const totalPoints = qs.reduce((acc, q) => acc + q.points, 0);
 
@@ -28,11 +30,11 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       </h3>
       <p className="text-sm text-gray-500 mb-4">{subject.university}</p>
       <div className="text-xs text-gray-400 flex items-center gap-2">
-        <span>{qs.length} questions</span>
+        <span>{qs.length} {t.subjectCard.questions}</span>
         <span>&middot;</span>
-        <span>{totalPoints} points</span>
+        <span>{totalPoints} {t.subjectCard.points}</span>
         <span>&middot;</span>
-        <span>{subject.topics.length} topics</span>
+        <span>{subject.topics.length} {t.subjectCard.topics}</span>
       </div>
     </Link>
   );

@@ -1,4 +1,4 @@
-# AGENTS.md — How to Add a Subject to Pasame Examenes
+# AGENTS.md — How to Add a Subject to Pásame Exámenes
 
 This document explains how AI agents (and humans) can add a new university subject to the platform.
 
