@@ -19,7 +19,7 @@ export default function PracticeHome() {
         {t.practiceHome.subtitle}
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
         {subject.topics.map((topic) => {
           const qs = getQuestionsByTopic(subject.id, topic.key);
           return (

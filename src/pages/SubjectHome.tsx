@@ -49,7 +49,7 @@ export default function SubjectHome() {
       <h2 className="text-lg font-semibold text-gray-900 mb-4">
         {t.subjectHome.practiceByTopic}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
         {subject.topics.map((topic) => {
           const topicQs = allQuestions.filter((q) => q.topic === topic.key);
           const tp = progress[topic.key];
@@ -71,7 +71,7 @@ export default function SubjectHome() {
       <h2 className="text-lg font-semibold text-gray-900 mb-4">
         {t.subjectHome.examSimulations}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.exams.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
         {subject.exams.map(exam => (
           <Link
             key={exam.year}
