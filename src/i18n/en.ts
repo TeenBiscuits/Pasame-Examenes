@@ -39,7 +39,11 @@ export const en = {
     previous: "Previous",
     next: "Next",
     clear: "Clear",
+    check: "Check",
     submit: "Submit & Show Answers",
+    runningScore: "Running score",
+    checked: "checked",
+    openEnded: "open-ended questions",
   },
   exam: {
     noQuestions: "No questions found for this exam.",

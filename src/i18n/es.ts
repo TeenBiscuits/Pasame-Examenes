@@ -41,7 +41,11 @@ export const es: Translations = {
     previous: "Anterior",
     next: "Siguiente",
     clear: "Limpiar",
+    check: "Corregir",
     submit: "Enviar y ver soluciones",
+    runningScore: "Puntuación parcial",
+    checked: "corregidas",
+    openEnded: "preguntas abiertas",
   },
   exam: {
     noQuestions: "No se encontraron preguntas para este examen.",
