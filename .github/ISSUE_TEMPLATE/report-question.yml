@@ -1,6 +1,6 @@
 name: Report Question Issue
 description: Report an error or suggest an improvement for a question
-title: "[Question] "
+title: "[Fix Question]"
 labels: ["question-report", "bug"]
 body:
   - type: markdown

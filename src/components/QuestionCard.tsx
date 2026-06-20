@@ -30,7 +30,7 @@ function buildReportUrl(question: Question, subjectId: string): string {
   const base = "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new";
   const params = new URLSearchParams();
   params.set("template", "report-question.yml");
-  params.set("title", `[Question] ${question.id}`);
+  params.set("title", `[Fix Question] ${question.id}`);
   params.set("subject", subjectId);
   params.set("question-id", question.id);
   params.set("question-type", getQuestionTypeLabel(question.type));
@@ -69,7 +69,11 @@ function MCQuestion({
             className={className}
             onClick={() => {
               if (showResult) return;
-              track("question_answer", { questionId: question.id, type: "mc", answer: letter });
+              track("question_answer", {
+                questionId: question.id,
+                type: "mc",
+                answer: letter,
+              });
               onAnswer(question.id, letter);
             }}
             disabled={!!showResult}
@@ -98,7 +102,9 @@ function TextQuestion({
 
   return (
     <div>
-      <label htmlFor={`answer-${question.id}`} className="sr-only">Your answer</label>
+      <label htmlFor={`answer-${question.id}`} className="sr-only">
+        Your answer
+      </label>
       <textarea
         id={`answer-${question.id}`}
         className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:outline-none resize-y min-h-[120px] text-sm"
@@ -116,11 +122,16 @@ function TextQuestion({
             className="text-sm text-green-600 hover:text-green-700 font-medium focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-green-200 transition-colors"
             onClick={() => {
               const next = !isOpen;
-              track(next ? "solution_toggle" : "solution_toggle", { questionId: question.id, action: next ? "open" : "close" });
+              track(next ? "solution_toggle" : "solution_toggle", {
+                questionId: question.id,
+                action: next ? "open" : "close",
+              });
               setIsOpen(next);
             }}
           >
-            {isOpen ? t.questionCard.closeSolution : t.questionCard.openSolution}
+            {isOpen
+              ? t.questionCard.closeSolution
+              : t.questionCard.openSolution}
           </button>
 
           {isOpen && (
@@ -145,7 +156,13 @@ function TextQuestion({
                   <div className="flex gap-2">
                     <button
                       type="button"
-                      onClick={() => { track("self_grade", { questionId: question.id, grade: "correct" }); onSelfGrade(question.id, "correct"); }}
+                      onClick={() => {
+                        track("self_grade", {
+                          questionId: question.id,
+                          grade: "correct",
+                        });
+                        onSelfGrade(question.id, "correct");
+                      }}
                       className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 transition-colors focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none ${
                         selfGrade === "correct"
                           ? "bg-green-50 border-green-500 text-green-700"
@@ -156,7 +173,13 @@ function TextQuestion({
                     </button>
                     <button
                       type="button"
-                      onClick={() => { track("self_grade", { questionId: question.id, grade: "incorrect" }); onSelfGrade(question.id, "incorrect"); }}
+                      onClick={() => {
+                        track("self_grade", {
+                          questionId: question.id,
+                          grade: "incorrect",
+                        });
+                        onSelfGrade(question.id, "incorrect");
+                      }}
                       className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none ${
                         selfGrade === "incorrect"
                           ? "bg-red-50 border-red-500 text-red-700"
@@ -227,13 +250,22 @@ function MatchingQuestion({
                 } else if (chosen) {
                   cls += " bg-green-50 border-green-400 text-green-700";
                 } else {
-                  cls += " border-gray-200 text-gray-500 hover:border-gray-400 bg-white";
+                  cls +=
+                    " border-gray-200 text-gray-500 hover:border-gray-400 bg-white";
                 }
                 return (
                   <button
                     key={letter}
                     className={cls}
-                    onClick={() => { track("question_answer", { questionId: question.id, type: "matching", item, answer: letter }); handleSelect(item, letter); }}
+                    onClick={() => {
+                      track("question_answer", {
+                        questionId: question.id,
+                        type: "matching",
+                        item,
+                        answer: letter,
+                      });
+                      handleSelect(item, letter);
+                    }}
                     disabled={!!showResult}
                     aria-label={`Match ${item} to ${letter}`}
                   >
@@ -306,7 +338,7 @@ export default function QuestionCard(props: QuestionCardProps) {
               {question.table.rows.map((row, ri) => (
                 <tr key={ri} className="hover:bg-gray-50/50 transition-colors">
                   {row.map((cell, ci) => (
-                     <td
+                    <td
                       key={ci}
                       className="px-4 py-2 text-gray-700 whitespace-nowrap"
                     >
@@ -334,9 +366,24 @@ export default function QuestionCard(props: QuestionCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded px-2 py-1 -mr-2"
-            onClick={() => track("report_issue", { questionId: question.id, subjectId: props.subjectId })}
+            onClick={() =>
+              track("report_issue", {
+                questionId: question.id,
+                subjectId: props.subjectId,
+              })
+            }
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
               <line x1="12" y1="9" x2="12" y2="13" />
               <line x1="12" y1="17" x2="12.01" y2="17" />
