@@ -213,6 +213,7 @@ export default function PracticeTopic() {
         index={currentIndex}
         total={questions.length}
         topicLabel={topicInfo?.label || topic || ""}
+        subjectId={subject.id}
         onAnswer={handleAnswer}
         savedAnswer={answers[currentQuestion.id]}
         showResult={submitted || !!checkedQuestions[currentQuestion.id]}

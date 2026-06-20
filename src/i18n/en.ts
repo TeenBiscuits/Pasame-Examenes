@@ -80,6 +80,7 @@ export const en = {
     closeSolution: "Close Solution",
     yourAnswer: "Your answer",
     correct_: "Correct",
+    reportIssue: "Report Issue",
   },
   subjectCard: {
     questions: "questions",

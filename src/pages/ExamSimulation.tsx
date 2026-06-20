@@ -299,6 +299,7 @@ export default function ExamSimulation() {
         index={currentIndex}
         total={questions.length}
         topicLabel={currentTopic?.label || currentQuestion.topic}
+        subjectId={subject.id}
         onAnswer={handleAnswer}
         savedAnswer={answers[currentQuestion.id]}
         showResult={submitted}

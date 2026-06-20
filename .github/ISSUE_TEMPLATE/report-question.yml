@@ -1,0 +1,64 @@
+name: Report Question Issue
+description: Report an error or suggest an improvement for a question
+title: "[Question] "
+labels: ["question-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Pásame Exámenes! The **question ID** can be found next to the "Report Issue" link on the review page.
+
+  - type: input
+    id: subject
+    attributes:
+      label: Subject
+      description: Which subject does this question belong to? (e.g. "eseo", "emeele")
+      placeholder: ex: eseo
+    validations:
+      required: true
+
+  - type: input
+    id: question-id
+    attributes:
+      label: Question ID
+      description: The unique question identifier shown next to the "Report Issue" button
+      placeholder: ex: 2024_q1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Question Type
+      description: Optionally, what type of question is this?
+      options:
+        - Multiple Choice (mc)
+        - Open Text (text)
+        - Calculation (calculation)
+        - Matching (matching)
+    validations:
+      required: false
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Issue Description
+      description: |
+        Describe the issue. For example:
+        - The model answer is wrong…
+        - The explanation is incorrect/misleading…
+        - The question text has a typo…
+        - The options are wrong…
+        - The question should be classified differently…
+      placeholder: The model answer is incorrect because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested Fix (optional)
+      description: If you know the correct answer, please share it here.
+      placeholder: The correct answer should be...
+    validations:
+      required: false

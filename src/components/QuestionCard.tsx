@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Question } from "../data/types";
+import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 
@@ -8,11 +8,33 @@ interface QuestionCardProps {
   index: number;
   total: number;
   topicLabel: string;
+  subjectId: string;
   onAnswer: (questionId: string, answer: string) => void;
   savedAnswer?: string;
   showResult?: boolean;
   selfGrade?: "correct" | "incorrect";
   onSelfGrade?: (questionId: string, grade: "correct" | "incorrect") => void;
+}
+
+function getQuestionTypeLabel(type: QuestionType): string {
+  const map: Record<QuestionType, string> = {
+    mc: "Multiple Choice (mc)",
+    text: "Open Text (text)",
+    calculation: "Calculation (calculation)",
+    matching: "Matching (matching)",
+  };
+  return map[type];
+}
+
+function buildReportUrl(question: Question, subjectId: string): string {
+  const base = "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new";
+  const params = new URLSearchParams();
+  params.set("template", "report-question.yml");
+  params.set("title", `[Question] ${question.id}`);
+  params.set("subject", subjectId);
+  params.set("question-id", question.id);
+  params.set("question-type", getQuestionTypeLabel(question.type));
+  return `${base}?${params.toString()}`;
 }
 
 function MCQuestion({
@@ -229,6 +251,7 @@ function MatchingQuestion({
 
 export default function QuestionCard(props: QuestionCardProps) {
   const { question } = props;
+  const t = useT();
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
@@ -301,6 +324,27 @@ export default function QuestionCard(props: QuestionCardProps) {
         <TextQuestion {...props} />
       )}
       {question.type === "matching" && <MatchingQuestion {...props} />}
+      {props.showResult && (
+        <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-end gap-2">
+          <span className="text-[10px] font-mono text-gray-300 select-all">
+            {question.id}
+          </span>
+          <a
+            href={buildReportUrl(question, props.subjectId)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded px-2 py-1 -mr-2"
+            onClick={() => track("report_issue", { questionId: question.id, subjectId: props.subjectId })}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            {t.questionCard.reportIssue}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

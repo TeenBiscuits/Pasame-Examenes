@@ -82,6 +82,7 @@ export const es: Translations = {
     closeSolution: "Cerrar solución",
     yourAnswer: "Tu respuesta",
     correct_: "Correcto",
+    reportIssue: "Reportar error",
   },
   subjectCard: {
     questions: "preguntas",
