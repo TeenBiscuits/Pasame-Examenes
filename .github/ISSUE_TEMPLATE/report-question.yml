@@ -13,7 +13,7 @@ body:
     attributes:
       label: Subject
       description: Which subject does this question belong to? (e.g. "eseo", "emeele")
-      placeholder: ex: eseo
+      placeholder: "ex: eseo"
     validations:
       required: true
 
@@ -22,7 +22,7 @@ body:
     attributes:
       label: Question ID
       description: The unique question identifier shown next to the "Report Issue" button
-      placeholder: ex: 2024_q1
+      placeholder: "ex: 2024_q1"
     validations:
       required: true
 
