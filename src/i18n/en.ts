@@ -25,7 +25,7 @@ export const en = {
   },
   footer: {
     byline: "Pásame Exámenes - Open Source Study Platform",
-    github: "GitHub Repository",
+    github: "TeenBiscuits/Pasame-Examenes",
   },
   practice: {
     backToTopics: "← Back to Topics",

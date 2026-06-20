@@ -3,7 +3,8 @@ import type { Translations } from "./en";
 export const es: Translations = {
   home: {
     title: "Pásame Exámenes",
-    subtitle: "Plataforma de código abierto para practicar exámenes universitarios. Elige una asignatura para empezar a practicar con preguntas de exámenes anteriores.",
+    subtitle:
+      "Plataforma de código abierto para practicar exámenes universitarios. Elige una asignatura para empezar a practicar con preguntas de exámenes anteriores.",
   },
   subjectHome: {
     notFound: "Asignatura no encontrada",
@@ -11,12 +12,14 @@ export const es: Translations = {
     practiceByTopic: "Practicar por tema",
     examSimulations: "Simulaciones de examen completas",
     originalExams: "Documentos originales de examen",
-    examDocsDescription: "Descarga o visualiza los PDFs originales en los que se basan estas preguntas y simulaciones.",
+    examDocsDescription:
+      "Descarga o visualiza los PDFs originales en los que se basan estas preguntas y simulaciones.",
     pdf: "PDF",
   },
   practiceHome: {
     title: "Practicar por tema",
-    subtitle: "Elige un tema para practicar. Las preguntas de test y de emparejar se autocorrigen.",
+    subtitle:
+      "Elige un tema para practicar. Las preguntas de test y de emparejar se autocorrigen.",
   },
   header: {
     home: "Inicio",
@@ -24,7 +27,7 @@ export const es: Translations = {
   },
   footer: {
     byline: "Pásame Exámenes - Plataforma de estudio de código abierto",
-    github: "Repositorio GitHub",
+    github: "TeenBiscuits/Pasame-Examenes",
   },
   practice: {
     backToTopics: "← Volver a temas",
@@ -33,7 +36,8 @@ export const es: Translations = {
     score: "Puntuación",
     points: "puntos",
     pointsTotal: "puntos en total",
-    allCorrect: "Revisa tus respuestas. Verde = correctas. Solo las preguntas de test y de emparejar se autocorrigen.",
+    allCorrect:
+      "Revisa tus respuestas. Verde = correctas. Solo las preguntas de test y de emparejar se autocorrigen.",
     previous: "Anterior",
     next: "Siguiente",
     clear: "Limpiar",
@@ -48,12 +52,15 @@ export const es: Translations = {
     timeLimit: "Tiempo límite",
     minutes: "minutos",
     startExam: "Comenzar examen",
-    simulationNote: "Esta simulación refleja el formato real del examen. Para las preguntas abiertas, autoevalúa tus respuestas con las soluciones modelo que se muestran tras enviar. Las preguntas de test y emparejar se autocorrigen.",
+    simulationNote:
+      "Esta simulación refleja el formato real del examen. Para las preguntas abiertas, autoevalúa tus respuestas con las soluciones modelo que se muestran tras enviar. Las preguntas de test y emparejar se autocorrigen.",
     submitted: "Examen enviado.",
     passThreshold: "Umbral de aprobado",
-    reviewNote: "Revisa tus respuestas. Las preguntas abiertas muestran las soluciones modelo para autoevaluación.",
+    reviewNote:
+      "Revisa tus respuestas. Las preguntas abiertas muestran las soluciones modelo para autoevaluación.",
     submitExam: "Entregar examen",
-    submitConfirm: "¿Estás seguro de que quieres entregar el examen? No podrás modificar tus respuestas.",
+    submitConfirm:
+      "¿Estás seguro de que quieres entregar el examen? No podrás modificar tus respuestas.",
     score: "Puntuación",
     outOf: "/",
     pass_: "(APROBADO)",
