@@ -37,7 +37,7 @@ export default function TopicCard({
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
-      className={`block p-5 rounded-xl border-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-200 ${colorMap[topic.color] || colorMap.blue}`}
+      className={`block p-5 rounded-xl border-2 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-200 ${colorMap[topic.color] || colorMap.blue}`}
       onClick={() => track("topic_card_click", { subjectId, topic: topic.key })}
     >
       <div className="flex items-start justify-between mb-3">
@@ -55,7 +55,7 @@ export default function TopicCard({
         <div className="mt-2">
           <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-blue-500 rounded-full transition-all duration-500"
+              className="h-full bg-green-500 rounded-full transition-all duration-500"
               style={{ width: `${Math.min(progress, 100)}%` }}
             />
           </div>

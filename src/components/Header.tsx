@@ -15,7 +15,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <Link
           to="/"
-          className="font-bold text-lg text-gray-900 hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-md transition-colors flex items-center gap-2.5"
+          className="font-bold text-lg text-gray-900 hover:text-green-600 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md transition-colors flex items-center gap-2.5"
           onClick={() => track("nav_click", { target: "home" })}
         >
           <img
@@ -33,9 +33,9 @@ export default function Header() {
             <nav className="flex items-center gap-2 sm:gap-4 text-sm">
               <Link
                 to={`/${subjectId}`}
-                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors ${
+                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors ${
                   location.pathname === `/${subjectId}`
-                    ? "bg-blue-50 text-blue-700"
+                    ? "bg-green-50 text-green-700"
                     : "text-gray-600 hover:text-gray-900"
                 }`}
                 onClick={() => track("nav_click", { target: "subject_home", subjectId: subjectId || "" })}
@@ -44,9 +44,9 @@ export default function Header() {
               </Link>
               <Link
                 to={`/${subjectId}/practice`}
-                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors ${
+                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors ${
                   location.pathname.startsWith(`/${subjectId}/practice`)
-                    ? "bg-blue-50 text-blue-700"
+                    ? "bg-green-50 text-green-700"
                     : "text-gray-600 hover:text-gray-900"
                 }`}
                 onClick={() => track("nav_click", { target: "practice", subjectId: subjectId || "" })}

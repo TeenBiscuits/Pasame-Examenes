@@ -30,13 +30,13 @@ function MCQuestion({
         const isSelected = savedAnswer === letter;
         const isCorrect = question.correctAnswer === letter;
         let className =
-          "w-full p-3 rounded-lg border-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-150 text-left text-sm flex items-start gap-3";
+          "w-full p-3 rounded-lg border-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-150 text-left text-sm flex items-start gap-3";
         if (showResult && isCorrect) {
           className += " bg-green-50 border-green-400";
         } else if (showResult && isSelected && !isCorrect) {
           className += " bg-red-50 border-red-400";
         } else if (isSelected) {
-          className += " bg-blue-50 border-blue-400";
+          className += " bg-green-50 border-green-400";
         } else {
           className += " border-gray-200 hover:border-gray-300 bg-white";
         }
@@ -79,7 +79,7 @@ function TextQuestion({
       <label htmlFor={`answer-${question.id}`} className="sr-only">Your answer</label>
       <textarea
         id={`answer-${question.id}`}
-        className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-400 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none resize-y min-h-[120px] text-sm"
+        className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:outline-none resize-y min-h-[120px] text-sm"
         placeholder="Type your answer…"
         autoComplete="off"
         spellCheck={false}
@@ -91,7 +91,7 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
-            className="text-sm text-blue-600 hover:text-blue-700 font-medium focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-blue-200 transition-colors"
+            className="text-sm text-green-600 hover:text-green-700 font-medium focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-green-200 transition-colors"
             onClick={() => {
               const next = !isOpen;
               track(next ? "solution_toggle" : "solution_toggle", { questionId: question.id, action: next ? "open" : "close" });
@@ -197,13 +197,13 @@ function MatchingQuestion({
                 const chosen = userAnswer === letter;
                 const real = correctAnswer[item] === letter;
                 let cls =
-                  "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors flex items-center justify-center";
+                  "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors flex items-center justify-center";
                 if (showResult && real) {
                   cls += " bg-green-50 border-green-400 text-green-700";
                 } else if (showResult && chosen && !real) {
                   cls += " bg-red-50 border-red-400 text-red-700";
                 } else if (chosen) {
-                  cls += " bg-blue-50 border-blue-400 text-blue-700";
+                  cls += " bg-green-50 border-green-400 text-green-700";
                 } else {
                   cls += " border-gray-200 text-gray-500 hover:border-gray-400 bg-white";
                 }
@@ -236,7 +236,7 @@ export default function QuestionCard(props: QuestionCardProps) {
         <span className="text-xs font-mono bg-gray-100 text-gray-600 px-2 py-0.5 rounded">
           Q{props.index + 1}/{props.total}
         </span>
-        <span className="text-xs font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded">
+        <span className="text-xs font-mono bg-green-50 text-green-700 px-2 py-0.5 rounded">
           {question.points}p
         </span>
         <span className="text-xs text-gray-400">{props.topicLabel}</span>

@@ -29,7 +29,7 @@ function Footer() {
           href="https://github.com/TeenBiscuits/Pasame-Examenes"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded px-2 py-1 transition-colors"
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded px-2 py-1 transition-colors"
           onClick={() => track("external_link_click", { target: "github" })}
         >
           <svg

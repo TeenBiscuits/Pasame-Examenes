@@ -126,7 +126,7 @@ export default function PracticeTopic() {
         <p className="text-gray-500">{t.practice.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
-          className="text-blue-600 hover:underline mt-4 inline-block"
+          className="text-green-600 hover:underline mt-4 inline-block"
         >
           {t.practice.backToHome}
         </Link>
@@ -149,7 +149,7 @@ export default function PracticeTopic() {
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
-          className="text-sm text-blue-600 hover:underline focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none rounded-md px-1"
+          className="text-sm text-green-600 hover:underline focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1"
         >
           {t.practice.backToTopics}
         </Link>
@@ -162,11 +162,11 @@ export default function PracticeTopic() {
       </div>
 
       {submitted && (
-        <div className="mb-6 p-4 rounded-lg bg-blue-50 border border-blue-200">
-          <p className="font-semibold text-blue-900">
+        <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200">
+          <p className="font-semibold text-green-900">
             {t.practice.score}: {getScore()} {t.exam.outOf} {totalPoints} {t.practice.points}
           </p>
-          <p className="text-sm text-blue-700 mt-1">{t.practice.allCorrect}</p>
+          <p className="text-sm text-green-700 mt-1">{t.practice.allCorrect}</p>
         </div>
       )}
 
@@ -175,8 +175,8 @@ export default function PracticeTopic() {
           const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
           const isCurrent = i === currentIndex;
           let cls =
-            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors cursor-pointer";
-          if (isCurrent) cls += " bg-blue-600 text-white border-blue-600";
+            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors cursor-pointer";
+          if (isCurrent) cls += " bg-green-600 text-white border-green-600";
           else if (isAnswered)
             cls += " bg-green-50 border-green-300 text-green-700";
           else cls += " border-gray-200 text-gray-500 hover:border-gray-400";
@@ -206,7 +206,7 @@ export default function PracticeTopic() {
 
       <div className="flex justify-between mt-6">
         <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
           onClick={() => { const nextIndex = Math.max(0, currentIndex - 1); track("practice_navigate", { direction: "prev", fromIndex: currentIndex, toIndex: nextIndex }); setCurrentIndex(nextIndex); }}
           disabled={currentIndex === 0}
         >
@@ -215,7 +215,7 @@ export default function PracticeTopic() {
         <div className="flex gap-2">
           {answers[currentQuestion.id] && (
             <button
-              className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors"
+              className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors"
               onClick={() => { track("practice_clear_answer", { questionId: currentQuestion.id }); handleAnswer(currentQuestion.id, ""); }}
             >
               {t.practice.clear}
@@ -223,7 +223,7 @@ export default function PracticeTopic() {
           )}
           {!submitted && (
             <button
-              className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors"
+              className="px-4 py-2 text-sm rounded-lg bg-green-600 text-white hover:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors"
               onClick={handleSubmit}
             >
               {t.practice.submit}
@@ -231,7 +231,7 @@ export default function PracticeTopic() {
           )}
         </div>
         <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
           onClick={() => { const nextIndex = Math.min(questions.length - 1, currentIndex + 1); track("practice_navigate", { direction: "next", fromIndex: currentIndex, toIndex: nextIndex }); setCurrentIndex(nextIndex); }}
           disabled={currentIndex === questions.length - 1}
         >

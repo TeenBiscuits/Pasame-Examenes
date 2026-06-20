@@ -14,7 +14,7 @@ export default function SubjectHome() {
     return (
       <div className="max-w-6xl mx-auto px-4 py-16 text-center">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">{t.subjectHome.notFound}</h1>
-        <Link to="/" className="text-blue-600 hover:underline">
+        <Link to="/" className="text-green-600 hover:underline">
           {t.subjectHome.returnHome}
         </Link>
       </div>
@@ -76,7 +76,7 @@ export default function SubjectHome() {
           <Link
             key={exam.year}
             to={`/${subject.id}/exam/${exam.year}`}
-            className="block p-6 rounded-xl border-2 border-gray-200 hover:border-blue-400 bg-white hover:bg-blue-50/30 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-200"
+            className="block p-6 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-200"
             onClick={() => track("exam_card_click", { subjectId: subject.id, year: exam.year })}
           >
             <div className="text-2xl mb-2" role="img" aria-hidden="true">
@@ -102,7 +102,7 @@ export default function SubjectHome() {
               href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors duration-150"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-150"
               onClick={() => track("pdf_download", { subjectId: subject.id, year: exam.year })}
             >
               <span role="img" aria-hidden="true">📄</span>{" "}
