@@ -16,6 +16,34 @@
   --color-accent-border: #bbf7d0;
   --color-code: #f3f4f6;
   --color-code-block: #111827;
+  /* Topic card colors */
+  --color-t-blue-bg: #eff6ff;
+  --color-t-blue-border: #bfdbfe;
+  --color-t-blue-hover: #60a5fa;
+  --color-t-indigo-bg: #eef2ff;
+  --color-t-indigo-border: #c7d2fe;
+  --color-t-indigo-hover: #818cf8;
+  --color-t-green-bg: #f0fdf4;
+  --color-t-green-border: #bbf7d0;
+  --color-t-green-hover: #4ade80;
+  --color-t-purple-bg: #faf5ff;
+  --color-t-purple-border: #e9d5ff;
+  --color-t-purple-hover: #c084fc;
+  --color-t-pink-bg: #fdf2f8;
+  --color-t-pink-border: #fbcfe8;
+  --color-t-pink-hover: #f472b6;
+  --color-t-amber-bg: #fffbeb;
+  --color-t-amber-border: #fde68a;
+  --color-t-amber-hover: #fbbf24;
+  --color-t-red-bg: #fef2f2;
+  --color-t-red-border: #fecaca;
+  --color-t-red-hover: #f87171;
+  --color-t-cyan-bg: #ecfeff;
+  --color-t-cyan-border: #a5f3fc;
+  --color-t-cyan-hover: #22d3ee;
+  --color-t-orange-bg: #fff7ed;
+  --color-t-orange-border: #fed7aa;
+  --color-t-orange-hover: #fb923c;
 }
 
 /* ── Dark theme ── */
@@ -33,6 +61,34 @@ html[data-theme="dark"] {
   --color-accent-border: #166534;
   --color-code: #374151;
   --color-code-block: #030712;
+  /* Topic cards – darker saturated shades */
+  --color-t-blue-bg: #172554;
+  --color-t-blue-border: #1e3a8a;
+  --color-t-blue-hover: #3b82f6;
+  --color-t-indigo-bg: #1e1b4b;
+  --color-t-indigo-border: #312e81;
+  --color-t-indigo-hover: #6366f1;
+  --color-t-green-bg: #052e16;
+  --color-t-green-border: #14532d;
+  --color-t-green-hover: #22c55e;
+  --color-t-purple-bg: #3b0764;
+  --color-t-purple-border: #581c87;
+  --color-t-purple-hover: #a855f7;
+  --color-t-pink-bg: #500724;
+  --color-t-pink-border: #831843;
+  --color-t-pink-hover: #ec4899;
+  --color-t-amber-bg: #451a03;
+  --color-t-amber-border: #78350f;
+  --color-t-amber-hover: #f59e0b;
+  --color-t-red-bg: #450a0a;
+  --color-t-red-border: #7f1d1d;
+  --color-t-red-hover: #ef4444;
+  --color-t-cyan-bg: #083344;
+  --color-t-cyan-border: #164e63;
+  --color-t-cyan-hover: #06b6d4;
+  --color-t-orange-bg: #431407;
+  --color-t-orange-border: #7c2d12;
+  --color-t-orange-hover: #f97316;
 }
 
 /* ── Pink theme ── */
@@ -67,6 +123,34 @@ html[data-theme="catppuccin"] {
   --color-accent-border: #45475a;
   --color-code: #313244;
   --color-code-block: #11111b;
+  /* Topic cards – catppuccin palette */
+  --color-t-blue-bg: #313244;
+  --color-t-blue-border: #45475a;
+  --color-t-blue-hover: #89b4fa;
+  --color-t-indigo-bg: #313244;
+  --color-t-indigo-border: #45475a;
+  --color-t-indigo-hover: #b4befe;
+  --color-t-green-bg: #313244;
+  --color-t-green-border: #45475a;
+  --color-t-green-hover: #a6e3a1;
+  --color-t-purple-bg: #313244;
+  --color-t-purple-border: #45475a;
+  --color-t-purple-hover: #cba6f7;
+  --color-t-pink-bg: #313244;
+  --color-t-pink-border: #45475a;
+  --color-t-pink-hover: #f5c2e7;
+  --color-t-amber-bg: #313244;
+  --color-t-amber-border: #45475a;
+  --color-t-amber-hover: #f9e2af;
+  --color-t-red-bg: #313244;
+  --color-t-red-border: #45475a;
+  --color-t-red-hover: #f38ba8;
+  --color-t-cyan-bg: #313244;
+  --color-t-cyan-border: #45475a;
+  --color-t-cyan-hover: #94e2d5;
+  --color-t-orange-bg: #313244;
+  --color-t-orange-border: #45475a;
+  --color-t-orange-hover: #fab387;
 }
 
 /* ── System: follow OS preference ── */
@@ -85,6 +169,34 @@ html[data-theme="catppuccin"] {
     --color-accent-border: #166534;
     --color-code: #374151;
     --color-code-block: #030712;
+    /* Topic cards */
+    --color-t-blue-bg: #172554;
+    --color-t-blue-border: #1e3a8a;
+    --color-t-blue-hover: #3b82f6;
+    --color-t-indigo-bg: #1e1b4b;
+    --color-t-indigo-border: #312e81;
+    --color-t-indigo-hover: #6366f1;
+    --color-t-green-bg: #052e16;
+    --color-t-green-border: #14532d;
+    --color-t-green-hover: #22c55e;
+    --color-t-purple-bg: #3b0764;
+    --color-t-purple-border: #581c87;
+    --color-t-purple-hover: #a855f7;
+    --color-t-pink-bg: #500724;
+    --color-t-pink-border: #831843;
+    --color-t-pink-hover: #ec4899;
+    --color-t-amber-bg: #451a03;
+    --color-t-amber-border: #78350f;
+    --color-t-amber-hover: #f59e0b;
+    --color-t-red-bg: #450a0a;
+    --color-t-red-border: #7f1d1d;
+    --color-t-red-hover: #ef4444;
+    --color-t-cyan-bg: #083344;
+    --color-t-cyan-border: #164e63;
+    --color-t-cyan-hover: #06b6d4;
+    --color-t-orange-bg: #431407;
+    --color-t-orange-border: #7c2d12;
+    --color-t-orange-hover: #f97316;
   }
 }
 

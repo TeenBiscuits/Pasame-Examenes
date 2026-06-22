@@ -13,20 +13,20 @@ interface TopicCardProps {
 }
 
 const colorMap: Record<string, string> = {
-  blue: "border-blue-200 hover:border-blue-400 bg-blue-50/50 hover:bg-blue-50",
+  blue: "border-t-blue-border hover:border-t-blue-hover bg-t-blue-bg/50 hover:bg-t-blue-bg",
   indigo:
-    "border-indigo-200 hover:border-indigo-400 bg-indigo-50/50 hover:bg-indigo-50",
+    "border-t-indigo-border hover:border-t-indigo-hover bg-t-indigo-bg/50 hover:bg-t-indigo-bg",
   green:
-    "border-green-200 hover:border-green-400 bg-green-50/50 hover:bg-green-50",
+    "border-t-green-border hover:border-t-green-hover bg-t-green-bg/50 hover:bg-t-green-bg",
   purple:
-    "border-purple-200 hover:border-purple-400 bg-purple-50/50 hover:bg-purple-50",
-  pink: "border-pink-200 hover:border-pink-400 bg-pink-50/50 hover:bg-pink-50",
+    "border-t-purple-border hover:border-t-purple-hover bg-t-purple-bg/50 hover:bg-t-purple-bg",
+  pink: "border-t-pink-border hover:border-t-pink-hover bg-t-pink-bg/50 hover:bg-t-pink-bg",
   amber:
-    "border-amber-200 hover:border-amber-400 bg-amber-50/50 hover:bg-amber-50",
-  red: "border-red-200 hover:border-red-400 bg-red-50/50 hover:bg-red-50",
-  cyan: "border-cyan-200 hover:border-cyan-400 bg-cyan-50/50 hover:bg-cyan-50",
+    "border-t-amber-border hover:border-t-amber-hover bg-t-amber-bg/50 hover:bg-t-amber-bg",
+  red: "border-t-red-border hover:border-t-red-hover bg-t-red-bg/50 hover:bg-t-red-bg",
+  cyan: "border-t-cyan-border hover:border-t-cyan-hover bg-t-cyan-bg/50 hover:bg-t-cyan-bg",
   orange:
-    "border-orange-200 hover:border-orange-400 bg-orange-50/50 hover:bg-orange-50",
+    "border-t-orange-border hover:border-t-orange-hover bg-t-orange-bg/50 hover:bg-t-orange-bg",
 };
 
 export default function TopicCard({
