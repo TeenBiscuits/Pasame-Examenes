@@ -69,6 +69,18 @@ export const meta: SubjectMeta = {
       color: "purple",
     },
   ],
+  megatopics: [
+    {
+      key: "simbolica",
+      label: "Simbólica",
+      topics: ["t1", "t2", "t3", "t4", "t5"],
+    },
+    {
+      key: "subsimbolica",
+      label: "Subsimbólica",
+      topics: ["t6", "t7", "t8", "t9", "t10"],
+    },
+  ],
   exams: [
     {
       year: "2023",

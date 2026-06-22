@@ -29,6 +29,12 @@ export interface Topic {
   color: string;
 }
 
+export interface MegaTopic {
+  key: string;
+  label: string;
+  topics: string[];
+}
+
 export interface Exam {
   year: string;
   title: string;
@@ -48,6 +54,7 @@ export interface SubjectMeta {
   icon: string;
   acknowledgments?: string;
   topics: Topic[];
+  megatopics?: MegaTopic[];
   exams: Exam[];
 }
 

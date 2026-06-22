@@ -26,7 +26,7 @@ pnpm preview   # Preview production build locally
 - **Routing** (`src/App.tsx`): `/` → Home, `/:subjectId` → SubjectHome, `/:subjectId/practice` → PracticeHome, `/:subjectId/practice/:topic` → PracticeTopic, `/:subjectId/exam/:year` → ExamSimulation.
 - **Exam `year` field**: A string used in the URL segment `/exam/:year`. Can be a simple year (`"2024"`) or year-month (`"2020-01"`).
 - **Exam `date` field**: Optional human-readable date displayed on question cards (e.g. `"Enero 2024"`, `"June 2025"`). If omitted, no date is shown.
-- **Data model**: See `src/data/types.ts` for `SubjectMeta`, `Question`, `Exam`, `Topic`, `ExamAttempt`.
+- **Data model**: See `src/data/types.ts` for `SubjectMeta`, `Question`, `Exam`, `Topic`, `MegaTopic`, `ExamAttempt`.
 
 ## Adding a New Subject
 
@@ -60,6 +60,13 @@ export const meta: SubjectMeta = {
       label: "Topic Display Name",
       icon: "📌",
       color: "blue",
+    },
+  ],
+  megatopics: [ // optional: group topics into larger categories
+    {
+      key: "group-slug",
+      label: "Group Display Name",
+      topics: ["topic-slug"], // topic keys belonging to this megatopic
     },
   ],
   exams: [

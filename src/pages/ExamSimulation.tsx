@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getSubject, getQuestionsByExam } from "../subjects";
+import { getSubject, getQuestionsByExam, getTopicMegaTopicLabel } from "../subjects";
 import type { Question, Exam } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
@@ -463,6 +463,7 @@ export default function ExamSimulation() {
         index={currentIndex}
         total={questions.length}
         topicLabel={currentTopic?.label || currentQuestion.topic}
+        megatopicLabel={getTopicMegaTopicLabel(subject.id, currentQuestion.topic)}
         examDate={examInfo?.date}
         subjectId={subject.id}
         onAnswer={handleAnswer}

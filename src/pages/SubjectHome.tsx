@@ -72,21 +72,40 @@ export default function SubjectHome() {
         {t.subjectHome.practiceByTopic}
       </h2>
       
-      {subject.id === "esei" ? (
+      {subject.megatopics ? (
         <>
-          <h3 className="text-md font-medium text-gray-700 mt-2 mb-3">Simbólica</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            {subject.topics
-              .filter((t) => ["t1", "t2", "t3", "t4", "t5"].includes(t.key))
-              .map(renderTopicCard)}
-          </div>
-          
-          <h3 className="text-md font-medium text-gray-700 mb-3">Subsimbólica</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-            {subject.topics
-              .filter((t) => ["t6", "t7", "t8", "t9", "t10"].includes(t.key))
-              .map(renderTopicCard)}
-          </div>
+          {subject.megatopics.map((mt) => {
+            const mtTopics = subject.topics.filter((t) =>
+              mt.topics.includes(t.key),
+            );
+            if (mtTopics.length === 0) return null;
+            return (
+              <div key={mt.key} className="mb-8">
+                <h3 className="text-md font-medium text-gray-700 mt-2 mb-3">
+                  {mt.label}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {mtTopics.map(renderTopicCard)}
+                </div>
+              </div>
+            );
+          })}
+          {(() => {
+            const groupedKeys = new Set(
+              subject.megatopics.flatMap((mt) => mt.topics),
+            );
+            const ungrouped = subject.topics.filter(
+              (t) => !groupedKeys.has(t.key),
+            );
+            if (ungrouped.length === 0) return null;
+            return (
+              <div className="mb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {ungrouped.map(renderTopicCard)}
+                </div>
+              </div>
+            );
+          })()}
         </>
       ) : (
         <div

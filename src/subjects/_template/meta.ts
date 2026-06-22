@@ -12,6 +12,18 @@ export const meta: SubjectMeta = {
     { key: "topic-1", label: "Topic 1", icon: "📌", color: "blue" },
     { key: "topic-2", label: "Topic 2", icon: "🔍", color: "green" },
   ],
+  megatopics: [
+    {
+      key: "group-a",
+      label: "Group A",
+      topics: ["topic-1"],
+    },
+    {
+      key: "group-b",
+      label: "Group B",
+      topics: ["topic-2"],
+    },
+  ],
   exams: [
     {
       year: "2024",
