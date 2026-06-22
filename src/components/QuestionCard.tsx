@@ -10,6 +10,7 @@ interface QuestionCardProps {
   index: number;
   total: number;
   topicLabel: string;
+  examDate?: string;
   subjectId: string;
   onAnswer: (questionId: string, answer: string) => void;
   savedAnswer?: string;
@@ -314,6 +315,9 @@ export default function QuestionCard(props: QuestionCardProps) {
           {question.points}p
         </span>
         <span className="text-xs text-gray-400">{props.topicLabel}</span>
+        {props.examDate && (
+          <span className="text-xs text-gray-400 ml-auto">{props.examDate}</span>
+        )}
       </div>
       <Markdown className="text-sm text-gray-900 font-medium mb-4">
         {question.question}

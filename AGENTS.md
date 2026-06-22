@@ -25,6 +25,7 @@ pnpm preview   # Preview production build locally
 - **i18n**: Custom React context (`src/i18n/context.tsx`). Two languages: `en`/`es`. Adding a translation string requires updating the `Translations` interface in `en.ts` and adding the value in `es.ts`.
 - **Routing** (`src/App.tsx`): `/` → Home, `/:subjectId` → SubjectHome, `/:subjectId/practice` → PracticeHome, `/:subjectId/practice/:topic` → PracticeTopic, `/:subjectId/exam/:year` → ExamSimulation.
 - **Exam `year` field**: A string used in the URL segment `/exam/:year`. Can be a simple year (`"2024"`) or year-month (`"2020-01"`).
+- **Exam `date` field**: Optional human-readable date displayed on question cards (e.g. `"Enero 2024"`, `"June 2025"`). If omitted, no date is shown.
 - **Data model**: See `src/data/types.ts` for `SubjectMeta`, `Question`, `Exam`, `Topic`, `ExamAttempt`.
 
 ## Adding a New Subject
@@ -65,6 +66,7 @@ export const meta: SubjectMeta = {
     {
       year: "2024", // string, used in URL /exam/2024
       title: "2024 Exam", // shown on buttons/cards
+      date: "2024", // optional, human-readable date shown on questions (e.g. "Enero 2024", "June 2025", "2024")
       description: "60 points · 15 questions",
       passPoints: 30, // minimum points to pass
       totalPoints: 60,

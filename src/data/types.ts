@@ -32,6 +32,7 @@ export interface Topic {
 export interface Exam {
   year: string;
   title: string;
+  date?: string;
   passPoints: number;
   totalPoints: number;
   durationMinutes: number;

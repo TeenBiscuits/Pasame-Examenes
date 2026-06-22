@@ -33,6 +33,7 @@ export const meta: SubjectMeta = {
     {
       year: "2020-01",
       title: "Enero 2020",
+      date: "Enero 2020",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,
@@ -41,6 +42,7 @@ export const meta: SubjectMeta = {
     {
       year: "2021-01",
       title: "Enero 2021",
+      date: "Enero 2021",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,
@@ -49,6 +51,7 @@ export const meta: SubjectMeta = {
     {
       year: "2021-07",
       title: "Julio 2021",
+      date: "Julio 2021",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,
@@ -57,6 +60,7 @@ export const meta: SubjectMeta = {
     {
       year: "2022-01",
       title: "Enero 2022",
+      date: "Enero 2022",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,
@@ -65,6 +69,7 @@ export const meta: SubjectMeta = {
     {
       year: "2022-07",
       title: "Julio 2022",
+      date: "Julio 2022",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,
@@ -73,6 +78,7 @@ export const meta: SubjectMeta = {
     {
       year: "2023-01",
       title: "Enero 2023",
+      date: "Enero 2023",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,
@@ -81,6 +87,7 @@ export const meta: SubjectMeta = {
     {
       year: "2023-07",
       title: "Julio 2023",
+      date: "Julio 2023",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,
@@ -89,6 +96,7 @@ export const meta: SubjectMeta = {
     {
       year: "2024-01",
       title: "Enero 2024",
+      date: "Enero 2024",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,
@@ -97,6 +105,7 @@ export const meta: SubjectMeta = {
     {
       year: "2024-07",
       title: "Julio 2024",
+      date: "Julio 2024",
       description: "165 min · 4 partes",
       passPoints: 50,
       totalPoints: 100,

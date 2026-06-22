@@ -434,6 +434,7 @@ export default function ExamSimulation() {
         index={currentIndex}
         total={questions.length}
         topicLabel={currentTopic?.label || currentQuestion.topic}
+        examDate={examInfo?.date}
         subjectId={subject.id}
         onAnswer={handleAnswer}
         savedAnswer={answers[currentQuestion.id]}

@@ -16,6 +16,7 @@ export const meta: SubjectMeta = {
     {
       year: "2024",
       title: "2024 Exam",
+      date: "2024",
       description: "70 points · 5 questions",
       passPoints: 35,
       totalPoints: 70,
@@ -24,6 +25,7 @@ export const meta: SubjectMeta = {
     {
       year: "2025-01",
       title: "January 2025",
+      date: "January 2025",
       description: "90 points · 7 questions",
       passPoints: 45,
       totalPoints: 90,

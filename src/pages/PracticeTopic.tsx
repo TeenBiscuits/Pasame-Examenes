@@ -149,6 +149,11 @@ export default function PracticeTopic() {
 
   const currentQuestion = questions[currentIndex];
 
+  const examDate = useMemo(() => {
+    if (!subject || currentQuestion.exam === "both") return undefined;
+    return subject.exams.find((e) => e.year === currentQuestion.exam)?.date;
+  }, [subject, currentQuestion.exam]);
+
   const handleAnswer = useCallback((questionId: string, answer: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: answer }));
   }, []);
@@ -331,6 +336,7 @@ export default function PracticeTopic() {
         index={currentIndex}
         total={questions.length}
         topicLabel={topicInfo?.label || topic || ""}
+        examDate={examDate}
         subjectId={subject.id}
         onAnswer={handleAnswer}
         savedAnswer={answers[currentQuestion.id]}

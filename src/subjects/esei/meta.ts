@@ -49,6 +49,7 @@ export const meta: SubjectMeta = {
     {
       year: "2023",
       title: "2023",
+      date: "2023",
       description: "45 preguntas",
       passPoints: 22,
       totalPoints: 45,
@@ -58,6 +59,7 @@ export const meta: SubjectMeta = {
     {
       year: "2024",
       title: "2024",
+      date: "2024",
       description: "44 preguntas",
       passPoints: 22,
       totalPoints: 44,
@@ -67,6 +69,7 @@ export const meta: SubjectMeta = {
     {
       year: "2025-05",
       title: "Mayo 2025",
+      date: "Mayo 2025",
       description: "42 preguntas",
       passPoints: 21,
       totalPoints: 42,
@@ -76,6 +79,7 @@ export const meta: SubjectMeta = {
     {
       year: "2025-07",
       title: "Julio 2025",
+      date: "Julio 2025",
       description: "47 preguntas",
       passPoints: 23,
       totalPoints: 47,
@@ -85,6 +89,7 @@ export const meta: SubjectMeta = {
     {
       year: "2026-06",
       title: "Junio 2026",
+      date: "Junio 2026",
       description: "56 preguntas",
       passPoints: 28,
       totalPoints: 56,

@@ -42,6 +42,7 @@ export const meta: SubjectMeta = {
     {
       year: "2024", // string, usado en la URL /exam/2024
       title: "Examen 2024",
+      date: "2024", // opcional, fecha legible mostrada en las preguntas (ej. "Enero 2024", "June 2025", "2024")
       description: "60 puntos · 15 preguntas",
       passPoints: 30,
       totalPoints: 60,
