@@ -6,6 +6,8 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "202318",
   icon: "💻",
+  acknowledgments:
+    "Exámenes proporcionados por el departamento de Sistemas Operativos de la FIC.",
   topics: [
     {
       key: "sistema-ficheros",
