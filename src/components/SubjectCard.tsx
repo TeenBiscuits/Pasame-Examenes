@@ -30,7 +30,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
           {subject.courseCode}
         </span>
       </div>
-      <h3 className="font-semibold text-fg text-base mb-1">{subject.name}</h3>
+      <h2 className="font-semibold text-fg text-base mb-1">{subject.name}</h2>
       <p className="text-sm text-fg-muted mb-4">{subject.university}</p>
       <div className="text-xs text-fg-muted flex items-center gap-2">
         <span>
