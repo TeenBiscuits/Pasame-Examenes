@@ -3,11 +3,13 @@ import { getSubject, getQuestionsByTopic } from "../subjects";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
+import { useDocumentTitle } from "../lib/title";
 
 export default function PracticeHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
   const subject = subjectId ? getSubject(subjectId) : undefined;
+  useDocumentTitle(subject ? `${t.practiceHome.title} \u2014 ${subject.name} \u2014 ${t.home.title}` : t.home.title);
 
   if (!subject) return null;
 
@@ -27,9 +29,9 @@ export default function PracticeHome() {
             if (mtTopics.length === 0) return null;
             return (
               <div key={mt.key} className="mb-8">
-                <h3 className="text-md font-medium text-fg-secondary mt-2 mb-3">
+                <h2 className="text-md font-medium text-fg-secondary mt-2 mb-3">
                   {mt.label}
-                </h3>
+                </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {mtTopics.map((topic) => {
                     const qs = getQuestionsByTopic(subject.id, topic.key);
@@ -53,9 +55,9 @@ export default function PracticeHome() {
                         >
                           {topic.icon}
                         </div>
-                        <h3 className="font-semibold text-fg text-sm">
+                        <h2 className="font-semibold text-fg text-sm">
                           {topic.label}
-                        </h3>
+                        </h2>
                         <p className="text-xs text-fg-muted mt-1">
                           {qs.length} {t.subjectCard.questions} &middot;{" "}
                           {qs.reduce((s, q) => s + q.points, 0)}{" "}
@@ -100,9 +102,9 @@ export default function PracticeHome() {
                       >
                         {topic.icon}
                       </div>
-                      <h3 className="font-semibold text-fg text-sm">
+                      <h2 className="font-semibold text-fg text-sm">
                         {topic.label}
-                      </h3>
+                      </h2>
                       <p className="text-xs text-fg-muted mt-1">
                         {qs.length} {t.subjectCard.questions} &middot;{" "}
                         {qs.reduce((s, q) => s + q.points, 0)}{" "}
@@ -137,7 +139,7 @@ export default function PracticeHome() {
                 <div className="text-2xl mb-2" role="img" aria-hidden="true">
                   {topic.icon}
                 </div>
-                <h3 className="font-semibold text-fg text-sm">{topic.label}</h3>
+                <h2 className="font-semibold text-fg text-sm">{topic.label}</h2>
                 <p className="text-xs text-fg-muted mt-1">
                   {qs.length} {t.subjectCard.questions} &middot;{" "}
                   {qs.reduce((s, q) => s + q.points, 0)} {t.subjectCard.points}

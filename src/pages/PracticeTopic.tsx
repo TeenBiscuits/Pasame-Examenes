@@ -11,6 +11,7 @@ import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight, triggerMedium } from "../lib/haptics";
+import { useDocumentTitle } from "../lib/title";
 
 const getNow = () => Date.now();
 
@@ -70,6 +71,13 @@ export default function PracticeTopic() {
       questions.filter((q) => q.type === "text" || q.type === "calculation")
         .length,
     [questions],
+  );
+  useDocumentTitle(
+    subject && topicInfo
+      ? `${topicInfo.label} \u2014 ${subject.name} \u2014 ${t.home.title}`
+      : subject
+        ? `${t.home.title} \u2014 ${subject.name}`
+        : t.home.title,
   );
 
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -10,4 +10,16 @@ export default defineConfig({
       process.env.VERCEL_ENV === "production",
     ),
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes("node_modules/react-dom")) return "vendor";
+          if (id.includes("node_modules/react/")) return "vendor";
+          if (id.includes("node_modules/react-router-dom")) return "router";
+          if (id.includes("node_modules/react-router/")) return "router";
+        },
+      },
+    },
+  },
 });

@@ -10,12 +10,14 @@ import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
+import { useDocumentTitle } from "../lib/title";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
+  useDocumentTitle(subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title);
 
   if (!subject) {
     return (
@@ -91,9 +93,9 @@ export default function SubjectHome() {
             if (mtTopics.length === 0) return null;
             return (
               <div key={mt.key} className="mb-8">
-                <h3 className="text-md font-medium text-fg-secondary mt-2 mb-3">
+                <h2 className="text-md font-medium text-fg-secondary mt-2 mb-3">
                   {mt.label}
-                </h3>
+                </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {mtTopics.map(renderTopicCard)}
                 </div>
@@ -147,7 +149,7 @@ export default function SubjectHome() {
             <div className="text-2xl mb-2" role="img" aria-hidden="true">
               📝
             </div>
-            <h3 className="font-semibold text-fg">{exam.title}</h3>
+            <h2 className="font-semibold text-fg">{exam.title}</h2>
             <p className="text-sm text-fg-muted mt-1">{exam.description}</p>
           </Link>
         ))}

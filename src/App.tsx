@@ -1,13 +1,23 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./components/Header";
-import Home from "./pages/Home";
-import SubjectHome from "./pages/SubjectHome";
-import PracticeHome from "./pages/PracticeHome";
-import PracticeTopic from "./pages/PracticeTopic";
-import ExamSimulation from "./pages/ExamSimulation";
 import { useT } from "./i18n/hooks";
 import { track } from "./lib/umami";
+
+const Home = lazy(() => import("./pages/Home"));
+const SubjectHome = lazy(() => import("./pages/SubjectHome"));
+const PracticeHome = lazy(() => import("./pages/PracticeHome"));
+const PracticeTopic = lazy(() => import("./pages/PracticeTopic"));
+const ExamSimulation = lazy(() => import("./pages/ExamSimulation"));
+
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center py-16">
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-accent border-t-transparent" />
+    </div>
+  );
+}
 
 function PageViewTracker() {
   const { pathname } = useLocation();
@@ -61,16 +71,18 @@ export default function App() {
         <PageViewTracker />
         <Header />
         <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/:subjectId" element={<SubjectHome />} />
-            <Route path="/:subjectId/practice" element={<PracticeHome />} />
-            <Route
-              path="/:subjectId/practice/:topic"
-              element={<PracticeTopic />}
-            />
-            <Route path="/:subjectId/exam/:year" element={<ExamSimulation />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/:subjectId" element={<SubjectHome />} />
+              <Route path="/:subjectId/practice" element={<PracticeHome />} />
+              <Route
+                path="/:subjectId/practice/:topic"
+                element={<PracticeTopic />}
+              />
+              <Route path="/:subjectId/exam/:year" element={<ExamSimulation />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
       </div>

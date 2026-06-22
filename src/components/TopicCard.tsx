@@ -55,7 +55,7 @@ export default function TopicCard({
           {t.subjectCard.points}
         </span>
       </div>
-      <h3 className="font-semibold text-fg text-sm mb-2">{topic.label}</h3>
+      <h2 className="font-semibold text-fg text-sm mb-2">{topic.label}</h2>
       {progress !== undefined && (
         <div className="mt-2">
           <div className="h-1.5 bg-border rounded-full overflow-hidden">

@@ -102,6 +102,7 @@ export default function ThemeToggle() {
 
   return (
     <button
+      type="button"
       className="px-2 py-1 rounded border border-border hover:bg-surface active:scale-95 transition cursor-pointer"
       onClick={cycleTheme}
       aria-label={`Theme: ${themeLabels[theme]}`}

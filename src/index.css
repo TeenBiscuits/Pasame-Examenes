@@ -51,8 +51,8 @@ html[data-theme="dark"] {
   --color-surface: #111827;
   --color-surface-alt: #1f2937;
   --color-fg: #f9fafb;
-  --color-fg-secondary: #9ca3af;
-  --color-fg-muted: #6b7280;
+  --color-fg-secondary: #d1d5db;
+  --color-fg-muted: #9ca3af;
   --color-border: #374151;
   --color-accent: #22c55e;
   --color-accent-light: #052e16;
@@ -159,8 +159,8 @@ html[data-theme="catppuccin"] {
     --color-surface: #111827;
     --color-surface-alt: #1f2937;
     --color-fg: #f9fafb;
-    --color-fg-secondary: #9ca3af;
-    --color-fg-muted: #6b7280;
+    --color-fg-secondary: #d1d5db;
+    --color-fg-muted: #9ca3af;
     --color-border: #374151;
     --color-accent: #22c55e;
     --color-accent-light: #052e16;
@@ -243,4 +243,14 @@ html[data-theme="catppuccin"] {
     opacity: 0;
     transform: scale(0.95);
   }
+}
+
+#root:empty {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+  color: #6b7280;
 }
