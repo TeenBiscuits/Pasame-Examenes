@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
+import AddSubjectModal from "../components/AddSubjectModal";
 import { useT } from "../i18n/hooks";
 
 export default function Home() {
   const t = useT();
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
@@ -14,7 +17,21 @@ export default function Home() {
         {subjects.map((subject) => (
           <SubjectCard key={subject.id} subject={subject} />
         ))}
+        <button
+          type="button"
+          onClick={() => setModalOpen(true)}
+          className="block w-full p-5 rounded-xl border-2 border-dashed border-gray-300 text-gray-400 hover:text-green-600 hover:border-green-400 hover:bg-green-50/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
+        >
+          <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">
+            <span className="text-4xl font-light leading-none">+</span>
+            <span className="text-sm font-medium">
+              {t.home.addSubject}
+            </span>
+          </div>
+        </button>
       </div>
+
+      <AddSubjectModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

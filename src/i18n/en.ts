@@ -3,6 +3,7 @@ export const en = {
     title: "Pásame Exámenes",
     subtitle:
       "Open-source platform for practicing university exams. Choose a subject below to start drilling questions from past exams.",
+    addSubject: "Add Subject?",
   },
   subjectHome: {
     notFound: "Subject Not Found",
@@ -86,6 +87,19 @@ export const en = {
     questions: "questions",
     points: "points",
     topics: "topics",
+  },
+  addSubject: {
+    title: "Add a Subject",
+    close: "Close",
+    openIssue: "Open an Issue",
+    openIssueDesc:
+      "Request a new subject via a pre-filled GitHub issue template",
+    openIssueUrl:
+      "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml",
+    contribute: "Contribute!",
+    contributeDesc:
+      "Follow the contribution guide to add it yourself via pull request",
+    email: "Send an email",
   },
 };
 

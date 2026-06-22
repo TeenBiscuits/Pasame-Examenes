@@ -1,0 +1,63 @@
+name: Sugerir nueva asignatura
+description: Solicitar una nueva asignatura para añadir a Pásame Exámenes
+title: "[Nueva Asignatura]"
+labels: ["new-subject", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Gracias por sugerir una nueva asignatura para Pásame Exámenes! Cuanta más información proporciones, más fácil será añadirla.
+
+  - type: input
+    id: subject-name
+    attributes:
+      label: Nombre de la asignatura
+      description: Nombre completo de la asignatura (ej. "Cálculo I", "Redes de Computadores")
+      placeholder: "ej: Cálculo I"
+    validations:
+      required: true
+
+  - type: input
+    id: university
+    attributes:
+      label: Universidad
+      description: ¿A qué universidad pertenece?
+      placeholder: "ej: Universidade da Coruña"
+    validations:
+      required: true
+
+  - type: input
+    id: course-code
+    attributes:
+      label: Código de la asignatura (opcional)
+      description: El código oficial del plan de estudios
+      placeholder: "ej: 614G01001"
+
+  - type: textarea
+    id: topics
+    attributes:
+      label: Temas principales
+      description: Lista los temas o bloques de contenido que cubre la asignatura
+      placeholder: |
+        1. Tema 1 - Introducción
+        2. Tema 2 - Derivadas
+        3. Tema 3 - Integrales
+    validations:
+      required: true
+
+  - type: textarea
+    id: exam-info
+    attributes:
+      label: Información sobre los exámenes
+      description: |
+        ¿De qué años hay exámenes disponibles? ¿Cuánto duran? ¿Cuántos puntos valen?
+        Si tienes los PDFs, puedes mencionarlo aquí.
+      placeholder: |
+        - Examen 2024: 60 puntos, 3 horas, 15 preguntas
+        - Examen 2023: 50 puntos, 2.5 horas, 12 preguntas
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Información adicional (opcional)
+      description: Cualquier otro detalle relevante (enlaces al plan de estudios, recursos, etc.)

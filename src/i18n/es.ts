@@ -5,6 +5,7 @@ export const es: Translations = {
     title: "Pásame Exámenes",
     subtitle:
       "Plataforma de código abierto para practicar exámenes universitarios. Elige una asignatura para empezar a practicar con preguntas de exámenes anteriores.",
+    addSubject: "¿Añadir asignatura?",
   },
   subjectHome: {
     notFound: "Asignatura no encontrada",
@@ -88,5 +89,18 @@ export const es: Translations = {
     questions: "preguntas",
     points: "puntos",
     topics: "temas",
+  },
+  addSubject: {
+    title: "Añadir asignatura",
+    close: "Cerrar",
+    openIssue: "Abrir un issue",
+    openIssueDesc:
+      "Solicita una nueva asignatura usando la plantilla de GitHub",
+    openIssueUrl:
+      "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml",
+    contribute: "¡Contribuye!",
+    contributeDesc:
+      "Sigue la guía de contribución para añadirla tú mismo con un pull request",
+    email: "Escribe un correo",
   },
 };
