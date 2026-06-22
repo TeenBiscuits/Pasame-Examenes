@@ -13,7 +13,8 @@
   "dependencies": {
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.17.0"
+    "react-router-dom": "^7.17.0",
+    "web-haptics": "^0.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

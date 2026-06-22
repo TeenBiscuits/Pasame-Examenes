@@ -6,6 +6,7 @@ import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
+import { useHaptics } from "../lib/haptics";
 
 const getNow = () => Date.now();
 
@@ -39,13 +40,17 @@ function gradeQuestion(
 }
 
 export default function PracticeTopic() {
-  const { subjectId, topic } = useParams<{ subjectId: string; topic: string }>();
+  const { subjectId, topic } = useParams<{
+    subjectId: string;
+    topic: string;
+  }>();
   const navigate = useNavigate();
   const t = useT();
+  const { triggerLight, triggerMedium } = useHaptics();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const questions = useMemo(
-    () => (subject && topic) ? getQuestionsByTopic(subject.id, topic) : [],
+    () => (subject && topic ? getQuestionsByTopic(subject.id, topic) : []),
     [subject, topic],
   );
   const topicInfo = useMemo(
@@ -55,9 +60,13 @@ export default function PracticeTopic() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [selfGrades, setSelfGrades] = useState<Record<string, "correct" | "incorrect">>({});
+  const [selfGrades, setSelfGrades] = useState<
+    Record<string, "correct" | "incorrect">
+  >({});
   const [submitted, setSubmitted] = useState(false);
-  const [checkedQuestions, setCheckedQuestions] = useState<Record<string, boolean>>({});
+  const [checkedQuestions, setCheckedQuestions] = useState<
+    Record<string, boolean>
+  >({});
   const [attemptId, setAttemptId] = useState<string>("");
 
   useEffect(() => {
@@ -68,23 +77,30 @@ export default function PracticeTopic() {
 
   const currentQuestion = questions[currentIndex];
 
-  const handleAnswer = useCallback(
-    (questionId: string, answer: string) => {
-      setAnswers((prev) => ({ ...prev, [questionId]: answer }));
-    },
-    [],
-  );
+  const handleAnswer = useCallback((questionId: string, answer: string) => {
+    setAnswers((prev) => ({ ...prev, [questionId]: answer }));
+  }, []);
 
   const handleSubmit = () => {
     if (!subject) return;
+    triggerMedium();
     const id = getNow().toString();
     setAttemptId(id);
     let score = 0;
     for (const q of questions) {
       score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
     }
-    const answeredCount = Object.values(answers).filter(a => a && a.trim() !== "").length;
-    track("practice_submit", { subjectId: subject.id, topic: topic || "", score, maxScore: questions.reduce((s, q) => s + q.points, 0), questionsCount: questions.length, answered: answeredCount });
+    const answeredCount = Object.values(answers).filter(
+      (a) => a && a.trim() !== "",
+    ).length;
+    track("practice_submit", {
+      subjectId: subject.id,
+      topic: topic || "",
+      score,
+      maxScore: questions.reduce((s, q) => s + q.points, 0),
+      questionsCount: questions.length,
+      answered: answeredCount,
+    });
     saveAttempt(subject.id, {
       id,
       exam: "practice",
@@ -98,9 +114,17 @@ export default function PracticeTopic() {
     setSubmitted(true);
   };
 
-  const handleSelfGrade = (questionId: string, grade: "correct" | "incorrect") => {
+  const handleSelfGrade = (
+    questionId: string,
+    grade: "correct" | "incorrect",
+  ) => {
     if (!subject) return;
-    track("practice_self_grade", { subjectId: subject.id, topic: topic || "", questionId, grade });
+    track("practice_self_grade", {
+      subjectId: subject.id,
+      topic: topic || "",
+      questionId,
+      grade,
+    });
     setSelfGrades((prev) => {
       const next = { ...prev, [questionId]: grade };
       let score = 0;
@@ -128,6 +152,7 @@ export default function PracticeTopic() {
         <Link
           to={subject ? `/${subject.id}` : "/"}
           className="text-green-600 hover:underline mt-4 inline-block"
+          onClick={() => triggerLight()}
         >
           {t.practice.backToHome}
         </Link>
@@ -138,7 +163,9 @@ export default function PracticeTopic() {
   const totalPoints = questions.reduce((s, q) => s + q.points, 0);
 
   const textQuestionCount = useMemo(
-    () => questions.filter(q => q.type === "text" || q.type === "calculation").length,
+    () =>
+      questions.filter((q) => q.type === "text" || q.type === "calculation")
+        .length,
     [questions],
   );
 
@@ -163,22 +190,23 @@ export default function PracticeTopic() {
           {topicInfo?.icon} {topicInfo?.label || topic}
         </h1>
         <p className="text-sm text-gray-500 mt-1">
-          {questions.length} {t.subjectCard.questions} &middot; {totalPoints} {t.practice.pointsTotal}
+          {questions.length} {t.subjectCard.questions} &middot; {totalPoints}{" "}
+          {t.practice.pointsTotal}
         </p>
       </div>
 
       {(submitted || Object.keys(checkedQuestions).length > 0) && (
         <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200">
           <p className="font-semibold text-green-900">
-            {submitted ? t.practice.score : t.practice.runningScore}: {getScore()} {t.exam.outOf} {totalPoints} {t.practice.points}
+            {submitted ? t.practice.score : t.practice.runningScore}:{" "}
+            {getScore()} {t.exam.outOf} {totalPoints} {t.practice.points}
           </p>
           <p className="text-sm text-green-700 mt-1">
             {submitted
               ? textQuestionCount > 0
                 ? `${Object.values(selfGrades).filter(Boolean).length} ${t.exam.outOf} ${textQuestionCount} ${t.practice.openEnded}`
                 : t.practice.allCorrect
-              : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`
-            }
+              : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`}
           </p>
         </div>
       )}
@@ -200,7 +228,10 @@ export default function PracticeTopic() {
             <button
               key={q.id}
               className={cls}
-              onClick={() => setCurrentIndex(i)}
+              onClick={() => {
+                triggerLight();
+                setCurrentIndex(i);
+              }}
             >
               {isChecked && !isCurrent ? "\u2713" : i + 1}
             </button>
@@ -224,31 +255,54 @@ export default function PracticeTopic() {
       <div className="flex justify-between mt-6">
         <button
           className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
-          onClick={() => { const nextIndex = Math.max(0, currentIndex - 1); track("practice_navigate", { direction: "prev", fromIndex: currentIndex, toIndex: nextIndex }); setCurrentIndex(nextIndex); }}
+          onClick={() => {
+            triggerLight();
+            const nextIndex = Math.max(0, currentIndex - 1);
+            track("practice_navigate", {
+              direction: "prev",
+              fromIndex: currentIndex,
+              toIndex: nextIndex,
+            });
+            setCurrentIndex(nextIndex);
+          }}
           disabled={currentIndex === 0}
         >
           {t.practice.previous}
         </button>
         <div className="flex gap-2">
-          {answers[currentQuestion.id] && !submitted && !checkedQuestions[currentQuestion.id] && (
-            <>
-              <button
-                className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors"
-                onClick={() => { track("practice_clear_answer", { questionId: currentQuestion.id }); handleAnswer(currentQuestion.id, ""); }}
-              >
-                {t.practice.clear}
-              </button>
-              <button
-                className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors"
-                onClick={() => {
-                  track("practice_check_question", { questionId: currentQuestion.id });
-                  setCheckedQuestions((prev) => ({ ...prev, [currentQuestion.id]: true }));
-                }}
-              >
-                {t.practice.check}
-              </button>
-            </>
-          )}
+          {answers[currentQuestion.id] &&
+            !submitted &&
+            !checkedQuestions[currentQuestion.id] && (
+              <>
+                <button
+                  className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors"
+                  onClick={() => {
+                    triggerLight();
+                    track("practice_clear_answer", {
+                      questionId: currentQuestion.id,
+                    });
+                    handleAnswer(currentQuestion.id, "");
+                  }}
+                >
+                  {t.practice.clear}
+                </button>
+                <button
+                  className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors"
+                  onClick={() => {
+                    triggerMedium();
+                    track("practice_check_question", {
+                      questionId: currentQuestion.id,
+                    });
+                    setCheckedQuestions((prev) => ({
+                      ...prev,
+                      [currentQuestion.id]: true,
+                    }));
+                  }}
+                >
+                  {t.practice.check}
+                </button>
+              </>
+            )}
           {!submitted && (
             <button
               className="px-4 py-2 text-sm rounded-lg bg-green-600 text-white hover:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors"
@@ -260,7 +314,16 @@ export default function PracticeTopic() {
         </div>
         <button
           className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
-          onClick={() => { const nextIndex = Math.min(questions.length - 1, currentIndex + 1); track("practice_navigate", { direction: "next", fromIndex: currentIndex, toIndex: nextIndex }); setCurrentIndex(nextIndex); }}
+          onClick={() => {
+            triggerLight();
+            const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
+            track("practice_navigate", {
+              direction: "next",
+              fromIndex: currentIndex,
+              toIndex: nextIndex,
+            });
+            setCurrentIndex(nextIndex);
+          }}
           disabled={currentIndex === questions.length - 1}
         >
           {t.practice.next}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
+import { useHaptics } from "../lib/haptics";
 
 interface QuestionCardProps {
   question: Question;
@@ -43,6 +44,7 @@ function MCQuestion({
   savedAnswer,
   showResult,
 }: QuestionCardProps) {
+  const { triggerSelection } = useHaptics();
   if (!question.options) return null;
 
   return (
@@ -69,6 +71,7 @@ function MCQuestion({
             className={className}
             onClick={() => {
               if (showResult) return;
+              triggerSelection();
               track("question_answer", {
                 questionId: question.id,
                 type: "mc",
@@ -99,6 +102,7 @@ function TextQuestion({
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
+  const { triggerLight, triggerSuccess, triggerError } = useHaptics();
 
   return (
     <div>
@@ -121,6 +125,7 @@ function TextQuestion({
             type="button"
             className="text-sm text-green-600 hover:text-green-700 font-medium focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-green-200 transition-colors"
             onClick={() => {
+              triggerLight();
               const next = !isOpen;
               track(next ? "solution_toggle" : "solution_toggle", {
                 questionId: question.id,
@@ -157,6 +162,7 @@ function TextQuestion({
                     <button
                       type="button"
                       onClick={() => {
+                        triggerSuccess();
                         track("self_grade", {
                           questionId: question.id,
                           grade: "correct",
@@ -174,6 +180,7 @@ function TextQuestion({
                     <button
                       type="button"
                       onClick={() => {
+                        triggerError();
                         track("self_grade", {
                           questionId: question.id,
                           grade: "incorrect",
@@ -205,6 +212,7 @@ function MatchingQuestion({
   savedAnswer,
   showResult,
 }: QuestionCardProps) {
+  const { triggerSelection } = useHaptics();
   const correctAnswer = question.correctAnswer as Record<string, string>;
   const items = Object.keys(correctAnswer);
   const letters = [...new Set(Object.values(correctAnswer))].sort();
@@ -258,6 +266,7 @@ function MatchingQuestion({
                     key={letter}
                     className={cls}
                     onClick={() => {
+                      triggerSelection();
                       track("question_answer", {
                         questionId: question.id,
                         type: "matching",
@@ -284,6 +293,7 @@ function MatchingQuestion({
 export default function QuestionCard(props: QuestionCardProps) {
   const { question } = props;
   const t = useT();
+  const { triggerLight } = useHaptics();
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
@@ -366,12 +376,13 @@ export default function QuestionCard(props: QuestionCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded px-2 py-1 -mr-2"
-            onClick={() =>
+            onClick={() => {
+              triggerLight();
               track("report_issue", {
                 questionId: question.id,
                 subjectId: props.subjectId,
-              })
-            }
+              });
+            }}
           >
             <svg
               width="12"
