@@ -1,7 +1,9 @@
 import { useRef } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
-import AddSubjectModal, { type AddSubjectModalHandle } from "../components/AddSubjectModal";
+import AddSubjectModal, {
+  type AddSubjectModalHandle,
+} from "../components/AddSubjectModal";
 import { useT } from "../i18n/hooks";
 
 export default function Home() {

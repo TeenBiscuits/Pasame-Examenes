@@ -1,5 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState, useCallback, useMemo, type ReactNode } from "react";
+import {
+  createContext,
+  useState,
+  useCallback,
+  useMemo,
+  type ReactNode,
+} from "react";
 import { en, type Translations } from "./en";
 import { es } from "./es";
 
@@ -48,7 +54,5 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     [lang, setLang],
   );
 
-  return (
-    <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
-  );
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }

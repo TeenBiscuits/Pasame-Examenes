@@ -44,7 +44,10 @@ const AddSubjectModal = forwardRef<AddSubjectModalHandle, AddSubjectModalProps>(
       >
         <div onClick={(e) => e.stopPropagation()}>
           <div className="flex items-center justify-between mb-5">
-            <h2 id="add-subject-title" className="text-lg font-semibold text-fg">
+            <h2
+              id="add-subject-title"
+              className="text-lg font-semibold text-fg"
+            >
               {t.addSubject.title}
             </h2>
             <button

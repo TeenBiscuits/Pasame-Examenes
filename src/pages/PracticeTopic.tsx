@@ -88,24 +88,21 @@ export default function PracticeTopic() {
   const [showRightFade, setShowRightFade] = useState(false);
   const currentIndexRef = useRef(currentIndex);
 
-  const scrollToNav = useCallback(
-    (index: number) => {
-      const container = navRef.current;
-      if (!container) return;
-      const btn = container.children[index] as HTMLElement | undefined;
-      if (!btn) return;
-      requestAnimationFrame(() => {
-        const cr = container.getBoundingClientRect();
-        const br = btn.getBoundingClientRect();
-        const step = 108;
-        if (br.right > cr.right - 84)
-          container.scrollBy({ left: step, behavior: "smooth" });
-        else if (br.left < cr.left + 84)
-          container.scrollBy({ left: -step, behavior: "smooth" });
-      });
-    },
-    [],
-  );
+  const scrollToNav = useCallback((index: number) => {
+    const container = navRef.current;
+    if (!container) return;
+    const btn = container.children[index] as HTMLElement | undefined;
+    if (!btn) return;
+    requestAnimationFrame(() => {
+      const cr = container.getBoundingClientRect();
+      const br = btn.getBoundingClientRect();
+      const step = 108;
+      if (br.right > cr.right - 84)
+        container.scrollBy({ left: step, behavior: "smooth" });
+      else if (br.left < cr.left + 84)
+        container.scrollBy({ left: -step, behavior: "smooth" });
+    });
+  }, []);
 
   useEffect(() => {
     currentIndexRef.current = currentIndex;

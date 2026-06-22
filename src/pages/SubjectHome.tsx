@@ -3,7 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import { getSubject, getAllQuestions } from "../subjects";
 import { getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
-import AddExamModal, { type AddExamModalHandle } from "../components/AddExamModal";
+import AddExamModal, {
+  type AddExamModalHandle,
+} from "../components/AddExamModal";
 import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -159,9 +161,7 @@ export default function SubjectHome() {
         >
           <div className="flex flex-col items-center justify-center gap-2">
             <span className="text-4xl font-light leading-none">+</span>
-            <span className="text-sm font-medium">
-              {t.subjectHome.addExam}
-            </span>
+            <span className="text-sm font-medium">{t.subjectHome.addExam}</span>
           </div>
         </button>
       </div>
