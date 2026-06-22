@@ -45,6 +45,7 @@ export const meta: SubjectMeta = {
       passPoints: 30,
       totalPoints: 60,
       durationMinutes: 180,
+      hasPdf: true, // opcional, valor por defecto true. Pon false si no hay PDF
     },
   ],
 };
@@ -115,7 +116,7 @@ Copia los PDFs originales a `public/exams/{subject-id}/`:
 public/exams/{subject-id}/Exam-2024.pdf
 ```
 
-La convención es `Exam-{year}.pdf`.
+La convención es `Exam-{year}.pdf`. Si un examen no tiene PDF, marca `hasPdf: false` en su entrada de `meta.ts` para que el enlace de descarga no aparezca. Si ninguna examen tiene PDF, la sección entera se oculta automáticamente.
 
 #### 5. Añade imágenes (si las hay)
 
@@ -212,7 +213,7 @@ pnpm format    # Prettier
 - [ ] El ID de la asignatura es kebab-case y coincide con la carpeta
 - [ ] Todas las `topic` en `questions.ts` existen en `meta.ts`
 - [ ] Las preguntas MC tienen exactamente 5 opciones y una letra válida
-- [ ] Los PDFs están en `public/exams/{subject-id}/`
+- [ ] Los PDFs están en `public/exams/{subject-id}/` o los exámenes sin PDF tienen `hasPdf: false`
 - [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente
 - [ ] `pnpm build` compila sin errores
 - [ ] `pnpm lint` pasa

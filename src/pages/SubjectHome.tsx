@@ -106,37 +106,41 @@ export default function SubjectHome() {
         ))}
       </div>
 
-      <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-10">
-        <h3 className="font-semibold text-gray-900 mb-2">
-          {t.subjectHome.originalExams}
-        </h3>
-        <p className="text-sm text-gray-600 mb-4">
-          {t.subjectHome.examDocsDescription}
-        </p>
-        <div className="flex flex-wrap gap-4">
-          {subject.exams.map((exam) => (
-            <a
-              key={exam.year}
-              href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition duration-150"
-              onClick={() => {
-                triggerLight();
-                track("pdf_download", {
-                  subjectId: subject.id,
-                  year: exam.year,
-                });
-              }}
-            >
-              <span role="img" aria-hidden="true">
-                📄
-              </span>{" "}
-              {exam.title} {t.subjectHome.pdf}
-            </a>
-          ))}
+      {subject.exams.some((exam) => exam.hasPdf !== false) && (
+        <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-10">
+          <h3 className="font-semibold text-gray-900 mb-2">
+            {t.subjectHome.originalExams}
+          </h3>
+          <p className="text-sm text-gray-600 mb-4">
+            {t.subjectHome.examDocsDescription}
+          </p>
+          <div className="flex flex-wrap gap-4">
+            {subject.exams
+              .filter((exam) => exam.hasPdf !== false)
+              .map((exam) => (
+                <a
+                  key={exam.year}
+                  href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition duration-150"
+                  onClick={() => {
+                    triggerLight();
+                    track("pdf_download", {
+                      subjectId: subject.id,
+                      year: exam.year,
+                    });
+                  }}
+                >
+                  <span role="img" aria-hidden="true">
+                    📄
+                  </span>{" "}
+                  {exam.title} {t.subjectHome.pdf}
+                </a>
+              ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

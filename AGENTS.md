@@ -68,6 +68,7 @@ export const meta: SubjectMeta = {
       passPoints: 30, // minimum points to pass
       totalPoints: 60,
       durationMinutes: 180,
+      hasPdf: true, // optional, default true. Set false if no PDF exists
     },
   ],
 };

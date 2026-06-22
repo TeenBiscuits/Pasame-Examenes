@@ -36,6 +36,7 @@ export interface Exam {
   totalPoints: number;
   durationMinutes: number;
   description: string;
+  hasPdf?: boolean;
 }
 
 export interface SubjectMeta {
