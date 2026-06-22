@@ -482,10 +482,10 @@ export default function ExamSimulation() {
         direction={direction}
       />
 
-      <div className="flex justify-between mt-6">
+      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 mt-6 sm:justify-between">
         <button
           type="button"
-          className="px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
+          className="order-1 px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -500,9 +500,15 @@ export default function ExamSimulation() {
           }}
           disabled={currentIndex === 0}
         >
-          {t.exam.previous}
+          <span className="flex items-center gap-1.5">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
+              <path d="M14 8l-4 4 4 4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {t.exam.previous}
+          </span>
         </button>
-        <div className="flex gap-2">
+        <div className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto">
           {!submitted && (
             <button
               type="button"
@@ -515,7 +521,7 @@ export default function ExamSimulation() {
         </div>
         <button
           type="button"
-          className="px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
+          className="order-2 sm:order-3 ms-auto sm:ms-0 px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
@@ -530,7 +536,13 @@ export default function ExamSimulation() {
           }}
           disabled={currentIndex === questions.length - 1}
         >
-          {t.exam.next}
+          <span className="flex items-center gap-1.5">
+            {t.exam.next}
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
+              <path d="M10 8l4 4-4 4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
         </button>
       </div>
     </div>
