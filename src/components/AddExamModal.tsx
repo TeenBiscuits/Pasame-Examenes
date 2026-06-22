@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useEffect, useRef } from "react";
+import { useImperativeHandle, useEffect, useRef, type Ref } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 
@@ -11,10 +11,10 @@ interface AddExamModalProps {
   onClose: () => void;
   subjectId: string;
   subjectName: string;
+  ref: Ref<AddExamModalHandle>;
 }
 
-const AddExamModal = forwardRef<AddExamModalHandle, AddExamModalProps>(
-  function AddExamModal({ onClose, subjectId, subjectName }, ref) {
+function AddExamModal({ onClose, subjectId, subjectName, ref }: AddExamModalProps) {
     const t = useT();
     const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -41,6 +41,11 @@ const AddExamModal = forwardRef<AddExamModalHandle, AddExamModalProps>(
         aria-labelledby="add-exam-title"
         onClick={(e) => {
           if (e.target === dialogRef.current) dialogRef.current?.close();
+        }}
+        onKeyDown={(e) => {
+          if ((e.key === "Enter" || e.key === " ") && e.target === dialogRef.current) {
+            dialogRef.current?.close();
+          }
         }}
         onClose={() => {
           track("add_exam_modal_close", { subjectId });
@@ -133,7 +138,6 @@ const AddExamModal = forwardRef<AddExamModalHandle, AddExamModalProps>(
         </div>
       </dialog>
     );
-  },
-);
+}
 
 export default AddExamModal;

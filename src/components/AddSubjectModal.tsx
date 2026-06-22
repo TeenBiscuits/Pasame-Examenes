@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useEffect, useRef } from "react";
+import { useImperativeHandle, useEffect, useRef, type Ref } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 
@@ -9,10 +9,10 @@ export interface AddSubjectModalHandle {
 
 interface AddSubjectModalProps {
   onClose: () => void;
+  ref: Ref<AddSubjectModalHandle>;
 }
 
-const AddSubjectModal = forwardRef<AddSubjectModalHandle, AddSubjectModalProps>(
-  function AddSubjectModal({ onClose }, ref) {
+function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
     const t = useT();
     const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -37,6 +37,11 @@ const AddSubjectModal = forwardRef<AddSubjectModalHandle, AddSubjectModalProps>(
         aria-labelledby="add-subject-title"
         onClick={(e) => {
           if (e.target === dialogRef.current) dialogRef.current?.close();
+        }}
+        onKeyDown={(e) => {
+          if ((e.key === "Enter" || e.key === " ") && e.target === dialogRef.current) {
+            dialogRef.current?.close();
+          }
         }}
         onClose={() => {
           track("add_subject_modal_close");
@@ -132,7 +137,6 @@ const AddSubjectModal = forwardRef<AddSubjectModalHandle, AddSubjectModalProps>(
         </div>
       </dialog>
     );
-  },
-);
+}
 
 export default AddSubjectModal;
