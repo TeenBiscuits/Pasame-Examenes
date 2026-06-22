@@ -157,14 +157,12 @@ export default function SubjectHome() {
             triggerLight();
             setExamModalOpen(true);
           }}
-          className="block p-5 rounded-xl border-2 border-dashed border-gray-300 text-gray-400 hover:text-green-600 hover:border-green-400 hover:bg-green-50/30 hover:scale-[1.02] transition-colors transition-transform duration-200 text-left"
+          className="block w-full p-6 rounded-xl border-2 border-dashed border-gray-300 text-gray-400 hover:text-green-600 hover:border-green-400 hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200 text-left"
         >
-          <div className="flex flex-col items-center justify-center h-full min-h-[140px] gap-2">
-            <span className="text-4xl font-light leading-none">+</span>
-            <span className="text-sm font-medium">
-              {t.subjectHome.addExam}
-            </span>
+          <div className="text-2xl mb-2" role="img" aria-hidden="true">
+            +
           </div>
+          <h3 className="font-semibold">{t.subjectHome.addExam}</h3>
         </button>
       </div>
 
