@@ -1,3 +1,5 @@
+declare const __VERCEL_PRODUCTION__: boolean;
+
 import type { MegaTopic, SubjectMeta, Question } from "../data/types";
 
 interface MetaModule {
@@ -19,7 +21,7 @@ const questionsModules = import.meta.glob<QuestionsModule>("./*/questions.ts", {
 export const subjects: SubjectMeta[] = [];
 for (const m of Object.values(metaModules)) {
   const s = m.meta;
-  if (!(import.meta.env.PROD && s.id === "_template")) {
+  if (!(import.meta.env.PROD && __VERCEL_PRODUCTION__ && s.id === "_template")) {
     subjects.push(s);
   }
 }

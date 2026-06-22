@@ -5,4 +5,9 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  define: {
+    __VERCEL_PRODUCTION__: JSON.stringify(
+      process.env.VERCEL_ENV === "production",
+    ),
+  },
 });
