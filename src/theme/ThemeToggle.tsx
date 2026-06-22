@@ -16,25 +16,9 @@ function ThemeIcon({ theme }: { theme: Theme }) {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2" />
-          <path d="M12 20v2" />
-          <path d="m4.93 4.93 1.41 1.41" />
-          <path d="m17.66 17.66 1.41 1.41" />
-          <path d="M2 12h2" />
-          <path d="M20 12h2" />
-          <path d="m6.34 17.66-1.41 1.41" />
-          <path d="m19.07 4.93-1.41 1.41" />
-          <clipPath id="moon-clip">
-            <path d="M16 8a6 6 0 0 1-8 8 6 6 0 0 0 8-8Z" />
-          </clipPath>
-          <circle
-            cx="14"
-            cy="10"
-            r="7"
-            fill="currentColor"
-            clipPath="url(#moon-clip)"
-          />
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
         </svg>
       );
     case "light":
@@ -87,20 +71,8 @@ function ThemeIcon({ theme }: { theme: Theme }) {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <circle cx="12" cy="12" r="3" />
-          <path d="M12 1v3" />
-          <path d="M12 20v3" />
-          <path d="M4.2 4.2l2.1 2.1" />
-          <path d="M17.7 17.7l2.1 2.1" />
-          <path d="M1 12h3" />
-          <path d="M20 12h3" />
-          <path d="M4.2 19.8l2.1-2.1" />
-          <path d="M17.7 6.3l2.1-2.1" />
-          <path d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z" />
-          <path d="M9 9c.2-.7.8-1.4 1.5-1.7" />
-          <path d="M13.5 10.3c.7.3 1.3.9 1.5 1.7" />
-          <path d="M15 15c-.2.7-.8 1.4-1.5 1.7" />
-          <path d="M10.5 13.7c-.7-.3-1.3-.9-1.5-1.7" />
+          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" />
+          <path d="M2 17h20" />
         </svg>
       );
     case "catppuccin":
