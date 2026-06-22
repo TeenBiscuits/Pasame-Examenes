@@ -24,6 +24,24 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
+      year: "2024-06",
+      title: "Junio 2024",
+      date: "Junio 2024",
+      description: "10 puntos · 5 preguntas",
+      passPoints: 5,
+      totalPoints: 10,
+      durationMinutes: 180,
+    },
+    {
+      year: "2024-07",
+      title: "Julio 2024",
+      date: "Julio 2024",
+      description: "10 puntos · 5 preguntas",
+      passPoints: 5,
+      totalPoints: 10,
+      durationMinutes: 180,
+    },
+    {
       year: "2025-06",
       title: "Mayo 2025",
       date: "Mayo 2025",
