@@ -1,4 +1,4 @@
-import type { SubjectMeta, Question } from "../data/types";
+import type { MegaTopic, SubjectMeta, Question } from "../data/types";
 
 interface MetaModule {
   meta: SubjectMeta;
@@ -43,4 +43,20 @@ export function getQuestionsByExam(
 ): Question[] {
   const qs = getAllQuestions(subjectId);
   return qs.filter((q) => q.exam === exam || q.exam === "both");
+}
+
+export function getTopicMegaTopic(
+  subjectId: string,
+  topicKey: string,
+): MegaTopic | undefined {
+  const subject = getSubject(subjectId);
+  if (!subject?.megatopics) return undefined;
+  return subject.megatopics.find((mt) => mt.topics.includes(topicKey));
+}
+
+export function getTopicMegaTopicLabel(
+  subjectId: string,
+  topicKey: string,
+): string | undefined {
+  return getTopicMegaTopic(subjectId, topicKey)?.label;
 }

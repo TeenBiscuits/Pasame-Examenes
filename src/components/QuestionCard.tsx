@@ -15,6 +15,7 @@ interface QuestionCardProps {
   index: number;
   total: number;
   topicLabel: string;
+  megatopicLabel?: string;
   examDate?: string;
   subjectId: string;
   onAnswer: (questionId: string, answer: string) => void;
@@ -323,7 +324,11 @@ export default function QuestionCard(props: QuestionCardProps) {
         <span className="text-xs font-mono bg-green-50 text-green-700 px-2 py-0.5 rounded">
           {question.points}p
         </span>
-        <span className="text-xs text-gray-400">{props.topicLabel}</span>
+        <span className="text-xs text-gray-400">
+          {props.megatopicLabel
+            ? `${props.megatopicLabel} › ${props.topicLabel}`
+            : props.topicLabel}
+        </span>
         {props.examDate && (
           <span className="text-xs text-gray-400 ml-auto">
             {props.examDate}

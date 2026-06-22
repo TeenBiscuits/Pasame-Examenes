@@ -39,6 +39,13 @@ export const meta: SubjectMeta = {
       color: "blue", // blue, indigo, green, purple, pink, amber, red, cyan, orange
     },
   ],
+  megatopics: [ // opcional: agrupar temas en categorías superiores
+    {
+      key: "grupo-slug",
+      label: "Nombre del Grupo",
+      topics: ["tema-slug"], // claves de los temas que pertenecen a este megatopic
+    },
+  ],
   exams: [
     {
       year: "2024", // string, usado en la URL /exam/2024

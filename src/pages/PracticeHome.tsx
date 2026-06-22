@@ -18,38 +18,137 @@ export default function PracticeHome() {
       </h1>
       <p className="text-gray-500 mb-8">{t.practiceHome.subtitle}</p>
 
-      <div
-        className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
-      >
-        {subject.topics.map((topic) => {
-          const qs = getQuestionsByTopic(subject.id, topic.key);
-          return (
-            <Link
-              key={topic.key}
-              to={`/${subject.id}/practice/${topic.key}`}
-              className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
-              onClick={() => {
-                triggerLight();
-                track("practice_topic_click", {
-                  subjectId: subject.id,
-                  topic: topic.key,
-                });
-              }}
-            >
-              <div className="text-2xl mb-2" role="img" aria-hidden="true">
-                {topic.icon}
+      {subject.megatopics ? (
+        <>
+          {subject.megatopics.map((mt) => {
+            const mtTopics = subject.topics.filter((t) =>
+              mt.topics.includes(t.key),
+            );
+            if (mtTopics.length === 0) return null;
+            return (
+              <div key={mt.key} className="mb-8">
+                <h3 className="text-md font-medium text-gray-700 mt-2 mb-3">
+                  {mt.label}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {mtTopics.map((topic) => {
+                    const qs = getQuestionsByTopic(subject.id, topic.key);
+                    return (
+                      <Link
+                        key={topic.key}
+                        to={`/${subject.id}/practice/${topic.key}`}
+                        className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
+                        onClick={() => {
+                          triggerLight();
+                          track("practice_topic_click", {
+                            subjectId: subject.id,
+                            topic: topic.key,
+                          });
+                        }}
+                      >
+                        <div
+                          className="text-2xl mb-2"
+                          role="img"
+                          aria-hidden="true"
+                        >
+                          {topic.icon}
+                        </div>
+                        <h3 className="font-semibold text-gray-900 text-sm">
+                          {topic.label}
+                        </h3>
+                        <p className="text-xs text-gray-500 mt-1">
+                          {qs.length} {t.subjectCard.questions} &middot;{" "}
+                          {qs.reduce((s, q) => s + q.points, 0)}{" "}
+                          {t.subjectCard.points}
+                        </p>
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
-              <h3 className="font-semibold text-gray-900 text-sm">
-                {topic.label}
-              </h3>
-              <p className="text-xs text-gray-500 mt-1">
-                {qs.length} {t.subjectCard.questions} &middot;{" "}
-                {qs.reduce((s, q) => s + q.points, 0)} {t.subjectCard.points}
-              </p>
-            </Link>
-          );
-        })}
-      </div>
+            );
+          })}
+          {(() => {
+            const groupedKeys = new Set(
+              subject.megatopics.flatMap((mt) => mt.topics),
+            );
+            const ungrouped = subject.topics.filter(
+              (t) => !groupedKeys.has(t.key),
+            );
+            if (ungrouped.length === 0) return null;
+            return (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                {ungrouped.map((topic) => {
+                  const qs = getQuestionsByTopic(subject.id, topic.key);
+                  return (
+                    <Link
+                      key={topic.key}
+                      to={`/${subject.id}/practice/${topic.key}`}
+                      className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
+                      onClick={() => {
+                        triggerLight();
+                        track("practice_topic_click", {
+                          subjectId: subject.id,
+                          topic: topic.key,
+                        });
+                      }}
+                    >
+                      <div
+                        className="text-2xl mb-2"
+                        role="img"
+                        aria-hidden="true"
+                      >
+                        {topic.icon}
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-sm">
+                        {topic.label}
+                      </h3>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {qs.length} {t.subjectCard.questions} &middot;{" "}
+                        {qs.reduce((s, q) => s + q.points, 0)}{" "}
+                        {t.subjectCard.points}
+                      </p>
+                    </Link>
+                  );
+                })}
+              </div>
+            );
+          })()}
+        </>
+      ) : (
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
+        >
+          {subject.topics.map((topic) => {
+            const qs = getQuestionsByTopic(subject.id, topic.key);
+            return (
+              <Link
+                key={topic.key}
+                to={`/${subject.id}/practice/${topic.key}`}
+                className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
+                onClick={() => {
+                  triggerLight();
+                  track("practice_topic_click", {
+                    subjectId: subject.id,
+                    topic: topic.key,
+                  });
+                }}
+              >
+                <div className="text-2xl mb-2" role="img" aria-hidden="true">
+                  {topic.icon}
+                </div>
+                <h3 className="font-semibold text-gray-900 text-sm">
+                  {topic.label}
+                </h3>
+                <p className="text-xs text-gray-500 mt-1">
+                  {qs.length} {t.subjectCard.questions} &middot;{" "}
+                  {qs.reduce((s, q) => s + q.points, 0)} {t.subjectCard.points}
+                </p>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

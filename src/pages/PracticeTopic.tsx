@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getSubject, getQuestionsByTopic } from "../subjects";
+import { getSubject, getQuestionsByTopic, getTopicMegaTopicLabel } from "../subjects";
 import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
@@ -55,6 +55,17 @@ export default function PracticeTopic() {
   const topicInfo = useMemo(
     () => subject?.topics.find((tp) => tp.key === topic),
     [subject, topic],
+  );
+  const megatopicLabel = useMemo(
+    () =>
+      subject && topic ? getTopicMegaTopicLabel(subject.id, topic) : undefined,
+    [subject, topic],
+  );
+  const textQuestionCount = useMemo(
+    () =>
+      questions.filter((q) => q.type === "text" || q.type === "calculation")
+        .length,
+    [questions],
   );
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -241,13 +252,6 @@ export default function PracticeTopic() {
 
   const totalPoints = questions.reduce((s, q) => s + q.points, 0);
 
-  const textQuestionCount = useMemo(
-    () =>
-      questions.filter((q) => q.type === "text" || q.type === "calculation")
-        .length,
-    [questions],
-  );
-
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
@@ -344,6 +348,7 @@ export default function PracticeTopic() {
         index={currentIndex}
         total={questions.length}
         topicLabel={topicInfo?.label || topic || ""}
+        megatopicLabel={megatopicLabel}
         examDate={examDate}
         subjectId={subject.id}
         onAnswer={handleAnswer}
