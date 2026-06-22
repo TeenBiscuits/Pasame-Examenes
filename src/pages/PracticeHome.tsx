@@ -13,10 +13,10 @@ export default function PracticeHome() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
-      <h1 className="text-2xl font-bold text-gray-900 mb-2">
+      <h1 className="text-2xl font-bold text-fg mb-2">
         {t.practiceHome.title}
       </h1>
-      <p className="text-gray-500 mb-8">{t.practiceHome.subtitle}</p>
+      <p className="text-fg-muted mb-8">{t.practiceHome.subtitle}</p>
 
       {subject.megatopics ? (
         <>
@@ -27,7 +27,7 @@ export default function PracticeHome() {
             if (mtTopics.length === 0) return null;
             return (
               <div key={mt.key} className="mb-8">
-                <h3 className="text-md font-medium text-gray-700 mt-2 mb-3">
+                <h3 className="text-md font-medium text-fg-secondary mt-2 mb-3">
                   {mt.label}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -37,7 +37,7 @@ export default function PracticeHome() {
                       <Link
                         key={topic.key}
                         to={`/${subject.id}/practice/${topic.key}`}
-                        className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
+                        className="block p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
                         onClick={() => {
                           triggerLight();
                           track("practice_topic_click", {
@@ -53,10 +53,10 @@ export default function PracticeHome() {
                         >
                           {topic.icon}
                         </div>
-                        <h3 className="font-semibold text-gray-900 text-sm">
+                        <h3 className="font-semibold text-fg text-sm">
                           {topic.label}
                         </h3>
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="text-xs text-fg-muted mt-1">
                           {qs.length} {t.subjectCard.questions} &middot;{" "}
                           {qs.reduce((s, q) => s + q.points, 0)}{" "}
                           {t.subjectCard.points}
@@ -84,7 +84,7 @@ export default function PracticeHome() {
                     <Link
                       key={topic.key}
                       to={`/${subject.id}/practice/${topic.key}`}
-                      className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
+                      className="block p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
                       onClick={() => {
                         triggerLight();
                         track("practice_topic_click", {
@@ -100,10 +100,10 @@ export default function PracticeHome() {
                       >
                         {topic.icon}
                       </div>
-                      <h3 className="font-semibold text-gray-900 text-sm">
+                      <h3 className="font-semibold text-fg text-sm">
                         {topic.label}
                       </h3>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-fg-muted mt-1">
                         {qs.length} {t.subjectCard.questions} &middot;{" "}
                         {qs.reduce((s, q) => s + q.points, 0)}{" "}
                         {t.subjectCard.points}
@@ -125,7 +125,7 @@ export default function PracticeHome() {
               <Link
                 key={topic.key}
                 to={`/${subject.id}/practice/${topic.key}`}
-                className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
+                className="block p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
                 onClick={() => {
                   triggerLight();
                   track("practice_topic_click", {
@@ -137,10 +137,10 @@ export default function PracticeHome() {
                 <div className="text-2xl mb-2" role="img" aria-hidden="true">
                   {topic.icon}
                 </div>
-                <h3 className="font-semibold text-gray-900 text-sm">
+                <h3 className="font-semibold text-fg text-sm">
                   {topic.label}
                 </h3>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-fg-muted mt-1">
                   {qs.length} {t.subjectCard.questions} &middot;{" "}
                   {qs.reduce((s, q) => s + q.points, 0)} {t.subjectCard.points}
                 </p>

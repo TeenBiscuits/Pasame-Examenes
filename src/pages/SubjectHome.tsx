@@ -18,12 +18,12 @@ export default function SubjectHome() {
   if (!subject) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        <h1 className="text-2xl font-bold text-fg mb-4">
           {t.subjectHome.notFound}
         </h1>
         <Link
           to="/"
-          className="text-green-600 hover:underline"
+          className="text-accent hover:underline"
           onClick={() => triggerLight()}
         >
           {t.subjectHome.returnHome}
@@ -69,16 +69,16 @@ export default function SubjectHome() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="text-center mb-10">
-        <p className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">
+        <p className="text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
           {subject.courseCode} &middot; {subject.university}
         </p>
-        <h1 className="text-3xl font-bold text-gray-900 mb-3">
+        <h1 className="text-3xl font-bold text-fg mb-3">
           {subject.name}
         </h1>
-        <p className="text-gray-600 max-w-xl mx-auto">{description}</p>
+        <p className="text-fg-secondary max-w-xl mx-auto">{description}</p>
       </div>
 
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">
+      <h2 className="text-lg font-semibold text-fg mb-4">
         {t.subjectHome.practiceByTopic}
       </h2>
       
@@ -91,7 +91,7 @@ export default function SubjectHome() {
             if (mtTopics.length === 0) return null;
             return (
               <div key={mt.key} className="mb-8">
-                <h3 className="text-md font-medium text-gray-700 mt-2 mb-3">
+                <h3 className="text-md font-medium text-fg-secondary mt-2 mb-3">
                   {mt.label}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -125,7 +125,7 @@ export default function SubjectHome() {
         </div>
       )}
 
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">
+      <h2 className="text-lg font-semibold text-fg mb-4">
         {t.subjectHome.examSimulations}
       </h2>
       <div
@@ -135,7 +135,7 @@ export default function SubjectHome() {
           <Link
             key={exam.year}
             to={`/${subject.id}/exam/${exam.year}`}
-            className="block p-6 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
+            className="block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
             onClick={() => {
               triggerLight();
               track("exam_card_click", {
@@ -147,8 +147,8 @@ export default function SubjectHome() {
             <div className="text-2xl mb-2" role="img" aria-hidden="true">
               📝
             </div>
-            <h3 className="font-semibold text-gray-900">{exam.title}</h3>
-            <p className="text-sm text-gray-500 mt-1">{exam.description}</p>
+            <h3 className="font-semibold text-fg">{exam.title}</h3>
+            <p className="text-sm text-fg-muted mt-1">{exam.description}</p>
           </Link>
         ))}
         <button
@@ -157,7 +157,7 @@ export default function SubjectHome() {
             triggerLight();
             setExamModalOpen(true);
           }}
-          className="block w-full p-6 rounded-xl border-2 border-dashed border-gray-300 text-gray-400 hover:text-green-600 hover:border-green-400 hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
+          className="block w-full p-6 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
         >
           <div className="flex flex-col items-center justify-center gap-2">
             <span className="text-4xl font-light leading-none">+</span>
@@ -176,11 +176,11 @@ export default function SubjectHome() {
       />
 
       {subject.exams.some((exam) => exam.hasPdf !== false) && (
-        <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-10">
-          <h3 className="font-semibold text-gray-900 mb-2">
+        <div className="bg-surface rounded-xl p-6 border border-border mb-10">
+          <h3 className="font-semibold text-fg mb-2">
             {t.subjectHome.originalExams}
           </h3>
-          <p className="text-sm text-gray-600 mb-4">
+          <p className="text-sm text-fg-secondary mb-4">
             {t.subjectHome.examDocsDescription}
           </p>
           <div className="flex flex-wrap gap-4">
@@ -192,7 +192,7 @@ export default function SubjectHome() {
                   href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition duration-150"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
                   onClick={() => {
                     triggerLight();
                     track("pdf_download", {
@@ -212,8 +212,8 @@ export default function SubjectHome() {
       )}
 
       {subject.acknowledgments && (
-        <div className="text-right text-sm text-gray-400 mt-10">
-          <p className="font-semibold text-gray-500 mb-1">
+        <div className="text-right text-sm text-fg-muted mt-10">
+          <p className="font-semibold text-fg-muted mb-1">
             {t.subjectHome.acknowledgments}
           </p>
           <p>{subject.acknowledgments}</p>

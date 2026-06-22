@@ -62,15 +62,15 @@ function MCQuestion({
         const isSelected = savedAnswer === letter;
         const isCorrect = question.correctAnswer === letter;
         let className =
-          "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
+          "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
         if (showResult && isCorrect) {
-          className += " bg-green-50 border-green-400";
+          className += " bg-accent-light border-accent";
         } else if (showResult && isSelected && !isCorrect) {
           className += " bg-red-50 border-red-400";
         } else if (isSelected) {
-          className += " bg-green-50 border-green-400";
+          className += " bg-accent-light border-accent";
         } else {
-          className += " border-gray-200 hover:border-gray-300 bg-white";
+          className += " border-border hover:border-border bg-surface-alt";
         }
 
         return (
@@ -90,7 +90,7 @@ function MCQuestion({
             disabled={!!showResult}
           >
             <span
-              className={`font-mono font-bold text-xs w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center shrink-0 mt-0.5 ${isSelected ? "animate-pop" : ""}`}
+              className={`font-mono font-bold text-xs w-5 h-5 rounded-full bg-code flex items-center justify-center shrink-0 mt-0.5 ${isSelected ? "animate-pop" : ""}`}
             >
               {letter}
             </span>
@@ -122,7 +122,7 @@ function TextQuestion({
       </label>
       <textarea
         id={`answer-${question.id}`}
-        className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:outline-none resize-y min-h-[120px] text-sm"
+        className="w-full p-3 border-2 border-border rounded-lg focus:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none resize-y min-h-[120px] text-sm"
         placeholder="Type your answer…"
         autoComplete="off"
         spellCheck={false}
@@ -134,7 +134,7 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
-            className="text-sm text-green-600 hover:text-green-700 font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-green-200 transition"
+            className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
             onClick={() => {
               triggerLight();
               const next = !isOpen;
@@ -151,22 +151,22 @@ function TextQuestion({
           </button>
 
           {isOpen && (
-            <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">
+            <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-fg-muted">
                 {t.questionCard.modelSolution}
               </h4>
-              <Markdown className="text-xs whitespace-pre-wrap font-sans text-gray-700">
+              <Markdown className="text-xs whitespace-pre-wrap font-sans text-fg-secondary">
                 {typeof question.correctAnswer === "string"
                   ? question.correctAnswer
                   : JSON.stringify(question.correctAnswer, null, 2)}
               </Markdown>
-              <Markdown className="text-xs text-gray-500 italic">
+              <Markdown className="text-xs text-fg-muted italic">
                 {question.explanation}
               </Markdown>
 
               {onSelfGrade && (
-                <div className="pt-2 border-t border-gray-200">
-                  <p className="text-xs font-semibold text-gray-700 mb-2">
+                <div className="pt-2 border-t border-border">
+                  <p className="text-xs font-semibold text-fg-secondary mb-2">
                     {t.questionCard.gradeAnswer}
                   </p>
                   <div className="flex gap-2">
@@ -180,10 +180,10 @@ function TextQuestion({
                         });
                         onSelfGrade(question.id, "correct");
                       }}
-                      className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none ${
+                      className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
                         selfGrade === "correct"
-                          ? "bg-green-50 border-green-500 text-green-700"
-                          : "bg-white border-gray-200 text-gray-600 hover:bg-green-50/50 hover:border-green-300"
+                          ? "bg-accent-light border-accent text-accent-fg"
+                          : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
                       }`}
                     >
                       {t.questionCard.correct}
@@ -201,7 +201,7 @@ function TextQuestion({
                       className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none ${
                         selfGrade === "incorrect"
                           ? "bg-red-50 border-red-500 text-red-700"
-                          : "bg-white border-gray-200 text-gray-600 hover:bg-red-50/50 hover:border-red-300"
+                          : "bg-surface-alt border-border text-fg-secondary hover:bg-red-50/50 hover:border-red-300"
                       }`}
                     >
                       {t.questionCard.incorrect}
@@ -257,10 +257,10 @@ function MatchingQuestion({
 
         return (
           <div key={i} className="flex items-center gap-3 text-sm">
-            <span className="w-6 text-center font-mono text-xs text-gray-400">
+            <span className="w-6 text-center font-mono text-xs text-fg-muted">
               {i + 1}.
             </span>
-            <span className="flex-1 text-gray-700">
+            <span className="flex-1 text-fg-secondary">
               <InlineMarkdown>{item}</InlineMarkdown>
             </span>
             <div className="flex gap-1">
@@ -268,16 +268,16 @@ function MatchingQuestion({
                 const chosen = userAnswer === letter;
                 const real = correctAnswer[item] === letter;
                 let cls =
-                  "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition flex items-center justify-center";
+                  "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
                 if (showResult && real) {
-                  cls += " bg-green-50 border-green-400 text-green-700";
+                  cls += " bg-accent-light border-accent text-accent-fg";
                 } else if (showResult && chosen && !real) {
                   cls += " bg-red-50 border-red-400 text-red-700";
                 } else if (chosen) {
-                  cls += " bg-green-50 border-green-400 text-green-700";
+                  cls += " bg-accent-light border-accent text-accent-fg";
                 } else {
                   cls +=
-                    " border-gray-200 text-gray-500 hover:border-gray-400 bg-white";
+                    " border-border text-fg-muted hover:border-fg-muted bg-surface-alt";
                 }
                 return (
                   <button
@@ -321,22 +321,22 @@ export default function QuestionCard(props: QuestionCardProps) {
 
   return (
     <div
-      className={`bg-white rounded-xl border border-gray-200 p-6 shadow-sm ${slideClass}`}
+      className={`bg-surface-alt rounded-xl border border-border p-6 shadow-sm ${slideClass}`}
     >
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-xs font-mono bg-gray-100 text-gray-600 px-2 py-0.5 rounded">
+        <span className="text-xs font-mono bg-code text-fg-secondary px-2 py-0.5 rounded">
           Q{props.index + 1}/{props.total}
         </span>
-        <span className="text-xs font-mono bg-green-50 text-green-700 px-2 py-0.5 rounded">
+        <span className="text-xs font-mono bg-accent-light text-accent-fg px-2 py-0.5 rounded">
           {question.points}p
         </span>
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-fg-muted">
           {props.megatopicLabel
             ? `${props.megatopicLabel} › ${props.topicLabel}`
             : props.topicLabel}
         </span>
         {props.examDate && (
-          <span className="text-xs text-gray-400 ml-auto">
+          <span className="text-xs text-fg-muted ml-auto">
             {props.examDate}
           </span>
         )}
@@ -346,11 +346,11 @@ export default function QuestionCard(props: QuestionCardProps) {
           </span>
         )}
       </div>
-      <Markdown className="text-sm text-gray-900 font-medium mb-4">
+      <Markdown className="text-sm text-fg font-medium mb-4">
         {question.question}
       </Markdown>
       {question.subquestions && (
-        <ul className="list-disc list-inside text-sm text-gray-600 mb-4 space-y-1">
+        <ul className="list-disc list-inside text-sm text-fg-secondary mb-4 space-y-1">
           {question.subquestions.map((sq, i) => (
             <li key={i}>
               <InlineMarkdown>{sq}</InlineMarkdown>
@@ -359,7 +359,7 @@ export default function QuestionCard(props: QuestionCardProps) {
         </ul>
       )}
       {question.image && (
-        <div className="mb-4 rounded-lg overflow-hidden border border-gray-100 max-w-full flex justify-center bg-gray-50 p-2">
+        <div className="mb-4 rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
           <img
             src={question.image}
             alt={`Illustration for ${question.id}`}
@@ -371,28 +371,28 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
       )}
       {question.table && (
-        <div className="mb-4 overflow-x-auto rounded-lg border border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200 text-sm">
-            <thead className="bg-gray-50">
+        <div className="mb-4 overflow-x-auto rounded-lg border border-border">
+          <table className="min-w-full divide-y divide-border text-sm">
+            <thead className="bg-surface">
               <tr>
                 {question.table.headers.map((h, i) => (
                   <th
                     key={i}
                     scope="col"
-                    className="px-4 py-2 text-left font-semibold text-gray-900 whitespace-nowrap"
+                    className="px-4 py-2 text-left font-semibold text-fg whitespace-nowrap"
                   >
                     <InlineMarkdown>{h}</InlineMarkdown>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 bg-white">
+            <tbody className="divide-y divide-border bg-surface-alt">
               {question.table.rows.map((row, ri) => (
-                <tr key={ri} className="hover:bg-gray-50/50 transition-colors">
+                <tr key={ri} className="hover:bg-surface/50 transition-colors">
                   {row.map((cell, ci) => (
                     <td
                       key={ci}
-                      className="px-4 py-2 text-gray-700 whitespace-nowrap"
+                      className="px-4 py-2 text-fg-secondary whitespace-nowrap"
                     >
                       <InlineMarkdown>{cell}</InlineMarkdown>
                     </td>
@@ -408,15 +408,15 @@ export default function QuestionCard(props: QuestionCardProps) {
         <TextQuestion {...props} />
       )}
       {question.type === "matching" && <MatchingQuestion {...props} />}
-      <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-end gap-2">
-        <span className="text-[10px] font-mono text-gray-300 select-all">
+      <div className="mt-4 pt-4 border-t border-border flex items-center justify-end gap-2">
+        <span className="text-[10px] font-mono text-fg-muted select-all">
           {question.id}
         </span>
         <a
           href={buildReportUrl(question, props.subjectId)}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded px-2 py-1 -mr-2"
+          className="inline-flex items-center gap-1 text-xs text-fg-muted hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded px-2 py-1 -mr-2"
           onClick={() => {
             triggerLight();
             track("report_issue", {

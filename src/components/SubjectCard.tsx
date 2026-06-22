@@ -16,7 +16,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   return (
     <Link
       to={`/${subject.id}`}
-      className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
+      className="block p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
       onClick={() => {
         triggerLight();
         track("subject_card_click", { subjectId: subject.id });
@@ -26,15 +26,15 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         <span className="text-2xl" role="img" aria-hidden="true">
           {subject.icon}
         </span>
-        <span className="text-xs font-mono font-semibold bg-gray-100 text-gray-600 px-2 py-0.5 rounded">
+        <span className="text-xs font-mono font-semibold bg-code text-fg-secondary px-2 py-0.5 rounded">
           {subject.courseCode}
         </span>
       </div>
-      <h3 className="font-semibold text-gray-900 text-base mb-1">
+      <h3 className="font-semibold text-fg text-base mb-1">
         {subject.name}
       </h3>
-      <p className="text-sm text-gray-500 mb-4">{subject.university}</p>
-      <div className="text-xs text-gray-400 flex items-center gap-2">
+      <p className="text-sm text-fg-muted mb-4">{subject.university}</p>
+      <div className="text-xs text-fg-muted flex items-center gap-2">
         <span>
           {qs.length} {t.subjectCard.questions}
         </span>
