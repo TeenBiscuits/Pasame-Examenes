@@ -71,6 +71,44 @@ export default function PracticeTopic() {
   const navRef = useRef<HTMLDivElement>(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(false);
+  const currentIndexRef = useRef(currentIndex);
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  });
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const tag = document.activeElement?.tagName.toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+      const idx = currentIndexRef.current;
+      if (e.key === "ArrowLeft" && idx > 0) {
+        e.preventDefault();
+        const nextIndex = idx - 1;
+        triggerLight();
+        setDirection("prev");
+        track("practice_navigate", {
+          direction: "prev",
+          fromIndex: idx,
+          toIndex: nextIndex,
+        });
+        setCurrentIndex(nextIndex);
+      } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
+        e.preventDefault();
+        const nextIndex = idx + 1;
+        triggerLight();
+        setDirection("next");
+        track("practice_navigate", {
+          direction: "next",
+          fromIndex: idx,
+          toIndex: nextIndex,
+        });
+        setCurrentIndex(nextIndex);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [questions.length]);
 
   useEffect(() => {
     if (!subject || !topicInfo) {
