@@ -19,6 +19,7 @@ export const es: Translations = {
       "Descarga o visualiza los PDFs originales en los que se basan estas preguntas y simulaciones.",
     pdf: "PDF",
     acknowledgments: "Agradecimientos",
+    repeatedSuffix: "({count} repetidas a lo largo de los años)",
   },
   practiceHome: {
     title: "Practicar por tema",

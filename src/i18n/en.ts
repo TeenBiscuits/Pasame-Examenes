@@ -17,6 +17,7 @@ export const en = {
       "Download or view the original PDF exams that these practice questions and simulations are based on.",
     pdf: "PDF",
     acknowledgments: "Acknowledgments",
+    repeatedSuffix: "({count} repeated questions across years)",
   },
   practiceHome: {
     title: "Practice by Topic",

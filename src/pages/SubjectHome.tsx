@@ -30,14 +30,21 @@ export default function SubjectHome() {
   }
 
   const allQuestions = getAllQuestions(subject.id);
+  const repeatedCount = allQuestions.filter((q) => q.repeated).length;
   const progress = getTopicProgress(
     subject.id,
     allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
   );
 
-  const description = t.subjectHome.description
+  let description = t.subjectHome.description
     .replace("{count}", String(allQuestions.length))
     .replace("{exams}", String(subject.exams.length));
+
+  if (repeatedCount > 0) {
+    description +=
+      " " +
+      t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount));
+  }
 
   const renderTopicCard = (topic: Topic) => {
     const topicQs = allQuestions.filter((q) => q.topic === topic.key);
