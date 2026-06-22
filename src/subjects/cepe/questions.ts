@@ -151,6 +151,7 @@ void do_op_seq(int ids[], int ids_len) {
     topic: "concurrencia",
     type: "text",
     points: 1.5,
+    repeated: true,
     question: `Escriba un módulo que permita crear procesos servidor con la siguiente interfaz:
 
 - \`start()\`, que arranca un proceso servidor y devuelve su PID.
@@ -857,6 +858,7 @@ void ord_mutex_unlock(ord_mutex_t *m) {
     topic: "concurrencia",
     type: "text",
     points: 1.5,
+    repeated: true,
     question: `El siguiente módulo permite crear una secuencia de procesos donde cada uno conoce el PID del siguiente.
 
 \`\`\`erlang
