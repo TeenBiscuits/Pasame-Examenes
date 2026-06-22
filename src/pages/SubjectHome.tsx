@@ -36,15 +36,15 @@ export default function SubjectHome() {
     allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
   );
 
-  let description = t.subjectHome.description
-    .replace("{count}", String(allQuestions.length))
-    .replace("{exams}", String(subject.exams.length));
+  const repeatedText =
+    repeatedCount > 0
+      ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
+      : "";
 
-  if (repeatedCount > 0) {
-    description +=
-      " " +
-      t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount));
-  }
+  const description = t.subjectHome.description
+    .replace("{count}", String(allQuestions.length))
+    .replace("{repeated}", repeatedText)
+    .replace("{exams}", String(subject.exams.length));
 
   const renderTopicCard = (topic: Topic) => {
     const topicQs = allQuestions.filter((q) => q.topic === topic.key);

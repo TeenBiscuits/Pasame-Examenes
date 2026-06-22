@@ -9,7 +9,7 @@ export const en = {
     notFound: "Subject Not Found",
     returnHome: "Return to Home",
     description:
-      "Practice {count} questions from {exams} exams with model answers and self-grading.",
+      "Practice {count} questions{repeated} from {exams} exams with model answers and self-grading.",
     practiceByTopic: "Practice by Topic",
     examSimulations: "Full Exam Simulations",
     originalExams: "Original Exam Documents",
@@ -17,7 +17,7 @@ export const en = {
       "Download or view the original PDF exams that these practice questions and simulations are based on.",
     pdf: "PDF",
     acknowledgments: "Acknowledgments",
-    repeatedSuffix: "({count} repeated questions across years)",
+    repeatedSuffix: "{count} repeated questions across years",
   },
   practiceHome: {
     title: "Practice by Topic",
