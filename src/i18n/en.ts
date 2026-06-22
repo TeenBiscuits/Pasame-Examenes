@@ -87,6 +87,7 @@ export const en = {
     yourAnswer: "Your answer",
     correct_: "Correct",
     reportIssue: "Report Issue",
+    repeated: "Repeated",
   },
   subjectCard: {
     questions: "questions",

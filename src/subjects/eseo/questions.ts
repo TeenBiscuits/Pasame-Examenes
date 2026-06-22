@@ -994,6 +994,7 @@ Total: 7 fallos de página.`,
     topic: "procesos",
     type: "matching",
     points: 8,
+    repeated: true,
     question: "Responde V/F sobre procesos:",
     correctAnswer: {
       "Los algoritmos apropiativos desperdician más tiempo en cambios de contexto":
@@ -1071,6 +1072,7 @@ if (waitpid(p->pid, &est, WNOHANG|WUNTRACED|WCONTINUED) == p->pid) { ... }`,
     topic: "procesos",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       'a.out y f1.txt son del usuario u1. a.out es ejecutado por u2 desde el mismo directorio. Código:\ndf1 = open("./f1.txt", O_RDWR);\ndf2 = open("./f1.txt", O_RDONLY);\nCompleta la tabla indicando ruid, euid y si df1 o df2 son −1 para cada combinación de permisos:\n\n| a.out | f1.txt | ruid | euid | df1=−1? | df2=−1? |\n| rwxrwxrwx | rwxrwxrwx | | | | |\n| rwxr-xr-x | rwxr-xr-x | | | | |\n| rwxr-xr-x | rwxr--r-- | | | | |\n| rwxr-xr-x | rwsr-xr-x | | | | |\n| rwxr-xr-x | rwsr--r-- | | | | |\n| rwxr-xr-x | rws--- | | | | |\n| rwsr-xr-x | rwxr-xr-x | | | | |\n| rwsr-xr-x | rwxr--r-- | | | | |\n| rwsr-xr-x | rwsr-xr-x | | | | |\n| rwsr-xr-x | rwsr--r-- | | | | |\n| rwsr-xr-x | rws--- | | | | |',
     correctAnswer: `| a.out | f1.txt | ruid | euid | df1=−1? | df2=−1? |
@@ -1765,6 +1767,7 @@ Nota: el código tiene un comportamiento sutil con los descriptores.`,
     topic: "procesos",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       'a.out y f1.txt son del usuario u1. a.out es ejecutado por u2 desde el mismo directorio. Código:\ndf1 = open("./f1.txt", O_RDWR);\ndf2 = open("./f1.txt", O_RDONLY);\n\nCompleta la tabla indicando ruid, euid y si df1 o df2 son −1 para cada combinación de permisos:\n\n| a.out | f1.txt | ruid | euid | df1=−1? | df2=−1? |\n| rwxrwxrwx | rwxrwxrwx | | | | |\n| rwxr-xr-x | rwxr-xr-x | | | | |\n| rwxr-xr-x | rwxr--r-- | | | | |\n| rwxr-xr-x | rwsr-xr-x | | | | |\n| rwxr-xr-x | rwsr--r-- | | | | |\n| rwxr-xr-x | rws--- | | | | |\n| rwsr-xr-x | rwxr-xr-x | | | | |\n| rwsr-xr-x | rwxr--r-- | | | | |\n| rwsr-xr-x | rwsr-xr-x | | | | |\n| rwsr-xr-x | rwsr--r-- | | | | |\n| rwsr-xr-x | rws--- | | | | |',
     correctAnswer: `| a.out | f1.txt | ruid | euid | df1=−1? | df2=−1? |
@@ -2192,6 +2195,7 @@ Otras soluciones válidas: A,B,C,D llegan en t=0 en orden A,B,C,D; primera E/S d
     topic: "procesos",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       "a.out y f1.txt son del usuario u2. a.out es ejecutado por u1. Código: df1=open('./f1.txt',O_RDONLY); df2=open('./f1.txt',O_RDWR). Completa la tabla con ruid, euid, y si df1 o df2 son -1 para distintas combinaciones de permisos de a.out y f1.txt.",
     correctAnswer: `| a.out | f1.txt | ruid | euid | df1=-1? | df2=-1? |
@@ -2716,6 +2720,7 @@ Explicación:
     topic: "procesos",
     type: "matching",
     points: 6,
+    repeated: true,
     question: "Responde V/F sobre procesos:",
     correctAnswer: {
       "Los algoritmos apropiativos desperdician más tiempo en cambios de contexto":

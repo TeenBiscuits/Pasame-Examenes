@@ -149,6 +149,7 @@ export const questions: Question[] = [
 - `table?: { headers: string[], rows: string[][] }` — data table
 - `subquestions?: string[]` — list of sub-question text
 - `options?: string[]` — required for `mc` type
+- `repeated?: boolean` — defaults to `false`. Set `true` when the same question appears in multiple exams.
 
 **Code blocks in text:** `question`, `explanation`, `correctAnswer`, `subquestions`, `options`, and table cell strings support markdown-style code formatting:
 

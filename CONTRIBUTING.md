@@ -116,7 +116,9 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos opcionales: `image`, `imageWidth`, `imageHeight`, `table`, `subquestions`.
+Campos opcionales: `image`, `imageWidth`, `imageHeight`, `table`, `subquestions`, `repeated`.
+
+- `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la misma pregunta aparece en varios exámenes. Se muestra una etiqueta "Repetida" en la interfaz.
 
 **Bloques de código:** Los campos de texto (`question`, `explanation`, `correctAnswer`, `subquestions`, `options` y celdas de tabla) soportan formato markdown:
 

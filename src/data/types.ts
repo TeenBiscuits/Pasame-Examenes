@@ -20,6 +20,7 @@ export interface Question {
   imageWidth?: number;
   imageHeight?: number;
   table?: QuestionTable;
+  repeated?: boolean;
 }
 
 export interface Topic {

@@ -89,6 +89,7 @@ export const es: Translations = {
     yourAnswer: "Tu respuesta",
     correct_: "Correcto",
     reportIssue: "Reportar error",
+    repeated: "Repetida",
   },
   subjectCard: {
     questions: "preguntas",
