@@ -1,0 +1,4341 @@
+import type { Question } from "../../data/types";
+import grafo2023 from "./assets/grafo-astar-2023.png";
+import arbol2023 from "./assets/arbol-hill-climbing-2023.png";
+import hill2024 from "./assets/hill-climbing-2024.png";
+import grafo2025 from "./assets/grafo-espacio-estados-2025.png";
+import arbolPG from "./assets/arbol-programacion-genetica-2025.png";
+import grafo2026 from "./assets/grafo-astar-2026.png";
+
+export const questions: Question[] = [
+  // ============================================================
+  // 2023 EXAM
+  // ============================================================
+  // --- Simbólica ---
+  {
+    id: "2023_q1",
+    exam: "2023",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "Dado el siguiente grafo, en donde (i) el nodo inicial es A y el nodo meta es G, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística h, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados. Aplicando el algoritmo A* basado en grafo, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor f, f=h+g, y que en caso de empate en valor f, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):",
+    image: grafo2023,
+    options: [
+      "a) E(20), D(22)",
+      "b) B(20), E(20), D(22)",
+      "c) E(20), D(21)",
+      "d) B(20), E(21), D(22)",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "En el algoritmo A* basado en grafo, se mantiene una lista de nodos Cerrados (Explorados). Si la heurística no es consistente (como ocurre aquí, ya que h(A)=25 ≰ c(A,C)+h(C)=2+20=22), la versión estricta del algoritmo en grafo no reabre nodos que ya han sido cerrados. Tras expandir A, luego B, luego C (que descubre el camino a E con f=20), la frontera queda [E(20), D(22)].",
+  },
+  {
+    id: "2023_q2",
+    exam: "2023",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "En el mismo problema de la pregunta 1, ¿obtiene el algoritmo A* una solución óptima?",
+    options: [
+      "a) No, la heurística no es admisible.",
+      "b) No, la heurística no es consistente.",
+      "c) Si, ya que la heurística es admisible.",
+      "d) Si, pero de casualidad, ya que la heurística no es consistente.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Para que A* garantice una solución óptima en grafo, su heurística debe ser consistente. La heurística no es admisible (h(E)=8 > coste real 2) ni consistente (h(A)=25 ≰ 2+20=22). A pesar de esto, A* acaba encontrando la ruta óptima de coste 14, pero lo hace 'de casualidad'.",
+  },
+  {
+    id: "2023_q3",
+    exam: "2023",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "En el mismo problema de la pregunta 1, indica la secuencia del camino devuelto utilizando, esta vez, la búsqueda avara:",
+    options: [
+      "a) A → B → D → G",
+      "b) A → C → B → D → G",
+      "c) A → C → E → G",
+      "d) Ninguno de los anteriores",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La Búsqueda Avara (Greedy Best-First) elige siempre el nodo con menor h(n). Desde A: B (h=16) < C (h=20) → elige B. Desde B: D (h=10) → elige D. Desde D: G (h=0) → meta. Camino: A→B→D→G.",
+  },
+  {
+    id: "2023_q4",
+    exam: "2023",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question: "En la búsqueda de coste uniforme:",
+    options: [
+      "a) Cada operador aplicable siempre tendrá el mismo coste.",
+      "b) Cualquier camino solución encontrado tendrá siempre el mismo coste.",
+      "c) Cualquier camino solución encontrado tendrá siempre el mismo número de pasos.",
+      "d) Cualquier camino solución encontrado tendrá siempre el mínimo número de pasos.",
+      "e) Ninguna de las anteriores.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "UCS encuentra el camino de mínimo coste absoluto. La a) es falsa (los operadores pueden tener costes distintos). La b) es falsa (los caminos pueden tener distintos costes pero UCS devuelve el mínimo). Las c) y d) son falsas (mínimo número de pasos es BFS, no UCS).",
+  },
+  {
+    id: "2023_q5",
+    exam: "2023",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      'En el algoritmo de profundidad iterativa se cumple que la cantidad de nodos hoja en la iteración "i" es siempre mayor que la suma acumulada de todos los nodos generados previamente en las "i-1" iteraciones anteriores:',
+    options: [
+      "a) Cierto.",
+      'b) Dependerá del número de iteraciones "i".',
+      "c) Dependerá del factor de ramificación.",
+      "d) Falso.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La afirmación depende matemáticamente del factor de ramificación b. Para que b^i > (b^i - 1)/(b - 1), se requiere que b ≥ 2. No es un axioma absoluto.",
+  },
+  {
+    id: "2023_q6",
+    exam: "2023",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de:",
+    image: arbol2023,
+    options: [
+      "a) Mínimo local.",
+      "b) Máximo local.",
+      "c) Meseta.",
+      "d) Cresta.",
+      "e) Ninguna de las anteriores, ya que dicho desarrollo nunca podría darse aplicando la búsqueda de escalada.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "El Hill-Climbing pertenece a la familia de Búsqueda Local. Estos métodos no conservan ni generan un árbol de búsqueda en memoria (operan sin historial). Solo guardan el estado actual y evalúan vecinos inmediatos. Es algorítmicamente imposible que Hill-Climbing produzca un árbol de exploración.",
+  },
+  {
+    id: "2023_q7",
+    exam: "2023",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Señala la respuesta correcta sobre representación del conocimiento (Declarativo vs Procedimental):",
+    options: [
+      "a) Una de las ventajas fundamentales de los métodos declarativos de representación del conocimiento es que facilitan trabajar con información de carácter probabilístico.",
+      "b) Los métodos procedimentales son más adecuados para la codificación de conocimiento fruto de la experiencia.",
+      "c) En los métodos declarativos la incorporación de nuevo conocimiento suele implicar la recodificación del ya existente.",
+      "d) Ninguna de las anteriores.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Los métodos procedimentales (Sistemas de Producción basados en reglas IF-THEN) nacieron específicamente para capturar heurísticas y atajos mentales de expertos humanos (conocimiento fruto de la experiencia). La a) es falsa (los declarativos son frágiles ante incertidumbre). La c) es falsa (la modularidad permite añadir sin recodificar).",
+  },
+  {
+    id: "2023_q8",
+    exam: "2023",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "En el contexto de un sistema de producción, se parte de la base de reglas (R1: A∧B→C, R2: E∨F→D, R3: D∧C→X, R4: B∧D→R, R5: X∧R→H) y M₀ = {A, B, E}. Encadenamiento progresivo, búsqueda en profundidad, ejecutando la regla cuya premisa contenga el elemento en orden alfabético mayor de las activadas más recientemente. ¿Cuál es la secuencia de ejecución de las reglas?",
+    options: [
+      "a) R2 → R1 → R3 → R4 → R5",
+      "b) R1 → R2 → R3 → R4 → R5",
+      "c) R2 → R1 → R4 → R3 → R5",
+      "d) R1 → R2 → R4 → R3 → R5",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Ciclo 1: Se activan R1 (A∧B) y R2 (E). Gana R1 (tiene A > E). Se dispara R1 → añade C. Ciclo 2: Solo R2 activa. Se dispara R2 → añade D. Ciclo 3: Se activan R3 (D∧C) y R4 (B∧D). Gana R4 (B > C). Se dispara R4 → añade R. Ciclo 4: Solo R3 activa. Se dispara R3 → añade X. Ciclo 5: R5 activa (X∧R). Se dispara R5 → meta H. Traza: R1→R2→R4→R3→R5.",
+  },
+  {
+    id: "2023_q9",
+    exam: "2023",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Dada la codificación de Manifestaciones (M) e Interpretaciones (I) en razonamiento categórico y las reglas R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(2)→¬M(2)∧M(1), R3: I(1)∨¬I(2)→M(2)∧M(3). Si se da f = M(1)∧¬M(2)∧¬M(3), entonces:",
+    options: [
+      "a) La interpretación I(1) es falsa.",
+      "b) La interpretación I(1) es verdadera.",
+      "c) La interpretación I(2) es falsa.",
+      "d) Ninguna de las anteriores.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La evidencia f dice M(1)=1, M(2)=0, M(3)=0. En R3, el consecuente M(2)∧M(3) es falso. Por Modus Tollens, el antecedente I(1)∨¬I(2) debe ser falso. Para que una disyunción sea falsa, ambas partes deben serlo: I(1) es falsa y ¬I(2) es falsa (I(2) verdadera). Por tanto I(1) es falsa.",
+  },
+  {
+    id: "2023_q10",
+    exam: "2023",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Con la misma situación del ejercicio anterior y sabiendo que P(i1)=0.3, P(i2)=0.2, P(i3)=0.1, P(i4)=0.4, P(m1|i1)=1.0, P(m1|i3)=0.5, P(m4|i3)=0.2, P(m5|i2)=0.8, P(m6|i4)=0.3, ¿qué conjunto de interpretaciones es más probable?",
+    options: [
+      "a) ¬I(1) ∧ ¬I(2)",
+      "b) ¬I(1) ∧ I(2)",
+      "c) I(1) ∧ ¬I(2)",
+      "d) I(1) ∧ I(2)",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La ocurrencia f = M(1)∧¬M(2)∧¬M(3) corresponde al vector m5. La única verosimilitud existente sobre m5 es P(m5|i2)=0.8. Las demás interpretaciones son lógicamente incompatibles con m5 (vimos en la pregunta 9 que si m5 ocurre, I(1) es Falsa e I(2) Verdadera). Por tanto, la interpretación dominante es i2: ¬I(1)∧I(2).",
+  },
+  // --- Subsimbólica ---
+  {
+    id: "2023_q11",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Al recibir las entradas una neurona artificial, estas se combinan en primer lugar mediante una:",
+    options: [
+      "a) Función de activación",
+      "b) Regla Delta",
+      "c) Regla de propagación",
+      "d) Función de transferencia",
+      "e) Función de validación",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La asimilación matemática en una célula artificial opera en dos etapas secuenciales. La Regla de propagación constituye el primer paso, encargándose de recopilar y combinar las señales del entorno exterior (generalmente mediante un sumatorio lineal ponderado por los pesos y sumando el bias).",
+  },
+  {
+    id: "2023_q12",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "El ADALINE...",
+    options: [
+      "a) No tiene capas ocultas",
+      "b) Tiene una función de transferencia de tipo sigmoidal",
+      "c) No puede ser entrenado con la Regla Delta",
+      "d) Puede realizar aproximaciones no lineales",
+      "e) Es capaz de aprender cualquier relación entrada/salida",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "El modelo ADALINE (Adaptive Linear Neuron) es una arquitectura de red neuronal estrictamente monocapa. Al carecer de capas ocultas y utilizar una función de activación puramente lineal, no puede resolver problemas no lineales (como XOR).",
+  },
+  {
+    id: "2023_q13",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "La Regla Delta...",
+    options: [
+      "a) Modifica los pesos en el sentido (signo) del cambio realizado en el ciclo anterior",
+      "b) Modifica los pesos en el sentido (signo) opuesto del cambio realizado en el ciclo anterior",
+      "c) Modifica los pesos en el sentido (signo) de la pendiente del error",
+      "d) Modifica los pesos en el sentido (signo) opuesto de la pendiente del error",
+      "e) Todas son falsas",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "La Regla Delta se fundamenta en el descenso por el gradiente. Para minimizar el error, los pesos deben ajustarse restando el valor del gradiente, es decir, desplazándose en la dirección opuesta a la pendiente de la función de error.",
+  },
+  {
+    id: "2023_q14",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Al entrenar una RNA, el algoritmo de entrenamiento dice que la modificación de los pesos se debe de multiplicar por una constante llamada...",
+    options: [
+      "a) Momento",
+      "b) Gradiente",
+      "c) Delta",
+      "d) Tasa de aprendizaje",
+      "e) Bias",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "En la ecuación de retropropagación del error, la magnitud del cambio se modula a través de un escalar constante llamado Tasa de aprendizaje (α o η). Este escalar determina el tamaño del paso del algoritmo.",
+  },
+  {
+    id: "2023_q15",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Si durante el entrenamiento de una RNA, en un ciclo se obtiene un gradiente de 0, esto quiere decir...",
+    options: [
+      "a) Se está muy lejos de un mínimo",
+      "b) Se está muy cerca de un mínimo, pero no en él",
+      "c) Se está en un mínimo, y es el global",
+      "d) Se está en un mínimo, pero no se sabe si es el global o uno local",
+      "e) El error es 0",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Cuando el gradiente alcanza 0, la recta tangente es paralela, indicando que el algoritmo ha aterrizado en el fondo de un valle. Sin embargo, sin examinar todo el hiperespacio, la red no puede discernir si está en el mínimo global o atrapada en un mínimo local.",
+  },
+  {
+    id: "2023_q16",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Atendiendo a las capacidades funcionales de un Perceptrón clásico monocapa:",
+    options: [
+      "a) Puede resolver problemas no linealmente separables.",
+      "b) Utiliza funciones de base radial.",
+      "c) Es capaz de aprender la función XOR sin capas adicionales.",
+      "d) Tiene propiedades bayesianas innatas para la incertidumbre.",
+      "e) Todas son falsas.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Minsky y Papert demostraron en 1969 que los perceptrones simples (monocapa) no pueden resolver problemas no linealmente separables. Son incapaces de operar si las clases no son separables mediante un único hiperplano.",
+  },
+  {
+    id: "2023_q17",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "El número óptimo de neuronas que se debe incluir en las capas ocultas de un Perceptrón Multicapa:",
+    options: [
+      "a) Se calcula siempre como la suma de nodos de la capa de entrada y salida",
+      "b) Depende del problema a resolver",
+      "c) Debe ser igual a 2N+1 por el Teorema de Kolmogorov",
+      "d) Debe elegirse de forma estocástica e inmutable",
+      "e) Ninguna es correcta",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "No existe un postulado analítico cerrado universal que determine cuántas neuronas ocultas son óptimas. La cantidad de nodos ocultos constituye un hiperparámetro empírico que depende de la complejidad y no-linealidad específica de los datos del problema.",
+  },
+  {
+    id: "2023_q18",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Es factible emplear un perceptrón multicapa para mapear relaciones no separables linealmente que presentan un alto grado de no-linealidad geométrica?",
+    options: [
+      "a) Sí, pero sólo si el algoritmo emplea regularización estocástica",
+      "b) No, ninguna red neuronal logra superar la barrera del XOR en dominios complejos",
+      "c) No, se debe usar obligatoriamente computación evolutiva o lógica borrosa",
+      "d) Sí, siempre y cuando la red devuelva resultados discretizados con escalones",
+      "e) En cualquier caso, si la red tiene la complejidad suficiente",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "El Teorema de Aproximación Universal demuestra que cualquier red Feed-forward con funciones de activación no lineales es capaz de aproximar funciones continuas arbitrarias, siempre que posea la complejidad interna adecuada.",
+  },
+  {
+    id: "2023_q19",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál será el comportamiento del sistema si, tras entrenar con éxito una RNA, se le suministran patrones novedosos ubicados muy fuera de las fronteras topológicas del espacio de generalización aprendido?",
+    options: [
+      "a) Avisará algorítmicamente mediante una excepción matemática",
+      "b) Aplicará autoorganización dinámica en caliente para asimilar la nueva entrada",
+      "c) Se adaptará automáticamente basándose en los bias",
+      "d) Devolverá el último patrón correcto almacenado en la memoria",
+      "e) Dará una salida arbitraria e imprevisible",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Las Redes Neuronales son excelentes interpolando, pero pésimas extrapolando. Si se inyecta un patrón fuera de la distribución estadística del entrenamiento, la red inyectará ciegamente el valor a través de la matriz de pesos congelados, produciendo una respuesta espuria e imprevisible.",
+  },
+  {
+    id: "2023_q20",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué efecto fenomenológico ocurre al someter a la red a un proceso iterativo en donde la Tasa de Aprendizaje se ha configurado con un escalar demasiado elevado?",
+    options: [
+      "a) Se convergerá matemáticamente al mínimo global de manera ultrarrápida",
+      "b) Se correrá el riesgo de oscilar en torno al mínimo",
+      "c) Se provocará un sub-ajuste o underfitting automático en los bias",
+      "d) Se bloqueará la capacidad de generalización estocástica",
+      "e) La red entrará irreversiblemente en un efecto de parada temprana",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Si la tasa de aprendizaje es demasiado alta, el incremento del vector de ajuste será gigantesco, provocando que la red efectúe saltos ciegos que errarán el fondo del valle. El error rebotará de una ladera a otra, generando oscilaciones caóticas sin estabilizarse.",
+  },
+  {
+    id: "2023_q21",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "El hecho de entrenar una RNA mediante un algoritmo basado en el gradiente descendente (con pasos ínfimos) tiene el problema de que...",
+    options: [
+      "a) Nunca va a encontrar el mínimo global",
+      "b) Al acercarse a un mínimo, se va a oscilar de un lado a otro, sin lograr pararse en él",
+      "c) Se va a acercar a un mínimo de incrementos muy pequeños",
+      "d) Es posible que se quede parado en algún mínimo local",
+      "e) Va a necesitar un número muy alto de ciclos para alcanzar un error aceptable",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Debido a que los pasos son pequeños, si en la superficie de coste encuentra cualquier protuberancia de mínimo local, el gradiente morirá. Al carecer de inercia suficiente para saltar la cresta, el entrenamiento quedará estancado permanentemente en un estado subóptimo.",
+  },
+  {
+    id: "2023_q22",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "En una RNA, el conjunto de test...",
+    options: [
+      "a) Se utiliza para evaluar la capacidad de generalización de la red",
+      "b) Debe de ser linealmente separable",
+      "c) Produce la modificación de los pesos mediante el algoritmo correspondiente",
+      "d) No produce la modificación de los pesos, pero controla el proceso de entrenamiento, y lo para si es necesario",
+      "e) Todas son falsas",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La métrica final de rendimiento para saber si la red ha generalizado correctamente se mide evaluando su error en el conjunto de prueba (Test Set), un lote de datos absolutamente virgen que la red no ha visto en entrenamiento ni validación.",
+  },
+  {
+    id: "2023_q23",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "Las técnicas de regularización permiten...",
+    options: [
+      "a) Entrenar una RNA hasta alcanzar un error de 0",
+      "b) Saltar mínimos locales al entrenar una RNA",
+      "c) Eliminar el ruido del conjunto de entrenamiento",
+      "d) Resolver problemas de clasificación no linealmente separables",
+      "e) Evitar el sobreentrenamiento al entrenar una RNA",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Las técnicas de regularización (Early Stopping, Dropout, penalizaciones L1/L2) tienen como misión fundamental penalizar la memorización excesiva, forzando a la red a mantener modelos simples y prevenir el sobreentrenamiento (overfitting).",
+  },
+  {
+    id: "2023_q24",
+    exam: "2023",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Para usar una RNA para resolver un problema de clasificación con dos clases, sin posibilidad de que un patrón no pertenezca a ninguna de las dos clases, el número de neuronas de salida que hay que usar es...",
+    options: ["a) 1", "b) 2", "c) 3", "d) 4", "e) 5"],
+    correctAnswer: "a",
+    explanation:
+      "En un escenario binario y mutuamente excluyente, se resuelve con 1 sola neurona provista de función sigmoidal: si su salida es < 0.5 se infiere la clase A, si es ≥ 0.5 se infiere la clase B.",
+  },
+  {
+    id: "2023_q25",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "La autoorganización en Sistemas Conexionistas...",
+    options: [
+      "a) Permite que exista un jefe que determine el comportamiento de los patrones",
+      "b) Impide un comportamiento emergente del sistema",
+      "c) Facilita que la información se guarde en las neuronas de entrada",
+      "d) Permite que se obtenga redundancia en los datos",
+      "e) Todas las anteriores son incorrectas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La autoorganización es no supervisada (carece de jefe), se fundamenta en comportamiento emergente, el conocimiento reside en la matriz de pesos (no en la entrada), y la redundancia es un requisito previo, no un resultado.",
+  },
+  {
+    id: "2023_q26",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "En la corteza cerebral (y en su emulación mediante redes SOM)...",
+    options: [
+      "a) La ubicación espacial de las neuronas constituye un mapa organizado",
+      "b) Todas las neuronas idénticas realizan la misma función",
+      "c) La ubicación de las neuronas no es significativa",
+      "d) Todas las anteriores son correctas",
+      "e) Todas las anteriores son incorrectas",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "En los Mapas de Kohonen (SOM) la topología espacial es fundamental. Modelando la corteza somatosensorial, la red organiza las unidades competitivas espacialmente; neuronas adyacentes se especializan en estímulos similares.",
+  },
+  {
+    id: "2023_q27",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "Si los patrones de entrada de un problema tienen dos características o atributos, una Growing Cell Structure (GCS) que lo resuelva tendrá...",
+    options: [
+      "a) 1 neurona de entrada",
+      "b) 4 neuronas de entrada",
+      "c) 6 neuronas de entrada",
+      "d) 8 neuronas de entrada",
+      "e) Todas las anteriores son incorrectas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La cardinalidad de la capa de entrada debe coincidir 1 a 1 con la dimensionalidad de los patrones. Si el patrón cuenta con 2 atributos, la arquitectura exigirá obligatoriamente 2 neuronas de entrada. Como el número 2 no aparece entre las alternativas, todas son incorrectas.",
+  },
+  {
+    id: "2023_q28",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "Diferencias entre SOM y GCS son:",
+    options: [
+      "a) La GCS no consideran neuronas vecinas a la ganadora",
+      "b) Un SOM considera un radio de vecindad de diferentes niveles",
+      "c) Las GCS consideran solamente vecinas directas a la ganadora",
+      "d) No hay diferencia en cuestión de vecindario, la diferencia está en la variación dinámica del número de neuronas de la capa competitiva",
+      "e) B y C son correctas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "El SOM clásico aplica atenuación gaussiana a un vecindario amplio (diferentes niveles de proximidad). La GCS se limita a actualizar solamente a los nodos vecinos colindantes unidos a la BMU mediante un enlace topológico (vecinas directas).",
+  },
+  {
+    id: "2023_q29",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "Una GCS...",
+    options: [
+      "a) Está siempre orientada a clasificación",
+      "b) Permite añadir neuronas en regiones con menos patrones de entrenamiento",
+      "c) Tiene una capa de salida formada por diferentes estructuras k-dimensionales básicas a la vez",
+      "d) No se entrena, sus pesos se construyen a partir de los patrones de entrada",
+      "e) Todas las anteriores son incorrectas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Todas son falsas: a) es de clustering no supervisado, no clasificación; b) añade neuronas donde hay mayor error/densidad, no menos; c) se apoya en una estructura dimensional única; d) sí requiere entrenamiento.",
+  },
+  {
+    id: "2023_q30",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "Los Mapas Autoorganizativos (SOM) tienen normalmente...",
+    options: [
+      "a) Una capa de entrada, tres o cuatro capas ocultas y una capa de salida",
+      "b) Una única capa que es de entrada y salida",
+      "c) Una capa de entrada y una capa de salida",
+      "d) Una capa de neuronas recurrentes y autoorganizables",
+      "e) Todas las anteriores son incorrectas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Según la plantilla oficial de la UDC, la respuesta es 'e'. A nivel computacional estricto, la red SOM solo posee 1 única capa de células que procesan pesos (la capa competitiva). La capa de entrada es un bus transparente, no cuenta como capa de cálculo.",
+  },
+  {
+    id: "2023_q31",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "En el aprendizaje no supervisado...",
+    options: [
+      "a) Se consiguen grupos con elementos similares dentro del mismo grupo.",
+      "b) La autoorganización de la red permite hallar las clases supervisadas.",
+      "c) Se trabaja con patrones etiquetados con tipo o clase.",
+      "d) Si un patrón de entrada no pertenece a ningún grupo reconocido previamente, se descarta siempre.",
+      "e) La B y la C son correctas.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "El objetivo del aprendizaje no supervisado es descubrir estructuras ocultas en datos no etiquetados. El sistema agrupa los patrones basándose en su similitud matemática, logrando elementos similares dentro del mismo grupo.",
+  },
+  {
+    id: "2023_q32",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "En un SOM...",
+    options: [
+      "a) Cada neurona de la capa competitiva representa siempre a un solo patrón de entrada.",
+      "b) Cada neurona de la capa competitiva puede representar a un grupo de patrones de entrada.",
+      "c) Cada neurona de la capa de entrada representa a un prototipo.",
+      "d) Cada neurona de la capa de entrada se conecta con x neuronas y estas x conexiones constituyen un prototipo.",
+      "e) La A y la C son correctas.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "En los SOM, la matriz de pesos de cada neurona de la capa competitiva actúa como un centroide o prototipo. Múltiples patrones de entrada topológicamente similares activarán a la misma neurona (BMU), haciendo que esta represente a todo un clúster.",
+  },
+  {
+    id: "2023_q33",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "Si los patrones de entrada tienen diferentes dimensiones, la red más aconsejable para agruparlos es...",
+    options: [
+      "a) Un SOM.",
+      "b) Una GNG.",
+      "c) Un ADALINE.",
+      "d) Una GCS.",
+      "e) Ninguna de las anteriores.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Un axioma arquitectónico de las RNA clásicas es que requieren tensores de entrada de tamaño fijo. Si los patrones tienen diferentes dimensiones, ninguna de estas redes puede procesarlos directamente; requerirían preprocesamiento (padding) o arquitecturas recurrentes.",
+  },
+  {
+    id: "2023_q34",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "Las tasas de aprendizaje para redes GCS son...",
+    options: [
+      "a) Las mismas que para redes SOM.",
+      "b) Dos tasas diferenciadas.",
+      "c) Una única de aprendizaje en todos los casos.",
+      "d) La A y la B son correctas.",
+      "e) Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "GCS emplea estrictamente dos tasas de aprendizaje diferenciadas e invariantes: una tasa mayor (ε_b) aplicada exclusivamente a la neurona ganadora (BMU), y una tasa menor (ε_n) aplicada únicamente a las neuronas topológicamente conectadas a ella.",
+  },
+  {
+    id: "2023_q35",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "Las redes de neuronas con entrenamiento no supervisado...",
+    options: [
+      "a) Tienen un fundamento biológico, se basan en la corteza cerebral.",
+      "b) Se llaman así porque el supervisor no sabe supervisarlas.",
+      "c) No son de utilidad actualmente.",
+      "d) La B y la C son correctas.",
+      "e) Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Redes como el SOM de Kohonen se inspiraron directamente en la neurofisiología, específicamente en los mapas topográficos de la corteza cerebral de los mamíferos (córtex visual, somatosensorial).",
+  },
+  {
+    id: "2023_q36",
+    exam: "2023",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "El problema del viajante con una SOM...",
+    options: [
+      "a) Se resuelve considerando una vecindad lineal.",
+      "b) Se resuelve sin vecindad.",
+      "c) Nunca se puede resolver.",
+      "d) La B y la C son correctas.",
+      "e) Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Para resolver el TSP con una red SOM, se altera su estructura: en lugar de una malla 2D, se inicializa la red como una cadena unidimensional cerrada (un anillo o vecindad lineal elástica) que se auto-organiza pasando por todas las ciudades.",
+  },
+  {
+    id: "2023_q37",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "Los trabajos de uno de los siguientes investigadores NO forman parte de la inspiración biológica que se utilizó como base para conformar el cómo funcionan los algoritmos genéticos. ¿Cuál?",
+    options: [
+      "a) Gregor Mendel.",
+      "b) Alfred Wallace.",
+      "c) Jean-Batiste Lamark.",
+      "d) Charles Darwin.",
+      "e) John H. Holland.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Los AG estándar se basan en la Selección Natural (Darwin y Wallace) y la genética mendeliana. Lamarck propuso la herencia de caracteres adquiridos, concepto descartado en los AG puros (aunque inspira modelos híbridos como los Algoritmos Meméticos).",
+  },
+  {
+    id: "2023_q38",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "Se recomienda y está más justificado el uso de los Algoritmos Genéticos...",
+    options: [
+      "a) En aquellos problemas cuya complejidad permita una solución directa.",
+      "b) En aquellos problemas cuya complejidad no permita una solución directa.",
+      "c) En los problemas resolubles polinomialmente.",
+      "d) Cuando existe un único mínimo local y el espacio de búsqueda es muy pequeño.",
+      "e) Siempre es recomendado su uso.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Los AG son metaheurísticas de gran coste computacional. Su uso está justificado en dominios NP-Hard: problemas de altísima complejidad, con múltiples mínimos locales o topologías discontinuas donde los métodos analíticos directos fracasan.",
+  },
+  {
+    id: "2023_q39",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes operadores genéticos es el responsable de explotar la información presente en la población?",
+    options: [
+      "a) Clonación.",
+      "b) Cruce.",
+      "c) Mutación.",
+      "d) Remplazo.",
+      "e) Selección.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "En computación evolutiva, la Explotación consiste en aprovechar el 'buen material' ya descubierto. El operador de Cruce (Recombinación) toma fracciones valiosas del genoma de dos padres exitosos y las entrelaza para generar hijos teóricamente superiores.",
+  },
+  {
+    id: "2023_q40",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question: "El objetivo del operador de mutación es...",
+    options: [
+      "a) Reducir la diversidad de la población.",
+      "b) Explorar en el espacio de búsqueda.",
+      "c) Explotar la información que está en la población.",
+      "d) Seleccionar aquellos individuos que son mejores, en función de su función de ajuste.",
+      "e) En un esquema steady-state, decir qué individuos deben de deshacerse para hacer sitio a los nuevos.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La Mutación es el motor de la Exploración. Inyecta pequeñas disrupciones aleatorias en los cromosomas para garantizar que la población explore nuevas coordenadas del hiperespacio, previniendo la convergencia prematura en mínimos locales.",
+  },
+  {
+    id: "2023_q41",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes afirmaciones es cierta en relación a los algoritmos genéticos?",
+    options: [
+      "a) Las soluciones deben de ser codificadas en forma de árbol.",
+      "b) Las poblaciones grandes favorecen una evolución más rápida.",
+      "c) El esquema de remplazo generacional utiliza menos memoria.",
+      "d) Las funciones de ajuste deben de poder evaluarse en cada individuo de la población.",
+      "e) El criterio de parada debe de ser único.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Es condición sine qua non que el sistema disponga de una función de ajuste (Fitness) capaz de evaluar y puntuar matemáticamente la aptitud de todos y cada uno de los cromosomas de la población en cada ciclo evolutivo.",
+  },
+  {
+    id: "2023_q42",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question: "Elitismo en algoritmos genéticos...",
+    options: [
+      "a) No existe este concepto.",
+      "b) Sólo es aplicable a la Programación Genética.",
+      "c) Es la estrategia de mantener los mejores individuos de la población.",
+      "d) Se encarga de buscar los mejores individuos y con ellos generar una nueva población.",
+      "e) La nueva población es generada a partir exclusivamente del mejor individuo (élite).",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "El elitismo es una póliza de seguro algorítmica: obliga al motor de reemplazo a clonar y mantener intactos al mejor individuo (o grupo élite) y pasarlo directamente a la siguiente generación, garantizando que el algoritmo nunca involucione.",
+  },
+  {
+    id: "2023_q43",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "En algoritmos genéticos existen las técnicas de selección denominadas:",
+    options: [
+      "a) Profundidad y anchura.",
+      "b) Recombinación puntual y uniforme.",
+      "c) Ruleta y torneo.",
+      "d) Cruce y mutación.",
+      "e) Combinatoria múltiple y estocástica uniforme.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La Ruleta (selección proporcional donde se asigna a cada individuo una porción del disco según su fitness) y el Torneo (donde se extraen subconjuntos aleatorios compitiendo localmente) son las dos estrategias de selección más canónicas.",
+  },
+  {
+    id: "2023_q44",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question: 'En un Algoritmo Genético el término "Generación"...',
+    options: [
+      "a) Representa cada ciclo de funcionamiento del Algoritmo.",
+      'b) En el mecanismo de gestión de población "Steady-State" representa el cambio de todos los individuos por los hijos.',
+      "c) Representa seleccionar al mejor individuo de cada población para copiarlo a la siguiente población.",
+      "d) No existe este concepto en Algoritmos Genéticos.",
+      "e) Ninguna de las anteriores.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Una generación computacional se define como un ciclo completo de funcionamiento del bucle principal: se evalúa la aptitud, se selecciona, se cruza, se muta y se somete a reemplazo, marcando el inicio formal de una nueva generación.",
+  },
+  {
+    id: "2023_q45",
+    exam: "2023",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      'La denominación "Steady-state" en términos de un Algoritmo Genético es...',
+    options: [
+      "a) El mecanismo mediante el cual se mantiene a los mejores individuos en una población.",
+      "b) Un tipo de gestión de la población de individuos. En este tipo también hay que especificar el tipo de sustitución de individuos.",
+      "c) Una forma de crear la población de descendientes antes de eliminar la población de los padres y pasar a la siguiente generación.",
+      "d) Una forma de combinar los Algoritmos Genéticos con técnicas de optimización local.",
+      "e) No existe esta palabra en estos sistemas.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Steady-state es un tipo de gestión de población donde en cada ciclo nacen pocos descendientes y se debe elegir qué individuos antiguos eliminar (sustitución). Es diferente al modelo generacional donde toda la población se reemplaza en bloque.",
+  },
+  // ============================================================
+  // 2024 EXAM
+  // ============================================================
+  // --- Simbólica ---
+  {
+    id: "2024_q1",
+    exam: "2024",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "En un problema que aplica la Búsqueda Avara sobre un grafo, la pregunta final exige calcular la 'longitud del camino' de la solución obtenida. ¿Cómo se determina dicha longitud?",
+    options: [
+      "a) Sumando los valores de la heurística h(n) de los nodos visitados.",
+      "b) Calculando la media entre g(n) y h(n).",
+      "c) Sumando los costes reales g(n) de la ruta obtenida.",
+      "d) Contando simplemente el número de nodos visitados, asumiendo coste 1.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La longitud del camino se determina sumando los costes reales g(n) de la ruta obtenida. El algoritmo elige el nodo con menor h(n), pero al llegar a la meta se suman los costes reales de los arcos transitados.",
+  },
+  {
+    id: "2024_q2",
+    exam: "2024",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "Para el mismo grafo del ejercicio anterior: ¿el algoritmo A* obtiene una solución óptima?",
+    options: [
+      "a) Sí, y es 12.",
+      "b) No, la heurística no es admisible.",
+      "c) No, la heurística no es consistente.",
+      "d) Sí, pero la heurística no es consistente.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Para que A* sea óptimo sobre grafos, la heurística debe ser consistente (monótona): h(n) ≤ c(n,a,n') + h(n'). Si A* devuelve un camino subóptimo sobre un grafo, la justificación teórica es que la heurística no es consistente.",
+  },
+  {
+    id: "2024_q3",
+    exam: "2024",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "A partir de la siguiente tabla de nodos explorados (Paso 2: A; Paso 3: A, B; Paso 4: A, B, C; Paso 5: A, B, C, D; Paso 6: A, B, C, D, E), ¿qué tipo de búsqueda fue utilizada?",
+    options: [
+      "a) Búsqueda de coste uniforme.",
+      "b) Búsqueda en anchura.",
+      "c) A*.",
+      "d) Búsqueda en profundidad.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La tabla muestra exploración alfabética secuencial por niveles. Es característica de Búsqueda en Anchura (BFS), que usa una cola FIFO y explora el árbol por capas horizontales: primero el nivel 0, luego todo el nivel 1, luego el nivel 2.",
+  },
+  {
+    id: "2024_q4",
+    exam: "2024",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "En un problema de búsqueda local con la función de coste mostrada, buscando el valor máximo, si estamos en el punto marcado, ¿qué deberíamos hacer?",
+    image: hill2024,
+    options: [
+      "a) Retroceder a un punto anterior y probar un sentido diferente.",
+      "b) Devolver el punto marcado.",
+      "c) Aplicar más de un operador antes de realizar el test de meta.",
+      "d) Ninguna de las anteriores.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "En Hill-Climbing, la máquina carece de memoria histórica (opera en O(1)). El punto marcado es un Máximo Local: al evaluar vecinos, el valor baja en todas direcciones. Como ningún vecino mejora la situación, el algoritmo se detiene y devuelve el punto marcado.",
+  },
+  {
+    id: "2024_q5",
+    exam: "2024",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question: "La búsqueda A*...",
+    options: [
+      "a) Evalúa cada nodo combinando las funciones g(n) y h(n), e.g. el coste real del mejor camino para alcanzar cada nodo n y el coste estimado del camino menos costoso desde el nodo n a meta.",
+      "b) La búsqueda A* basada en grafo es óptima si la heurística es admisible.",
+      "c) Se comporta como búsqueda en profundidad si g es incrementada por 1, h = 0, y los nodos con la misma f son ordenados de menos a más recientes.",
+      "d) Todas son correctas.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La opción a) es la definición exacta de A*: f(n)=g(n)+h(n). La b) es falsa porque en grafos se requiere heurística consistente. La c) es falsa porque con h=0 y g incremental se comporta como BFS/Coste Uniforme, no como profundidad.",
+  },
+  {
+    id: "2024_q6",
+    exam: "2024",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question: "Las funciones heurísticas...",
+    options: [
+      "a) Cuantas más restricciones tengamos en cuenta para su diseño, menos precisas serán.",
+      "b) Son consideradas admisibles si nunca sobreestiman el coste actual de alcanzar la meta.",
+      "c) Si n es el nodo inicial, entonces h(n) = 0.",
+      "d) Si una heurística domina otra (h2 ≥ h1), A* usando h2 expandirá más nodos que usando h1.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Una heurística admisible nunca sobreestima el coste real (h(n) ≤ c*). La a) es falsa: más restricciones = más precisión. La c) es falsa: h(meta)=0, no h(inicial)=0. La d) es falsa: si h2 domina a h1, expande menos nodos.",
+  },
+  {
+    id: "2024_q7",
+    exam: "2024",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "Si hablamos de algoritmos de búsqueda en árbol...",
+    options: [
+      "a) Búsqueda en amplitud siempre es óptima y completa.",
+      "b) La búsqueda de profundidad iterativa debe de ser usada en espacios de búsqueda donde la profundidad de la solución sea conocida.",
+      "c) La búsqueda de profundidad limitada es óptima, pero no completa.",
+      "d) Ninguna es correcta.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "La a) es falsa: BFS solo es óptima si todos los operadores tienen el mismo coste. La b) es falsa: IDS se usa cuando NO se conoce la profundidad. La c) es falsa: profundidad limitada nunca garantiza optimalidad.",
+  },
+  {
+    id: "2024_q8",
+    exam: "2024",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Se nos pide crear un modelo de representación del conocimiento para un sistema sobre un nuevo virus. Hay muy poca información disponible sobre este nuevo virus, pero hay mucha información sobre otros virus que se cree que funcionan de manera similar. ¿Qué modelo de representación del conocimiento debería ser utilizado?",
+    options: [
+      "a) Orientada a objetos.",
+      "b) Redes semánticas.",
+      "c) Reglas de producción.",
+      "d) Marcos (Frames).",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Los Marcos (Frames, de Minsky) son ideales para dominios con información incompleta gracias a los valores por defecto (default values). Al enfrentarnos a un virus nuevo, podemos instanciar un Marco general y rellenar los slots desconocidos heredando características de la clase padre.",
+  },
+  {
+    id: "2024_q9",
+    exam: "2024",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question: "El algoritmo de model checking...",
+    options: [
+      "a) Tiene una complejidad que se vuelve inmanejable para sistemas con muchos símbolos.",
+      "b) Permite verificar si KB ⊨ α.",
+      "c) Puede ser implementado como una exploración de un árbol binario.",
+      "d) Todas son correctas.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Las tres son ciertas: a) su complejidad es O(2^n) donde n son símbolos proposicionales; b) su finalidad es comprobar el entrañamiento KB ⊨ α; c) algoritmos como TT-Entails construyen un árbol binario de profundidad n.",
+  },
+  {
+    id: "2024_q10",
+    exam: "2024",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Hay un sistema de producción en un problema dado. El cliente se da cuenta de que la información es incompleta y necesita añadir dos reglas a mayores. ¿Qué deberíamos cambiar en el motor de inferencias?",
+    options: [
+      "a) Las nuevas reglas deben ser insertadas.",
+      "b) Las nuevas reglas y los hechos resultantes de dichas reglas deben ser insertados.",
+      "c) El sistema de reglas tendrá que ser reconstruido completamente.",
+      "d) Nada.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "La esencia de los sistemas de producción es la separación entre conocimiento y control. El Motor de Inferencias es un programa de control genérico. Las nuevas reglas se insertan en la Base de Conocimiento (Base de Reglas), sin modificar el motor.",
+  },
+  {
+    id: "2024_q11",
+    exam: "2024",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Dado la base de reglas (R1: IF X AND Y THEN Z; R2: IF C OR D THEN G; R3: IF E AND V THEN H; R4: IF A AND B THEN C; R5: IF F OR G THEN X; R6: IF Z AND B THEN V; R7: IF E AND C THEN F). Queremos inferir H mediante encadenamiento progresivo, con M₀ = {A, B, D, Y}. La primera regla activada será ejecutada (si R3 y R4 se activan, se ejecuta primero R3). Entonces:",
+    options: [
+      "a) H puede ser inferida, y el número de reglas ejecutadas es 4.",
+      "b) H puede ser inferida, y el número de reglas ejecutadas es 5.",
+      "c) H no puede ser inferida, y el número de reglas ejecutadas es 4.",
+      "d) H no puede ser inferida, y el número de reglas ejecutadas es 5.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Traza: Ciclo 1: R2 (D activa OR) → añade G. Ciclo 2: R4 (A∧B) → añade C. Ciclo 3: R5 (G activa OR) → añade X. Ciclo 4: R1 (X∧Y) → añade Z. Ciclo 5: R6 (Z∧B) → añade V. Al llegar al ciclo 6, R3 requiere E∧V; tenemos V pero no E, y ninguna regla puede inferir E. El algoritmo se detiene tras 5 reglas sin inferir H.",
+  },
+  {
+    id: "2024_q12",
+    exam: "2024",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question: "Si hablamos de sistemas de producción...",
+    options: [
+      "a) La base de conocimientos está formada por la base de reglas y el motor de inferencias.",
+      "b) Los sistemas dirigidos por los datos son más específicos, porque ejecutarán todas las reglas disponibles en función de la información introducida.",
+      "c) La memoria activa almacena todos los cambios de estado de nuestro sistema, de forma que representa siempre nuestro estado actual.",
+      "d) El motor de inferencias es el responsable de interaccionar con el mundo exterior.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La memoria activa o 'pizarra' recoge las condiciones iniciales y memoriza las modificaciones producidas en cada fase de acción, manteniendo una fotografía exacta del estado actual del sistema en todo momento.",
+  },
+  {
+    id: "2024_q13",
+    exam: "2024",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question: "La búsqueda A*...",
+    options: [
+      "a) Evalúa los nodos combinando las funciones g(n) y h(n).",
+      "b) Basada en grafo es óptima si la heurística es admisible.",
+      "c) Se comporta como anchura si g se incrementa en 1, h=0 y los nodos con igual f se ordenan de menos a más reciente.",
+      "d) Todas son correctas.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La ecuación de evaluación unificada f(n)=g(n)+h(n) es la piedra angular de A*. La b) es falsa porque en grafos se precisa heurística consistente. La c) es falsa: con h=0 y g incremental se comporta como BFS/Coste Uniforme.",
+  },
+  {
+    id: "2024_q14",
+    exam: "2024",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Con las reglas categóricas (R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(1)→¬M(1)∧M(2), R3: ...) y sabiendo que tenemos la manifestación M(1), ¿cuál es el conjunto de interpretaciones más probable? p(¬I1∧¬I2)=0.2, p(¬I1∧I2)=0.08, p(I1∧¬I2)=0.34, p(I1∧I2)=0.38.",
+    options: [
+      "a) ¬I(1) ∧ ¬I(2)",
+      "b) ¬I(1) ∧ I(2)",
+      "c) I(1) ∧ ¬I(2)",
+      "d) I(1) ∧ I(2)",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Si M(1) es cierto, por R2 (I(1)→¬M(1)∧M(2)) sabemos que I(1) jamás puede ser cierta, pues obligaría a ¬M(1). Por tanto I(1) es forzosamente falsa. Descartada I(1), la única interpretación que queda activa por R1 es I(2). Esto da ¬I(1)∧I(2) sin necesidad de recurrir a las probabilidades.",
+  },
+  // --- Subsimbólica ---
+  {
+    id: "2024_q15",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "En una RNA, el conocimiento está en...",
+    options: [
+      "a) La función de transferencia.",
+      "b) Los pesos y bias.",
+      "c) Los valores dados por las salidas.",
+      "d) El algoritmo de entrenamiento.",
+      "e) La topología de la red.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "En el paradigma conexionista, todo lo aprendido reside exclusivamente en el valor paramétrico de las conexiones sinápticas (los pesos) y en los niveles de activación base (los bias).",
+  },
+  {
+    id: "2024_q16",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "El conjunto de datos utilizado para establecer el valor de los pesos de una RNA es conocido como...",
+    options: [
+      "a) Conjunto de prueba.",
+      "b) Conjunto de validación.",
+      "c) Conjunto de test.",
+      "d) Conjunto de entrenamiento.",
+      "e) Conjunto de normalización.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El conjunto de entrenamiento (Training set) es el único lote de datos que interactúa directamente con el algoritmo calculando gradientes para actualizar las matrices de pesos y bias.",
+  },
+  {
+    id: "2024_q17",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Cuando el gradiente descendente es utilizado para modificar los pesos de las conexiones de una RNA...",
+    options: [
+      "a) Si está cerca de 0, el mínimo estará lejos y serán necesarios más saltos para encontrarlo.",
+      "b) Si toma un valor alto, se realizará un pequeño salto dentro del espacio de búsqueda para encontrar el mínimo.",
+      "c) Si toma un valor bajo, se realizará un salto grande en el espacio de búsqueda para encontrar el mínimo.",
+      "d) Es necesario modificar los pesos en la dirección del gradiente.",
+      "e) Es necesario modificar los pesos en la dirección contraria del gradiente.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "El vector gradiente apunta hacia la dirección de máximo crecimiento de la función de error. Para encontrar el mínimo, la actualización de los pesos debe realizarse restando esa pendiente, es decir, moviéndose en dirección opuesta al gradiente.",
+  },
+  {
+    id: "2024_q18",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Un Perceptrón (sin capas ocultas) puede resolver problemas de clasificación con una precisión del 100% cuando las muestras...",
+    options: [
+      "a) Son clasificadas en sólo dos clases y no están entremezcladas.",
+      "b) Son clasificadas en sólo dos clases y son linealmente separables.",
+      "c) Son clasificadas en sólo dos clases, aunque estén mezcladas, no sean linealmente separables o tengan ruido.",
+      "d) Son clasificadas en sólo dos clases y no tengan ruido.",
+      "e) Son clasificadas en sólo dos clases y sigan una distribución normal.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El teorema del Perceptrón simple (Rosenblatt) establece que una red sin capas ocultas solo puede trazar un hiperplano en el espacio de decisión. Solo alcanza convergencia total si el problema es linealmente separable.",
+  },
+  {
+    id: "2024_q19",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Para utilizar un perceptrón multicapa para resolver el problema EXOR...",
+    options: [
+      "a) No es necesario utilizar capas ocultas.",
+      "b) Es necesario utilizar una capa oculta (con el número suficiente de neuronas), y no hacen falta más capas.",
+      "c) Es necesario utilizar dos capas ocultas (con el número suficiente de neuronas), y no hacen falta más capas.",
+      "d) Es necesario utilizar tres capas ocultas (con el número suficiente de neuronas), y no hacen falta más capas.",
+      "e) Es necesario utilizar más de tres capas ocultas (con el número suficiente de neuronas).",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El XOR es el ejemplo clásico de problema no linealmente separable. Un perceptrón simple fracasa, pero al añadir una única capa oculta (con al menos 2 neuronas), la red gana la capacidad de combinar dos hiperplanos y resolverlo.",
+  },
+  {
+    id: "2024_q20",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "La función de transferencia de las neuronas artificiales...",
+    options: [
+      "a) Puede ser hiperbólica.",
+      "b) Puede ser treshold / hard limiter.",
+      "c) Puede ser sigmoidal.",
+      "d) Puede ser logarítmica.",
+      "e) Todas son correctas.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Las RNA admiten un abanico inmenso de funciones: umbral/escalón (hard limiter para Perceptrón), sigmoides logarítmicas o tangentes hiperbólicas (capas ocultas), y funciones lineales puras (regresión). Todas son válidas.",
+  },
+  {
+    id: "2024_q21",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Si un perceptrón multicapa entrenado es alimentado con una instancia en un área donde no había muestras de entrenamiento...",
+    options: [
+      "a) Siempre devolverá un error.",
+      "b) Siempre devolverá 0 como salida.",
+      "c) Siempre devolverá -1 como salida.",
+      "d) Siempre devolverá 1 como salida.",
+      "e) Devolverá una salida arbitraria e impredecible.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Las RNA son excelentes interpolando pero pésimas extrapolando. Si se inyecta un patrón fuera del rango de entrenamiento, la red escupirá un valor calculado a través de sus pesos actuales, el cual será totalmente arbitrario e impredecible.",
+  },
+  {
+    id: "2024_q22",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Entrenar una RNA utilizando un algoritmo basado en el descenso de gradiente tiene el siguiente problema...",
+    options: [
+      "a) Nunca encontrará el mínimo global.",
+      "b) Al alcanzar un mínimo, oscilará de un lado a otro, incapaz de permanecer en él.",
+      "c) Alcanzará un mínimo con incrementos muy pequeños.",
+      "d) Es posible que se quede atrapado en algún mínimo local.",
+      "e) Requerirá un número muy alto de épocas para lograr un error aceptable.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El descenso del gradiente clásico es determinista y miope: desciende por la pendiente más pronunciada. Si la topología de coste es rugosa, puede quedar atrapado en un mínimo local, asumiendo erróneamente que ha llegado al mínimo global.",
+  },
+  {
+    id: "2024_q23",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Para evaluar qué tan bien entrenada está una red y qué tan bien generaliza, es necesario evaluar el error...",
+    options: [
+      "a) en el conjunto de entrenamiento.",
+      "b) en el conjunto de validación.",
+      "c) en el conjunto de prueba (Test).",
+      "d) en la época de entrenamiento con el gradiente más pequeño.",
+      "e) en la época de entrenamiento con el momento más pequeño.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La auténtica prueba de fuego para saber si la red ha generalizado (no solo memorizado) se mide evaluando su error en el conjunto de prueba (Test Set), un lote de datos absolutamente virgen que el modelo jamás ha visto.",
+  },
+  {
+    id: "2024_q24",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "En una RNA, el conjunto de validación...",
+    options: [
+      "a) se usa para evaluar la capacidad de generalización de la red.",
+      "b) debe ser linealmente separable.",
+      "c) realiza la modificación de los pesos con el algoritmo correspondiente.",
+      "d) no realiza la modificación de los pesos, pero controla el proceso de entrenamiento y lo detiene cuando es necesario.",
+      "e) Todas las respuestas anteriores son incorrectas.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El conjunto de validación actúa como monitor externo: sus datos jamás actualizan los pesos. Su función es evaluar el comportamiento ante datos no vistos para aplicar Early Stopping, deteniendo el entrenamiento cuando el error de validación empieza a subir.",
+  },
+  {
+    id: "2024_q25",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Durante el proceso de entrenamiento de una RNA utilizando la técnica de detención temprana, los valores más bajos de error en entrenamiento, validación y prueba se alcanzan en épocas diferentes. ¿Qué pesos se toman para la red que se devuelve?",
+    options: [
+      "a) Los de la época con el error de validación más bajo.",
+      "b) Los de la época con el error de prueba más bajo.",
+      "c) Los de la última época de entrenamiento.",
+      "d) Los de la época con el gradiente más bajo.",
+      "e) Los de la época con el error de entrenamiento más bajo.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "En Early Stopping, el algoritmo retrocede en el tiempo y devuelve la copia de la red guardada en la época donde el error del conjunto de validación registró su marca histórica más baja, pues es ahí donde se demuestra la mayor capacidad de generalización.",
+  },
+  {
+    id: "2024_q26",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Para utilizar una RNA para resolver un problema de clasificación con dos clases, sin la posibilidad de que una instancia no pertenezca a ninguna de ellas, el número de neuronas que se debe usar en la capa de salida es...",
+    options: ["a) 1.", "b) 2.", "c) 3.", "d) 4.", "e) 5."],
+    correctAnswer: "a",
+    explanation:
+      "En clasificación estrictamente dicotómica, basta con 1 neurona de salida con función sigmoidal o limitador duro. Si emite 0 → clase A, si emite 1 → clase B. Dos neuronas serían redundantes.",
+  },
+  {
+    id: "2024_q27",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      '¿Cómo codificarías una salida categórica de una RNA, cuyos valores pueden ser "coche/motocicleta/bicicleta/avión"?',
+    options: [
+      'a) Como 2 valores booleanos, codificando cada una de las 4 categorías como "01/01/10/11".',
+      "b) No es necesario codificarlo, la RNA puede generar esa salida categórica.",
+      'c) Como 4 valores booleanos, codificando cada una de las 4 categorías como "1000/0100/0010/0001".',
+      "d) Como un valor real, que toma 4 valores equiespaciados diferentes.",
+      "e) Las respuestas c) y d) son correctas.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Para variables categóricas nominales sin orden jerárquico, se usa One-Hot Encoding: un vector del mismo tamaño que el número de clases (4 clases = 4 neuronas booleanas) donde solo se enciende (1) la neurona de la clase correcta.",
+  },
+  {
+    id: "2024_q28",
+    exam: "2024",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "La función de transferencia de las neuronas de salida de una Red Neuronal Artificial...",
+    options: [
+      "a) Será lineal si es un problema de clasificación con solo dos clases.",
+      "b) Será sigmoide logarítmica si es un problema de clasificación con más de dos clases.",
+      "c) Será sigmoide logarítmica si es un problema de regresión.",
+      "d) Será tangente hiperbólica sigmoide si es un problema de regresión.",
+      "e) Será lineal si es un problema de regresión.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Para problemas de regresión (predecir valor continuo), la capa de salida debe usar función de transferencia estrictamente lineal (purelin). Las funciones limitadoras (sigmoides) estrangularían los resultados impidiendo valores fuera de [0,1] o [-1,1].",
+  },
+  {
+    id: "2024_q29",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "La autoorganización en los Sistemas Conexionistas...",
+    options: [
+      "a) Permite la existencia de un jefe que determina el comportamiento de los patrones.",
+      "b) Evita el comportamiento emergente del sistema.",
+      "c) Facilita el almacenamiento de información en las neuronas (células) de entrada.",
+      "d) Permite obtener redundancia en los datos.",
+      "e) Todas las anteriores son incorrectas.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La autoorganización es no supervisada (sin jefe), se basa en comportamiento emergente, el conocimiento está en los pesos (no en la entrada), y la redundancia es un requisito previo, no un resultado.",
+  },
+  {
+    id: "2024_q30",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué modelo se ajusta mejor a datos de diferentes dimensionalidades?",
+    options: ["a) GNG.", "b) SOM.", "c) GNS.", "d) SGM.", "e) SVM."],
+    correctAnswer: "a",
+    explanation:
+      "GNG (Growing Neural Gas) supera a los SOM porque no utiliza una malla rígida 2D predefinida. Su arquitectura constructiva le permite crear y destruir nodos y aristas dinámicamente, adaptándose orgánicamente a cualquier geometría o cambio de dimensionalidad.",
+  },
+  {
+    id: "2024_q31",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "En una red SOM, es importante...",
+    options: [
+      "a) La ubicación espacial de las neuronas.",
+      "b) La interacción de una neurona con las demás en la capa de salida.",
+      "c) El número de capas ocultas.",
+      "d) Que el número de neuronas en la capa de entrada sea mayor que en la capa de salida.",
+      "e) Todas son correctas.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "En los Mapas de Kohonen, la ubicación espacial y topológica de las neuronas en la cuadrícula de salida es crítica. El entrenamiento competitivo y de vecindad asegura que neuronas cercanas en el mapa respondan a patrones de entrada similares.",
+  },
+  {
+    id: "2024_q32",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué representa la ubicación en la capa de salida de una neurona (célula) en una red SOM?",
+    options: [
+      "a) El número de atributos de los patrones.",
+      "b) El orden de presentación de cada patrón durante el proceso de entrenamiento.",
+      "c) Una proyección bidimensional de los datos de entrada.",
+      "d) Indica su relación con las neuronas de entrada.",
+      "e) Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La utilidad primordial de un SOM es la reducción de dimensionalidad: abstrae un espacio de datos n-dimensional y lo proyecta sobre un mapa discreto 2D, permitiendo visualizar clústeres y relaciones originales.",
+  },
+  {
+    id: "2024_q33",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuántas capas, que realizan cálculos, tiene una red SOM?",
+    options: [
+      "a) Tantas como especifique el usuario.",
+      "b) Depende del tipo de problema.",
+      "c) 1.",
+      "d) 2.",
+      "e) Tantas como patrones de entrada.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Un SOM se compone de capa de entrada y capa de salida (competitiva). La capa de entrada actúa solo como buffer pasivo. La única capa que realiza procesamiento y cálculo de distancias es 1 sola capa (la competitiva de salida).",
+  },
+  {
+    id: "2024_q34",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "En una red SOM, ¿qué representa el parámetro α en la fórmula de actualización de pesos?",
+    options: [
+      "a) El tamaño del vecindario.",
+      "b) La topología del vecindario.",
+      "c) La distancia a la Unidad de Mejor Coincidencia (BMU).",
+      "d) La tasa de aprendizaje.",
+      "e) El parámetro no existe en la ecuación de la SOM.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "En la fórmula de Kohonen W_i(t+1) = W_i(t) + α(t)·h_ci(t)·[x(t)-W_i(t)], el parámetro α(t) representa la tasa de aprendizaje, que decrece progresivamente con el tiempo.",
+  },
+  {
+    id: "2024_q35",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "¿Qué tipo de aprendizaje ocurre en las SOM?",
+    options: [
+      "a) Competitivo.",
+      "b) Exhaustivo.",
+      "c) Por necesidad.",
+      "d) Reforzamiento.",
+      "e) Las opciones c y d son correctas.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Las SOM utilizan aprendizaje no supervisado y competitivo. Ante cada vector de entrada, todas las neuronas compiten entre sí. Solo la ganadora (BMU) obtiene el derecho principal de actualizar sus pesos.",
+  },
+  {
+    id: "2024_q36",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué es la neurona (célula) ganadora en una red SOM?",
+    options: [
+      "a) La que está más cerca del patrón de entrada.",
+      "b) La neurona que representa el patrón dentro de su clúster.",
+      "c) La neurona que aprende más rápido.",
+      "d) La neurona que converge primero.",
+      "e) La neurona en el top 5 de la red en el proceso de aprendizaje.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La neurona ganadora (BMU - Best Matching Unit) se define como la célula de la malla cuyo vector interno de pesos presenta la menor distancia matemática (euclidiana) respecto al vector de entrada.",
+  },
+  {
+    id: "2024_q37",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué representan los pesos de las neuronas en la red SOM?",
+    options: [
+      "a) Clústeres.",
+      "b) Conocidos como bias.",
+      "c) Número de patrones aprendidos.",
+      "d) Prototipos, centros o centroides de clústeres.",
+      "e) Grupos.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "En las SOM, las unidades operan con matrices de pesos que funcionan como coordenadas matemáticas (vectores). Estos vectores actúan como prototipos o centroides que migran hasta anclarse en el centro de gravedad de las nubes de datos.",
+  },
+  {
+    id: "2024_q38",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "En una red SOM...",
+    options: [
+      "a) El vecindario determina el número de neuronas contra las que uno compite por un patrón.",
+      "b) El vecindario de una neurona ganadora determina cuáles se modifican parcialmente.",
+      "c) El tamaño del vecindario permanece sin cambios durante todo el proceso de entrenamiento.",
+      "d) La topología cambia durante el entrenamiento.",
+      "e) El número de vecinos se adapta a las dimensiones del espacio de búsqueda.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "En el aprendizaje competitivo de un SOM, la neurona ganadora (BMU) no es la única beneficiada. Se define un radio topológico (vecindad, usualmente gaussiana) que determina qué neuronas adyacentes modificarán parcialmente sus pesos.",
+  },
+  {
+    id: "2024_q39",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿A cuántas neuronas se conecta cada neurona en la capa de entrada?",
+    options: [
+      "a) A todas las neuronas en la capa de competencia.",
+      "b) Consigo misma recursivamente.",
+      "c) Solo con neuronas que alguna vez han sido ganadoras.",
+      "d) Se conecta con todas y cada una de las neuronas presentes en el modelo.",
+      "e) Todas son falsas.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Un SOM clásico se basa en una arquitectura Feed-forward totalmente conectada: todas las neuronas receptoras de la capa de entrada se bifurcan y trazan conexiones sinápticas hacia todas las neuronas del mapa de salida.",
+  },
+  {
+    id: "2024_q40",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "¿Qué fases presenta el funcionamiento del modelo SOM?",
+    options: [
+      "a) Fase de aprendizaje y modo operativo.",
+      "b) Fase de aprendizaje y fase de validación.",
+      "c) Fase de generalización y fase de validación.",
+      "d) Fase inicial y modo de operación.",
+      "e) Modo rápido y modo robusto.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La vida de un SOM se divide en Fase de Aprendizaje (donde el mapa está 'blando', compite y sus pesos se adaptan) y Modo Operativo (donde los pesos se congelan y la red solo identifica la neurona ganadora para clasificar sin alterar su estructura).",
+  },
+  {
+    id: "2024_q41",
+    exam: "2024",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuáles son las métricas para validar una red SOM?",
+    options: [
+      "a) Error de cuantización medio y medida de preservación de topología.",
+      "b) Precisión y medida de preservación de topología.",
+      "c) Error de cuantización medio y medida de dispersión de topología.",
+      "d) Tasa de precisión media y medida de dispersión de topología.",
+      "e) Medida de preservación del conocimiento.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Dado que SOM es no supervisado, métricas como Accuracy son inútiles. Se usa el Error de Cuantización (QE, distancia media a las BMUs) y el Error Topográfico (TE, verifica preservación de topología).",
+  },
+  {
+    id: "2024_q42",
+    exam: "2024",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes opciones describe correctamente los orígenes de los Algoritmos Genéticos y la Programación Genética?",
+    options: [
+      "a) Fueron desarrollados por John von Neumann en la década de 1950.",
+      "b) Son el resultado de avances en inteligencia artificial en la década de 1980.",
+      "c) Tienen sus raíces en los trabajos de Charles Darwin y Alfred Wallace sobre evolución y selección natural.",
+      "d) Fueron propuestos por Charles Babbage durante la Segunda Guerra Mundial.",
+      "e) El principal precursor es Mendel con su trabajo sobre la deriva genética.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Los algoritmos evolutivos (John Holland) están inspirados en la Teoría de la Evolución de las Especies y la Selección Natural formulada por Charles Darwin y Alfred Wallace.",
+  },
+  {
+    id: "2024_q43",
+    exam: "2024",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "A la luz de las diferentes teorías evolutivas presentes en los AG, ¿cuál de las siguientes inspira la operación de aptitud (Fitness)?",
+    options: [
+      "a) Aprendizaje Hebbiano.",
+      "b) Teoría de la Conservación de Lamarck.",
+      "c) Teoría de la Evolución de Darwin.",
+      "d) Leyes de Mendel.",
+      "e) Deriva genética.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La función de Aptitud (Fitness) evalúa qué individuo está mejor preparado para el entorno, decidiendo quién se reproduce. Esta doctrina de 'supervivencia del más apto' es la base de la Teoría de la Evolución por Selección Natural de Darwin.",
+  },
+  {
+    id: "2024_q44",
+    exam: "2024",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "En el contexto de los algoritmos evolutivos, ¿qué técnica se utiliza para explotar la información presente en la población y mejorar las soluciones?",
+    options: [
+      "a) Cruce (Recombinación).",
+      "b) Mutación.",
+      "c) Selección.",
+      "d) Reemplazo.",
+      "e) Clonación.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La Mutación es el operador de Exploración. El Cruce (Recombinación) es el encargado de la Explotación: mezcla y aprovecha la información (bloques genéticos valiosos) ya presente en padres fuertes para generar hijos superiores.",
+  },
+  // ============================================================
+  // MAYO 2025 EXAM
+  // ============================================================
+  // --- Simbólica ---
+  {
+    id: "2025-05_q1",
+    exam: "2025-05",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A*?",
+    image: grafo2025,
+    options: [
+      "a) A → C → G → K",
+      "b) A → C → F → J",
+      "c) A → B → D → H → L → M",
+      "d) A* no encuentra la solución",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Traza A*: 1) A: B(f=6), C(f=4). 2) Expande C: F(f=8), G(f=10). 3) Frontera: B(6), F(8), G(10). Expande B: D(9), E(11). 4) Frontera: F(8), D(9), G(10), E(11). Expande F: I(f=7), J(f=5). 5) Frontera: J(5), I(7)... Expande J → K(f=4). Camino: A→C→F→J→K.",
+  },
+  {
+    id: "2025-05_q2",
+    exam: "2025-05",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "Sobre el mismo espacio de estados, ¿qué solución encuentra el algoritmo de búsqueda en profundidad iterativa?",
+    options: [
+      "a) A → C → G → K",
+      "b) A → C → F → J",
+      "c) A → B → D → H → L → M",
+      "d) No encuentra la solución",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "IDS explora con estrategia de profundidad. Límite 0-1: no llega. Límite 2: explora A-B-D, A-B-E, A-C-F, A-C-G. Ninguno es meta. Límite 3: explora primero las ramas de B, luego C. Al bajar por C: A→C→F→I, A→C→F→J (no meta), luego A→C→G→K. K es meta con h=0, a profundidad 3.",
+  },
+  {
+    id: "2025-05_q3",
+    exam: "2025-05",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "Con el enunciado anterior, ¿cuántas veces se expandirá el nodo B?",
+    options: ["a) 0", "b) 1", "c) 2", "d) 3"],
+    correctAnswer: "c",
+    explanation:
+      "Límite 0: solo A. Límite 1: A, luego B y C generados pero no expandidos por el límite. Límite 2: A, luego B (1ª vez) y C. Límite 3: A, luego B (2ª vez) para llegar a sus nietos. B se expande exactamente 2 veces.",
+  },
+  {
+    id: "2025-05_q4",
+    exam: "2025-05",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "En las redes semánticas, el razonamiento por rastreo...",
+    options: [
+      "a) No puede asegurar la validez de las inferencias obtenidas",
+      "b) emplea exclusivamente las relaciones de jerarquía de la red.",
+      "c) evita la ambigüedad propia del lenguaje natural, al contrario que el razonamiento por emparejamiento.",
+      "d) Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El mecanismo de inferencia fundamental de una red semántica es la herencia de propiedades. Este proceso (rastreo) navega exclusivamente a través de los arcos de jerarquía taxonómica (como ES_UN o SUBCOJUNTO_DE).",
+  },
+  {
+    id: "2025-05_q5",
+    exam: "2025-05",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "¿En qué se diferencian las reglas IFANY e IFSOME?",
+    options: [
+      "a) IFANY investiga toda la premisa, mientras que IFSOME ejecuta la acción cuando encuentra una cláusula cierta",
+      "b) IFSOME investiga toda la premisa, mientras que IFANY ejecuta la acción cuando encuentra una cláusula cierta",
+      "c) IFANY requiere que una cláusula sea cierta para ejecutar una acción, mientras que IFSOME requiere más de una (al menos 2)",
+      "d) IFSOME requiere que una cláusula sea cierta para ejecutar una acción, mientras que IFANY requiere más de una (al menos 2)",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "IFANY funciona como cortocircuito: en cuanto detecta que la primera condición es cierta, deja de leer y dispara la acción. IFSOME es exhaustiva: aunque encuentre una cláusula cierta, investiga toda la premisa antes de ejecutar.",
+  },
+  {
+    id: "2025-05_q6",
+    exam: "2025-05",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question: "Las arquitecturas básicas de agentes son:",
+    options: [
+      "a) Reactivo, reactivo con estado, basado en metas y basado en utilidades",
+      "b) Reactivo, basado en metas, basado en metas con estado y basado en utilidades",
+      "c) Activo, reactivo, reactivo con estado y basado en metas",
+      "d) Activo, reactivo, basado en metas con estado y basado en utilidades",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Según Russell & Norvig, las cuatro arquitecturas básicas son: reactivos simples (sin memoria), reactivos basados en modelos (con estado), basados en metas (planificación) y basados en utilidad (maximizan una medida de rendimiento).",
+  },
+  {
+    id: "2025-05_q7",
+    exam: "2025-05",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Sea un dominio con 3 manifestaciones [M(1),M(2),M(3)] y 2 interpretaciones [I(1),I(2)]. Con la regla R1: M(1)∨M(2)∨M(3)⇒I(1)∨I(2) y asumiendo el criterio de la BLR, ¿cuál de las siguientes opciones es correcta para m4?",
+    options: [
+      "a) m4 i1",
+      "b) m4 i2",
+      "c) m4 i3",
+      "d) Ninguna de las opciones propuestas pertenece a la BLR",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "En m4: M(1)=1, resto=0. Opción A (m4 i1): I(1)=0, I(2)=0 → R1 se rompe (hay manifestación activa pero no interpretación). Opción B (m4 i2): I(2)=1, I(1)=0 → R3 exige M(1)∧M(3) pero M(3)=0. Opción C (m4 i3): I(1)=1 → R2 exige ¬M(1)∧M(2) pero M(1)=1. Ninguna pertenece a la BLR.",
+  },
+  // --- Subsimbólica ---
+  {
+    id: "2025-05_q8",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿En qué se diferencian las dos ramas clásicas de la IA?",
+    options: [
+      "a) La rama subsimbólica tiene menos capacidad para explicar sus resultados",
+      "b) Los sistemas expertos y las redes de neuronas artificiales son sus paradigmas",
+      "c) Una se basa en la estimulación y la otra en la emulación",
+      "d) Ninguna de las anteriores es correcta",
+      "e) A y B son correctas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La IA Simbólica tiene alta explicabilidad (transparente), mientras la Subsimbólica es caja negra con menor capacidad de explicar sus resultados (A correcta). La simbólica orbita en torno a Sistemas Expertos y la subsimbólica en Redes de Neuronas Artificiales (B correcta).",
+  },
+  {
+    id: "2025-05_q9",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué significa que los sistemas subsimbólicos pertenecen a la rama de la emulación de la IA?",
+    options: [
+      "a) Que la red aprenderá muy rápido las diferencias entre ellos.",
+      "b) Que es necesario poner más capas intermedias en la Red para representar mejor su conocimiento.",
+      "c) Que pretendemos reproducir la función del sistema biológico inteligente.",
+      "d) Que pretendemos reproducir la estructura del sistema biológico inteligente.",
+      "e) Que pretendemos reproducir tanto la estructura como la función del sistema biológico inteligente.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La simulación (IA simbólica) replica el comportamiento exterior sin importar la construcción interna. La emulación va más allá: intenta reproducir fielmente la arquitectura o estructura subyacente (neuronas y sinapsis artificiales) para que de esa estructura nazca orgánicamente la función inteligente.",
+  },
+  {
+    id: "2025-05_q10",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "¿Qué es una sinapsis?",
+    options: [
+      "a) El intercambio de energía entre neuronas.",
+      "b) Procedimiento fisiológico por el cual mueren las neuronas.",
+      "c) Intercambio de energía entre neuronas y astrocitos.",
+      "d) Intercambio de información entre los elementos del sistema nervioso.",
+      "e) Todas las anteriores son correctas.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Las sinapsis son los enlaces funcionales unidireccionales que permiten la comunicación y el trasvase de señales o información entre las distintas células del sistema nervioso.",
+  },
+  {
+    id: "2025-05_q11",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores computacionales?",
+    options: [
+      "a) Rosenblueth, Wiener y Bigelow.",
+      "b) McCulloch y Pitts.",
+      "c) Craik.",
+      "d) Todos los anteriores.",
+      "e) Ninguno de los anteriores.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Los verdaderos precursores computacionales (padres de las ciencias de la computación) son Turing, Von Neumann, Zuse y Sreyers. Los mencionados en A, B y C son precursores biológicos o cibernéticos, no computacionales.",
+  },
+  {
+    id: "2025-05_q12",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores biológicos?",
+    options: [
+      "a) Minsky.",
+      "b) Cajal.",
+      "c) Papert.",
+      "d) Todos los anteriores.",
+      "e) Ninguno de los anteriores.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Santiago Ramón y Cajal describió la estructura fundamental de la neurona a finales del XIX, sentando las bases orgánicas de los sistemas adaptativos de emulación. Minsky y Papert fueron críticos del perceptrón, no precursores biológicos.",
+  },
+  {
+    id: "2025-05_q13",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Causas del interés actual por los Sistemas Inteligentes Subsimbólicos?",
+    options: [
+      "a) El interés existente por la búsqueda de arquitecturas de computadoras que permitan el procesamiento en paralelo.",
+      "b) La habilidad de estos sistemas para aprender automáticamente.",
+      "c) La habilidad para poder funcionar de forma aceptable tanto en presencia de información inexacta como cuando se producen deterioros o fallos en sus componentes.",
+      "d) Su similitud con los modelos neurofisiológicos del cerebro, pudiéndose intercambiar modelos e investigaciones con Neurociencias.",
+      "e) Todas las anteriores son correctas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Los sistemas conexionistas han resurgido gracias a: capacidad de aprender automáticamente de datos, robustez y tolerancia a fallos (conocimiento distribuido), adecuación al procesamiento paralelo, y sinergias bidireccionales con las Neurociencias.",
+  },
+  {
+    id: "2025-05_q14",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes avances tecnológicos no está relacionado con la IA?",
+    options: [
+      "a) Impresoras 3D y fabricación aditiva.",
+      "b) Realidades extendidas y 'gemelos digitales'",
+      "c) Tecnologías convergentes 'NBIC'.",
+      "d) Todas las anteriores están relacionadas.",
+      "e) Ninguna de las anteriores está relacionada.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Todas están relacionadas: impresoras 3D/4D se transforman con co-creatividad de IA; realidades extendidas (Metaverso, Gemelos Digitales) dependen de IA para simulaciones; tecnologías NBIC aplican algoritmos inteligentes como bioinformática y redes neuronales.",
+  },
+  {
+    id: "2025-05_q15",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué está en el 'Core' de la mayoría de los avances tecnológicos?",
+    options: [
+      "a) Las potentes infraestructuras de cómputo.",
+      "b) Las dos ramas de la IA: simbólica y subsimbólica",
+      "c) Los humanos proponiendo nuevos avances",
+      "d) Todas las anteriores son correctas",
+      "e) Ninguna de las anteriores es correcta",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La UDC es tajante: el núcleo de las disrupciones tecnológicas actuales (Deep Learning, Big Data) pertenece única y exclusivamente a la IA Subsimbólica. Como la opción B mezcla ambas ramas y la subsimbólica pura no aparece aislada, la respuesta es E.",
+  },
+  {
+    id: "2025-05_q16",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Quién establece que 'las máquinas sólo pueden hacer todo aquello que sepamos cómo ordenarle que haga'?",
+    options: [
+      "a) Ramón Llull.",
+      "b) Ada Lovelace.",
+      "c) Newell y Simon.",
+      "d) Leibniz.",
+      "e) Turing.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Este célebre axioma se conoce como el 'Régimen de Lovelace'. Ada Lovelace argumentaba que las máquinas analíticas carecían de iniciativa propia, limitándose a ejecutar mecánicamente las rutinas programadas.",
+  },
+  {
+    id: "2025-05_q17",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "El conjunto de datos que se utiliza para establecer los valores de los pesos de las conexiones de una RNA se denomina:",
+    options: [
+      "a) Conjunto de prueba",
+      "b) Conjunto de validación",
+      "c) Conjunto de test",
+      "d) Conjunto de entrenamiento",
+      "e) Conjunto de normalización",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El Training Set es la porción de datos sobre la que iteran los algoritmos de corrección (como descenso del gradiente). Es el único autorizado para modificar las intensidades de los pesos sinápticos.",
+  },
+  {
+    id: "2025-05_q18",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Si durante el entrenamiento de una RNA, en un ciclo se obtiene un gradiente de 0, esto quiere decir...",
+    options: [
+      "a) Se está muy lejos de un mínimo.",
+      "b) Se está muy cerca de un mínimo, pero no en él.",
+      "c) Se está en un mínimo, y es el global.",
+      "d) Se está en un mínimo, pero no se sabe si es el global o uno local.",
+      "e) El error es 0.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Cuando el gradiente es 0, el algoritmo está en un mínimo de la función y cesa de actualizar pesos. Sin embargo, debido a la no linealidad de la superficie de error, no puede garantizar si es el mínimo global o uno local.",
+  },
+  {
+    id: "2025-05_q19",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Un perceptrón (sin capas ocultas) no puede implementar una puerta lógica con la función",
+    options: [
+      "a) AND",
+      "b) OR",
+      "c) EXOR",
+      "d) NOT",
+      "e) Puede hacer cualquiera de las anteriores",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Minsky y Papert demostraron que un perceptrón monocapa solo puede resolver problemas linealmente separables. El EXOR (OR Exclusivo) es el paradigma de problema no linealmente separable, imposible para un perceptrón sin capas ocultas.",
+  },
+  {
+    id: "2025-05_q20",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "El número de neuronas de entrada de un perceptrón multicapa",
+    options: [
+      "a) Lo puede fijar el usuario como quiera",
+      "b) Depende del problema a resolver",
+      "c) Debe ser igual al número de neuronas de salida, y lo puede fijar el usuario como quiera",
+      "d) Debe ser igual al número de neuronas de salida, pero depende del problema a resolver",
+      "e) Debe ser distinto al número de neuronas de salida",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La capa de entrada es un canal pasivo que recibe los estímulos externos. Su número de neuronas está inexorablemente determinado por el número de variables o características (features) de los patrones del problema a resolver.",
+  },
+  {
+    id: "2025-05_q21",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "La función de transferencia de las neuronas de un perceptrón multicapa",
+    options: [
+      "a) Son solamente lineales",
+      "b) Son solamente umbrales",
+      "c) Son solamente de tipo sigmoidal",
+      "d) Son solamente de tipo logarítmico",
+      "e) Todas son falsas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Es falso decir 'solamente' de un tipo. La red puede combinar diferentes funciones: no lineales (sigmoide, tanh) en capas ocultas para ser aproximador universal, y lineales en la capa de salida para problemas de regresión.",
+  },
+  {
+    id: "2025-05_q22",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Si a un perceptrón multicapa entrenado se le presenta un patrón en una zona donde no había patrones de entrenamiento...",
+    options: [
+      "a) Dará error en su funcionamiento",
+      "b) Dará una salida de 0 siempre",
+      "c) Dará una salida de -1 siempre",
+      "d) Dará una salida de 1 siempre",
+      "e) Dará una salida arbitraria e imprevisible",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Las RNA son excelentes interpolando pero pésimas extrapolando. Ante un patrón en un área sin datos de entrenamiento, la red extrapolará basándose en fronteras lejanas, devolviendo una salida completamente arbitraria e imprevisible.",
+  },
+  {
+    id: "2025-05_q23",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Entrenar una RNA mediante un algoritmo basado en el gradiente descendente tiene el problema de que",
+    options: [
+      "a) Nunca va a encontrar el mínimo global.",
+      "b) Al acercarse a un mínimo, se va a oscilar de un lado a otro, sin lograr pararse en él.",
+      "c) Se va a acercar a un mínimo con incrementos muy pequeños.",
+      "d) Es posible que se quede parado en algún mínimo local.",
+      "e) Va a necesitar un número muy alto de ciclos para alcanzar un error aceptable.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El descenso de gradiente es susceptible topológicamente: una vez que alcanza un punto con gradiente 0 (un mínimo), el aprendizaje cesa, sin poder discernir si es el mínimo global o un mínimo local subóptimo.",
+  },
+  {
+    id: "2025-05_q24",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Para valorar cómo de bien está entrenada una RNA (y lo bien que generaliza), es necesario mirar el error",
+    options: [
+      "a) En el conjunto de entrenamiento",
+      "b) En el conjunto de validación",
+      "c) En el conjunto de test",
+      "d) En el ciclo de entrenamiento con menor gradiente",
+      "e) En el ciclo de entrenamiento con menor error de entrenamiento",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La verdadera medida de generalización se obtiene con el conjunto de test, estrictamente virgen, que no ha intervenido ni en el ajuste de pesos ni en la parada temprana.",
+  },
+  {
+    id: "2025-05_q25",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "En la técnica de parada temprana, una vez finalizado el proceso de entrenamiento, la RNA que se devuelve tiene unos pesos que son",
+    options: [
+      "a) siempre los del último ciclo de entrenamiento realizado.",
+      "b) siempre correspondientes al ciclo con menor error de entrenamiento.",
+      "c) correspondientes al ciclo con menor error de validación.",
+      "d) correspondientes al ciclo con menor error de test.",
+      "e) correspondientes al ciclo con menor gradiente.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "En Early Stopping, el algoritmo devuelve la topología congelada de la época donde el error de validación registró su valor histórico más bajo, ya que es ahí donde se demuestra la mayor capacidad de generalización.",
+  },
+  {
+    id: "2025-05_q26",
+    exam: "2025-05",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Para usar una RNA para resolver un problema de clasificación con dos clases, sin posibilidad de que un patrón no pertenezca a alguna de las dos clases, el número de neuronas de salida que hay que usar, según lo visto en las clases de teoría, es:",
+    options: ["a) 1", "b) 2", "c) 3", "d) 4", "e) 5"],
+    correctAnswer: "a",
+    explanation:
+      "En clasificación estrictamente dicotómica, basta con 1 neurona en la capa de salida con función sigmoidal o escalón: valor bajo (0) = clase A, valor alto (1) = clase B.",
+  },
+  {
+    id: "2025-05_q27",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "En una red SOM, la capa de competición está compuesta por:",
+    options: [
+      "a) Neuronas que generan la salida supervisada.",
+      "b) Neuronas conectadas entre sí por enlaces recursivos.",
+      "c) Neuronas que compiten por representar el patrón de entrada.",
+      "d) Neuronas que codifican el error de la red.",
+      "e) Todas son correctas.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "En el aprendizaje competitivo de SOM, cuando un vector de datos entra, las neuronas de la capa de salida calculan su distancia euclídea y compiten. La más cercana (BMU) gana el derecho de actualizar sus pesos y los de sus vecinas.",
+  },
+  {
+    id: "2025-05_q28",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué mide el error de cuantización medio en una red SOM?",
+    options: [
+      "a) La distancia media entre los vectores de entrada y sus neuronas ganadoras (BMU).",
+      "b) El número de patrones correctamente clasificados.",
+      "c) El número de neuronas entrenadas.",
+      "d) La diferencia entre la salida deseada y la obtenida.",
+      "e) El grado de vecindad entre neuronas.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Al ser SOM no supervisado, no hay salida deseada. El Error de Cuantización evalúa la adaptación geométrica midiendo la distancia media entre cada vector de entrada y su BMU correspondiente.",
+  },
+  {
+    id: "2025-05_q29",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "En una red SOM, la neurona ganadora es aquella que:",
+    options: [
+      "a) Tiene el peso con mayor valor.",
+      "b) Tiene la mayor activación en la capa de entrada.",
+      "c) Es más cercana al patrón de entrada según una medida de distancia.",
+      "d) Ha sido activada más veces durante el entrenamiento.",
+      "e) Tiene mayor número de conexiones sinápticas.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La BMU se determina por la menor distancia matemática (típicamente euclidiana) entre su vector de pesos y el vector de entrada. No depende de activaciones previas ni del valor absoluto de los pesos.",
+  },
+  {
+    id: "2025-05_q30",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué función se utiliza habitualmente para determinar la similitud entre una neurona y un patrón de entrada en una SOM?",
+    options: [
+      "a) Distancia de Manhattan",
+      "b) Producto escalar",
+      "c) Distancia Euclídea",
+      "d) Entropía cruzada",
+      "e) Función sigmoidal",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La métrica estándar implementada en el motor geométrico de las redes SOM para medir la similitud es la distancia euclídea clásica.",
+  },
+  {
+    id: "2025-05_q31",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes es un problema común de las redes SOM?",
+    options: [
+      "a) No permiten reducción de dimensionalidad.",
+      "b) Siempre requieren entrenamiento supervisado.",
+      "c) Algunas neuronas pueden no ser entrenadas si están alejadas del espacio de entrada.",
+      "d) No pueden representar relaciones topológicas.",
+      "e) No necesitan inicialización de pesos.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "El SOM tiene una cuadrícula de tamaño fijo. Si los pesos iniciales de algunas neuronas caen muy lejos de los datos y el radio de vecindad se encoge rápido, esas neuronas nunca ganarán la competición, quedando como 'neuronas muertas'.",
+  },
+  {
+    id: "2025-05_q32",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "En una red SOM, ¿qué ocurre con el tamaño del vecindario a lo largo del entrenamiento?",
+    options: [
+      "a) Permanece constante.",
+      "b) Aumenta progresivamente.",
+      "c) Disminuye con el tiempo.",
+      "d) Se elimina tras la fase de aprendizaje.",
+      "e) Se calcula de forma aleatoria.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "En la fase inicial de ordenación, el radio de vecindad es amplio para organizar la topología global. En la fase de convergencia, el vecindario se encoge progresivamente para realizar ajustes finos sin desestabilizar el mapa.",
+  },
+  {
+    id: "2025-05_q33",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "En la fase de operación de una red SOM:",
+    options: [
+      "a) Se modifican los pesos de las neuronas.",
+      "b) Se entrena la red con nuevos datos.",
+      "c) Se categoriza un patrón según la neurona más similar.",
+      "d) Se actualiza la topología de la red.",
+      "e) No intervienen las neuronas de entrada.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Una vez finalizado el entrenamiento, los pesos se congelan y la red entra en fase operativa: recibe nuevos datos y los proyecta o categoriza en la neurona vencedora más cercana, sin modificar su estructura.",
+  },
+  {
+    id: "2025-05_q34",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué representa el vector de pesos de una neurona en la capa de competición de una SOM?",
+    options: [
+      "a) La tasa de aprendizaje local.",
+      "b) El error de representación de dicha neurona.",
+      "c) El patrón de entrada más común que ha activado esa neurona.",
+      "d) Un prototipo o centroide que representa un grupo de patrones.",
+      "e) El número de veces que ha sido ganadora.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Gracias al aprendizaje competitivo, las neuronas se desplazan hacia los núcleos de densidad de los datos. Cada vector de pesos se convierte en un centroide o prototipo representativo que agrupa a todos los patrones similares de su entorno.",
+  },
+  {
+    id: "2025-05_q35",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes tareas es especialmente adecuada para una red SOM?",
+    options: [
+      "a) Predicción de valores numéricos.",
+      "b) Agrupamiento y visualización de datos de alta dimensión.",
+      "c) Traducción automática de lenguas.",
+      "d) Detección de anomalías supervisada.",
+      "e) Reconocimiento de voz con salida categórica.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La máxima utilidad del SOM es la reducción de dimensionalidad y clustering no supervisado: mapea datos de alta dimensionalidad sobre una malla 2D comprensible para el humano, preservando relaciones topológicas.",
+  },
+  {
+    id: "2025-05_q36",
+    exam: "2025-05",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué diferencia clave tienen los modelos GCS frente a SOM?",
+    options: [
+      "a) No utilizan aprendizaje no supervisado.",
+      "b) Ajustan dinámicamente la arquitectura durante el entrenamiento.",
+      "c) No permiten visualización de datos.",
+      "d) Solo funcionan con entradas binarias.",
+      "e) No usan distancia euclídea para calcular similitud.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El SOM tiene topología y número de neuronas fijo. Las GCS (Growing Cell Structures) poseen plasticidad: insertan o eliminan progresivamente neuronas durante el entrenamiento, concentrando recursos en regiones con mayor error.",
+  },
+  {
+    id: "2025-05_q37",
+    exam: "2025-05",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      'La palabra "Fitness" en términos de un Algoritmo Genético es...',
+    options: [
+      "a) Es una forma de intercambiar material genético entre varios individuos de la población",
+      "b) Una forma o función de construcción de los individuos para obtener la población",
+      "c) Una operación genética que cambia la composición de los descendientes",
+      "d) El valor que permite evaluar lo adaptado que está cada individuo de la población para obtener la solución del problema que pretende resolver",
+      "e) Es una estrategia de mantener al mejor individuo y copiarlo directamente a la siguiente generación para evitar perder la mejor solución obtenida",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "La función de Fitness (aptitud) es el corazón métrico del AG: examina cada cromosoma y le asigna una puntuación que refleja la bondad de su solución, dictaminando sus probabilidades de sobrevivir y reproducirse.",
+  },
+  {
+    id: "2025-05_q38",
+    exam: "2025-05",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes es una técnica de mutación en los Algoritmos Genéticos?",
+    options: [
+      "a) Uniforme",
+      "b) Máscara",
+      "c) Intercambio",
+      "d) Génesis",
+      "e) Punto Flotante",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Uniforme y Máscara son tipos de operadores de cruce. Punto Flotante es una forma de codificación. La mutación por Intercambio (Swap Mutation) es una técnica válida que permuta aleatoriamente la ordenación interna del genotipo de un individuo.",
+  },
+  {
+    id: "2025-05_q39",
+    exam: "2025-05",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question: "En Programación Genética,",
+    options: [
+      "a) El cromosoma nunca representa la posible solución a las variables del problema",
+      "b) Se aplican los operadores de cruce y mutación para invertir la población de cromosomas",
+      "c) La forma de representar los individuos es mediante un árbol, siendo la principal diferencia con los Algoritmos Genéticos",
+      "d) La forma de codificar los individuos es igual a los Algoritmos Genéticos, cambia la forma de aplicar el cruce y la mutación",
+      "e) No existe ninguna técnica en Computación Evolutiva denominada Programación Genética",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La principal diferencia de la Programación Genética frente a los AG es la codificación: en AG se usan vectores o cadenas planas, mientras que en PG la representación es en forma de árbol sintáctico (operadores en nodos internos, variables/constantes en hojas).",
+  },
+  {
+    id: "2025-05_q40",
+    exam: "2025-05",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      'El procedimiento de combinar el "Ascenso de colinas" o "hill-climbing" con los Algoritmos Genéticos',
+    options: [
+      "a) Es una técnica de búsqueda donde su principal problema es la convergencia prematura",
+      "b) Es una técnica de búsqueda aplicada en los algoritmos genéticos donde su principal problema es que no garantiza la obtención del óptimo global",
+      "c) Sólo se puede aplicar en programación genética.",
+      "d) Está inspirada en los principios de evolución de Lamark para mejorar la convergencia del proceso evolutivo.",
+      "e) Es una técnica que realiza una búsqueda aleatoria en el espacio de soluciones hasta encontrar el máximo o mínimo global",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Cuando un individuo del AG se optimiza localmente (hill-climbing) y transmite esa mejora a su descendencia, se está emulando la teoría de Lamarck de herencia de caracteres adquiridos. Esta hibridación (algoritmos meméticos) mejora la convergencia.",
+  },
+  {
+    id: "2025-05_q41",
+    exam: "2025-05",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "En un algoritmo genético, ¿qué nombre recibe el proceso por el cual el mejor individuo de la población recibe una fase de ajuste local y es insertado de esa manera en la población?",
+    options: [
+      "a) Seeding",
+      "b) Elitismo",
+      "c) Aprendizaje lamarckiano",
+      "d) Steady-state",
+      "e) Hill-climbing",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Si se aplica optimización local a un individuo y se altera su genotipo antes de insertarlo en la población para que transmita dichas virtudes, se aplica Aprendizaje Lamarckiano. Si la mejora no se codificara en el genoma, sería Efecto Baldwin.",
+  },
+  {
+    id: "2025-05_q42",
+    exam: "2025-05",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "En una población de 40 individuos, se aplica una tasa de cruce del 50%, una tasa de mutación del 10%, y se conserva un 20% de los mejores individuos mediante elitismo. ¿Cuál de las siguientes combinaciones es correcta para cada generación?",
+    options: [
+      "a) 20 individuos por cruce, 4 por mutación, 8 copiados sin cambios",
+      "b) 20 individuos por cruce, 2 por mutación, 6 copiados sin cambios",
+      "c) 18 individuos por cruce, 4 por mutación, 8 copiados sin cambios",
+      "d) 16 individuos por cruce, 4 por mutación, 10 copiados sin cambios",
+      "e) 20 individuos por cruce, 6 por mutación, 6 copiados sin cambios",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Cruce 50%: 40×0.50 = 20. Mutación 10%: 40×0.10 = 4. Elitismo 20%: 40×0.20 = 8. Las cifras 20, 4 y 8 corresponden a la opción A.",
+  },
+  // ============================================================
+  // JULIO 2025 EXAM
+  // ============================================================
+  // --- Simbólica ---
+  {
+    id: "2025-07_q1",
+    exam: "2025-07",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Como modelo de representación del conocimiento, las reglas de producción...",
+    options: [
+      "a) No suelen almacenar conocimiento heurístico.",
+      "b) Deben combinarse para poder formar unidades completas de razonamiento.",
+      "c) Siempre involucran condiciones y acciones explícitas.",
+      "d) Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La característica definitoria de las reglas de producción es que se organizan siempre con una arquitectura explícita IF-THEN (condición-acción). La a) es falsa (incorporan conocimiento heurístico de forma natural). La b) es falsa (cada regla constituye una unidad completa de razonamiento por sí sola).",
+  },
+  {
+    id: "2025-07_q2",
+    exam: "2025-07",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Cuando una regla se activa, ¿de qué depende su ejecución?",
+    options: [
+      "a) De la estrategia de resolución de conflictos.",
+      "b) Del contenido de la memoria activa.",
+      "c) De las metas establecidas como hipótesis de trabajo.",
+      "d) De todas las anteriores.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La memoria activa determina qué reglas se activan (fase de emparejamiento). Pero una vez que hay un conjunto de reglas activadas (conjunto conflicto), la decisión de cuál se ejecuta depende exclusivamente de la estrategia de resolución de conflictos del motor de inferencias.",
+  },
+  {
+    id: "2025-07_q3",
+    exam: "2025-07",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question: "Los agentes basados en metas...",
+    options: [
+      "a) Basan su comportamiento en reflejos al estado del mundo.",
+      "b) Mantienen un conocimiento interno del mundo y las consecuencias de sus acciones.",
+      "c) Consideran la bondad de los estados para alcanzar los estados finales.",
+      "d) Todas son correctas.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Los agentes basados en metas llevan un registro del estado interno, lo combinan con un modelo de cómo sus acciones cambian el entorno, y usan información sobre su meta para planificar. La opción a) es de agentes reactivos; la c) es de agentes basados en utilidad.",
+  },
+  {
+    id: "2025-07_q4",
+    exam: "2025-07",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Sea un dominio con M(1),M(2),M(3) e I(1),I(2). Con R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(1)→¬M(1)∧M(2), R3: I(2)∧¬I(1)→M(1)∧M(3). ¿Cuántos posibles conjuntos manifestación-interpretación contiene la BLR?",
+    options: ["a) 7", "b) 32", "c) 16", "d) 11"],
+    correctAnswer: "a",
+    explanation:
+      "BLE = 2^5 = 32 complejos. R2: si I(1)=1 → M(1)=0, M(2)=1 → 4 casos válidos. R3: si I(2)=1, I(1)=0 → M(1)=1, M(3)=1 → 2 casos válidos. R1: si I(1)=I(2)=0 → todas las M deben ser 0 → 1 caso válido. Total: 4+2+1 = 7 complejos en la BLR.",
+  },
+  {
+    id: "2025-07_q5",
+    exam: "2025-07",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Asumiendo M(1) verdadero, la solución será...",
+    options: [
+      "a) I(1) ∧ I(2)",
+      "b) I(1) ∧ ¬I(2)",
+      "c) Ambas las anteriores",
+      "d) Ninguna de las anteriores",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Si I(1) es verdadero, M(1) es forzosamente falso por R2. Los únicos casos con M(1)=1 en la BLR son los 2 derivados de R3, donde I(1)=0 e I(2)=1: ¬I(1)∧I(2). Al no aparecer esta expresión exacta en a) ni b), la correcta es d).",
+  },
+  {
+    id: "2025-07_q6",
+    exam: "2025-07",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Partiendo del problema original, ¿qué manifestación es más probable cuando ambas interpretaciones son verdaderas?",
+    options: [
+      "a) M(1)",
+      "b) M(2)",
+      "c) M(3)",
+      "d) Son equiprobables",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Si I(1)=1 e I(2)=1, por R2 (I(1)→¬M(1)∧M(2)): M(2) debe darse inexcusablemente (probabilidad 1.0), M(1) jamás puede darse (probabilidad 0), y M(3) no está restringida (aleatoria). La manifestación absolutamente segura es M(2).",
+  },
+  {
+    id: "2025-07_q7",
+    exam: "2025-07",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "La ejecución de las reglas seleccionadas, en la fase de acción, concluye con...",
+    options: [
+      "a) El proceso inferencial",
+      "b) La verificación de si continuar o no el proceso cíclico",
+      "c) La actualización de la memoria activa y el motor de inferencias",
+      "d) Ambas b) y c) son correctas",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La fase de ejecución concluye procesando el consecuente de la regla, lo que modifica irrevocablemente los hechos del sistema, produciendo la actualización de la Memoria Activa (introduciendo nuevo conocimiento o alterando el actual).",
+  },
+  {
+    id: "2025-07_q8",
+    exam: "2025-07",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "Los procedimientos de búsqueda en profundidad...",
+    options: [
+      "a) Demandan más recursos computacionales (en términos espaciales) que los basados en anchura",
+      "b) No son completos en espacios de estados finitos si están basados en grafos",
+      "c) Están limitados computacionalmente por el tamaño del espacio de estados si están basados en árboles",
+      "d) Ninguna de las anteriores es correcta",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "a) Falsa: DFS es más eficiente en memoria O(b·m) vs BFS O(b^d). b) Falsa: la versión de grafos con registro de visitados sí es completa en espacios finitos. c) Falsa: en árboles con ciclos, la profundidad puede ser infinita.",
+  },
+  {
+    id: "2025-07_q9",
+    exam: "2025-07",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "El conjunto de complejos manifestación-interpretación...",
+    options: [
+      "a) Representa el conjunto total de situaciones posibles en el problema",
+      "b) No es completo si el conocimiento no es categórico",
+      "c) Presenta elementos mutuamente excluyentes",
+      "d) Ninguna de las anteriores es correcta",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "El conjunto M×I compone la Base Lógica Expandida (BLE), que captura todas las situaciones o escenarios posibles del problema antes de aplicar la función de conocimiento E que filtra los complejos incompatibles.",
+  },
+  {
+    id: "2025-07_q10",
+    exam: "2025-07",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Se dispone de un sistema de producción. El cliente necesita añadir dos reglas más. ¿Qué se debería cambiar en el motor de inferencias?",
+    options: [
+      "a) Se deben insertar las nuevas reglas",
+      "b) Se deben insertar las nuevas reglas y los hechos que sean resultado de dichas reglas",
+      "c) Se debe rehacer completamente el sistema de reglas",
+      "d) Nada",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El Motor de Inferencias es un componente fijo de control. Todo el conocimiento nuevo se añade exclusivamente a la Base de Reglas. Ante nueva información, el motor de inferencias no experimenta ningún cambio.",
+  },
+  {
+    id: "2025-07_q11",
+    exam: "2025-07",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question: "Si hablamos de sistemas de producción...",
+    options: [
+      "a) La base de conocimientos está formada por la base de reglas y el motor de inferencias",
+      "b) Los sistemas dirigidos por los datos son más específicos, porque ejecutarán todas las reglas disponibles en función de la información introducida",
+      "c) La memoria activa almacena todos los cambios de estado de nuestro sistema, de forma que representa siempre nuestro estado actual",
+      "d) El motor de inferencias es el responsable de interaccionar con el mundo exterior",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La Memoria Activa actúa como la pizarra del sistema, albergando los hechos instantáneos y almacenando cada variación y nuevo estado tras la fase de acción. El motor de inferencias NO forma parte de la Base de Conocimientos, y las interfaces (no el motor) se encargan de la comunicación exterior.",
+  },
+  // --- Subsimbólica ---
+  {
+    id: "2025-07_q12",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué se encuentra en el 'core' de los principales avances tecnológicos actuales y de los próximos años?",
+    options: [
+      "a) La rama de la inteligencia artificial subsimbólica.",
+      "b) La rama de la inteligencia artificial simbólica.",
+      "c) La computación cuántica.",
+      "d) Todas las anteriores.",
+      "e) Ninguna de las anteriores.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Estamos en la tercera primavera de la IA. El núcleo tecnológico actual (Deep Learning, ChatGPT, Visión por Computador) está impulsado única y exclusivamente por el paradigma conexionista o IA subsimbólica.",
+  },
+  {
+    id: "2025-07_q13",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores biológicos?",
+    options: [
+      "a) Donald Hebb.",
+      "b) Santiago Ramón y Cajal.",
+      "c) Warren McCulloch.",
+      "d) Todos los anteriores.",
+      "e) Ninguno de los anteriores.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Cajal descubrió la estructura de la neurona, Hebb postuló la regla de aprendizaje sináptico, y McCulloch (con Pitts) trasladó esa biología a un modelo lógico-matemático en 1943. Los tres son precursores biológicos.",
+  },
+  {
+    id: "2025-07_q14",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué pretende la IA como ciencia y como ingeniería?",
+    options: [
+      "a) Conocer cómo funcionan los seres inteligentes y qué pueden hacer con la ayuda de computadores.",
+      "b) Cómo hacer que los computadores hagan las cosas que hacen las personas inteligentes.",
+      "c) Cómo superar el Régimen de Lovelace.",
+      "d) Construir o implementar Sistemas Inteligentes: SCX, SS.EE, ...",
+      "e) Todas las anteriores son correctas.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La IA tiene doble objetivo: como Ciencia persigue entender la mente y superar el Régimen de Lovelace; como Ingeniería busca la automatización práctica y construcción de Sistemas Inteligentes (Conexionistas, Expertos, etc.).",
+  },
+  {
+    id: "2025-07_q15",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Características específicas de los sistemas inteligentes?",
+    options: [
+      "a) Intencionalidad: comportamiento guiado por metas.",
+      "b) Incapacidad de conocer y proyectar el 'hoy sostenido'.",
+      "c) Ser metódico, no innovador.",
+      "d) Tener efecto serendipico.",
+      "e) Ninguna de las anteriores está relacionada.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "A diferencia de los programas tradicionales con algoritmos fijos, los sistemas inteligentes (formulados como Agentes) se caracterizan por su intencionalidad: perciben su entorno, evalúan un estado interno y toman decisiones para maximizar la satisfacción de sus metas.",
+  },
+  {
+    id: "2025-07_q16",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál es el principal trabajo científico en el que se basa la IA?",
+    options: [
+      'a) "The Nature of Explanation" (W. Craik).',
+      'b) "Behaviour, purpose and teleology" (Wiener, Rosenblueth y Bigelow).',
+      'c) "A logical calculus of the ideas immanent in nervous activity" (McCulloch y Pitts).',
+      "d) Todas las anteriores son correctas.",
+      "e) Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El nacimiento de la IA bebe de tres pilares de 1943: la propuesta cibernética de Wiener, la capacidad de usar modelos lógicos de Craik, y la representación matemática de la neurona de McCulloch y Pitts.",
+  },
+  {
+    id: "2025-07_q17",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      '¿Quién acuña por primera vez y tal como se entiende hoy la expresión "Artificial Intelligence"?',
+    options: [
+      "a) John McCarthy.",
+      "b) Ada Lovelace.",
+      "c) Alan Newell y Herbert Simon.",
+      "d) Gottfried Leibniz.",
+      "e) Alan Turing.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "John McCarthy acuñó el término 'Inteligencia Artificial' para la conferencia de Dartmouth de 1956, el hito fundacional de la IA moderna que reunió a Minsky, Newell, Simon y otros.",
+  },
+  {
+    id: "2025-07_q18",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Al aplicar el gradiente descendente para modificar los pesos de las conexiones de una RNA...",
+    options: [
+      "a) Si este es cero, indica que el mínimo está lejos y es necesario realizar más saltos.",
+      "b) Si es alto, se realiza un salto pequeño en el espacio de búsqueda.",
+      "c) Si es bajo, se realiza un salto grande en el espacio de búsqueda.",
+      "d) Es necesario modificar los pesos en sentido (signo) dictado por el gradiente.",
+      "e) Es necesario modificar los pesos en sentido (signo) contrario al dictado por el gradiente.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "El gradiente apunta en la dirección de máximo crecimiento de la función de error. Para reducir el error, los pesos deben ajustarse desplazándose en el sentido opuesto (restando) al vector gradiente.",
+  },
+  {
+    id: "2025-07_q19",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "La RNA formada por una única neurona, sin capas ocultas, con una función de transferencia umbral, pensada para resolver problemas de clasificación, se llama...",
+    options: [
+      "a) ADALINE.",
+      "b) Backpropagation.",
+      "c) Perceptrón.",
+      "d) Perceptrón multicapa.",
+      "e) La b) y la d) son correctas.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "El Perceptrón simple (Rosenblatt) es el modelo más elemental: capa de entrada y salida sin ocultas, con función de transferencia de tipo escalón o umbral (hard limiter). El ADALINE es similar pero usa función de transferencia lineal.",
+  },
+  {
+    id: "2025-07_q20",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Para utilizar un perceptrón multicapa para resolver el problema AND...",
+    options: [
+      "a) No es necesario utilizar capas ocultas.",
+      "b) Es necesario utilizar una capa oculta (con el número suficiente de neuronas), y no hacen falta más.",
+      "c) Es necesario utilizar dos capas ocultas...",
+      "d) Es necesario utilizar tres capas ocultas...",
+      "e) Es necesario utilizar más de tres capas ocultas...",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "El operador AND (y también OR) es un problema linealmente separable. Un hiperplano o línea recta puede dividir el espacio de soluciones. Por tanto, una red de una sola capa (Perceptrón simple) puede resolverlo sin capas ocultas.",
+  },
+  {
+    id: "2025-07_q21",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "El número de neuronas ocultas de un perceptrón multicapa...",
+    options: [
+      "a) Lo puede fijar el usuario como quiera.",
+      "b) Depende del número de entradas y salidas del problema a resolver.",
+      "c) Debe ser igual al número de neuronas de entrada...",
+      "d) Debe ser igual al número de neuronas de entrada, pero depende del problema...",
+      "e) Debe ser igual al número de neuronas de salida...",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "El número de neuronas ocultas es un hiperparámetro que el diseñador configura a voluntad. No está dictaminado matemáticamente por las entradas y salidas. En la práctica se ajusta mediante prueba y error según la complejidad del problema.",
+  },
+  {
+    id: "2025-07_q22",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Si al entrenar una RNA se utiliza una tasa de aprendizaje muy alta...",
+    options: [
+      "a) Se acercará al mínimo con cambios muy pequeños.",
+      "b) Se correrá el riesgo de oscilar en torno al mínimo.",
+      "c) El entrenamiento se parará siempre en un mínimo local.",
+      "d) El entrenamiento se parará siempre en un mínimo global.",
+      "e) Se sobreentrenará la red.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Una tasa de aprendizaje muy alta genera saltos enormes, cruzando de un lado al otro del valle del error repetidamente, provocando oscilaciones caóticas que impiden aterrizar y converger en el fondo del mínimo.",
+  },
+  {
+    id: "2025-07_q23",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Las neuronas de la capa de entrada de un perceptrón multicapa...",
+    options: [
+      "a) Aplican la función de transferencia a las entradas que reciben.",
+      "b) Emiten su salida como la suma de las entradas multiplicadas por los pesos.",
+      "c) Emiten su salida como el resultado de aplicar la función de transferencia a la suma de las entradas.",
+      "d) Emiten su salida como el resultado de aplicar la función de transferencia a la suma del bias...",
+      "e) Todas son falsas.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Por convención estructural, la capa de entrada no realiza ningún tipo de computación: ni cálculo del potencial postsináptico, ni suma ponderada, ni aplicación de función de activación. Solo transmite el patrón de entrada hacia la primera capa oculta.",
+  },
+  {
+    id: "2025-07_q24",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cómo calcula el algoritmo de backpropagation el error en cada capa oculta?",
+    options: [
+      "a) Comparando la salida obtenida y la salida deseada para esa capa oculta.",
+      "b) Poniéndolo en función del error calculado en la siguiente capa.",
+      "c) No lo calcula, puesto que no es necesario modificar los pesos de las capas ocultas.",
+      "d) Comparando el valor de los pesos de esa capa con los de la capa siguiente.",
+      "e) Comparando el valor de la tasa de aprendizaje con el gradiente.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Las capas ocultas no disponen de una salida deseada. Backpropagation resuelve esto calculando el gradiente en las neuronas ocultas de forma recursiva a partir del error de la capa inmediatamente posterior, ponderado por los pesos de conexión.",
+  },
+  {
+    id: "2025-07_q25",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "En la técnica de parada temprana, para evitar el sobreentrenamiento, es necesario controlar el proceso de entrenamiento mediante un conjunto de...",
+    options: [
+      "a) test.",
+      "b) entrenamiento.",
+      "c) prueba.",
+      "d) validación.",
+      "e) aprendizaje.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "La parada temprana introduce un conjunto de validación que no ajusta pesos pero monitorea el error al final de cada época. Cuando el error de entrenamiento baja pero el de validación sube, la red está memorizando y el entrenamiento se aborta.",
+  },
+  {
+    id: "2025-07_q26",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      '¿Cómo codificarías una salida de una RNA categórica, cuyos valores pueden ser "coche/moto/bicicleta/avión"?',
+    options: [
+      'a) Como 2 valores booleanos, codificando las 4 categorías como "00/01/10/11".',
+      "b) No hace falta codificarla, la RNA puede generar esa salida categórica.",
+      'c) Como 4 valores booleanos, codificando las 4 categorías como "1000/0100/0010/0001".',
+      "d) Como un valor real, que toma 4 valores distintos equiespaciados.",
+      "e) La c) y la d) son correctas.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La representación de clases categóricas independientes requiere One-Hot Encoding. Un único valor real equiespaciado introduciría un sesgo de orden (un avión no 'vale' más que un coche), obstaculizando la clasificación.",
+  },
+  {
+    id: "2025-07_q27",
+    exam: "2025-07",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "La función de transferencia de las neuronas de una Red de Neuronas Artificiales...",
+    options: [
+      "a) Nunca debe ser lineal en la capa de salida.",
+      "b) Nunca debe ser logarítmica sigmoidal en las capas ocultas (si hay).",
+      "c) Nunca debe ser tangente sigmoidal hiperbólica en las capas ocultas (si hay).",
+      "d) Nunca debe ser lineal en las capas ocultas (si hay).",
+      "e) Nunca debe ser logarítmica sigmoidal en la capa de salida.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Si las capas ocultas usan funciones lineales, toda la arquitectura multicapa se simplifica algebraicamente a una sola capa equivalente, destruyendo la cualidad de aproximador universal e imposibilitando resolver problemas no lineales como XOR.",
+  },
+  {
+    id: "2025-07_q28",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál es el objetivo principal de las redes SOM en el contexto del aprendizaje no supervisado?",
+    options: [
+      "a) Predecir valores futuros a partir de datos históricos.",
+      "b) Clasificar datos con base en etiquetas conocidas.",
+      "c) Encontrar estructuras o patrones en los datos sin conocer su categoría.",
+      "d) Corregir errores de clasificación.",
+      "e) Generar nuevas muestras sintéticas.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Los SOM operan bajo paradigma no supervisado: carecen de etiquetas objetivo. Se alimentan de datos y ajustan libremente su topología para descubrir distribuciones ocultas y realizar agrupamientos basándose en la similitud de las entradas.",
+  },
+  {
+    id: "2025-07_q29",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué función tiene el parámetro de vecindad en una red SOM?",
+    options: [
+      "a) Controlar el número de entradas.",
+      "b) Medir el error de cuantización.",
+      "c) Actualizar también las neuronas cercanas a la ganadora.",
+      "d) Determinar el número de capas de la red.",
+      "e) Ajustar la tasa de aprendizaje.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "El parámetro de vecindad hace que cuando una neurona (BMU) gana, no solo ella actualiza sus pesos, sino también todas las neuronas dentro de su radio de vecindad, garantizando que celdas próximas codifiquen características similares.",
+  },
+  {
+    id: "2025-07_q30",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué ocurre con la tasa de aprendizaje (α) durante el entrenamiento de una SOM?",
+    options: [
+      "a) Aumenta con cada iteración.",
+      "b) Se mantiene constante.",
+      "c) Disminuye progresivamente.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Para estabilizar el mapa, el algoritmo transita de una fase de ordenación (α grande) a una fase de convergencia fina donde la tasa de aprendizaje decae y disminuye paulatinamente hasta volverse prácticamente nula.",
+  },
+  {
+    id: "2025-07_q31",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "¿Qué mide el error de cuantización en una SOM?",
+    options: [
+      "a) La tasa de aprendizaje óptima.",
+      "b) La distancia entre los pesos de la BMU y la entrada.",
+      "c) El número de conexiones no utilizadas.",
+      "d) El tiempo de entrenamiento.",
+      "e) La salida binaria del clasificador.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El Error de Cuantización (QE) es la medida de calidad estándar en SOM: calcula la distancia media (normalmente euclídea) entre cada vector de datos de entrada y el vector de pesos de su BMU.",
+  },
+  {
+    id: "2025-07_q32",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál es el tipo de aprendizaje que utilizan las redes SOM?",
+    options: [
+      "a) Supervisado.",
+      "b) No supervisado y competitivo.",
+      "c) Por refuerzo.",
+      "d) Hebbiano supervisado.",
+      "e) Supervisado jerárquico.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Las SOM aprenden sin tutor ni etiquetas (no supervisado). Además, usan paradigma competitivo: ante cada estímulo, las neuronas compiten para ver cuál es la más parecida al dato. Solo la ganadora y sus vecinas actualizan sus pesos.",
+  },
+  {
+    id: "2025-07_q33",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál es la principal utilidad de una red SOM?",
+    options: [
+      "a) Traducir idiomas en tiempo real.",
+      "b) Clasificación de imágenes con etiquetas.",
+      "c) Proyección de datos de alta dimensión a un espacio 2D para visualización.",
+      "d) Generación de lenguaje natural.",
+      "e) Detección de intrusos en redes.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La principal aplicación del SOM es la reducción de dimensionalidad: mapea datos de alta complejidad (n-dimensiones) sobre un mapa discreto 2D comprensible para el humano, preservando relaciones topológicas y vecindades originales.",
+  },
+  {
+    id: "2025-07_q34",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "¿Qué ventaja presenta GNG sobre SOM?",
+    options: [
+      "a) Usa aprendizaje supervisado.",
+      "b) Su estructura se adapta dinámicamente y puede eliminar nodos.",
+      "c) Solo necesita una capa de entrada.",
+      "d) Funciona mejor con datos lineales.",
+      "e) Utiliza funciones de activación sigmoide.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "A diferencia del SOM (malla rígida predefinida), GNG posee arquitectura constructiva y dinámica: puede hacer crecer el mapa añadiendo nodos en áreas de mayor error, y puede desconectar y eliminar nodos o aristas que resultan inútiles.",
+  },
+  {
+    id: "2025-07_q35",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué problema resuelve GNG respecto a GCS?",
+    options: [
+      "a) La dificultad para eliminar neuronas innecesarias.",
+      "b) El uso de etiquetas incorrectas.",
+      "c) La falta de paralelismo en la ejecución.",
+      "d) El exceso de supervisión.",
+      "e) La lentitud en el cálculo de distancias.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "GCS introdujo el crecimiento dinámico pero forzaba conexiones en triángulos perfectos (símplices 2D), lo que dificultaba eliminar neuronas obsoletas sin romper la red. GNG eliminó la restricción de triángulos, permitiendo crear o destruir enlaces libremente.",
+  },
+  {
+    id: "2025-07_q36",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué modelo de red es más adecuado para detectar cambios topológicos en los datos?",
+    options: [
+      "a) Red SOM.",
+      "b) Perceptrón multicapa.",
+      "c) Red GNG.",
+      "d) Red convolucional simple.",
+      "e) Red Hebbiana clásica.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "GNG es el más adecuado porque sus aristas flexibles le permiten mapear cualquier geometría. Si los datos cambian topológicamente, GNG elimina enlaces viejos (por edad) y genera nodos nuevos en las áreas activas, rastreando cambios dinámicos.",
+  },
+  {
+    id: "2025-07_q37",
+    exam: "2025-07",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué característica distingue al algoritmo GCS frente al SOM clásico?",
+    options: [
+      "a) No puede eliminar nodos durante el entrenamiento.",
+      "b) Permite añadir neuronas según el error acumulado.",
+      "c) Funciona únicamente con etiquetas conocidas.",
+      "d) Solo se usa para clasificación binaria.",
+      "e) No necesita una capa de entrada.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La característica fundacional del GCS es su naturaleza evolutiva: mientras el SOM exige predefinir el número de neuronas, el GCS comienza con una estructura mínima y permite añadir progresivamente nuevas neuronas en las regiones con mayor error de representación.",
+  },
+  {
+    id: "2025-07_q38",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      'El concepto de "sustitución de individuos" en Algoritmos Genéticos...',
+    options: [
+      'a) Se aplica en la estrategia de gestión de población denominada "Steady-state".',
+      "b) Se aplica siempre combinada con la estrategia elitista.",
+      "c) Es una estrategia para sustituir los parecidos en error en la población.",
+      "d) Es una estrategia para sustituir los peores individuos de la población.",
+      "e) No existe este concepto en Algoritmos Genéticos.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "En el enfoque generacional, toda la población se reemplaza en bloque. La sustitución de individuos individuales cobra importancia solo en AG de Estado Estacionario (Steady-State), donde en cada ciclo nacen pocos descendientes y se debe elegir a quién eliminar.",
+  },
+  {
+    id: "2025-07_q39",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      'En un Algoritmo Genético, el término "Generación"...',
+    options: [
+      "a) Representa cada ciclo de funcionamiento del Algoritmo.",
+      'b) En el mecanismo de gestión de población "Steady-State", representa el cambio de todos los individuos...',
+      "c) Representa seleccionar al mejor individuo de cada población...",
+      "d) Es el mecanismo de generación de la población inicial...",
+      "e) No existe este concepto en Algoritmos Genéticos.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Una generación define una iteración completa del motor evolutivo: evaluación del fitness, selección, recombinación (cruce), mutación y reemplazo para iniciar un nuevo ciclo con material de aptitud superior.",
+  },
+  {
+    id: "2025-07_q40",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "En los individuos de un sistema de Programación Genética...",
+    options: [
+      "a) Los terminales son operadores.",
+      "b) No puede haber nunca operadores aritméticos como nodos del árbol.",
+      "c) Los terminales pueden contener otros nodos e incluso subárboles.",
+      "d) La raíz nunca puede ser un operador.",
+      "e) Los terminales pueden ser constantes o variables.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "En PG, cada individuo es un árbol sintáctico: los nodos internos representan funciones operadoras (+, -, IF, AND) y las hojas o terminales corresponden a valores primitivos: variables del problema o constantes escalares.",
+  },
+  {
+    id: "2025-07_q41",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "Los operadores genéticos en Computación Evolutiva...",
+    options: [
+      "a) Son: selección, cruce, mutación y generación.",
+      "b) De cruce y mutación sirven para evolucionar los individuos de la población.",
+      "c) Son operaciones que simulan la recombinación natural... a cada individuo...",
+      "d) Sólo son aplicables sobre individuos de una población que sea siempre homogénea.",
+      "e) Sólo son aplicables sobre individuos de una población que sea siempre heterogénea.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El objetivo del cruce (entrelazar material de dos padres) y la mutación (añadir ruido estocástico) es generar variación e inyectar nuevo material útil, siendo el motor del cambio para que la población alcance zonas óptimas del espacio de búsqueda.",
+  },
+  {
+    id: "2025-07_q42",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question: "La técnica de Algoritmos Genéticos...",
+    options: [
+      "a) No funciona bien cuando existen múltiples mínimos locales en el espacio de búsqueda.",
+      "b) Permite resolver problemas en espacios de búsqueda donde existen múltiples mínimos locales.",
+      "c) Es una técnica de búsqueda exhaustiva de soluciones denominada 'técnica determinística'.",
+      "d) Sólo permite realizar regresión simbólica y búsqueda de máximos o mínimos en funciones...",
+      "e) No es conveniente utilizarla para resolver problemas no resolubles polinomialmente...",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Los AG, al ser estocásticos y manipular una población de soluciones simultáneas (búsqueda multipunto), tienen altas probabilidades de saltar y escapar de sub-óptimos, permitiendo resolver problemas con múltiples mínimos locales (NP-Hard).",
+  },
+  {
+    id: "2025-07_q43",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      'En un Algoritmo Genético, ¿qué significa el término "elitismo"?',
+    options: [
+      "a) No existe este concepto.",
+      "b) Solo es aplicable a la programación genética.",
+      "c) Es la estrategia de mantener los mejores individuos en la población.",
+      "d) Se encarga de buscar los mejores individuos y generar una nueva población con ellos.",
+      "e) La nueva población es generada a partir exclusivamente del mejor individuo (élite).",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "El elitismo es una red de seguridad: clona sin modificaciones al mejor individuo de la generación T pasándolo directamente a T+1, asegurando que el máximo progreso jamás retroceda aunque el cruce y mutación generen hijos mediocres.",
+  },
+  {
+    id: "2025-07_q44",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question: "En un algoritmo genético:",
+    options: [
+      "a) Si la tasa de mutación es cero, el algoritmo funciona porque el cruce hace que haya evolución.",
+      "b) Si la tasa de cruce es cero, la mutación hace que todos los individuos acumulen demasiados cambios.",
+      "c) Si la tasa de cruce es cero, la mutación genera variabilidad y el algoritmo de selección hace que haya evolución.",
+      "d) Si la tasa de cruce y la evolución son cero, el algoritmo...",
+      "e) Es imposible que el cruce y/o mutación sean cero.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Aunque lo óptimo es fusionar cruce y mutación, si el cruce se desactiva (tasa 0%), la mutación continúa introduciendo variabilidad y la selección salvaguarda los hallazgos valiosos. El algoritmo seguiría progresando como una Búsqueda Aleatoria Guiada.",
+  },
+  {
+    id: "2025-07_q45",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta?",
+    image: arbolPG,
+    options: [
+      "a) El conjunto de componentes terminales es sólo [1, 14].",
+      "b) Los componentes no terminales son X, Y, +, -.",
+      "c) La profundidad máxima del árbol es 3.",
+      "d) Se trata de un árbol invertido.",
+      "e) No puede representar a un individuo porque tiene que ser un vector de variables.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "En PG, las variables (X, Y) y constantes (1, 14) son nodos terminales (hojas), mientras que los operadores (+, -, *, /) son nodos no terminales (internos). La afirmación sobre la profundidad máxima del árbol es la única propiedad correcta.",
+  },
+  {
+    id: "2025-07_q46",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes elementos se utiliza habitualmente para simular organismos en vida artificial?",
+    options: [
+      "a) Programación Genética.",
+      "b) Autómatas celulares.",
+      "c) Neuronas.",
+      "d) Cromosomas.",
+      "e) Genes.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Dentro de las técnicas de Vida Artificial, los Autómatas Celulares son la herramienta clásica por excelencia. El ejemplo más célebre es el Juego de la Vida de Conway, donde cada célula evoluciona según el estado de sus vecinas.",
+  },
+  {
+    id: "2025-07_q47",
+    exam: "2025-07",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "Una de las principales ventajas de utilizar técnicas de vida artificial para resolver un problema complejo es:",
+    options: [
+      "a) Garantizar siempre la consecución de la mejor solución.",
+      "b) Reducir el número de datos necesarios para resolver el problema.",
+      "c) Permitir explorar soluciones alternativas a través de la evolución.",
+      "d) Usar reglas determinísticas para la resolución del problema.",
+      "e) Eliminar por completo la intervención humana en el diseño de algoritmos que resuelvan el problema.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Las técnicas de VA y computación evolutiva son heurísticas: no garantizan el óptimo global y se basan en procesos estocásticos. Su mayor ventaja es aprovechar el comportamiento emergente y la selección natural para descubrir soluciones alternativas creativas.",
+  },
+  // ============================================================
+  // JUNIO 2026 EXAM
+  // ============================================================
+  // --- Simbólica ---
+  {
+    id: "2026-06_q1",
+    exam: "2026-06",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística h, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo A*?",
+    image: grafo2026,
+    options: ["a) 22", "b) 26", "c) 35", "d) 39"],
+    correctAnswer: "c",
+    explanation:
+      "Traza A*: 1) A: B(f=55), C(f=16). 2) Expande C: F(f=16), G(f=17). 3) Expande F: actualiza G(f=13). 4) Expande G: I(f=35). 5) Expande I (meta). Coste de la solución: 35.",
+  },
+  {
+    id: "2026-06_q2",
+    exam: "2026-06",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "En el mismo grafo, ¿cuál sería la solución de aplicar el algoritmo de búsqueda por profundidad iterativa, usando precedencia lexicográfica?",
+    options: [
+      "a) A → C → G → I",
+      "b) A → B → E → H → I",
+      "c) A → B → A → B → E → A → B → E → H → A → B → E → H → I",
+      "d) El algoritmo iterativo no encuentra una solución, pero sí lo haría una búsqueda en profundidad estándar",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "IDDFS con orden lexicográfico: L=0: A. L=1: A→B, A→C. L=2: A→B→D, A→B→E, A→C→F, A→C→G. L=3: explora ramas de B (D→E, D→H, E→H), luego ramas de C (F→G, G→I). Al ser I la meta a profundidad 3, devuelve A→C→G→I.",
+  },
+  {
+    id: "2026-06_q3",
+    exam: "2026-06",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "En el mismo grafo, la heurística proporcionada...",
+    options: [
+      "a) Es admisible y consistente",
+      "b) No es admisible, pero sí consistente",
+      "c) Es admisible, pero no consistente en algunos nodos",
+      "d) No es admisible ni consistente",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Admisibilidad: h(H)=3 > coste real H→I=1 → no admisible. Consistencia: h(D)=60, c(D,H)=1, h(H)=3 → ¿60 ≤ 4? No → no consistente. La heurística no es admisible ni consistente.",
+  },
+  {
+    id: "2026-06_q4",
+    exam: "2026-06",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Se nos pide realizar un modelo de representación del conocimiento para un sistema sobre un nuevo virus. Al ser de reciente descubrimiento, se dispone de muy poca información sobre este nuevo virus, pero se tiene mucha información sobre otros virus que se cree que funcionan de una manera similar. ¿Qué modelo de representación del conocimiento se debería utilizar?",
+    options: [
+      "a) Orientación a objetos",
+      "b) Redes semánticas",
+      "c) Reglas de producción",
+      "d) Frames",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Los Frames (Marcos) estructuran la información en ranuras (slots) que heredan valores por defecto desde clases más generales (otros virus similares). Ante escasez de datos del nuevo virus, se usan por defecto los conocimientos del virus prototípico.",
+  },
+  {
+    id: "2026-06_q5",
+    exam: "2026-06",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "¿En qué se diferencian las reglas IFANY e IFSOME?",
+    options: [
+      "a) IFANY investiga toda la premisa, mientras que IFSOME ejecuta la acción cuando encuentra una cláusula cierta",
+      "b) IFSOME investiga toda la premisa, mientras que IFANY ejecuta la acción cuando encuentra una cláusula cierta",
+      "c) IFANY requiere que una cláusula sea cierta para ejecutar una acción, mientras que IFSOME requiere más de una (al menos 2)",
+      "d) IFSOME requiere que una cláusula sea cierta para ejecutar una acción, mientras que IFANY requiere más de una (al menos 2)",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "IFANY funciona como OR de cortocircuito: evalúa la premisa y ejecuta la acción en cuanto encuentra la primera cláusula cierta. IFSOME investiga toda la premisa de forma exhaustiva antes de proceder.",
+  },
+  {
+    id: "2026-06_q6",
+    exam: "2026-06",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question: "Las arquitecturas básicas de agentes son:",
+    options: [
+      "a) Reactivo, reactivo con estado, basado en metas y basado en utilidades",
+      "b) Reactivo, basado en metas, basado en metas con estado y basado en utilidades",
+      "c) Activo, reactivo, reactivo con estado y basado en metas",
+      "d) Activo, reactivo, basado en metas con estado y basado en utilidades",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Según Russell & Norvig: 1) Reactivos simples (sin memoria), 2) Reactivos basados en modelos (con estado interno), 3) Basados en objetivos/metas (planificación), 4) Basados en utilidad (maximizan función de preferencia).",
+  },
+  {
+    id: "2026-06_q7",
+    exam: "2026-06",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Sea un dominio con M(1),M(2),M(3) e I(1),I(2). Con R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(2)→¬M(2)∧M(1), R3: I(1)∨¬I(2)→M(2)∧M(3). ¿Cuál de las siguientes combinaciones pertenece a la BLR?",
+    options: [
+      "a) m4 i1",
+      "b) m4 i2",
+      "c) m4 i3",
+      "d) Ninguna es correcta",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "m4: M(1)=1, M(2)=0, M(3)=0. Para b) m4 i2 (I(1)=0, I(2)=1): R1 se cumple, R2 se cumple (¬M(2)∧M(1)=1), R3 antecedente falso → implicación cierta. Todas las reglas se satisfacen. Para a) y c) se violan R1 o R3 respectivamente.",
+  },
+  {
+    id: "2026-06_q8",
+    exam: "2026-06",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "Con las mismas reglas del ejercicio anterior, y sabiendo que tenemos la manifestación M(1), ¿cuál es el conjunto de interpretaciones más probable? p(¬I1∧¬I2)=0.2, p(¬I1∧I2)=0.08, p(I1∧¬I2)=0.34, p(I1∧I2)=0.38.",
+    options: [
+      "a) ¬I(1) ∧ ¬I(2)",
+      "b) ¬I(1) ∧ I(2)",
+      "c) I(1) ∧ ¬I(2)",
+      "d) I(1) ∧ I(2)",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Con M(1)=1: ¬I1∧¬I2 es inconsistente (R1 exige al menos una I activa). I1∧I2 es inconsistente (R2: I2→M(2)=0 pero R3: I1→M(2)=1, contradicción). Quedan ¬I1∧I2 (p=0.08) y I1∧¬I2 (p=0.34). La más probable es I(1)∧¬I(2) con 0.34.",
+  },
+  {
+    id: "2026-06_q9",
+    exam: "2026-06",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "En un problema de planificación clásica con N variables booleanas, el tamaño máximo del espacio de estados:",
+    options: [
+      "a) Crece de forma lineal (2N), ya que cada variable añade un nuevo estado posible",
+      "b) Crece de forma cuadrática (N²), debido a las relaciones entre precondiciones y efectos",
+      "c) Crece de forma exponencial (2^N), porque cada variable puede tomar dos valores posibles",
+      "d) Permanece constante, ya que el entorno es estático",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "En planificación clásica, con N variables booleanas independientes, cada una puede estar en {Verdadero, Falso}. La combinatoria total es 2×2×...×2 = 2^N, un crecimiento exponencial.",
+  },
+  {
+    id: "2026-06_q10",
+    exam: "2026-06",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question: "Si hablamos de sistemas de producción...",
+    options: [
+      "a) La base de conocimientos está formada por la base de reglas y el motor de inferencias",
+      "b) Los sistemas dirigidos por los datos son más específicos, porque ejecutarán todas las reglas disponibles en función de la información introducida",
+      "c) La memoria activa almacena todos los cambios de estado de nuestro sistema, de forma que representa siempre nuestro estado actual",
+      "d) El motor de inferencias es el responsable de interactuar con el mundo exterior",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La memoria activa almacena dinámicamente los hechos que representan el estado actual. Cada regla ejecutada modifica esta memoria, manteniendo una imagen actualizada del sistema. El motor de inferencias es software de control separado de la base de conocimientos.",
+  },
+  {
+    id: "2026-06_q11",
+    exam: "2026-06",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question: "Sobre algoritmos de búsqueda en árboles:",
+    options: [
+      "a) La búsqueda en anchura siempre es óptima y completa",
+      "b) El profundizamiento iterativo en profundidad debería usarse en espacios de estado en los que se conoce la profundidad de la solución",
+      "c) La búsqueda en profundidad es óptima, pero no completa",
+      "d) Ninguna es correcta",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "a) Falsa: BFS solo es óptima si todos los costes de aristas son iguales. b) Falsa: IDDFS se usa cuando la profundidad es desconocida. c) Falsa: DFS puede caer en ramas infinitas (no completa) y no garantiza optimalidad.",
+  },
+  {
+    id: "2026-06_q12",
+    exam: "2026-06",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question: "El modelo bayesiano...",
+    options: [
+      "a) Hace una suposición de independencia para las manifestaciones e interpretaciones",
+      "b) No asume relaciones causales",
+      "c) La evidencia a favor de una hipótesis no cuenta en la negación de esta hipótesis",
+      "d) Ninguna es correcta",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "a) Falsa: el modelo bayesiano se basa en dependencia probabilística entre manifestación e interpretación. b) Falsa: sí asume y modela relaciones causales (inferir causas de síntomas, predecir efectos). c) Falsa: por consistencia matemática, P(¬H|evidencia) = 1 - P(H|evidencia).",
+  },
+  {
+    id: "2026-06_q13",
+    exam: "2026-06",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Si un entorno es parcialmente observable y estocástico, la planificación clásica:",
+    options: [
+      "a) Sigue siendo válida sin cambios, porque los algoritmos de búsqueda no dependen de la observabilidad",
+      "b) No es directamente aplicable porque requiere observabilidad total y acciones deterministas",
+      "c) Reduce el espacio de estados al no conocerse toda la información del entorno",
+      "d) Requiere usar exclusivamente búsqueda voraz para estimar estados posibles",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La planificación clásica (STRIPS/PDDL) opera bajo la hipótesis del mundo cerrado: entorno estático, totalmente observable y acciones deterministas. Si el entorno es estocástico y parcialmente observable, se requieren modelos como MDPs o POMDPs.",
+  },
+  {
+    id: "2026-06_q14",
+    exam: "2026-06",
+    topic: "representacion",
+    type: "mc",
+    points: 1,
+    question:
+      "Si hablamos de sistemas de producción... (repetida)",
+    options: [
+      "a) La base de conocimientos está formada por la base de reglas y el motor de inferencias",
+      "b) Los sistemas dirigidos por los datos son más específicos, porque ejecutarán todas las reglas disponibles en función de la información introducida",
+      "c) La memoria activa almacena todos los cambios de estado de nuestro sistema, de forma que representa siempre nuestro estado actual",
+      "d) El motor de inferencias es el responsable de interactuar con el mundo exterior",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La memoria activa guarda dinámicamente el estado actual del problema actualizándose tras cada disparo de regla. Misma respuesta que la pregunta 10.",
+  },
+  {
+    id: "2026-06_q15",
+    exam: "2026-06",
+    topic: "busqueda",
+    type: "mc",
+    points: 1,
+    question:
+      "La eficiencia de un algoritmo de búsqueda depende de dos parámetros, independientemente del dominio de aplicación:",
+    options: [
+      "a) Profundidad y criterios de selección de estados",
+      "b) Factor de ramificación y costo de expansión",
+      "c) Factor de ramificación y profundidad",
+      "d) El costo de expansión de los nodos y el tipo de representación de conocimiento usado",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La complejidad (temporal y espacial) de los algoritmos de búsqueda en árboles y grafos depende fundamentalmente del factor de ramificación (b) y de la profundidad de la solución (d).",
+  },
+  {
+    id: "2026-06_q16",
+    exam: "2026-06",
+    topic: "logica",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Por qué una red bayesiana es más explicable que un modelo bayesiano directo sobre datos?",
+    options: [
+      "a) Porque las aristas del grafo representan dependencias entre variables, haciendo el razonamiento interpretable",
+      "b) Porque transforma las probabilidades en reglas lógicas deterministas, eliminando la incertidumbre",
+      "c) Porque los nodos representan únicamente todos los conceptos relevantes, facilitando la comprensión",
+      "d) Porque solo admite variables booleanas y no variables continuas, eliminando la incertidumbre",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "En una Red Bayesiana, la topología del grafo acíclico dirigido (DAG) representa explícitamente las relaciones de dependencia condicional (e idealmente causales) entre variables, permitiendo comprender visualmente cómo fluye la probabilidad.",
+  },
+  // --- Subsimbólica ---
+  {
+    id: "2026-06_q17",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿En qué se diferencian las dos ramas clásicas de la Inteligencia Artificial?",
+    options: [
+      "a) La rama subsimbólica tiene menos capacidades",
+      "b) Una tiene los sistemas expertos y la otra a las redes de neuronas artificiales como paradigmas",
+      "c) Una se basa en la estimulación y la otra en la recursividad",
+      "d) Ninguna de las anteriores es correcta",
+      "e) Todas son correctas",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La rama Simbólica se fundamenta en conocimiento explícito (Sistemas Expertos). La rama Subsimbólica o Conexionista se basa en la emulación biológica y extrae conocimiento implícito de los datos (Redes de Neuronas Artificiales).",
+  },
+  {
+    id: "2026-06_q18",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué autores con sus trabajos sobre cibernética sientan las bases de la IA?",
+    options: [
+      "a) Rosenblueth, Wiener y Bigelow.",
+      "b) Cajal.",
+      "c) Craik.",
+      "d) Todos los anteriores.",
+      "e) A y C son ciertas.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Las bases cibernéticas se establecieron en los 1940 con la propuesta de máquinas teleológicas de Wiener, Rosenblueth y Bigelow, y la capacidad de sistemas para usar modelos lógicos de Craik. Cajal fue precursor biológico, no cibernético.",
+  },
+  {
+    id: "2026-06_q19",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores biológicos?",
+    options: [
+      "a) Minsky.",
+      "b) McCulloch.",
+      "c) Papert.",
+      "d) Todos los anteriores.",
+      "e) Ninguno de los anteriores.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "McCulloch (con Pitts) trasladó la biología neuronal a un modelo lógico-matemático en 1943. Cajal describió la estructura neuronal y Hebb postuló el aprendizaje sináptico. Minsky y Papert fueron críticos del perceptrón, no precursores biológicos.",
+  },
+  {
+    id: "2026-06_q20",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Causas del interés actual por los Sistemas Inteligentes Subsimbólicos",
+    options: [
+      "a) El interés existente por la búsqueda de arquitecturas de computadoras que permitan el procesamiento en paralelo.",
+      "b) La habilidad de estos sistemas para aprender automáticamente.",
+      "c) La habilidad para poder funcionar de forma aceptable tanto en presencia de información inexacta como cuando se producen deterioros o fallos en sus componentes.",
+      "d) Su similitud con los modelos neurofisiológicos del cerebro, pudiéndose intercambiar modelos e investigaciones con Neurociencias.",
+      "e) Todas las anteriores son correctas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Los sistemas conexionistas han resurgido por: aprendizaje automático de datos, tolerancia a fallos y ruido, adecuación al procesamiento paralelo, y sinergias bidireccionales con las Neurociencias.",
+  },
+  {
+    id: "2026-06_q21",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes avances tecnológicos no está relacionado con la IA?",
+    options: [
+      "a) Impresoras 3D y fabricación aditiva.",
+      "b) Realidades extendidas y 'gemelos digitales'",
+      "c) Tecnologías convergentes 'NBIC'.",
+      "d) Todas las anteriores están relacionadas.",
+      "e) Ninguna de las anteriores está relacionada.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Todas están relacionadas: impresión 3D/4D con co-creatividad de IA, realidades extendidas (Metaverso, Gemelos Digitales) dependen de IA, y tecnologías NBIC aplican algoritmos inteligentes como bioinformática y redes neuronales.",
+  },
+  {
+    id: "2026-06_q22",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "Los Mapas Autoorganizativos (SOM) vistos en clase tienen...",
+    options: [
+      "a) Una única capa que es de entrada",
+      "b) Una única capa recurrente",
+      "c) Una capa de entrada y una capa de salida",
+      "d) Dos capas de neuronas recurrentes y autoorganizables",
+      "e) Todas las anteriores son incorrectas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Según la UDC, la respuesta oficial es 'e'. A nivel computacional estricto, el SOM solo posee 1 capa de células que procesan pesos (la capa competitiva). La capa de entrada es un bus pasivo que no cuenta como capa de cálculo.",
+  },
+  {
+    id: "2026-06_q23",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "Las 2 ideas centrales en las que se basa Kohonen para desarrollar los SOM son...",
+    options: [
+      "a) La ubicación espacial de las neuronas y su crecimiento dinámico",
+      "b) La autoorganización y el concepto de simetría",
+      "c) La autoorganización y el crecimiento dinámico del nº de neuronas",
+      "d) El proceso de adaptación de pesos y el concepto de geometría topológica de elementos de proceso",
+      "e) Todas las anteriores son incorrectas",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El fundamento del mapa de Kohonen combina el aprendizaje competitivo (adaptación de pesos) con una restricción de vecindad espacial (geometría topológica), logrando que neuronas cercanas en el mapa respondan a estímulos similares.",
+  },
+  {
+    id: "2026-06_q24",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "Si los patrones de entrada de un problema tienen 4 características o atributos, una SOM que lo resuelva tendrá...",
+    options: [
+      "a) 24 neuronas de entrada",
+      "b) 8 neuronas de entrada",
+      "c) 4 neuronas de entrada",
+      "d) 16 neuronas de entrada",
+      "e) Ninguna de las anteriores",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La interfaz receptora debe acoplarse exactamente a la dimensionalidad de los datos. Si el patrón cuenta con 4 atributos, se requieren exactamente 4 neuronas en la entrada.",
+  },
+  {
+    id: "2026-06_q25",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "En el aprendizaje no supervisado...",
+    options: [
+      "a) Se desconocen las clases, pero se consiguen grupos similares",
+      "b) La autoorganización de la red permite hallar directamente las clases",
+      "c) Se trabaja con patrones etiquetados",
+      "d) La B y la C son correctas",
+      "e) Ninguna de las anteriores es correcta",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "El aprendizaje no supervisado opera sin etiquetas ni tutor: la red se autoorganiza analizando los datos y descubre estructuras ocultas, agrupando patrones (clustering) basándose exclusivamente en su similitud matemática.",
+  },
+  {
+    id: "2026-06_q26",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "El ADALINE fue creado",
+    options: [
+      "a) Después del perceptrón",
+      "b) No llegó a ser creado",
+      "c) Antes del perceptrón",
+      "d) La B y la C son correctas",
+      "e) Ninguna de las anteriores es correcta",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Cronológicamente: el Perceptrón simple fue presentado por Rosenblatt en 1958. Poco después (1959-1960), Widrow y Hoff desarrollaron el ADALINE (ADAptive LInear NEuron) con una regla de corrección de error más refinada (Regla Delta).",
+  },
+  {
+    id: "2026-06_q27",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "El conjunto de datos que se utiliza para calcular los valores de los pesos de las conexiones de una RNA se denomina:",
+    options: [
+      "a) Conjunto de prueba",
+      "b) Conjunto de validación",
+      "c) Conjunto de test",
+      "d) Conjunto de entrenamiento",
+      "e) Conjunto de normalización",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El Training set es el volumen de datos que fluye operativamente por el algoritmo de aprendizaje (backpropagation). Es el único que interviene directamente en la actualización iterativa de los pesos sinápticos.",
+  },
+  {
+    id: "2026-06_q28",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Durante el entrenamiento de un perceptrón multicapa se busca...",
+    options: [
+      "a) Llegar al error cero siempre.",
+      "b) Estar muy cerca de un mínimo error, pero nunca en él.",
+      "c) Conseguir un mínimo local siempre.",
+      "d) Estar lejos de un mínimo global.",
+      "e) Todas son incorrectas.",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "El objetivo no es error cero (sobreentrenamiento), ni estar lejos del mínimo global, ni quedar atrapado en mínimos locales. Ninguna afirmación es correcta.",
+  },
+  {
+    id: "2026-06_q29",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Un perceptrón (sin capas ocultas) no puede implementar una puerta lógica con la función",
+    options: [
+      "a) AND",
+      "b) OR",
+      "c) EXOR",
+      "d) NOT",
+      "e) Puede hacer cualquiera de las anteriores",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Minsky y Papert (1969) demostraron que el perceptrón monocapa solo resuelve problemas linealmente separables. El EXOR (XOR) es el ejemplo clásico de problema no linealmente separable, imposible sin capas ocultas.",
+  },
+  {
+    id: "2026-06_q30",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "El número de neuronas de entrada de un perceptrón multicapa",
+    options: [
+      "a) Lo puede fijar el usuario como quiera",
+      "b) Depende del problema a resolver",
+      "c) Debe ser igual al número de neuronas de salida",
+      "d) Debe ser igual al número de neuronas ocultas",
+      "e) Debe ser distinto al número de neuronas de salida",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "La capa de entrada debe acoplarse estrictamente a la dimensionalidad de los datos. Si los patrones tienen N características, se requieren exactamente N neuronas de entrada. Depende de las variables del problema.",
+  },
+  {
+    id: "2026-06_q31",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "La función de transferencia de las neuronas de un perceptrón multicapa",
+    options: [
+      "a) Son solamente lineales",
+      "b) Son solamente umbrales",
+      "c) Son solamente de tipo sigmoidal",
+      "d) Son solamente de tipo logarítmico",
+      "e) Todas son falsas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Es falso decir 'solamente' de un tipo. Para ser aproximador universal, las capas ocultas necesitan funciones no lineales, pero una misma red puede combinar distintas funciones (sigmoide en ocultas, lineal en salida para regresión).",
+  },
+  {
+    id: "2026-06_q32",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "La Regla Delta...",
+    options: [
+      "a) Es un algoritmo de aprendizaje no supervisado",
+      "b) Maximiza el error cuadrático medio",
+      "c) Es un algoritmo de aprendizaje supervisado",
+      "d) Fija los valores de los pesos y bias",
+      "e) La C y D son correctas",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La Regla Delta es supervisada (calcula el error entre salida obtenida y deseada) y su función es fijar iterativamente los valores de pesos y bias hasta alcanzar el ajuste óptimo. Ambas C y D son correctas.",
+  },
+  {
+    id: "2026-06_q33",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "En un perceptrón multicapa el conocimiento de la red está en...",
+    options: [
+      "a) Los datos de salida de las neuronas",
+      "b) En las funciones de transferencia",
+      "c) En los datos de entrada",
+      "d) En las conexiones",
+      "e) Todas son incorrectas",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "A diferencia de la IA simbólica (conocimiento explícito en reglas), el paradigma conexionista distribuye el aprendizaje de forma subsimbólica: el conocimiento reside única y exclusivamente en las intensidades numéricas de las conexiones sinápticas (pesos).",
+  },
+  {
+    id: "2026-06_q34",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "Para decidir cuál arquitectura de RNA funciona mejor para un dataset, es necesario mirar el error",
+    options: [
+      "a) De entrenamiento",
+      "b) De validación",
+      "c) De test",
+      "d) En el ciclo de entrenamiento con menor gradiente",
+      "e) Todas las anteriores son incorrectas",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Para comparar topologías y evitar sesgos de sobreentrenamiento, el error de entrenamiento no es fiable. El conjunto de validación actúa como árbitro externo durante la fase de diseño para determinar qué arquitectura generaliza mejor.",
+  },
+  {
+    id: "2026-06_q35",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question:
+      "En la técnica de parada temprana, una vez finalizado el proceso de entrenamiento, la RNA que se devuelve tiene unos pesos que son",
+    options: [
+      "a) siempre los del último ciclo de entrenamiento realizado.",
+      "b) siempre correspondientes al ciclo con menor error de entrenamiento.",
+      "c) correspondientes al ciclo con menor error de validación.",
+      "d) correspondientes al ciclo con menor error de test.",
+      "e) correspondientes al ciclo con menor gradiente.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "En Early Stopping, el algoritmo retrocede y devuelve la red en la época donde el error de validación registró su valor histórico más bajo, demostrando la mayor capacidad de generalización antes del sobreentrenamiento.",
+  },
+  {
+    id: "2026-06_q36",
+    exam: "2026-06",
+    topic: "rna",
+    type: "mc",
+    points: 1,
+    question: "El conjunto de patrones de test...",
+    options: [
+      "a) No interviene en nada en el entrenamiento",
+      "b) Dictamina cuando parar de entrenar",
+      "c) Guía todo el proceso de entrenamiento",
+      "d) Es siempre el conjunto con mayor cantidad de patrones del dataset",
+      "e) Todas las anteriores son falsas",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "El Test Set debe mantenerse estricta y absolutamente virgen: sus datos jamás cruzan la red durante la optimización de pesos ni interactúan con las métricas de detención temprana. Sirve en exclusiva para medir la capacidad real de generalización.",
+  },
+  {
+    id: "2026-06_q37",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "En una red SOM, la capa de competición está compuesta por:",
+    options: [
+      "a) Neuronas que generan la salida supervisada.",
+      "b) Neuronas conectadas entre sí por enlaces recursivos.",
+      "c) Neuronas que compiten por representar el patrón de entrada.",
+      "d) Neuronas que codifican el error de la red.",
+      "e) Todas son correctas.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Las SOM operan con aprendizaje competitivo: ante un vector de estímulo, todas las neuronas de salida calculan su distancia y compiten. La ganadora (BMU) obtiene el privilegio de actualizar sus pesos y los de su vecindario.",
+  },
+  {
+    id: "2026-06_q38",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué mide el error de cuantización medio en una red SOM?",
+    options: [
+      "a) La distancia media entre los vectores de entrada y sus neuronas ganadoras (BMU).",
+      "b) El número de patrones correctamente clasificados.",
+      "c) El número de neuronas entrenadas.",
+      "d) La diferencia entre la salida deseada y la obtenida.",
+      "e) El grado de vecindad entre neuronas.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Al no existir salida deseada (SOM es no supervisado), se usa el Error de Cuantización: promedio de las distancias entre todos los vectores de entrada y sus respectivas BMUs.",
+  },
+  {
+    id: "2026-06_q39",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "En una red SOM, la neurona ganadora es aquella que:",
+    options: [
+      "a) Tiene el peso con mayor valor.",
+      "b) Tiene la mayor activación en la capa de entrada.",
+      "c) Es más cercana al patrón de entrada según una medida de distancia.",
+      "d) Ha sido activada más veces durante el entrenamiento.",
+      "e) Tiene mayor número de conexiones sinápticas.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La BMU se selecciona en cada ciclo computando cuál de todas las celdas tiene el vector de pesos a menor distancia del vector de entrada proporcionado.",
+  },
+  {
+    id: "2026-06_q40",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué función se utiliza habitualmente para determinar la similitud entre una neurona y un patrón de entrada en una SOM?",
+    options: [
+      "a) Distancia de Manhattan",
+      "b) Producto escalar",
+      "c) Distancia Euclídea",
+      "d) Entropía cruzada",
+      "e) Función sigmoidal",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "En los modelos SOM canónicos, la fórmula de similitud principal para medir la dispersión entre el peso de una neurona y el vector ambiental es la distancia euclídea ordinaria.",
+  },
+  {
+    id: "2026-06_q41",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes es un problema común de las redes SOM?",
+    options: [
+      "a) No permiten reducción de dimensionalidad.",
+      "b) Siempre requieren entrenamiento supervisado.",
+      "c) Algunas neuronas pueden no ser entrenadas si están alejadas del espacio de entrada.",
+      "d) No pueden representar relaciones topológicas.",
+      "e) No necesitan inicialización de pesos.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Debido a la topología fija del SOM, si algunos nodos se inicializan muy lejos de los datos y el vecindario se reduce rápido, pueden no ganar jamás una competición, quedando como 'neuronas muertas'. Las GNG resolvieron este problema.",
+  },
+  {
+    id: "2026-06_q42",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "En una red SOM, ¿qué ocurre con el tamaño del vecindario a lo largo del entrenamiento?",
+    options: [
+      "a) Permanece constante.",
+      "b) Aumenta progresivamente.",
+      "c) Disminuye con el tiempo.",
+      "d) Se elimina tras la fase de aprendizaje.",
+      "e) Se calcula de forma aleatoria.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "El aprendizaje en SOM tiene dos fases: ordenación (vecindario amplio para macro-organización) y convergencia (vecindario y tasa de aprendizaje disminuyen asintóticamente para ajuste fino).",
+  },
+  {
+    id: "2026-06_q43",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question: "En la fase de operación de una red SOM:",
+    options: [
+      "a) Se modifican los pesos de las neuronas.",
+      "b) Se entrena la red con nuevos datos.",
+      "c) Se categoriza un patrón según la neurona más similar.",
+      "d) Se actualiza la topología de la red.",
+      "e) Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Una vez finalizado el aprendizaje, los pesos se congelan. En modo operativo, el sistema solo recibe vectores y los proyecta hacia la neurona más cercana (clasificación o mapeo pasivo) sin alterar su estructura.",
+  },
+  {
+    id: "2026-06_q44",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué representa el vector de pesos de una neurona en la capa de competición de una SOM?",
+    options: [
+      "a) La tasa de aprendizaje local.",
+      "b) El error de representación de dicha neurona.",
+      "c) El patrón de entrada más común que ha activado esa neurona.",
+      "d) Un prototipo o centroide que representa un grupo de patrones.",
+      "e) El número de veces que ha sido ganadora.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El aprendizaje competitivo empuja cada vector de pesos hacia las densidades de datos. Como resultado, cada neurona actúa como un prototipo o centroide que representa eficientemente a todo un grupo (clúster) de patrones similares.",
+  },
+  {
+    id: "2026-06_q45",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes tareas es especialmente adecuada para una red SOM?",
+    options: [
+      "a) Predicción de valores numéricos.",
+      "b) Agrupamiento y visualización de datos de alta dimensión.",
+      "c) Traducción automática de lenguas.",
+      "d) Detección de anomalías supervisada.",
+      "e) Reconocimiento de voz con salida categórica.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Las SOM son herramientas inigualables en clustering no supervisado y reducción de dimensionalidad: mapean datos de alta dimensionalidad sobre una malla 2D interpretable, preservando relaciones espaciales y lógicas originales.",
+  },
+  {
+    id: "2026-06_q46",
+    exam: "2026-06",
+    topic: "som",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué diferencia clave tienen los modelos GCS frente a SOM?",
+    options: [
+      "a) No utilizan aprendizaje no supervisado.",
+      "b) Ajustan dinámicamente la arquitectura durante el entrenamiento.",
+      "c) No permiten visualización de datos.",
+      "d) Solo funcionan con entradas binarias.",
+      "e) No usan distancia euclídea para calcular similitud.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El SOM tiene topología y número de neuronas fijo. La innovación de GCS es su naturaleza constructiva: añade y elimina neuronas dinámicamente durante el entrenamiento para adaptarse a regiones con mayor error o densidad de datos.",
+  },
+  {
+    id: "2026-06_q47",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      'El término "Fitness" en un Algoritmo Genético se refiere a...',
+    options: [
+      "a) Una forma de intercambiar material genético entre varios individuos de la población.",
+      "b) Una forma o función para construir individuos y obtener la población inicial.",
+      "c) Una operación genética que cambia la composición de los descendientes.",
+      "d) El valor que permite evaluar lo bien adaptado que está cada individuo de la población para obtener la solución al problema que se pretende resolver.",
+      "e) Una estrategia que consiste en mantener al mejor individuo y copiarlo directamente a la siguiente generación para evitar perder la mejor solución obtenida.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "La función de aptitud o Fitness es el criterio métrico fundamental: evalúa a cada cromosoma y le asigna una puntuación que representa cuán bien resuelve el problema, determinando sus probabilidades de reproducirse o ser descartado.",
+  },
+  {
+    id: "2026-06_q48",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes es una técnica de mutación en los Algoritmos Genéticos?",
+    options: [
+      "a) Uniforme",
+      "b) Máscara",
+      "c) Intercambio",
+      "d) Génesis",
+      "e) Punto flotante",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Las técnicas de mutación documentadas incluyen: mutación de bit, multibit, de gen, multigen, de barajado y de intercambio. Uniforme y Máscara son tipos de cruce. Punto flotante es una codificación. El intercambio es una técnica válida de mutación.",
+  },
+  {
+    id: "2026-06_q49",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question: "En Programación Genética...",
+    options: [
+      "a) El cromosoma nunca representa una posible solución para las variables del problema.",
+      "b) Los operadores de cruce y mutación se aplican para invertir la población de cromosomas.",
+      "c) Los individuos se representan mediante árboles, lo cual es una de las principales diferencias con los Algoritmos Genéticos.",
+      "d) La forma de codificar los individuos es la misma que en los Algoritmos Genéticos; solo cambia la forma de aplicar el cruce y la mutación.",
+      "e) No existe ninguna técnica en Computación Evolutiva denominada Programación Genética.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "La principal diferencia de la PG (John Koza) frente a los AG es la codificación: en AG se usan vectores planos (cadenas), mientras que en PG la representación es en forma de árbol sintáctico (operadores en nodos internos, variables/constantes en hojas).",
+  },
+  {
+    id: "2026-06_q50",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes problemas es más adecuado para ser resuelto mediante un Algoritmo Genético?",
+    options: [
+      "a) Encontrar el mínimo de una función cuadrática convexa y suave.",
+      "b) Encontrar el óptimo de una función diferenciable de una sola variable.",
+      "c) Enumerar todas las posibles soluciones en un espacio de búsqueda muy pequeño.",
+      "d) Encontrar una ruta para el Problema del Viajante con muchas ciudades.",
+      "e) Encontrar el óptimo global exacto cuando debe garantizarse matemáticamente la mejor solución.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Los AG son metaheurísticas de alto coste, justificadas en dominios NP-Hard donde las soluciones analíticas fracasan. El TSP con muchas ciudades genera explosión combinatoria inmanejable para métodos tradicionales, siendo el escenario idóneo para Computación Evolutiva.",
+  },
+  {
+    id: "2026-06_q51",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "En un Algoritmo Genético, ¿qué nombre recibe el proceso en el que el mejor individuo de la población se conserva para la siguiente generación?",
+    options: [
+      "a) Seeding",
+      "b) Elitismo",
+      "c) Aprendizaje lamarckiano",
+      "d) Steady-state",
+      "e) Hill Climbing",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El proceso que salva intacto al individuo con el fitness supremo, esquivando las fases destructivas de la recombinación para perpetuarlo en la siguiente generación, recibe el nombre de estrategia elitista o Elitismo.",
+  },
+  {
+    id: "2026-06_q52",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes no es un método de selección utilizado en los Algoritmos Genéticos?",
+    options: [
+      "a) Torneo",
+      "b) Sobrante estocástico",
+      "c) Universal estocástica",
+      "d) Ruleta",
+      "e) Sobrante determinístico",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "Las técnicas canónicas de selección son: Torneo, Ruleta, Universal Estocástica y Sobrante Estocástico. El 'sobrante determinístico' no forma parte del abanico estándar de operadores de selección.",
+  },
+  {
+    id: "2026-06_q53",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué mecanismo de selección tiende a distribuir la búsqueda de forma más amplia en el espacio de estados?",
+    options: [
+      "a) Selección por ruleta, donde los individuos se asignan a sectores ponderados por su fitness y los sectores con mayor peso tienen mayor probabilidad de no ser seleccionados.",
+      "b) Selección por ruleta, donde todos los individuos tienen exactamente la misma probabilidad de ser seleccionados.",
+      "c) Selección por torneo, donde se elige un subconjunto de individuos de forma aleatoria y se selecciona el individuo con mejor valor de fitness.",
+      "d) Selección por torneo, donde los individuos compiten por parejas y el ganador se selecciona con una probabilidad proporcional a su fitness.",
+      "e) Selección por torneo, donde los individuos se agrupan en subconjuntos y se seleccionan los dos individuos con menor fitness para la reproducción.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "El Torneo elige un subconjunto aleatorio y selecciona al de mejor fitness. Al dar oportunidad a individuos medianos de ganar en sus torneos locales, distribuye y explora el espacio de búsqueda de manera más amplia, evitando convergencia prematura.",
+  },
+  {
+    id: "2026-06_q54",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes afirmaciones describe mejor el cruce en los Algoritmos Genéticos?",
+    options: [
+      "a) El cruce selecciona los mejores individuos de la población y elimina los más débiles.",
+      "b) El cruce combina material genético de dos individuos progenitores para crear nuevos descendientes.",
+      "c) El cruce cambia aleatoriamente genes individuales para introducir valores completamente nuevos en la población.",
+      "d) El cruce evalúa la calidad de cada individuo mediante la función de fitness.",
+      "e) El cruce garantiza que los descendientes siempre serán mejores que ambos progenitores.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El Cruce (Crossover) es el operador principal de Explotación: entrelaza y combina el material cromosómico valioso (Building Blocks) de dos padres para engendrar hijos que hereden las mejores características conjuntas.",
+  },
+  {
+    id: "2026-06_q55",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes simulaciones es un ejemplo clásico de vida artificial?",
+    options: [
+      "a) El juego del laberinto",
+      "b) El Juego de la Vida de Conway",
+      "c) Hill Climbing",
+      "d) La estrategia elitista",
+      "e) Ninguna de las anteriores",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Los autómatas celulares son el máximo exponente de Vida Artificial. El ejemplo más clásico es el Juego de la Vida de Conway: una malla bidimensional donde organismos celulares sobreviven, se reproducen o mueren según reglas locales dependientes de sus vecinos.",
+  },
+  {
+    id: "2026-06_q56",
+    exam: "2026-06",
+    topic: "evolutiva",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué afirmación describe mejor el entrelazamiento cuántico?",
+    options: [
+      "a) Dos qubits comparten un estado vinculado, por lo que medir uno proporciona información sobre el otro.",
+      "b) Dos qubits alternan sus estados en direcciones opuestas hasta que se realiza una medición.",
+      "c) Dos qubits almacenan el mismo valor clásico en dos ubicaciones físicas diferentes.",
+      "d) Un qubit se copia en otro qubit para evitar la pérdida de información.",
+      "e) Un qubit controla a otro enviando información más rápido que la luz.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "El entrelazamiento cuántico es un fenómeno fundacional de la mecánica subatómica: dos Qubits quedan íntimamente entrelazados, y colapsar o medir el estado de uno define instantáneamente la información de su pareja complementaria.",
+  },
+];
