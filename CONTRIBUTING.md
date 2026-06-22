@@ -109,6 +109,30 @@ export const questions: Question[] = [
 
 Campos opcionales: `image`, `imageWidth`, `imageHeight`, `table`, `subquestions`.
 
+**Bloques de código:** Los campos de texto (`question`, `explanation`, `correctAnswer`, `subquestions`, `options` y celdas de tabla) soportan formato markdown:
+
+- `` `código inline` `` — se renderiza como `<code>` con fuente monoespaciada y texto rosa sobre fondo gris.
+- ```` ``` ```` bloques de código — se renderizan como un bloque de código oscuro. Funciona en `question`, `explanation` y `correctAnswer`.
+
+Ejemplo:
+
+```ts
+question: `¿Qué imprime este código?
+
+\`\`\`
+def foo(x):
+    if x <= 1:
+        return 1
+    return x * foo(x - 1)
+
+print(foo(5))
+\`\`\`
+
+Pista: recuerda que \`foo()\` se llama recursivamente.`,
+```
+
+**Preguntas compartidas entre exámenes:** Usa `exam: "both"` para que una pregunta aparezca en todos los exámenes de la asignatura.
+
 #### 4. Añade los PDFs de los exámenes
 
 Copia los PDFs originales a `public/exams/{subject-id}/`:
@@ -163,6 +187,8 @@ src/
 ├── subjects/
 │   ├── index.ts              # Auto-descubrimiento (no editar)
 │   ├── _template/            # Plantilla para nuevas asignaturas
+│   │   ├── meta.ts
+│   │   └── questions.ts
 │   ├── eseo/                 # Sistemas Operativos (UDC)
 │   │   ├── meta.ts
 │   │   └── questions.ts
@@ -188,6 +214,8 @@ src/
 │   ├── en.ts
 │   └── es.ts
 ├── lib/
+│   ├── markdown.tsx          # Renderizado de código inline y bloques
+│   ├── haptics.ts            # Feedback háptico
 │   └── umami.ts              # Analytics wrapper
 └── App.tsx                   # Componente raíz con rutas
 
@@ -213,7 +241,8 @@ pnpm format    # Prettier
 
 - [ ] El ID de la asignatura es kebab-case y coincide con la carpeta
 - [ ] Todas las `topic` en `questions.ts` existen en `meta.ts`
-- [ ] Las preguntas MC tienen exactamente 5 opciones y una letra válida
+- [ ] Las preguntas MC tienen opciones y una letra válida (`"a"`–`"e"`)
+- [ ] Los bloques de código usan `\`\`\`` en template literals de TypeScript
 - [ ] Los PDFs están en `public/exams/{subject-id}/` o los exámenes sin PDF tienen `hasPdf: false`
 - [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente
 - [ ] `pnpm build` compila sin errores

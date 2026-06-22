@@ -18,7 +18,7 @@ const questionsModules = import.meta.glob<QuestionsModule>("./*/questions.ts", {
 
 export const subjects: SubjectMeta[] = Object.values(metaModules)
   .map((m) => m.meta)
-  .filter((s) => !(import.meta.env.PROD && s.id === "template"));
+  .filter((s) => !(import.meta.env.PROD && s.id === "_template"));
 
 export function getSubject(id: string): SubjectMeta | undefined {
   return subjects.find((s) => s.id === id);

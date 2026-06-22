@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
+import { Markdown, InlineMarkdown } from "../lib/markdown";
 import { track } from "../lib/umami";
 import { triggerLight, triggerSuccess, triggerError, triggerSelection } from "../lib/haptics";
 
@@ -86,7 +87,7 @@ function MCQuestion({
             >
               {letter}
             </span>
-            <span className="flex-1">{opt}</span>
+            <span className="flex-1"><InlineMarkdown>{opt}</InlineMarkdown></span>
           </button>
         );
       })}
@@ -145,14 +146,14 @@ function TextQuestion({
               <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">
                 {t.questionCard.modelSolution}
               </h4>
-              <pre className="p-3 bg-white rounded border border-gray-100 text-xs whitespace-pre-wrap font-sans text-gray-700">
+              <Markdown className="text-xs whitespace-pre-wrap font-sans text-gray-700">
                 {typeof question.correctAnswer === "string"
                   ? question.correctAnswer
                   : JSON.stringify(question.correctAnswer, null, 2)}
-              </pre>
-              <p className="text-xs text-gray-500 italic">
+              </Markdown>
+              <Markdown className="text-xs text-gray-500 italic">
                 {question.explanation}
-              </p>
+              </Markdown>
 
               {onSelfGrade && (
                 <div className="pt-2 border-t border-gray-200">
@@ -244,7 +245,7 @@ function MatchingQuestion({
             <span className="w-6 text-center font-mono text-xs text-gray-400">
               {i + 1}.
             </span>
-            <span className="flex-1 text-gray-700">{item}</span>
+            <span className="flex-1 text-gray-700"><InlineMarkdown>{item}</InlineMarkdown></span>
             <div className="flex gap-1">
               {letters.map((letter) => {
                 const chosen = userAnswer === letter;
@@ -314,13 +315,13 @@ export default function QuestionCard(props: QuestionCardProps) {
         </span>
         <span className="text-xs text-gray-400">{props.topicLabel}</span>
       </div>
-      <p className="text-sm text-gray-900 font-medium mb-4 whitespace-pre-line">
+      <Markdown className="text-sm text-gray-900 font-medium mb-4">
         {question.question}
-      </p>
+      </Markdown>
       {question.subquestions && (
         <ul className="list-disc list-inside text-sm text-gray-600 mb-4 space-y-1">
           {question.subquestions.map((sq, i) => (
-            <li key={i}>{sq}</li>
+            <li key={i}><InlineMarkdown>{sq}</InlineMarkdown></li>
           ))}
         </ul>
       )}
@@ -347,7 +348,7 @@ export default function QuestionCard(props: QuestionCardProps) {
                     scope="col"
                     className="px-4 py-2 text-left font-semibold text-gray-900 whitespace-nowrap"
                   >
-                    {h}
+                    <InlineMarkdown>{h}</InlineMarkdown>
                   </th>
                 ))}
               </tr>
@@ -357,11 +358,11 @@ export default function QuestionCard(props: QuestionCardProps) {
                 <tr key={ri} className="hover:bg-gray-50/50 transition-colors">
                   {row.map((cell, ci) => (
                     <td
-                      key={ci}
-                      className="px-4 py-2 text-gray-700 whitespace-nowrap"
-                    >
-                      {cell}
-                    </td>
+                    key={ci}
+                    className="px-4 py-2 text-gray-700 whitespace-nowrap"
+                  >
+                    <InlineMarkdown>{cell}</InlineMarkdown>
+                  </td>
                   ))}
                 </tr>
               ))}

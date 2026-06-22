@@ -1,7 +1,7 @@
 import type { SubjectMeta } from "../../data/types";
 
 export const meta: SubjectMeta = {
-  id: "template",
+  id: "_template",
   name: "Template Subject",
   university: "Template University",
   courseCode: "TMP101",
@@ -16,18 +16,18 @@ export const meta: SubjectMeta = {
     {
       year: "2024",
       title: "2024 Exam",
-      description: "60 points · 3 questions",
-      passPoints: 30,
-      totalPoints: 60,
+      description: "70 points · 5 questions",
+      passPoints: 35,
+      totalPoints: 70,
       durationMinutes: 120,
     },
     {
       year: "2025-01",
       title: "January 2025",
-      description: "50 points · 3 questions",
-      passPoints: 25,
-      totalPoints: 50,
-      durationMinutes: 90,
+      description: "90 points · 7 questions",
+      passPoints: 45,
+      totalPoints: 90,
+      durationMinutes: 150,
       hasPdf: false,
     },
   ],

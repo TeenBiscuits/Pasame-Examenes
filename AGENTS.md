@@ -141,6 +141,24 @@ export const questions: Question[] = [
 - `subquestions?: string[]` — list of sub-question text
 - `options?: string[]` — required for `mc` type
 
+**Code blocks in text:** `question`, `explanation`, `correctAnswer`, `subquestions`, `options`, and table cell strings support markdown-style code formatting:
+
+- `` `inline code` `` — renders as inline `<code>` with monospace font and pink text on gray background. Works inside any text field.
+- ```` ``` ```` fenced code blocks — renders as a dark-themed code block. Works in `question`, `explanation`, and `correctAnswer` fields.
+
+Example:
+```ts
+question: `What does this code output?
+
+\`\`\`
+def foo():
+    return 42
+print(foo())
+\`\`\`
+
+Hint: remember that \`foo()\` calls the function.`,
+```
+
 ## Extracting Questions from Exam PDFs
 
 1. Open the PDF and identify each question
