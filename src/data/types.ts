@@ -45,6 +45,7 @@ export interface SubjectMeta {
   university: string;
   courseCode: string;
   icon: string;
+  acknowledgments?: string;
   topics: Topic[];
   exams: Exam[];
 }

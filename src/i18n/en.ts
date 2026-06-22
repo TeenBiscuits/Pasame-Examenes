@@ -16,6 +16,7 @@ export const en = {
     examDocsDescription:
       "Download or view the original PDF exams that these practice questions and simulations are based on.",
     pdf: "PDF",
+    acknowledgments: "Acknowledgments",
   },
   practiceHome: {
     title: "Practice by Topic",

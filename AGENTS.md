@@ -52,6 +52,7 @@ export const meta: SubjectMeta = {
   university: "University Name",
   courseCode: "ABC123",
   icon: "📚", // emoji
+  acknowledgments: "Questions provided by the ... Department. Answers by ...", // optional, shown at page bottom
   topics: [
     {
       key: "topic-slug",

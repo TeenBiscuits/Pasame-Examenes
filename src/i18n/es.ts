@@ -18,6 +18,7 @@ export const es: Translations = {
     examDocsDescription:
       "Descarga o visualiza los PDFs originales en los que se basan estas preguntas y simulaciones.",
     pdf: "PDF",
+    acknowledgments: "Agradecimientos",
   },
   practiceHome: {
     title: "Practicar por tema",

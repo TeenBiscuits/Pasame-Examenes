@@ -29,6 +29,7 @@ export const meta: SubjectMeta = {
   university: "Universidad",
   courseCode: "ABC123",
   icon: "📚",
+  acknowledgments: "Preguntas proporcionadas por el departamento de... Respuestas por...", // opcional, se muestra al final de la página
   topics: [
     {
       key: "tema-slug",

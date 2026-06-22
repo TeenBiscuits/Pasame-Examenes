@@ -138,6 +138,15 @@ export default function SubjectHome() {
           </div>
         </div>
       )}
+
+      {subject.acknowledgments && (
+        <div className="text-right text-sm text-gray-400 mt-10">
+          <p className="font-semibold text-gray-500 mb-1">
+            {t.subjectHome.acknowledgments}
+          </p>
+          <p>{subject.acknowledgments}</p>
+        </div>
+      )}
     </div>
   );
 }
