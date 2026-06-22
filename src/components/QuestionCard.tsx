@@ -340,6 +340,11 @@ export default function QuestionCard(props: QuestionCardProps) {
             {props.examDate}
           </span>
         )}
+        {question.repeated && (
+          <span className="text-[10px] font-semibold bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded border border-amber-200 ml-auto">
+            {t.questionCard.repeated}
+          </span>
+        )}
       </div>
       <Markdown className="text-sm text-gray-900 font-medium mb-4">
         {question.question}
