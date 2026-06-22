@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { useHaptics } from "../lib/haptics";
+import { triggerLight, triggerSuccess, triggerError, triggerSelection } from "../lib/haptics";
 
 interface QuestionCardProps {
   question: Question;
@@ -45,7 +45,6 @@ function MCQuestion({
   savedAnswer,
   showResult,
 }: QuestionCardProps) {
-  const { triggerSelection } = useHaptics();
   if (!question.options) return null;
 
   return (
@@ -105,7 +104,6 @@ function TextQuestion({
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
-  const { triggerLight, triggerSuccess, triggerError } = useHaptics();
 
   return (
     <div>
@@ -215,7 +213,6 @@ function MatchingQuestion({
   savedAnswer,
   showResult,
 }: QuestionCardProps) {
-  const { triggerSelection } = useHaptics();
   const correctAnswer = question.correctAnswer as Record<string, string>;
   const items = Object.keys(correctAnswer);
   const letters = [...new Set(Object.values(correctAnswer))].sort();
@@ -296,7 +293,6 @@ function MatchingQuestion({
 export default function QuestionCard(props: QuestionCardProps) {
   const { question } = props;
   const t = useT();
-  const { triggerLight } = useHaptics();
 
   const slideClass =
     props.direction === "next"

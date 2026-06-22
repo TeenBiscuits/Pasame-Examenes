@@ -4,12 +4,11 @@ import { getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { useHaptics } from "../lib/haptics";
+import { triggerLight } from "../lib/haptics";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
-  const { triggerLight } = useHaptics();
   const subject = subjectId ? getSubject(subjectId) : undefined;
 
   if (!subject) {

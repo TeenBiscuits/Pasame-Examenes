@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Topic } from "../data/types";
 import { track } from "../lib/umami";
-import { useHaptics } from "../lib/haptics";
+import { triggerLight } from "../lib/haptics";
 
 interface TopicCardProps {
   subjectId: string;
@@ -35,7 +35,6 @@ export default function TopicCard({
   pointsCount,
   progress,
 }: TopicCardProps) {
-  const { triggerLight } = useHaptics();
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}

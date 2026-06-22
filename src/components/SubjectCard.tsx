@@ -3,7 +3,7 @@ import type { SubjectMeta } from "../data/types";
 import { getAllQuestions } from "../subjects";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { useHaptics } from "../lib/haptics";
+import { triggerLight } from "../lib/haptics";
 
 interface SubjectCardProps {
   subject: SubjectMeta;
@@ -11,7 +11,6 @@ interface SubjectCardProps {
 
 export default function SubjectCard({ subject }: SubjectCardProps) {
   const t = useT();
-  const { triggerLight } = useHaptics();
   const qs = getAllQuestions(subject.id);
   const totalPoints = qs.reduce((acc, q) => acc + q.points, 0);
 

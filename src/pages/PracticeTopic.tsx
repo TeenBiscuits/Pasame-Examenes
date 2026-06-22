@@ -6,7 +6,7 @@ import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { useHaptics } from "../lib/haptics";
+import { triggerLight, triggerMedium } from "../lib/haptics";
 
 const getNow = () => Date.now();
 
@@ -46,7 +46,6 @@ export default function PracticeTopic() {
   }>();
   const navigate = useNavigate();
   const t = useT();
-  const { triggerLight, triggerMedium } = useHaptics();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const questions = useMemo(

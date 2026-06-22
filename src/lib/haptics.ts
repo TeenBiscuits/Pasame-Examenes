@@ -1,20 +1,23 @@
-import { useWebHaptics } from "web-haptics/react";
-import { useCallback } from "react";
+import { WebHaptics } from "web-haptics";
 
-export function useHaptics() {
-  const { trigger } = useWebHaptics();
+const haptics = new WebHaptics({ debug: true });
 
-  const triggerLight = useCallback(() => trigger("light"), [trigger]);
-  const triggerMedium = useCallback(() => trigger("medium"), [trigger]);
-  const triggerSuccess = useCallback(() => trigger("success"), [trigger]);
-  const triggerError = useCallback(() => trigger("error"), [trigger]);
-  const triggerSelection = useCallback(() => trigger("selection"), [trigger]);
+export function triggerLight() {
+  haptics.trigger("light");
+}
 
-  return {
-    triggerLight,
-    triggerMedium,
-    triggerSuccess,
-    triggerError,
-    triggerSelection,
-  };
+export function triggerMedium() {
+  haptics.trigger("medium");
+}
+
+export function triggerSuccess() {
+  haptics.trigger("success");
+}
+
+export function triggerError() {
+  haptics.trigger("error");
+}
+
+export function triggerSelection() {
+  haptics.trigger("selection");
 }

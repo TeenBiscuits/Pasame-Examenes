@@ -2,14 +2,13 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { getSubject } from "../subjects";
 import { useT, useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { useHaptics } from "../lib/haptics";
+import { triggerLight } from "../lib/haptics";
 
 export default function Header() {
   const location = useLocation();
   const { subjectId } = useParams<{ subjectId?: string }>();
   const t = useT();
   const { lang, setLang } = useLang();
-  const { triggerLight } = useHaptics();
   const subject = subjectId ? getSubject(subjectId) : null;
 
   return (
