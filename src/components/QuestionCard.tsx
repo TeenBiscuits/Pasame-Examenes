@@ -225,13 +225,11 @@ function MatchingQuestion({
 }: QuestionCardProps) {
   const correctAnswer = question.correctAnswer as Record<string, string>;
   const items = Object.keys(correctAnswer);
-  const letters = [...new Set(Object.values(correctAnswer))].sort(
-    (a, b) => {
-      if (a === "V" && b === "F") return -1;
-      if (a === "F" && b === "V") return 1;
-      return a.localeCompare(b);
-    },
-  );
+  const letters = [...new Set(Object.values(correctAnswer))].sort((a, b) => {
+    if (a === "V" && b === "F") return -1;
+    if (a === "F" && b === "V") return 1;
+    return a.localeCompare(b);
+  });
   const [selected, setSelected] = useState<Record<string, string>>(() => {
     if (savedAnswer) {
       try {

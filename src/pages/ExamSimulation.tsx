@@ -1,6 +1,10 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getSubject, getQuestionsByExam, getTopicMegaTopicLabel } from "../subjects";
+import {
+  getSubject,
+  getQuestionsByExam,
+  getTopicMegaTopicLabel,
+} from "../subjects";
 import type { Question, Exam } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
@@ -299,9 +303,7 @@ export default function ExamSimulation() {
           </Link>
         </div>
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-fg mb-2">
-            {examInfo.title}
-          </h1>
+          <h1 className="text-3xl font-bold text-fg mb-2">{examInfo.title}</h1>
           <p className="text-fg-muted mb-8">
             {subject.name} ({subject.courseCode})
           </p>
@@ -373,9 +375,7 @@ export default function ExamSimulation() {
       </div>
       <div className="flex items-center justify-between mb-6 sticky top-14 bg-surface py-3 -mx-4 px-4 z-40 border-b border-border">
         <div>
-          <span className="text-lg font-bold text-fg">
-            {examInfo.title}
-          </span>
+          <span className="text-lg font-bold text-fg">{examInfo.title}</span>
           <span className="text-sm text-fg-muted ml-3">
             {totalPoints}p {t.exam.total}
           </span>
@@ -463,7 +463,10 @@ export default function ExamSimulation() {
         index={currentIndex}
         total={questions.length}
         topicLabel={currentTopic?.label || currentQuestion.topic}
-        megatopicLabel={getTopicMegaTopicLabel(subject.id, currentQuestion.topic)}
+        megatopicLabel={getTopicMegaTopicLabel(
+          subject.id,
+          currentQuestion.topic,
+        )}
         examDate={examInfo?.date}
         subjectId={subject.id}
         onAnswer={handleAnswer}

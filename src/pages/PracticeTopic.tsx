@@ -1,6 +1,10 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getSubject, getQuestionsByTopic, getTopicMegaTopicLabel } from "../subjects";
+import {
+  getSubject,
+  getQuestionsByTopic,
+  getTopicMegaTopicLabel,
+} from "../subjects";
 import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";

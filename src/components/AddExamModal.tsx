@@ -52,10 +52,7 @@ export default function AddExamModal({
     >
       <div onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-5">
-          <h2
-            id="add-exam-title"
-            className="text-lg font-semibold text-fg"
-          >
+          <h2 id="add-exam-title" className="text-lg font-semibold text-fg">
             {t.addExam.title}
           </h2>
           <button

@@ -137,9 +137,7 @@ export default function PracticeHome() {
                 <div className="text-2xl mb-2" role="img" aria-hidden="true">
                   {topic.icon}
                 </div>
-                <h3 className="font-semibold text-fg text-sm">
-                  {topic.label}
-                </h3>
+                <h3 className="font-semibold text-fg text-sm">{topic.label}</h3>
                 <p className="text-xs text-fg-muted mt-1">
                   {qs.length} {t.subjectCard.questions} &middot;{" "}
                   {qs.reduce((s, q) => s + q.points, 0)} {t.subjectCard.points}

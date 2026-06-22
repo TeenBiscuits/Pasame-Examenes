@@ -3273,10 +3273,10 @@ proc_loop(Next, N) ->
     points: 2.5,
     subquestions: [
       "(a) [0.25p] What decomposition and assignment strategies have been used in designing the parallel system?",
-      "(b) [0.5p] Explain how to implement a \"summary\" operation that counts how many times each team has won, drawn, and lost in a specific matchup between teams A and B.",
+      '(b) [0.5p] Explain how to implement a "summary" operation that counts how many times each team has won, drawn, and lost in a specific matchup between teams A and B.',
       "(c) [0.75p] Suppose the original database has 2^40 rows, the sequential operation takes 64 computation cycles per row, and a network communication between two processes takes 2^16 cycles. What is the obtainable speedup as a function of the number of processes N? What is the parallel efficiency using 16 processes? For what database size N does a speedup of 1.0 occur with 256 processes?",
       "(d) [0.75p] Consider searching for a match between teams A and B on a specific date in two situations: when both the original database and each resulting chunk are sorted by date, and when they are completely unsorted. How would you implement it in each case? In which situation can the search be performed more efficiently? In which one does parallelization provide greater benefit, assuming zero communication cost?",
-      "(e) [0.25p] What type of scalability does the \"summary\" operation exhibit? And the search operation on the unsorted database? And the search operation on the sorted database?",
+      '(e) [0.25p] What type of scalability does the "summary" operation exhibit? And the search operation on the unsorted database? And the search operation on the sorted database?',
     ],
     question: `A betting house wants to perform exhaustive analyses of historical match results to calculate counterparties for user bets. The original database is split among N nodes, each with its own local database manager, and an additional node with a global manager handles launching parallel operations. The operations to parallelize are classic database queries (searches, reductions, selections, etc.).
 
@@ -6053,5 +6053,4 @@ Cambios necesarios:
     explanation:
       "With only horizontal dependencies (j-1, j+1), block row distribution works perfectly with Scatter — all data a process needs is within its own rows. The speedup is excellent (9.82 out of 10) because communication overhead (18000s) is only 1.8% of compute time. With additional vertical dependencies, halo rows must be exchanged between neighbors, requiring larger local buffers and point-to-point communication instead of the simple Scatter. The Gather and Reduce remain unchanged since each process still computes the same portion of the output.",
   },
-
 ];

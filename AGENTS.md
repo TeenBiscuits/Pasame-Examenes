@@ -62,7 +62,8 @@ export const meta: SubjectMeta = {
       color: "blue",
     },
   ],
-  megatopics: [ // optional: group topics into larger categories
+  megatopics: [
+    // optional: group topics into larger categories
     {
       key: "group-slug",
       label: "Group Display Name",

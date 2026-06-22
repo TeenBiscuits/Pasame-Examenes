@@ -39,7 +39,8 @@ export const meta: SubjectMeta = {
       color: "blue", // blue, indigo, green, purple, pink, amber, red, cyan, orange
     },
   ],
-  megatopics: [ // opcional: agrupar temas en categorías superiores
+  megatopics: [
+    // opcional: agrupar temas en categorías superiores
     {
       key: "grupo-slug",
       label: "Nombre del Grupo",

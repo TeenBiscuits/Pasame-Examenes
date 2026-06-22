@@ -72,16 +72,14 @@ export default function SubjectHome() {
         <p className="text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
           {subject.courseCode} &middot; {subject.university}
         </p>
-        <h1 className="text-3xl font-bold text-fg mb-3">
-          {subject.name}
-        </h1>
+        <h1 className="text-3xl font-bold text-fg mb-3">{subject.name}</h1>
         <p className="text-fg-secondary max-w-xl mx-auto">{description}</p>
       </div>
 
       <h2 className="text-lg font-semibold text-fg mb-4">
         {t.subjectHome.practiceByTopic}
       </h2>
-      
+
       {subject.megatopics ? (
         <>
           {subject.megatopics.map((mt) => {
@@ -161,9 +159,7 @@ export default function SubjectHome() {
         >
           <div className="flex flex-col items-center justify-center gap-2">
             <span className="text-4xl font-light leading-none">+</span>
-            <span className="text-sm font-medium">
-              {t.subjectHome.addExam}
-            </span>
+            <span className="text-sm font-medium">{t.subjectHome.addExam}</span>
           </div>
         </button>
       </div>
