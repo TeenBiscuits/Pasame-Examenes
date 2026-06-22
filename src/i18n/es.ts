@@ -19,6 +19,7 @@ export const es: Translations = {
       "Descarga o visualiza los PDFs originales en los que se basan estas preguntas y simulaciones.",
     pdf: "PDF",
     acknowledgments: "Agradecimientos",
+    addExam: "¿Añadir examen?",
     repeatedSuffix: "{count} repetidas a lo largo de los años",
   },
   practiceHome: {
@@ -108,6 +109,19 @@ export const es: Translations = {
     contribute: "¡Contribuye!",
     contributeDesc:
       "Sigue la guía de contribución para añadirla tú mismo con un pull request",
+    email: "Escribe un correo",
+  },
+  addExam: {
+    title: "Añadir examen",
+    close: "Cerrar",
+    openIssue: "Abrir un issue",
+    openIssueDesc:
+      "Solicita un nuevo examen para esta asignatura usando la plantilla de GitHub",
+    openIssueUrl:
+      "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-exam.yml",
+    contribute: "¡Contribuye!",
+    contributeDesc:
+      "Sigue la guía de contribución para añadirlo tú mismo con un pull request",
     email: "Escribe un correo",
   },
 };
