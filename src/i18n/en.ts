@@ -116,7 +116,7 @@ export const en = {
     openIssueDesc:
       "Request a new exam for this subject via a pre-filled GitHub issue template",
     openIssueUrl:
-      "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-exam.yml",
+      "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=add-exam.yml",
     contribute: "Contribute!",
     contributeDesc:
       "Follow the contribution guide to add it yourself via pull request",

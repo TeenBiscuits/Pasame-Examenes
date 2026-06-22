@@ -118,7 +118,7 @@ export const es: Translations = {
     openIssueDesc:
       "Solicita un nuevo examen para esta asignatura usando la plantilla de GitHub",
     openIssueUrl:
-      "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-exam.yml",
+      "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=add-exam.yml",
     contribute: "¡Contribuye!",
     contributeDesc:
       "Sigue la guía de contribución para añadirlo tú mismo con un pull request",

@@ -1,0 +1,84 @@
+name: Añadir nuevos exámenes
+description: Solicitar añadir exámenes de años anteriores a una asignatura existente
+title: "[Nuevo Examen]"
+labels: ["new-exam", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Gracias por ayudar a ampliar Pásame Exámenes! Usa esta plantilla para solicitar que se añadan exámenes de años anteriores a una asignatura que ya existe en la plataforma.
+
+  - type: input
+    id: subject
+    attributes:
+      label: Asignatura
+      description: ¿A qué asignatura pertenece este examen? (ej. "eseo", "emeele")
+      placeholder: "ej: eseo"
+    validations:
+      required: true
+
+  - type: input
+    id: exam-year
+    attributes:
+      label: Año del examen
+      description: El año (y opcionalmente mes) del examen a añadir
+      placeholder: "ej: 2025 o 2024-06"
+    validations:
+      required: true
+
+  - type: input
+    id: total-points
+    attributes:
+      label: Puntuación total
+      description: Puntuación máxima del examen
+      placeholder: "ej: 60"
+
+  - type: input
+    id: pass-points
+    attributes:
+      label: Puntuación para aprobar
+      description: Puntuación mínima necesaria para aprobar
+      placeholder: "ej: 30"
+
+  - type: input
+    id: duration
+    attributes:
+      label: Duración (minutos)
+      description: Duración del examen en minutos
+      placeholder: "ej: 180"
+
+  - type: textarea
+    id: exam-details
+    attributes:
+      label: Información sobre el examen
+      description: |
+        Describe los detalles del examen: número de preguntas, temas que cubre, tipo de preguntas, etc.
+        Si tienes el enunciado y/o las soluciones, menciónalo aquí.
+      placeholder: |
+        - 15 preguntas: 10 tipo test, 3 de desarrollo, 2 de cálculo
+        - Cubre los temas 1-5
+        - Tengo el PDF del enunciado
+    validations:
+      required: true
+
+  - type: textarea
+    id: questions
+    attributes:
+      label: Preguntas y soluciones (opcional)
+      description: |
+        Si dispones de las preguntas y sus soluciones, puedes detallarlas aquí.
+        Cuanta más información proporciones, más rápido se podrá añadir el examen.
+      placeholder: |
+        Pregunta 1 (5 pts, tipo test) - Tema 1:
+        Enunciado: ¿Cuál es la capital de Francia?
+        Opciones: a) Madrid  b) París  c) Berlín  d) Roma
+        Respuesta correcta: b
+        ...
+
+  - type: checkboxes
+    id: has-pdf
+    attributes:
+      label: ¿Tienes el PDF del examen?
+      description: Marca esta casilla si dispones del PDF del examen para compartir
+      options:
+        - label: Tengo el PDF del examen
