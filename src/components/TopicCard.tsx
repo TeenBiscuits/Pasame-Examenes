@@ -60,7 +60,7 @@ export default function TopicCard({
       </h3>
       {progress !== undefined && (
         <div className="mt-2">
-          <div className="h-1.5 bg-surface rounded-full overflow-hidden">
+          <div className="h-1.5 bg-border rounded-full overflow-hidden">
             <div
               className="h-full bg-accent rounded-full transition-all duration-500"
               style={{ width: `${Math.min(progress, 100)}%` }}
