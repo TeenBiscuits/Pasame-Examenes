@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
+[![Pásame Exámenes](./public/og.jpg)](https://pe.pablopl.dev)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# <img src="https://raw.githubusercontent.com/TeenBiscuits/Pasame-Examenes/refs/heads/main/public/favicon.svg" alt="" align="left" width="40" height="40"> Pásame Exámenes
 
-Currently, two official plugins are available:
+<div align="center">
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-black?logo=vercel&logoColor=white)](https://vercel.com)
+[![Pull Request](https://img.shields.io/github/issues-pr-closed/TeenBiscuits/Pasame-Examenes.svg?label=Pull%20Request)](https://github.com/TeenBiscuits/Pasame-Examenes/pulls)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE.md)
+[![Stars](https://img.shields.io/github/stars/TeenBiscuits/Pasame-Examenes.svg)](https://github.com/TeenBiscuits/Pasame-Examenes)
 
-## React Compiler
+</div>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<div align="center">
+<br/>
+<b>Pásame Exámenes</b> es una plataforma open source para practicar exámenes universitarios por tema o simular el examen completo con temporizador y autocorrección.
+<br/>
+</div>
 
-## Expanding the ESLint configuration
+<div align="center">
+<h3><a  href="https://pe.pablopl.dev">👉 pe.pablopl.dev 🌐</a></h3>
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Cómo funciona
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+Cada asignatura es una carpeta autónoma dentro de `src/subjects/`. Solo necesitas crear la carpeta con dos archivos (`meta.ts` y `questions.ts`) y la asignatura aparece automáticamente en la web. No hay backend: todos los datos son archivos TypeScript y el progreso se guarda en `localStorage`.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Modo Práctica
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+Elige un tema y practica pregunta a pregunta. Cada pregunta se corrige individualmente, con explicaciones detalladas y posibilidad de auto-evaluarte en las preguntas abiertas. Tu progreso por tema se guarda automáticamente.
+
+### Modo Examen
+
+Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y auto-entrega opcional. Al terminar, revisas todas las respuestas y ves si apruebas o suspendes.
+
+### Tipos de pregunta
+
+- **Opción múltiple** — 5 opciones, corrección automática
+- **Texto / Cálculo** — Respuesta libre, auto-evaluación contra la solución modelo
+- **Emparejamiento** — Relaciona conceptos con letras, corrección automática
+
+## Asignaturas
+
+| Asignatura                          | Universidad            | Exámenes      |
+| ----------------------------------- | ---------------------- | ------------- |
+| 💻 Sistemas Operativos              | Universidade da Coruña | 9 (2020–2024) |
+| 🤖 Introduction to Machine Learning | Linnaeus University    | 2 (2024–2025) |
+
+## Tecnologías
+
+<div align="center">
+
+[![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![React Router v7](https://img.shields.io/badge/React_Router_v7-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
+[![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
+
+</div>
+
+## Desarrollo
+
+```bash
+pnpm dev       # Servidor de desarrollo con HMR
+pnpm build     # Type-check + build de producción
+pnpm lint      # ESLint
+pnpm preview   # Preview del build de producción
+pnpm format    # Prettier
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Contribuye ✨
+
+¡Toda contribución es bienvenida! Puedes:
+
+- Añadir **nuevas asignaturas** con sus exámenes
+- Corregir **errores** en preguntas existentes
+- Reportar **issues** directamente desde cualquier pregunta
+- Mejorar la **web** (features, diseño, accesibilidad)
+
+> [!IMPORTANT]  
+> Lee la [guía de contribución](./CONTRIBUTING.md) para empezar.
+
+## Licencia
+
+El código de la plataforma se distribuye bajo la licencia **Apache 2.0**. Consulta [LICENSE.md](./LICENSE.md) para más detalles.
+
+Las preguntas y soluciones son contribuciones de la comunidad, pueden cometer errores de los que no nos hacemos responsables, nuestro objetivo es correguir todos los errores posibles, si ves un error [reportalo](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=report-question.yml).
+
+Consulta cada asignatura para más información.
 
 ```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+// Made with love by Pablo Portas López
 ```

@@ -1,8 +1,33 @@
-# AGENTS.md — How to Add a Subject to Pásame Exámenes
+# AGENTS.md — Pásame Exámenes
 
-This document explains how AI agents (and humans) can add a new university subject to the platform.
+## Development
 
-## Quickstart
+```bash
+pnpm dev       # Start Vite dev server (HMR)
+pnpm build     # tsc -b && vite build (typecheck + production build)
+pnpm lint      # ESLint (flat config, type-aware via tseslint)
+pnpm format    # Prettier
+pnpm preview   # Preview production build locally
+```
+
+- **pnpm** is the package manager (`pnpm-lock.yaml`).
+- **No backend** — all data is static TypeScript files. User progress is in `localStorage`.
+- **Tailwind CSS v4** — CSS-first config (`src/index.css` has `@import "tailwindcss"`). No `tailwind.config.js`.
+- **`verbatimModuleSyntax: true`** — type-only imports must use `import type`. TypeScript v6 `/ erasableSyntaxOnly`.
+- **`noUnusedLocals` / `noUnusedParameters`** are on — unused imports will fail `tsc`.
+- `pnpm build` runs `tsc -b` first, so it catches type errors. There is no separate `typecheck` script.
+- Vercel rewrites all paths to `/index.html` (SPA), configured in `vercel.json`.
+- Umami analytics script is loaded in `index.html`; the wrapper `src/lib/umami.ts` silently no-ops if unavailable.
+
+## Architecture
+
+- **Subject auto-discovery**: `src/subjects/index.ts:12` uses `import.meta.glob` to find all `*/meta.ts` and `*/questions.ts` under `src/subjects/`. Just create the folder — no manual registration.
+- **i18n**: Custom React context (`src/i18n/context.tsx`). Two languages: `en`/`es`. Adding a translation string requires updating the `Translations` interface in `en.ts` and adding the value in `es.ts`.
+- **Routing** (`src/App.tsx`): `/` → Home, `/:subjectId` → SubjectHome, `/:subjectId/practice` → PracticeHome, `/:subjectId/practice/:topic` → PracticeTopic, `/:subjectId/exam/:year` → ExamSimulation.
+- **Exam `year` field**: A string used in the URL segment `/exam/:year`. Can be a simple year (`"2024"`) or year-month (`"2020-01"`).
+- **Data model**: See `src/data/types.ts` for `SubjectMeta`, `Question`, `Exam`, `Topic`, `ExamAttempt`.
+
+## Adding a New Subject
 
 1. Copy `src/subjects/_template/` → `src/subjects/{subject-id}/`
 2. Fill in `meta.ts` with the subject metadata
@@ -12,11 +37,9 @@ This document explains how AI agents (and humans) can add a new university subje
 6. Run `pnpm dev` to verify everything works
 7. The subject is auto-discovered — no other files to edit
 
-## Subject ID Convention
+### Subject ID Convention
 
 Use lowercase kebab-case: `machine-learning`, `calculus-1`, `operating-systems`.
-
-## File-by-file Reference
 
 ### `meta.ts` — Subject Manifest
 
@@ -147,13 +170,13 @@ public/exams/{subject-id}/
 
 ## Verification Checklist
 
-- [ ] `pnpm dev` starts without errors
+- [ ] `pnpm build` succeeds with no errors
+- [ ] `pnpm lint` passes
 - [ ] Subject appears on the homepage grid
 - [ ] Subject home page loads with all topics
 - [ ] Practice mode works for each topic
 - [ ] Exam simulation loads for each exam year
 - [ ] Question images display correctly
-- [ ] MC questions auto-grade correctly
-- [ ] Matching questions auto-grade correctly
+- [ ] MC and matching questions auto-grade correctly
 - [ ] Text/calculation questions show model solutions
 - [ ] PDFs are downloadable from the subject page

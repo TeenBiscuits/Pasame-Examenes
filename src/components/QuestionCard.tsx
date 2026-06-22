@@ -30,7 +30,7 @@ function buildReportUrl(question: Question, subjectId: string): string {
   const base = "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new";
   const params = new URLSearchParams();
   params.set("template", "report-question.yml");
-  params.set("title", `[Fix Question] ${question.id}`);
+  params.set("title", `[Corregir Pregunta] ${question.id}`);
   params.set("subject", subjectId);
   params.set("question-id", question.id);
   params.set("question-type", getQuestionTypeLabel(question.type));

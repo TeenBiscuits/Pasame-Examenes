@@ -1,148 +1,219 @@
-# Contributing to Pásame Exámenes
+# Contribuir a Pásame Exámenes
 
-Thanks for helping grow this open-source exam practice platform!
+¡Gracias por ayudar a hacer crecer esta plataforma open source de práctica de exámenes!
 
-## Project Overview
+## Cómo contribuir
 
-Pásame Exámenes is a client-side SPA built with Vite, React, TypeScript, and Tailwind CSS v4. There is no backend — all data lives in TypeScript files and user progress is saved to localStorage.
+### Reportar errores en preguntas
 
-Each university subject is a self-contained folder under `src/subjects/` with its own questions, metadata, and assets. New subjects are auto-discovered at build time via Vite's `import.meta.glob`.
+Cada pregunta tiene un enlace **"Report Issue"** en la vista de revisión. Úsalo para abrir un issue pre-rellenado con el ID de la pregunta y la asignatura.
 
-## Adding a New Subject
+### Añadir una nueva asignatura
 
-### 1. Copy the Template
+#### 1. Copia la plantilla
 
 ```bash
 cp -r src/subjects/_template src/subjects/{subject-id}
 ```
 
-Use lowercase kebab-case for the folder name: `calculus-1`, `operating-systems`, `machine-learning`.
+Usa kebab-case para el nombre de la carpeta: `calculus-1`, `operating-systems`, `machine-learning`.
 
-### 2. Edit `meta.ts`
+#### 2. Edita `meta.ts`
 
-Fill in the subject metadata:
+```ts
+import type { SubjectMeta } from "../../data/types";
 
-| Field        | Description                                                         |
-| ------------ | ------------------------------------------------------------------- |
-| `id`         | Must match the folder name                                          |
-| `name`       | Display name (e.g. "Introduction to Machine Learning")              |
-| `university` | University name                                                     |
-| `courseCode` | Course code (e.g. "2DV516")                                         |
-| `icon`       | Single emoji representing the subject                               |
-| `topics`     | Array of topics. Each has `key`, `label`, `icon`, and `color`       |
-| `exams`      | Array of exam metadata (year, title, description, points, duration) |
+export const meta: SubjectMeta = {
+  id: "subject-id", // debe coincidir con el nombre de la carpeta
+  name: "Nombre Asignatura",
+  university: "Universidad",
+  courseCode: "ABC123",
+  icon: "📚",
+  topics: [
+    {
+      key: "tema-slug",
+      label: "Nombre del Tema",
+      icon: "📌",
+      color: "blue", // blue, indigo, green, purple, pink, amber, red, cyan, orange
+    },
+  ],
+  exams: [
+    {
+      year: "2024", // string, usado en la URL /exam/2024
+      title: "Examen 2024",
+      description: "60 puntos · 15 preguntas",
+      passPoints: 30,
+      totalPoints: 60,
+      durationMinutes: 180,
+    },
+  ],
+};
+```
 
-Available topic colors: `blue`, `indigo`, `green`, `purple`, `pink`, `amber`, `red`, `cyan`, `orange`.
+#### 3. Añade las preguntas en `questions.ts`
 
-### 3. Add Questions to `questions.ts`
+Exporta un array `Question[]`. Tipos de pregunta:
 
-Export a `Question[]` array. See `src/data/types.ts` for the full type definition.
+- **`mc`** — Opción múltiple. `correctAnswer` es una letra `"a"`–`"e"`. Requiere `options[]`.
+- **`text`** — Respuesta libre. Auto-evaluada por el usuario contra la solución modelo.
+- **`calculation`** — Igual que text, pero etiquetado como cálculo.
+- **`matching`** — Emparejar conceptos. `correctAnswer` es un `Record<string, string>`.
 
-Question types:
+```ts
+import type { Question } from "../../data/types";
 
-- **`mc`** — Multiple choice with 5 options. `correctAnswer` is a letter string `"a"`–`"e"`.
-- **`text`** — Free-text answer. Self-graded by the user against a model solution.
-- **`calculation`** — Same as text, but labeled differently.
-- **`matching`** — Match items to letters. `correctAnswer` is a `Record<string, string>`.
+export const questions: Question[] = [
+  // Opción múltiple
+  {
+    id: "2024_q1",
+    exam: "2024",
+    topic: "tema-slug",
+    type: "mc",
+    points: 5,
+    question: "¿Qué es...?",
+    options: ["A. Opción uno", "B. Opción dos", "C. Opción tres"],
+    correctAnswer: "b",
+    explanation: "Porque...",
+  },
 
-### 4. Add Exam PDFs
+  // Texto / Cálculo
+  {
+    id: "2024_q2",
+    exam: "2024",
+    topic: "tema-slug",
+    type: "text",
+    points: 10,
+    question: "Explica...",
+    correctAnswer: "Solución modelo...",
+    explanation: "Puntos clave...",
+  },
 
-Place the original exam PDFs in `public/exams/{subject-id}/`:
+  // Emparejamiento
+  {
+    id: "2024_q3",
+    exam: "2024",
+    topic: "tema-slug",
+    type: "matching",
+    points: 5,
+    question: "Relaciona los conceptos:",
+    correctAnswer: {
+      "Concepto A": "X",
+      "Concepto B": "Y",
+    },
+    explanation: "A se relaciona con X porque...",
+  },
+];
+```
+
+Campos opcionales: `image`, `imageWidth`, `imageHeight`, `table`, `subquestions`.
+
+#### 4. Añade los PDFs de los exámenes
+
+Copia los PDFs originales a `public/exams/{subject-id}/`:
 
 ```
 public/exams/{subject-id}/Exam-2024.pdf
-public/exams/{subject-id}/Exam-2025.pdf
 ```
 
-The naming convention is `Exam-{year}.pdf`.
+La convención es `Exam-{year}.pdf`.
 
-### 5. Add Question Images
+#### 5. Añade imágenes (si las hay)
 
-If any questions reference figures or charts:
+Si alguna pregunta referencia figuras o gráficos:
 
-1. Screenshot/crop the image from the PDF
-2. Save it to `src/subjects/{subject-id}/assets/`
-3. Import it in `questions.ts` and set the `image` field:
+1. Recorta la figura del PDF
+2. Guárdala en `src/subjects/{subject-id}/assets/`
+3. Impórtala y referénciala en `questions.ts`:
 
 ```ts
-import figure1 from "./assets/figure-1.png";
+import figura1 from "./assets/figura-1.png";
 
 {
   // ...
-  image: figure1,
+  image: figura1,
   imageWidth: 800,
   imageHeight: 400,
 }
 ```
 
-### 6. Verify
+#### 6. Verifica
 
 ```bash
 pnpm dev
 ```
 
-The subject should appear on the homepage and all features should work.
+La asignatura debe aparecer en la pantalla principal y todas las funcionalidades deben funcionar.
 
-## Extraction Workflow for PDF Questions
+### Flujo de trabajo para extraer preguntas de PDFs
 
-When converting an exam PDF to the data format:
+1. Abre el PDF e identifica cada pregunta
+2. Clasifícala como `mc`, `text`, `calculation` o `matching`
+3. Asígnale un tema de tu array `topics` en `meta.ts`
+4. Para MC: escribe las opciones exactamente como aparecen, marca la letra correcta
+5. Para text/calculation: escribe una solución modelo
+6. Para matching: crea el mapeo ítem → letra
+7. Incluye notas explicativas en `explanation`
 
-1. Identify each question in the PDF
-2. Determine the question type (mc, text, calculation, matching)
-3. Map each question to a topic from your `meta.ts` topics array
-4. For MC questions: write all 5 options exactly as they appear, mark the correct letter
-5. For text/calculation questions: write a model solution (can be sourced from official answer keys)
-6. For matching questions: create the item-to-letter mapping
-7. Include explanatory notes in the `explanation` field
-
-## Project Structure
+## Estructura del proyecto
 
 ```
 src/
 ├── subjects/
-│   ├── index.ts              # Auto-discovery logic (don't edit)
-│   ├── _template/            # Copy this to start a new subject
-│   └── ml/                   # Example subject (Machine Learning)
+│   ├── index.ts              # Auto-descubrimiento (no editar)
+│   ├── _template/            # Plantilla para nuevas asignaturas
+│   ├── eseo/                 # Sistemas Operativos (UDC)
+│   │   ├── meta.ts
+│   │   └── questions.ts
+│   └── emeele/              # Machine Learning (LNU)
 │       ├── meta.ts
 │       ├── questions.ts
 │       └── assets/
-├── components/               # Shared UI components
+├── components/               # Componentes UI compartidos
 │   ├── Header.tsx
 │   ├── SubjectCard.tsx
 │   ├── TopicCard.tsx
 │   └── QuestionCard.tsx
-├── pages/                    # Route-level pages
+├── pages/                    # Páginas por ruta
 │   ├── Home.tsx
 │   ├── SubjectHome.tsx
 │   ├── PracticeHome.tsx
 │   ├── PracticeTopic.tsx
 │   └── ExamSimulation.tsx
 ├── data/
-│   ├── types.ts              # TypeScript type definitions
-│   └── store.ts              # localStorage persistence
-└── App.tsx                   # Root component with routing
+│   ├── types.ts              # Definiciones de tipos
+│   └── store.ts              # Persistencia en localStorage
+├── i18n/                     # Traducciones (en/es)
+│   ├── en.ts
+│   └── es.ts
+├── lib/
+│   └── umami.ts              # Analytics wrapper
+└── App.tsx                   # Componente raíz con rutas
 
 public/
-└── exams/                    # Original exam PDFs
-    └── {subject-id}/
+├── favicon.svg
+├── og.jpg
+└── exams/                    # PDFs originales
+    ├── eseo/
+    └── emeele/
 ```
 
-## Development
+## Comandos
 
 ```bash
-pnpm dev       # Start dev server
-pnpm build     # Type-check and build for production
-pnpm lint      # Run ESLint
-pnpm preview   # Preview production build
+pnpm dev       # Servidor de desarrollo
+pnpm build     # Type-check + build de producción
+pnpm lint      # ESLint
+pnpm preview   # Preview del build
+pnpm format    # Prettier
 ```
 
-## Pull Request Checklist
+## Checklist para Pull Requests
 
-- [ ] Subject ID is lowercase kebab-case and matches folder name
-- [ ] All topic keys in `questions.ts` match `meta.ts` topics
-- [ ] All MC questions have exactly 5 options and a valid letter answer
-- [ ] Exam PDFs are placed in `public/exams/{subject-id}/`
-- [ ] Images are in `src/subjects/{subject-id}/assets/` and imported correctly
-- [ ] `pnpm build` succeeds with no errors
-- [ ] `pnpm lint` passes
-- [ ] Subject loads correctly in development mode
+- [ ] El ID de la asignatura es kebab-case y coincide con la carpeta
+- [ ] Todas las `topic` en `questions.ts` existen en `meta.ts`
+- [ ] Las preguntas MC tienen exactamente 5 opciones y una letra válida
+- [ ] Los PDFs están en `public/exams/{subject-id}/`
+- [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente
+- [ ] `pnpm build` compila sin errores
+- [ ] `pnpm lint` pasa
+- [ ] La asignatura carga correctamente en `pnpm dev`
