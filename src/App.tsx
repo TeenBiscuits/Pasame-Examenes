@@ -13,6 +13,7 @@ function PageViewTracker() {
   const location = useLocation();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     track("page_view", { path: location.pathname });
   }, [location.pathname]);
 
