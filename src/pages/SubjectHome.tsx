@@ -34,10 +34,9 @@ export default function SubjectHome() {
     allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
   );
 
-  const totalPoints = allQuestions.reduce((s, q) => s + q.points, 0);
   const description = t.subjectHome.description
     .replace("{count}", String(allQuestions.length))
-    .replace("{points}", String(totalPoints));
+    .replace("{exams}", String(subject.exams.length));
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">

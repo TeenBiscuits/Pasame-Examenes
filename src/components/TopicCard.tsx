@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { Topic } from "../data/types";
+import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 
@@ -35,6 +36,7 @@ export default function TopicCard({
   pointsCount,
   progress,
 }: TopicCardProps) {
+  const t = useT();
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
@@ -49,7 +51,7 @@ export default function TopicCard({
           {topic.icon}
         </span>
         <span className="text-xs text-gray-500 font-medium">
-          {questionCount} questions · {pointsCount}p
+          {questionCount} {t.subjectCard.questions} &middot; {pointsCount} {t.subjectCard.points}
         </span>
       </div>
       <h3 className="font-semibold text-gray-900 text-sm mb-2">

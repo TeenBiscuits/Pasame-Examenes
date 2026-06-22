@@ -11,7 +11,7 @@ export const es: Translations = {
     notFound: "Asignatura no encontrada",
     returnHome: "Volver al inicio",
     description:
-      "Practica {count} preguntas de examen ({points} puntos en total) con autocorrección para preguntas tipo test y de emparejar.",
+      "Practica {count} preguntas de {exams} exámenes con respuestas modelo y autocorrección.",
     practiceByTopic: "Practicar por tema",
     examSimulations: "Simulaciones de examen completas",
     originalExams: "Documentos originales de examen",
@@ -91,7 +91,7 @@ export const es: Translations = {
   subjectCard: {
     questions: "preguntas",
     points: "puntos",
-    topics: "temas",
+    exams: "exámenes",
   },
   addSubject: {
     title: "Añadir asignatura",

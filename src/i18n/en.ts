@@ -9,7 +9,7 @@ export const en = {
     notFound: "Subject Not Found",
     returnHome: "Return to Home",
     description:
-      "Practice {count} exam questions ({points} points total). Multiple-choice and matching questions are auto-graded.",
+      "Practice {count} questions from {exams} exams with model answers and self-grading.",
     practiceByTopic: "Practice by Topic",
     examSimulations: "Full Exam Simulations",
     originalExams: "Original Exam Documents",
@@ -89,7 +89,7 @@ export const en = {
   subjectCard: {
     questions: "questions",
     points: "points",
-    topics: "topics",
+    exams: "exams",
   },
   addSubject: {
     title: "Add a Subject",

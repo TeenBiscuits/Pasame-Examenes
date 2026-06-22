@@ -12,7 +12,6 @@ interface SubjectCardProps {
 export default function SubjectCard({ subject }: SubjectCardProps) {
   const t = useT();
   const qs = getAllQuestions(subject.id);
-  const totalPoints = qs.reduce((acc, q) => acc + q.points, 0);
 
   return (
     <Link
@@ -41,11 +40,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         </span>
         <span>&middot;</span>
         <span>
-          {totalPoints} {t.subjectCard.points}
-        </span>
-        <span>&middot;</span>
-        <span>
-          {subject.topics.length} {t.subjectCard.topics}
+          {subject.exams.length} {t.subjectCard.exams}
         </span>
       </div>
     </Link>
