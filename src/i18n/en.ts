@@ -17,6 +17,7 @@ export const en = {
       "Download or view the original PDF exams that these practice questions and simulations are based on.",
     pdf: "PDF",
     acknowledgments: "Acknowledgments",
+    addExam: "Add Exam?",
   },
   practiceHome: {
     title: "Practice by Topic",
@@ -101,6 +102,19 @@ export const en = {
       "Request a new subject via a pre-filled GitHub issue template",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml",
+    contribute: "Contribute!",
+    contributeDesc:
+      "Follow the contribution guide to add it yourself via pull request",
+    email: "Send an email",
+  },
+  addExam: {
+    title: "Add an Exam",
+    close: "Close",
+    openIssue: "Open an Issue",
+    openIssueDesc:
+      "Request a new exam for this subject via a pre-filled GitHub issue template",
+    openIssueUrl:
+      "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-exam.yml",
     contribute: "Contribute!",
     contributeDesc:
       "Follow the contribution guide to add it yourself via pull request",

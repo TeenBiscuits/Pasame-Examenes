@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getSubject, getAllQuestions } from "../subjects";
 import { getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
+import AddExamModal from "../components/AddExamModal";
 import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -10,6 +12,7 @@ import { triggerLight } from "../lib/haptics";
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
+  const [examModalOpen, setExamModalOpen] = useState(false);
   const subject = subjectId ? getSubject(subjectId) : undefined;
 
   if (!subject) {
@@ -141,7 +144,29 @@ export default function SubjectHome() {
             <p className="text-sm text-gray-500 mt-1">{exam.description}</p>
           </Link>
         ))}
+        <button
+          type="button"
+          onClick={() => {
+            triggerLight();
+            setExamModalOpen(true);
+          }}
+          className="block p-5 rounded-xl border-2 border-dashed border-gray-300 text-gray-400 hover:text-green-600 hover:border-green-400 hover:bg-green-50/30 hover:scale-[1.02] transition-colors transition-transform duration-200 text-left"
+        >
+          <div className="flex flex-col items-center justify-center h-full min-h-[140px] gap-2">
+            <span className="text-4xl font-light leading-none">+</span>
+            <span className="text-sm font-medium">
+              {t.subjectHome.addExam}
+            </span>
+          </div>
+        </button>
       </div>
+
+      <AddExamModal
+        open={examModalOpen}
+        onClose={() => setExamModalOpen(false)}
+        subjectId={subject.id}
+        subjectName={subject.name}
+      />
 
       {subject.exams.some((exam) => exam.hasPdf !== false) && (
         <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-10">
