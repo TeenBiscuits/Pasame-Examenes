@@ -34,13 +34,10 @@ export default function SubjectHome() {
     allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
   );
 
-  const description = (() => {
-    const totalPoints = allQuestions.reduce((s, q) => s + q.points, 0);
-    if (subject.id === "so") {
-      return `Practica ${allQuestions.length} preguntas de examen (${totalPoints} puntos en total) con autocorrección para preguntas tipo test y de emparejar.`;
-    }
-    return `Practice for this subject. ${totalPoints} points across ${allQuestions.length} questions.`;
-  })();
+  const totalPoints = allQuestions.reduce((s, q) => s + q.points, 0);
+  const description = t.subjectHome.description
+    .replace("{count}", String(allQuestions.length))
+    .replace("{points}", String(totalPoints));
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">

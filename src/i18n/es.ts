@@ -10,6 +10,8 @@ export const es: Translations = {
   subjectHome: {
     notFound: "Asignatura no encontrada",
     returnHome: "Volver al inicio",
+    description:
+      "Practica {count} preguntas de examen ({points} puntos en total) con autocorrección para preguntas tipo test y de emparejar.",
     practiceByTopic: "Practicar por tema",
     examSimulations: "Simulaciones de examen completas",
     originalExams: "Documentos originales de examen",
