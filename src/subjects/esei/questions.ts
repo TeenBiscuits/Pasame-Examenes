@@ -389,6 +389,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "El hecho de entrenar una RNA mediante un algoritmo basado en el gradiente descendente (con pasos ínfimos) tiene el problema de que...",
     options: [
@@ -444,6 +445,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Para usar una RNA para resolver un problema de clasificación con dos clases, sin posibilidad de que un patrón no pertenezca a ninguna de las dos clases, el número de neuronas de salida que hay que usar es...",
     options: ["a) 1", "b) 2", "c) 3", "d) 4", "e) 5"],
@@ -457,6 +459,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "La autoorganización en Sistemas Conexionistas...",
     options: [
       "a) Permite que exista un jefe que determine el comportamiento de los patrones",
@@ -714,6 +717,7 @@ export const questions: Question[] = [
     topic: "t10",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Cuál de los siguientes operadores genéticos es el responsable de explotar la información presente en la población?",
     options: [
@@ -1060,6 +1064,7 @@ export const questions: Question[] = [
     topic: "t2",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "La búsqueda A*...",
     options: [
       "a) Evalúa los nodos combinando las funciones g(n) y h(n).",
@@ -1227,6 +1232,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Entrenar una RNA utilizando un algoritmo basado en el descenso de gradiente tiene el siguiente problema...",
     options: [
@@ -1302,6 +1308,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Para utilizar una RNA para resolver un problema de clasificación con dos clases, sin la posibilidad de que una instancia no pertenezca a ninguna de ellas, el número de neuronas que se debe usar en la capa de salida es...",
     options: ["a) 1.", "b) 2.", "c) 3.", "d) 4.", "e) 5."],
@@ -1353,6 +1360,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "La autoorganización en los Sistemas Conexionistas...",
     options: [
       "a) Permite la existencia de un jefe que determina el comportamiento de los patrones.",
@@ -1623,6 +1631,7 @@ export const questions: Question[] = [
     topic: "t10",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En el contexto de los algoritmos evolutivos, ¿qué técnica se utiliza para explotar la información presente en la población y mejorar las soluciones?",
     options: [
