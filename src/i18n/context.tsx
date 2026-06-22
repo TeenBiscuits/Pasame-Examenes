@@ -23,7 +23,9 @@ function getInitialLang(): Lang {
   try {
     const stored = localStorage.getItem("lang");
     if (stored === "en" || stored === "es") return stored;
-  } catch { /* localStorage unavailable */ }
+  } catch {
+    /* localStorage unavailable */
+  }
   const nav = navigator.language.toLowerCase();
   if (nav.startsWith("es")) return "es";
   return "en";
@@ -36,7 +38,9 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     setLangState(l);
     try {
       localStorage.setItem("lang", l);
-    } catch { /* localStorage unavailable */ }
+    } catch {
+      /* localStorage unavailable */
+    }
   }, []);
 
   return (
