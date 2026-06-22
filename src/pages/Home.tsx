@@ -5,9 +5,11 @@ import AddSubjectModal, {
   type AddSubjectModalHandle,
 } from "../components/AddSubjectModal";
 import { useT } from "../i18n/hooks";
+import { useDocumentTitle } from "../lib/title";
 
 export default function Home() {
   const t = useT();
+  useDocumentTitle(t.home.title);
   const modalRef = useRef<AddSubjectModalHandle>(null);
 
   return (

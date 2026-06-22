@@ -10,12 +10,14 @@ import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
+import { useDocumentTitle } from "../lib/title";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
+  useDocumentTitle(subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title);
 
   if (!subject) {
     return (

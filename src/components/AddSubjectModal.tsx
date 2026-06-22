@@ -26,8 +26,15 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
       if (!dialog) return;
 
       const handleClose = () => onClose();
+      const handleBackdropClick = (e: MouseEvent) => {
+        if (e.target === dialog) dialog.close();
+      };
       dialog.addEventListener("close", handleClose);
-      return () => dialog.removeEventListener("close", handleClose);
+      dialog.addEventListener("click", handleBackdropClick);
+      return () => {
+        dialog.removeEventListener("close", handleClose);
+        dialog.removeEventListener("click", handleBackdropClick);
+      };
     }, [onClose]);
 
     return (
@@ -35,19 +42,11 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
         ref={dialogRef}
         className="animate-dialog m-auto max-w-sm rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
         aria-labelledby="add-subject-title"
-        onClick={(e) => {
-          if (e.target === dialogRef.current) dialogRef.current?.close();
-        }}
-        onKeyDown={(e) => {
-          if ((e.key === "Enter" || e.key === " ") && e.target === dialogRef.current) {
-            dialogRef.current?.close();
-          }
-        }}
         onClose={() => {
           track("add_subject_modal_close");
         }}
       >
-        <div onClick={(e) => e.stopPropagation()}>
+        <div>
           <div className="flex items-center justify-between mb-5">
             <h2
               id="add-subject-title"

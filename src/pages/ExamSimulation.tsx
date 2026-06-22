@@ -11,6 +11,7 @@ import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight, triggerMedium } from "../lib/haptics";
+import { useDocumentTitle } from "../lib/title";
 
 const getNow = () => Date.now();
 
@@ -63,6 +64,13 @@ export default function ExamSimulation() {
   const examInfo = useMemo(
     () => subject?.exams.find((e: Exam) => e.year === year),
     [subject, year],
+  );
+  useDocumentTitle(
+    examInfo && subject
+      ? `${examInfo.title} \u2014 ${subject.name} \u2014 ${t.home.title}`
+      : subject
+        ? `${subject.name} \u2014 ${t.home.title}`
+        : t.home.title,
   );
 
   const [currentIndex, setCurrentIndex] = useState(0);
