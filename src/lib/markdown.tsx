@@ -26,7 +26,7 @@ function parseInline(text: string): ReactNode[] {
     if (part.startsWith("`") && part.endsWith("`")) {
       return (
         <code
-          key={i}
+          key={`code-${i}`}
           className="font-mono text-[0.85em] bg-code text-pink-600 px-1.5 py-0.5 rounded"
         >
           {part.slice(1, -1)}
@@ -44,7 +44,7 @@ function renderBlocks(text: string): ReactNode[] {
       const code = part.slice(3, -3).replace(/^\n/, "").trimEnd();
       return [
         <div
-          key={`cb-${i}`}
+          key={`cb-${i}-${code.slice(0, 10)}`}
           className="my-3 rounded-lg border border-border bg-code-block overflow-hidden"
         >
           <pre className="p-4 overflow-x-auto text-xs leading-relaxed">
@@ -57,7 +57,7 @@ function renderBlocks(text: string): ReactNode[] {
     }
     if (part.length === 0) return [];
     return [
-      <span key={`t-${i}`} className="whitespace-pre-line">
+      <span key={`t-${i}-${part.slice(0, 10)}`} className="whitespace-pre-line">
         {parseInline(part)}
       </span>,
     ];

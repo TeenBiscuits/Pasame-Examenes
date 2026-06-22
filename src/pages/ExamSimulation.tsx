@@ -14,6 +14,13 @@ import { triggerLight, triggerMedium } from "../lib/haptics";
 
 const getNow = () => Date.now();
 
+function formatTime(seconds: number) {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+}
+
 function gradeQuestion(
   question: Question,
   answer: string,
@@ -69,7 +76,7 @@ export default function ExamSimulation() {
   );
   const [started, setStarted] = useState(false);
   const startTimeRef = useRef<number>(0);
-  const [attemptId, setAttemptId] = useState<string>("");
+  const attemptIdRef = useRef<string>("");
   const timeUpTrackedRef = useRef(false);
   const [direction, setDirection] = useState<"next" | "prev" | undefined>();
   const navRef = useRef<HTMLDivElement>(null);
@@ -77,6 +84,25 @@ export default function ExamSimulation() {
   const [showRightFade, setShowRightFade] = useState(false);
   const currentIndexRef = useRef(currentIndex);
   const startedRef = useRef(started);
+
+  const scrollToNav = useCallback(
+    (index: number) => {
+      const container = navRef.current;
+      if (!container) return;
+      const btn = container.children[index] as HTMLElement | undefined;
+      if (!btn) return;
+      requestAnimationFrame(() => {
+        const cr = container.getBoundingClientRect();
+        const br = btn.getBoundingClientRect();
+        const step = 108;
+        if (br.right > cr.right - 84)
+          container.scrollBy({ left: step, behavior: "smooth" });
+        else if (br.left < cr.left + 84)
+          container.scrollBy({ left: -step, behavior: "smooth" });
+      });
+    },
+    [],
+  );
 
   useEffect(() => {
     currentIndexRef.current = currentIndex;
@@ -100,6 +126,7 @@ export default function ExamSimulation() {
           toIndex: nextIndex,
         });
         setCurrentIndex(nextIndex);
+        scrollToNav(nextIndex);
       } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
         e.preventDefault();
         const nextIndex = idx + 1;
@@ -111,11 +138,12 @@ export default function ExamSimulation() {
           toIndex: nextIndex,
         });
         setCurrentIndex(nextIndex);
+        scrollToNav(nextIndex);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [questions.length]);
+  }, [questions.length, scrollToNav]);
 
   useEffect(() => {
     if (!subject || !examInfo) {
@@ -139,22 +167,6 @@ export default function ExamSimulation() {
       ro.disconnect();
     };
   }, [questions, started]);
-
-  useEffect(() => {
-    const container = navRef.current;
-    if (!container) return;
-    const btn = container.children[currentIndex] as HTMLElement | undefined;
-    if (!btn) return;
-    requestAnimationFrame(() => {
-      const cr = container.getBoundingClientRect();
-      const br = btn.getBoundingClientRect();
-      const step = 108;
-      if (br.right > cr.right - 84)
-        container.scrollBy({ left: step, behavior: "smooth" });
-      else if (br.left < cr.left + 84)
-        container.scrollBy({ left: -step, behavior: "smooth" });
-    });
-  }, [currentIndex]);
 
   const totalPoints = questions.reduce((s, q) => s + q.points, 0);
 
@@ -181,7 +193,7 @@ export default function ExamSimulation() {
         questionsCount: questions.length,
       });
     }
-  }, [timeLeft, started, submitted]);
+  }, [timeLeft, started, submitted, subject?.id, year, questions.length]);
 
   const handleAnswer = useCallback((questionId: string, answer: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: answer }));
@@ -195,7 +207,7 @@ export default function ExamSimulation() {
     triggerMedium();
     const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
     const id = getNow().toString();
-    setAttemptId(id);
+    attemptIdRef.current = id;
     let score = 0;
     for (const q of questions) {
       score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
@@ -244,7 +256,7 @@ export default function ExamSimulation() {
         score += gradeQuestion(q, answers[q.id] || "", next[q.id]);
       }
       saveAttempt(subject.id, {
-        id: attemptId || getNow().toString(),
+        id: attemptIdRef.current || getNow().toString(),
         exam: year,
         mode: "exam",
         date: new Date().toISOString(),
@@ -267,13 +279,6 @@ export default function ExamSimulation() {
     });
     setStarted(true);
     startTimeRef.current = getNow();
-  };
-
-  const formatTime = (seconds: number) => {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = seconds % 60;
-    return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
   if (questions.length === 0 || !subject || !examInfo) {
@@ -333,6 +338,7 @@ export default function ExamSimulation() {
             {t.exam.simulationNote}
           </div>
           <button
+            type="button"
             className="w-full py-3 bg-accent text-white rounded-lg hover:bg-accent-hover active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition font-medium animate-pulse"
             onClick={handleStart}
           >
@@ -437,6 +443,7 @@ export default function ExamSimulation() {
           else cls += " border-border text-fg-muted hover:border-fg-muted";
           return (
             <button
+              type="button"
               key={q.id}
               className={cls}
               onClick={() => {
@@ -449,6 +456,7 @@ export default function ExamSimulation() {
                       : undefined,
                 );
                 setCurrentIndex(i);
+                scrollToNav(i);
               }}
             >
               {i + 1}
@@ -479,6 +487,7 @@ export default function ExamSimulation() {
 
       <div className="flex justify-between mt-6">
         <button
+          type="button"
           className="px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
@@ -490,6 +499,7 @@ export default function ExamSimulation() {
               toIndex: nextIndex,
             });
             setCurrentIndex(nextIndex);
+            scrollToNav(nextIndex);
           }}
           disabled={currentIndex === 0}
         >
@@ -498,6 +508,7 @@ export default function ExamSimulation() {
         <div className="flex gap-2">
           {!submitted && (
             <button
+              type="button"
               className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition font-medium"
               onClick={handleSubmit}
             >
@@ -506,6 +517,7 @@ export default function ExamSimulation() {
           )}
         </div>
         <button
+          type="button"
           className="px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
@@ -517,6 +529,7 @@ export default function ExamSimulation() {
               toIndex: nextIndex,
             });
             setCurrentIndex(nextIndex);
+            scrollToNav(nextIndex);
           }}
           disabled={currentIndex === questions.length - 1}
         >

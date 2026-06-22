@@ -81,12 +81,31 @@ export default function PracticeTopic() {
   const [checkedQuestions, setCheckedQuestions] = useState<
     Record<string, boolean>
   >({});
-  const [attemptId, setAttemptId] = useState<string>("");
+  const attemptIdRef = useRef<string>("");
   const [direction, setDirection] = useState<"next" | "prev" | undefined>();
   const navRef = useRef<HTMLDivElement>(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(false);
   const currentIndexRef = useRef(currentIndex);
+
+  const scrollToNav = useCallback(
+    (index: number) => {
+      const container = navRef.current;
+      if (!container) return;
+      const btn = container.children[index] as HTMLElement | undefined;
+      if (!btn) return;
+      requestAnimationFrame(() => {
+        const cr = container.getBoundingClientRect();
+        const br = btn.getBoundingClientRect();
+        const step = 108;
+        if (br.right > cr.right - 84)
+          container.scrollBy({ left: step, behavior: "smooth" });
+        else if (br.left < cr.left + 84)
+          container.scrollBy({ left: -step, behavior: "smooth" });
+      });
+    },
+    [],
+  );
 
   useEffect(() => {
     currentIndexRef.current = currentIndex;
@@ -108,6 +127,7 @@ export default function PracticeTopic() {
           toIndex: nextIndex,
         });
         setCurrentIndex(nextIndex);
+        scrollToNav(nextIndex);
       } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
         e.preventDefault();
         const nextIndex = idx + 1;
@@ -119,11 +139,12 @@ export default function PracticeTopic() {
           toIndex: nextIndex,
         });
         setCurrentIndex(nextIndex);
+        scrollToNav(nextIndex);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [questions.length]);
+  }, [questions.length, scrollToNav]);
 
   useEffect(() => {
     if (!subject || !topicInfo) {
@@ -148,22 +169,6 @@ export default function PracticeTopic() {
     };
   }, [questions]);
 
-  useEffect(() => {
-    const container = navRef.current;
-    if (!container) return;
-    const btn = container.children[currentIndex] as HTMLElement | undefined;
-    if (!btn) return;
-    requestAnimationFrame(() => {
-      const cr = container.getBoundingClientRect();
-      const br = btn.getBoundingClientRect();
-      const step = 108;
-      if (br.right > cr.right - 84)
-        container.scrollBy({ left: step, behavior: "smooth" });
-      else if (br.left < cr.left + 84)
-        container.scrollBy({ left: -step, behavior: "smooth" });
-    });
-  }, [currentIndex]);
-
   const currentQuestion = questions[currentIndex];
 
   const examDate = useMemo(() => {
@@ -179,7 +184,7 @@ export default function PracticeTopic() {
     if (!subject) return;
     triggerMedium();
     const id = getNow().toString();
-    setAttemptId(id);
+    attemptIdRef.current = id;
     let score = 0;
     for (const q of questions) {
       score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
@@ -226,7 +231,7 @@ export default function PracticeTopic() {
         score += gradeQuestion(q, answers[q.id] || "", next[q.id]);
       }
       saveAttempt(subject.id, {
-        id: attemptId || getNow().toString(),
+        id: attemptIdRef.current || getNow().toString(),
         exam: "practice",
         mode: "practice",
         topic: topic,
@@ -326,6 +331,7 @@ export default function PracticeTopic() {
           else cls += " border-border text-fg-muted hover:border-fg-muted";
           return (
             <button
+              type="button"
               key={q.id}
               className={cls}
               onClick={() => {
@@ -338,6 +344,7 @@ export default function PracticeTopic() {
                       : undefined,
                 );
                 setCurrentIndex(i);
+                scrollToNav(i);
               }}
             >
               {isChecked && !isCurrent ? "\u2713" : i + 1}
@@ -365,6 +372,7 @@ export default function PracticeTopic() {
 
       <div className="flex justify-between mt-6">
         <button
+          type="button"
           className="px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
@@ -376,6 +384,7 @@ export default function PracticeTopic() {
               toIndex: nextIndex,
             });
             setCurrentIndex(nextIndex);
+            scrollToNav(nextIndex);
           }}
           disabled={currentIndex === 0}
         >
@@ -387,6 +396,7 @@ export default function PracticeTopic() {
             !checkedQuestions[currentQuestion.id] && (
               <>
                 <button
+                  type="button"
                   className="px-4 py-2 text-sm rounded-lg border border-border text-fg-muted hover:text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition"
                   onClick={() => {
                     triggerLight();
@@ -399,6 +409,7 @@ export default function PracticeTopic() {
                   {t.practice.clear}
                 </button>
                 <button
+                  type="button"
                   className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition"
                   onClick={() => {
                     triggerMedium();
@@ -417,6 +428,7 @@ export default function PracticeTopic() {
             )}
           {!submitted && (
             <button
+              type="button"
               className="px-4 py-2 text-sm rounded-lg bg-accent text-white hover:bg-accent-hover active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition"
               onClick={handleSubmit}
             >
@@ -425,6 +437,7 @@ export default function PracticeTopic() {
           )}
         </div>
         <button
+          type="button"
           className="px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
@@ -436,6 +449,7 @@ export default function PracticeTopic() {
               toIndex: nextIndex,
             });
             setCurrentIndex(nextIndex);
+            scrollToNav(nextIndex);
           }}
           disabled={currentIndex === questions.length - 1}
         >
