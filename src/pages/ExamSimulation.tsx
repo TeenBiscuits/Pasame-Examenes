@@ -275,10 +275,10 @@ export default function ExamSimulation() {
   if (questions.length === 0 || !subject || !examInfo) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-16 text-center">
-        <p className="text-gray-500">{t.exam.noQuestions}</p>
+        <p className="text-fg-muted">{t.exam.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
-          className="text-green-600 hover:underline mt-4 inline-block"
+          className="text-accent hover:underline mt-4 inline-block"
           onClick={() => triggerLight()}
         >
           {t.exam.backToHome}
@@ -293,35 +293,35 @@ export default function ExamSimulation() {
         <div className="mb-6">
           <Link
             to={`/${subject.id}`}
-            className="text-sm text-green-600 hover:underline focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1"
+            className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
           >
             {t.exam.backToSubject}
           </Link>
         </div>
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-fg mb-2">
             {examInfo.title}
           </h1>
-          <p className="text-gray-500 mb-8">
+          <p className="text-fg-muted mb-8">
             {subject.name} ({subject.courseCode})
           </p>
         </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm space-y-4">
+        <div className="bg-surface-alt rounded-xl border border-border p-8 shadow-sm space-y-4">
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <span className="text-gray-500">{t.exam.questions}</span>
+              <span className="text-fg-muted">{t.exam.questions}</span>
               <p className="font-semibold">{questions.length}</p>
             </div>
             <div>
-              <span className="text-gray-500">{t.exam.totalPoints}</span>
+              <span className="text-fg-muted">{t.exam.totalPoints}</span>
               <p className="font-semibold">{totalPoints}p</p>
             </div>
             <div>
-              <span className="text-gray-500">{t.exam.pass}</span>
+              <span className="text-fg-muted">{t.exam.pass}</span>
               <p className="font-semibold">{examInfo.passPoints}p</p>
             </div>
             <div>
-              <span className="text-gray-500">{t.exam.timeLimit}</span>
+              <span className="text-fg-muted">{t.exam.timeLimit}</span>
               <p className="font-semibold">
                 {examInfo.durationMinutes} {t.exam.minutes}
               </p>
@@ -331,7 +331,7 @@ export default function ExamSimulation() {
             {t.exam.simulationNote}
           </div>
           <button
-            className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition font-medium animate-pulse"
+            className="w-full py-3 bg-accent text-white rounded-lg hover:bg-accent-hover active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition font-medium animate-pulse"
             onClick={handleStart}
           >
             {t.exam.startExam}
@@ -366,31 +366,31 @@ export default function ExamSimulation() {
               e.preventDefault();
             }
           }}
-          className="text-sm text-green-600 hover:underline focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1"
+          className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
         >
           {t.exam.backToSubject}
         </Link>
       </div>
-      <div className="flex items-center justify-between mb-6 sticky top-14 bg-gray-50 py-3 -mx-4 px-4 z-40 border-b border-gray-200">
+      <div className="flex items-center justify-between mb-6 sticky top-14 bg-surface py-3 -mx-4 px-4 z-40 border-b border-border">
         <div>
-          <span className="text-lg font-bold text-gray-900">
+          <span className="text-lg font-bold text-fg">
             {examInfo.title}
           </span>
-          <span className="text-sm text-gray-500 ml-3">
+          <span className="text-sm text-fg-muted ml-3">
             {totalPoints}p {t.exam.total}
           </span>
         </div>
         <div className="flex items-center gap-4">
           {!submitted && (
             <span
-              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "text-red-600 animate-pulse" : "text-gray-700"}`}
+              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "text-red-600 animate-pulse" : "text-fg-secondary"}`}
             >
               {formatTime(timeLeft)}
             </span>
           )}
           {submitted && (
             <span
-              className={`text-sm font-bold px-3 py-1 rounded animate-fade-in ${score >= examInfo.passPoints ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}
+              className={`text-sm font-bold px-3 py-1 rounded animate-fade-in ${score >= examInfo.passPoints ? "bg-accent-light text-accent-fg" : "bg-red-50 text-red-700"}`}
             >
               {score}/{totalPoints}p{" "}
               {score >= examInfo.passPoints ? t.exam.pass_ : t.exam.fail}
@@ -400,13 +400,13 @@ export default function ExamSimulation() {
       </div>
 
       {submitted && (
-        <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200 text-sm animate-fade-in-up">
-          <p className="font-semibold text-green-900 mb-1">
+        <div className="mb-6 p-4 rounded-lg bg-accent-light border border-accent-border text-sm animate-fade-in-up">
+          <p className="font-semibold text-fg mb-1">
             {t.exam.submitted} {t.exam.score}: {score}
             {t.exam.outOf}
             {totalPoints} ({Math.round((score / totalPoints) * 100)}%)
           </p>
-          <p className="text-green-700">
+          <p className="text-accent-fg">
             {t.exam.passThreshold}: {examInfo.passPoints}p. {t.exam.reviewNote}
           </p>
         </div>
@@ -430,11 +430,11 @@ export default function ExamSimulation() {
           const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
           const isCurrent = i === currentIndex;
           let cls =
-            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition cursor-pointer";
-          if (isCurrent) cls += " bg-green-600 text-white border-green-600";
+            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
+          if (isCurrent) cls += " bg-accent text-white border-accent";
           else if (isAnswered)
-            cls += " bg-green-50 border-green-300 text-green-700";
-          else cls += " border-gray-200 text-gray-500 hover:border-gray-400";
+            cls += " bg-accent-light border-accent-border text-accent-fg";
+          else cls += " border-border text-fg-muted hover:border-fg-muted";
           return (
             <button
               key={q.id}
@@ -476,7 +476,7 @@ export default function ExamSimulation() {
 
       <div className="flex justify-between mt-6">
         <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition"
+          className="px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -503,7 +503,7 @@ export default function ExamSimulation() {
           )}
         </div>
         <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition"
+          className="px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);

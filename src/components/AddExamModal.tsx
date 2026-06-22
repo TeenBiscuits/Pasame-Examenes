@@ -41,7 +41,7 @@ export default function AddExamModal({
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog m-auto max-w-sm rounded-2xl bg-white p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog m-auto max-w-sm rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="add-exam-title"
       onClick={(e) => {
         if (e.target === dialogRef.current) dialogRef.current?.close();
@@ -54,7 +54,7 @@ export default function AddExamModal({
         <div className="flex items-center justify-between mb-5">
           <h2
             id="add-exam-title"
-            className="text-lg font-semibold text-gray-900"
+            className="text-lg font-semibold text-fg"
           >
             {t.addExam.title}
           </h2>
@@ -64,7 +64,7 @@ export default function AddExamModal({
               track("add_exam_modal_close_btn", { subjectId });
               dialogRef.current?.close();
             }}
-            className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+            className="text-fg-muted hover:text-fg-secondary transition-colors cursor-pointer"
             aria-label={t.addExam.close}
           >
             <svg
@@ -88,14 +88,14 @@ export default function AddExamModal({
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("add_exam_open_issue", { subjectId })}
-            className="flex items-center gap-3 p-3 rounded-xl border-2 border-green-300 bg-green-50 hover:bg-green-100 hover:border-green-400 transition-colors cursor-pointer text-left no-underline text-inherit"
+            className="flex items-center gap-3 p-3 rounded-xl border-2 border-accent-border bg-accent-light hover:bg-accent-light hover:border-accent transition-colors cursor-pointer text-left no-underline text-inherit"
           >
             <span className="text-xl">📝</span>
             <div>
-              <div className="font-medium text-gray-900 text-sm">
+              <div className="font-medium text-fg text-sm">
                 {t.addExam.openIssue}
               </div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-fg-muted">
                 {t.addExam.openIssueDesc}
               </div>
             </div>
@@ -110,27 +110,27 @@ export default function AddExamModal({
           >
             <span className="text-xl">🚀</span>
             <div>
-              <div className="font-medium text-gray-900 text-sm">
+              <div className="font-medium text-fg text-sm">
                 {t.addExam.contribute}
               </div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-fg-muted">
                 {t.addExam.contributeDesc}
               </div>
             </div>
           </a>
 
-          <div className="pt-2 border-t border-gray-200">
+          <div className="pt-2 border-t border-border">
             <a
               href="mailto:pablo.portas@udc.es"
               onClick={() => track("add_exam_email", { subjectId })}
-              className="flex items-center gap-3 p-3 rounded-xl border-2 border-gray-200 bg-gray-50/50 hover:bg-gray-100 hover:border-gray-300 transition-colors cursor-pointer text-left no-underline text-inherit"
+              className="flex items-center gap-3 p-3 rounded-xl border-2 border-border bg-surface/50 hover:bg-surface hover:border-border transition-colors cursor-pointer text-left no-underline text-inherit"
             >
               <span className="text-xl">✉️</span>
               <div>
-                <div className="font-medium text-gray-600 text-sm">
+                <div className="font-medium text-fg-secondary text-sm">
                   {t.addExam.email}
                 </div>
-                <div className="text-xs text-gray-400">pablo.portas@udc.es</div>
+                <div className="text-xs text-fg-muted">pablo.portas@udc.es</div>
               </div>
             </a>
           </div>

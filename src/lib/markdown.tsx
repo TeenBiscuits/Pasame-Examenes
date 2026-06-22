@@ -27,7 +27,7 @@ function parseInline(text: string): ReactNode[] {
       return (
         <code
           key={i}
-          className="font-mono text-[0.85em] bg-gray-100 text-pink-600 px-1.5 py-0.5 rounded"
+          className="font-mono text-[0.85em] bg-code text-pink-600 px-1.5 py-0.5 rounded"
         >
           {part.slice(1, -1)}
         </code>
@@ -45,7 +45,7 @@ function renderBlocks(text: string): ReactNode[] {
       return [
         <div
           key={`cb-${i}`}
-          className="my-3 rounded-lg border border-gray-200 bg-gray-900 overflow-hidden"
+          className="my-3 rounded-lg border border-border bg-code-block overflow-hidden"
         >
           <pre className="p-4 overflow-x-auto text-xs leading-relaxed">
             <code className="text-gray-100 font-mono whitespace-pre">

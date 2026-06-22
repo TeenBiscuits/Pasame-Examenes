@@ -23,14 +23,14 @@ function PageViewTracker() {
 function Footer() {
   const t = useT();
   return (
-    <footer className="bg-white border-t border-gray-200 py-6 text-sm text-gray-500">
+    <footer className="bg-surface-alt border-t border-border py-6 text-sm text-fg-muted">
       <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="font-medium">{t.footer.byline}</p>
         <a
           href="https://github.com/TeenBiscuits/Pasame-Examenes"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded px-2 py-1 transition-colors"
+          className="inline-flex items-center gap-2 text-fg-muted hover:text-fg focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded px-2 py-1 transition-colors"
           onClick={() => track("external_link_click", { target: "github" })}
         >
           <svg
@@ -57,7 +57,7 @@ function Footer() {
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen min-h-svh flex flex-col bg-gray-50 text-gray-900 font-sans">
+      <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
         <PageViewTracker />
         <Header />
         <main className="flex-grow">

@@ -1,6 +1,116 @@
 @import "tailwindcss";
 @import "tailwind-animations";
 
+/* ── Theme tokens (light defaults) ── */
+@theme {
+  --color-surface: #f9fafb;
+  --color-surface-alt: #ffffff;
+  --color-fg: #111827;
+  --color-fg-secondary: #4b5563;
+  --color-fg-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-accent: #16a34a;
+  --color-accent-light: #f0fdf4;
+  --color-accent-fg: #15803d;
+  --color-accent-hover: #15803d;
+  --color-accent-border: #bbf7d0;
+  --color-code: #f3f4f6;
+  --color-code-block: #111827;
+}
+
+/* ── Dark theme ── */
+html[data-theme="dark"] {
+  --color-surface: #111827;
+  --color-surface-alt: #1f2937;
+  --color-fg: #f9fafb;
+  --color-fg-secondary: #9ca3af;
+  --color-fg-muted: #6b7280;
+  --color-border: #374151;
+  --color-accent: #22c55e;
+  --color-accent-light: #052e16;
+  --color-accent-fg: #86efac;
+  --color-accent-hover: #4ade80;
+  --color-accent-border: #166534;
+  --color-code: #374151;
+  --color-code-block: #030712;
+}
+
+/* ── Pink theme ── */
+html[data-theme="pink"] {
+  --color-surface: #fdf2f8;
+  --color-surface-alt: #ffffff;
+  --color-fg: #111827;
+  --color-fg-secondary: #4b5563;
+  --color-fg-muted: #6b7280;
+  --color-border: #fbcfe8;
+  --color-accent: #db2777;
+  --color-accent-light: #fce7f3;
+  --color-accent-fg: #be185d;
+  --color-accent-hover: #be185d;
+  --color-accent-border: #fbcfe8;
+  --color-code: #f3f4f6;
+  --color-code-block: #111827;
+}
+
+/* ── Catppuccin Mocha theme ── */
+html[data-theme="catppuccin"] {
+  --color-surface: #1e1e2e;
+  --color-surface-alt: #313244;
+  --color-fg: #cdd6f4;
+  --color-fg-secondary: #a6adc8;
+  --color-fg-muted: #6c7086;
+  --color-border: #45475a;
+  --color-accent: #a6e3a1;
+  --color-accent-light: #313244;
+  --color-accent-fg: #a6e3a1;
+  --color-accent-hover: #a6e3a1;
+  --color-accent-border: #45475a;
+  --color-code: #313244;
+  --color-code-block: #11111b;
+}
+
+/* ── System: follow OS preference ── */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="system"] {
+    --color-surface: #111827;
+    --color-surface-alt: #1f2937;
+    --color-fg: #f9fafb;
+    --color-fg-secondary: #9ca3af;
+    --color-fg-muted: #6b7280;
+    --color-border: #374151;
+    --color-accent: #22c55e;
+    --color-accent-light: #052e16;
+    --color-accent-fg: #86efac;
+    --color-accent-hover: #4ade80;
+    --color-accent-border: #166534;
+    --color-code: #374151;
+    --color-code-block: #030712;
+  }
+}
+
+/* ── View transition animation ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+}
+
+/* ── Theme icon transition ── */
+@keyframes theme-icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.theme-icon {
+  animation: theme-icon-in 0.3s ease-out;
+}
+
+/* ── Dialog animations ── */
 .animate-dialog {
   opacity: 0;
   transform: scale(0.95);
