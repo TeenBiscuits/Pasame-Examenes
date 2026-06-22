@@ -37,7 +37,7 @@ export default function SubjectHome() {
   );
 
   const repeatedText =
-    repeatedCount > 0
+    repeatedCount >= 20
       ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
       : "";
 
