@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "202318",
   icon: "💻",
   acknowledgments:
-    "Exámenes proporcionados por el departamento de Sistemas Operativos de la FIC.",
+    "Exámenes y soluciones originales proporcionadas por el profesorado de la asignatura.",
   topics: [
     {
       key: "sistema-ficheros",

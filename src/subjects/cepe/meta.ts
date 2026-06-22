@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "202320",
   icon: "⚡",
   acknowledgments:
-    "Exams provided by the Computer Science Department, Universidade da Coruña.",
+    "Exámenes y soluciones originales proporcionadas por el profesorado de la asignatura.",
   topics: [
     {
       key: "concurrencia",
