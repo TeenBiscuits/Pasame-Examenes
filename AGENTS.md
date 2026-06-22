@@ -146,9 +146,10 @@ export const questions: Question[] = [
 **Code blocks in text:** `question`, `explanation`, `correctAnswer`, `subquestions`, `options`, and table cell strings support markdown-style code formatting:
 
 - `` `inline code` `` — renders as inline `<code>` with monospace font and pink text on gray background. Works inside any text field.
-- ```` ``` ```` fenced code blocks — renders as a dark-themed code block. Works in `question`, `explanation`, and `correctAnswer` fields.
+- ` ``` ` fenced code blocks — renders as a dark-themed code block. Works in `question`, `explanation`, and `correctAnswer` fields.
 
 Example:
+
 ```ts
 question: `What does this code output?
 

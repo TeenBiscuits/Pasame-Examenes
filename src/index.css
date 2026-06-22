@@ -4,8 +4,11 @@
 .animate-dialog {
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.2s ease-out, transform 0.2s ease-out,
-    overlay 0.2s ease-out allow-discrete, display 0.2s ease-out allow-discrete;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out,
+    overlay 0.2s ease-out allow-discrete,
+    display 0.2s ease-out allow-discrete;
 }
 
 .animate-dialog[open] {

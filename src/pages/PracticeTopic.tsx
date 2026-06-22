@@ -142,8 +142,10 @@ export default function PracticeTopic() {
       const cr = container.getBoundingClientRect();
       const br = btn.getBoundingClientRect();
       const step = 108;
-      if (br.right > cr.right - 84) container.scrollBy({ left: step, behavior: "smooth" });
-      else if (br.left < cr.left + 84) container.scrollBy({ left: -step, behavior: "smooth" });
+      if (br.right > cr.right - 84)
+        container.scrollBy({ left: step, behavior: "smooth" });
+      else if (br.left < cr.left + 84)
+        container.scrollBy({ left: -step, behavior: "smooth" });
     });
   }, [currentIndex]);
 
@@ -320,7 +322,13 @@ export default function PracticeTopic() {
               className={cls}
               onClick={() => {
                 triggerLight();
-                setDirection(i > currentIndex ? "next" : i < currentIndex ? "prev" : undefined);
+                setDirection(
+                  i > currentIndex
+                    ? "next"
+                    : i < currentIndex
+                      ? "prev"
+                      : undefined,
+                );
                 setCurrentIndex(i);
               }}
             >

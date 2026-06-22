@@ -640,8 +640,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "Las redes de neuronas con entrenamiento no supervisado...",
+    question: "Las redes de neuronas con entrenamiento no supervisado...",
     options: [
       "a) Tienen un fundamento biológico, se basan en la corteza cerebral.",
       "b) Se llaman así porque el supervisor no sabe supervisarlas.",
@@ -956,8 +955,7 @@ export const questions: Question[] = [
     topic: "busqueda",
     type: "mc",
     points: 1,
-    question:
-      "Si hablamos de algoritmos de búsqueda en árbol...",
+    question: "Si hablamos de algoritmos de búsqueda en árbol...",
     options: [
       "a) Búsqueda en amplitud siempre es óptima y completa.",
       "b) La búsqueda de profundidad iterativa debe de ser usada en espacios de búsqueda donde la profundidad de la solución sea conocida.",
@@ -1192,8 +1190,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "La función de transferencia de las neuronas artificiales...",
+    question: "La función de transferencia de las neuronas artificiales...",
     options: [
       "a) Puede ser hiperbólica.",
       "b) Puede ser treshold / hard limiter.",
@@ -1424,8 +1421,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Cuántas capas, que realizan cálculos, tiene una red SOM?",
+    question: "¿Cuántas capas, que realizan cálculos, tiene una red SOM?",
     options: [
       "a) Tantas como especifique el usuario.",
       "b) Depende del tipo de problema.",
@@ -1480,8 +1476,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué es la neurona (célula) ganadora en una red SOM?",
+    question: "¿Qué es la neurona (célula) ganadora en una red SOM?",
     options: [
       "a) La que está más cerca del patrón de entrada.",
       "b) La neurona que representa el patrón dentro de su clúster.",
@@ -1499,8 +1494,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué representan los pesos de las neuronas en la red SOM?",
+    question: "¿Qué representan los pesos de las neuronas en la red SOM?",
     options: [
       "a) Clústeres.",
       "b) Conocidos como bias.",
@@ -1573,8 +1567,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Cuáles son las métricas para validar una red SOM?",
+    question: "¿Cuáles son las métricas para validar una red SOM?",
     options: [
       "a) Error de cuantización medio y medida de preservación de topología.",
       "b) Precisión y medida de preservación de topología.",
@@ -1703,8 +1696,7 @@ export const questions: Question[] = [
     topic: "representacion",
     type: "mc",
     points: 1,
-    question:
-      "En las redes semánticas, el razonamiento por rastreo...",
+    question: "En las redes semánticas, el razonamiento por rastreo...",
     options: [
       "a) No puede asegurar la validez de las inferencias obtenidas",
       "b) emplea exclusivamente las relaciones de jerarquía de la red.",
@@ -1721,8 +1713,7 @@ export const questions: Question[] = [
     topic: "representacion",
     type: "mc",
     points: 1,
-    question:
-      "¿En qué se diferencian las reglas IFANY e IFSOME?",
+    question: "¿En qué se diferencian las reglas IFANY e IFSOME?",
     options: [
       "a) IFANY investiga toda la premisa, mientras que IFSOME ejecuta la acción cuando encuentra una cláusula cierta",
       "b) IFSOME investiga toda la premisa, mientras que IFANY ejecuta la acción cuando encuentra una cláusula cierta",
@@ -1775,8 +1766,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "¿En qué se diferencian las dos ramas clásicas de la IA?",
+    question: "¿En qué se diferencian las dos ramas clásicas de la IA?",
     options: [
       "a) La rama subsimbólica tiene menos capacidad para explicar sus resultados",
       "b) Los sistemas expertos y las redes de neuronas artificiales son sus paradigmas",
@@ -2002,8 +1992,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "El número de neuronas de entrada de un perceptrón multicapa",
+    question: "El número de neuronas de entrada de un perceptrón multicapa",
     options: [
       "a) Lo puede fijar el usuario como quiera",
       "b) Depende del problema a resolver",
@@ -2129,8 +2118,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "En una red SOM, la capa de competición está compuesta por:",
+    question: "En una red SOM, la capa de competición está compuesta por:",
     options: [
       "a) Neuronas que generan la salida supervisada.",
       "b) Neuronas conectadas entre sí por enlaces recursivos.",
@@ -2148,8 +2136,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué mide el error de cuantización medio en una red SOM?",
+    question: "¿Qué mide el error de cuantización medio en una red SOM?",
     options: [
       "a) La distancia media entre los vectores de entrada y sus neuronas ganadoras (BMU).",
       "b) El número de patrones correctamente clasificados.",
@@ -2204,8 +2191,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Cuál de los siguientes es un problema común de las redes SOM?",
+    question: "¿Cuál de los siguientes es un problema común de las redes SOM?",
     options: [
       "a) No permiten reducción de dimensionalidad.",
       "b) Siempre requieren entrenamiento supervisado.",
@@ -2298,8 +2284,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué diferencia clave tienen los modelos GCS frente a SOM?",
+    question: "¿Qué diferencia clave tienen los modelos GCS frente a SOM?",
     options: [
       "a) No utilizan aprendizaje no supervisado.",
       "b) Ajustan dinámicamente la arquitectura durante el entrenamiento.",
@@ -2317,8 +2302,7 @@ export const questions: Question[] = [
     topic: "evolutiva",
     type: "mc",
     points: 1,
-    question:
-      'La palabra "Fitness" en términos de un Algoritmo Genético es...',
+    question: 'La palabra "Fitness" en términos de un Algoritmo Genético es...',
     options: [
       "a) Es una forma de intercambiar material genético entre varios individuos de la población",
       "b) Una forma o función de construcción de los individuos para obtener la población",
@@ -2452,8 +2436,7 @@ export const questions: Question[] = [
     topic: "representacion",
     type: "mc",
     points: 1,
-    question:
-      "Cuando una regla se activa, ¿de qué depende su ejecución?",
+    question: "Cuando una regla se activa, ¿de qué depende su ejecución?",
     options: [
       "a) De la estrategia de resolución de conflictos.",
       "b) Del contenido de la memoria activa.",
@@ -2500,8 +2483,7 @@ export const questions: Question[] = [
     topic: "logica",
     type: "mc",
     points: 1,
-    question:
-      "Asumiendo M(1) verdadero, la solución será...",
+    question: "Asumiendo M(1) verdadero, la solución será...",
     options: [
       "a) I(1) ∧ I(2)",
       "b) I(1) ∧ ¬I(2)",
@@ -2520,12 +2502,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Partiendo del problema original, ¿qué manifestación es más probable cuando ambas interpretaciones son verdaderas?",
-    options: [
-      "a) M(1)",
-      "b) M(2)",
-      "c) M(3)",
-      "d) Son equiprobables",
-    ],
+    options: ["a) M(1)", "b) M(2)", "c) M(3)", "d) Son equiprobables"],
     correctAnswer: "b",
     explanation:
       "Si I(1)=1 e I(2)=1, por R2 (I(1)→¬M(1)∧M(2)): M(2) debe darse inexcusablemente (probabilidad 1.0), M(1) jamás puede darse (probabilidad 0), y M(3) no está restringida (aleatoria). La manifestación absolutamente segura es M(2).",
@@ -2554,8 +2531,7 @@ export const questions: Question[] = [
     topic: "busqueda",
     type: "mc",
     points: 1,
-    question:
-      "Los procedimientos de búsqueda en profundidad...",
+    question: "Los procedimientos de búsqueda en profundidad...",
     options: [
       "a) Demandan más recursos computacionales (en términos espaciales) que los basados en anchura",
       "b) No son completos en espacios de estados finitos si están basados en grafos",
@@ -2572,8 +2548,7 @@ export const questions: Question[] = [
     topic: "logica",
     type: "mc",
     points: 1,
-    question:
-      "El conjunto de complejos manifestación-interpretación...",
+    question: "El conjunto de complejos manifestación-interpretación...",
     options: [
       "a) Representa el conjunto total de situaciones posibles en el problema",
       "b) No es completo si el conocimiento no es categórico",
@@ -2664,8 +2639,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué pretende la IA como ciencia y como ingeniería?",
+    question: "¿Qué pretende la IA como ciencia y como ingeniería?",
     options: [
       "a) Conocer cómo funcionan los seres inteligentes y qué pueden hacer con la ayuda de computadores.",
       "b) Cómo hacer que los computadores hagan las cosas que hacen las personas inteligentes.",
@@ -2683,8 +2657,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "¿Características específicas de los sistemas inteligentes?",
+    question: "¿Características específicas de los sistemas inteligentes?",
     options: [
       "a) Intencionalidad: comportamiento guiado por metas.",
       "b) Incapacidad de conocer y proyectar el 'hoy sostenido'.",
@@ -2797,8 +2770,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "El número de neuronas ocultas de un perceptrón multicapa...",
+    question: "El número de neuronas ocultas de un perceptrón multicapa...",
     options: [
       "a) Lo puede fijar el usuario como quiera.",
       "b) Depende del número de entradas y salidas del problema a resolver.",
@@ -2949,8 +2921,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué función tiene el parámetro de vecindad en una red SOM?",
+    question: "¿Qué función tiene el parámetro de vecindad en una red SOM?",
     options: [
       "a) Controlar el número de entradas.",
       "b) Medir el error de cuantización.",
@@ -3003,8 +2974,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Cuál es el tipo de aprendizaje que utilizan las redes SOM?",
+    question: "¿Cuál es el tipo de aprendizaje que utilizan las redes SOM?",
     options: [
       "a) Supervisado.",
       "b) No supervisado y competitivo.",
@@ -3022,8 +2992,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Cuál es la principal utilidad de una red SOM?",
+    question: "¿Cuál es la principal utilidad de una red SOM?",
     options: [
       "a) Traducir idiomas en tiempo real.",
       "b) Clasificación de imágenes con etiquetas.",
@@ -3059,8 +3028,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué problema resuelve GNG respecto a GCS?",
+    question: "¿Qué problema resuelve GNG respecto a GCS?",
     options: [
       "a) La dificultad para eliminar neuronas innecesarias.",
       "b) El uso de etiquetas incorrectas.",
@@ -3135,8 +3103,7 @@ export const questions: Question[] = [
     topic: "evolutiva",
     type: "mc",
     points: 1,
-    question:
-      'En un Algoritmo Genético, el término "Generación"...',
+    question: 'En un Algoritmo Genético, el término "Generación"...',
     options: [
       "a) Representa cada ciclo de funcionamiento del Algoritmo.",
       'b) En el mecanismo de gestión de población "Steady-State", representa el cambio de todos los individuos...',
@@ -3154,8 +3121,7 @@ export const questions: Question[] = [
     topic: "evolutiva",
     type: "mc",
     points: 1,
-    question:
-      "En los individuos de un sistema de Programación Genética...",
+    question: "En los individuos de un sistema de Programación Genética...",
     options: [
       "a) Los terminales son operadores.",
       "b) No puede haber nunca operadores aritméticos como nodos del árbol.",
@@ -3173,8 +3139,7 @@ export const questions: Question[] = [
     topic: "evolutiva",
     type: "mc",
     points: 1,
-    question:
-      "Los operadores genéticos en Computación Evolutiva...",
+    question: "Los operadores genéticos en Computación Evolutiva...",
     options: [
       "a) Son: selección, cruce, mutación y generación.",
       "b) De cruce y mutación sirven para evolucionar los individuos de la población.",
@@ -3210,8 +3175,7 @@ export const questions: Question[] = [
     topic: "evolutiva",
     type: "mc",
     points: 1,
-    question:
-      'En un Algoritmo Genético, ¿qué significa el término "elitismo"?',
+    question: 'En un Algoritmo Genético, ¿qué significa el término "elitismo"?',
     options: [
       "a) No existe este concepto.",
       "b) Solo es aplicable a la programación genética.",
@@ -3341,8 +3305,7 @@ export const questions: Question[] = [
     topic: "busqueda",
     type: "mc",
     points: 1,
-    question:
-      "En el mismo grafo, la heurística proporcionada...",
+    question: "En el mismo grafo, la heurística proporcionada...",
     options: [
       "a) Es admisible y consistente",
       "b) No es admisible, pero sí consistente",
@@ -3377,8 +3340,7 @@ export const questions: Question[] = [
     topic: "representacion",
     type: "mc",
     points: 1,
-    question:
-      "¿En qué se diferencian las reglas IFANY e IFSOME?",
+    question: "¿En qué se diferencian las reglas IFANY e IFSOME?",
     options: [
       "a) IFANY investiga toda la premisa, mientras que IFSOME ejecuta la acción cuando encuentra una cláusula cierta",
       "b) IFSOME investiga toda la premisa, mientras que IFANY ejecuta la acción cuando encuentra una cláusula cierta",
@@ -3414,12 +3376,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Sea un dominio con M(1),M(2),M(3) e I(1),I(2). Con R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(2)→¬M(2)∧M(1), R3: I(1)∨¬I(2)→M(2)∧M(3). ¿Cuál de las siguientes combinaciones pertenece a la BLR?",
-    options: [
-      "a) m4 i1",
-      "b) m4 i2",
-      "c) m4 i3",
-      "d) Ninguna es correcta",
-    ],
+    options: ["a) m4 i1", "b) m4 i2", "c) m4 i3", "d) Ninguna es correcta"],
     correctAnswer: "b",
     explanation:
       "m4: M(1)=1, M(2)=0, M(3)=0. Para b) m4 i2 (I(1)=0, I(2)=1): R1 se cumple, R2 se cumple (¬M(2)∧M(1)=1), R3 antecedente falso → implicación cierta. Todas las reglas se satisfacen. Para a) y c) se violan R1 o R3 respectivamente.",
@@ -3535,8 +3492,7 @@ export const questions: Question[] = [
     topic: "representacion",
     type: "mc",
     points: 1,
-    question:
-      "Si hablamos de sistemas de producción... (repetida)",
+    question: "Si hablamos de sistemas de producción... (repetida)",
     options: [
       "a) La base de conocimientos está formada por la base de reglas y el motor de inferencias",
       "b) Los sistemas dirigidos por los datos son más específicos, porque ejecutarán todas las reglas disponibles en función de la información introducida",
@@ -3685,8 +3641,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "Los Mapas Autoorganizativos (SOM) vistos en clase tienen...",
+    question: "Los Mapas Autoorganizativos (SOM) vistos en clase tienen...",
     options: [
       "a) Una única capa que es de entrada",
       "b) Una única capa recurrente",
@@ -3797,8 +3752,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "Durante el entrenamiento de un perceptrón multicapa se busca...",
+    question: "Durante el entrenamiento de un perceptrón multicapa se busca...",
     options: [
       "a) Llegar al error cero siempre.",
       "b) Estar muy cerca de un mínimo error, pero nunca en él.",
@@ -3835,8 +3789,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "El número de neuronas de entrada de un perceptrón multicapa",
+    question: "El número de neuronas de entrada de un perceptrón multicapa",
     options: [
       "a) Lo puede fijar el usuario como quiera",
       "b) Depende del problema a resolver",
@@ -3891,8 +3844,7 @@ export const questions: Question[] = [
     topic: "rna",
     type: "mc",
     points: 1,
-    question:
-      "En un perceptrón multicapa el conocimiento de la red está en...",
+    question: "En un perceptrón multicapa el conocimiento de la red está en...",
     options: [
       "a) Los datos de salida de las neuronas",
       "b) En las funciones de transferencia",
@@ -3966,8 +3918,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "En una red SOM, la capa de competición está compuesta por:",
+    question: "En una red SOM, la capa de competición está compuesta por:",
     options: [
       "a) Neuronas que generan la salida supervisada.",
       "b) Neuronas conectadas entre sí por enlaces recursivos.",
@@ -3985,8 +3936,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué mide el error de cuantización medio en una red SOM?",
+    question: "¿Qué mide el error de cuantización medio en una red SOM?",
     options: [
       "a) La distancia media entre los vectores de entrada y sus neuronas ganadoras (BMU).",
       "b) El número de patrones correctamente clasificados.",
@@ -4004,8 +3954,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "En una red SOM, la neurona ganadora es aquella que:",
+    question: "En una red SOM, la neurona ganadora es aquella que:",
     options: [
       "a) Tiene el peso con mayor valor.",
       "b) Tiene la mayor activación en la capa de entrada.",
@@ -4042,8 +3991,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Cuál de los siguientes es un problema común de las redes SOM?",
+    question: "¿Cuál de los siguientes es un problema común de las redes SOM?",
     options: [
       "a) No permiten reducción de dimensionalidad.",
       "b) Siempre requieren entrenamiento supervisado.",
@@ -4136,8 +4084,7 @@ export const questions: Question[] = [
     topic: "som",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué diferencia clave tienen los modelos GCS frente a SOM?",
+    question: "¿Qué diferencia clave tienen los modelos GCS frente a SOM?",
     options: [
       "a) No utilizan aprendizaje no supervisado.",
       "b) Ajustan dinámicamente la arquitectura durante el entrenamiento.",
@@ -4155,8 +4102,7 @@ export const questions: Question[] = [
     topic: "evolutiva",
     type: "mc",
     points: 1,
-    question:
-      'El término "Fitness" en un Algoritmo Genético se refiere a...',
+    question: 'El término "Fitness" en un Algoritmo Genético se refiere a...',
     options: [
       "a) Una forma de intercambiar material genético entre varios individuos de la población.",
       "b) Una forma o función para construir individuos y obtener la población inicial.",
@@ -4325,8 +4271,7 @@ export const questions: Question[] = [
     topic: "evolutiva",
     type: "mc",
     points: 1,
-    question:
-      "¿Qué afirmación describe mejor el entrelazamiento cuántico?",
+    question: "¿Qué afirmación describe mejor el entrelazamiento cuántico?",
     options: [
       "a) Dos qubits comparten un estado vinculado, por lo que medir uno proporciona información sobre el otro.",
       "b) Dos qubits alternan sus estados en direcciones opuestas hasta que se realiza una medición.",

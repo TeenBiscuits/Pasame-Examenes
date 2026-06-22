@@ -29,7 +29,8 @@ export const meta: SubjectMeta = {
   university: "Universidad",
   courseCode: "ABC123",
   icon: "📚",
-  acknowledgments: "Preguntas proporcionadas por el departamento de... Respuestas por...", // opcional, se muestra al final de la página
+  acknowledgments:
+    "Preguntas proporcionadas por el departamento de... Respuestas por...", // opcional, se muestra al final de la página
   topics: [
     {
       key: "tema-slug",
@@ -113,7 +114,7 @@ Campos opcionales: `image`, `imageWidth`, `imageHeight`, `table`, `subquestions`
 **Bloques de código:** Los campos de texto (`question`, `explanation`, `correctAnswer`, `subquestions`, `options` y celdas de tabla) soportan formato markdown:
 
 - `` `código inline` `` — se renderiza como `<code>` con fuente monoespaciada y texto rosa sobre fondo gris.
-- ```` ``` ```` bloques de código — se renderizan como un bloque de código oscuro. Funciona en `question`, `explanation` y `correctAnswer`.
+- ` ``` ` bloques de código — se renderizan como un bloque de código oscuro. Funciona en `question`, `explanation` y `correctAnswer`.
 
 Ejemplo:
 

@@ -24,9 +24,7 @@ export default function Home() {
         >
           <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">
             <span className="text-4xl font-light leading-none">+</span>
-            <span className="text-sm font-medium">
-              {t.home.addSubject}
-            </span>
+            <span className="text-sm font-medium">{t.home.addSubject}</span>
           </div>
         </button>
       </div>

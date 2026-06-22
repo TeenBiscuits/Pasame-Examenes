@@ -7,7 +7,10 @@ interface AddSubjectModalProps {
   onClose: () => void;
 }
 
-export default function AddSubjectModal({ open, onClose }: AddSubjectModalProps) {
+export default function AddSubjectModal({
+  open,
+  onClose,
+}: AddSubjectModalProps) {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
 
