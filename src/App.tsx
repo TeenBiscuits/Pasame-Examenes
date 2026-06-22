@@ -56,7 +56,7 @@ function Footer() {
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900 font-sans">
+      <div className="min-h-screen min-h-dvh flex flex-col bg-gray-50 text-gray-900 font-sans">
         <PageViewTracker />
         <Header />
         <main className="flex-grow">
