@@ -375,43 +375,41 @@ export default function QuestionCard(props: QuestionCardProps) {
         <TextQuestion {...props} />
       )}
       {question.type === "matching" && <MatchingQuestion {...props} />}
-      {props.showResult && (
-        <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-end gap-2">
-          <span className="text-[10px] font-mono text-gray-300 select-all">
-            {question.id}
-          </span>
-          <a
-            href={buildReportUrl(question, props.subjectId)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded px-2 py-1 -mr-2"
-            onClick={() => {
-              triggerLight();
-              track("report_issue", {
-                questionId: question.id,
-                subjectId: props.subjectId,
-              });
-            }}
+      <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-end gap-2">
+        <span className="text-[10px] font-mono text-gray-300 select-all">
+          {question.id}
+        </span>
+        <a
+          href={buildReportUrl(question, props.subjectId)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded px-2 py-1 -mr-2"
+          onClick={() => {
+            triggerLight();
+            track("report_issue", {
+              questionId: question.id,
+              subjectId: props.subjectId,
+            });
+          }}
+        >
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
           >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-              <line x1="12" y1="9" x2="12" y2="13" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
-            {t.questionCard.reportIssue}
-          </a>
-        </div>
-      )}
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          {t.questionCard.reportIssue}
+        </a>
+      </div>
     </div>
   );
 }
