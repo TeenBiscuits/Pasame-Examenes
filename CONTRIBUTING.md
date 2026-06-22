@@ -144,6 +144,8 @@ Pista: recuerda que \`foo()\` se llama recursivamente.`,
 
 **Preguntas compartidas entre exámenes:** Usa `exam: "both"` para que una pregunta aparezca en todos los exámenes de la asignatura.
 
+**Preguntas repetidas:** Si una misma pregunta (o una variante casi idéntica) aparece en varios exámenes con distinto `exam`, marca `repeated: true` en cada ocurrencia. La interfaz mostrará un contador de repetidas en la página de la asignatura.
+
 #### 4. Añade los PDFs de los exámenes
 
 Copia los PDFs originales a `public/exams/{subject-id}/`:

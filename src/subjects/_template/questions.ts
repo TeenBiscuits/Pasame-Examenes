@@ -193,6 +193,7 @@ Hint: remember that \`foo()\` calls itself recursively.`,
     topic: "topic-1",
     type: "mc",
     points: 5,
+    repeated: true,
     question: "What does `CPU` stand for?",
     options: [
       "A. Central Processing Unit",
