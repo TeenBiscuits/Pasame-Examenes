@@ -1,6 +1,6 @@
 import { WebHaptics } from "web-haptics";
 
-const haptics = new WebHaptics({ debug: true });
+const haptics = new WebHaptics();
 
 export function triggerLight() {
   haptics.trigger("light");
