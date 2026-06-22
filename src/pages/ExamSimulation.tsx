@@ -7,6 +7,11 @@ import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight, triggerMedium } from "../lib/haptics";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { cn } from "@/lib/utils";
 
 const getNow = () => Date.now();
 
@@ -275,10 +280,10 @@ export default function ExamSimulation() {
   if (questions.length === 0 || !subject || !examInfo) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-16 text-center">
-        <p className="text-gray-500">{t.exam.noQuestions}</p>
+        <p className="text-muted-foreground">{t.exam.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
-          className="text-green-600 hover:underline mt-4 inline-block"
+          className="text-primary hover:underline mt-4 inline-block"
           onClick={() => triggerLight()}
         >
           {t.exam.backToHome}
@@ -291,44 +296,45 @@ export default function ExamSimulation() {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in animate-duration-fast">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
             {examInfo.title}
           </h1>
-          <p className="text-gray-500 mb-8">
+          <p className="text-muted-foreground mb-8">
             {subject.name} ({subject.courseCode})
           </p>
         </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm space-y-4">
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div>
-              <span className="text-gray-500">{t.exam.questions}</span>
-              <p className="font-semibold">{questions.length}</p>
+        <Card>
+          <CardContent className="pt-(--card-spacing) flex flex-col gap-4">
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <span className="text-muted-foreground">{t.exam.questions}</span>
+                <p className="font-semibold">{questions.length}</p>
+              </div>
+              <div>
+                <span className="text-muted-foreground">
+                  {t.exam.totalPoints}
+                </span>
+                <p className="font-semibold">{totalPoints}p</p>
+              </div>
+              <div>
+                <span className="text-muted-foreground">{t.exam.pass}</span>
+                <p className="font-semibold">{examInfo.passPoints}p</p>
+              </div>
+              <div>
+                <span className="text-muted-foreground">{t.exam.timeLimit}</span>
+                <p className="font-semibold">
+                  {examInfo.durationMinutes} {t.exam.minutes}
+                </p>
+              </div>
             </div>
-            <div>
-              <span className="text-gray-500">{t.exam.totalPoints}</span>
-              <p className="font-semibold">{totalPoints}p</p>
-            </div>
-            <div>
-              <span className="text-gray-500">{t.exam.pass}</span>
-              <p className="font-semibold">{examInfo.passPoints}p</p>
-            </div>
-            <div>
-              <span className="text-gray-500">{t.exam.timeLimit}</span>
-              <p className="font-semibold">
-                {examInfo.durationMinutes} {t.exam.minutes}
-              </p>
-            </div>
-          </div>
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
-            {t.exam.simulationNote}
-          </div>
-          <button
-            className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition font-medium animate-pulse"
-            onClick={handleStart}
-          >
-            {t.exam.startExam}
-          </button>
-        </div>
+            <Alert variant="default">
+              <AlertDescription>{t.exam.simulationNote}</AlertDescription>
+            </Alert>
+            <Button size="lg" className="w-full" onClick={handleStart}>
+              {t.exam.startExam}
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -350,45 +356,52 @@ export default function ExamSimulation() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
-      <div className="flex items-center justify-between mb-6 sticky top-14 bg-gray-50 py-3 -mx-4 px-4 z-40 border-b border-gray-200">
+      <div className="flex items-center justify-between mb-6 sticky top-14 bg-background py-3 -mx-4 px-4 z-40 border-b border-border">
         <div>
-          <span className="text-lg font-bold text-gray-900">
+          <span className="text-lg font-bold text-foreground">
             {examInfo.title}
           </span>
-          <span className="text-sm text-gray-500 ml-3">
+          <span className="text-sm text-muted-foreground ml-3">
             {totalPoints}p {t.exam.total}
           </span>
         </div>
         <div className="flex items-center gap-4">
           {!submitted && (
             <span
-              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "text-red-600 animate-pulse" : "text-gray-700"}`}
+              className={cn(
+                "font-mono text-sm font-bold",
+                timeLeft < 600
+                  ? "text-destructive animate-pulse"
+                  : "text-foreground",
+              )}
             >
               {formatTime(timeLeft)}
             </span>
           )}
           {submitted && (
-            <span
-              className={`text-sm font-bold px-3 py-1 rounded animate-fade-in ${score >= examInfo.passPoints ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}
+            <Badge
+              variant={
+                score >= examInfo.passPoints ? "default" : "destructive"
+              }
+              className="text-sm px-3 py-1 animate-fade-in"
             >
               {score}/{totalPoints}p{" "}
               {score >= examInfo.passPoints ? t.exam.pass_ : t.exam.fail}
-            </span>
+            </Badge>
           )}
         </div>
       </div>
 
       {submitted && (
-        <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200 text-sm animate-fade-in-up">
-          <p className="font-semibold text-green-900 mb-1">
-            {t.exam.submitted} {t.exam.score}: {score}
-            {t.exam.outOf}
-            {totalPoints} ({Math.round((score / totalPoints) * 100)}%)
-          </p>
-          <p className="text-green-700">
+        <Alert className="mb-6 animate-fade-in-up">
+          <AlertTitle>
+            {t.exam.submitted} {t.exam.score}: {score}/{totalPoints}
+            {" "}({Math.round((score / totalPoints) * 100)}%)
+          </AlertTitle>
+          <AlertDescription>
             {t.exam.passThreshold}: {examInfo.passPoints}p. {t.exam.reviewNote}
-          </p>
-        </div>
+          </AlertDescription>
+        </Alert>
       )}
 
       <div
@@ -408,16 +421,17 @@ export default function ExamSimulation() {
         {questions.map((q, i) => {
           const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
           const isCurrent = i === currentIndex;
-          let cls =
-            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition cursor-pointer";
-          if (isCurrent) cls += " bg-green-600 text-white border-green-600";
-          else if (isAnswered)
-            cls += " bg-green-50 border-green-300 text-green-700";
-          else cls += " border-gray-200 text-gray-500 hover:border-gray-400";
           return (
             <button
               key={q.id}
-              className={cls}
+              className={cn(
+                "size-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none transition cursor-pointer",
+                isCurrent && "bg-primary text-primary-foreground border-primary",
+                !isCurrent && isAnswered &&
+                  "bg-primary/5 border-primary/20 text-primary",
+                !isCurrent && !isAnswered &&
+                  "border-border text-muted-foreground hover:border-ring/50",
+              )}
               onClick={() => {
                 triggerLight();
                 setDirection(
@@ -453,8 +467,8 @@ export default function ExamSimulation() {
       />
 
       <div className="flex justify-between mt-6">
-        <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition"
+        <Button
+          variant="outline"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -469,19 +483,16 @@ export default function ExamSimulation() {
           disabled={currentIndex === 0}
         >
           {t.exam.previous}
-        </button>
+        </Button>
         <div className="flex gap-2">
           {!submitted && (
-            <button
-              className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition font-medium"
-              onClick={handleSubmit}
-            >
+            <Button variant="destructive" onClick={handleSubmit}>
               {t.exam.submitExam}
-            </button>
+            </Button>
           )}
         </div>
-        <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition"
+        <Button
+          variant="outline"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
@@ -496,7 +507,7 @@ export default function ExamSimulation() {
           disabled={currentIndex === questions.length - 1}
         >
           {t.exam.next}
-        </button>
+        </Button>
       </div>
     </div>
   );

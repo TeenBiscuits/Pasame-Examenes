@@ -23,14 +23,14 @@ function PageViewTracker() {
 function Footer() {
   const t = useT();
   return (
-    <footer className="bg-white border-t border-gray-200 py-6 text-sm text-gray-500">
+    <footer className="bg-card border-t border-border py-6 text-sm text-muted-foreground">
       <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="font-medium">{t.footer.byline}</p>
         <a
           href="https://github.com/TeenBiscuits/Pasame-Examenes"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded px-2 py-1 transition-colors"
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none rounded px-2 py-1 transition-colors"
           onClick={() => track("external_link_click", { target: "github" })}
         >
           <svg
@@ -41,7 +41,7 @@ function Footer() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-5 h-5"
+            className="size-5"
             aria-hidden="true"
           >
             <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
@@ -57,7 +57,7 @@ function Footer() {
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen min-h-svh flex flex-col bg-gray-50 text-gray-900 font-sans">
+      <div className="min-h-svh flex flex-col bg-background text-foreground font-sans">
         <PageViewTracker />
         <Header />
         <main className="flex-grow">

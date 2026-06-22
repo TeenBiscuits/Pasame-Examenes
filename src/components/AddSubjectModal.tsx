@@ -1,6 +1,11 @@
-import { useEffect, useRef } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface AddSubjectModalProps {
   open: boolean;
@@ -12,84 +17,28 @@ export default function AddSubjectModal({
   onClose,
 }: AddSubjectModalProps) {
   const t = useT();
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    if (open && !dialog.open) {
-      dialog.showModal();
-    }
-  }, [open]);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    const handleClose = () => onClose();
-    dialog.addEventListener("close", handleClose);
-    return () => dialog.removeEventListener("close", handleClose);
-  }, [onClose]);
 
   return (
-    <dialog
-      ref={dialogRef}
-      className="animate-dialog m-auto max-w-sm rounded-2xl bg-white p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
-      aria-labelledby="add-subject-title"
-      onClick={(e) => {
-        if (e.target === dialogRef.current) dialogRef.current?.close();
-      }}
-      onClose={() => {
-        track("add_subject_modal_close");
-      }}
-    >
-      <div onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between mb-5">
-          <h2
-            id="add-subject-title"
-            className="text-lg font-semibold text-gray-900"
-          >
-            {t.addSubject.title}
-          </h2>
-          <button
-            type="button"
-            onClick={() => {
-              track("add_subject_modal_close_btn");
-              dialogRef.current?.close();
-            }}
-            className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
-            aria-label={t.addSubject.close}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
+    <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{t.addSubject.title}</DialogTitle>
+        </DialogHeader>
 
-        <div className="space-y-3">
+        <div className="flex flex-col gap-3">
           <a
             href={t.addSubject.openIssueUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("add_subject_open_issue")}
-            className="flex items-center gap-3 p-3 rounded-xl border-2 border-green-300 bg-green-50 hover:bg-green-100 hover:border-green-400 transition-colors cursor-pointer text-left no-underline text-inherit"
+            className="flex items-center gap-3 p-3 rounded-xl border border-border bg-muted/50 hover:bg-muted hover:border-primary/30 transition-colors cursor-pointer text-left no-underline text-foreground"
           >
             <span className="text-xl">📝</span>
             <div>
-              <div className="font-medium text-gray-900 text-sm">
+              <div className="font-medium text-foreground text-sm">
                 {t.addSubject.openIssue}
               </div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-muted-foreground">
                 {t.addSubject.openIssueDesc}
               </div>
             </div>
@@ -100,36 +49,38 @@ export default function AddSubjectModal({
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("add_subject_contribute")}
-            className="flex items-center gap-3 p-3 rounded-xl border-2 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:border-blue-400 transition-colors cursor-pointer text-left no-underline text-inherit"
+            className="flex items-center gap-3 p-3 rounded-xl border border-border bg-muted/50 hover:bg-muted hover:border-primary/30 transition-colors cursor-pointer text-left no-underline text-foreground"
           >
             <span className="text-xl">🚀</span>
             <div>
-              <div className="font-medium text-gray-900 text-sm">
+              <div className="font-medium text-foreground text-sm">
                 {t.addSubject.contribute}
               </div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-muted-foreground">
                 {t.addSubject.contributeDesc}
               </div>
             </div>
           </a>
 
-          <div className="pt-2 border-t border-gray-200">
+          <div className="pt-2 border-t border-border">
             <a
               href="mailto:pablo.portas@udc.es"
               onClick={() => track("add_subject_email")}
-              className="flex items-center gap-3 p-3 rounded-xl border-2 border-gray-200 bg-gray-50/50 hover:bg-gray-100 hover:border-gray-300 transition-colors cursor-pointer text-left no-underline text-inherit"
+              className="flex items-center gap-3 p-3 rounded-xl border border-border bg-muted/50 hover:bg-muted hover:border-border transition-colors cursor-pointer text-left no-underline text-muted-foreground"
             >
               <span className="text-xl">✉️</span>
               <div>
-                <div className="font-medium text-gray-600 text-sm">
+                <div className="font-medium text-foreground text-sm">
                   {t.addSubject.email}
                 </div>
-                <div className="text-xs text-gray-400">pablo.portas@udc.es</div>
+                <div className="text-xs text-muted-foreground">
+                  pablo.portas@udc.es
+                </div>
               </div>
             </a>
           </div>
         </div>
-      </div>
-    </dialog>
+      </DialogContent>
+    </Dialog>
   );
 }
