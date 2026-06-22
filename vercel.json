@@ -1,8 +1,4 @@
 {
-  "rewrites": [
-    {
-      "source": "/((?!robots\.txt|sitemap\.xml|favicon\.|og\.|site\.webmanifest|apple-touch-icon|exams/|assets/).*)",
-      "destination": "/index.html"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
