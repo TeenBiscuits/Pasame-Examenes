@@ -39,7 +39,7 @@ export default function TopicCard({
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
-      className={`block p-5 rounded-xl border-2 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-200 ${colorMap[topic.color] || colorMap.blue}`}
+      className={`block p-5 rounded-xl border-2 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200 ${colorMap[topic.color] || colorMap.blue}`}
       onClick={() => {
         triggerLight();
         track("topic_card_click", { subjectId, topic: topic.key });

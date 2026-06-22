@@ -73,7 +73,7 @@ export default function Header() {
             </nav>
           )}
           <button
-            className="px-2 py-1 text-xs font-medium rounded border border-gray-200 hover:bg-gray-100 transition-colors"
+            className="px-2 py-1 text-xs font-medium rounded border border-gray-200 hover:bg-gray-100 active:scale-95 transition"
             onClick={() => {
               triggerLight();
               const nextLang = lang === "en" ? "es" : "en";

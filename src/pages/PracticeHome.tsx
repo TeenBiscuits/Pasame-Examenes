@@ -13,7 +13,7 @@ export default function PracticeHome() {
   if (!subject) return null;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <h1 className="text-2xl font-bold text-gray-900 mb-2">
         {t.practiceHome.title}
       </h1>
@@ -28,7 +28,7 @@ export default function PracticeHome() {
             <Link
               key={topic.key}
               to={`/${subject.id}/practice/${topic.key}`}
-              className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-200"
+              className="block p-5 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
               onClick={() => {
                 triggerLight();
                 track("practice_topic_click", {

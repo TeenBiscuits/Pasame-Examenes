@@ -44,7 +44,7 @@ export default function SubjectHome() {
   })();
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="text-center mb-10">
         <p className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">
           {subject.courseCode} &middot; {subject.university}
@@ -89,7 +89,7 @@ export default function SubjectHome() {
           <Link
             key={exam.year}
             to={`/${subject.id}/exam/${exam.year}`}
-            className="block p-6 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-200"
+            className="block p-6 rounded-xl border-2 border-gray-200 hover:border-green-400 bg-white hover:bg-green-50/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors transition-transform duration-200"
             onClick={() => {
               triggerLight();
               track("exam_card_click", {
@@ -121,7 +121,7 @@ export default function SubjectHome() {
               href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-150"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-700 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition duration-150"
               onClick={() => {
                 triggerLight();
                 track("pdf_download", {

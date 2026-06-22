@@ -14,6 +14,7 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.17.0",
+    "tailwind-animations": "^1.0.1",
     "web-haptics": "^0.0.6"
   },
   "devDependencies": {

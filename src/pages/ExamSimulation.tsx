@@ -68,12 +68,47 @@ export default function ExamSimulation() {
   const startTimeRef = useRef<number>(0);
   const [attemptId, setAttemptId] = useState<string>("");
   const timeUpTrackedRef = useRef(false);
+  const [direction, setDirection] = useState<"next" | "prev" | undefined>();
+  const navRef = useRef<HTMLDivElement>(null);
+  const [showLeftFade, setShowLeftFade] = useState(false);
+  const [showRightFade, setShowRightFade] = useState(false);
 
   useEffect(() => {
     if (!subject || !examInfo) {
       navigate("/");
     }
   }, [subject, examInfo, navigate]);
+
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const check = () => {
+      setShowLeftFade(el.scrollLeft > 4);
+      setShowRightFade(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+    };
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", check);
+      ro.disconnect();
+    };
+  }, [questions, started]);
+
+  useEffect(() => {
+    const container = navRef.current;
+    if (!container) return;
+    const btn = container.children[currentIndex] as HTMLElement | undefined;
+    if (!btn) return;
+    requestAnimationFrame(() => {
+      const cr = container.getBoundingClientRect();
+      const br = btn.getBoundingClientRect();
+      const step = 108;
+      if (br.right > cr.right - 84) container.scrollBy({ left: step, behavior: "smooth" });
+      else if (br.left < cr.left + 84) container.scrollBy({ left: -step, behavior: "smooth" });
+    });
+  }, [currentIndex]);
 
   const totalPoints = questions.reduce((s, q) => s + q.points, 0);
 
@@ -212,7 +247,7 @@ export default function ExamSimulation() {
 
   if (!started) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-16">
+      <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in animate-duration-fast">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {examInfo.title}
@@ -246,7 +281,7 @@ export default function ExamSimulation() {
             {t.exam.simulationNote}
           </div>
           <button
-            className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors font-medium"
+            className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition font-medium animate-pulse"
             onClick={handleStart}
           >
             {t.exam.startExam}
@@ -272,7 +307,7 @@ export default function ExamSimulation() {
   const score = getScore();
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="flex items-center justify-between mb-6 sticky top-14 bg-gray-50 py-3 -mx-4 px-4 z-40 border-b border-gray-200">
         <div>
           <span className="text-lg font-bold text-gray-900">
@@ -285,14 +320,14 @@ export default function ExamSimulation() {
         <div className="flex items-center gap-4">
           {!submitted && (
             <span
-              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "text-red-600" : "text-gray-700"}`}
+              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "text-red-600 animate-pulse" : "text-gray-700"}`}
             >
               {formatTime(timeLeft)}
             </span>
           )}
           {submitted && (
             <span
-              className={`text-sm font-bold px-3 py-1 rounded ${score >= examInfo.passPoints ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}
+              className={`text-sm font-bold px-3 py-1 rounded animate-fade-in ${score >= examInfo.passPoints ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}
             >
               {score}/{totalPoints}p{" "}
               {score >= examInfo.passPoints ? t.exam.pass_ : t.exam.fail}
@@ -302,7 +337,7 @@ export default function ExamSimulation() {
       </div>
 
       {submitted && (
-        <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200 text-sm">
+        <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200 text-sm animate-fade-in-up">
           <p className="font-semibold text-green-900 mb-1">
             {t.exam.submitted} {t.exam.score}: {score}
             {t.exam.outOf}
@@ -314,12 +349,25 @@ export default function ExamSimulation() {
         </div>
       )}
 
-      <div className="flex gap-1 mb-6 overflow-x-auto pb-2">
+      <div
+        ref={navRef}
+        className="flex gap-1 mb-6 overflow-x-auto pb-6"
+        style={{
+          maskImage:
+            showLeftFade && showRightFade
+              ? "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)"
+              : showLeftFade
+                ? "linear-gradient(to right, transparent 0%, black 8%, black 100%)"
+                : showRightFade
+                  ? "linear-gradient(to right, black 0%, black 92%, transparent 100%)"
+                  : undefined,
+        }}
+      >
         {questions.map((q, i) => {
           const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
           const isCurrent = i === currentIndex;
           let cls =
-            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors cursor-pointer";
+            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition cursor-pointer";
           if (isCurrent) cls += " bg-green-600 text-white border-green-600";
           else if (isAnswered)
             cls += " bg-green-50 border-green-300 text-green-700";
@@ -330,6 +378,7 @@ export default function ExamSimulation() {
               className={cls}
               onClick={() => {
                 triggerLight();
+                setDirection(i > currentIndex ? "next" : i < currentIndex ? "prev" : undefined);
                 setCurrentIndex(i);
               }}
             >
@@ -340,6 +389,7 @@ export default function ExamSimulation() {
       </div>
 
       <QuestionCard
+        key={currentQuestion.id}
         question={currentQuestion}
         index={currentIndex}
         total={questions.length}
@@ -350,14 +400,16 @@ export default function ExamSimulation() {
         showResult={submitted}
         selfGrade={selfGrades[currentQuestion.id]}
         onSelfGrade={handleSelfGrade}
+        direction={direction}
       />
 
       <div className="flex justify-between mt-6">
         <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
+            setDirection("prev");
             track("exam_navigate", {
               direction: "prev",
               fromIndex: currentIndex,
@@ -372,7 +424,7 @@ export default function ExamSimulation() {
         <div className="flex gap-2">
           {!submitted && (
             <button
-              className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition-colors font-medium"
+              className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition font-medium"
               onClick={handleSubmit}
             >
               {t.exam.submitExam}
@@ -380,10 +432,11 @@ export default function ExamSimulation() {
           )}
         </div>
         <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
+            setDirection("next");
             track("exam_navigate", {
               direction: "next",
               fromIndex: currentIndex,

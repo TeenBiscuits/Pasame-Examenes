@@ -15,6 +15,7 @@ interface QuestionCardProps {
   showResult?: boolean;
   selfGrade?: "correct" | "incorrect";
   onSelfGrade?: (questionId: string, grade: "correct" | "incorrect") => void;
+  direction?: "next" | "prev";
 }
 
 function getQuestionTypeLabel(type: QuestionType): string {
@@ -54,7 +55,7 @@ function MCQuestion({
         const isSelected = savedAnswer === letter;
         const isCorrect = question.correctAnswer === letter;
         let className =
-          "w-full p-3 rounded-lg border-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors duration-150 text-left text-sm flex items-start gap-3";
+          "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
         if (showResult && isCorrect) {
           className += " bg-green-50 border-green-400";
         } else if (showResult && isSelected && !isCorrect) {
@@ -81,7 +82,9 @@ function MCQuestion({
             }}
             disabled={!!showResult}
           >
-            <span className="font-mono font-bold text-xs w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center shrink-0 mt-0.5">
+            <span
+              className={`font-mono font-bold text-xs w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center shrink-0 mt-0.5 ${isSelected ? "animate-pop" : ""}`}
+            >
               {letter}
             </span>
             <span className="flex-1">{opt}</span>
@@ -123,7 +126,7 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
-            className="text-sm text-green-600 hover:text-green-700 font-medium focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-green-200 transition-colors"
+            className="text-sm text-green-600 hover:text-green-700 font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-green-200 transition"
             onClick={() => {
               triggerLight();
               const next = !isOpen;
@@ -169,7 +172,7 @@ function TextQuestion({
                         });
                         onSelfGrade(question.id, "correct");
                       }}
-                      className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 transition-colors focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none ${
+                      className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none ${
                         selfGrade === "correct"
                           ? "bg-green-50 border-green-500 text-green-700"
                           : "bg-white border-gray-200 text-gray-600 hover:bg-green-50/50 hover:border-green-300"
@@ -187,7 +190,7 @@ function TextQuestion({
                         });
                         onSelfGrade(question.id, "incorrect");
                       }}
-                      className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none ${
+                      className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none ${
                         selfGrade === "incorrect"
                           ? "bg-red-50 border-red-500 text-red-700"
                           : "bg-white border-gray-200 text-gray-600 hover:bg-red-50/50 hover:border-red-300"
@@ -250,7 +253,7 @@ function MatchingQuestion({
                 const chosen = userAnswer === letter;
                 const real = correctAnswer[item] === letter;
                 let cls =
-                  "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors flex items-center justify-center";
+                  "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition flex items-center justify-center";
                 if (showResult && real) {
                   cls += " bg-green-50 border-green-400 text-green-700";
                 } else if (showResult && chosen && !real) {
@@ -295,8 +298,17 @@ export default function QuestionCard(props: QuestionCardProps) {
   const t = useT();
   const { triggerLight } = useHaptics();
 
+  const slideClass =
+    props.direction === "next"
+      ? "animate-slide-in-right animate-duration-fast"
+      : props.direction === "prev"
+        ? "animate-slide-in-left animate-duration-fast"
+        : "animate-fade-in animate-duration-fast";
+
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+    <div
+      className={`bg-white rounded-xl border border-gray-200 p-6 shadow-sm ${slideClass}`}
+    >
       <div className="flex items-center gap-2 mb-4">
         <span className="text-xs font-mono bg-gray-100 text-gray-600 px-2 py-0.5 rounded">
           Q{props.index + 1}/{props.total}

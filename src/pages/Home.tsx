@@ -6,7 +6,7 @@ export default function Home() {
   const t = useT();
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 text-center">
+    <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
       <h1 className="text-3xl font-bold text-gray-900 mb-3">{t.home.title}</h1>
       <p className="text-gray-600 max-w-xl mx-auto mb-10">{t.home.subtitle}</p>
 

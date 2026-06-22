@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getSubject, getQuestionsByTopic } from "../subjects";
 import type { Question } from "../data/types";
@@ -68,12 +68,47 @@ export default function PracticeTopic() {
     Record<string, boolean>
   >({});
   const [attemptId, setAttemptId] = useState<string>("");
+  const [direction, setDirection] = useState<"next" | "prev" | undefined>();
+  const navRef = useRef<HTMLDivElement>(null);
+  const [showLeftFade, setShowLeftFade] = useState(false);
+  const [showRightFade, setShowRightFade] = useState(false);
 
   useEffect(() => {
     if (!subject || !topicInfo) {
       navigate("/");
     }
   }, [subject, topicInfo, navigate]);
+
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const check = () => {
+      setShowLeftFade(el.scrollLeft > 4);
+      setShowRightFade(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+    };
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", check);
+      ro.disconnect();
+    };
+  }, [questions]);
+
+  useEffect(() => {
+    const container = navRef.current;
+    if (!container) return;
+    const btn = container.children[currentIndex] as HTMLElement | undefined;
+    if (!btn) return;
+    requestAnimationFrame(() => {
+      const cr = container.getBoundingClientRect();
+      const br = btn.getBoundingClientRect();
+      const step = 108;
+      if (br.right > cr.right - 84) container.scrollBy({ left: step, behavior: "smooth" });
+      else if (br.left < cr.left + 84) container.scrollBy({ left: -step, behavior: "smooth" });
+    });
+  }, [currentIndex]);
 
   const currentQuestion = questions[currentIndex];
 
@@ -178,7 +213,7 @@ export default function PracticeTopic() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
@@ -196,7 +231,7 @@ export default function PracticeTopic() {
       </div>
 
       {(submitted || Object.keys(checkedQuestions).length > 0) && (
-        <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200">
+        <div className="mb-6 p-4 rounded-lg bg-green-50 border border-green-200 animate-fade-in-up">
           <p className="font-semibold text-green-900">
             {submitted ? t.practice.score : t.practice.runningScore}:{" "}
             {getScore()} {t.exam.outOf} {totalPoints} {t.practice.points}
@@ -211,13 +246,26 @@ export default function PracticeTopic() {
         </div>
       )}
 
-      <div className="flex gap-1 mb-6 overflow-x-auto pb-2">
+      <div
+        ref={navRef}
+        className="flex gap-1 mb-6 overflow-x-auto pb-6"
+        style={{
+          maskImage:
+            showLeftFade && showRightFade
+              ? "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)"
+              : showLeftFade
+                ? "linear-gradient(to right, transparent 0%, black 8%, black 100%)"
+                : showRightFade
+                  ? "linear-gradient(to right, black 0%, black 92%, transparent 100%)"
+                  : undefined,
+        }}
+      >
         {questions.map((q, i) => {
           const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
           const isChecked = !!checkedQuestions[q.id];
           const isCurrent = i === currentIndex;
           let cls =
-            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors cursor-pointer";
+            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition cursor-pointer";
           if (isCurrent) cls += " bg-green-600 text-white border-green-600";
           else if (isChecked)
             cls += " bg-blue-50 border-blue-300 text-blue-700";
@@ -230,6 +278,7 @@ export default function PracticeTopic() {
               className={cls}
               onClick={() => {
                 triggerLight();
+                setDirection(i > currentIndex ? "next" : i < currentIndex ? "prev" : undefined);
                 setCurrentIndex(i);
               }}
             >
@@ -240,6 +289,7 @@ export default function PracticeTopic() {
       </div>
 
       <QuestionCard
+        key={currentQuestion.id}
         question={currentQuestion}
         index={currentIndex}
         total={questions.length}
@@ -250,14 +300,16 @@ export default function PracticeTopic() {
         showResult={submitted || !!checkedQuestions[currentQuestion.id]}
         selfGrade={selfGrades[currentQuestion.id]}
         onSelfGrade={handleSelfGrade}
+        direction={direction}
       />
 
       <div className="flex justify-between mt-6">
         <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
+            setDirection("prev");
             track("practice_navigate", {
               direction: "prev",
               fromIndex: currentIndex,
@@ -275,7 +327,7 @@ export default function PracticeTopic() {
             !checkedQuestions[currentQuestion.id] && (
               <>
                 <button
-                  className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors"
+                  className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-400 hover:text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition"
                   onClick={() => {
                     triggerLight();
                     track("practice_clear_answer", {
@@ -287,7 +339,7 @@ export default function PracticeTopic() {
                   {t.practice.clear}
                 </button>
                 <button
-                  className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition-colors"
+                  className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition"
                   onClick={() => {
                     triggerMedium();
                     track("practice_check_question", {
@@ -305,7 +357,7 @@ export default function PracticeTopic() {
             )}
           {!submitted && (
             <button
-              className="px-4 py-2 text-sm rounded-lg bg-green-600 text-white hover:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition-colors"
+              className="px-4 py-2 text-sm rounded-lg bg-green-600 text-white hover:bg-green-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none transition"
               onClick={handleSubmit}
             >
               {t.practice.submit}
@@ -313,10 +365,11 @@ export default function PracticeTopic() {
           )}
         </div>
         <button
-          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition-colors"
+          className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 active:scale-95 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
+            setDirection("next");
             track("practice_navigate", {
               direction: "next",
               fromIndex: currentIndex,
