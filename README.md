@@ -1,6 +1,6 @@
 [![Pásame Exámenes](./public/og.jpg)](https://pe.pablopl.dev)
 
-# <img src="https://raw.githubusercontent.com/TeenBiscuits/Pasame-Examenes/refs/heads/main/public/favicon.svg" alt="" align="left" width="40" height="40"> Pásame Exámenes
+# <a href="https://pe.pablopl.dev"><img src="https://raw.githubusercontent.com/TeenBiscuits/Pasame-Examenes/refs/heads/main/public/favicon.svg" alt="" align="left" width="40" height="40"></a> Pásame Exámenes
 
 <div align="center">
 
