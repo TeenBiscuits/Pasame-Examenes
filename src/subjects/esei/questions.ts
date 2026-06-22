@@ -1830,6 +1830,7 @@ export const questions: Question[] = [
     topic: "t6",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores computacionales?",
     options: [
@@ -1849,6 +1850,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores biológicos?",
     options: [
@@ -1868,6 +1870,7 @@ export const questions: Question[] = [
     topic: "t2",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Causas del interés actual por los Sistemas Inteligentes Subsimbólicos?",
     options: [
@@ -1887,6 +1890,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Cuál de los siguientes avances tecnológicos no está relacionado con la IA?",
     options: [
@@ -1944,6 +1948,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "El conjunto de datos que se utiliza para establecer los valores de los pesos de las conexiones de una RNA se denomina:",
     options: [
@@ -1963,6 +1968,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Si durante el entrenamiento de una RNA, en un ciclo se obtiene un gradiente de 0, esto quiere decir...",
     options: [
@@ -1982,6 +1988,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Un perceptrón (sin capas ocultas) no puede implementar una puerta lógica con la función",
     options: [
@@ -2001,6 +2008,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "El número de neuronas de entrada de un perceptrón multicapa",
     options: [
       "a) Lo puede fijar el usuario como quiera",
@@ -2019,6 +2027,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "La función de transferencia de las neuronas de un perceptrón multicapa",
     options: [
@@ -2095,6 +2104,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En la técnica de parada temprana, una vez finalizado el proceso de entrenamiento, la RNA que se devuelve tiene unos pesos que son",
     options: [
@@ -2114,6 +2124,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Para usar una RNA para resolver un problema de clasificación con dos clases, sin posibilidad de que un patrón no pertenezca a alguna de las dos clases, el número de neuronas de salida que hay que usar, según lo visto en las clases de teoría, es:",
     options: ["a) 1", "b) 2", "c) 3", "d) 4", "e) 5"],
@@ -2127,6 +2138,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En una red SOM, la capa de competición está compuesta por:",
     options: [
       "a) Neuronas que generan la salida supervisada.",
@@ -2145,6 +2157,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "¿Qué mide el error de cuantización medio en una red SOM?",
     options: [
       "a) La distancia media entre los vectores de entrada y sus neuronas ganadoras (BMU).",
@@ -2163,6 +2176,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En una red SOM, la neurona ganadora es aquella que:",
     options: [
       "a) Tiene el peso con mayor valor.",
@@ -2181,6 +2195,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Qué función se utiliza habitualmente para determinar la similitud entre una neurona y un patrón de entrada en una SOM?",
     options: [
@@ -2200,6 +2215,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "¿Cuál de los siguientes es un problema común de las redes SOM?",
     options: [
       "a) No permiten reducción de dimensionalidad.",
@@ -2218,6 +2234,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En una red SOM, ¿qué ocurre con el tamaño del vecindario a lo largo del entrenamiento?",
     options: [
@@ -2237,6 +2254,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En la fase de operación de una red SOM:",
     options: [
       "a) Se modifican los pesos de las neuronas.",
@@ -2255,6 +2273,7 @@ export const questions: Question[] = [
     topic: "t3",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Qué representa el vector de pesos de una neurona en la capa de competición de una SOM?",
     options: [
@@ -2274,6 +2293,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Cuál de las siguientes tareas es especialmente adecuada para una red SOM?",
     options: [
@@ -2293,6 +2313,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "¿Qué diferencia clave tienen los modelos GCS frente a SOM?",
     options: [
       "a) No utilizan aprendizaje no supervisado.",
@@ -2329,6 +2350,7 @@ export const questions: Question[] = [
     topic: "t10",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Cuál de las siguientes es una técnica de mutación en los Algoritmos Genéticos?",
     options: [
@@ -2348,6 +2370,7 @@ export const questions: Question[] = [
     topic: "t3",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En Programación Genética,",
     options: [
       "a) El cromosoma nunca representa la posible solución a las variables del problema",
@@ -2592,6 +2615,7 @@ export const questions: Question[] = [
     topic: "t3",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "Si hablamos de sistemas de producción...",
     options: [
       "a) La base de conocimientos está formada por la base de reglas y el motor de inferencias",
@@ -2629,6 +2653,7 @@ export const questions: Question[] = [
     topic: "t6",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores biológicos?",
     options: [
@@ -2760,6 +2785,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Para utilizar un perceptrón multicapa para resolver el problema AND...",
     options: [
@@ -3432,6 +3458,7 @@ export const questions: Question[] = [
     topic: "t3",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "Si hablamos de sistemas de producción...",
     options: [
       "a) La base de conocimientos está formada por la base de reglas y el motor de inferencias",
@@ -3593,6 +3620,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En la evolución histórica de los sistemas conexionistas, ¿cuáles son precursores biológicos?",
     options: [
@@ -3612,6 +3640,7 @@ export const questions: Question[] = [
     topic: "t2",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Causas del interés actual por los Sistemas Inteligentes Subsimbólicos",
     options: [
@@ -3631,6 +3660,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Cuál de los siguientes avances tecnológicos no está relacionado con la IA?",
     options: [
@@ -3706,6 +3736,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En el aprendizaje no supervisado...",
     options: [
       "a) Se desconocen las clases, pero se consiguen grupos similares",
@@ -3742,6 +3773,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "El conjunto de datos que se utiliza para calcular los valores de los pesos de las conexiones de una RNA se denomina:",
     options: [
@@ -3779,6 +3811,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Un perceptrón (sin capas ocultas) no puede implementar una puerta lógica con la función",
     options: [
@@ -3798,6 +3831,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "El número de neuronas de entrada de un perceptrón multicapa",
     options: [
       "a) Lo puede fijar el usuario como quiera",
@@ -3816,6 +3850,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "La función de transferencia de las neuronas de un perceptrón multicapa",
     options: [
@@ -3890,6 +3925,7 @@ export const questions: Question[] = [
     topic: "t8",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En la técnica de parada temprana, una vez finalizado el proceso de entrenamiento, la RNA que se devuelve tiene unos pesos que son",
     options: [
@@ -3927,6 +3963,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En una red SOM, la capa de competición está compuesta por:",
     options: [
       "a) Neuronas que generan la salida supervisada.",
@@ -3945,6 +3982,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "¿Qué mide el error de cuantización medio en una red SOM?",
     options: [
       "a) La distancia media entre los vectores de entrada y sus neuronas ganadoras (BMU).",
@@ -3963,6 +4001,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En una red SOM, la neurona ganadora es aquella que:",
     options: [
       "a) Tiene el peso con mayor valor.",
@@ -3981,6 +4020,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Qué función se utiliza habitualmente para determinar la similitud entre una neurona y un patrón de entrada en una SOM?",
     options: [
@@ -4000,6 +4040,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "¿Cuál de los siguientes es un problema común de las redes SOM?",
     options: [
       "a) No permiten reducción de dimensionalidad.",
@@ -4018,6 +4059,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "En una red SOM, ¿qué ocurre con el tamaño del vecindario a lo largo del entrenamiento?",
     options: [
@@ -4037,6 +4079,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En la fase de operación de una red SOM:",
     options: [
       "a) Se modifican los pesos de las neuronas.",
@@ -4055,6 +4098,7 @@ export const questions: Question[] = [
     topic: "t3",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Qué representa el vector de pesos de una neurona en la capa de competición de una SOM?",
     options: [
@@ -4074,6 +4118,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Cuál de las siguientes tareas es especialmente adecuada para una red SOM?",
     options: [
@@ -4093,6 +4138,7 @@ export const questions: Question[] = [
     topic: "t9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "¿Qué diferencia clave tienen los modelos GCS frente a SOM?",
     options: [
       "a) No utilizan aprendizaje no supervisado.",
@@ -4129,6 +4175,7 @@ export const questions: Question[] = [
     topic: "t10",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "¿Cuál de las siguientes es una técnica de mutación en los Algoritmos Genéticos?",
     options: [
@@ -4148,6 +4195,7 @@ export const questions: Question[] = [
     topic: "t3",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "En Programación Genética...",
     options: [
       "a) El cromosoma nunca representa una posible solución para las variables del problema.",

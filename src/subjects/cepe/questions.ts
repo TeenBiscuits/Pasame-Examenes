@@ -249,7 +249,7 @@ Tiempo paralelo (mínimo): lectura (6.4) + 1 maqueta de 6 min (2880) + postproce
     ],
     question: `Los siguientes algoritmos implementan una función que calcula la desviación típica (σ) de los valores de un vector 'v' de longitud 'N'. El resultado es idéntico en ambas funciones:
 
-$$\\sigma = \\sqrt{\\frac{1}{N} \\sum_{i} (v_i - \\mu)^2}$$
+$\\sigma = \\sqrt{\\frac{1}{N} \\sum_{i} (v_i - \\mu)^2}$
 
 Queremos convertir la función del Algoritmo A en una operación colectiva MPI que tendrá la firma:
 
@@ -415,6 +415,7 @@ void customer(struct super *s, int num_items) {
     topic: "concurrencia",
     type: "text",
     points: 2,
+    repeated: true,
     question: `Implemente, utilizando los mutex de la librería pthread, un tipo de mutex donde se pueden hacer bloqueos con prioridad alta o baja. Cuando un mutex se libera, solo podrá ser bloqueado por un thread con prioridad baja si no hay ningún thread con prioridad alta esperando.
 
 \`\`\`c
@@ -709,6 +710,7 @@ Sí, habría que modificar el tamaño de myA: en el apartado (b) era M/P+1 filas
     topic: "concurrencia",
     type: "text",
     points: 2,
+    repeated: true,
     question: `Un autobús circula por una línea con un cierto número de paradas. La línea es circular, es decir, después de la última parada se vuelve a la primera. Puede suponerse que solo circula un autobús en la línea.
 
 El autobús, al llegar a una parada, avisa a quien esté esperando para subir y bajar, y espera a que los pasajeros suban y bajen del bus. Una vez ha terminado la parada cambia a la siguiente estación.
@@ -1076,6 +1078,7 @@ if (!rango)
     topic: "concurrencia",
     type: "text",
     points: 2,
+    repeated: true,
     question: `Vamos a simular una cola donde cada thread representa una persona que ocupa una posición. Cuando a una persona le toca el turno recibe el aviso de la anterior, hace la acción por la que esperaba turno, y avisa al siguiente. Cada thread solo debe despertar a uno, y no se puede usar una estructura de datos de tipo cola o lista.
 
 Para avisar al siguiente cada thread puede guardar una condición en la estructura compartida que es usada por el siguiente thread para esperar por el aviso. Antes de esperar ese thread sustituye la condición por la suya propia para a su vez poder avisar al thread que venga después de él.
@@ -1227,6 +1230,7 @@ pthread_t pair_barrier_b(pair_barrier_t *pb) {
     topic: "concurrencia",
     type: "text",
     points: 1.5,
+    repeated: true,
     question: `El siguiente módulo permite crear una secuencia de procesos donde cada uno conoce el PID del siguiente.
 
 \`\`\`erlang
