@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { getSubject, getAllQuestions } from "../subjects";
 import { getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
+import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
@@ -38,6 +39,23 @@ export default function SubjectHome() {
     .replace("{count}", String(allQuestions.length))
     .replace("{exams}", String(subject.exams.length));
 
+  const renderTopicCard = (topic: Topic) => {
+    const topicQs = allQuestions.filter((q) => q.topic === topic.key);
+    const tp = progress[topic.key];
+    const progressPct =
+      tp && tp.total > 0 ? (tp.attempted / tp.total) * 100 : 0;
+    return (
+      <TopicCard
+        key={topic.key}
+        subjectId={subject.id}
+        topic={topic}
+        questionCount={topicQs.length}
+        pointsCount={topicQs.reduce((s, q) => s + q.points, 0)}
+        progress={progressPct}
+      />
+    );
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="text-center mb-10">
@@ -53,26 +71,30 @@ export default function SubjectHome() {
       <h2 className="text-lg font-semibold text-gray-900 mb-4">
         {t.subjectHome.practiceByTopic}
       </h2>
-      <div
-        className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
-      >
-        {subject.topics.map((topic) => {
-          const topicQs = allQuestions.filter((q) => q.topic === topic.key);
-          const tp = progress[topic.key];
-          const progressPct =
-            tp && tp.total > 0 ? (tp.attempted / tp.total) * 100 : 0;
-          return (
-            <TopicCard
-              key={topic.key}
-              subjectId={subject.id}
-              topic={topic}
-              questionCount={topicQs.length}
-              pointsCount={topicQs.reduce((s, q) => s + q.points, 0)}
-              progress={progressPct}
-            />
-          );
-        })}
-      </div>
+      
+      {subject.id === "esei" ? (
+        <>
+          <h3 className="text-md font-medium text-gray-700 mt-2 mb-3">Simbólica</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {subject.topics
+              .filter((t) => ["t1", "t2", "t3", "t4", "t5"].includes(t.key))
+              .map(renderTopicCard)}
+          </div>
+          
+          <h3 className="text-md font-medium text-gray-700 mb-3">Subsimbólica</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            {subject.topics
+              .filter((t) => ["t6", "t7", "t8", "t9", "t10"].includes(t.key))
+              .map(renderTopicCard)}
+          </div>
+        </>
+      ) : (
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
+        >
+          {subject.topics.map(renderTopicCard)}
+        </div>
+      )}
 
       <h2 className="text-lg font-semibold text-gray-900 mb-4">
         {t.subjectHome.examSimulations}
