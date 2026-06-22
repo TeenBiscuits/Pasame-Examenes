@@ -50,6 +50,8 @@ export const en = {
     openEnded: "open-ended questions",
   },
   exam: {
+    backToSubject: "← Back to Subject",
+    exitConfirm: "Are you sure you want to exit? Your progress will be lost.",
     noQuestions: "No questions found for this exam.",
     backToHome: "Back to Home",
     questions: "Questions",

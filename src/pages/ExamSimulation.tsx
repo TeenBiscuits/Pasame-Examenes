@@ -290,6 +290,14 @@ export default function ExamSimulation() {
   if (!started) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in animate-duration-fast">
+        <div className="mb-6">
+          <Link
+            to={`/${subject.id}`}
+            className="text-sm text-green-600 hover:underline focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1"
+          >
+            {t.exam.backToSubject}
+          </Link>
+        </div>
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {examInfo.title}
@@ -350,6 +358,19 @@ export default function ExamSimulation() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
+      <div className="mb-6">
+        <Link
+          to={`/${subject.id}`}
+          onClick={(e) => {
+            if (!submitted && !window.confirm(t.exam.exitConfirm)) {
+              e.preventDefault();
+            }
+          }}
+          className="text-sm text-green-600 hover:underline focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:outline-none rounded-md px-1"
+        >
+          {t.exam.backToSubject}
+        </Link>
+      </div>
       <div className="flex items-center justify-between mb-6 sticky top-14 bg-gray-50 py-3 -mx-4 px-4 z-40 border-b border-gray-200">
         <div>
           <span className="text-lg font-bold text-gray-900">

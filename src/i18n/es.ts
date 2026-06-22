@@ -52,6 +52,8 @@ export const es: Translations = {
     openEnded: "preguntas abiertas",
   },
   exam: {
+    backToSubject: "← Volver a la asignatura",
+    exitConfirm: "¿Estás seguro de que quieres salir? Tu progreso se perderá.",
     noQuestions: "No se encontraron preguntas para este examen.",
     backToHome: "Volver al inicio",
     questions: "Preguntas",
