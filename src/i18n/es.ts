@@ -11,7 +11,7 @@ export const es: Translations = {
     notFound: "Asignatura no encontrada",
     returnHome: "Volver al inicio",
     description:
-      "Practica {count} preguntas de {exams} exámenes con respuestas modelo y autocorrección.",
+      "Practica {count} preguntas{repeated} de {exams} exámenes con respuestas modelo y autocorrección.",
     practiceByTopic: "Practicar por tema",
     examSimulations: "Simulaciones de examen completas",
     originalExams: "Documentos originales de examen",
@@ -20,6 +20,7 @@ export const es: Translations = {
     pdf: "PDF",
     acknowledgments: "Agradecimientos",
     addExam: "¿Añadir examen?",
+    repeatedSuffix: "{count} repetidas a lo largo de los años",
   },
   practiceHome: {
     title: "Practicar por tema",
@@ -90,6 +91,7 @@ export const es: Translations = {
     yourAnswer: "Tu respuesta",
     correct_: "Correcto",
     reportIssue: "Reportar error",
+    repeated: "Repetida",
   },
   subjectCard: {
     questions: "preguntas",

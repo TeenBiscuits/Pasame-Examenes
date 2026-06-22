@@ -33,13 +33,20 @@ export default function SubjectHome() {
   }
 
   const allQuestions = getAllQuestions(subject.id);
+  const repeatedCount = allQuestions.filter((q) => q.repeated).length;
   const progress = getTopicProgress(
     subject.id,
     allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
   );
 
+  const repeatedText =
+    repeatedCount >= 20
+      ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
+      : "";
+
   const description = t.subjectHome.description
     .replace("{count}", String(allQuestions.length))
+    .replace("{repeated}", repeatedText)
     .replace("{exams}", String(subject.exams.length));
 
   const renderTopicCard = (topic: Topic) => {

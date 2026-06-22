@@ -13,6 +13,7 @@ export const questions: Question[] = [
     topic: "kNN",
     type: "text",
     points: 3,
+    repeated: true,
     question:
       "Present a detailed algorithm for how to classify an arbitrary data point (x, y) using kNN classification. Assume binary classification (0 or 1) and Euclidean distance.",
     correctAnswer: `1. Compute Euclidean distance from (x, y) to every training point
@@ -52,6 +53,7 @@ The resulting regression plot is a step-like, piecewise constant function that i
     topic: "kNN",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Which of the following best describes how KNN works for classification?",
     options: [
@@ -141,6 +143,7 @@ As complexity increases: bias decreases, variance increases — this is the bias
     topic: "Bias-Variance",
     type: "text",
     points: 2,
+    repeated: true,
     question: `Model A (linear regression): training error 2, test error 30. Model B (polynomial): training error 10, test error 15. Analyze and choose.`,
     correctAnswer: `Model A: High variance — large gap between training (2) and test (30) suggests severe overfitting
 Model B: Better generalization — smaller gap between training (10) and test (15)
@@ -154,6 +157,7 @@ Choose Model B: it generalizes better to unseen data despite higher training err
     topic: "Bias-Variance",
     type: "mc",
     points: 1,
+    repeated: true,
     question:
       "Model A (Simple): Training error 4.5, Validation 5.0. Model B (Complex): Training error 1.2, Validation 8.0. Which is overfitting?",
     options: [
@@ -645,6 +649,7 @@ S1 is preferred (higher purity gain: 0.2813 > 0.0898).`,
     topic: "Support Vector Machines",
     type: "text",
     points: 1,
+    repeated: true,
     question:
       "With a quadratic kernel, which datapoints are likely to be support vectors?",
     correctAnswer: `With a quadratic kernel, the decision boundary will be a curved line (e.g., a parabola or ellipse) that separates the bottom-left cluster of squares (class 0) from the surrounding arc of circles (class 1).
@@ -704,6 +709,7 @@ Points like x1, x2 (circles) and x9, x10 (squares) are far from the decision bou
     topic: "Support Vector Machines",
     type: "text",
     points: 2,
+    repeated: true,
     question:
       "Explain the role of support vectors in determining the SVM decision boundary.",
     correctAnswer: `Support vectors are the training examples that lie closest to the margin. They directly determine the position and orientation of the decision boundary — all other data points have no influence. Removing a non-support vector does not change the boundary; removing a support vector does.`,
@@ -763,6 +769,7 @@ Models A and D clearly overfit (large train-validation gaps). Model B is good bu
     topic: "Clustering",
     type: "calculation",
     points: 3,
+    repeated: true,
     question: `Apply hierarchical clustering with complete linkage to the dissimilarity matrix:
    0    1    2    3
 0  0.0  0.3  0.4  0.7
@@ -794,6 +801,7 @@ Dendrogram:
     topic: "Clustering",
     type: "text",
     points: 1,
+    repeated: true,
     question:
       "Extract two clusters from the dendrogram and indicate which points are in each.",
     correctAnswer: `Cut at height between 0.45 and 0.8 (e.g., at 0.6):
@@ -808,6 +816,7 @@ Cluster 2: Points 2, 3`,
     topic: "Clustering",
     type: "calculation",
     points: 3,
+    repeated: true,
     question: `Perform agglomerative hierarchical clustering on 15 European capitals using single linkage. The distance matrix has 15 cities. Draw a horizontal dendrogram.`,
     correctAnswer: `Single linkage merges clusters based on the minimum pairwise distance between any of their members.
 
@@ -835,6 +844,7 @@ Ultimately, geographically peripheral cities like Madrid, Lisbon, Athens, and Ed
     topic: "Clustering",
     type: "text",
     points: 1,
+    repeated: true,
     question:
       "Split the dendrogram into 3 clusters. Is the new world order balanced?",
     correctAnswer: `If we cut the dendrogram to form 3 clusters, the resulting clusters are:

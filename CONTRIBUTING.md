@@ -116,7 +116,9 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos opcionales: `image`, `imageWidth`, `imageHeight`, `table`, `subquestions`.
+Campos opcionales: `image`, `imageWidth`, `imageHeight`, `table`, `subquestions`, `repeated`.
+
+- `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la misma pregunta aparece en varios exámenes. Se muestra una etiqueta "Repetida" en la interfaz.
 
 **Bloques de código:** Los campos de texto (`question`, `explanation`, `correctAnswer`, `subquestions`, `options` y celdas de tabla) soportan formato markdown:
 
@@ -141,6 +143,8 @@ Pista: recuerda que \`foo()\` se llama recursivamente.`,
 ```
 
 **Preguntas compartidas entre exámenes:** Usa `exam: "both"` para que una pregunta aparezca en todos los exámenes de la asignatura.
+
+**Preguntas repetidas:** Si una misma pregunta (o una variante casi idéntica) aparece en varios exámenes con distinto `exam`, marca `repeated: true` en cada ocurrencia. La interfaz mostrará un contador de repetidas en la página de la asignatura.
 
 #### 4. Añade los PDFs de los exámenes
 

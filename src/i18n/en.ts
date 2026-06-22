@@ -9,7 +9,7 @@ export const en = {
     notFound: "Subject Not Found",
     returnHome: "Return to Home",
     description:
-      "Practice {count} questions from {exams} exams with model answers and self-grading.",
+      "Practice {count} questions{repeated} from {exams} exams with model answers and self-grading.",
     practiceByTopic: "Practice by Topic",
     examSimulations: "Full Exam Simulations",
     originalExams: "Original Exam Documents",
@@ -18,6 +18,7 @@ export const en = {
     pdf: "PDF",
     acknowledgments: "Acknowledgments",
     addExam: "Add Exam?",
+    repeatedSuffix: "{count} repeated questions across years",
   },
   practiceHome: {
     title: "Practice by Topic",
@@ -88,6 +89,7 @@ export const en = {
     yourAnswer: "Your answer",
     correct_: "Correct",
     reportIssue: "Report Issue",
+    repeated: "Repeated",
   },
   subjectCard: {
     questions: "questions",

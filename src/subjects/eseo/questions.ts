@@ -12,6 +12,7 @@ export const questions: Question[] = [
     topic: "sistema-ficheros",
     type: "calculation",
     points: 7,
+    repeated: true,
     question:
       "Un sistema de archivos tipo UNIX System V tiene un tamaño de bloque de 2Kbytes, i-nodos con 10 direcciones directas, una indirecta simple, una indirecta doble y una indirecta triple. Utiliza direcciones de bloque de 8 bytes. Calcular cuántos bloques son necesarios en el área de datos para representar un fichero con un tamaño de 130 Mbytes+1byte, diferenciando entre bloques de datos y bloques de índices.",
     correctAnswer: `Tamaño de bloque: 2KB = 2048 bytes. 130 MB + 1 byte ≈ 136,314,881 bytes
@@ -228,6 +229,7 @@ Inodo 3201: bloque = 3 + 10 + floor(3201/32) = 3 + 10 + 100 = 113.`,
     topic: "sistema-ficheros",
     type: "text",
     points: 9,
+    repeated: true,
     question:
       "Código sobre '/home/juan/so/p1/p1.c' (3MB, inodo 6549): chmod 0420, lstat, open O_RDONLY, link crea practica1.c, symlink crea slink_practica1.c, open practica1.c, lseek(fd2, 2097152, SEEK_SET), fgetc, close, unlink. Cachés vacías, entrada p1 en 8º bloque de so. Responde: A) Accesos a disco en 1ª apertura. B) Valor de fd2. C) Bloques leídos para fgetc(fd2). D) Tamaño de slink_practica1.c. E) ¿fgetc es syscall? F) ¿link es syscall? G) ¿unlink libera el inodo 6549? H) El enlazador encuentra printf en libC? I) Permisos en rwxrwxrwx.",
     correctAnswer: `A) 12 accesos (raíz, home, juan, so(8º bloque), p1, p1.c + 6 accesos índices datos)
@@ -250,6 +252,7 @@ I) r-- -w- --- (0420: owner=4=r--, group=2=-w-, others=0=---)`,
     topic: "procesos",
     type: "text",
     points: 7,
+    repeated: true,
     question:
       "Sistema monoprocesador con 3 colas: SY (sistema, RR quantum 3, prioridad máxima), IT (interactivos, RR quantum 1), NI (no interactivos, SJF, prioridad mínima). Procesos: A(SY, 4-(7)-2, t=0), B(SY, 2-(7)-4, t=1), C(IT, 2-(3)-2-(3)-1, t=0), D(IT, 1-(3)-1-(3)-1, t=2), E(NI, 4, t=0), F(NI, 3, t=2). Muestra la planificación.",
     correctAnswer: `Traza CPU: A A A B B A C D C F F D B B B A A B C D C F E E C E E
@@ -419,6 +422,7 @@ Versión 3 (execvp sin fork): INCORRECTA. execvp NO crea un proceso nuevo, solo 
     topic: "sistema-ficheros",
     type: "matching",
     points: 6,
+    repeated: true,
     question: "Indica si es cierto (C) o falso (F) sobre sistemas de ficheros:",
     correctAnswer: {
       "El S.O. mantiene una copia en memoria del inodo de un fichero abierto hasta el último cierre":
@@ -527,6 +531,7 @@ Explicación:
     topic: "sistema-ficheros",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       "Un proceso abre 2 veces '/home/user1/so/practicas/p1.c' (1GB+6MB+10KB, hard links=2). chmod 0654, link crea p1_hlink.c, symlink crea p1_slink → p1_hlink.c. fd1=open(p1.c,O_RDONLY) [1ª apertura], fd2=open(p1_hlink.c,O_RDWR). lseek(fd1,1000000,SEEK_SET), fgetc c1. lseek(fd2,8000,SEEK_SET), fgetc c2. close ambos, unlink p1_slink. Cachés vacías, usuario efectivo = propietario. Responde:\nA) Tamaño de p1_slink.\nB) Bloques leídos para c1.\nC) Bloques leídos para c2.\nD) Permisos de p1.c en rwxrwxrwx.\nE) Hard links de p1.c tras unlink.",
     correctAnswer: `A) 35 bytes (longitud de la ruta "/home/user1/so/practicas/p1_hlink.c")
@@ -544,6 +549,7 @@ E) 3 (inicialmente 2, link crea p1_hlink.c → 3, unlink borra p1_slink [symlink
     topic: "sistema-ficheros",
     type: "matching",
     points: 6,
+    repeated: true,
     question: "Indica si es cierto (C) o falso (F) sobre sistemas de ficheros:",
     correctAnswer: {
       "El S.O. mantiene el número de aperturas en el inodo en memoria, no en el inodo en disco":
@@ -632,6 +638,7 @@ Tamaño superbloque = 30 - 3 - 20 = 7 bloques = 14 KB`,
     topic: "sistema-ficheros",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       "Código sobre '/home/user1/so/practicas/p1.c' (32GB, hard links=1): chmod 0752, link crea p1_hlink.c, symlink crea p1_slink a p1.c, open p1.c O_RDONLY (1ª apertura), open p1_hlink.c O_RDWR, lseek(fd2, 1000000, SEEK_SET), fgetc, close, unlink p1_slink. Cachés vacías, entrada user1 en 3er bloque de home. A) fd2, B) accesos disco 1ª apertura, C) bloques para fgetc, D) permisos rwxrwxrwx, E) hard links tras unlink.",
     correctAnswer: `A) 4 (fd1=3, fd2=4)
@@ -688,6 +695,7 @@ e) 1 (slink_practica1.c es symlink independiente, siempre tiene 1 hard link)`,
     topic: "memoria",
     type: "matching",
     points: 5,
+    repeated: true,
     question: "Responde Verdadero (V) o Falso (F) sobre gestión de memoria:",
     correctAnswer: {
       "En la pila del proceso están las variables locales y parámetros de funciones":
@@ -721,6 +729,7 @@ e) 1 (slink_practica1.c es symlink independiente, siempre tiene 1 hard link)`,
     topic: "memoria",
     type: "matching",
     points: 10,
+    repeated: true,
     question: "Responde V/F sobre gestión de memoria:",
     correctAnswer: {
       "En la pila del proceso está el código de las funciones que se llaman":
@@ -994,6 +1003,7 @@ Total: 7 fallos de página.`,
     topic: "procesos",
     type: "matching",
     points: 8,
+    repeated: true,
     question: "Responde V/F sobre procesos:",
     correctAnswer: {
       "Los algoritmos apropiativos desperdician más tiempo en cambios de contexto":
@@ -1017,6 +1027,7 @@ Total: 7 fallos de página.`,
     topic: "procesos",
     type: "matching",
     points: 10,
+    repeated: true,
     question: "Responde V/F sobre procesos e hilos:",
     correctAnswer: {
       "Un SO multiproceso solo puede correr en CPUs con instrucción 'crear proceso'":
@@ -1071,6 +1082,7 @@ if (waitpid(p->pid, &est, WNOHANG|WUNTRACED|WCONTINUED) == p->pid) { ... }`,
     topic: "procesos",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       'a.out y f1.txt son del usuario u1. a.out es ejecutado por u2 desde el mismo directorio. Código:\ndf1 = open("./f1.txt", O_RDWR);\ndf2 = open("./f1.txt", O_RDONLY);\nCompleta la tabla indicando ruid, euid y si df1 o df2 son −1 para cada combinación de permisos:\n\n| a.out | f1.txt | ruid | euid | df1=−1? | df2=−1? |\n| rwxrwxrwx | rwxrwxrwx | | | | |\n| rwxr-xr-x | rwxr-xr-x | | | | |\n| rwxr-xr-x | rwxr--r-- | | | | |\n| rwxr-xr-x | rwsr-xr-x | | | | |\n| rwxr-xr-x | rwsr--r-- | | | | |\n| rwxr-xr-x | rws--- | | | | |\n| rwsr-xr-x | rwxr-xr-x | | | | |\n| rwsr-xr-x | rwxr--r-- | | | | |\n| rwsr-xr-x | rwsr-xr-x | | | | |\n| rwsr-xr-x | rwsr--r-- | | | | |\n| rwsr-xr-x | rws--- | | | | |',
     correctAnswer: `| a.out | f1.txt | ruid | euid | df1=−1? | df2=−1? |
@@ -1577,6 +1589,7 @@ Explicación:
     topic: "sistema-ficheros",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       "Código sobre '/home/usr1/datos' (8GB+32MB+8KB, hard links=1): chmod 0642, link crea datos2, symlink('/home/usr1/datos','/home/usr1/sim_link'), open datos2, open sim_link, lseek(fd,16000), fgetc c1, close, unlink datos y sim_link. Cachés vacías, entrada usr1 en 7º bloque de home. A) fd_sim. B) Accesos disco apertura datos2. C) Bloques para fgetc. D) Permisos rwxrwxrwx. E) Hard links de datos2 tras ambos unlink.",
     correctAnswer: `A) 4 (primera apertura fd=3, segunda fd_sim=4)
@@ -1594,6 +1607,7 @@ E) 1 (inicialmente 1, link crea datos2 → 2, unlink datos → 1, unlink sim_lin
     topic: "sistema-ficheros",
     type: "matching",
     points: 6,
+    repeated: true,
     question: "Indica C/F sobre sistema de ficheros (Junio 2022):",
     correctAnswer: {
       "El S.O. mantiene copia en memoria del inodo de un fichero abierto hasta el último cierre":
@@ -1723,6 +1737,7 @@ Nota: el código tiene un comportamiento sutil con los descriptores.`,
     topic: "procesos",
     type: "matching",
     points: 8,
+    repeated: true,
     question: "Responde V/F sobre procesos (Enero 2023):",
     correctAnswer: {
       "Un proceso zombie ocupa una entrada en la tabla de procesos": "V",
@@ -1765,6 +1780,7 @@ Nota: el código tiene un comportamiento sutil con los descriptores.`,
     topic: "procesos",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       'a.out y f1.txt son del usuario u1. a.out es ejecutado por u2 desde el mismo directorio. Código:\ndf1 = open("./f1.txt", O_RDWR);\ndf2 = open("./f1.txt", O_RDONLY);\n\nCompleta la tabla indicando ruid, euid y si df1 o df2 son −1 para cada combinación de permisos:\n\n| a.out | f1.txt | ruid | euid | df1=−1? | df2=−1? |\n| rwxrwxrwx | rwxrwxrwx | | | | |\n| rwxr-xr-x | rwxr-xr-x | | | | |\n| rwxr-xr-x | rwxr--r-- | | | | |\n| rwxr-xr-x | rwsr-xr-x | | | | |\n| rwxr-xr-x | rwsr--r-- | | | | |\n| rwxr-xr-x | rws--- | | | | |\n| rwsr-xr-x | rwxr-xr-x | | | | |\n| rwsr-xr-x | rwxr--r-- | | | | |\n| rwsr-xr-x | rwsr-xr-x | | | | |\n| rwsr-xr-x | rwsr--r-- | | | | |\n| rwsr-xr-x | rws--- | | | | |',
     correctAnswer: `| a.out | f1.txt | ruid | euid | df1=−1? | df2=−1? |
@@ -1890,6 +1906,7 @@ Explicación:
     topic: "procesos",
     type: "matching",
     points: 10,
+    repeated: true,
     question: "Responde V/F (10 preguntas) sobre procesos:",
     correctAnswer: {
       "En un SO Multiusuario, el número de usuarios que puede soportar está limitado por el microprocesador":
@@ -1964,6 +1981,7 @@ t=19: B ejecuta su unidad restante.`,
     topic: "sistema-ficheros",
     type: "calculation",
     points: 6,
+    repeated: true,
     question:
       "Un sistema de archivos tipo System V tiene bloque de 2KB, i-nodos con 10 direcciones directas, una indirecta simple, una indirecta doble y una indirecta triple. Direcciones de bloque de 8 bytes. Fichero con tamaño de 130 MBytes + 19 KBytes. Calcular: bloques de datos, bloques de índices y fragmentación interna.",
     correctAnswer: `Tamaño = 130MB + 19KB = 136,314,880 + 19,456 = 136,334,336 bytes.
@@ -2002,6 +2020,7 @@ b) Inodo 642 → bloque = 16 + floor((642−1)/32) = 16 + 20 = 36.`,
     topic: "sistema-ficheros",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       "Código sobre '/home/juan/so/p1/p1.c' (3MB, inodo 6549). Se ejecuta desde /home/juan/so/p1. chmod 0632, lstat, link crea practica1.c, symlink crea slink_practica1.c, open practica1.c, lseek 100000, fgetc. Cachés vacías, entrada 'so' en 8º bloque de juan. a) Accesos a disco en 1ª apertura. b) Valor de fd2. c) Bloques leídos para fgetc(fd2). d) Tamaño de slink_practica1.c. e) Permisos en rwxrwxrwx.",
     correctAnswer: `a) 12 accesos (raíz, home, juan, 8º bloque de juan para 'so', so, p1, p1.c = 7 + 5 accesos datos índices)
@@ -2018,6 +2037,7 @@ e) rw- -wx -w- (0632: owner=6=rw-, group=3=-wx, others=2=-w-)`,
     topic: "sistema-ficheros",
     type: "matching",
     points: 6,
+    repeated: true,
     question:
       "Indica C/F sobre el código del ejercicio anterior y conceptos de sistema de ficheros:",
     correctAnswer: {
@@ -2042,6 +2062,7 @@ e) rw- -wx -w- (0632: owner=6=rw-, group=3=-wx, others=2=-w-)`,
     topic: "memoria",
     type: "matching",
     points: 10,
+    repeated: true,
     question: "Responde V/F (20 preguntas, 0.05p cada una) sobre memoria:",
     correctAnswer: {
       "Con tabla de páginas invertida se ahorra memoria para las tablas de páginas de proceso":
@@ -2192,6 +2213,7 @@ Otras soluciones válidas: A,B,C,D llegan en t=0 en orden A,B,C,D; primera E/S d
     topic: "procesos",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       "a.out y f1.txt son del usuario u2. a.out es ejecutado por u1. Código: df1=open('./f1.txt',O_RDONLY); df2=open('./f1.txt',O_RDWR). Completa la tabla con ruid, euid, y si df1 o df2 son -1 para distintas combinaciones de permisos de a.out y f1.txt.",
     correctAnswer: `| a.out | f1.txt | ruid | euid | df1=-1? | df2=-1? |
@@ -2630,6 +2652,7 @@ Paso a paso:
     topic: "sistema-ficheros",
     type: "text",
     points: 5,
+    repeated: true,
     question:
       "Código sobre '/home/usr1/datos' (8GB+32MB+1024B, hard links=2): chmod 0752, printf permisos, link crea datos2, open datos O_RDONLY (fd1), open datos2 O_RDONLY (fd2), lseek fd2 4.000.000, c1=fgetc(fd1), c2=fgetc(fd2), close, unlink datos. Cachés vacías, entrada usr1 en 7º bloque de home. Responde: A) Valor de fd2. B) Accesos a disco en 1ª apertura. C) Bloques leídos para c2. D) Permisos impresos en rwxrwxrwx. E) Hard links de 'datos' tras unlink.",
     correctAnswer: `A) 4 (fd1=3, fd2=4)
@@ -2684,6 +2707,7 @@ Total: 8 fallos de página.`,
     topic: "procesos",
     type: "text",
     points: 8,
+    repeated: true,
     question:
       "Sistema monoprocesador con 3 colas: SY (RR quantum 3, prioridad máxima), IT (RR quantum 1), NI (SJF, prioridad mínima). Planificación entre colas por prioridades apropiativas. Dada la traza de CPU: A A A B B C D C D C - B B A A A B B F F G G D C G G G, deduce las duraciones de ráfagas y los intervalos de llegada de cada proceso. A y B son SY, C y D son IT, F y G son NI. La E/S de cada proceso debe ser la mínima compatible con la planificación.",
     correctAnswer: `| Proceso | Ráfagas | Tiempo de llegada | Tipo |
@@ -2716,6 +2740,7 @@ Explicación:
     topic: "procesos",
     type: "matching",
     points: 6,
+    repeated: true,
     question: "Responde V/F sobre procesos:",
     correctAnswer: {
       "Los algoritmos apropiativos desperdician más tiempo en cambios de contexto":
