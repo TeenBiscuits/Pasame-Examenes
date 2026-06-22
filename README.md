@@ -49,6 +49,7 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 | ----------------------------------- | ---------------------- | ------------- |
 | 💻 Sistemas Operativos              | Universidade da Coruña | 9 (2020–2024) |
 | 🧠 Sistemas Intelixentes            | Universidade da Coruña | 5 (2023-2026) |
+| ⚡ Concorrencia e Paralelismo         | Universidade da Coruña | 16 (2018–2025) |
 | 🤖 Introduction to Machine Learning | Linnaeus University    | 2 (2024–2025) |
 
 ## Tecnologías
