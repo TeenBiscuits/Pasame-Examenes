@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getSubject, getAllQuestions } from "../subjects";
 import { getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
-import AddExamModal from "../components/AddExamModal";
+import AddExamModal, {
+  type AddExamModalHandle,
+} from "../components/AddExamModal";
 import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -12,7 +14,7 @@ import { triggerLight } from "../lib/haptics";
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
-  const [examModalOpen, setExamModalOpen] = useState(false);
+  const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
 
   if (!subject) {
@@ -153,7 +155,7 @@ export default function SubjectHome() {
           type="button"
           onClick={() => {
             triggerLight();
-            setExamModalOpen(true);
+            examModalRef.current?.open();
           }}
           className="block w-full p-6 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
         >
@@ -165,8 +167,8 @@ export default function SubjectHome() {
       </div>
 
       <AddExamModal
-        open={examModalOpen}
-        onClose={() => setExamModalOpen(false)}
+        ref={examModalRef}
+        onClose={() => {}}
         subjectId={subject.id}
         subjectName={subject.name}
       />
@@ -180,29 +182,31 @@ export default function SubjectHome() {
             {t.subjectHome.examDocsDescription}
           </p>
           <div className="flex flex-wrap gap-4">
-            {subject.exams
-              .filter((exam) => exam.hasPdf !== false)
-              .map((exam) => (
-                <a
-                  key={exam.year}
-                  href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
-                  onClick={() => {
-                    triggerLight();
-                    track("pdf_download", {
-                      subjectId: subject.id,
-                      year: exam.year,
-                    });
-                  }}
-                >
-                  <span role="img" aria-hidden="true">
-                    📄
-                  </span>{" "}
-                  {exam.title} {t.subjectHome.pdf}
-                </a>
-              ))}
+            {subject.exams.flatMap((exam) =>
+              exam.hasPdf === false
+                ? []
+                : [
+                    <a
+                      key={exam.year}
+                      href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
+                      onClick={() => {
+                        triggerLight();
+                        track("pdf_download", {
+                          subjectId: subject.id,
+                          year: exam.year,
+                        });
+                      }}
+                    >
+                      <span role="img" aria-hidden="true">
+                        📄
+                      </span>{" "}
+                      {exam.title} {t.subjectHome.pdf}
+                    </a>,
+                  ],
+            )}
           </div>
         </div>
       )}

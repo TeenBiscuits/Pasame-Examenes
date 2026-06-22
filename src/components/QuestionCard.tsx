@@ -59,6 +59,7 @@ function MCQuestion({
     <div className="space-y-2">
       {question.options.map((opt, i) => {
         const letter = String.fromCharCode(97 + i);
+        const key = `${question.id}-opt-${letter}`;
         const isSelected = savedAnswer === letter;
         const isCorrect = question.correctAnswer === letter;
         let className =
@@ -75,7 +76,8 @@ function MCQuestion({
 
         return (
           <button
-            key={i}
+            type="button"
+            key={key}
             className={className}
             onClick={() => {
               if (showResult) return;
@@ -225,11 +227,13 @@ function MatchingQuestion({
 }: QuestionCardProps) {
   const correctAnswer = question.correctAnswer as Record<string, string>;
   const items = Object.keys(correctAnswer);
-  const letters = [...new Set(Object.values(correctAnswer))].sort((a, b) => {
-    if (a === "V" && b === "F") return -1;
-    if (a === "F" && b === "V") return 1;
-    return a.localeCompare(b);
-  });
+  const letters = [...new Set(Object.values(correctAnswer))].toSorted(
+    (a, b) => {
+      if (a === "V" && b === "F") return -1;
+      if (a === "F" && b === "V") return 1;
+      return a.localeCompare(b);
+    },
+  );
   const [selected, setSelected] = useState<Record<string, string>>(() => {
     if (savedAnswer) {
       try {
@@ -254,7 +258,7 @@ function MatchingQuestion({
         const userAnswer = selected[item];
 
         return (
-          <div key={i} className="flex items-center gap-3 text-sm">
+          <div key={item} className="flex items-center gap-3 text-sm">
             <span className="w-6 text-center font-mono text-xs text-fg-muted">
               {i + 1}.
             </span>
@@ -279,6 +283,7 @@ function MatchingQuestion({
                 }
                 return (
                   <button
+                    type="button"
                     key={letter}
                     className={cls}
                     onClick={() => {
@@ -349,8 +354,8 @@ export default function QuestionCard(props: QuestionCardProps) {
       </Markdown>
       {question.subquestions && (
         <ul className="list-disc list-inside text-sm text-fg-secondary mb-4 space-y-1">
-          {question.subquestions.map((sq, i) => (
-            <li key={i}>
+          {question.subquestions.map((sq) => (
+            <li key={sq}>
               <InlineMarkdown>{sq}</InlineMarkdown>
             </li>
           ))}
@@ -373,9 +378,9 @@ export default function QuestionCard(props: QuestionCardProps) {
           <table className="min-w-full divide-y divide-border text-sm">
             <thead className="bg-surface">
               <tr>
-                {question.table.headers.map((h, i) => (
+                {question.table.headers.map((h) => (
                   <th
-                    key={i}
+                    key={h}
                     scope="col"
                     className="px-4 py-2 text-left font-semibold text-fg whitespace-nowrap"
                   >

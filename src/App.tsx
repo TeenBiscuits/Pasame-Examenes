@@ -10,12 +10,12 @@ import { useT } from "./i18n/hooks";
 import { track } from "./lib/umami";
 
 function PageViewTracker() {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    track("page_view", { path: location.pathname });
-  }, [location.pathname]);
+    track("page_view", { path: pathname });
+  }, [pathname]);
 
   return null;
 }

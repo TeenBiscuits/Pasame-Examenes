@@ -1156,7 +1156,7 @@ Regla: ruid siempre = u2 (quien ejecuta). Si a.out tiene setuid (rws), euid = u1
     points: 6,
     question:
       'Código C: #define VECES 2. for(i=0; i<VECES; i++) { pid=fork(); if(pid==-1) break; if(pid==0) fork(); printf("/%ld/*\\n",(long)pid); }. ¿Cuántas líneas de salida produce? ¿Cuántas son "/0/*"?',
-    correctAnswer: `Total: 12 líneas, de las cuales 8 son \"/0/*\".
+    correctAnswer: `Total: 12 líneas, de las cuales 8 son "/0/*".
 
 Explicación:
 Iteración i=0: fork() crea hijo1 (pid=0 en hijo, >0 en padre). En el hijo1, pid==0 → fork() crea hijo2 (pid=0 en hijo2). 3 procesos llegan a printf, 2 escriben "/0/*".
@@ -1486,7 +1486,7 @@ Justificación:
 5. El while lee de fd 0 (file.txt) byte a byte y write a fd 1 (file2.dat). Copia file.txt → file2.dat.
 6. close(1): cierra fd 1.
 7. dup(bk=5): dup busca menor libre (1) → fd 1 = stdout (pantalla).
-8. write(1,\"--done--\",8): escribe 8 bytes a stdout → se ve \"--done--\" en pantalla.`,
+8. write(1,"--done--",8): escribe 8 bytes a stdout → se ve "--done--" en pantalla.`,
     explanation:
       "El código redirige stdin a file.txt y stdout a file2.dat, copia el contenido, luego restaura stdout a la pantalla y escribe '--done--'. El write de la línea 10 no se ve en pantalla porque stdout estaba redirigido a file2.dat.",
   },

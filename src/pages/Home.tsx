@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
-import AddSubjectModal from "../components/AddSubjectModal";
+import AddSubjectModal, {
+  type AddSubjectModalHandle,
+} from "../components/AddSubjectModal";
 import { useT } from "../i18n/hooks";
 
 export default function Home() {
   const t = useT();
-  const [modalOpen, setModalOpen] = useState(false);
+  const modalRef = useRef<AddSubjectModalHandle>(null);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
@@ -21,7 +23,7 @@ export default function Home() {
         ))}
         <button
           type="button"
-          onClick={() => setModalOpen(true)}
+          onClick={() => modalRef.current?.open()}
           className="block w-full p-5 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
         >
           <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">
@@ -31,7 +33,7 @@ export default function Home() {
         </button>
       </div>
 
-      <AddSubjectModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      <AddSubjectModal ref={modalRef} onClose={() => {}} />
     </div>
   );
 }
