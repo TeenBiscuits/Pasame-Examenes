@@ -19,6 +19,7 @@ export interface Question {
   correctAnswer: string | string[] | Record<string, string>;
   explanation: string;
   image?: Picture | string;
+  explanationImage?: Picture | string;
   table?: QuestionTable;
   repeated?: boolean;
 }

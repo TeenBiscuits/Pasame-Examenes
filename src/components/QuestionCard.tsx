@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { Markdown, InlineMarkdown } from "../lib/markdown";
@@ -9,6 +10,41 @@ import {
   triggerError,
   triggerSelection,
 } from "../lib/haptics";
+
+function SolutionImage({ image }: { image: Picture | string }) {
+  if (typeof image === "object") {
+    return (
+      <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
+        <picture>
+          {Object.entries(image.sources).map(([format, srcset]) => (
+            <source key={format} srcSet={srcset} type={`image/${format}`} />
+          ))}
+          <img
+            src={image.img.src}
+            alt="Solution illustration"
+            width={image.img.w}
+            height={image.img.h}
+            style={{
+              aspectRatio: `${image.img.w} / ${image.img.h}`,
+            }}
+            className="max-h-[300px] max-w-full object-contain"
+            loading="lazy"
+          />
+        </picture>
+      </div>
+    );
+  }
+  return (
+    <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
+      <img
+        src={image}
+        alt="Solution illustration"
+        className="max-h-[300px] max-w-full object-contain"
+        loading="lazy"
+      />
+    </div>
+  );
+}
 
 interface QuestionCardProps {
   question: Question;
@@ -53,6 +89,9 @@ function MCQuestion({
   savedAnswer,
   showResult,
 }: QuestionCardProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const t = useT();
+
   if (!question.options) return null;
 
   return (
@@ -104,6 +143,37 @@ function MCQuestion({
           </button>
         );
       })}
+      {showResult && (
+        <div className="mt-3 space-y-3">
+          <button
+            type="button"
+            className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
+            onClick={() => {
+              triggerLight();
+              const next = !isOpen;
+              track(next ? "solution_toggle" : "solution_toggle", {
+                questionId: question.id,
+                action: next ? "open" : "close",
+              });
+              setIsOpen(next);
+            }}
+          >
+            {isOpen
+              ? t.questionCard.closeSolution
+              : t.questionCard.openSolution}
+          </button>
+          {isOpen && (
+            <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+              <Markdown className="text-xs text-fg-muted italic">
+                {question.explanation}
+              </Markdown>
+              {question.explanationImage && (
+                <SolutionImage image={question.explanationImage} />
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -167,6 +237,9 @@ function TextQuestion({
               <Markdown className="text-xs text-fg-muted italic">
                 {question.explanation}
               </Markdown>
+              {question.explanationImage && (
+                <SolutionImage image={question.explanationImage} />
+              )}
 
               {onSelfGrade && (
                 <div className="pt-2 border-t border-border">
@@ -227,6 +300,8 @@ function MatchingQuestion({
   savedAnswer,
   showResult,
 }: QuestionCardProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const t = useT();
   const correctAnswer = question.correctAnswer as Record<string, string>;
   const items = Object.keys(correctAnswer);
   const letters = [...new Set(Object.values(correctAnswer))].toSorted(
@@ -309,6 +384,37 @@ function MatchingQuestion({
           </div>
         );
       })}
+      {showResult && (
+        <div className="mt-3 space-y-3">
+          <button
+            type="button"
+            className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
+            onClick={() => {
+              triggerLight();
+              const next = !isOpen;
+              track(next ? "solution_toggle" : "solution_toggle", {
+                questionId: question.id,
+                action: next ? "open" : "close",
+              });
+              setIsOpen(next);
+            }}
+          >
+            {isOpen
+              ? t.questionCard.closeSolution
+              : t.questionCard.openSolution}
+          </button>
+          {isOpen && (
+            <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+              <Markdown className="text-xs text-fg-muted italic">
+                {question.explanation}
+              </Markdown>
+              {question.explanationImage && (
+                <SolutionImage image={question.explanationImage} />
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
