@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { LangLink as Link, useLangTo } from "../lib/lang-link";
 import {
   getSubject,
   getQuestionsByTopic,
@@ -12,6 +13,7 @@ import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight, triggerMedium } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
+import { useSeoHead } from "../lib/seo";
 
 const getNow = () => Date.now();
 
@@ -51,6 +53,7 @@ export default function PracticeTopic() {
   }>();
   const navigate = useNavigate();
   const t = useT();
+  const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const questions = useMemo(
@@ -79,6 +82,19 @@ export default function PracticeTopic() {
         ? `${t.home.title} \u2014 ${subject.name}`
         : t.home.title,
   );
+
+  useSeoHead({
+    title:
+      subject && topicInfo
+        ? `${topicInfo.label} \u2014 ${subject.name}`
+        : t.home.title,
+    description:
+      subject && topicInfo
+        ? `${questions.length} ${t.subjectCard.questions} \u2014 ${topicInfo.label} \u2014 ${subject.name} (${subject.courseCode})`
+        : t.seo.defaultDescription,
+    pathWithoutLang:
+      subject && topic ? `/${subject.id}/practice/${topic}` : "/",
+  });
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -153,9 +169,9 @@ export default function PracticeTopic() {
 
   useEffect(() => {
     if (!subject || !topicInfo) {
-      navigate("/");
+      navigate(langTo("/"), { replace: true });
     }
-  }, [subject, topicInfo, navigate]);
+  }, [subject, topicInfo, navigate, langTo]);
 
   useEffect(() => {
     const el = navRef.current;

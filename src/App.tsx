@@ -1,9 +1,19 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  useParams,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import Header from "./components/Header";
 import { useT } from "./i18n/hooks";
+import { useLang } from "./i18n/hooks";
+import type { Lang } from "./i18n/context";
 import { track } from "./lib/umami";
+import { buildLangPath } from "./lib/lang-link";
 
 const Home = lazy(() => import("./pages/Home"));
 const SubjectHome = lazy(() => import("./pages/SubjectHome"));
@@ -28,6 +38,56 @@ function PageViewTracker() {
   }, [pathname]);
 
   return null;
+}
+
+function detectLang(): Lang {
+  try {
+    const stored = localStorage.getItem("lang");
+    if (stored === "en" || stored === "es" || stored === "gl")
+      return stored as Lang;
+  } catch {
+    /* localStorage unavailable */
+  }
+  const nav = navigator.language.toLowerCase();
+  if (nav.startsWith("es")) return "es";
+  return "en";
+}
+
+function LangRedirect() {
+  const { pathname } = useLocation();
+  const lang = detectLang();
+  const target = pathname === "/" ? `/${lang}` : `/${lang}${pathname}`;
+  return <Navigate to={target} replace />;
+}
+
+function LangGuard() {
+  const { lang: paramLang } = useParams<{ lang: string }>();
+  const { lang, setLang } = useLang();
+
+  useEffect(() => {
+    if (
+      paramLang &&
+      (paramLang === "en" || paramLang === "es" || paramLang === "gl") &&
+      paramLang !== lang
+    ) {
+      setLang(paramLang);
+    }
+  }, [paramLang, lang, setLang]);
+
+  if (!paramLang || !["en", "es", "gl"].includes(paramLang)) {
+    const detected = detectLang();
+    return (
+      <Navigate
+        to={buildLangPath(
+          detected,
+          location.pathname.replace(/^\/(en|es|gl)\/?/, "/") || "/",
+        )}
+        replace
+      />
+    );
+  }
+
+  return <Outlet />;
 }
 
 function Footer() {
@@ -73,17 +133,27 @@ export default function App() {
         <main className="flex-grow">
           <Suspense fallback={<PageLoader />}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/:subjectId" element={<SubjectHome />} />
-              <Route path="/:subjectId/practice" element={<PracticeHome />} />
+              <Route path="/:lang" element={<LangGuard />}>
+                <Route index element={<Home />} />
+                <Route path=":subjectId" element={<SubjectHome />} />
+                <Route path=":subjectId/practice" element={<PracticeHome />} />
+                <Route
+                  path=":subjectId/practice/:topic"
+                  element={<PracticeTopic />}
+                />
+                <Route
+                  path=":subjectId/exam/:year"
+                  element={<ExamSimulation />}
+                />
+              </Route>
+              <Route path="/" element={<LangRedirect />} />
+              <Route path="/:subjectId" element={<LangRedirect />} />
+              <Route path="/:subjectId/practice" element={<LangRedirect />} />
               <Route
                 path="/:subjectId/practice/:topic"
-                element={<PracticeTopic />}
+                element={<LangRedirect />}
               />
-              <Route
-                path="/:subjectId/exam/:year"
-                element={<ExamSimulation />}
-              />
+              <Route path="/:subjectId/exam/:year" element={<LangRedirect />} />
             </Routes>
           </Suspense>
         </main>
