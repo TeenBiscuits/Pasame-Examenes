@@ -194,7 +194,8 @@ export default function PracticeTopic() {
 
   const examDate = useMemo(() => {
     if (!subject || currentQuestion.exam === "both") return undefined;
-    return subject.exams.find((e) => e.year === currentQuestion.exam)?.date;
+    const exam = subject.exams.find((e) => e.year === currentQuestion.exam);
+    return exam?.date || exam?.title;
   }, [subject, currentQuestion.exam]);
 
   const handleAnswer = useCallback((questionId: string, answer: string) => {
