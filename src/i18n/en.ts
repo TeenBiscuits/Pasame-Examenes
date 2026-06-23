@@ -122,6 +122,14 @@ export const en = {
       "Follow the contribution guide to add it yourself via pull request",
     email: "Send an email",
   },
+  seo: {
+    siteName: "Pásame Exámenes",
+    locale: "en_US",
+    homeDescription:
+      "Open-source platform for practicing university exams by topic or simulating the full exam.",
+    defaultDescription:
+      "Practice university exams with model answers and self-grading. Multiple-choice, calculation, and matching questions from past exams.",
+  },
 };
 
 export type Translations = typeof en;

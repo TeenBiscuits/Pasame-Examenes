@@ -1,10 +1,11 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { getSubject } from "../subjects";
 import { useT, useLang } from "../i18n/hooks";
 import type { Lang } from "../i18n/context";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import ThemeToggle from "../theme/ThemeToggle";
+import { LangLink as Link, replaceLangInPath } from "../lib/lang-link";
 
 const langCycle: Lang[] = ["en", "es", "gl"];
 
@@ -16,6 +17,7 @@ const langLabel: Record<Lang, string> = {
 
 export default function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { subjectId } = useParams<{ subjectId?: string }>();
   const t = useT();
   const { lang, setLang } = useLang();
@@ -91,6 +93,9 @@ export default function Header() {
               const nextLang = langCycle[(idx + 1) % langCycle.length];
               track("lang_toggle", { lang: nextLang });
               setLang(nextLang);
+              navigate(replaceLangInPath(location.pathname, nextLang), {
+                replace: true,
+              });
             }}
             aria-label={langLabel[lang]}
           >

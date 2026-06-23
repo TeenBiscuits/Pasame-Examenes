@@ -124,4 +124,12 @@ export const gl: Translations = {
       "Segue a guía de contribución para engadilo ti mesmo cun pull request",
     email: "Escribe un correo",
   },
+  seo: {
+    siteName: "Pásame Exámenes",
+    locale: "gl_ES",
+    homeDescription:
+      "Plataforma de código aberto para practicar exames universitarios por tema ou simular o exame completo.",
+    defaultDescription:
+      "Practica exames universitarios con respostas modelo e autocorrección. Preguntas tipo test, de desenvolvemento e de emparellar de exames anteriores.",
+  },
 };

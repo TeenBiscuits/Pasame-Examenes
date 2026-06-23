@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LangLink as Link } from "../lib/lang-link";
 import type { SubjectMeta } from "../data/types";
 import { getAllQuestions } from "../subjects";
 import { useT } from "../i18n/hooks";

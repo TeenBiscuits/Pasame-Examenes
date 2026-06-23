@@ -26,7 +26,15 @@ export const I18nContext = createContext<I18nContextType>({
   setLang: () => {},
 });
 
+function getLangFromPathname(): Lang | null {
+  const match = window.location.pathname.match(/^\/(en|es|gl)(\/|$)/);
+  if (match) return match[1] as Lang;
+  return null;
+}
+
 function getInitialLang(): Lang {
+  const urlLang = getLangFromPathname();
+  if (urlLang) return urlLang;
   try {
     const stored = localStorage.getItem("lang");
     if (stored === "en" || stored === "es" || stored === "gl") return stored;

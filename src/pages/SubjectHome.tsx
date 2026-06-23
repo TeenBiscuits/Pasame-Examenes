@@ -1,5 +1,6 @@
-import { useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useRef, useMemo } from "react";
+import { useParams } from "react-router-dom";
+import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
 import { getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
@@ -11,6 +12,7 @@ import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
+import { useSeoHead } from "../lib/seo";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
@@ -20,6 +22,31 @@ export default function SubjectHome() {
   useDocumentTitle(
     subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
   );
+
+  const allQuestions = useMemo(
+    () => (subject ? getAllQuestions(subject.id) : []),
+    [subject],
+  );
+  const seoDescription = useMemo(() => {
+    if (!subject) return t.seo.defaultDescription;
+    const repeatedCount = allQuestions.filter((q) => q.repeated).length;
+    const repeatedText =
+      repeatedCount >= 20
+        ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
+        : "";
+    const desc = t.subjectHome.description
+      .replace("{count}", String(allQuestions.length))
+      .replace("{repeated}", repeatedText)
+      .replace("{exams}", String(subject.exams.length));
+    const clean = desc.replace(/`/g, "");
+    return `${subject.name} (${subject.courseCode}) \u2014 ${clean} \u2014 ${subject.university}`;
+  }, [subject, allQuestions, t]);
+
+  useSeoHead({
+    title: subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
+    description: seoDescription,
+    pathWithoutLang: subject ? `/${subject.id}` : "/",
+  });
 
   if (!subject) {
     return (
@@ -38,7 +65,6 @@ export default function SubjectHome() {
     );
   }
 
-  const allQuestions = getAllQuestions(subject.id);
   const repeatedCount = allQuestions.filter((q) => q.repeated).length;
   const progress = getTopicProgress(
     subject.id,

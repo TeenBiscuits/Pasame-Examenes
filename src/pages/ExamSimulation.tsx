@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { LangLink as Link, useLangTo } from "../lib/lang-link";
 import {
   getSubject,
   getQuestionsByExam,
@@ -12,6 +13,7 @@ import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight, triggerMedium } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
+import { useSeoHead } from "../lib/seo";
 
 const getNow = () => Date.now();
 
@@ -55,6 +57,7 @@ export default function ExamSimulation() {
   const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
   const navigate = useNavigate();
   const t = useT();
+  const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const questions = useMemo(
@@ -72,6 +75,19 @@ export default function ExamSimulation() {
         ? `${subject.name} \u2014 ${t.home.title}`
         : t.home.title,
   );
+
+  useSeoHead({
+    title:
+      examInfo && subject
+        ? `${examInfo.title} \u2014 ${subject.name}`
+        : t.home.title,
+    description:
+      examInfo && subject
+        ? `${examInfo.title} \u2014 ${subject.name} (${subject.courseCode})`
+        : t.seo.defaultDescription,
+    pathWithoutLang:
+      subject && year ? `/${subject.id}/exam/${year}` : "/",
+  });
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -152,9 +168,9 @@ export default function ExamSimulation() {
 
   useEffect(() => {
     if (!subject || !examInfo) {
-      navigate("/");
+      navigate(langTo("/"), { replace: true });
     }
-  }, [subject, examInfo, navigate]);
+  }, [subject, examInfo, navigate, langTo]);
 
   useEffect(() => {
     const el = navRef.current;

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LangLink as Link } from "../lib/lang-link";
 import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
