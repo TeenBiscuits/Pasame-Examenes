@@ -234,6 +234,7 @@ export default function PracticeTopic() {
       answers,
     });
     setSubmitted(true);
+    if (score > 0) setConfettiFire((c) => c + 1);
   };
 
   const handleSelfGrade = (
@@ -464,6 +465,12 @@ export default function PracticeTopic() {
                       ...prev,
                       [currentQuestion.id]: true,
                     }));
+                    const pts = gradeQuestion(
+                      currentQuestion,
+                      answers[currentQuestion.id] || "",
+                      selfGrades[currentQuestion.id],
+                    );
+                    if (pts > 0) setConfettiFire((c) => c + 1);
                   }}
                 >
                   {t.practice.check}

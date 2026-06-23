@@ -257,6 +257,9 @@ export default function ExamSimulation() {
       timeSpent: elapsed,
     });
     setSubmitted(true);
+    if (examInfo && score >= examInfo.passPoints) {
+      setConfettiFire((c) => c + 1);
+    }
   };
 
   const handleSelfGrade = (

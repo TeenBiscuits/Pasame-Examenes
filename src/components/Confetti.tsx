@@ -80,18 +80,20 @@ export default function Confetti({ fire }: { fire: number }) {
     const fragment = document.createDocumentFragment();
     for (const p of pieces) {
       const div = document.createElement("div");
-      div.style.position = "absolute";
-      div.style.top = "0";
-      div.style.left = "0";
-      div.style.width = `${p.width}px`;
-      div.style.height = `${p.height}px`;
-      div.style.backgroundColor = p.color;
-      div.style.borderRadius = "2px";
-      div.style.animationName = `c${p.id}`;
-      div.style.animationDuration = `${p.duration}s`;
-      div.style.animationDelay = `${p.delay}s`;
-      div.style.animationTimingFunction = "ease-out";
-      div.style.animationFillMode = "forwards";
+      Object.assign(div.style, {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: `${p.width}px`,
+        height: `${p.height}px`,
+        backgroundColor: p.color,
+        borderRadius: "2px",
+        animationName: `c${p.id}`,
+        animationDuration: `${p.duration}s`,
+        animationDelay: `${p.delay}s`,
+        animationTimingFunction: "ease-out",
+        animationFillMode: "forwards",
+      });
       fragment.appendChild(div);
     }
     container.appendChild(fragment);
