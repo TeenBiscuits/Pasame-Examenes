@@ -80,7 +80,10 @@ export default function App() {
                 path="/:subjectId/practice/:topic"
                 element={<PracticeTopic />}
               />
-              <Route path="/:subjectId/exam/:year" element={<ExamSimulation />} />
+              <Route
+                path="/:subjectId/exam/:year"
+                element={<ExamSimulation />}
+              />
             </Routes>
           </Suspense>
         </main>
