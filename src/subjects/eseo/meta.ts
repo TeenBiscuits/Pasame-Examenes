@@ -5,7 +5,7 @@ export const meta: SubjectMeta = {
   name: "Sistemas Operativos",
   university: "Universidade da Coruña",
   courseCode: "202318",
-  icon: "💻",
+  icon: "💽",
   acknowledgments:
     "Exámenes y soluciones originales proporcionadas por el profesorado de la asignatura.",
   topics: [

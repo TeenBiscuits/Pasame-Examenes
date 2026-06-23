@@ -209,7 +209,8 @@ src/
 │   │   └── questions.ts
 │   ├── eseo/                 # Sistemas Operativos (UDC)
 │   │   ├── meta.ts
-│   │   └── questions.ts
+│   │   ├── questions.ts
+│   │   └── assets/
 │   ├── esei/                 # Sistemas Intelixentes (UDC)
 │   │   ├── meta.ts
 │   │   ├── questions.ts
@@ -218,11 +219,22 @@ src/
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
+│   ├── ece/                  # Estrutura de Computadores (UDC)
+│   │   ├── meta.ts
+│   │   └── questions.ts
 │   ├── emeele/               # Machine Learning (LNU)
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
-│   └── equisi/               # Xestión de Infraestruturas (UDC)
+│   ├── equisi/               # Xestión de Infraestruturas (UDC)
+│   │   ├── meta.ts
+│   │   ├── questions.ts
+│   │   └── assets/
+│   ├── equispe/              # Xestión de Proxectos (UDC)
+│   │   ├── meta.ts
+│   │   ├── questions.ts
+│   │   └── assets/
+│   └── pei/                  # Programación Integrativa (UDC)
 │       ├── meta.ts
 │       ├── questions.ts
 │       └── assets/
@@ -230,7 +242,9 @@ src/
 │   ├── Header.tsx
 │   ├── SubjectCard.tsx
 │   ├── TopicCard.tsx
-│   └── QuestionCard.tsx
+│   ├── QuestionCard.tsx
+│   ├── AddExamModal.tsx
+│   └── AddSubjectModal.tsx
 ├── pages/                    # Páginas por ruta
 │   ├── Home.tsx
 │   ├── SubjectHome.tsx
@@ -257,8 +271,11 @@ public/
     ├── eseo/
     ├── esei/
     ├── cepe/
+    ├── ece/
     ├── emeele/
-    └── equisi/
+    ├── equisi/
+    ├── equispe/
+    └── pei/
 ```
 
 ## Comandos

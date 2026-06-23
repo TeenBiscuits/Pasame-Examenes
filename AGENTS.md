@@ -13,7 +13,8 @@ pnpm doctor    # React Doctor
 
 - **pnpm** is the package manager (`pnpm-lock.yaml`).
 - **No backend** — all data is static TypeScript files. User progress is in `localStorage`.
-- **Tailwind CSS v4** — CSS-first config (`src/index.css` has `@import "tailwindcss"`). No `tailwind.config.js`.
+- **Tailwind CSS v4** — CSS-first config (`src/index.css` has `@import "tailwindcss"`). No `tailwind.config.js`. Uses `@theme` block for custom design tokens and `tailwind-animations` plugin for extended animations.
+- **Theme system** (`src/theme/`): React context with 5 themes — `light`, `dark`, `pink`, `catppuccin`, and `system` (follows OS preference via `prefers-color-scheme`). Theme is applied via `data-theme` attribute on `<html>`. Persisted in `localStorage`.
 - **`verbatimModuleSyntax: true`** — type-only imports must use `import type`. TypeScript v6 `/ erasableSyntaxOnly`.
 - **`noUnusedLocals` / `noUnusedParameters`** are on — unused imports will fail `tsc`.
 - `pnpm build` runs `tsc -b` first, so it catches type errors. There is no separate `typecheck` script.
@@ -24,7 +25,7 @@ pnpm doctor    # React Doctor
 
 - **Subject auto-discovery**: `src/subjects/index.ts:12` uses `import.meta.glob` to find all `*/meta.ts` and `*/questions.ts` under `src/subjects/`. Just create the folder — no manual registration.
 - **i18n**: Custom React context (`src/i18n/context.tsx`). Three languages: `en`/`es`/`gl`. Adding a translation string requires updating the `Translations` interface in `en.ts` and adding the value in `es.ts` and `gl.ts`. The language switcher shows the current language's flag and cycles `en` → `es` → `gl` on click.
-- **Routing** (`src/App.tsx`): `/` → Home, `/:subjectId` → SubjectHome, `/:subjectId/practice` → PracticeHome, `/:subjectId/practice/:topic` → PracticeTopic, `/:subjectId/exam/:year` → ExamSimulation.
+- **Routing** (`src/App.tsx`): Routes are nested under `/:lang` (en/es/gl). `/` and bare paths redirect to the detected language. `/:lang` → Home (index), `/:lang/:subjectId` → SubjectHome, `/:lang/:subjectId/practice` → PracticeHome, `/:lang/:subjectId/practice/:topic` → PracticeTopic, `/:lang/:subjectId/exam/:year` → ExamSimulation.
 - **Exam `year` field**: A string used in the URL segment `/exam/:year`. Can be a simple year (`"2024"`) or year-month (`"2020-01"`).
 - **Exam `date` field**: Optional human-readable date displayed on question cards (e.g. `"Enero 2024"`, `"June 2025"`). If omitted, no date is shown.
 - **Data model**: See `src/data/types.ts` for `SubjectMeta`, `Question`, `Exam`, `Topic`, `MegaTopic`, `ExamAttempt`.

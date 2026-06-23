@@ -47,11 +47,14 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 
 | Asignatura                          | Universidad            | Exámenes       |
 | ----------------------------------- | ---------------------- | -------------- |
-| 💻 Sistemas Operativos              | Universidade da Coruña | 9 (2020–2024)  |
+| 💽 Sistemas Operativos              | Universidade da Coruña | 9 (2020–2024)  |
 | 🧠 Sistemas Intelixentes            | Universidade da Coruña | 5 (2023–2026)  |
 | ⚡ Concorrencia e Paralelismo       | Universidade da Coruña | 16 (2018–2025) |
-| 🤖 Introduction to Machine Learning | Linnaeus University    | 2 (2024–2025)  |
+| 💻 Estrutura de Computadores        | Universidade da Coruña | 11 (2021–2026) |
+| 🏗️ Xestión de Infraestruturas      | Universidade da Coruña | 4              |
 | 📋 Xestión de Proxectos             | Universidade da Coruña | 5 (2024, 2026) |
+| 🤖 Introduction to Machine Learning | Linnaeus University    | 2 (2024–2025)  |
+| 🔗 Programación Integrativa         | Universidade da Coruña | 1              |
 
 ## Tecnologías
 
