@@ -10,10 +10,16 @@ export const meta: SubjectMeta = {
     "Preguntas recopiladas de exámenes oficiais do Grao en Enxeñaría Informática.",
   topics: [
     {
-      key: "preguntas",
-      label: "Preguntas",
-      icon: "❓",
-      color: "blue",
+      key: "teoria",
+      label: "Teoría",
+      icon: "📖",
+      color: "indigo",
+    },
+    {
+      key: "practica",
+      label: "Práctica",
+      icon: "🛠️",
+      color: "green",
     },
   ],
   exams: [
