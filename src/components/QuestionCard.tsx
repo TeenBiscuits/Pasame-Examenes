@@ -372,7 +372,8 @@ export default function QuestionCard(props: QuestionCardProps) {
               alt={`Illustration for ${question.id}`}
               width={question.image.img.w}
               height={question.image.img.h}
-              className="max-h-[400px] object-contain w-auto h-auto"
+              style={{ aspectRatio: `${question.image.img.w} / ${question.image.img.h}` }}
+              className="max-h-[400px] max-w-full object-contain"
               loading="lazy"
             />
           </picture>
@@ -382,7 +383,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           <img
             src={question.image}
             alt={`Illustration for ${question.id}`}
-            className="max-h-[400px] object-contain w-auto h-auto"
+            className="max-h-[400px] max-w-full object-contain"
             loading="lazy"
           />
         </div>
