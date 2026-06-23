@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tailwind-animations";
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* ── iOS safe-area / overscroll helpers ── */
 html,
 body {
