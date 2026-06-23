@@ -32,6 +32,22 @@ function getInitialTheme(): Theme {
   return "system";
 }
 
+const themeColors: Record<Exclude<Theme, "system">, string> = {
+  light: "#ffffff",
+  dark: "#1f2937",
+  pink: "#ffffff",
+  catppuccin: "#313244",
+};
+
+function resolveThemeColor(theme: Theme): string {
+  if (theme === "system") {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? themeColors.dark
+      : themeColors.light;
+  }
+  return themeColors[theme];
+}
+
 function applyTheme(theme: Theme): Theme {
   if (typeof document === "undefined") return theme;
   try {
@@ -40,6 +56,8 @@ function applyTheme(theme: Theme): Theme {
     /* localStorage unavailable */
   }
   document.documentElement.setAttribute("data-theme", theme);
+  const meta = document.getElementById("theme-color");
+  if (meta) meta.setAttribute("content", resolveThemeColor(theme));
   return theme;
 }
 
@@ -48,6 +66,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     applyTheme(theme);
+  }, [theme]);
+
+  useEffect(() => {
+    if (theme !== "system") return;
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const handler = () => applyTheme("system");
+    media.addEventListener("change", handler);
+    return () => media.removeEventListener("change", handler);
   }, [theme]);
 
   const setTheme = useCallback((next: Theme) => {
