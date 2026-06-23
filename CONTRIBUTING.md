@@ -236,9 +236,10 @@ src/
 ├── data/
 │   ├── types.ts              # Definiciones de tipos
 │   └── store.ts              # Persistencia en localStorage
-├── i18n/                     # Traducciones (en/es)
+├── i18n/                     # Traducciones (en/es/gl)
 │   ├── en.ts
-│   └── es.ts
+│   ├── es.ts
+│   └── gl.ts
 ├── lib/
 │   ├── markdown.tsx          # Renderizado de código inline y bloques
 │   ├── haptics.ts            # Feedback háptico

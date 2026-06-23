@@ -8,10 +8,11 @@ import {
 } from "react";
 import { en, type Translations } from "./en";
 import { es } from "./es";
+import { gl } from "./gl";
 
-export type Lang = "en" | "es";
+export type Lang = "en" | "es" | "gl";
 
-const translations: Record<Lang, Translations> = { en, es };
+const translations: Record<Lang, Translations> = { en, es, gl };
 
 export interface I18nContextType {
   t: Translations;
@@ -28,7 +29,7 @@ export const I18nContext = createContext<I18nContextType>({
 function getInitialLang(): Lang {
   try {
     const stored = localStorage.getItem("lang");
-    if (stored === "en" || stored === "es") return stored;
+    if (stored === "en" || stored === "es" || stored === "gl") return stored;
   } catch {
     /* localStorage unavailable */
   }

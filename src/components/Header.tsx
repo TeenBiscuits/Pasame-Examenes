@@ -1,9 +1,18 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import { getSubject } from "../subjects";
 import { useT, useLang } from "../i18n/hooks";
+import type { Lang } from "../i18n/context";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import ThemeToggle from "../theme/ThemeToggle";
+
+const langCycle: Lang[] = ["en", "es", "gl"];
+
+const langLabel: Record<Lang, string> = {
+  en: "🇬🇧 EN",
+  es: "🇪🇸 ES",
+  gl: "🧜🏻‍♀️ GL",
+};
 
 export default function Header() {
   const location = useLocation();
@@ -78,17 +87,14 @@ export default function Header() {
             className="px-2 py-1 text-xs font-medium rounded border border-border hover:bg-surface active:scale-95 transition"
             onClick={() => {
               triggerLight();
-              const nextLang = lang === "en" ? "es" : "en";
+              const idx = langCycle.indexOf(lang);
+              const nextLang = langCycle[(idx + 1) % langCycle.length];
               track("lang_toggle", { lang: nextLang });
               setLang(nextLang);
             }}
-            aria-label={
-              lang === "en"
-                ? "🇪🇸 ES — Switch to Spanish"
-                : "🇬🇧 EN — Cambiar a inglés"
-            }
+            aria-label={langLabel[lang]}
           >
-            {lang === "en" ? "🇪🇸 ES" : "🇬🇧 EN"}
+            {langLabel[lang]}
           </button>
         </div>
       </div>
