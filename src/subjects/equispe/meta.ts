@@ -1,11 +1,11 @@
 import type { SubjectMeta } from "../../data/types";
 
 export const meta: SubjectMeta = {
-  id: "equisi",
-  name: "Xestión de Infraestruturas",
+  id: "equispe",
+  name: "Xestión de Proxectos",
   university: "Universidade da Coruña",
-  courseCode: "200190",
-  icon: "🏗️",
+  courseCode: "202323",
+  icon: "📋",
   acknowledgments:
     "Preguntas recopiladas de exámenes oficiais do Grao en Enxeñaría Informática.",
   topics: [
