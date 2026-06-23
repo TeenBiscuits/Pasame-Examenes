@@ -83,7 +83,9 @@ export default function Header() {
               setLang(nextLang);
             }}
             aria-label={
-              lang === "en" ? "🇪🇸 ES — Switch to Spanish" : "🇬🇧 EN — Cambiar a inglés"
+              lang === "en"
+                ? "🇪🇸 ES — Switch to Spanish"
+                : "🇬🇧 EN — Cambiar a inglés"
             }
           >
             {lang === "en" ? "🇪🇸 ES" : "🇬🇧 EN"}

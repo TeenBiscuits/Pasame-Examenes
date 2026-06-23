@@ -97,7 +97,9 @@ function MCQuestion({
               {letter}
             </span>
             <span className="flex-1">
-              <InlineMarkdown>{opt.replace(/^[a-eA-E][.)]\s*/, "")}</InlineMarkdown>
+              <InlineMarkdown>
+                {opt.replace(/^[a-eA-E][.)]\s*/, "")}
+              </InlineMarkdown>
             </span>
           </button>
         );
@@ -344,7 +346,9 @@ export default function QuestionCard(props: QuestionCardProps) {
           </span>
         )}
         {props.examDate && (
-          <span className={`text-xs text-fg-muted ${!question.repeated ? "ml-auto" : ""}`}>
+          <span
+            className={`text-xs text-fg-muted ${!question.repeated ? "ml-auto" : ""}`}
+          >
             {props.examDate}
           </span>
         )}
