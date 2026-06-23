@@ -45,14 +45,7 @@ function setLink(id: string, rel: string, href: string, extra?: Record<string, s
   }
 }
 
-export function stripLangFromPath(pathname: string, lang: Lang): string {
-  const prefix = `/${lang}`;
-  if (pathname === prefix) return "/";
-  if (pathname.startsWith(`${prefix}/`)) return pathname.slice(prefix.length);
-  return pathname;
-}
-
-export function buildCanonicalPath(lang: Lang, pathWithoutLang: string): string {
+function buildCanonicalPath(lang: Lang, pathWithoutLang: string): string {
   const base = pathWithoutLang === "/" ? "" : pathWithoutLang;
   return `/${lang}${base}`;
 }
