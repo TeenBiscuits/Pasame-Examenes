@@ -9,11 +9,11 @@ import {
   Outlet,
 } from "react-router-dom";
 import Header from "./components/Header";
-import { useT } from "./i18n/hooks";
-import { useLang } from "./i18n/hooks";
+import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
-import { track } from "./lib/umami";
+import { track, identify } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link";
+import { useTheme } from "./theme/hooks";
 
 const Home = lazy(() => import("./pages/Home"));
 const SubjectHome = lazy(() => import("./pages/SubjectHome"));
@@ -36,6 +36,17 @@ function PageViewTracker() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     track("page_view", { path: pathname });
   }, [pathname]);
+
+  return null;
+}
+
+function SessionTracker() {
+  const { lang } = useLang();
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    identify({ lang, theme });
+  }, [lang, theme]);
 
   return null;
 }
@@ -89,7 +100,6 @@ function LangGuard() {
 
   return <Outlet />;
 }
-
 function Footer() {
   const t = useT();
   return (
@@ -129,6 +139,7 @@ export default function App() {
     <BrowserRouter>
       <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
         <PageViewTracker />
+        <SessionTracker />
         <Header />
         <main className="flex-grow">
           <Suspense fallback={<PageLoader />}>
