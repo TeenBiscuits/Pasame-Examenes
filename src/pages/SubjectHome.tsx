@@ -224,7 +224,8 @@ export default function SubjectHome() {
                       className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
                       onClick={() => {
                         triggerLight();
-                        track("pdf_download", {
+                        track("file-download", {
+                          file: `Exam-${exam.year}.pdf`,
                           subjectId: subject.id,
                           year: exam.year,
                         });

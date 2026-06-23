@@ -11,7 +11,7 @@ import {
 import Header from "./components/Header";
 import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
-import { track, trackPageView, identify } from "./lib/umami";
+import { track, identify } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link";
 import { useTheme } from "./theme/hooks";
 
@@ -27,17 +27,6 @@ function PageLoader() {
       <div className="h-8 w-8 animate-spin rounded-full border-2 border-accent border-t-transparent" />
     </div>
   );
-}
-
-function PageViewTracker() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    trackPageView();
-  }, [pathname]);
-
-  return null;
 }
 
 function SessionTracker() {
@@ -138,7 +127,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
-        <PageViewTracker />
         <SessionTracker />
         <Header />
         <main className="flex-grow">

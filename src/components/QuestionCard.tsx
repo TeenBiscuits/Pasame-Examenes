@@ -151,7 +151,7 @@ function MCQuestion({
             onClick={() => {
               triggerLight();
               const next = !isOpen;
-              track(next ? "solution_toggle" : "solution_toggle", {
+              track("solution_toggle", {
                 questionId: question.id,
                 action: next ? "open" : "close",
               });
@@ -212,7 +212,7 @@ function TextQuestion({
             onClick={() => {
               triggerLight();
               const next = !isOpen;
-              track(next ? "solution_toggle" : "solution_toggle", {
+              track("solution_toggle", {
                 questionId: question.id,
                 action: next ? "open" : "close",
               });
@@ -392,7 +392,7 @@ function MatchingQuestion({
             onClick={() => {
               triggerLight();
               const next = !isOpen;
-              track(next ? "solution_toggle" : "solution_toggle", {
+              track("solution_toggle", {
                 questionId: question.id,
                 action: next ? "open" : "close",
               });
