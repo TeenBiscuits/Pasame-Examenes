@@ -12,7 +12,7 @@ jobs:
       - name: ⬆️ Subir Sitemap
         uses: bojieyang/indexnow-action@v3.0.0
         with:
-          sitemap-location: "https://pe.pablopl.dev/sitemap-index.xml"
+          sitemap-location: "https://pe.pablopl.dev/sitemap.xml"
           key: ${{ secrets.INDEXNOW_KEY }}
           endpoint: www.bing.com
           failure-strategy: error
