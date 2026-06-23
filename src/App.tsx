@@ -11,7 +11,7 @@ import {
 import Header from "./components/Header";
 import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
-import { track, identify } from "./lib/umami";
+import { track, trackPageView, identify } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link";
 import { useTheme } from "./theme/hooks";
 
@@ -34,7 +34,7 @@ function PageViewTracker() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    track("page_view", { path: pathname });
+    trackPageView();
   }, [pathname]);
 
   return null;

@@ -1,15 +1,24 @@
 declare global {
   interface Window {
     umami?: {
-      track: (
+      track(): void;
+      track(payload: Record<string, unknown>): void;
+      track(eventName: string): void;
+      track(
         eventName: string,
         eventData?: Record<string, string | number | boolean>,
-      ) => void;
+      ): void;
       identify: (
         idOrData: string | Record<string, string | number | boolean>,
         data?: Record<string, string | number | boolean>,
       ) => void;
     };
+  }
+}
+
+export function trackPageView() {
+  if (typeof window !== "undefined" && window.umami) {
+    window.umami.track();
   }
 }
 
