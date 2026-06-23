@@ -6,10 +6,16 @@ import AddSubjectModal, {
 } from "../components/AddSubjectModal";
 import { useT } from "../i18n/hooks";
 import { useDocumentTitle } from "../lib/title";
+import { useSeoHead } from "../lib/seo";
 
 export default function Home() {
   const t = useT();
   useDocumentTitle(t.home.title);
+  useSeoHead({
+    title: t.home.title,
+    description: t.seo.homeDescription,
+    pathWithoutLang: "/",
+  });
   const modalRef = useRef<AddSubjectModalHandle>(null);
 
   return (

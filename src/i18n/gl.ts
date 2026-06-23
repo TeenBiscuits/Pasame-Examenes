@@ -102,8 +102,7 @@ export const gl: Translations = {
     title: "Engadir materia",
     close: "Pechar",
     openIssue: "Abrir un issue",
-    openIssueDesc:
-      "Solicita unha nova materia usando o modelo de GitHub",
+    openIssueDesc: "Solicita unha nova materia usando o modelo de GitHub",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml",
     contribute: "Contribúe!",
@@ -123,5 +122,13 @@ export const gl: Translations = {
     contributeDesc:
       "Segue a guía de contribución para engadilo ti mesmo cun pull request",
     email: "Escribe un correo",
+  },
+  seo: {
+    siteName: "Pásame Exámenes",
+    locale: "gl_ES",
+    homeDescription:
+      "Plataforma de código aberto para practicar exames universitarios por tema ou simular o exame completo.",
+    defaultDescription:
+      "Practica exames universitarios con respostas modelo e autocorrección. Preguntas tipo test, de desenvolvemento e de emparellar de exames anteriores.",
   },
 };

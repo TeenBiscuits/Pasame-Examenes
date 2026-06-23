@@ -22,12 +22,12 @@ export function InlineMarkdown({ children }: { children: string }) {
 
 function parseInline(text: string): ReactNode[] {
   const parts = text.split(/(`[^`]+`)/g);
-  return parts.map((part, i) => {
+  return parts.map((part) => {
     if (part.startsWith("`") && part.endsWith("`")) {
       const code = part.slice(1, -1);
       return (
         <code
-          key={`code-${code.slice(0, 20)}-${i}`}
+          key={`code-${code.slice(0, 20)}`}
           className="font-mono text-[0.85em] bg-code text-pink-600 px-1.5 py-0.5 rounded"
         >
           {code}
@@ -40,12 +40,15 @@ function parseInline(text: string): ReactNode[] {
 
 function renderBlocks(text: string): ReactNode[] {
   const parts = text.split(/(```[\s\S]*?```)/g);
-  return parts.flatMap((part, i) => {
+  const result: ReactNode[] = [];
+  let keyIndex = 0;
+  for (const part of parts) {
+    if (part.length === 0) continue;
     if (part.startsWith("```") && part.endsWith("```")) {
       const code = part.slice(3, -3).replace(/^\n/, "").trimEnd();
-      return [
+      result.push(
         <div
-          key={`cb-${code.slice(0, 20)}-${i}`}
+          key={`cb-${keyIndex++}`}
           className="my-3 rounded-lg border border-border bg-code-block overflow-hidden"
         >
           <pre className="p-4 overflow-x-auto text-xs leading-relaxed">
@@ -54,13 +57,14 @@ function renderBlocks(text: string): ReactNode[] {
             </code>
           </pre>
         </div>,
-      ];
+      );
+    } else {
+      result.push(
+        <span key={`t-${keyIndex++}`} className="whitespace-pre-line">
+          {parseInline(part)}
+        </span>,
+      );
     }
-    if (part.length === 0) return [];
-    return [
-      <span key={`t-${part.slice(0, 20)}-${i}`} className="whitespace-pre-line">
-        {parseInline(part)}
-      </span>,
-    ];
-  });
+  }
+  return result;
 }

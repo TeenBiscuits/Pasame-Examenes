@@ -1,9 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getQuestionsByTopic } from "../subjects";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
+import { useSeoHead } from "../lib/seo";
 
 export default function PracticeHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
@@ -14,6 +16,15 @@ export default function PracticeHome() {
       ? `${t.practiceHome.title} \u2014 ${subject.name} \u2014 ${t.home.title}`
       : t.home.title,
   );
+  useSeoHead({
+    title: subject
+      ? `${t.practiceHome.title} \u2014 ${subject.name}`
+      : t.home.title,
+    description: subject
+      ? `${t.practiceHome.subtitle} \u2014 ${subject.name} (${subject.courseCode})`
+      : t.seo.defaultDescription,
+    pathWithoutLang: subject ? `/${subject.id}/practice` : "/",
+  });
 
   if (!subject) return null;
 
@@ -54,7 +65,6 @@ export default function PracticeHome() {
                       >
                         <div
                           className="text-2xl mb-2"
-                          role="img"
                           aria-hidden="true"
                         >
                           {topic.icon}
@@ -101,7 +111,6 @@ export default function PracticeHome() {
                     >
                       <div
                         className="text-2xl mb-2"
-                        role="img"
                         aria-hidden="true"
                       >
                         {topic.icon}
@@ -140,7 +149,7 @@ export default function PracticeHome() {
                   });
                 }}
               >
-                <div className="text-2xl mb-2" role="img" aria-hidden="true">
+                <div className="text-2xl mb-2" aria-hidden="true">
                   {topic.icon}
                 </div>
                 <h2 className="font-semibold text-fg text-sm">{topic.label}</h2>

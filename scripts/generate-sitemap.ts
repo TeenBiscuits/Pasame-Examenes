@@ -7,9 +7,20 @@ const root = resolve(__dirname, "..");
 const subjectsDir = resolve(root, "src", "subjects");
 
 const BASE_URL = process.env.SITE_URL || "https://pe.pablopl.dev";
+const LANGS = ["en", "es", "gl"] as const;
+const DEFAULT_LANG = "es";
+
+function escapeXml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
 
 interface SitemapEntry {
-  loc: string;
+  path: string;
   priority: number;
   changefreq:
     | "always"
@@ -21,19 +32,10 @@ interface SitemapEntry {
     | "never";
 }
 
-function escapeXml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-}
-
 async function main() {
   const urls: SitemapEntry[] = [];
 
-  urls.push({ loc: "/", priority: 1.0, changefreq: "weekly" });
+  urls.push({ path: "/", priority: 1.0, changefreq: "weekly" });
 
   const entries = readdirSync(subjectsDir, { withFileTypes: true });
   const subjectDirs = entries.filter(
@@ -47,20 +49,20 @@ async function main() {
     const { meta } = await import(metaPath);
 
     urls.push({
-      loc: `/${subjectId}`,
+      path: `/${subjectId}`,
       priority: 0.9,
       changefreq: "weekly",
     });
 
     urls.push({
-      loc: `/${subjectId}/practice`,
+      path: `/${subjectId}/practice`,
       priority: 0.7,
       changefreq: "monthly",
     });
 
     for (const topic of meta.topics) {
       urls.push({
-        loc: `/${subjectId}/practice/${topic.key}`,
+        path: `/${subjectId}/practice/${topic.key}`,
         priority: 0.6,
         changefreq: "monthly",
       });
@@ -68,7 +70,7 @@ async function main() {
 
     for (const exam of meta.exams) {
       urls.push({
-        loc: `/${subjectId}/exam/${exam.year}`,
+        path: `/${subjectId}/exam/${exam.year}`,
         priority: 0.8,
         changefreq: "monthly",
       });
@@ -77,18 +79,45 @@ async function main() {
 
   const today = new Date().toISOString().split("T")[0];
 
+  const xmlEntries: string[] = [];
+
+  for (const url of urls) {
+    const langUrls = LANGS.map((lang) => {
+      const fullPath = url.path === "/" ? `/${lang}` : `/${lang}${url.path}`;
+      return { lang, url: `${BASE_URL}${fullPath}` };
+    });
+
+    const defaultUrl = langUrls.find((u) => u.lang === DEFAULT_LANG)!.url;
+
+    const altLinks = langUrls
+      .map(
+        (u) =>
+          `    <xhtml:link rel="alternate" hreflang="${u.lang}" href="${escapeXml(u.url)}" />`,
+      )
+      .join("\n");
+
+    const xDefaultLink = `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(defaultUrl)}" />`;
+
+    const selfLink = `    <xhtml:link rel="alternate" hreflang="${DEFAULT_LANG}" href="${escapeXml(defaultUrl)}" />`;
+
+    xmlEntries.push(
+      `  <url>\n` +
+        `    <loc>${escapeXml(defaultUrl)}</loc>\n` +
+        `    <lastmod>${today}</lastmod>\n` +
+        `    <changefreq>${url.changefreq}</changefreq>\n` +
+        `    <priority>${url.priority}</priority>\n` +
+        `${selfLink}\n` +
+        `${altLinks}\n` +
+        `${xDefaultLink}\n` +
+        `  </url>`,
+    );
+  }
+
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...urls.map(
-      (u) =>
-        `  <url>\n` +
-        `    <loc>${escapeXml(BASE_URL + u.loc)}</loc>\n` +
-        `    <lastmod>${today}</lastmod>\n` +
-        `    <changefreq>${u.changefreq}</changefreq>\n` +
-        `    <priority>${u.priority}</priority>\n` +
-        `  </url>`,
-    ),
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+    '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ...xmlEntries,
     "</urlset>",
     "",
   ].join("\n");

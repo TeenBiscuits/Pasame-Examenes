@@ -124,4 +124,12 @@ export const es: Translations = {
       "Sigue la guía de contribución para añadirlo tú mismo con un pull request",
     email: "Escribe un correo",
   },
+  seo: {
+    siteName: "Pásame Exámenes",
+    locale: "es_ES",
+    homeDescription:
+      "Plataforma de código abierto para practicar exámenes universitarios por tema o simular el examen completo.",
+    defaultDescription:
+      "Practica exámenes universitarios con respuestas modelo y autocorrección. Preguntas tipo test, de desarrollo y de emparejar de exámenes anteriores.",
+  },
 };

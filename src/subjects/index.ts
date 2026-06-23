@@ -53,7 +53,7 @@ export function getQuestionsByExam(
   return qs.filter((q) => q.exam === exam || q.exam === "both");
 }
 
-export function getTopicMegaTopic(
+function getTopicMegaTopic(
   subjectId: string,
   topicKey: string,
 ): MegaTopic | undefined {
