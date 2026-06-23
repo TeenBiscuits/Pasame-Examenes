@@ -1,6 +1,7 @@
 import { useTheme } from "./hooks";
-import { themeLabels } from "./types";
+import { themeLabels, themeOrder } from "./types";
 import type { Theme } from "./types";
+import { track } from "../lib/umami";
 
 function ThemeIcon({ theme }: { theme: Theme }) {
   switch (theme) {
@@ -100,11 +101,18 @@ function ThemeIcon({ theme }: { theme: Theme }) {
 export default function ThemeToggle() {
   const { theme, cycleTheme } = useTheme();
 
+  function handleToggle() {
+    const idx = themeOrder.indexOf(theme);
+    const next = themeOrder[(idx + 1) % themeOrder.length];
+    cycleTheme();
+    track("theme_toggle", { theme: next });
+  }
+
   return (
     <button
       type="button"
       className="px-2 py-1 rounded border border-border hover:bg-surface active:scale-95 transition cursor-pointer"
-      onClick={cycleTheme}
+      onClick={handleToggle}
       aria-label={`Theme: ${themeLabels[theme]}`}
       title={themeLabels[theme]}
     >

@@ -2,8 +2,9 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./components/Header";
-import { useT } from "./i18n/hooks";
-import { track } from "./lib/umami";
+import { useLang, useT } from "./i18n/hooks";
+import { track, identify } from "./lib/umami";
+import { useTheme } from "./theme/hooks";
 
 const Home = lazy(() => import("./pages/Home"));
 const SubjectHome = lazy(() => import("./pages/SubjectHome"));
@@ -26,6 +27,17 @@ function PageViewTracker() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     track("page_view", { path: pathname });
   }, [pathname]);
+
+  return null;
+}
+
+function SessionTracker() {
+  const { lang } = useLang();
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    identify({ lang, theme });
+  }, [lang, theme]);
 
   return null;
 }
@@ -69,6 +81,7 @@ export default function App() {
     <BrowserRouter>
       <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
         <PageViewTracker />
+        <SessionTracker />
         <Header />
         <main className="flex-grow">
           <Suspense fallback={<PageLoader />}>
