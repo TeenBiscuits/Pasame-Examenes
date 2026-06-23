@@ -18,7 +18,7 @@ export const meta: SubjectMeta = {
     {
       key: "modulo-ii",
       label: "Módulo II: Infraestruturas TI",
-      icon: "🖧",
+      icon: "🖥️",
       color: "green",
     },
   ],
