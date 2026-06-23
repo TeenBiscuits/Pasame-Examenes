@@ -17,8 +17,11 @@
     />
     <meta name="apple-mobile-web-app-title" content="Pásame Éxamenes" />
     <link rel="manifest" href="/site.webmanifest?v=20260620" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f9fafb" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta id="theme-color" name="theme-color" content="#f9fafb" />
     <meta name="color-scheme" content="light dark" />
     <meta
       name="description"
@@ -32,6 +35,21 @@
       (function () {
         var t = localStorage.getItem("theme") || "system";
         document.documentElement.setAttribute("data-theme", t);
+
+        var colors = {
+          light: "#ffffff",
+          dark: "#1f2937",
+          pink: "#ffffff",
+          catppuccin: "#313244",
+        };
+        var color = colors[t];
+        if (t === "system") {
+          color = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? colors.dark
+            : colors.light;
+        }
+        var meta = document.getElementById("theme-color");
+        if (meta) meta.setAttribute("content", color);
       })();
     </script>
     <title>Pásame Exámenes</title>

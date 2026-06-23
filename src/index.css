@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "tailwind-animations";
 
+/* ── iOS safe-area / overscroll helpers ── */
+html,
+body {
+  /* Match the header/footer surface so the Safari toolbar/safe-area background
+     has the same color as the surrounding chrome. */
+  background-color: var(--color-surface-alt);
+}
+
 /* ── Theme tokens (light defaults) ── */
 @theme {
   --color-surface: #f9fafb;

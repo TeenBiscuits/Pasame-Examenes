@@ -33,7 +33,7 @@ function PageViewTracker() {
 function Footer() {
   const t = useT();
   return (
-    <footer className="bg-surface-alt border-t border-border py-6 text-sm text-fg-muted">
+    <footer className="bg-surface-alt border-t border-border pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] text-sm text-fg-muted">
       <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="font-medium">{t.footer.byline}</p>
         <a
