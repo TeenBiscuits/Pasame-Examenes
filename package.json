@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && tsx scripts/generate-sitemap.ts && vite build",
+    "build": "tsc -b && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier . --write",

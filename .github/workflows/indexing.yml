@@ -1,0 +1,48 @@
+name: 🔎 Indexación en motores de búsqueda
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  wait-for-vercel-deployment:
+    name: 🔼 Esperar el deploy en Vercel
+    if: github.repository == 'TeenBiscuits/Pasame-Examenes'
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⌛ Espera 70s
+        run: sleep 70s
+        shell: bash
+      - name: ⌛ Esperar deploy
+        uses: tj-actions/vercel-wait@v1.2.2
+        with:
+          project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          token: ${{ secrets.VERCEL_TOKEN }}
+          sha: ${{ github.sha }}
+
+  indexnow:
+    name: 🔎 Bing IndexNow
+    if: github.repository == 'TeenBiscuits/Pasame-Examenes'
+    needs: [wait-for-vercel-deployment]
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬆️ Subir Sitemap
+        uses: bojieyang/indexnow-action@v3.0.0
+        with:
+          sitemap-location: "https://pe.pablopl.dev/sitemap-index.xml"
+          key: ${{ secrets.INDEXNOW_KEY }}
+          endpoint: www.bing.com
+          failure-strategy: error
+
+  google-indexing:
+    name: 🔎 Google Index
+    if: github.repository == 'TeenBiscuits/Pasame-Examenes'
+    needs: [wait-for-vercel-deployment]
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬆️ Subir Urls
+        uses: robingenz/action-google-indexing@v1.0.2
+        with:
+          siteUrl: "pe.pablopl.dev"
+          gcpServiceAccountKey: ${{ secrets.GCP_SA_KEY }}
