@@ -231,10 +231,8 @@ export default function SubjectHome() {
                         });
                       }}
                     >
-                      <span aria-hidden="true">
-                        📄
-                      </span>{" "}
-                      {exam.title} {t.subjectHome.pdf}
+                      <span aria-hidden="true">📄</span> {exam.title}{" "}
+                      {t.subjectHome.pdf}
                     </a>,
                   ],
             )}

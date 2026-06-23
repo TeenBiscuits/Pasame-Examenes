@@ -788,7 +788,8 @@ print(count)
     topic: "scripting",
     type: "mc",
     points: 0.25,
-    question: "Se desea que la salida de errores de una sesión interactiva del shell se redirija al fichero `session-errors.txt`. ¿Qué comando se debe ejecutar?",
+    question:
+      "Se desea que la salida de errores de una sesión interactiva del shell se redirija al fichero `session-errors.txt`. ¿Qué comando se debe ejecutar?",
     options: [
       "A. `exec 2> session-errors.txt`",
       "B. `exec 1> session-errors.txt`",
@@ -807,7 +808,8 @@ print(count)
     topic: "scripting",
     type: "mc",
     points: 0.25,
-    question: "Tras redirigir la salida de errores de la sesión interactiva del shell a un fichero, se desea recuperar la salida de errores por pantalla. ¿Qué comando se debe ejecutar?",
+    question:
+      "Tras redirigir la salida de errores de la sesión interactiva del shell a un fichero, se desea recuperar la salida de errores por pantalla. ¿Qué comando se debe ejecutar?",
     options: [
       "A. `exec 2>/dev/tty`",
       "B. `exec 2>&1`",
@@ -826,7 +828,8 @@ print(count)
     topic: "scripting",
     type: "text",
     points: 0.25,
-    question: "Explica brevemente la diferencia funcional entre el uso de entrecomillado simple (`'`) y entrecomillado doble (`\"`) en un script de shell.",
+    question:
+      "Explica brevemente la diferencia funcional entre el uso de entrecomillado simple (`'`) y entrecomillado doble (`\"`) en un script de shell.",
     correctAnswer:
       "Las comillas simples (`'`) preservan el valor literal de todos los caracteres: no se expanden variables ni se interpretan caracteres especiales. Las comillas dobles (`\"`) permiten la expansión de variables (`$VAR`) y la sustitución de comandos (`$(cmd)`), pero suprimen el globbing y la separación de palabras.",
     explanation:
@@ -880,7 +883,7 @@ ps axv | awk 'NR>1 {
 }'
 \`\`\``,
     explanation:
-      "`NR>1` salta la cabecera. `split($4, t, \":\")` divide TIME en horas y minutos. Se convierte a minutos totales y se filtra > 10. Los campos son: $1=PID, $4=TIME, $10=COMMAND.",
+      '`NR>1` salta la cabecera. `split($4, t, ":")` divide TIME en horas y minutos. Se convierte a minutos totales y se filtra > 10. Los campos son: $1=PID, $4=TIME, $10=COMMAND.',
   },
 
   // --- Regex para notación científica ---
@@ -1031,7 +1034,8 @@ done
     topic: "django-apis",
     type: "text",
     points: 0.5,
-    question: "Dibuja un esquema, lo más detallado posible, donde se muestre cómo se atiende la petición de una determinada URL en Django. Incluye también un breve texto explicativo.",
+    question:
+      "Dibuja un esquema, lo más detallado posible, donde se muestre cómo se atiende la petición de una determinada URL en Django. Incluye también un breve texto explicativo.",
     correctAnswer: `Flujo de una petición en Django:
 
 1. **Navegador** → envía petición HTTP al servidor
@@ -1119,7 +1123,8 @@ Asume que el proyecto Django se ejecuta en \`http://localhost:8000/\`.`,
     topic: "django-apis",
     type: "text",
     points: 0.5,
-    question: "Diferencia modelo, vista y plantilla del patrón MVT de Django. Explica los roles que tienen cada uno durante una petición.",
+    question:
+      "Diferencia modelo, vista y plantilla del patrón MVT de Django. Explica los roles que tienen cada uno durante una petición.",
     correctAnswer: `- **Modelo (Model)**: Define la estructura de datos y la lógica de negocio. Se encarga de la interacción con la base de datos a través del ORM. Representa las tablas y sus relaciones.
 - **Vista (View)**: Contiene la lógica de la aplicación. Recibe la petición HTTP, procesa los datos (consultando modelos si es necesario) y devuelve una respuesta HTTP (normalmente renderizando una plantilla).
 - **Plantilla (Template)**: Define la presentación. Es un archivo HTML con sintaxis de Django Templates que permite mostrar datos dinámicos pasados desde la vista.`,
@@ -1175,9 +1180,10 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
     topic: "django-apis",
     type: "matching",
     points: 0.5,
-    question: "Indica qué credenciales recibe cada parte en el protocolo OAuth. Asigna a cada rol las credenciales que le corresponden.",
+    question:
+      "Indica qué credenciales recibe cada parte en el protocolo OAuth. Asigna a cada rol las credenciales que le corresponden.",
     correctAnswer: {
-      "Cliente": "A",
+      Cliente: "A",
       "Proveedor del servicio": "B",
       "Recursos protegidos": "C",
     },
@@ -1238,7 +1244,8 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
     topic: "django-apis",
     type: "mc",
     points: 0.25,
-    question: "En el API de Twitter, ¿qué par de claves identifican a la aplicación ante el servidor?",
+    question:
+      "En el API de Twitter, ¿qué par de claves identifican a la aplicación ante el servidor?",
     options: [
       "A. CONSUMER_KEY – CONSUMER_SECRET",
       "B. CLIENT_KEY – CLIENT_SECRET",
@@ -1257,7 +1264,8 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
     topic: "django-apis",
     type: "mc",
     points: 0.25,
-    question: "¿Qué comando se utiliza para crear un nuevo proyecto llamado *miproyecto* en Django?",
+    question:
+      "¿Qué comando se utiliza para crear un nuevo proyecto llamado *miproyecto* en Django?",
     options: [
       "A. `django-admin initproject miproyecto`",
       "B. `django-admin startproject miproyecto`",
@@ -1306,7 +1314,8 @@ b = 2
     topic: "conceptos",
     type: "mc",
     points: 0.25,
-    question: "¿Qué método hay que redefinir en una clase para cambiar el comportamiento del comando `print(s)` donde `s` es un objeto de dicha clase?",
+    question:
+      "¿Qué método hay que redefinir en una clase para cambiar el comportamiento del comando `print(s)` donde `s` es un objeto de dicha clase?",
     options: [
       "A. `__print__`",
       "B. `__string__`",
@@ -1325,7 +1334,8 @@ b = 2
     topic: "conceptos",
     type: "mc",
     points: 0.125,
-    question: "¿Qué tipo de lenguajes se clasifican como lenguajes de programación \"de primera generación\"?",
+    question:
+      '¿Qué tipo de lenguajes se clasifican como lenguajes de programación "de primera generación"?',
     options: [
       "A. Lenguajes ensambladores",
       "B. Lenguajes de alto nivel como C o Java",
@@ -1344,7 +1354,8 @@ b = 2
     topic: "conceptos",
     type: "text",
     points: 0.5,
-    question: "Explica de la forma más detallada posible las diferencias entre lenguajes compilados y lenguajes interpretados.",
+    question:
+      "Explica de la forma más detallada posible las diferencias entre lenguajes compilados y lenguajes interpretados.",
     correctAnswer: `**Lenguajes compilados** (C, C++, Rust, Go):
 - El código fuente se traduce completamente a código máquina antes de la ejecución
 - El compilador genera un archivo ejecutable independiente
@@ -1371,7 +1382,8 @@ b = 2
     topic: "conceptos",
     type: "mc",
     points: 0.125,
-    question: "¿Durante qué fase del proceso de compilación se comprueba que el tipo de las variables se corresponde con el esperado?",
+    question:
+      "¿Durante qué fase del proceso de compilación se comprueba que el tipo de las variables se corresponde con el esperado?",
     options: [
       "A. Análisis léxico",
       "B. Análisis sintáctico",
@@ -1415,7 +1427,8 @@ $ ./program1 opciones1 ■ ./program2 opciones2
     topic: "conceptos",
     type: "text",
     points: 0.5,
-    question: "Explica a grandes rasgos qué pasos son necesarios para compilar un proyecto Python que utilice una librería escrita en C o C++ a través de SWIG, qué ficheros intervienen en el proceso y qué tipo de contenido tiene cada uno.",
+    question:
+      "Explica a grandes rasgos qué pasos son necesarios para compilar un proyecto Python que utilice una librería escrita en C o C++ a través de SWIG, qué ficheros intervienen en el proceso y qué tipo de contenido tiene cada uno.",
     correctAnswer: `**Pasos para integrar C/C++ con Python usando SWIG:**
 
 1. **Código C/C++ original** (\`milib.c\` / \`milib.h\`): implementa la funcionalidad.
@@ -1436,7 +1449,8 @@ Resultado: se importa en Python como \`import milib\`.`,
     topic: "conceptos",
     type: "mc",
     points: 0.5,
-    question: "¿Cuál es la diferencia fundamental entre los lenguajes compilados y los lenguajes interpretados?",
+    question:
+      "¿Cuál es la diferencia fundamental entre los lenguajes compilados y los lenguajes interpretados?",
     options: [
       "A. Los compilados usan memoria dinámica y los interpretados no.",
       "B. Los compilados traducen el código antes de ejecutarlo; los interpretados lo ejecutan instrucción por instrucción.",
@@ -1507,7 +1521,8 @@ Si un estudiante responde 15 preguntas correctamente, 5 incorrectamente y deja 1
     type: "text",
     points: 0.5,
     repeated: true,
-    question: "Dibuja en un diagrama cómo se maneja una petición Django, especificando qué papel juega en dicho proceso el fichero `urls.py`, las vistas, las templates y el modelo.",
+    question:
+      "Dibuja en un diagrama cómo se maneja una petición Django, especificando qué papel juega en dicho proceso el fichero `urls.py`, las vistas, las templates y el modelo.",
     correctAnswer: `Diagrama del flujo MVT en Django:
 
 \`\`\`
@@ -1542,7 +1557,8 @@ Si un estudiante responde 15 preguntas correctamente, 5 incorrectamente y deja 1
     type: "text",
     points: 0.5,
     repeated: true,
-    question: "Explica a grandes rasgos cómo se maneja una petición en Django, especificando el papel del fichero `urls.py`, las vistas, las templates y el modelo. Incluye un diagrama de flujo.",
+    question:
+      "Explica a grandes rasgos cómo se maneja una petición en Django, especificando el papel del fichero `urls.py`, las vistas, las templates y el modelo. Incluye un diagrama de flujo.",
     correctAnswer: `**Flujo de una petición Django:**
 
 \`\`\`

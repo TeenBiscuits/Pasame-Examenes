@@ -31,9 +31,7 @@ export function track(
   }
 }
 
-export function identify(
-  data: Record<string, string | number | boolean>,
-) {
+export function identify(data: Record<string, string | number | boolean>) {
   if (typeof window !== "undefined" && window.umami) {
     window.umami.identify(data);
   }

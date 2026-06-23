@@ -63,10 +63,7 @@ export default function PracticeHome() {
                           });
                         }}
                       >
-                        <div
-                          className="text-2xl mb-2"
-                          aria-hidden="true"
-                        >
+                        <div className="text-2xl mb-2" aria-hidden="true">
                           {topic.icon}
                         </div>
                         <h2 className="font-semibold text-fg text-sm">
@@ -109,10 +106,7 @@ export default function PracticeHome() {
                         });
                       }}
                     >
-                      <div
-                        className="text-2xl mb-2"
-                        aria-hidden="true"
-                      >
+                      <div className="text-2xl mb-2" aria-hidden="true">
                         {topic.icon}
                       </div>
                       <h2 className="font-semibold text-fg text-sm">

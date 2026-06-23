@@ -69,10 +69,7 @@ function renderBlocks(text: string): ReactNode[] {
 
 const TABLE_RE = /(\|.+\|\n\|[-| :]+\|\n(?:\|.+\|\n?)*)/g;
 
-function renderTableBlocks(
-  text: string,
-  startKey: number,
-): ReactNode[] {
+function renderTableBlocks(text: string, startKey: number): ReactNode[] {
   const result: ReactNode[] = [];
   let lastIndex = 0;
   let keyIndex = startKey;
@@ -83,7 +80,7 @@ function renderTableBlocks(
       const before = text.slice(lastIndex, match.index);
       if (before.trim()) {
         result.push(
-        <span key={`t-${keyIndex++}`} className="whitespace-pre-line">
+          <span key={`t-${keyIndex++}`} className="whitespace-pre-line">
             {parseInline(before)}
           </span>,
         );
@@ -120,7 +117,10 @@ function renderTable(mdTable: string, key: string): ReactNode {
       .filter(Boolean),
   );
   return (
-    <div key={key} className="my-3 overflow-x-auto rounded-lg border border-border">
+    <div
+      key={key}
+      className="my-3 overflow-x-auto rounded-lg border border-border"
+    >
       <table className="min-w-full divide-y divide-border text-sm">
         <thead className="bg-surface">
           <tr>
