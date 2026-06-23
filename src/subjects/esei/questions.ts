@@ -1,10 +1,10 @@
 import type { Question } from "../../data/types";
-import grafo2023 from "./assets/grafo-astar-2023.png";
-import arbol2023 from "./assets/arbol-hill-climbing-2023.png";
-import hill2024 from "./assets/hill-climbing-2024.png";
-import grafo2025 from "./assets/grafo-espacio-estados-2025.png";
-import arbolPG from "./assets/arbol-programacion-genetica-2025.png";
-import grafo2026 from "./assets/grafo-astar-2026.png";
+import grafo2023 from "./assets/grafo-astar-2023.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import arbol2023 from "./assets/arbol-hill-climbing-2023.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import hill2024 from "./assets/hill-climbing-2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import grafo2025 from "./assets/grafo-espacio-estados-2025.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import arbolPG from "./assets/arbol-programacion-genetica-2025.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import grafo2026 from "./assets/grafo-astar-2026.png?w=400;800;1200&format=avif;webp;png&as=picture";
 
 export const questions: Question[] = [
   // ============================================================

@@ -1,6 +1,6 @@
 import type { Question } from "../../data/types";
-import taskGraphImg from "./assets/task-graph-2025-07.jpeg";
-import stdevAlgAImg from "./assets/stdev-algorithm-a-2024-06.jpeg";
+import taskGraphImg from "./assets/task-graph-2025-07.jpeg?w=400;800;1200&format=avif;webp;jpeg&as=picture";
+import stdevAlgAImg from "./assets/stdev-algorithm-a-2024-06.jpeg?w=400;800;1200&format=avif;webp;jpeg&as=picture";
 import pipeline201907Img from "./assets/pipeline-2019-07.jpeg";
 import tree202006Img from "./assets/tree-2020-06.jpeg";
 import tree202007Img from "./assets/tree-2020-07.jpeg";

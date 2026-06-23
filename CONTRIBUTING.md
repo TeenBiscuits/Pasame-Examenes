@@ -117,7 +117,7 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos opcionales: `image`, `imageWidth`, `imageHeight`, `table`, `subquestions`, `repeated`.
+Campos opcionales: `image`, `table`, `subquestions`, `repeated`.
 
 - `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la misma pregunta aparece en varios exámenes. Se muestra una etiqueta "Repetida" en la interfaz.
 
@@ -166,13 +166,11 @@ Si alguna pregunta referencia figuras o gráficos:
 3. Impórtala y referénciala en `questions.ts`:
 
 ```ts
-import figura1 from "./assets/figura-1.png";
+import figura1 from "./assets/figura-1.png?w=400;800;1200&format=avif;webp;png&as=picture";
 
 {
   // ...
   image: figura1,
-  imageWidth: 800,
-  imageHeight: 400,
 }
 ```
 
