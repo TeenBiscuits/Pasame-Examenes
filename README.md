@@ -48,20 +48,23 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 | Asignatura                          | Universidad            | Exámenes       |
 | ----------------------------------- | ---------------------- | -------------- |
 | 💻 Sistemas Operativos              | Universidade da Coruña | 9 (2020–2024)  |
-| 🧠 Sistemas Intelixentes            | Universidade da Coruña | 5 (2023-2026)  |
+| 🧠 Sistemas Intelixentes            | Universidade da Coruña | 5 (2023–2026)  |
 | ⚡ Concorrencia e Paralelismo       | Universidade da Coruña | 16 (2018–2025) |
 | 🤖 Introduction to Machine Learning | Linnaeus University    | 2 (2024–2025)  |
+| 🏗️ Xestión de Infraestruturas       | Universidade da Coruña | 2 (2024, 2026) |
 
 ## Tecnologías
 
 <div align="center">
 
-[![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![React 19](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![TypeScript 6](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite 8](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![React Router v7](https://img.shields.io/badge/React_Router_v7-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
+[![Umami](https://img.shields.io/badge/Umami-FFEEAA?logo=umami&logoColor=black)](https://umami.is)
+[![vite-imagetools](https://img.shields.io/badge/vite--imagetools-1cf)](https://github.com/JonasKruckenberg/vite-imagetools)
 
 </div>
 
@@ -69,10 +72,11 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 
 ```bash
 pnpm dev       # Servidor de desarrollo con HMR
-pnpm build     # Type-check + build de producción
-pnpm lint      # ESLint
+pnpm build     # Type-check + sitemap + build de producción
+pnpm lint      # ESLint (flat config, type-aware)
 pnpm preview   # Preview del build de producción
 pnpm format    # Prettier
+pnpm doctor    # React Doctor
 ```
 
 ## Contribuye ✨
@@ -91,7 +95,7 @@ pnpm format    # Prettier
 
 El código de la plataforma se distribuye bajo la licencia **Apache 2.0**. Consulta [LICENSE.md](./LICENSE.md) para más detalles.
 
-Las preguntas y soluciones son contribuciones de la comunidad, pueden cometer errores de los que no nos hacemos responsables, nuestro objetivo es correguir todos los errores posibles, si ves un error [reportalo](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=report-question.yml).
+Las preguntas y soluciones son contribuciones de la comunidad, pueden cometer errores de los que no nos hacemos responsables, nuestro objetivo es corregir todos los errores posibles, si ves un error [repórtalo](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=report-question.yml).
 
 Consulta cada asignatura para más información.
 

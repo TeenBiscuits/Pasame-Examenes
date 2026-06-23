@@ -218,7 +218,11 @@ src/
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
-│   └── emeele/               # Machine Learning (LNU)
+│   ├── emeele/               # Machine Learning (LNU)
+│   │   ├── meta.ts
+│   │   ├── questions.ts
+│   │   └── assets/
+│   └── equisi/               # Xestión de Infraestruturas (UDC)
 │       ├── meta.ts
 │       ├── questions.ts
 │       └── assets/
@@ -253,17 +257,19 @@ public/
     ├── eseo/
     ├── esei/
     ├── cepe/
-    └── emeele/
+    ├── emeele/
+    └── equisi/
 ```
 
 ## Comandos
 
 ```bash
-pnpm dev       # Servidor de desarrollo
-pnpm build     # Type-check + build de producción
-pnpm lint      # ESLint
-pnpm preview   # Preview del build
+pnpm dev       # Servidor de desarrollo con HMR
+pnpm build     # Type-check + sitemap + build de producción
+pnpm lint      # ESLint (flat config, type-aware)
+pnpm preview   # Preview del build de producción
 pnpm format    # Prettier
+pnpm doctor    # React Doctor
 ```
 
 ## Checklist para Pull Requests

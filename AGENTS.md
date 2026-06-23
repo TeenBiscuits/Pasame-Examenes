@@ -4,10 +4,11 @@
 
 ```bash
 pnpm dev       # Start Vite dev server (HMR)
-pnpm build     # tsc -b && vite build (typecheck + production build)
+pnpm build     # tsc -b && generate sitemap & IndexNow key && vite build
 pnpm lint      # ESLint (flat config, type-aware via tseslint)
 pnpm format    # Prettier
 pnpm preview   # Preview production build locally
+pnpm doctor    # React Doctor
 ```
 
 - **pnpm** is the package manager (`pnpm-lock.yaml`).
