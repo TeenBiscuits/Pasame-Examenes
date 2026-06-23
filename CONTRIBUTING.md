@@ -117,7 +117,7 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos opcionales: `image`, `table`, `subquestions`, `repeated`.
+Campos opcionales: `image`, `explanationImage`, `table`, `subquestions`, `repeated`.
 
 - `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la misma pregunta aparece en varios exámenes. Se muestra una etiqueta "Repetida" en la interfaz.
 
@@ -159,20 +159,26 @@ La convención es `Exam-{year}.pdf`. Si un examen no tiene PDF, marca `hasPdf: f
 
 #### 5. Añade imágenes (si las hay)
 
-Si alguna pregunta referencia figuras o gráficos:
+Si alguna pregunta referencia figuras o gráficos (en el enunciado o en la solución):
 
 1. Recorta la figura del PDF
 2. Guárdala en `src/subjects/{subject-id}/assets/`
-3. Impórtala y referénciala en `questions.ts`:
+3. Impórtala en `questions.ts` y asígnala al campo correspondiente:
 
 ```ts
 import figura1 from "./assets/figura-1.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import solucion1 from "./assets/solucion-1.png";
 
 {
   // ...
-  image: figura1,
+  image: figura1,              // imagen en el enunciado de la pregunta
+  explanationImage: solucion1, // imagen en el panel de solución
 }
 ```
+
+- `image`: se muestra en el cuerpo de la pregunta, antes de las opciones de respuesta.
+- `explanationImage`: se muestra dentro del panel de solución colapsable (disponible para todos los tipos de pregunta: mc, text, matching).
+- Para imágenes dañadas o corruptas, usa una importación simple sin query params.
 
 #### 6. Verifica
 
@@ -204,7 +210,15 @@ src/
 │   ├── eseo/                 # Sistemas Operativos (UDC)
 │   │   ├── meta.ts
 │   │   └── questions.ts
-│   └── emeele/              # Machine Learning (LNU)
+│   ├── esei/                 # Sistemas Intelixentes (UDC)
+│   │   ├── meta.ts
+│   │   ├── questions.ts
+│   │   └── assets/
+│   ├── cepe/                 # Concorrencia e Paralelismo (UDC)
+│   │   ├── meta.ts
+│   │   ├── questions.ts
+│   │   └── assets/
+│   └── emeele/               # Machine Learning (LNU)
 │       ├── meta.ts
 │       ├── questions.ts
 │       └── assets/
@@ -236,6 +250,8 @@ public/
 ├── og.jpg
 └── exams/                    # PDFs originales
     ├── eseo/
+    ├── esei/
+    ├── cepe/
     └── emeele/
 ```
 
@@ -256,7 +272,8 @@ pnpm format    # Prettier
 - [ ] Las preguntas MC tienen opciones y una letra válida (`"a"`–`"e"`)
 - [ ] Los bloques de código usan `\`\`\`` en template literals de TypeScript
 - [ ] Los PDFs están en `public/exams/{subject-id}/` o los exámenes sin PDF tienen `hasPdf: false`
-- [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente
+- [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente (usa `image` para el enunciado y `explanationImage` para la solución)
+- [ ] Las preguntas repetidas están marcadas con `repeated: true`
 - [ ] `pnpm build` compila sin errores
 - [ ] `pnpm lint` pasa
 - [ ] La asignatura carga correctamente en `pnpm dev`

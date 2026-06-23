@@ -144,11 +144,12 @@ export const questions: Question[] = [
 
 **Optional fields:**
 
-- `image?: Picture | string` — imported image using vite-imagetools: `import myImage from "./assets/figure.png?w=400;800;1200&format=avif;webp;png&as=picture"`. For JPEG: use `jpeg` instead of `png`. For broken/corrupt images, use a plain import without query params.
+- `image?: Picture | string` — imported image shown in the question body. Use vite-imagetools: `import myImage from "./assets/figure.png?w=400;800;1200&format=avif;webp;png&as=picture"`. For JPEG: use `jpeg` instead of `png`. For broken/corrupt images, use a plain import without query params.
+- `explanationImage?: Picture | string` — image shown inside the collapsible solution panel (for all question types: mc, text, matching). Same import format as `image`.
 - `table?: { headers: string[], rows: string[][] }` — data table
 - `subquestions?: string[]` — list of sub-question text
 - `options?: string[]` — required for `mc` type
-- `repeated?: boolean` — defaults to `false`. Set `true` when the same question appears in multiple exams.
+- `repeated?: boolean` — defaults to `false`. Set `true` when the same question appears in multiple exams. Also set `true` for variant questions that share the same pattern.
 
 **Code blocks in text:** `question`, `explanation`, `correctAnswer`, `subquestions`, `options`, and table cell strings support markdown-style code formatting:
 
