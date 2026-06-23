@@ -47,7 +47,7 @@ export default function TopicCard({
       }}
     >
       <div className="flex items-start justify-between mb-3">
-        <span className="text-2xl" role="img" aria-hidden="true">
+        <span className="text-2xl" aria-hidden="true">
           {topic.icon}
         </span>
         <span className="text-xs text-fg-muted font-medium">

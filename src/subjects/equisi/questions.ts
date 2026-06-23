@@ -13,15 +13,13 @@ export const questions: Question[] = [
     topic: "teoria",
     type: "matching",
     points: 3,
-    question:
-      "Indique se as seguintes afirmacións son verdadeiras ou falsas:",
+    question: "Indique se as seguintes afirmacións son verdadeiras ou falsas:",
     correctAnswer: {
       "O Diagrama de Gantt ten unha estreita relación coas Redes de Precedencia, pois é unha representación simplificada destas.":
         "V",
       "Para aplicar CPM e calcular as datas early e late é imprescindible coñecer as asignacións dos recursos.":
         "F",
-      "A FC B é equivalente a A CC+2d B se A dura 2 días.":
-        "V",
+      "A FC B é equivalente a A CC+2d B se A dura 2 días.": "V",
       "Aínda que haxa unha forma de priorizar riscos, ás veces o Xefe de Proxecto pode e debe tratar como relevantes riscos que non o son atendendo á súa priorización.":
         "V",
       "Un Plan de Proxecto é o único produto de saída (entregable) das actividades de Xestión de Proxectos que habería que someter a Xestión da Configuración do Software.":
@@ -185,8 +183,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
     topic: "teoria",
     type: "matching",
     points: 3,
-    question:
-      "Indique se as seguintes afirmacións son verdadeiras ou falsas:",
+    question: "Indique se as seguintes afirmacións son verdadeiras ou falsas:",
     correctAnswer: {
       "É altamente recomendable establecer unha clasificación de proxectos de cara a Xestión de Proxectos e de Riscos e empregala tamén para segmentar os históricos para Estimación.":
         "V",

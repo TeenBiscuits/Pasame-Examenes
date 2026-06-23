@@ -174,7 +174,7 @@ export default function SubjectHome() {
               });
             }}
           >
-            <div className="text-2xl mb-2" role="img" aria-hidden="true">
+            <div className="text-2xl mb-2" aria-hidden="true">
               📝
             </div>
             <h2 className="font-semibold text-fg">{exam.title}</h2>
@@ -230,7 +230,7 @@ export default function SubjectHome() {
                         });
                       }}
                     >
-                      <span role="img" aria-hidden="true">
+                      <span aria-hidden="true">
                         📄
                       </span>{" "}
                       {exam.title} {t.subjectHome.pdf}

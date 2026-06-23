@@ -65,7 +65,6 @@ export default function PracticeHome() {
                       >
                         <div
                           className="text-2xl mb-2"
-                          role="img"
                           aria-hidden="true"
                         >
                           {topic.icon}
@@ -112,7 +111,6 @@ export default function PracticeHome() {
                     >
                       <div
                         className="text-2xl mb-2"
-                        role="img"
                         aria-hidden="true"
                       >
                         {topic.icon}
@@ -151,7 +149,7 @@ export default function PracticeHome() {
                   });
                 }}
               >
-                <div className="text-2xl mb-2" role="img" aria-hidden="true">
+                <div className="text-2xl mb-2" aria-hidden="true">
                   {topic.icon}
                 </div>
                 <h2 className="font-semibold text-fg text-sm">{topic.label}</h2>

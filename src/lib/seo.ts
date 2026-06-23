@@ -13,7 +13,11 @@ const langMeta: Record<
   gl: { locale: "gl_ES", hreflang: "gl", alternateLocales: ["en", "es"] },
 };
 
-function setMeta(id: string, content: string, attr: "content" | "property" | "name" = "content") {
+function setMeta(
+  id: string,
+  content: string,
+  attr: "content" | "property" | "name" = "content",
+) {
   let el = document.getElementById(id) as HTMLMetaElement | null;
   if (!el) {
     el = document.createElement("meta");
@@ -27,7 +31,12 @@ function setMeta(id: string, content: string, attr: "content" | "property" | "na
   }
 }
 
-function setLink(id: string, rel: string, href: string, extra?: Record<string, string>) {
+function setLink(
+  id: string,
+  rel: string,
+  href: string,
+  extra?: Record<string, string>,
+) {
   let el = document.getElementById(id) as HTMLLinkElement | null;
   if (!el) {
     el = document.createElement("link");
@@ -56,7 +65,11 @@ export interface SeoPageMeta {
   pathWithoutLang: string;
 }
 
-export function useSeoHead({ title, description, pathWithoutLang }: SeoPageMeta) {
+export function useSeoHead({
+  title,
+  description,
+  pathWithoutLang,
+}: SeoPageMeta) {
   const t = useT();
   const { lang } = useLang();
   const meta = langMeta[lang];

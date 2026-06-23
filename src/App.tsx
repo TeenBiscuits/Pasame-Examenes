@@ -56,10 +56,7 @@ function detectLang(): Lang {
 function LangRedirect() {
   const { pathname } = useLocation();
   const lang = detectLang();
-  const target =
-    pathname === "/"
-      ? `/${lang}`
-      : `/${lang}${pathname}`;
+  const target = pathname === "/" ? `/${lang}` : `/${lang}${pathname}`;
   return <Navigate to={target} replace />;
 }
 
@@ -81,7 +78,10 @@ function LangGuard() {
     const detected = detectLang();
     return (
       <Navigate
-        to={buildLangPath(detected, location.pathname.replace(/^\/(en|es|gl)\/?/, "/") || "/")}
+        to={buildLangPath(
+          detected,
+          location.pathname.replace(/^\/(en|es|gl)\/?/, "/") || "/",
+        )}
         replace
       />
     );
@@ -136,10 +136,7 @@ export default function App() {
               <Route path="/:lang" element={<LangGuard />}>
                 <Route index element={<Home />} />
                 <Route path=":subjectId" element={<SubjectHome />} />
-                <Route
-                  path=":subjectId/practice"
-                  element={<PracticeHome />}
-                />
+                <Route path=":subjectId/practice" element={<PracticeHome />} />
                 <Route
                   path=":subjectId/practice/:topic"
                   element={<PracticeTopic />}
@@ -156,10 +153,7 @@ export default function App() {
                 path="/:subjectId/practice/:topic"
                 element={<LangRedirect />}
               />
-              <Route
-                path="/:subjectId/exam/:year"
-                element={<LangRedirect />}
-              />
+              <Route path="/:subjectId/exam/:year" element={<LangRedirect />} />
             </Routes>
           </Suspense>
         </main>

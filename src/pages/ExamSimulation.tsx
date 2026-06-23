@@ -85,8 +85,7 @@ export default function ExamSimulation() {
       examInfo && subject
         ? `${examInfo.title} \u2014 ${subject.name} (${subject.courseCode})`
         : t.seo.defaultDescription,
-    pathWithoutLang:
-      subject && year ? `/${subject.id}/exam/${year}` : "/",
+    pathWithoutLang: subject && year ? `/${subject.id}/exam/${year}` : "/",
   });
 
   const [currentIndex, setCurrentIndex] = useState(0);

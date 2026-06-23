@@ -1,6 +1,6 @@
 import type { ExamAttempt } from "./types";
 
-export function getAttempts(subjectId: string): ExamAttempt[] {
+function getAttempts(subjectId: string): ExamAttempt[] {
   try {
     const data = localStorage.getItem(`exam-attempts:${subjectId}`);
     return data ? JSON.parse(data) : [];

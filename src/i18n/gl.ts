@@ -102,8 +102,7 @@ export const gl: Translations = {
     title: "Engadir materia",
     close: "Pechar",
     openIssue: "Abrir un issue",
-    openIssueDesc:
-      "Solicita unha nova materia usando o modelo de GitHub",
+    openIssueDesc: "Solicita unha nova materia usando o modelo de GitHub",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml",
     contribute: "Contribúe!",

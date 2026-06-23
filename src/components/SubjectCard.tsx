@@ -23,7 +23,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       }}
     >
       <div className="flex items-start justify-between mb-3">
-        <span className="text-2xl" role="img" aria-hidden="true">
+        <span className="text-2xl" aria-hidden="true">
           {subject.icon}
         </span>
         <span className="text-xs font-mono font-semibold bg-code text-fg-secondary px-2 py-0.5 rounded">
