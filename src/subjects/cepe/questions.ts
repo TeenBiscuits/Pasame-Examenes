@@ -29,7 +29,7 @@ export const questions: Question[] = [
   {
     id: "2019-07_q1",
     exam: "2019-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     question: `El siguiente código implementa el esquema clásico de productores/consumidores con un buffer acotado de tamaño N usando \`pthread_cond_broadcast\` para despertar a los hilos bloqueados:
@@ -124,7 +124,7 @@ Con broadcast se despertaban todos los hilos (productores y consumidores) innece
   {
     id: "2019-07_q2",
     exam: "2019-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 1.75,
     question: `Implemente una librería de mutex recursivos usando los mutex y variables de condición de pthread. Un mutex recursivo permite que el mismo thread lo bloquee múltiples veces (cada \`lock\` debe ir seguido de un \`unlock\` correspondiente). Otros threads deben bloquearse hasta que el propietario libere todos los locks.
@@ -209,7 +209,7 @@ void recursive_mutex_unlock(recursive_mutex_t *rm) {
   {
     id: "2019-07_q3",
     exam: "2019-07",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1.25,
     question: `Escriba un módulo Erlang que implemente una barrera con salida periódica. Los procesos se registran en la barrera mediante \`barrier:register(B, Pid)\`. Una vez registrados N procesos, la barrera libera un proceso cada T milisegundos hasta que todos hayan salido.
@@ -264,7 +264,7 @@ release([Pid | Rest], T) ->
   {
     id: "2019-07_q4",
     exam: "2019-07",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     image: pipelineGraph201907Img,
@@ -299,7 +299,7 @@ Tiempo secuencial = 35 segundos.
   {
     id: "2019-07_q5",
     exam: "2019-07",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -409,7 +409,7 @@ int main(int argc, char **argv) {
   {
     id: "2020-06_q1",
     exam: "2020-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 0.75,
     question: `Durante la pandemia de COVID, un supermercado debe controlar la entrada de clientes para respetar el aforo máximo. Se permite la entrada por grupos (familias que conviven juntas). El aforo se mide en personas, no en grupos.
@@ -476,7 +476,7 @@ Se usa broadcast porque un grupo que sale puede liberar suficiente espacio para 
   {
     id: "2020-06_q2",
     exam: "2020-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 0.75,
     question: `Implemente un sistema de gestión de turnos (como los de una carnicería o farmacia) usando mutex y variables de condición de pthread. El sistema asigna números consecutivos a los clientes que llegan (\`take_ticket\`) y un empleado atiende al siguiente cliente cuando está libre (\`serve_next\`). Los clientes esperan su turno llamando a \`wait_my_turn\`.
@@ -548,7 +548,7 @@ void serve_next(struct ticket_system *ts) {
   {
     id: "2020-06_q3",
     exam: "2020-06",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 0.5,
     image: tree202006Img,
@@ -601,7 +601,7 @@ node(Parent, Children) ->
   {
     id: "2020-06_q4",
     exam: "2020-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 1,
     subquestions: [
@@ -629,7 +629,7 @@ La aceleración mejora significativamente porque la porción paralelizable domin
   {
     id: "2020-06_q5",
     exam: "2020-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 1,
     subquestions: [
@@ -675,7 +675,7 @@ Esclavo (procesos 1..numprocs-1):
   {
     id: "2020-07_q1",
     exam: "2020-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 0.75,
     question: `Implemente una librería de futures (promesas) en C usando los mutex y variables de condición de pthread. Un future es un valor que será calculado por un thread productor y consumido posteriormente por uno o más threads consumidores. La interfaz es:
@@ -754,7 +754,7 @@ void free_future(future_t *f) {
   {
     id: "2020-07_q2",
     exam: "2020-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 0.75,
     question: `Implemente la sincronización de un paso de peatones con semáforo usando mutex y variables de condición de pthread. Hay peatones que quieren cruzar y vehículos que quieren pasar. El semáforo puede estar en verde para coches o para peatones. Las reglas son:
@@ -841,7 +841,7 @@ void car_leave(struct crossing *c) {
   {
     id: "2020-07_q3",
     exam: "2020-07",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 0.5,
     image: tree202007Img,
@@ -914,7 +914,7 @@ node(Parent, MyValue, Children) ->
   {
     id: "2020-07_q4",
     exam: "2020-07",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 1,
     subquestions: [
@@ -941,7 +941,7 @@ Responde RAZONADAMENTE a las siguientes cuestiones.`,
   {
     id: "2020-07_q5",
     exam: "2020-07",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 1,
     subquestions: [
@@ -1032,7 +1032,7 @@ MPI_Gather(&V[1], local_n, MPI_DOUBLE, fullV, local_n, MPI_DOUBLE, 0, MPI_COMM_W
   {
     id: "2024-06_q1",
     exam: "2024-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     subquestions: [
@@ -1122,7 +1122,7 @@ void barrier_sync(struct barrier *b) {
   {
     id: "2024-06_q2",
     exam: "2024-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 1.5,
     question: `Un array de datos \`d\` puede ser accedido por varios threads simultáneamente para hacer una operación \`do_op\` sobre una de sus posiciones. Esta operación tiene efectos secundarios (no es pura). Para proteger el acceso a esos datos existe un array de mutex \`d_m\`, donde cada posición de \`d_m\` protege uno de los datos del array.
@@ -1168,7 +1168,7 @@ void do_op_seq(int ids[], int ids_len) {
   {
     id: "2024-06_q3",
     exam: "2024-06",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1.5,
     repeated: true,
@@ -1220,7 +1220,7 @@ loop(L) ->
   {
     id: "2024-06_q4",
     exam: "2024-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -1259,7 +1259,7 @@ Tiempo paralelo (mínimo): lectura (6.4) + 1 maqueta de 6 min (2880) + postproce
   {
     id: "2024-06_q5",
     exam: "2024-06",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     image: stdevAlgAImg,
@@ -1347,7 +1347,7 @@ double stdev_mpi(double *v, int N, int R, int P, int root) {
   {
     id: "2024-07_q1",
     exam: "2024-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 1.5,
     question: `Implementar el esquema de la cola de un supermercado donde existe una única cola de clientes y múltiples cajeros. Cuando un cajero queda libre escoge el primer cliente de la cola. Los cajeros y los clientes no pueden hacer espera activa. Se pueden añadir todos los campos necesarios a los struct customer y super. No se pueden usar variables globales.
@@ -1434,7 +1434,7 @@ void customer(struct super *s, int num_items) {
   {
     id: "2024-07_q2",
     exam: "2024-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     repeated: true,
@@ -1502,7 +1502,7 @@ void prio_unlock(prio_mutex *m) {
   {
     id: "2024-07_q3",
     exam: "2024-07",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1.5,
     question: `Escriba un módulo que permita crear procesos servidor con la siguiente interfaz:
@@ -1574,7 +1574,7 @@ loop(L) ->
   {
     id: "2024-07_q4",
     exam: "2024-07",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -1610,7 +1610,7 @@ Responde RAZONADAMENTE a las siguientes cuestiones.`,
   {
     id: "2024-07_q5",
     exam: "2024-07",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -1729,7 +1729,7 @@ Sí, habría que modificar el tamaño de myA: en el apartado (b) era M/P+1 filas
   {
     id: "2025-06_q1",
     exam: "2025-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     repeated: true,
@@ -1790,7 +1790,7 @@ void bus(struct bus_line *bus) {
   {
     id: "2025-06_q2",
     exam: "2025-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 1.5,
     question: `Implemente, utilizando los mutex de la librería pthread, un tipo de mutex donde en caso de que tengan que esperar los threads lo bloqueen respetando el orden en el que llegan a la operación \`lock\`. Cuando el mutex se libere, solo debería despertarse un thread como máximo.
@@ -1876,7 +1876,7 @@ void ord_mutex_unlock(ord_mutex_t *m) {
   {
     id: "2025-06_q3",
     exam: "2025-06",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1.5,
     repeated: true,
@@ -1937,7 +1937,7 @@ loop(Next) ->
   {
     id: "2025-06_q4",
     exam: "2025-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -1981,7 +1981,7 @@ Responde RAZONADAMENTE a las siguientes cuestiones.`,
   {
     id: "2025-06_q5",
     exam: "2025-06",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     question: `La empresa de logística Fast&Furious distribuye periódicamente P tipos de productos a T tiendas de toda Galicia. Se presenta el algoritmo que usan actualmente para calcular el precio total de los productos distribuidos a cada tienda (ps), y también la suma del peso de todos los productos del mismo tipo (wp). También, para un subconjunto de tiendas, imprime el precio que se les debe cobrar.
@@ -2098,7 +2098,7 @@ if (!rango)
   {
     id: "2025-07_q1",
     exam: "2025-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     repeated: true,
@@ -2170,7 +2170,7 @@ void person(struct wait_row *wr) {
   {
     id: "2025-07_q2",
     exam: "2025-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 1.5,
     question: `Implemente, utilizando los mutex de la librería pthread, una barrera que empareje a los threads de dos tipos A y B en orden de llegada. Esto es, el primer thread en llamar a \`pair_barrier_a\` y el primer thread en llamar a \`pair_barrier_b\` se emparejan, y así sucesivamente. Si un thread llega a la barrera y no hay threads del otro tipo tiene que esperar. Las funciones \`pair_barrier\` deberían devolver el id del thread con el que se ha emparejado.
@@ -2250,7 +2250,7 @@ pthread_t pair_barrier_b(pair_barrier_t *pb) {
   {
     id: "2025-07_q3",
     exam: "2025-07",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1.5,
     repeated: true,
@@ -2321,7 +2321,7 @@ loop(Next) ->
   {
     id: "2025-07_q4",
     exam: "2025-07",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     image: taskGraphImg,
@@ -2365,7 +2365,7 @@ Responde RAZONADAMENTE a las siguientes cuestiones:
   {
     id: "2025-07_q5",
     exam: "2025-07",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -2487,7 +2487,7 @@ MPI_Finalize();
   {
     id: "2018-06_q1",
     exam: "2018-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     question: `Given the implementation of a circular-array queue:
@@ -2591,7 +2591,7 @@ int q_insert(queue q, void *elem) {
   {
     id: "2018-06_q2",
     exam: "2018-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 1.75,
     question: `Starting from the in-class example with multiple barbers, there is a queue for customers to be served in arrival order. There are N barbers numbered from 1 to N.
@@ -2721,7 +2721,7 @@ void *cust(void *ptr) {
   {
     id: "2018-06_q3",
     exam: "2018-06",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1.25,
     image: chain201806Img,
@@ -2834,7 +2834,7 @@ Note: the original sender receives the \`back\` message with the step count. We 
   {
     id: "2018-06_q4",
     exam: "2018-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -2886,7 +2886,7 @@ Local position: (700 mod 256, 400 mod 256, 188 mod 256) = **(188, 144, 188)**`,
   {
     id: "2018-06_q5",
     exam: "2018-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     image: gatosMatrix201806Img,
@@ -3014,7 +3014,7 @@ This is a butterfly/all-reduce pattern achieving global result in log₂(P) step
   {
     id: "2018-07_q1",
     exam: "2018-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     question: `Implement a semaphore library using pthread mutexes and condition variables. The operations to implement are:
@@ -3097,7 +3097,7 @@ void sem_v(sem s) {
   {
     id: "2018-07_q2",
     exam: "2018-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 1.75,
     question: `We have a circular doubly-linked list. Assume:
@@ -3185,7 +3185,7 @@ void insert(list *pos, list *elem) {
   {
     id: "2018-07_q3",
     exam: "2018-07",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1.25,
     image: ringChain201807Img,
@@ -3288,7 +3288,7 @@ proc_loop(Next, N) ->
   {
     id: "2018-07_q4",
     exam: "2018-07",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -3324,7 +3324,7 @@ N × 2^6 = (N × 2^6) / 256 + 3 × 2^16 × 8 → **N ≈ 3 × 2^13 ≈ 24576 row
   {
     id: "2018-07_q5",
     exam: "2018-07",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -3426,7 +3426,7 @@ Total communication: 1966092 cycles.
   {
     id: "2019-06_q1",
     exam: "2019-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     image: intersection201906Img,
@@ -3504,7 +3504,7 @@ int car(int direction, intersection i) {
   {
     id: "2019-06_q2",
     exam: "2019-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 1.75,
     question: `Given the barber algorithm from class shown below, make the barber know which customer they are cutting hair for, and vice versa, so that they can print messages with the correct values. It must work both when the customer waits in the waiting room and when there is no wait. The algorithm must work with more than one barber.
@@ -3613,7 +3613,7 @@ void customer(int customer) {
   {
     id: "2019-06_q3",
     exam: "2019-06",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1.25,
     image: star201906Img,
@@ -3683,7 +3683,7 @@ send_to_all([P | T], Msg, From) ->
   {
     id: "2019-06_q4",
     exam: "2019-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     image: taskGraph201906Img,
@@ -3735,7 +3735,7 @@ Best assignment for 4 processes achieving maximum speedup:
   {
     id: "2019-06_q5",
     exam: "2019-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -3817,7 +3817,7 @@ No other communications needed: P0 and P2 have all boundary red rows they need l
   {
     id: "2021-06_q1",
     exam: "2021-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2.5,
     question: `En un servidor web se gestionan las peticiones usando un modelo de productores/consumidores donde un dispatcher recibe las peticiones y las inserta en una cola, y varios threads worker las procesan.
@@ -3953,7 +3953,7 @@ void *worker(void *ptr) {
   {
     id: "2021-06_q2",
     exam: "2021-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2.5,
     repeated: true,
@@ -4118,7 +4118,7 @@ int barrier_destroy(struct barrier *barrier) {
   {
     id: "2021-06_q3",
     exam: "2021-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     image: borderMap202106Img,
@@ -4168,7 +4168,7 @@ Posición local: (100 mod 40, 100 mod 23) = **(20, 8)**.`,
   {
     id: "2021-06_q4",
     exam: "2021-06",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     image: taskGraph202106Img,
@@ -4272,7 +4272,7 @@ while (1) {
   {
     id: "2021-07_q1",
     exam: "2021-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2.5,
     question: `Queremos implementar un sistema donde una serie de clientes esperan a ser atendidos por un servidor. Los clientes esperan en una cola indicada por \`c->queue_number\` de entre N posibles, numeradas de 0 a N-1. Dentro de cada cola los clientes deben ser atendidos en orden de llegada, y una vez son avisados por el servidor llaman a \`get_service()\`.
@@ -4369,7 +4369,7 @@ void *server(void *ptr) {
   {
     id: "2021-07_q2",
     exam: "2021-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -4511,7 +4511,7 @@ void runner(int id_runner, struct token *t) {
   {
     id: "2021-07_q3",
     exam: "2021-07",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -4550,7 +4550,7 @@ Despejando: 10000 / (1000 + 9000/n + 1000/n − 10) = 4 → n ≈ 6.62 → **7 m
   {
     id: "2021-07_q4",
     exam: "2021-07",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -4694,7 +4694,7 @@ if(!rank) EscribeMatriz(u);
   {
     id: "2022-06_q1",
     exam: "2022-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     question: `Un sistema gestiona la salida a disco a través de un único thread que recibe peticiones del resto de threads del sistema. Cuando un thread quiere realizar una operación de escritura, envía una petición a través de una cola. Para simplificar, asumimos que la cola es segura frente a accesos concurrentes.
@@ -4780,7 +4780,7 @@ void *io_thread(void *ptr) {
   {
     id: "2022-06_q2",
     exam: "2022-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     repeated: true,
@@ -4876,7 +4876,7 @@ void runner(struct global *g, struct team *t, int id_runner) {
   {
     id: "2022-06_q3",
     exam: "2022-06",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1,
     repeated: true,
@@ -4969,7 +4969,7 @@ loop(Next_pid) ->
   {
     id: "2022-06_q4",
     exam: "2022-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -5007,7 +5007,7 @@ Tiempo paralelo:
   {
     id: "2022-06_q5",
     exam: "2022-06",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     image: matrixDiagram202206Img,
@@ -5099,7 +5099,7 @@ Reducción: (9004+5)/(1804+50) ≈ **4.86× menos datos**. Coste extra: 9 sumas 
   {
     id: "2022-07_q1",
     exam: "2022-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     question: `Un sistema tiene NTHREADS threads, de los que únicamente hay uno activo en cada momento. Ese thread le pasa el turno a otro thread del grupo, e imprime un mensaje con su número y el del thread que continúa el ciclo.
@@ -5180,7 +5180,7 @@ void thread(void *ptr) {
   {
     id: "2022-07_q2",
     exam: "2022-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2,
     question: `Implementar un sistema de gestión de memoria multithread. El API tiene dos operaciones: \`malloc()\` y \`free()\`. Existen varios buckets de tamaños de memoria, todos potencias de 2: 8, 16, 32, 64, 128, 256, 512.
@@ -5278,7 +5278,7 @@ void free(void *pointer, size_t size) {
   {
     id: "2022-07_q3",
     exam: "2022-07",
-    topic: "concurrencia",
+    topic: "concurrencia-erlang",
     type: "text",
     points: 1,
     question: `En un sistema existe un servicio de log que recibe mensajes de otros procesos con un nivel de gravedad asociado, y los imprime por pantalla o no según el nivel mínimo de gravedad actual.
@@ -5347,7 +5347,7 @@ log_message(Msg, Level) ->
   {
     id: "2022-07_q4",
     exam: "2022-07",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     image: taskGraph202207Img,
@@ -5390,7 +5390,7 @@ Tiempo secuencial total = 10×4 + 20×5 + 30×2 = 40 + 100 + 60 = **200 minutos*
   {
     id: "2022-07_q5",
     exam: "2022-07",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -5501,7 +5501,7 @@ if (rank == 0) {
   {
     id: "2023-06_q1",
     exam: "2023-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2.5,
     repeated: true,
@@ -5560,7 +5560,7 @@ void barrier(barrier_t *b) {
   {
     id: "2023-06_q2",
     exam: "2023-06",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2.5,
     question: `Vamos a simular un paso peatonal con un semáforo que regula el paso tanto de vehículos como de peatones. El semáforo, cada peatón y cada coche está representado por un thread. La variable green indica quién tiene el semáforo en verde.
@@ -5683,7 +5683,7 @@ int car(void *ptr) {
   {
     id: "2023-06_q3",
     exam: "2023-06",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -5720,7 +5720,7 @@ Tiempo paralelo: 15 + 2×32 + 50 + 10 = 15 + 64 + 50 + 10 = **139 min** (el trab
   {
     id: "2023-06_q4",
     exam: "2023-06",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -5793,7 +5793,7 @@ Alternativa más elegante: usar MPI_Reduce con MPI_MAXLOC, que devuelve tanto el
   {
     id: "2023-07_q1",
     exam: "2023-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2.5,
     question: `Un grupo de N poetas se sienta en una mesa formando una fila, numerados de 0 a N-1. Disponen de un único bolígrafo, por lo que solo una persona puede estar escribiendo a la vez. El número de quien tiene el bolígrafo está indicado por el campo \`pen_holder\`, y el número de a quien le toca escribir por \`current_poet\`.
@@ -5883,7 +5883,7 @@ void poet(poet_info *inf) {
   {
     id: "2023-07_q2",
     exam: "2023-07",
-    topic: "concurrencia",
+    topic: "concurrencia-mutex",
     type: "text",
     points: 2.5,
     question: `Un grupo de threads necesita usar una unidad de un recurso del cual hay unidades limitadas, pero que no se consume al usarlo. Para manejar esos recursos se utiliza una pila almacenada en un array con un número que marca la cima.
@@ -5945,7 +5945,7 @@ void worker(resource_pool *p) {
   {
     id: "2023-07_q3",
     exam: "2023-07",
-    topic: "paralelismo",
+    topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
     subquestions: [
@@ -5989,7 +5989,7 @@ Responde DE FORMA RAZONADA.`,
   {
     id: "2023-07_q4",
     exam: "2023-07",
-    topic: "paralelismo",
+    topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
     subquestions: [
