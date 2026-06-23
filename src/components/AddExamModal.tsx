@@ -44,7 +44,7 @@ function AddExamModal({
     };
   }, [onClose]);
 
-  const issueUrl = `${t.addExam.openIssueUrl}&title=${encodeURIComponent(`${subjectName}`)}`;
+  const issueUrl = `${t.addExam.openIssueUrl}&title=${encodeURIComponent(subjectName)}&subject=${encodeURIComponent(subjectId)}`;
 
   return (
     <dialog

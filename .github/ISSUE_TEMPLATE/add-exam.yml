@@ -50,16 +50,15 @@ body:
   - type: textarea
     id: exam-details
     attributes:
-      label: Información sobre el examen
-      description: |
-        Describe los detalles del examen: número de preguntas, temas que cubre, tipo de preguntas, etc.
-        Si tienes el enunciado y/o las soluciones, menciónalo aquí.
-      placeholder: |
-        - 15 preguntas: 10 tipo test, 3 de desarrollo, 2 de cálculo
-        - Cubre los temas 1-5
-        - Tengo el PDF del enunciado
-    validations:
-      required: true
+      label: Información extra sobre el examen (opcional)
+
+  - type: checkboxes
+    id: has-pdf
+    attributes:
+      label: ¿Tienes el PDF del examen?
+      description: Marca esta casilla si dispones del PDF del examen para compartir, de tenerlo, adjuntalo más adelante.
+      options:
+        - label: Tengo el PDF del examen (o similar)
 
   - type: textarea
     id: questions
@@ -68,17 +67,3 @@ body:
       description: |
         Si dispones de las preguntas y sus soluciones, puedes detallarlas aquí.
         Cuanta más información proporciones, más rápido se podrá añadir el examen.
-      placeholder: |
-        Pregunta 1 (5 pts, tipo test) - Tema 1:
-        Enunciado: ¿Cuál es la capital de Francia?
-        Opciones: a) Madrid  b) París  c) Berlín  d) Roma
-        Respuesta correcta: b
-        ...
-
-  - type: checkboxes
-    id: has-pdf
-    attributes:
-      label: ¿Tienes el PDF del examen?
-      description: Marca esta casilla si dispones del PDF del examen para compartir
-      options:
-        - label: Tengo el PDF del examen
