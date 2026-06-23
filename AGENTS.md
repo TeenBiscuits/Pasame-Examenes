@@ -144,9 +144,7 @@ export const questions: Question[] = [
 
 **Optional fields:**
 
-- `image?: string` — imported image: `import myImage from "./assets/figure.png"`
-- `imageWidth?: number` — native width in px
-- `imageHeight?: number` — native height in px
+- `image?: Picture | string` — imported image using vite-imagetools: `import myImage from "./assets/figure.png?w=400;800;1200&format=avif;webp;png&as=picture"`. For JPEG: use `jpeg` instead of `png`. For broken/corrupt images, use a plain import without query params.
 - `table?: { headers: string[], rows: string[][] }` — data table
 - `subquestions?: string[]` — list of sub-question text
 - `options?: string[]` — required for `mc` type

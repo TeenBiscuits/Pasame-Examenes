@@ -361,18 +361,32 @@ export default function QuestionCard(props: QuestionCardProps) {
           ))}
         </ul>
       )}
-      {question.image && (
+      {question.image && typeof question.image === "object" ? (
+        <div className="mb-4 rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
+          <picture>
+            {Object.entries(question.image.sources).map(([format, srcset]) => (
+              <source key={format} srcSet={srcset} type={`image/${format}`} />
+            ))}
+            <img
+              src={question.image.img.src}
+              alt={`Illustration for ${question.id}`}
+              width={question.image.img.w}
+              height={question.image.img.h}
+              className="max-h-[400px] object-contain w-auto h-auto"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+      ) : question.image ? (
         <div className="mb-4 rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
           <img
             src={question.image}
             alt={`Illustration for ${question.id}`}
-            width={question.imageWidth || 800}
-            height={question.imageHeight || 400}
             className="max-h-[400px] object-contain w-auto h-auto"
             loading="lazy"
           />
         </div>
-      )}
+      ) : null}
       {question.table && (
         <div className="mb-4 overflow-x-auto rounded-lg border border-border">
           <table className="min-w-full divide-y divide-border text-sm">

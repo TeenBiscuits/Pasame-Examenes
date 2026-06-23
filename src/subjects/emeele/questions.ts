@@ -1,10 +1,10 @@
 import type { Question } from "../../data/types";
-import fig1_2025 from "./assets/Figure 1 2025.png";
-import fig1_2024 from "./assets/Figure 1 Exam 2024.png";
-import fig2_2024 from "./assets/Figure 2 Exam 2024.png";
-import fig3_2024 from "./assets/Figure 3 Exam 2024.png";
-import fig4_2024 from "./assets/Figure 4 Exam 2024.png";
-import fig5_4_2025 from "./assets/Figure 5.4 2025.png";
+import fig1_2025 from "./assets/Figure 1 2025.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import fig1_2024 from "./assets/Figure 1 Exam 2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import fig2_2024 from "./assets/Figure 2 Exam 2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import fig3_2024 from "./assets/Figure 3 Exam 2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import fig4_2024 from "./assets/Figure 4 Exam 2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import fig5_4_2025 from "./assets/Figure 5.4 2025.png?w=400;800;1200&format=avif;webp;png&as=picture";
 
 export const questions: Question[] = [
   {
@@ -44,8 +44,6 @@ The resulting regression plot is a step-like, piecewise constant function that i
     explanation:
       "kNN regression at any point averages the target values of the k nearest neighbors. With k=3, the curve is smoother than k=1 but captures local trends.",
     image: fig1_2024,
-    imageWidth: 788,
-    imageHeight: 740,
   },
   {
     id: "2025_q1_1",
@@ -428,8 +426,6 @@ Give examples of inputs (x1,x2) ≠ (0,0) such that the output is 0 and 1 respec
     explanation:
       "Work through the network forward. ReLU zeros out negative values. The step output is 1 iff the weighted sum ≥ 0.",
     image: fig2_2024,
-    imageWidth: 1392,
-    imageHeight: 676,
   },
   {
     id: "2024_q5b",
@@ -454,8 +450,6 @@ y = step(W2 · h + b2)`,
     explanation:
       "W1 is 2×2 (two hidden nodes from two inputs). W2 is 1×2 (one output from two hidden nodes). Include bias vectors.",
     image: fig2_2024,
-    imageWidth: 1392,
-    imageHeight: 676,
   },
   {
     id: "2025_q5_1",
@@ -525,8 +519,6 @@ More powerful than perceptron because: multiple hidden layers with non-linear ac
     explanation:
       "Depth + non-linearity = ability to learn complex, hierarchical representations that a perceptron cannot capture.",
     image: fig5_4_2025,
-    imageWidth: 706,
-    imageHeight: 534,
   },
   {
     id: "2024_q6",
@@ -640,8 +632,6 @@ S1 is preferred (higher purity gain: 0.2813 > 0.0898).`,
     explanation:
       "Even with linear separability, non-linear kernels can provide larger margins and better generalization to unseen data.",
     image: fig3_2024,
-    imageWidth: 948,
-    imageHeight: 838,
   },
   {
     id: "2024_q7b",
@@ -662,8 +652,6 @@ Points like x1, x2 (circles) and x9, x10 (squares) are far from the decision bou
     explanation:
       "Support vectors are the points closest to the margin/decision boundary. They define where the boundary is placed.",
     image: fig3_2024,
-    imageWidth: 948,
-    imageHeight: 838,
   },
   {
     id: "2025_q7_1",
@@ -891,8 +879,6 @@ Summary of when to use:
     explanation:
       "This highlights the trade-off between maximizing variance (PCA) and maximizing class separability (LDA) when projecting high-dimensional data.",
     image: fig4_2024,
-    imageWidth: 1882,
-    imageHeight: 848,
   },
   {
     id: "2025_q9a",
@@ -909,8 +895,6 @@ Key difference: PCA is variance-maximizing (global), Sammon is distance-preservi
     explanation:
       "PCA finds orthogonal directions of max variance via eigendecomposition. Sammon minimizes a stress function via gradient descent, weighting small distances more.",
     image: fig1_2025,
-    imageWidth: 1812,
-    imageHeight: 832,
   },
   {
     id: "2025_q9b",

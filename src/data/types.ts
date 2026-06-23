@@ -1,3 +1,5 @@
+import type { Picture } from "vite-imagetools";
+
 export type QuestionType = "mc" | "text" | "matching" | "calculation";
 
 export interface QuestionTable {
@@ -16,9 +18,7 @@ export interface Question {
   options?: string[];
   correctAnswer: string | string[] | Record<string, string>;
   explanation: string;
-  image?: string;
-  imageWidth?: number;
-  imageHeight?: number;
+  image?: Picture | string;
   table?: QuestionTable;
   repeated?: boolean;
 }

@@ -1,7 +1,7 @@
 import type { Question } from "../../data/types";
 
 // To use images, create an assets/ folder and import them:
-// import myImage from "./assets/figure.png";
+// import myImage from "./assets/figure.png?w=400;800;1200&format=avif;webp;png&as=picture";
 
 export const questions: Question[] = [
   // ================================================================
@@ -217,9 +217,7 @@ Hint: remember that \`foo()\` calls itself recursively.`,
   //   type: "text",
   //   points: 10,
   //   question: "Describe what the following diagram represents:",
-  //   image: myImage,       // import from ./assets/
-  //   imageWidth: 800,      // optional, native width in px
-  //   imageHeight: 400,     // optional, native height in px
+  //   image: myImage,       // import from ./assets/ with ?w=...&format=...&as=picture
   //   correctAnswer: "The diagram shows...",
   //   explanation: "Key elements to identify: ...",
   // },
