@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && tsx scripts/generate-sitemap.ts && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier . --write",
@@ -33,6 +33,7 @@
     "tailwindcss": "^4.3.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
+    "tsx": "^4.22.4",
     "vite": "^8.0.12",
     "vite-imagetools": "^10.0.1"
   }

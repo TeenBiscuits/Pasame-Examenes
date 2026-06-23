@@ -9,7 +9,11 @@ export default function PracticeHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  useDocumentTitle(subject ? `${t.practiceHome.title} \u2014 ${subject.name} \u2014 ${t.home.title}` : t.home.title);
+  useDocumentTitle(
+    subject
+      ? `${t.practiceHome.title} \u2014 ${subject.name} \u2014 ${t.home.title}`
+      : t.home.title,
+  );
 
   if (!subject) return null;
 
