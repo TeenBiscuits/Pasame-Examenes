@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
@@ -59,6 +59,7 @@ interface QuestionCardProps {
   showResult?: boolean;
   selfGrade?: "correct" | "incorrect";
   onSelfGrade?: (questionId: string, grade: "correct" | "incorrect") => void;
+  onCorrectAnswer?: () => void;
   direction?: "next" | "prev";
 }
 
@@ -88,9 +89,20 @@ function MCQuestion({
   onAnswer,
   savedAnswer,
   showResult,
+  onCorrectAnswer,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
+
+  const prevShowResult = useRef(showResult);
+  useEffect(() => {
+    if (showResult && !prevShowResult.current && onCorrectAnswer) {
+      if (question.correctAnswer === savedAnswer) {
+        onCorrectAnswer();
+      }
+    }
+    prevShowResult.current = showResult;
+  }, [showResult, savedAnswer, question.correctAnswer, onCorrectAnswer]);
 
   if (!question.options) return null;
 
@@ -185,9 +197,22 @@ function TextQuestion({
   showResult,
   selfGrade,
   onSelfGrade,
+  onCorrectAnswer,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
+
+  const prevSelfGrade = useRef(selfGrade);
+  useEffect(() => {
+    if (
+      selfGrade === "correct" &&
+      prevSelfGrade.current !== "correct" &&
+      onCorrectAnswer
+    ) {
+      onCorrectAnswer();
+    }
+    prevSelfGrade.current = selfGrade;
+  }, [selfGrade, onCorrectAnswer]);
 
   return (
     <div>
@@ -299,10 +324,32 @@ function MatchingQuestion({
   onAnswer,
   savedAnswer,
   showResult,
+  onCorrectAnswer,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
   const correctAnswer = question.correctAnswer as Record<string, string>;
+
+  const prevShowResult = useRef(showResult);
+  useEffect(() => {
+    if (showResult && !prevShowResult.current && onCorrectAnswer) {
+      let userAnswer: Record<string, string> = {};
+      if (savedAnswer) {
+        try {
+          userAnswer = JSON.parse(savedAnswer);
+        } catch {
+          // ignore
+        }
+      }
+      const allCorrect = Object.entries(correctAnswer).every(
+        ([item, letter]) => userAnswer[item] === letter,
+      );
+      if (allCorrect) {
+        onCorrectAnswer();
+      }
+    }
+    prevShowResult.current = showResult;
+  }, [showResult, savedAnswer, correctAnswer, onCorrectAnswer]);
   const items = Object.keys(correctAnswer);
   const letters = [...new Set(Object.values(correctAnswer))].toSorted(
     (a, b) => {
