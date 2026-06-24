@@ -1,10 +1,12 @@
 import type { Question } from "../../data/types";
-import grafo2023 from "./assets/grafo-astar-2023.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import arbol2023 from "./assets/arbol-hill-climbing-2023.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import hill2024 from "./assets/hill-climbing-2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import grafo2025 from "./assets/grafo-espacio-estados-2025.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import arbolPG from "./assets/arbol-programacion-genetica-2025.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import grafo2026 from "./assets/grafo-astar-2026.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
+
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+) as ImageMap;
 
 export const questions: Question[] = [
   // ============================================================
@@ -19,7 +21,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Dado el siguiente grafo, en donde (i) el nodo inicial es A y el nodo meta es G, (ii) el valor numérico dentro de cada nodo indica el resultado de evaluar una función heurística h, y (iii) el valor numérico en cada arista indica el coste de transición entre los diferentes estados. Aplicando el algoritmo A* basado en grafo, en algún paso, los nodos de la frontera vendrán dispuestos según la siguiente configuración (considerar precedencia izq a drch, que el número entre paréntesis representa el correspondiente valor f, f=h+g, y que en caso de empate en valor f, la precedencia de expansión vendrá dada por el orden alfabético de los nodos correspondientes):",
-    image: grafo2023,
+    image: getImage(imageMap, "grafo-astar-2023.png"),
     options: [
       "a) E(20), D(22)",
       "b) B(20), E(20), D(22)",
@@ -110,7 +112,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "En el contexto del algoritmo de escalada en búsqueda local, el siguiente árbol de búsqueda se corresponde con una situación de:",
-    image: arbol2023,
+    image: getImage(imageMap, "arbol-hill-climbing-2023.png"),
     options: [
       "a) Mínimo local.",
       "b) Máximo local.",
@@ -916,7 +918,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "En un problema de búsqueda local con la función de coste mostrada, buscando el valor máximo, si estamos en el punto marcado, ¿qué deberíamos hacer?",
-    image: hill2024,
+    image: getImage(imageMap, "hill-climbing-2024.png"),
     options: [
       "a) Retroceder a un punto anterior y probar un sentido diferente.",
       "b) Devolver el punto marcado.",
@@ -1680,7 +1682,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Sobre el grafo del espacio de estados, ¿qué solución encuentra el algoritmo A*?",
-    image: grafo2025,
+    image: getImage(imageMap, "grafo-espacio-estados-2025.png"),
     options: [
       "a) A → C → G → K",
       "b) A → C → F → J",
@@ -3283,7 +3285,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Atendiendo al siguiente árbol que representa a un individuo de programación genética, ¿cuál de las siguientes afirmaciones es cierta?",
-    image: arbolPG,
+    image: getImage(imageMap, "arbol-programacion-genetica-2025.png"),
     options: [
       "a) El conjunto de componentes terminales es sólo [1, 14].",
       "b) Los componentes no terminales son X, Y, +, -.",
@@ -3345,7 +3347,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Dado el siguiente grafo, donde el nodo inicial es A, el valor numérico de cada nodo indica el resultado de evaluar una función heurística h, y el valor numérico de cada arista indica el coste de transición entre estados... ¿Cuál sería el coste de la solución devuelta por el algoritmo A*?",
-    image: grafo2026,
+    image: getImage(imageMap, "grafo-astar-2026.png"),
     options: ["a) 22", "b) 26", "c) 35", "d) 39"],
     correctAnswer: "c",
     explanation:

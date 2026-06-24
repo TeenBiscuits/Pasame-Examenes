@@ -1,23 +1,12 @@
 import type { Question } from "../../data/types";
-import taskGraphImg from "./assets/task-graph-2025-07.jpeg?w=400;800;1200&format=avif;webp;jpeg&as=picture";
-import stdevAlgAImg from "./assets/stdev-algorithm-a-2024-06.jpeg?w=400;800;1200&format=avif;webp;jpeg&as=picture";
-import chain201806Img from "./assets/chain-2018-06.jpeg";
-import gatosMatrix201806Img from "./assets/gatos-matrix-2018-06.jpeg";
-import gatosSymmetric201806Img from "./assets/gatos-symmetric-2018-06.jpeg";
-import ringChain201807Img from "./assets/ring-chain-2018-07.jpeg";
-import intersection201906Img from "./assets/intersection-2019-06.jpeg";
-import star201906Img from "./assets/star-2019-06.jpeg";
-import taskGraph201906Img from "./assets/task-graph-2019-06.jpeg";
-import pipelineGraph201907Img from "./assets/pipeline-graph-2019-07.jpeg";
-import tree202006Img from "./assets/tree-2020-06.jpeg";
-import tree202007Img from "./assets/tree-2020-07.jpeg";
-import borderMap202106Img from "./assets/border-map-2021-06.jpeg";
-import taskGraph202106Img from "./assets/task-graph-2021-06.jpeg";
-import pipelineTimeline202106Img from "./assets/pipeline-timeline-2021-06.jpeg";
-import matrixDiagram202206Img from "./assets/matrix-diagram-2022-06.jpeg";
-import taskGraph202207Img from "./assets/task-graph-2022-07.jpeg";
-import stdevAlgB202406Img from "./assets/stdev-algorithm-b-2024-06.jpeg";
-import taskGraphCriticalPath202507Img from "./assets/task-graph-critical-path-2025-07.jpeg";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
+
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+) as ImageMap;
 
 export const questions: Question[] = [
   // ================================================================
@@ -267,7 +256,7 @@ release([Pid | Rest], T) ->
     topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
-    image: pipelineGraph201907Img,
+    image: getImage(imageMap, "pipeline-graph-2019-07.jpeg"),
     subquestions: [
       "(a) [0.5p] Determina qué tipo de descomposición y asignación de tareas se ha utilizado en el grafo.",
       "(b) [0.75p] Identifica el camino crítico, el grado máximo y el grado medio de concurrencia.",
@@ -551,7 +540,7 @@ void serve_next(struct ticket_system *ts) {
     topic: "concurrencia-erlang",
     type: "text",
     points: 0.5,
-    image: tree202006Img,
+    image: getImage(imageMap, "tree-2020-06.jpeg"),
     question: `Se tiene el siguiente árbol de procesos Erlang, donde cada nodo es un proceso que conoce el PID de su padre y de sus hijos (en una lista ordenada de izquierda a derecha):
 
 \`\`\`erlang
@@ -844,7 +833,7 @@ void car_leave(struct crossing *c) {
     topic: "concurrencia-erlang",
     type: "text",
     points: 0.5,
-    image: tree202007Img,
+    image: getImage(imageMap, "tree-2020-07.jpeg"),
     question: `Se tiene un árbol de procesos Erlang donde cada nodo almacena un valor entero y conoce el PID de sus hijos. El árbol se representa con el siguiente módulo:
 
 \`\`\`erlang
@@ -1262,8 +1251,8 @@ Tiempo paralelo (mínimo): lectura (6.4) + 1 maqueta de 6 min (2880) + postproce
     topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
-    image: stdevAlgAImg,
-    explanationImage: stdevAlgB202406Img,
+    image: getImage(imageMap, "stdev-algorithm-a-2024-06.jpeg"),
+    explanationImage: getImage(imageMap, "stdev-algorithm-b-2024-06.jpeg"),
     subquestions: [
       "(a) [0.5p] Diseña la paralelización del Algoritmo A. Escribe un pseudocódigo de alto nivel indicando los pasos que se deben seguir.",
       "(b) [1.5p] Implementa la función stdev_mpi como se describe, siguiendo tu diseño propuesto. Utiliza funciones colectivas de MPI siempre que sea posible.",
@@ -2324,8 +2313,8 @@ loop(Next) ->
     topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
-    image: taskGraphImg,
-    explanationImage: taskGraphCriticalPath202507Img,
+    image: getImage(imageMap, "task-graph-2025-07.jpeg"),
+    explanationImage: getImage(imageMap, "task-graph-critical-path-2025-07.jpeg"),
     subquestions: [
       "(a) [0.25p] Determina qué tipo de descomposición se ha utilizado.",
       "(b) [0.75p] Identifica el camino crítico, el grado máximo y el grado medio de concurrencia.",
@@ -2724,7 +2713,7 @@ void *cust(void *ptr) {
     topic: "concurrencia-erlang",
     type: "text",
     points: 1.25,
-    image: chain201806Img,
+    image: getImage(imageMap, "chain-2018-06.jpeg"),
     question: `The module chain implements a chain of processes, where each element knows the PID of the next. Processes are numbered from N (first) to 0 (last).
 
 The chain is created by calling \`start(N)\`, where N is the number of the first process. This function returns the PID of the first process. The function \`send(Chain, Msg)\` sends a message from the first element to the last.
@@ -2889,8 +2878,8 @@ Local position: (700 mod 256, 400 mod 256, 188 mod 256) = **(188, 144, 188)**`,
     topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
-    image: gatosMatrix201806Img,
-    explanationImage: gatosSymmetric201806Img,
+    image: getImage(imageMap, "gatos-matrix-2018-06.jpeg"),
+    explanationImage: getImage(imageMap, "gatos-symmetric-2018-06.jpeg"),
     subquestions: [
       "(a) [0.5p] What type of task decomposition and assignment should we use?",
       "(b) [1p] Sketch MPI pseudocode that parallelizes the proposed solution.",
@@ -3188,7 +3177,7 @@ void insert(list *pos, list *elem) {
     topic: "concurrencia-erlang",
     type: "text",
     points: 1.25,
-    image: ringChain201807Img,
+    image: getImage(imageMap, "ring-chain-2018-07.jpeg"),
     question: `The module chain implements a chain of processes, where each element knows the PID of the next. Processes are numbered from N (first) to 0 (last).
 
 The chain is created by calling \`start(N)\`, where N is the number of the first process. This function returns the PID of the first process. The function \`send(Chain, Msg)\` sends a message from the first element to the last.
@@ -3429,7 +3418,7 @@ Total communication: 1966092 cycles.
     topic: "concurrencia-mutex",
     type: "text",
     points: 2,
-    image: intersection201906Img,
+    image: getImage(imageMap, "intersection-2019-06.jpeg"),
     question: `We are going to simulate an intersection on a road where there is a traffic light that lets cars from each direction pass consecutively.
 
 ![intersection diagram]
@@ -3616,7 +3605,7 @@ void customer(int customer) {
     topic: "concurrencia-erlang",
     type: "text",
     points: 1.25,
-    image: star201906Img,
+    image: getImage(imageMap, "star-2019-06.jpeg"),
     question: `In a star communication system, there is a central process that propagates messages from the nodes located on the outside of the star.
 
 ![star diagram]
@@ -3686,7 +3675,7 @@ send_to_all([P | T], Msg, From) ->
     topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
-    image: taskGraph201906Img,
+    image: getImage(imageMap, "task-graph-2019-06.jpeg"),
     subquestions: [
       "(a) [0.5p] Calculate, according to Amdahl's law, the maximum speedup this program can achieve.",
       "(b) [0.75p] After applying task decomposition to regions B and C, we find that region B can be executed completely in parallel, while region C has dependencies among some of its tasks. The following figure shows the dependency graph. Knowing that region B tasks each require 4000 operations and region C tasks each require 2500 operations, what is the average degree of concurrency?",
@@ -4121,7 +4110,7 @@ int barrier_destroy(struct barrier *barrier) {
     topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
-    image: borderMap202106Img,
+    image: getImage(imageMap, "border-map-2021-06.jpeg"),
     subquestions: [
       "(a) [0.5p] Si la computación de cada celda es independiente, ¿qué tipo de descomposición y de asignación de tareas aplicarías en este problema?",
       "(b) [1p] Si al paralelizar el problema sobre 16 procesos el número mínimo, medio y máximo de celdas vigiladas por proceso es 100, 120, 140, respectivamente. ¿Cuál es el tiempo de ejecución paralelo de una iteración del bucle, el speedup y la eficiencia?",
@@ -4171,8 +4160,8 @@ Posición local: (100 mod 40, 100 mod 23) = **(20, 8)**.`,
     topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
-    image: taskGraph202106Img,
-    explanationImage: pipelineTimeline202106Img,
+    image: getImage(imageMap, "task-graph-2021-06.jpeg"),
+    explanationImage: getImage(imageMap, "pipeline-timeline-2021-06.jpeg"),
     subquestions: [
       "(a) [0.5p] Indica el tipo de descomposición que debemos aplicar al problema, y la asignación de tareas a los procesos.",
       "(b) [0.5p] Determina la latencia de procesamiento de un bloque de datos y la aceleración tras la ejecución de 100 iteraciones del bucle while.",
@@ -5010,7 +4999,7 @@ Tiempo paralelo:
     topic: "paralelismo-mpi",
     type: "text",
     points: 2.5,
-    image: matrixDiagram202206Img,
+    image: getImage(imageMap, "matrix-diagram-2022-06.jpeg"),
     subquestions: [
       "(a) [0.5p] Describe la paralelización más directa de este problema: de qué se haría cargo cada procesador, cómo se distribuirían/replicarían las matrices, y el tipo de asignación de tareas.",
       "(b) [1p] Escribe el código MPI asociado usando colectivas siempre que sea posible, asumiendo 10 procesos.",
@@ -5350,7 +5339,7 @@ log_message(Msg, Level) ->
     topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
-    image: taskGraph202207Img,
+    image: getImage(imageMap, "task-graph-2022-07.jpeg"),
     subquestions: [
       "(a) [0.5p] ¿Cuál es la aceleración máxima si la primera tarea (lectura del genoma) siempre la hace un único proceso, no se puede simultanear con ninguna otra, y siempre tarda el 5% del tiempo total?",
       "(b) [0.5p] Con el grafo de 11 tareas dado, ¿cuáles son el Máximo Grado de Concurrencia y el Grado Medio de Concurrencia?",

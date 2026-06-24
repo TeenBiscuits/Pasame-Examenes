@@ -1,6 +1,6 @@
 declare const __VERCEL_PRODUCTION__: boolean;
 
-import type { MegaTopic, SubjectMeta, Question } from "../data/types";
+import type { SubjectMeta, Question } from "../data/types";
 
 interface MetaModule {
   meta: SubjectMeta;
@@ -14,9 +14,7 @@ interface QuestionsModule {
 const metaModules = import.meta.glob<MetaModule>("./*/meta.ts", {
   eager: true,
 });
-const questionsModules = import.meta.glob<QuestionsModule>("./*/questions.ts", {
-  eager: true,
-});
+const questionsModules = import.meta.glob<QuestionsModule>("./*/questions.ts");
 
 export const subjects: SubjectMeta[] = [];
 for (const m of Object.values(metaModules)) {
@@ -32,39 +30,35 @@ export function getSubject(id: string): SubjectMeta | undefined {
   return subjects.find((s) => s.id === id);
 }
 
-export function getAllQuestions(subjectId: string): Question[] {
+export async function getAllQuestions(
+  subjectId: string,
+): Promise<Question[]> {
   const modulePath = `./${subjectId}/questions.ts`;
-  return questionsModules[modulePath]?.questions ?? [];
+  const mod = await questionsModules[modulePath]?.();
+  return mod?.questions ?? [];
 }
 
-export function getQuestionsByTopic(
+export async function getQuestionsByTopic(
   subjectId: string,
   topic: string,
-): Question[] {
-  const qs = getAllQuestions(subjectId);
+): Promise<Question[]> {
+  const qs = await getAllQuestions(subjectId);
   return qs.filter((q) => q.topic === topic);
 }
 
-export function getQuestionsByExam(
+export async function getQuestionsByExam(
   subjectId: string,
   exam: string,
-): Question[] {
-  const qs = getAllQuestions(subjectId);
+): Promise<Question[]> {
+  const qs = await getAllQuestions(subjectId);
   return qs.filter((q) => q.exam === exam || q.exam === "both");
 }
 
-function getTopicMegaTopic(
+export async function getTopicMegaTopicLabel(
   subjectId: string,
   topicKey: string,
-): MegaTopic | undefined {
+): Promise<string | undefined> {
   const subject = getSubject(subjectId);
   if (!subject?.megatopics) return undefined;
-  return subject.megatopics.find((mt) => mt.topics.includes(topicKey));
-}
-
-export function getTopicMegaTopicLabel(
-  subjectId: string,
-  topicKey: string,
-): string | undefined {
-  return getTopicMegaTopic(subjectId, topicKey)?.label;
+  return subject.megatopics.find((mt) => mt.topics.includes(topicKey))?.label;
 }

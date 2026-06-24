@@ -1,7 +1,17 @@
 import type { Question } from "../../data/types";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
 
-// To use images, create an assets/ folder and import them:
-// import myImage from "./assets/figure.png?w=400;800;1200&format=avif;webp;png&as=picture";
+// Load and optimize all images in ./assets/ automatically.
+// Just drop image files into assets/ and reference them by filename.
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+) as ImageMap;
+
+void imageMap;
+void getImage;
 
 export const questions: Question[] = [
   // ================================================================
@@ -216,7 +226,7 @@ Hint: remember that \`foo()\` calls itself recursively.`,
   //   type: "text",
   //   points: 10,
   //   question: "Describe what the following diagram represents:",
-  //   image: myImage,       // import from ./assets/ with ?w=...&format=...&as=picture
+  //   image: getImage(imageMap, "figure.png"),
   //   correctAnswer: "The diagram shows...",
   //   explanation: "Key elements to identify: ...",
   // },

@@ -1,8 +1,13 @@
 /* eslint-disable no-useless-escape */
 import type { Question } from "../../data/types";
-import busAsync202101 from "./assets/2021-01_q4_bus-async.jpeg?w=400;800;1200&format=avif;webp;jpeg&as=picture";
-import memMap202107 from "./assets/2021-07_q3_mem-map.jpeg?w=400;800;1200&format=avif;webp;jpeg&as=picture";
-import raid10 from "./assets/2023-01_q5_raid-10.jpeg?w=400;800;1200&format=avif;webp;jpeg&as=picture";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
+
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+) as ImageMap;
 
 export const questions: Question[] = [
   // 2021-01_q1
@@ -123,7 +128,7 @@ c) ■ VERDADERO. Al aumentar el tamaño de página se reduce el número de pág
     topic: "buses",
     type: "text",
     points: 1,
-    explanationImage: busAsync202101,
+    explanationImage: getImage(imageMap, "2021-01_q4_bus-async.jpeg"),
     question: `Sea un computador con las siguientes características:
 
 - Las direcciones de memoria y las palabras son de 64 bits.
@@ -226,7 +231,7 @@ d) Con $M = 2^{{11}} = 2048$ y $N = 2^4 = 16$, la tasa de fallos es del 100%. Co
     topic: "memoria-virtual",
     type: "text",
     points: 1,
-    explanationImage: memMap202107,
+    explanationImage: getImage(imageMap, "2021-07_q3_mem-map.jpeg"),
     question: `Considera un computador con un sistema de memoria virtual segmentado. El tamaño del espacio virtual es de 16 TB y el tamaño del espacio físico es de 4 GB. El tamaño máximo de segmento es de 2 GB. En un momento dado, los siguientes segmentos están residentes en memoria física:
 
 - Segmento 0x11, de 256 MB y que comienza en la dirección 0x00000000.
@@ -672,7 +677,7 @@ i) Se reduce el espacio para almacenar las tablas de páginas, manteniendo solo 
     topic: "raid",
     type: "text",
     points: 0.5,
-    explanationImage: raid10,
+    explanationImage: getImage(imageMap, "2023-01_q5_raid-10.jpeg"),
     question: `El almacenamiento secundario de este sistema está configurado en RAID 1+0 para incrementar la seguridad de la información.`,
     subquestions: [
       `¿Cuántos discos reales tiene el sistema para la capacidad neta de 8 TiB?`,

@@ -1,6 +1,5 @@
 import { LangLink as Link } from "../lib/lang-link";
 import type { SubjectMeta } from "../data/types";
-import { getAllQuestions } from "../subjects";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
@@ -11,7 +10,6 @@ interface SubjectCardProps {
 
 export default function SubjectCard({ subject }: SubjectCardProps) {
   const t = useT();
-  const qs = getAllQuestions(subject.id);
 
   return (
     <Link
@@ -34,7 +32,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       <p className="text-sm text-fg-muted mb-4">{subject.university}</p>
       <div className="text-xs text-fg-muted flex items-center gap-2">
         <span>
-          {qs.length} {t.subjectCard.questions}
+          {subject.topics.length} {t.subjectCard.questions}
         </span>
         <span>&middot;</span>
         <span>

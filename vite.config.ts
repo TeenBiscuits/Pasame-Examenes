@@ -5,7 +5,14 @@ import { imagetools } from "vite-imagetools";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), imagetools()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    imagetools({
+      defaultDirectives: () =>
+        new URLSearchParams("w=400;800;1200&format=avif;webp;png"),
+    }),
+  ],
   define: {
     __VERCEL_PRODUCTION__: JSON.stringify(
       process.env.VERCEL_ENV === "production",

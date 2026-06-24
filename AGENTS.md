@@ -146,8 +146,8 @@ export const questions: Question[] = [
 **Required fields:** `id`, `exam`, `topic`, `type`, `points`, `question`, `correctAnswer`.
 **Optional fields:** `explanation` (required for `text`), `image`, `explanationImage`, `table`, `subquestions`, `options` (required for `mc`), `repeated`.
 
-- `image?: Picture | string` — imported image shown in the question body. Use vite-imagetools: `import myImage from "./assets/figure.png?w=400;800;1200&format=avif;webp;png&as=picture"`. For JPEG: use `jpeg` instead of `png`. For broken/corrupt images, use a plain import without query params.
-- `explanationImage?: Picture | string` — image shown inside the collapsible solution panel (for all question types: mc, text, matching). Same import format as `image`.
+- `image?: Picture | string` — imported image shown in the question body. Use the auto-glob pattern (see below).
+- `explanationImage?: Picture | string` — image shown inside the collapsible solution panel (for all question types: mc, text, matching). Same format as `image`.
 - `table?: { headers: string[], rows: string[][] }` — data table
 - `subquestions?: string[]` — list of sub-question text
 - `options?: string[]` — required for `mc` type
@@ -171,6 +171,32 @@ print(foo())
 
 Hint: remember that \`foo()\` calls the function.`,
 ```
+
+## Image Imports
+
+Images in `src/subjects/{subject-id}/assets/` are auto-discovered via `import.meta.glob`. At the top of `questions.ts` add:
+
+```ts
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
+
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+) as ImageMap;
+```
+
+Then reference images by filename:
+
+```ts
+{
+  image: getImage(imageMap, "figure-1.png"),
+  explanationImage: getImage(imageMap, "solution-1.png"),
+}
+```
+
+No query strings needed — the glob query handles optimization automatically.
 
 ## Extracting Questions from Exam PDFs
 

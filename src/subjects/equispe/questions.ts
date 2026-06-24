@@ -1,5 +1,12 @@
 import type { Question } from "../../data/types";
-import simplex2026 from "./assets/simplex-2026.jpeg?w=400;800;1200&format=avif;webp;jpeg&as=picture";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
+
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+) as ImageMap;
 
 export const questions: Question[] = [
   // ============================================================
@@ -140,7 +147,7 @@ export const questions: Question[] = [
     points: 3,
     question:
       "Estase decidindo cantos consultores junior (x₁) e cantos consultores senior (x₂) se poden contratar para un novo proxecto, co fin de obter un estándar de calidade máximo (z). Os primeiros supoñen menor coste pero teñen menos experiencia. O orzamento do proxecto está limitado.\n\nEstá a solución óptima no seguinte desenvolvemento? Por que? (En caso afirmativo, indíquese cal é e, en caso contrario, indíquese como continuaría o algoritmo)",
-    image: simplex2026,
+    image: getImage(imageMap, "simplex-2026.jpeg"),
     correctAnswer:
       "Para determinar se a táboa actual é óptima, hai que comprobar se todos os coeficientes da fila z (custos reducidos) son ≤ 0 nun problema de maximización (ou ≥ 0 en minimización). Se hai algún coeficiente positivo na fila z, a solución non é óptima. Nese caso, a variable con coeficiente máis positivo entra na base, e aplícase a regra do cociente mínimo para determinar a variable saínte. Se todos os coeficientes da fila z son ≤ 0, a solución actual é óptima e lese directamente da columna de valores das variables básicas.",
     explanation:
