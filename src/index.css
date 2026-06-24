@@ -28,6 +28,11 @@ body {
   --color-accent-border: #bbf7d0;
   --color-code: #f3f4f6;
   --color-code-block: #111827;
+  /* Contribute button */
+  --color-contribute-bg: #eff6ff;
+  --color-contribute-border: #93c5fd;
+  --color-contribute-hover-bg: #dbeafe;
+  --color-contribute-hover-border: #60a5fa;
   /* Topic card colors */
   --color-t-blue-bg: #eff6ff;
   --color-t-blue-border: #bfdbfe;
@@ -73,6 +78,11 @@ html[data-theme="dark"] {
   --color-accent-border: #166534;
   --color-code: #374151;
   --color-code-block: #030712;
+  /* Contribute button */
+  --color-contribute-bg: #172554;
+  --color-contribute-border: #1e3a8a;
+  --color-contribute-hover-bg: #1e3a8a;
+  --color-contribute-hover-border: #2563eb;
   /* Topic cards – darker saturated shades */
   --color-t-blue-bg: #172554;
   --color-t-blue-border: #1e3a8a;
@@ -135,6 +145,11 @@ html[data-theme="catppuccin"] {
   --color-accent-border: #45475a;
   --color-code: #313244;
   --color-code-block: #11111b;
+  /* Contribute button */
+  --color-contribute-bg: #313244;
+  --color-contribute-border: #45475a;
+  --color-contribute-hover-bg: #45475a;
+  --color-contribute-hover-border: #89b4fa;
   /* Topic cards – catppuccin palette */
   --color-t-blue-bg: #313244;
   --color-t-blue-border: #45475a;
@@ -181,6 +196,11 @@ html[data-theme="catppuccin"] {
     --color-accent-border: #166534;
     --color-code: #374151;
     --color-code-block: #030712;
+    /* Contribute button */
+    --color-contribute-bg: #172554;
+    --color-contribute-border: #1e3a8a;
+    --color-contribute-hover-bg: #1e3a8a;
+    --color-contribute-hover-border: #2563eb;
     /* Topic cards */
     --color-t-blue-bg: #172554;
     --color-t-blue-border: #1e3a8a;

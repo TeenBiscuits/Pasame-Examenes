@@ -99,7 +99,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("add_subject_contribute")}
-            className="flex items-center gap-3 p-3 rounded-xl border-2 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:border-blue-400 transition-colors cursor-pointer text-left no-underline text-inherit"
+            className="flex items-center gap-3 p-3 rounded-xl border-2 border-contribute-border bg-contribute-bg hover:bg-contribute-hover-bg hover:border-contribute-hover-border transition-colors cursor-pointer text-left no-underline text-inherit"
           >
             <span className="text-xl">🚀</span>
             <div>
