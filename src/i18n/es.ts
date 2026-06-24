@@ -92,8 +92,6 @@ export const es: Translations = {
     correct_: "Correcto",
     reportIssue: "Reportar error",
     repeated: "Repetida",
-    noModelSolution: "No hay solución modelo disponible.",
-    noAnswerKey: "No hay clave de respuestas disponible.",
   },
   subjectCard: {
     questions: "preguntas",
