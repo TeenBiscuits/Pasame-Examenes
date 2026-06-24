@@ -191,14 +191,6 @@ export default function PracticeTopic() {
     };
   }, [questions]);
 
-  const currentQuestion = questions[currentIndex];
-
-  const examDate = useMemo(() => {
-    if (!subject || currentQuestion.exam === "both") return undefined;
-    const exam = subject.exams.find((e) => e.year === currentQuestion.exam);
-    return exam?.date || exam?.title;
-  }, [subject, currentQuestion.exam]);
-
   const handleAnswer = useCallback((questionId: string, answer: string) => {
     setAnswers((prev) => ({ ...prev, [questionId]: answer }));
   }, []);
@@ -266,6 +258,14 @@ export default function PracticeTopic() {
       return next;
     });
   };
+
+  const currentQuestion = questions[currentIndex];
+
+  const examDate = useMemo(() => {
+    if (currentQuestion?.exam === "both") return undefined;
+    const exam = currentQuestion ? subject?.exams.find((e) => e.year === currentQuestion.exam) : undefined;
+    return exam?.date || exam?.title;
+  }, [subject, currentQuestion]);
 
   if (questions.length === 0 || !subject) {
     return (
