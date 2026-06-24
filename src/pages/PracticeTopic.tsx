@@ -8,6 +8,7 @@ import {
 } from "../subjects";
 import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
+import { gradeQuestion } from "../lib/grading";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -16,35 +17,6 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 
 const getNow = () => Date.now();
-
-function gradeQuestion(
-  question: Question,
-  answer: string,
-  selfGrade?: "correct" | "incorrect",
-): number {
-  if (!answer || answer.trim() === "") return 0;
-  if (question.type === "mc") {
-    return answer === question.correctAnswer ? question.points : 0;
-  }
-  if (question.type === "matching") {
-    try {
-      const user = JSON.parse(answer) as Record<string, string>;
-      const correct = question.correctAnswer as Record<string, string>;
-      const items = Object.keys(correct);
-      let correctCount = 0;
-      for (const item of items) {
-        if (user[item] === correct[item]) correctCount++;
-      }
-      return Math.round((correctCount / items.length) * question.points);
-    } catch {
-      return 0;
-    }
-  }
-  if (question.type === "text") {
-    return selfGrade === "correct" ? question.points : 0;
-  }
-  return 0;
-}
 
 export default function PracticeTopic() {
   const { subjectId, topic } = useParams<{
