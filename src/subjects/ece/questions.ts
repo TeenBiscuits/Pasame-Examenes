@@ -10,7 +10,7 @@ export const questions: Question[] = [
     id: "2021-01_q1",
     exam: "2021-01",
     topic: "segmentacion",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `Un procesador implementa un camino de datos segmentado con 10 etapas. Cada una de las etapas se completa en un ciclo de reloj. En este procesador todas las instrucciones pasan por todas las etapas, y las instrucciones de salto condicional (bne, beq) son las únicas que pueden provocar un riesgo. Cuando una instrucción de salto condicional termina de ejecutar la etapa 1, el *pipeline* se bloquea hasta que se evalúa la condición de salto.
 
@@ -44,7 +44,7 @@ c) ■ Tiempo de ejecución no sirve (el nuevo código tarda más ciclos).
     id: "2021-01_q2",
     exam: "2021-01",
     topic: "cache",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `Los códigos de tipo "streaming", entre los que se encuentran los reproductores de vídeo o audio, se caracterizan por consumir grandes cantidades de datos, pero no reusarlos. Considérese el siguiente código:
 
@@ -87,7 +87,7 @@ El mejor tamaño de línea es 8B: el incremento de tamaño no mejora la tasa de 
     id: "2021-01_q3",
     exam: "2021-01",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `Considera un computador con un sistema de memoria virtual paginado, una TLB, una única caché y que soporta varios procesos. La memoria es direccionable a nivel de byte y el tamaño del espacio virtual es de 256 TB. La TLB tiene 128 entradas y es totalmente asociativa. La caché, de 4 MB, es asociativa por conjuntos de 8 vías y el tamaño de línea es de 64 B.`,
     subquestions: [
@@ -121,7 +121,7 @@ c) ■ VERDADERO. Al aumentar el tamaño de página se reduce el número de pág
     id: "2021-01_q4",
     exam: "2021-01",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 1,
     explanationImage: busAsync202101,
     question: `Sea un computador con las siguientes características:
@@ -152,7 +152,7 @@ c) Con 1000€ y discos de 100€ (256 GB), se pueden comprar 10 discos. Como lo
     id: "2021-07_q1",
     exam: "2021-07",
     topic: "segmentacion",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `A continuación se muestra un **fragmento** del diagrama multiciclo que resulta de la ejecución de un código en un procesador MIPS de 5 etapas como el estudiado en clase. En este diagrama no se señalan explícitamente los riesgos ni las anticipaciones. En el código existen instrucciones anteriores y posteriores a este fragmento que desconocemos.
 
@@ -188,7 +188,7 @@ c) Las instrucciones 1, 2 y 4 se podrían mover "desde destino de salto" con mod
     id: "2021-07_q2",
     exam: "2021-07",
     topic: "cache",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `Un computador dispone de una caché de un único nivel asociativa por conjuntos de 4 vías, de 64 kB en total, con tamaño de línea de 16 bytes.
 
@@ -224,7 +224,7 @@ d) Con $M = 2^{{11}} = 2048$ y $N = 2^4 = 16$, la tasa de fallos es del 100%. Co
     id: "2021-07_q3",
     exam: "2021-07",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 1,
     explanationImage: memMap202107,
     question: `Considera un computador con un sistema de memoria virtual segmentado. El tamaño del espacio virtual es de 16 TB y el tamaño del espacio físico es de 4 GB. El tamaño máximo de segmento es de 2 GB. En un momento dado, los siguientes segmentos están residentes en memoria física:
@@ -271,7 +271,7 @@ Sí presenta fragmentación externa: es común que queden espacios libres peque�
     id: "2021-07_q4",
     exam: "2021-07",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `Sea un computador con las siguientes características:
 
@@ -297,7 +297,7 @@ b) RAID 4, 5 y 6 necesitan 1, 1 y 2 discos extra respectivamente. RAID 4 tiene c
     id: "2022-01_q1",
     exam: "2022-01",
     topic: "segmentacion",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `El siguiente código se ejecuta en un procesador MIPS de 5 etapas como el estudiado en clase (IF, ID, EX, MEM, WB). Este procesador cuenta con una unidad de detección de riesgos en la etapa ID y una unidad de anticipación en la etapa EX. El salto se decide en la etapa ID y se utiliza una técnica de predicción de salto.
 
@@ -344,7 +344,7 @@ d) ■ IF: No tiene sentido, no se ha decodificado la instrucción.
     id: "2022-01_q2",
     exam: "2022-01",
     topic: "cache",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `Una computadora dispone de un sistema de memoria cache de dos niveles. El primero nivel tiene un tiempo de acierto de 1 ciclo, mientras que el segundo nivel tiene una penalización por fallo de 50 ciclos. El tamaño de línea, tanto a nivel de cache como de memoria principal, es de 16 bytes. El tamaño de palabra es de 4 bytes. Considere el siguiente código:
 
@@ -378,7 +378,7 @@ d) En cada acceso se cargan 4 palabras (16B) desde MP, suficientes para 2 iterac
     id: "2022-01_q3",
     exam: "2022-01",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `Considera un sistema de memoria virtual paginado en 2 niveles. El tamaño del espacio virtual es de 256 TiB y el del espacio físico es de 4 GiB. El tamaño de página es de 64 KiB y se dispone de una TLB totalmente asociativa de 512 entradas. Las tablas de páginas de ambos niveles tienen el mismo número de entradas y la misma estructura. Cada entrada contiene, además del bit de residencia, 7 bits de control.`,
     subquestions: [
@@ -410,7 +410,7 @@ d) $|C| = 8\ MiB = 2^{{23}}B$, $|l| = 64B$, #líneas $= 2^{{17}}$, #conjuntos $=
     id: "2022-01_q4",
     exam: "2022-01",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 1,
     question: `Tenemos un sistema con memoria virtual de páginas de 2 kiB que conecta la memoria principal con el almacenamiento secundario mediante un bus síncrono de 128 bits a 100 MHz. Las transferencias de las páginas están gestionadas por una DMA a través de este bus en bloques del tamaño de la anchura del bus, necesitando 280 ns para la lectura del primer bloque y 100 ns para el resto en una operación de lectura de una página. Tanto el envío de 128 bits como el de la dirección requieren un ciclo. Las transferencias pueden solaparse con la lectura de los siguientes. La DMA realiza la lectura de una página en una única transacción.
 
@@ -443,7 +443,7 @@ d) RAID 5 con 5 discos. Para mayor fiabilidad, de distintas series: 450+490+440+
     id: "2022-07_q1",
     exam: "2022-07",
     topic: "segmentacion",
-    type: "calculation",
+    type: "text",
     points: 3,
     question: `El siguiente fragmento de código se ejecuta en un procesador segmentado de 5 etapas: IF, ID, EX, MEM e WB. En ninguna de las etapas pueden coincidir dos instrucciones, aunque utilicen bancos de registros diferentes. El procesador tiene una frecuencia de reloj de 2 GHz, unidad de detección de riesgos en ID y unidad de anticipación en EX. La ejecución de una suma en punto flotante tiene una latencia de 2 ciclos. El salto se decide en ID y se usa salto fijo no efectivo.
 
@@ -492,7 +492,7 @@ e) Instr 5 (addi $s3,$s3,-1) en el hueco de retardo, cambiando inmediato a 3: el
     id: "2022-07_q2",
     exam: "2022-07",
     topic: "cache",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Un computador tiene una memoria principal de 4 GiB y una memoria caché de 64 KiB con un tamaño de línea de 16 bytes. Estando la caché inicialmente vacía, se ejecuta un código que accede a determinadas direcciones de memoria en el orden indicado. Todos los accesos son de escritura, y la caché utiliza allocate-on-write.`,
     subquestions: [
@@ -530,7 +530,7 @@ c) $T_m = 1 + P_f \times (1/3) = 34 \Rightarrow P_f = 99$ ciclos. Tiempo acceso 
     id: "2022-07_q3",
     exam: "2022-07",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Supón que un sistema de memoria virtual paginada, que utiliza un esquema de traducción directa en un único nivel, tiene un espacio virtual de 256 TiB y un espacio físico de 64 GiB. El tamaño de página es 4 KiB y se dispone de una TLB totalmente asociativa de 512 entradas. El RBTP contiene 0x0 0000 0000. Cada entrada tiene bit de residencia (MSB), 7 bits de control y número de página física. El contenido del byte en la dirección física X es (X mod 256).`,
     subquestions: [
@@ -557,7 +557,7 @@ d) El tamaño de entrada debe ser múltiplo de 8 bits → eliminar 1 bit no redu
     id: "2022-07_q4",
     exam: "2022-07",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 0.6,
     question: `Tenemos un sistema con memoria virtual de páginas de 16 kiB que conecta la memoria principal con el almacenamiento secundario mediante un bus síncrono a 20 MHz. Las transacciones están gestionadas por una DMA en bloques del tamaño de la anchura del bus, necesitando 50 ns para la lectura de cada bloque. Tanto la transferencia de un bloque como el envío de la dirección requieren un ciclo. Las transferencias pueden solaparse con la lectura de los siguientes. La DMA realiza la lectura de una página en una única transacción.`,
     subquestions: [
@@ -580,7 +580,7 @@ b) $AB = 16\ kiB / (102,5 \times 10^{{-6}}\ s) \approx 160\ MB/s$.`,
     id: "2022-07_q5",
     exam: "2022-07",
     topic: "raid",
-    type: "calculation",
+    type: "text",
     points: 0.4,
     question: `Las siguientes afirmaciones contienen algún error. Corrígelas justificando la respuesta.`,
     subquestions: [
@@ -597,7 +597,7 @@ b) CORRECCIÓN: Las desventajas de los SSD son la menor capacidad y el mayor cos
     id: "2023-01_q3",
     exam: "2023-01",
     topic: "rendimiento",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Un núcleo de un procesador Intel Core i9-12900K trabaja a una frecuencia base de 4.0 GHz, y posee dos unidades de ejecución vectoriales AVX-2 capaces de ejecutar 8 operaciones en punto flotante por ciclo cada una.`,
     subquestions: [
@@ -626,7 +626,7 @@ c) 6,4 GFLOPS × 4 instr/FLOP = 25,6 × 10⁹ instr/s = 25600 MIPS.`,
     id: "2023-01_q4",
     exam: "2023-01",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `La CPU solicita los datos correspondientes a la dirección virtual 0x0121 27B4. En la entrada de la TP de primer nivel se encuentra 0xA274 14A0 y en la de segundo nivel 0x8002 4605.
 
@@ -670,7 +670,7 @@ i) Se reduce el espacio para almacenar las tablas de páginas, manteniendo solo 
     id: "2023-01_q5",
     exam: "2023-01",
     topic: "raid",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     explanationImage: raid10,
     question: `El almacenamiento secundario de este sistema está configurado en RAID 1+0 para incrementar la seguridad de la información.`,
@@ -691,7 +691,7 @@ c) RAID 6 con 8 discos de 2 TiB: doble paridad ocupa 2 discos → capacidad neta
     id: "2023-01_q6",
     exam: "2023-01",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `A través del bus indicado, la CPU solicita la transferencia de una página (4 kiB) a memoria física. En cada ciclo de reloj (frecuencia 1 GHz) se transmiten 64 bits o una dirección. El bus permite transacciones de 32 palabras, necesitando 100 ns para el acceso al primer bloque de 8 palabras y 30 ns para cada grupo adicional de 8 palabras. La transferencia puede solaparse con el acceso a los siguientes datos. Entre transacciones se espera 1 ciclo.`,
     subquestions: [
@@ -710,7 +710,7 @@ Latencia total = 16 × 200 = 3200 ns = 3,2 μs.`,
     id: "2023-07_q1",
     exam: "2023-07",
     topic: "rendimiento",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Un *benchmark* en un procesador determinado tarda 5 s en finalizar, con un total de $20 \times 10^9$ instrucciones ejecutadas. El 25% del tiempo se emplea en instrucciones de punto flotante.`,
     subquestions: [
@@ -731,7 +731,7 @@ $1,1 = \frac{{1}}{{0,75 + 0,25/A_{{PF}}}} \Rightarrow A_{{PF}} \approx 1,57$. Me
     id: "2023-07_q2",
     exam: "2023-07",
     topic: "segmentacion",
-    type: "calculation",
+    type: "text",
     points: 2,
     repeated: true,
     question: `El siguiente código se ejecuta en el procesador segmentado MIPS de 5 etapas: IF, ID, EX, MEM, WB. Salto decidido en ID, salto fijo no efectivo, detección de riesgos en ID, anticipación en EX. La suma FP requiere 3 ciclos y está segmentada. MEM y WB solo albergan una instrucción.
@@ -785,7 +785,7 @@ g) Con salto en ID: solo IF e ID. Con salto en EX: IF, ID, EX y MEM.`,
     id: "2023-07_q3",
     exam: "2023-07",
     topic: "cache",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Un sistema con 1 MiB de memoria principal incluye una caché L1 de 32 KiB, asociativa por conjuntos de 2 vías, con líneas de 16 B. Política de postescritura. Estando la caché vacía, se ejecuta:
 
@@ -824,7 +824,7 @@ f) Conflicto cuando #conjuntos baje a 0x40 → tamaño mín = 0x40×2×16 = 2 Ki
     id: "2023-07_q4",
     exam: "2023-07",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Un sistema con 64 GiB de MP ($2^{{36}}$B) y espacio virtual de 1 TiB ($2^{{40}}$B) paginado en 2 niveles. Páginas de 64 KiB ($2^{{16}}$B). Cada TP tiene 4096 entradas ($2^{{12}}$) de 4 bytes: MSB = residencia, LSB = PF. CPU solicita DV 0x01 F004 D38C. TP₁ = 0xA274 14A0, TP₂ = 0x8002 4605.`,
     subquestions: [
@@ -855,7 +855,7 @@ f) L1: despl 6b, índice 6b (64 conjuntos). 6+6=12 ≤ Δ(16) → SÍ es posible
     id: "2023-07_q5",
     exam: "2023-07",
     topic: "raid",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     repeated: true,
     question: `Disponemos de 4 discos de 1 TB en configuración RAID 0.`,
@@ -873,7 +873,7 @@ b) RAID 5 distribuye la paridad evitando el cuello de botella del disco de parid
     id: "2023-07_q6",
     exam: "2023-07",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Sea un computador con: sistema de memoria y bus que soporta bloques de 64 palabras de 32 bits; bus síncrono de 64 bits a 2 GHz (1 ciclo para transferencia de 64 bits o envío de dirección); tiempo de acceso a memoria para cada 4 palabras = 1 ns; transferencias y accesos solapables; bus disponible antes de cada acceso.
 
@@ -891,7 +891,7 @@ AB: $(1024\times4)/(280\times10^{{-9}}) = 14,63\ GB/s$.`,
     id: "2024-01_q1",
     exam: "2024-01",
     topic: "rendimiento",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `M1 y M2 son dos máquinas con el mismo repertorio de instrucciones y el mismo compilador. Hay 4 clases de instrucciones (A, B, C, D). M1: 500 MHz, M2: 750 MHz.
 
@@ -915,7 +915,7 @@ b) $\frac{{2,5}}{{F1}} = \frac{{3}}{{750M}} \Rightarrow F1 = 625\ MHz$.`,
     id: "2024-01_q2",
     exam: "2024-01",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Considera un computador con memoria virtual paginada, TLB de 8 entradas y caché de 2 KiB ($2^{{11}}$B) asociativa por conjuntos de 4 vías con línea de 16 bytes. Espacio virtual: 512 MiB ($2^{{29}}$B). Páginas: 256 bytes ($2^8$B). Cada entrada de TP ocupa 2 bytes: 1 bit residencia + número PF.`,
     subquestions: [
@@ -972,7 +972,7 @@ g) TLB: PV=0x11645 | PF=0x7F45.`,
     id: "2024-01_q4",
     exam: "2024-01",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Sistema: bloques de 64 palabras de 64 bits; bus síncrono 128 bits a 4 GHz; acceso: 8 primeras palabras 10 ns, cada grupo adicional de 8 palabras 2 ns; transferencias y accesos solapables; sin esperas entre transacciones.
 
@@ -989,7 +989,7 @@ AB: $(1024\times8)/(404\times10^{{-9}}) = 20,28\ GB/s$.`,
     id: "2024-07_q1",
     exam: "2024-07",
     topic: "segmentacion",
-    type: "calculation",
+    type: "text",
     points: 2,
     repeated: true,
     question: `Código en procesador segmentado 5 etapas (IF,ID,EX,MEM,WB). Saltos en ID con fijo no efectivo. Detección en ID, anticipación en EX. Suma FP segmentada: 3 ciclos. MEM/WB: 1 instrucción.
@@ -1031,7 +1031,7 @@ f) Ciclo 5: WB de addi (RegWrite), MEM de lwc1 (MemRead).`,
     id: "2024-07_q2",
     exam: "2024-07",
     topic: "cache",
-    type: "calculation",
+    type: "text",
     points: 2,
     repeated: true,
     question: `MP 1 MiB, caché asociativa 2 vías, 512 B, línea 16 B, LRU. Write-back, write-allocate. A[32][64] desde 0x0A000, int=4B. Escalares en registros.
@@ -1065,7 +1065,7 @@ e) i. FALSO: víctima reduce TMA pero NO tasa de fallos. ii. VERDADERO: índice 
     id: "2024-07_q3",
     exam: "2024-07",
     topic: "rendimiento",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Programa: $10^9$ instr, 1,4 s. 30% sumas doble precisión (4 ciclos), 10% E/S (10 ciclos), resto enteras (1 ciclo).`,
     subquestions: [
@@ -1091,7 +1091,7 @@ e) Mediana: 1,3 s. Ratio = $24/1,3 = 18,46$.`,
     id: "2024-07_q4",
     exam: "2024-07",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Computador con 1 GiB ($2^{{30}}$B) MP, memoria virtual paginada en 2 niveles. Páginas 4 KiB ($2^{{12}}$B). Cada TP ocupa 1 página. Entrada: 1b R + 1b mod + 12b control + PF.`,
     subquestions: [
@@ -1117,7 +1117,7 @@ e) Ventaja: acceso a caché sin traducción previa. Inconveniente: necesita meca
     id: "2024-07_q5",
     exam: "2024-07",
     topic: "raid",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     repeated: true,
     question: `Completa correctamente las siguientes afirmaciones:`,
@@ -1136,7 +1136,7 @@ e) Ventaja: acceso a caché sin traducción previa. Inconveniente: necesita meca
     id: "2024-07_q6",
     exam: "2024-07",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Sistema: páginas 4 KiB, bus síncrono 64 bits a 50 MHz. DMA: transacciones de 128 palabras (8B/p). 1ª palabra: 300 ns, resto: 150 ns. Envío/dirección: 1 ciclo. Transferencias solapables. Entre transacciones: 2 ciclos de espera.
 
@@ -1154,7 +1154,7 @@ AB: $4\ KiB/77680ns \approx 52,7\ MB/s$.`,
     id: "2025-01_q1",
     exam: "2025-01",
     topic: "rendimiento",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     repeated: true,
     question: `M1 y M2 son dos máquinas con el mismo repertorio de instrucciones y el mismo compilador. Hay 5 clases de instrucciones (A, B, C, D y E). M1: 5 GHz, M2: 4.5 GHz.
@@ -1186,7 +1186,7 @@ Amdahl: $1,073 = \frac{{1}}{{0,768 + 0,232/x}} \Rightarrow x = 1,415$. Mejorar F
     id: "2025-01_q2",
     exam: "2025-01",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Computador con memoria virtual paginada: páginas 4 KiB ($2^{{12}}$), traducción en 2 niveles. Espacio virtual: 16 GiB ($2^{{34}}$). Espacio físico: 64 MiB ($2^{{26}}$). Cada TP ocupa exactamente una página. Cada entrada: bit de validez + bit de modificación + número PF. TLB de 4 entradas.
 
@@ -1225,7 +1225,7 @@ f) Cada proceso: 16 GiB de espacio virtual independiente. Los 64 MiB de espacio 
     id: "2025-01_q3",
     exam: "2025-01",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Computador con: palabras de 64 bits; sistema que soporta bloques de hasta 16 palabras; bus síncrono de 128 bits a 100 MHz (1 ciclo para transferencia o dirección); acceso: 4 primeras palabras 80 ns, cada grupo adicional de 4 palabras 30 ns; transferencias y accesos solapables; sin esperas entre transacciones; páginas de memoria virtual de 1 KiB.
 
@@ -1242,7 +1242,7 @@ AB: $1\ KiB/1,6\mu s = 640\ MB/s$.`,
     id: "2025-01_q4",
     exam: "2025-01",
     topic: "raid",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     repeated: true,
     question: `Contesta las siguientes preguntas:`,
@@ -1260,7 +1260,7 @@ b) Mayor velocidad de transferencia, menor latencia, tiempo de acceso uniforme, 
     id: "2025-07_q1",
     exam: "2025-07",
     topic: "rendimiento",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     repeated: true,
     question: `Un programa consta de $10^9$ instrucciones. El 60% son operaciones FP que tardan 10 ciclos, las restantes 5 ciclos. Se ejecuta en S1 (multiciclo a 2 GHz) y S2 (segmentado a 500 MHz). En S2 el programa tarda 3 segundos.`,
@@ -1281,7 +1281,7 @@ c) $A = 4/3$. $f_m = 6/8 = 3/4$. $4/3 = 1/(1-3/4 + (3/4)/A_m) \Rightarrow A_m = 
     id: "2025-07_q2",
     exam: "2025-07",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Computador con 32 KiB ($2^{{15}}$B) MP y 1 MiB ($2^{{20}}$B) memoria virtual paginada en 2 niveles. 128 páginas físicas ($2^7$). Cada TP ocupa exactamente 1 página. Cada entrada: 1b R + 1b mod + 23b control + PF.`,
     subquestions: [
@@ -1315,7 +1315,7 @@ e) PV1=4b, PV2=6b. 16 TP₂ de 64 entradas cada una (completamente llenas, sin f
     id: "2025-07_q3",
     exam: "2025-07",
     topic: "raid",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     repeated: true,
     question: `Tenemos discos de 2 TiB y queremos RAID con capacidad neta de 10 TiB. Razona la capacidad total de RAID 5 y RAID 6. Indica dos características comunes y una diferencia.`,
@@ -1332,7 +1332,7 @@ Diferencia: RAID 5 usa 1 función de redundancia (tolera 1 fallo), RAID 6 usa 2 
     id: "2025-07_q4",
     exam: "2025-07",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Sistema con páginas de 1 KiB, bus síncrono de 128 bits a 1 GHz. DMA en bloques del ancho del bus: primer bloque 300 ns, resto 10 ns. Una transacción por página. Envío de 128 bits o dirección: 1 ciclo. Transferencias solapables con lecturas. Al finalizar, CPU atiende interrupción: 17 instrucciones, 4 ciclos cada una, CPU a 1 GHz.
 
@@ -1348,7 +1348,7 @@ AB: $1\ KiB/1000ns = 1\ GB/s$.`,
     id: "2025-07_q5",
     exam: "2025-07",
     topic: "segmentacion",
-    type: "calculation",
+    type: "text",
     points: 2,
     repeated: true,
     question: `Código en procesador segmentado 5 etapas. Saltos en ID con fijo no efectivo. Detección en ID, anticipación en EX. Suma FP segmentada: 3 ciclos. MEM/WB: 1 instrucción.
@@ -1390,7 +1390,7 @@ f) Ciclo 8: WB de add (RegWrite), MEM de sw (MemWrite).`,
     id: "2025-07_q6",
     exam: "2025-07",
     topic: "cache",
-    type: "calculation",
+    type: "text",
     points: 2,
     repeated: true,
     question: `Computador con MP de 256 KiB y caché de correspondencia directa de 1024 B con líneas de 4 bytes. Write-back y write-allocate. Matriz A[7][1024] desde 0x06000, int=4B. Escalares en registros.
@@ -1425,7 +1425,7 @@ ii. FALSO: cualquier fallo (forzoso, capacidad o conflicto) que expulse una lín
     id: "2026-01_q1",
     exam: "2026-01",
     topic: "rendimiento",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `El Intel Xeon 6980P tiene 128 núcleos a 2 GHz. Cada núcleo: 2 unidades FP de 512 bits. Cada instrucción FP: 16 flops doble precisión/ciclo o 32 flops simple precisión/ciclo.`,
     subquestions: [
@@ -1445,7 +1445,7 @@ c) $32G/16 = 2\ Ginst_{{FP}}/s$. $2\times3 = 6\ Ginst/s$. $IPC = 6/2 = 3$.`,
     id: "2026-01_q2",
     exam: "2026-01",
     topic: "memoria-virtual",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Computador con 16 MiB ($2^{{24}}$) MP. Memoria virtual paginada con direcciones de 26 bits, traducción en 2 niveles. Páginas de 256B. TP₁ ocupa exactamente 1 página. Cada entrada: 32 bits (1b R + control + PF).
 
@@ -1481,7 +1481,7 @@ g) Fallo de página: el SO transfiere los datos desde almacenamiento secundario 
     id: "2026-01_q3",
     exam: "2026-01",
     topic: "buses",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `DMA que gestiona transferencia de páginas entre disco y memoria. Palabras de 64 bits. Sistema soporta bloques de hasta 32 palabras. Bus síncrono de 64 bits a 500 MHz (1 ciclo para transferencia o dirección). Acceso: 8 primeras palabras 62 ns, cada grupo adicional de 8 palabras 40 ns. Transferencias y accesos solapables. DMA por ráfagas: 40 ciclos libres entre transacciones. Páginas de memoria virtual de 4 KiB.`,
     subquestions: [

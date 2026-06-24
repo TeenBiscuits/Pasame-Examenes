@@ -66,7 +66,6 @@ function getQuestionTypeLabel(type: QuestionType): string {
   const map: Record<QuestionType, string> = {
     mc: "Multiple Choice (mc)",
     text: "Open Text (text)",
-    calculation: "Calculation (calculation)",
     matching: "Matching (matching)",
   };
   return map[type];
@@ -143,7 +142,8 @@ function MCQuestion({
           </button>
         );
       })}
-      {showResult && (
+      {showResult &&
+        (question.explanation != null || question.explanationImage) && (
         <div className="mt-3 space-y-3">
           <button
             type="button"
@@ -164,9 +164,11 @@ function MCQuestion({
           </button>
           {isOpen && (
             <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              <Markdown className="text-xs text-fg-muted italic">
-                {question.explanation}
-              </Markdown>
+              {question.explanation != null && (
+                <Markdown className="text-xs text-fg-muted italic">
+                  {question.explanation}
+                </Markdown>
+              )}
               {question.explanationImage && (
                 <SolutionImage image={question.explanationImage} />
               )}
@@ -234,9 +236,11 @@ function TextQuestion({
                   ? question.correctAnswer
                   : JSON.stringify(question.correctAnswer, null, 2)}
               </Markdown>
-              <Markdown className="text-xs text-fg-muted italic">
-                {question.explanation}
-              </Markdown>
+              {question.explanation != null && (
+                <Markdown className="text-xs text-fg-muted italic">
+                  {question.explanation}
+                </Markdown>
+              )}
               {question.explanationImage && (
                 <SolutionImage image={question.explanationImage} />
               )}
@@ -384,7 +388,8 @@ function MatchingQuestion({
           </div>
         );
       })}
-      {showResult && (
+      {showResult &&
+        (question.explanation != null || question.explanationImage) && (
         <div className="mt-3 space-y-3">
           <button
             type="button"
@@ -405,9 +410,11 @@ function MatchingQuestion({
           </button>
           {isOpen && (
             <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              <Markdown className="text-xs text-fg-muted italic">
-                {question.explanation}
-              </Markdown>
+              {question.explanation != null && (
+                <Markdown className="text-xs text-fg-muted italic">
+                  {question.explanation}
+                </Markdown>
+              )}
               {question.explanationImage && (
                 <SolutionImage image={question.explanationImage} />
               )}
@@ -534,7 +541,7 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
       )}
       {question.type === "mc" && <MCQuestion {...props} />}
-      {(question.type === "text" || question.type === "calculation") && (
+      {question.type === "text" && (
         <TextQuestion {...props} />
       )}
       {question.type === "matching" && <MatchingQuestion {...props} />}

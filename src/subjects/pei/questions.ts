@@ -10,7 +10,7 @@ export const questions: Question[] = [
     id: "rec_q1",
     exam: "recopilacion",
     topic: "pandas",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     question: `Se han cargado los datos de una clasificación de baloncesto en un DataFrame de Pandas con columnas: Equipo, PJ, PG, PP, PF, PC. Responde a las siguientes preguntas utilizando Pandas:
 
@@ -31,7 +31,7 @@ export const questions: Question[] = [
     id: "rec_q2",
     exam: "recopilacion",
     topic: "pandas",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     question: `Un DataFrame \`df\` contiene datos de ventas de una librería con columnas: Fecha, Libro, Categoría, Unidades, Precio Unitario. Escribe comandos Pandas para:
 
@@ -52,7 +52,7 @@ export const questions: Question[] = [
     id: "rec_q3",
     exam: "recopilacion",
     topic: "pandas",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     question: `Un DataFrame de Pandas representa los ingresos de caja de una cafetería con columnas: Nfactura, Nlinea, Producto, Cantidad, Precio unitario. El índice jerárquico está compuesto por (Nfactura, Nlinea).
 
@@ -71,7 +71,7 @@ export const questions: Question[] = [
     id: "rec_q4",
     exam: "recopilacion",
     topic: "pandas",
-    type: "calculation",
+    type: "text",
     points: 1.0,
     question: `Partiendo de un archivo con una tabla de clasificación de baloncesto en formato texto, y trabajando con Pandas:
 
@@ -92,7 +92,7 @@ export const questions: Question[] = [
     id: "rec_q5",
     exam: "recopilacion",
     topic: "pandas",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Escribe un documento JSON que almacene la información de la clasificación de dos equipos de una liga de baloncesto con los campos: posición, nombre, partidos jugados, ganados, perdidos, puntos a favor, puntos en contra, puntos totales y diferencia de puntos.`,
     correctAnswer: `\`\`\`json
@@ -132,7 +132,7 @@ export const questions: Question[] = [
     id: "rec_q6",
     exam: "recopilacion",
     topic: "pandas",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Escribe un fichero JSON que guarde de forma estructurada la siguiente información:
 
@@ -171,7 +171,7 @@ export const questions: Question[] = [
     id: "rec_q7",
     exam: "recopilacion",
     topic: "pandas",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     repeated: true,
     question: `Escribe un fichero estructurado en Python, utilizando diccionarios, que guarde la siguiente información:
@@ -209,7 +209,7 @@ jugadores = [
     id: "rec_q8",
     exam: "recopilacion",
     topic: "pandas",
-    type: "calculation",
+    type: "text",
     points: 0.75,
     question: `Una API educativa devuelve información de un curso con estudiantes y sus calificaciones. Escribe el comando \`print\` en Python que imprima la primera calificación del primer estudiante.
 
@@ -1053,7 +1053,7 @@ done
     id: "rec_q33",
     exam: "recopilacion",
     topic: "django-apis",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     question: `Completa el siguiente fragmento del \`urls.py\` de una aplicación Django:
 
@@ -1094,7 +1094,7 @@ urlpatterns = [
     id: "rec_q34",
     exam: "recopilacion",
     topic: "django-apis",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     question: `Dado el siguiente archivo \`urls.py\` de Django, escribe la URL completa que permitiría ver el perfil del usuario con ID 25:
 
@@ -1498,7 +1498,7 @@ dominios = list({email.split("@")[1] for email in emails})
     id: "rec_q52",
     exam: "recopilacion",
     topic: "conceptos",
-    type: "calculation",
+    type: "text",
     points: 0.5,
     question: `Un examen tipo test tiene las siguientes reglas de puntuación:
 - Cada respuesta correcta suma 0.2 puntos

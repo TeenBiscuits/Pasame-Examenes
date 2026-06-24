@@ -17,7 +17,6 @@ export const questions: Question[] = [
       "D. Todos los anteriores",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -54,7 +53,6 @@ export const questions: Question[] = [
       "D. p(t) = u(t-T) - u(T)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -71,7 +69,6 @@ export const questions: Question[] = [
       "D. Suma las versiones desplazadas del pulso escalón unidad con amplitud Ak",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -88,7 +85,6 @@ export const questions: Question[] = [
       "D. Un pulso cuadrado rasterizado",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -106,7 +102,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -124,7 +119,6 @@ export const questions: Question[] = [
       "D. Esto son dos señales continuas",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -141,7 +135,6 @@ export const questions: Question[] = [
       "D. x(t) = -Asin(2πft + φ)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -158,7 +151,6 @@ export const questions: Question[] = [
       "D. Todas las respuestas son correctas",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -175,7 +167,6 @@ export const questions: Question[] = [
       "D. a) y b)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -192,7 +183,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -210,7 +200,6 @@ export const questions: Question[] = [
       "D. Es una señal R o de persistencia",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -227,7 +216,6 @@ export const questions: Question[] = [
       "D. No es posible calcular la potencia con la energía",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -239,7 +227,6 @@ export const questions: Question[] = [
     question: "La potencia media de n periodos es...",
     options: ["A. independiente de n", "B. dependiente de n", "C. 0", "D. Inf"],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -256,7 +243,6 @@ export const questions: Question[] = [
       "D. Inf",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -291,7 +277,6 @@ export const questions: Question[] = [
       "D. La atenuación se mide como la diferencia entre la señal output y la señal input",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -308,7 +293,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -325,7 +309,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -342,7 +325,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -360,7 +342,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -378,7 +359,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -396,7 +376,6 @@ export const questions: Question[] = [
       "D. Ejemplo de malversación de datos",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -413,7 +392,6 @@ export const questions: Question[] = [
       "D. Pérdida de datos",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -430,7 +408,6 @@ export const questions: Question[] = [
       "D. a) y c)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -447,7 +424,6 @@ export const questions: Question[] = [
       "D. Todas las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -465,7 +441,6 @@ export const questions: Question[] = [
       "D. La convolución de un pulso unidad con respecto a un pulso cuadrado, ambos con la misma amplitud, siempre da el pulso cuadrado",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -483,7 +458,6 @@ export const questions: Question[] = [
       "D. La convolución de un pulso unidad t-t0 con respecto a un pulso cuadrado, ambos con la misma amplitud, siempre da el pulso cuadrado con desplazamiento",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -501,7 +475,6 @@ export const questions: Question[] = [
       "D. La convolución de un pulso cuadrado y un pulso unidad es posible y siempre da un trapecio",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -519,7 +492,6 @@ export const questions: Question[] = [
       "D. Detecta la señal entrante",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -536,7 +508,6 @@ export const questions: Question[] = [
       "D. Detecta la señal entrante",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -553,7 +524,6 @@ export const questions: Question[] = [
       "D. Detecta la señal entrante",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -570,7 +540,6 @@ export const questions: Question[] = [
       "D. Detecta la señal entrante",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -587,7 +556,6 @@ export const questions: Question[] = [
       "D. Todas las respuestas son correctas",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -605,7 +573,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -622,7 +589,6 @@ export const questions: Question[] = [
       "D. b) y c)",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -639,7 +605,6 @@ export const questions: Question[] = [
       "D. a) y b)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -656,7 +621,6 @@ export const questions: Question[] = [
       "D. Agitación de las moléculas de aire que ocasiona distorsión en la señal auditiva",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -690,7 +654,6 @@ export const questions: Question[] = [
       "D. Todas las opciones son correctas",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -707,7 +670,6 @@ export const questions: Question[] = [
       "D. b) y c)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -742,7 +704,6 @@ export const questions: Question[] = [
       "D. Todas las opciones son correctas",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -779,7 +740,6 @@ export const questions: Question[] = [
       "D. Ninguna de las opciones son correctas",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -796,7 +756,6 @@ export const questions: Question[] = [
       "D. Ninguna de las opciones son correctas",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -833,7 +792,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -850,7 +808,6 @@ export const questions: Question[] = [
       "D. Cualquier constante que multiplique a una señal en el dominio del tiempo es despreciable en el dominio de la frecuencia",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -867,7 +824,6 @@ export const questions: Question[] = [
       "D. Todas son verdaderas",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -885,7 +841,6 @@ export const questions: Question[] = [
       "D. Ninguna es verdadera",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -902,7 +857,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -920,7 +874,6 @@ export const questions: Question[] = [
       "D. Si Ts aumenta, mayor será vs y menor el BW",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -937,7 +890,6 @@ export const questions: Question[] = [
       "D. b) y la c)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -954,7 +906,6 @@ export const questions: Question[] = [
       "D. a) y la b)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -971,7 +922,6 @@ export const questions: Question[] = [
       "D. a) y la b)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -988,7 +938,6 @@ export const questions: Question[] = [
       "D. a) y b)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1005,7 +954,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1023,7 +971,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1040,7 +987,6 @@ export const questions: Question[] = [
       "D. La información se transporta en en la fase de la señal transmitida",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1058,7 +1004,6 @@ export const questions: Question[] = [
       "D. Tren de pulsos 12PAM con pulsos rectangulares",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1075,7 +1020,6 @@ export const questions: Question[] = [
       "D. La información se transporta en en la fase de la señal transmitida",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1092,7 +1036,6 @@ export const questions: Question[] = [
       "D. La información se transporta en en la fase de la señal transmitida",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1109,7 +1052,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1127,7 +1069,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1145,7 +1086,6 @@ export const questions: Question[] = [
       "D. Todas las anteriores",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1162,7 +1102,6 @@ export const questions: Question[] = [
       "D. Bytes-Secure Concurrency, es un método de codificación que repite el bit enviado por probabilidad del mismo",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -1179,7 +1118,6 @@ export const questions: Question[] = [
       "D. Mala codificación cuándo el canal no tiene errores, porque aumenta el tiempo de transmisión",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -1214,7 +1152,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1232,7 +1169,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1250,7 +1186,6 @@ export const questions: Question[] = [
       "D. a) y c)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1267,7 +1202,6 @@ export const questions: Question[] = [
       "D. d = (d(min) - 2 / 2)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1284,7 +1218,6 @@ export const questions: Question[] = [
       "D. d = (d(min) - 2 / 2)",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -1301,7 +1234,6 @@ export const questions: Question[] = [
       "D. a) y b)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1337,7 +1269,6 @@ export const questions: Question[] = [
       "D. La distancia mínima (= palabra con menor peso de",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1354,7 +1285,6 @@ export const questions: Question[] = [
       "D. Tabla que permite generar la matriz generadora de la matriz paridad de un código hamming",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1371,7 +1301,6 @@ export const questions: Question[] = [
       "D. Todas las anteriores",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1388,7 +1317,6 @@ export const questions: Question[] = [
       "D. Decodificamos la matriz paridad, obtenemos la matriz generadora, obtenemos el standard array, sacamos el síndrome necesario, sumamos a la palabra recibida para obtener la transmitida",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1405,7 +1333,6 @@ export const questions: Question[] = [
       "D. No, porque el uso de síndromes aumenta el tiempo de ejecución del codificador",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1439,7 +1366,6 @@ export const questions: Question[] = [
       "D. b) y c)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1456,7 +1382,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1474,7 +1399,6 @@ export const questions: Question[] = [
       "D. Todas las anteriores",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1491,7 +1415,6 @@ export const questions: Question[] = [
       "D. Todas las anteriores",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1509,7 +1432,6 @@ export const questions: Question[] = [
       "D. Turbo se usa en LTE, LDPC en 802.11. Ambos contemplan el uso de código convolucionales como transmisión",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1527,7 +1449,6 @@ export const questions: Question[] = [
       "D. Todas las opciones son falsas",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1544,7 +1465,6 @@ export const questions: Question[] = [
       "D. a) y c)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1561,7 +1481,6 @@ export const questions: Question[] = [
       "D. Tienen 2 canales de 20 MHz con solapamiento",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1595,7 +1514,6 @@ export const questions: Question[] = [
       "D. Ocupan un rango de 160MHz",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1612,7 +1530,6 @@ export const questions: Question[] = [
       "D. a) y b)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1647,7 +1564,6 @@ export const questions: Question[] = [
       "D. vb = 20Mb/s",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1664,7 +1580,6 @@ export const questions: Question[] = [
       "D. vb = 20Mb/s",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -1681,7 +1596,6 @@ export const questions: Question[] = [
       "D. Recomendación IEEE 802.11 para la codificación de mensajes en el espectro MCS",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1698,7 +1612,6 @@ export const questions: Question[] = [
       "D. Usa 8 antenas Tx, 8 flujos espaciales",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1715,7 +1628,6 @@ export const questions: Question[] = [
       "D. b) y c)",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -1732,7 +1644,6 @@ export const questions: Question[] = [
       "D. a) y b)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1749,7 +1660,6 @@ export const questions: Question[] = [
       "D. a) y b)",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1766,7 +1676,6 @@ export const questions: Question[] = [
       "D. No ocurre el problema del modo oculto con nodos equidistantes",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1783,7 +1692,6 @@ export const questions: Question[] = [
       "D. No ocurre el problema del modo expuesto con nodos equidistantes",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -1800,7 +1708,6 @@ export const questions: Question[] = [
       "D. a) y b)",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -1817,7 +1724,6 @@ export const questions: Question[] = [
       "D. Es posible CD",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1834,7 +1740,6 @@ export const questions: Question[] = [
       "D. CSMA/CD",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1851,7 +1756,6 @@ export const questions: Question[] = [
       "D. b) y c)",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1868,7 +1772,6 @@ export const questions: Question[] = [
       "D. Cuando llega a CW, se transmite el mensaje",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1885,7 +1788,6 @@ export const questions: Question[] = [
       "D. Un CW grande implica pequeños intervalos de espera, lo que disminuyendo el overhead",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1902,7 +1804,6 @@ export const questions: Question[] = [
       "D. Usa un CSMA/CA puro",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1919,7 +1820,6 @@ export const questions: Question[] = [
       "D. Todas las opciones",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -1937,7 +1837,6 @@ export const questions: Question[] = [
       "D. No evita estos problemas, pero disminuye su aparición",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -1955,7 +1854,6 @@ export const questions: Question[] = [
       "D. Solo puede existir colisiones CTS en el caso de nodo oculto",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -1972,7 +1870,6 @@ export const questions: Question[] = [
       "D. CS se lleva a cabo virtualmente pero NO físicamente",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -2007,7 +1904,6 @@ export const questions: Question[] = [
       "D. El CTS se envía justo al final del SIFS sin contención",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2024,7 +1920,6 @@ export const questions: Question[] = [
       "D. Los paquetes se retransmiten de manera automática en caso de errores de transmisión",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2041,7 +1936,6 @@ export const questions: Question[] = [
       "D. El threshold es el espacio entre envíos de paquete, condicionado por el tamaño del ACK enviado",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -2058,7 +1952,6 @@ export const questions: Question[] = [
       "D. Las colisiones solamente ocurren fuera de la transmisión de RTS",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -2075,7 +1968,6 @@ export const questions: Question[] = [
       "D. Ninguna de las ventajas especificadas son de RTS/CTS",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2092,7 +1984,6 @@ export const questions: Question[] = [
       "D. El fragmento inicial enviado es el que contiene la duración NAV",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -2109,7 +2000,6 @@ export const questions: Question[] = [
       "D. Un nodo puede apropiarse del canal durante un intervalo de tiempo si lo desea, TXOP",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2126,7 +2016,6 @@ export const questions: Question[] = [
       "D. Best Effort tiene menos prioridad que Background Data",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -2144,7 +2033,6 @@ export const questions: Question[] = [
       "D. TC más largo para paquetes de mayor prioridad",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2162,7 +2050,6 @@ export const questions: Question[] = [
       "D. Background tiene la misma prioridad que DCF",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -2180,7 +2067,6 @@ export const questions: Question[] = [
       "D. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2198,7 +2084,6 @@ export const questions: Question[] = [
       "D. Ninguna de las opciones",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2216,7 +2101,6 @@ export const questions: Question[] = [
       "D. No, porque CW(max,voz) > CW(max,vídeo), el número aleatorio que se genera para el paquete de vídeo es menor que para el paquete de voz",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2234,7 +2118,6 @@ export const questions: Question[] = [
       "D. Tiene el mismo throughput de datos y vídeos",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
 
   {
@@ -2252,7 +2135,6 @@ export const questions: Question[] = [
       "D. Tiene un retardo y jitter de la vídeo significativamente reducido",
     ],
     correctAnswer: "d",
-    explanation: "",
   },
   // Total: 109 questions
   {
@@ -2268,7 +2150,6 @@ export const questions: Question[] = [
       "C. Categoría 5e, Categoría 6, Categoría 6A, Categoría 7",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2285,7 +2166,6 @@ export const questions: Question[] = [
       "C. Categoría 5e, Categoría 6, Categoría 6A, Categoría 7",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2320,7 +2200,6 @@ export const questions: Question[] = [
       "C. Ningún cable puede tener pantalla interna y estar en par trenzado",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2336,7 +2215,6 @@ export const questions: Question[] = [
       "C. Usan Cat 6A o superior para la disipación térmica",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2403,7 +2281,6 @@ export const questions: Question[] = [
       "La distancia máxima sin repetidores que viaja un haz de luz en una monomodo es de",
     options: ["A. 100km", "B. 1000km", "C. 10km"],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2416,7 +2293,6 @@ export const questions: Question[] = [
       "La distancia máxima sin repetidores que viajan varios haces de luz en una multimodo es de",
     options: ["A. 550mts - 2km", "B. 2km", "C. 1km"],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2432,7 +2308,6 @@ export const questions: Question[] = [
       "C. LED o Laser, dependiendo la instalación",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2448,7 +2323,6 @@ export const questions: Question[] = [
       "C. LED o Laser, dependiendo la instalación",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2464,7 +2338,6 @@ export const questions: Question[] = [
       "C. Topología de estrella, un rack HDA en la planta de servidores con un rack principal con acceso exterior MDA",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2529,7 +2402,6 @@ export const questions: Question[] = [
       "C. Los terminales centrales a HDA, los centrales (no todos) a ZDA",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2546,7 +2418,6 @@ export const questions: Question[] = [
       "C. Campus (Server), Distribución (Horizontal), Acceso (Vertical)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2581,7 +2452,6 @@ export const questions: Question[] = [
       "C. Todas las anteriores",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2598,7 +2468,6 @@ export const questions: Question[] = [
       "C. Todas las respuestas son correctas",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2614,7 +2483,6 @@ export const questions: Question[] = [
       "C. Balancea la redundancia, enrutamiento entre VLANs y conectividad en ACLs",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2647,7 +2515,6 @@ export const questions: Question[] = [
       "C. Fibre Channel, FCoE, iSCSI",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2663,7 +2530,6 @@ export const questions: Question[] = [
       "C. Modo NAS, modo DAS",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2675,7 +2541,6 @@ export const questions: Question[] = [
     question: "La transferencia en modo fichero es de tipo",
     options: ["A. NAS", "B. DAS", "C. SAN"],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2687,7 +2552,6 @@ export const questions: Question[] = [
     question: "La transferencia en modo bloque es de tipo",
     options: ["A. NAS", "B. DAS-SAN", "C. SAN"],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2703,7 +2567,6 @@ export const questions: Question[] = [
       "C. Dificultad de implementación con diversos SO",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2719,7 +2582,6 @@ export const questions: Question[] = [
       "C. Mayor necesidad de abstracción",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2735,7 +2597,6 @@ export const questions: Question[] = [
       "C. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2751,7 +2612,6 @@ export const questions: Question[] = [
       "C. Ninguna de las anteriores",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2767,7 +2627,6 @@ export const questions: Question[] = [
       "C. Conjunto de bloques dentro de un volumen con un identificador único (WWPN) que puede servirse al host por FC o SCSI en formato THIN o THICK.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2783,7 +2642,6 @@ export const questions: Question[] = [
       "C. Conjunto de bloques dentro de un volumen con un identificador único (WWPN) que puede servirse al host por FC o SCSI en formato THIN o THICK.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2799,7 +2657,6 @@ export const questions: Question[] = [
       "C. Conjunto de bloques dentro de un volumen con un identificador único (WWPN) que puede servirse al host por FC o SCSI en formato THIN o THICK.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2816,7 +2673,6 @@ export const questions: Question[] = [
       "C. Tipo Direct y se denomina NAS",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2832,7 +2688,6 @@ export const questions: Question[] = [
       "C. Permite varios servidores a la vez",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2849,7 +2704,6 @@ export const questions: Question[] = [
       "C. Permite varios servidores a la vez",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2866,7 +2720,6 @@ export const questions: Question[] = [
       "C. Permite varios servidores a la vez",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2883,7 +2736,6 @@ export const questions: Question[] = [
       "C. Todas las opciones son correctas",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2900,7 +2752,6 @@ export const questions: Question[] = [
       "C. Usa protocolo NSS",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2917,7 +2768,6 @@ export const questions: Question[] = [
       "C. Todas las anteriores",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2933,7 +2783,6 @@ export const questions: Question[] = [
       "C. Todas las anteriores",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -2966,7 +2815,6 @@ export const questions: Question[] = [
       "C. Capa de protocolo de señalización, donde se convierten bloques de códigos en tramas, QoS y control de flujo",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -2982,7 +2830,6 @@ export const questions: Question[] = [
       "C. Capa de protocolo de señalización, donde se convierten bloques de códigos en tramas, QoS y control de flujo",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -2998,7 +2845,6 @@ export const questions: Question[] = [
       "C. Capa de protocolo de transmisión, donde se definen mecanismos de codificación y acceso al medio",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3014,7 +2860,6 @@ export const questions: Question[] = [
       "C. Capa de protocolo de transmisión, donde se definen mecanismos de codificación y acceso al medio",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -3046,7 +2891,6 @@ export const questions: Question[] = [
       "C. Es una de las técnicas implementadas por algoritmos de tolerancia a fallos",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3062,7 +2906,6 @@ export const questions: Question[] = [
       "C. Segmentación de switches, permitido en FC",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3078,7 +2921,6 @@ export const questions: Question[] = [
       "C. Todas las anteriores",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3128,7 +2970,6 @@ export const questions: Question[] = [
       "C. Se puede integrar fácilmente discos locales DAS y SAN, pero con SAN y recursos Cloud este protocolo no es el más óptimo",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3174,7 +3015,6 @@ export const questions: Question[] = [
     question: "Los discos SAS o SATA son",
     options: ["A. All-flash", "B. Híbridos", "C. Sólidos"],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -3191,7 +3031,6 @@ export const questions: Question[] = [
       "C. El sistema de almacenamiento no puede ofrecer funcionalidades o servicios, será ofrecido por un driver",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3257,7 +3096,6 @@ export const questions: Question[] = [
       "C. Se nutre de tecnologías previas para el despliegue de red en forma inmediata",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3287,7 +3125,6 @@ export const questions: Question[] = [
       "C. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3300,7 +3137,6 @@ export const questions: Question[] = [
       "Si queremos usar un complemento a la virtualización de red para un Data Center, usaríamos",
     options: ["A. SDN", "B. NFV", "C. Ninguna de las anteriores"],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3316,7 +3152,6 @@ export const questions: Question[] = [
       "C. Southbound API permite la conexión con equipos de red para cambios en tiempo real de tráfico, generalmente basado en openFlow",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3333,7 +3168,6 @@ export const questions: Question[] = [
       "C. Ninguna de las opciones son falsas",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3361,7 +3195,6 @@ export const questions: Question[] = [
     question: "Cuales de estos NO es un controlador de OSINT",
     options: ["A. OpenDaylight", "B. ONOS", "C. OpenVPN"],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3377,7 +3210,6 @@ export const questions: Question[] = [
       "C. La lógica de control y servicios del controlador no hacen uso del TCAM para las reglas y acciones a implementar",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3410,7 +3242,6 @@ export const questions: Question[] = [
       "C. Las reglas solamente tienen en cuenta el puerto de entrada, IP ports y ethernet address, lo cual lo hace un protocolo liviano",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3426,7 +3257,6 @@ export const questions: Question[] = [
       "C. Permite reenviar el tráfico entre diferentes VMs pero no con la red física",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3442,7 +3272,6 @@ export const questions: Question[] = [
       "C. NO están asociados a la infraestructura VM",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3458,7 +3287,6 @@ export const questions: Question[] = [
       "C. Tiene un ROI (Retorno de la Inversión) más lento debido al número de SFC",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3470,7 +3298,6 @@ export const questions: Question[] = [
     question: "Qué elemento NO es un NFV",
     options: ["A. Cisco One", "B. HP", "C. AWS"],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3536,7 +3363,6 @@ export const questions: Question[] = [
       "C. Al haber tanta especialización, mejora la referencia del concepto general de la organización",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3553,7 +3379,6 @@ export const questions: Question[] = [
       "C. Usa un gabinete de asesoramiento que se usa solamente si es necesario",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3570,7 +3395,6 @@ export const questions: Question[] = [
       "C. El empleo de gabinetes incrementa los costes",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -3587,7 +3411,6 @@ export const questions: Question[] = [
       "C. Es el medio usado en los colegios",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3604,7 +3427,6 @@ export const questions: Question[] = [
       "C. La adopción colegiada facilita la toma de decisiones y la iniciativa",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3621,7 +3443,6 @@ export const questions: Question[] = [
       "C. Sencillez para definir los criterios para clasificar las divisiones",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3638,7 +3459,6 @@ export const questions: Question[] = [
       "C. Es preferido por los profesionales cambiar dinámicamente de supervisor que tener una dirección funcional fija",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3654,7 +3474,6 @@ export const questions: Question[] = [
       "C. Independiente, que no presenta ninguna estructura rígida, sino dinámica",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3670,7 +3489,6 @@ export const questions: Question[] = [
       "C. Como gestor de sistemas, que dependa de la dirección general",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3686,7 +3504,6 @@ export const questions: Question[] = [
       "C. El CPD se estructura basándose en el esquema de organización funcional sobre el que superpone la organización por proyectos cuando sea necesarias",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3702,7 +3519,6 @@ export const questions: Question[] = [
       "C. El CPD se estructura basándose en el esquema de organización funcional sobre el que superpone la organización por proyectos cuando sea necesarias",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -3718,7 +3534,6 @@ export const questions: Question[] = [
       "C. El CPD se estructura basándose en el esquema de organización funcional sobre el que superpone la organización por proyectos cuando sea necesarias",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3734,7 +3549,6 @@ export const questions: Question[] = [
       "C. a) y b)",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3767,7 +3581,6 @@ export const questions: Question[] = [
       "C. a) y b)",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3783,7 +3596,6 @@ export const questions: Question[] = [
       "C. a) y b)",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3799,7 +3611,6 @@ export const questions: Question[] = [
       "C. a) y b)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3815,7 +3626,6 @@ export const questions: Question[] = [
       "C. a) y b)",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3831,7 +3641,6 @@ export const questions: Question[] = [
       "C. a) y b)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3847,7 +3656,6 @@ export const questions: Question[] = [
       "C. a) y b)",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -3863,7 +3671,6 @@ export const questions: Question[] = [
       "C. SI (Servicio Cliente Interno)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3880,7 +3687,6 @@ export const questions: Question[] = [
       "C. SI (Servicio Cliente Interno)",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 
   {
@@ -3897,7 +3703,6 @@ export const questions: Question[] = [
       "C. SI (Servicio Cliente Interno)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3914,7 +3719,6 @@ export const questions: Question[] = [
       "C. SI (Servicio Cliente Interno)",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3931,7 +3735,6 @@ export const questions: Question[] = [
       "C. SI (Servicio Cliente Interno)",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3947,7 +3750,6 @@ export const questions: Question[] = [
       "C. El acceso remoto a una máquina provee una interfaz remota sobre la red",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
 
   {
@@ -3964,7 +3766,6 @@ export const questions: Question[] = [
       "C. Es más complejo de modificar que si no tuviésemos la capa extra de software VM",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -3996,7 +3797,6 @@ export const questions: Question[] = [
       "C. No se puede virtualizar una CPU",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
 
   {
@@ -4012,7 +3812,6 @@ export const questions: Question[] = [
       "C. La optimización viene de usar una máquina virtual encima del hardware físico de la RAM, denominado memoria virtual",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "2024-07_q1",

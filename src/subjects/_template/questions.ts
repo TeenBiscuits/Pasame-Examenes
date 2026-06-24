@@ -18,7 +18,7 @@ export const questions: Question[] = [
     question: "What is the capital of France?",
     options: ["A. London", "B. Paris", "C. Berlin", "D. Madrid", "E. Rome"],
     correctAnswer: "b",
-    explanation: "Paris is the capital and most populous city of France.",
+    // explanation is optional for mc — omitted here, no "Open Solution" button shown
   },
   {
     id: "2024_q2",
@@ -63,8 +63,7 @@ export const questions: Question[] = [
       "Merge sort": "C",
       "Hash lookup": "D",
     },
-    explanation:
-      "Bubble sort: O(n²) (A), Binary search: O(log n) (B), Merge sort: O(n log n) (C), Hash lookup: O(1) (D).",
+    // explanation is optional for matching — omitted, no "Open Solution" button shown
   },
 
   // ================================================================
@@ -76,7 +75,7 @@ export const questions: Question[] = [
     id: "2025-01_q1",
     exam: "2025-01",
     topic: "topic-1",
-    type: "calculation",
+    type: "text",
     points: 15,
     question:
       "Calculate the area of a circle with radius r = 5 cm. Use π ≈ 3.14.",
@@ -111,7 +110,7 @@ Hint: remember that \`foo()\` calls itself recursively.`,
     id: "2025-01_q3",
     exam: "2025-01",
     topic: "topic-1",
-    type: "calculation",
+    type: "text",
     points: 10,
     question: "Calculate the mean and standard deviation for this dataset:",
     table: {
