@@ -164,22 +164,31 @@ Si alguna pregunta referencia figuras o gráficos (en el enunciado o en la soluc
 
 1. Recorta la figura del PDF
 2. Guárdala en `src/subjects/{subject-id}/assets/`
-3. Impórtala en `questions.ts` y asígnala al campo correspondiente:
+3. Configura la carga automática de imágenes al inicio de `questions.ts`:
 
 ```ts
-import figura1 from "./assets/figura-1.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import solucion1 from "./assets/solucion-1.png";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
 
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+) as ImageMap;
+```
+
+4. Referencia las imágenes por nombre de fichero en las preguntas:
+
+```ts
 {
-  // ...
-  image: figura1,              // imagen en el enunciado de la pregunta
-  explanationImage: solucion1, // imagen en el panel de solución
+  image: getImage(imageMap, "figura-1.png"),
+  explanationImage: getImage(imageMap, "solucion-1.png"),
 }
 ```
 
 - `image`: se muestra en el cuerpo de la pregunta, antes de las opciones de respuesta.
 - `explanationImage`: se muestra dentro del panel de solución colapsable (disponible para todos los tipos de pregunta: mc, text, matching).
-- Para imágenes dañadas o corruptas, usa una importación simple sin query params.
+- Las imágenes se optimizan automáticamente (múltiples tamaños y formatos: AVIF, WebP, PNG).
 
 #### 6. Verifica
 

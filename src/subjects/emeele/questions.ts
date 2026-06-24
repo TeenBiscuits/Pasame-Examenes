@@ -1,10 +1,12 @@
 import type { Question } from "../../data/types";
-import fig1_2025 from "./assets/Figure 1 2025.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import fig1_2024 from "./assets/Figure 1 Exam 2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import fig2_2024 from "./assets/Figure 2 Exam 2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import fig3_2024 from "./assets/Figure 3 Exam 2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import fig4_2024 from "./assets/Figure 4 Exam 2024.png?w=400;800;1200&format=avif;webp;png&as=picture";
-import fig5_4_2025 from "./assets/Figure 5.4 2025.png?w=400;800;1200&format=avif;webp;png&as=picture";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
+
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+) as ImageMap;
 
 export const questions: Question[] = [
   {
@@ -43,7 +45,7 @@ Looking at the regression data points in Figure 1, they form a symmetric, parabo
 The resulting regression plot is a step-like, piecewise constant function that is symmetric, starting at 4.67 on the boundaries, stepping down progressively (e.g., passing through averages like 4.0, 3.0, 2.0), holding a flat minimum of 1.0 in the center, and stepping back up symmetrically.`,
     explanation:
       "kNN regression at any point averages the target values of the k nearest neighbors. With k=3, the curve is smoother than k=1 but captures local trends.",
-    image: fig1_2024,
+    image: getImage(imageMap, "Figure 1 Exam 2024.png"),
   },
   {
     id: "2025_q1_1",
@@ -425,7 +427,7 @@ Give examples of inputs (x1,x2) ≠ (0,0) such that the output is 0 and 1 respec
    Since 0.5 ≥ 0, Output = step(0.5) = 1 ✓`,
     explanation:
       "Work through the network forward. ReLU zeros out negative values. The step output is 1 iff the weighted sum ≥ 0.",
-    image: fig2_2024,
+    image: getImage(imageMap, "Figure 2 Exam 2024.png"),
   },
   {
     id: "2024_q5b",
@@ -449,7 +451,7 @@ h = ReLU(W1 · [x1, x2]ᵀ + b1)
 y = step(W2 · h + b2)`,
     explanation:
       "W1 is 2×2 (two hidden nodes from two inputs). W2 is 1×2 (one output from two hidden nodes). Include bias vectors.",
-    image: fig2_2024,
+    image: getImage(imageMap, "Figure 2 Exam 2024.png"),
   },
   {
     id: "2025_q5_1",
@@ -518,7 +520,7 @@ y = step(W2 · h + b2)`,
 More powerful than perceptron because: multiple hidden layers with non-linear activations allow learning hierarchical feature representations. A single perceptron can only learn linearly separable functions.`,
     explanation:
       "Depth + non-linearity = ability to learn complex, hierarchical representations that a perceptron cannot capture.",
-    image: fig5_4_2025,
+    image: getImage(imageMap, "Figure 5.4 2025.png"),
   },
   {
     id: "2024_q6",
@@ -631,7 +633,7 @@ S1 is preferred (higher purity gain: 0.2813 > 0.0898).`,
 4. Outliers or future points might be classified more robustly with a curved boundary`,
     explanation:
       "Even with linear separability, non-linear kernels can provide larger margins and better generalization to unseen data.",
-    image: fig3_2024,
+    image: getImage(imageMap, "Figure 3 Exam 2024.png"),
   },
   {
     id: "2024_q7b",
@@ -651,7 +653,7 @@ The support vectors will be the datapoints closest to this curved decision bound
 Points like x1, x2 (circles) and x9, x10 (squares) are far from the decision boundary and are highly unlikely to be support vectors.`,
     explanation:
       "Support vectors are the points closest to the margin/decision boundary. They define where the boundary is placed.",
-    image: fig3_2024,
+    image: getImage(imageMap, "Figure 3 Exam 2024.png"),
   },
   {
     id: "2025_q7_1",
@@ -878,7 +880,7 @@ Summary of when to use:
 - Use the y-axis projection (Right) when doing supervised dimensionality reduction (like LDA) or preparing data for a classifier, as class separability is the main priority.`,
     explanation:
       "This highlights the trade-off between maximizing variance (PCA) and maximizing class separability (LDA) when projecting high-dimensional data.",
-    image: fig4_2024,
+    image: getImage(imageMap, "Figure 4 Exam 2024.png"),
   },
   {
     id: "2025_q9a",
@@ -894,7 +896,7 @@ Sammon mapping: Non-linear, iterative optimization. Minimizes the difference bet
 Key difference: PCA is variance-maximizing (global), Sammon is distance-preserving (local-focused).`,
     explanation:
       "PCA finds orthogonal directions of max variance via eigendecomposition. Sammon minimizes a stress function via gradient descent, weighting small distances more.",
-    image: fig1_2025,
+    image: getImage(imageMap, "Figure 1 2025.png"),
   },
   {
     id: "2025_q9b",

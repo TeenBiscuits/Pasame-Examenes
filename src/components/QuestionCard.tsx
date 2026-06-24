@@ -11,7 +11,17 @@ import {
   triggerSelection,
 } from "../lib/haptics";
 
-function SolutionImage({ image }: { image: Picture | string }) {
+function QuestionImage({
+  image,
+  alt,
+  maxHeight,
+}: {
+  image: Picture | string;
+  alt: string;
+  maxHeight: "300px" | "400px";
+}) {
+  const heightClass =
+    maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
   if (typeof image === "object") {
     return (
       <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
@@ -21,13 +31,13 @@ function SolutionImage({ image }: { image: Picture | string }) {
           ))}
           <img
             src={image.img.src}
-            alt="Solution illustration"
+            alt={alt}
             width={image.img.w}
             height={image.img.h}
             style={{
               aspectRatio: `${image.img.w} / ${image.img.h}`,
             }}
-            className="max-h-[300px] max-w-full object-contain"
+            className={`${heightClass} max-w-full object-contain`}
             loading="lazy"
           />
         </picture>
@@ -38,8 +48,8 @@ function SolutionImage({ image }: { image: Picture | string }) {
     <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
       <img
         src={image}
-        alt="Solution illustration"
-        className="max-h-[300px] max-w-full object-contain"
+        alt={alt}
+        className={`${heightClass} max-w-full object-contain`}
         loading="lazy"
       />
     </div>
@@ -170,7 +180,11 @@ function MCQuestion({
                 </Markdown>
               )}
               {question.explanationImage && (
-                <SolutionImage image={question.explanationImage} />
+                <QuestionImage
+                  image={question.explanationImage}
+                  alt="Solution illustration"
+                  maxHeight="300px"
+                />
               )}
             </div>
           )}
@@ -242,7 +256,11 @@ function TextQuestion({
                 </Markdown>
               )}
               {question.explanationImage && (
-                <SolutionImage image={question.explanationImage} />
+                <QuestionImage
+                  image={question.explanationImage}
+                  alt="Solution illustration"
+                  maxHeight="300px"
+                />
               )}
 
               {onSelfGrade && (
@@ -416,7 +434,11 @@ function MatchingQuestion({
                 </Markdown>
               )}
               {question.explanationImage && (
-                <SolutionImage image={question.explanationImage} />
+                <QuestionImage
+                  image={question.explanationImage}
+                  alt="Solution illustration"
+                  maxHeight="300px"
+                />
               )}
             </div>
           )}
@@ -478,35 +500,15 @@ export default function QuestionCard(props: QuestionCardProps) {
           ))}
         </ul>
       )}
-      {question.image && typeof question.image === "object" ? (
-        <div className="mb-4 rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
-          <picture>
-            {Object.entries(question.image.sources).map(([format, srcset]) => (
-              <source key={format} srcSet={srcset} type={`image/${format}`} />
-            ))}
-            <img
-              src={question.image.img.src}
-              alt={`Illustration for ${question.id}`}
-              width={question.image.img.w}
-              height={question.image.img.h}
-              style={{
-                aspectRatio: `${question.image.img.w} / ${question.image.img.h}`,
-              }}
-              className="max-h-[400px] max-w-full object-contain"
-              loading="lazy"
-            />
-          </picture>
-        </div>
-      ) : question.image ? (
-        <div className="mb-4 rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
-          <img
-            src={question.image}
+      {question.image && (
+        <div className="mb-4">
+          <QuestionImage
+            image={question.image}
             alt={`Illustration for ${question.id}`}
-            className="max-h-[400px] max-w-full object-contain"
-            loading="lazy"
+            maxHeight="400px"
           />
         </div>
-      ) : null}
+      )}
       {question.table && (
         <div className="mb-4 overflow-x-auto rounded-lg border border-border">
           <table className="min-w-full divide-y divide-border text-sm">
