@@ -18,7 +18,7 @@ export const questions: Question[] = [
     question: "What is the capital of France?",
     options: ["A. London", "B. Paris", "C. Berlin", "D. Madrid", "E. Rome"],
     correctAnswer: "b",
-    explanation: "Paris is the capital and most populous city of France.",
+    // explanation is optional for mc — omitted here, no "Open Solution" button shown
   },
   {
     id: "2024_q2",
@@ -63,8 +63,7 @@ export const questions: Question[] = [
       "Merge sort": "C",
       "Hash lookup": "D",
     },
-    explanation:
-      "Bubble sort: O(n²) (A), Binary search: O(log n) (B), Merge sort: O(n log n) (C), Hash lookup: O(1) (D).",
+    // explanation is optional for matching — omitted, no "Open Solution" button shown
   },
 
   // ================================================================
