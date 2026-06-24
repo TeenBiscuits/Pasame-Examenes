@@ -2301,6 +2301,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "La fibra monomodo usa ... para generar el haz de luz",
     options: [
       "A. LED",
@@ -2316,6 +2317,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "La fibra multimodo usa ... para generar el haz de luz",
     options: [
       "A. LED",
@@ -3975,6 +3977,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 0.5,
+    repeated: true,
     question:
       "En relación al CPD, indica cuál de las siguientes afirmaciones es correcta:",
     options: [
@@ -4059,6 +4062,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 0.5,
+    repeated: true,
     question:
       "¿Cuál de las siguientes no es una técnica de liberación de memoria?",
     options: [
@@ -4076,6 +4080,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 0.5,
+    repeated: true,
     question: "¿Cuál de las siguientes afirmaciones es verdadera?",
     options: [
       "A. Si queremos conseguir que una máquina virtual no tenga caída de servicio (Zero downtime) ante la caída física del nodo ESXi en el que se está ejecutando debemos configurar la máquina en Fault Tolerance.",
@@ -4092,6 +4097,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 0.5,
+    repeated: true,
     question:
       "Si realizamos un snapshot (foto de estado) de una máquina virtual, ¿afectamos al rendimiento de la misma?",
     options: [
@@ -4241,7 +4247,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "El cable de fibra óptica multimodo (MMF) resulta más económico que el monomodo (SMF), en parte por:",
     options: [
@@ -4716,7 +4722,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "¿En un proceso de migración \"Live Migration\" que debe ser copiado desde el hypervisor origen al hypervisor destino donde está ejecutándose la máquina virtual suponiendo que estamos trabajando con almacenamiento compartido?",
     options: [
@@ -4733,7 +4739,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "En relación a los activos de un servicio en el estándar ITIL, es verdadero que:",
     options: [
@@ -4763,7 +4769,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "En el estándar ITIL, es verdadero que:",
     options: [
@@ -4899,7 +4905,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "En el estándar ITIL, es verdadero que:",
     options: [
@@ -5103,7 +5109,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "Cuando realizamos una migración en caliente (live migration en vmware) ¿qué necesitamos copiar del estado de ejecución de la máquina virtual desde el host de origen al host de destino? suponiendo que la máquina está almacenada en un datastore accesible por los dos nodos",
     options: [
@@ -5137,7 +5143,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "¿Cuál de las siguientes afirmaciones sobre las fotos de estado (snapshots) es verdadera?",
     options: [
@@ -5413,7 +5419,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "En el estándar ITIL, es falso que:",
     options: [
@@ -5430,7 +5436,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "En el estándar ITIL, es falso que:",
     options: [
@@ -5464,7 +5470,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "En el estándar ITIL, es falso que:",
     options: [
@@ -5605,7 +5611,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "En relación a ITIL, selecciona cuál de las siguientes afirmaciones es incorrecta:",
     options: [
@@ -5823,7 +5829,7 @@ export const questions: Question[] = [
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: false,
+    repeated: true,
     question:
       "En relación ITIL, cuál de las siguientes afirmaciones es correcta",
     options: [
