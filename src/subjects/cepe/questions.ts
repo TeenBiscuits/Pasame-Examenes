@@ -256,34 +256,64 @@ release([Pid | Rest], T) ->
     topic: "paralelismo-teoria",
     type: "text",
     points: 2.5,
-    image: getImage(imageMap, "pipeline-graph-2019-07.jpeg"),
+    explanationImage: getImage(imageMap, "pipeline-sensors-2019-07.jpeg"),
     subquestions: [
-      "(a) [0.5p] Determina qué tipo de descomposición y asignación de tareas se ha utilizado en el grafo.",
-      "(b) [0.75p] Identifica el camino crítico, el grado máximo y el grado medio de concurrencia.",
-      "(c) [0.75p] Suponiendo que cada comunicación entre procesos tiene un coste de 1 segundo (no solapable con computación), determina la asignación óptima de tareas a procesos para minimizar el tiempo total usando el menor número de procesos. Calcula la aceleración, eficiencia, coste y sobrecarga.",
-      "(d) [0.5p] Si un nuevo sensor proporcionase datos el doble de rápido, ¿cómo afectaría al camino crítico y al grado de concurrencia?",
+      "(a) [0.5p] Dibuja el grafo de dependencias para este problema. Diferencia las dependencias de datos y de control.",
+      "(b) [0.5p] ¿Qué tipo de descomposición o descomposiciones aplicarías al problema?",
+      "(c) [1p] Si queremos comprar una máquina dedicada en exclusiva a ejecutar este algoritmo, calcula cuántos procesadores debería tener para conseguir el objetivo propuesto y describe la asignación entre tareas y procesadores.",
+      "(d) [0.5p] Describe en una línea temporal el funcionamiento del pipeline para el procesamiento de 5 bloques de datos (5 ciclos completos de ejecución).",
     ],
-    question: `Un sistema de monitorización ambiental utiliza un pipeline de sensores que procesan datos en cadena. El siguiente grafo de tareas representa la descomposición del algoritmo, donde cada nodo muestra el tiempo de ejecución en segundos.
+    question: `Una aplicación de análisis de datos en tiempo real recibe a través de un conjunto de sensores un flujo de datos constante, y los procesa en un **pipeline** para imprimir periódicamente un valor $S$ que resume los valores registrados por los sensores. La aplicación funciona cíclicamente del siguiente modo: Al comenzar un ciclo, se leen los datos recibidos de los sensores hasta completar un bloque que almacenamos en una matriz $M$ (etapa 1). Ese bloque se procesa en una función $A$, que calcula un índice numérico $I$ (etapa 2). En función del valor de $I$, se decide si se ejecuta la función $B1$ o $B2$, las cuales a partir de $M$ generan una segunda matriz $M2$ (etapa 3). Finalmente, con la matriz $M2$ se calcula el valor de $S$ (etapa 4). El siguiente pseudocódigo describe el algoritmo del pipeline, en el que se indica también la duración del procesamiento secuencial de cada una de las funciones.
 
-Responde RAZONADAMENTE a las siguientes cuestiones.`,
-    correctAnswer: `(a) Se ha utilizado una **descomposición funcional** (cada nodo es una función distinta del pipeline: adquisición, filtrado, análisis, agregación, almacenamiento). La asignación es **estática** ya que los tiempos de cada etapa son conocidos y fijos.
+\`\`\`c
+while(true) {
+    M = captura_datos()    // 1) lectura de datos: 50 ms
+    I = funcion_A(M)        // 2) funcion A: 50 ms
+    if (I >= 0)
+        M2 = funcion_B1(M)    // 3.1) funcion B1: 200 ms
+    else
+        M2 = funcion_B2(M)    // 3.2) funcion B2: 100 ms
+    S = funcion_C(M2)        // 4) funcion C: 50 ms
+}
+\`\`\`
 
-(b) El camino crítico recorre los nodos T1 → T3 → T5 → T6 → T8 con una duración de **24 segundos**. El **grado máximo de concurrencia es 3** (etapas T2, T3 y T4 pueden ejecutarse simultáneamente). El **grado medio es 14/24 ≈ 0.58**.
+Las funciones $B1$ y $B2$ consisten en la aplicación de una serie de operaciones sobre la matriz $M$. $B1$ es paralelizable con una eficiencia paralela constante del 80% para cualquier número de procesos $P > 1$. $B2$ tiene una parte estrictamente secuencial que tarda 40ms, mientras que el resto es paralelizable con una eficiencia del 100%. El resto de las funciones no son paralelizables. El tiempo de comunicaciones es despreciable. Nuestro objetivo es idear una paralelización del pipeline en el que cada etapa tarde como máximo 50 ms, de modo que se elimine el tiempo de espera entre cada ejecución de la etapa 1.
 
-(c) Con coste de comunicación de 1s entre procesos distintos, conviene agrupar tareas consecutivas del camino crítico en el mismo proceso para evitar comunicaciones en la ruta más larga. Asignación con 3 procesos:
-- P0: T1, T3, T5 (8+5+3 = 16s)
-- P1: T2, T4, T6, T8 (4+4+4+4 = 16s)
-- P2: T7 (2s) → tiempo total = 16 + 1 (comm P0→P1) + 1 (comm P1→P2) = **18 segundos**
+Responde brevemente a las siguientes cuestiones, justificando tu respuesta.`,
+    correctAnswer: `(a) El grafo quedaría de la siguiente forma:
 
-Tiempo secuencial = 35 segundos.
-- **Aceleración = 35/18 = 1.94**
-- **Eficiencia = 1.94/3 = 65%**
-- **Coste = 18 × 3 = 54 s**
-- **Sobrecarga = 54 − 35 = 19 s**
+(b) En primer lugar tenemos una **descomposición funcional**. La ejecución en paralelo de B1 y B2, dado que no tienen una dependencia real de datos con la función A, podemos considerarlo una **descomposición especulativa**, aunque por la organización del sistema paralelo como un pipeline no sería necesario, ya que conoceremos el resultado de la ejecución de A antes de ejecutar B1 o B2 sobre esos mismos datos. Por último, para B1 y B2 aplicamos una **descomposición de dominio**.
 
-(d) Si un sensor duplica su velocidad (ej. T1 pasa de 6s a 3s), el camino crítico podría cambiar. Si T1 estaba en el camino crítico, este se reduciría, aumentando potencialmente el grado de concurrencia (otras tareas podrían pasar a estar en el camino crítico). La aceleración máxima aumentaría al reducirse la porción secuencial del pipeline.`,
+(c) Podemos definir un pipeline de 4 etapas: (1) captura de datos, (2) función A, (3) ejecución de B1 o B2 en función del resultado anterior, y (4) función C. Idealmente cada etapa debe tardar el mismo tiempo (50ms), determinado por lo que tardan las etapas no paralelizables. Por lo tanto, la aceleración máxima de B1 y B2 con las que podremos obtener una mejora en el tiempo de ejecución será 4 y 2 respectivamente, para que ambas tengan también una duración de 50 ms.
+
+En B1, como la eficiencia paralela es del 80% para $P > 1$ independientemente del valor de $P$, y la eficiencia paralela es la aceleración dividido por el número de procesos ($E = S/P$) tenemos que $P = S/E$. Entonces, para B1 el número de procesos que necesitamos para conseguir una aceleración de $200ms/50ms = 4$ es:
+
+$$P_{B1} \\geq 4/0.8 \\geq 5$$
+
+Para B2 con los datos que tenemos podemos aplicar Amdahl para conseguir una aceleración de $100ms/50ms = 2$:
+
+$$\\frac{1}{0.4 + 0.6/P_{B2}} \\geq 2 \\rightarrow P_{B2} \\geq \\frac{0.6}{1/2 - 0.4} \\geq 6$$
+
+Por tanto, para ejecutar B1 o B2 en 50ms o menos necesitamos 6 procesadores.
+
+Dado que el algoritmo lo podemos ejecutar como un pipeline, usaremos 3 procesadores para ejecutar la captura de datos, A y C (uno para cada función) y 6 para ejecutar B1 o B2. En total, lo ideal sería que la máquina dedicada tuviese al menos **9 procesadores**.
+
+(d) Cada bloque de datos procesado en el pipeline lo denominamos $D_i$. Con la descomposición y asignación propuesta, la ejecución de cada una de las tareas tarda como máximo 50 ms:
+
+| t (ms) | captura | A | B1/B2 | C |
+|--------|---------|---|-------|---|
+| 0 | $D_0$ | | | |
+| 50 | $D_1$ | $D_0$ | | |
+| 100 | $D_2$ | $D_1$ | $D_0$ | |
+| 150 | $D_3$ | $D_2$ | $D_1$ | $D_0$ |
+| 200 | $D_4$ | $D_3$ | $D_2$ | $D_1$ |
+| 250 | | $D_4$ | $D_3$ | $D_2$ |
+| 300 | | | $D_4$ | $D_3$ |
+| 350 | | | | $D_4$ |
+
+y por lo tanto se pueden capturar todos los datos en tiempo real sin que se pierda ninguna lectura de los sensores.`,
     explanation:
-      "En un pipeline funcional, el camino crítico es la secuencia más larga de dependencias. La asignación debe minimizar comunicaciones agrupando tareas consecutivas, especialmente las del camino crítico. El grado de concurrencia refleja cuántas tareas independientes pueden ejecutarse simultáneamente en un instante dado.",
+      "El pipeline tiene 4 etapas con tiempos variables. El objetivo es balancear las etapas a 50ms paralelizando B1 (que necesita aceleración 4, con eficiencia 80% → 5 procesos) y B2 (que necesita aceleración 2, con eficiencia parcial según Amdahl → 6 procesos). Con 9 procesadores totales (3 para etapas secuenciales + 6 para B1/B2) el pipeline funciona sin esperas.",
   },
   {
     id: "2019-07_q5",
@@ -292,101 +322,89 @@ Tiempo secuencial = 35 segundos.
     type: "text",
     points: 2.5,
     subquestions: [
-      "(a) [0.5p] Propón una descomposición y asignación de tareas adecuada para paralelizar el cálculo de f(n).",
-      "(b) [0.75p] Escribe un pseudocódigo paralelo de alto nivel para la función f(n) usando la estrategia propuesta.",
-      "(c) [0.75p] Implementa la versión paralela con MPI. El proceso 0 recibe n por línea de comandos y debe imprimir el resultado. Utiliza funciones colectivas siempre que sea posible.",
-      "(d) [0.5p] Analiza la escalabilidad de tu solución. ¿Presenta escalabilidad fuerte y/o débil? ¿Dónde están los cuellos de botella?",
+      "(a) [0.5p] Explica qué tipo de descomposición se ajusta a este algoritmo, justificando la respuesta.",
+      "(b) [0.5p] Explica qué tipo de asignación de tareas usarías, justificando la respuesta y explicando a alto nivel cómo funcionaría tu propuesta.",
+      "(c) [0.5p] Explica qué tipo de asignación de tareas usarías en el caso de que en general la carga computacional de f(i1(r)) y de f(i2(r)) pudiese ser muy distinta, justificando la respuesta y explicando a alto nivel cómo funcionaría tu propuesta.",
+      "(d) [1p] Implementa el algoritmo paralelo en MPI siguiendo el pseudocódigo: i) El proceso 0 lee la entrada de disco. ii) El proceso 0 descompone localmente el trabajo hasta obtener tareas para todos los procesos. iii) El proceso 0 envía trabajo a todos los procesos mediante una colectiva de MPI. iv) Cada proceso ejecuta su trabajo local. v) Obtener el resultado global en el proceso 0 mediante otra colectiva de MPI. vi) El proceso 0 guarda el resultado en el disco.",
     ],
-    question: `Se desea paralelizar la siguiente función recursiva f(n) definida para números naturales:
+    question: `Debido a su elevado costo en la mayoría de las ejecuciones, se desea paralelizar el algoritmo
 
 \`\`\`c
-int f(int n) {
-  if (n <= 1) return 1;
-  int a = f(n - 1);
-  int b = f(n - 2);
-  return a + b + heavy_computation(n);
+float f(int r) {
+  if (condition(r)) return compute(r);
+  else return f(i1(r)) + f(i2(r));
+}
+
+main() {
+  int input = read_from_file();
+  float result = f(input);
+  write_to_file(result);
 }
 \`\`\`
 
-\`heavy_computation(n)\` es una función costosa y paralelizable que tarda O(n²) segundos, mientras que las llamadas recursivas son inherentemente secuenciales (cada una depende de la anterior). El objetivo es minimizar el tiempo de ejecución total usando P procesos MPI.
+en donde todas las funciones invocadas dentro de f proceden de librerías externas cuya implementación desconocemos. Lo que sí sabemos es que el tiempo de computación de condition, compute, i1 e i2 es fijo independientemente del r utilizado y que el coste computacional de f(i1(r)) y de f(i2(r)) son idénticos para un r dado, con lo que su carga computacional está totalmente equilibrada. Además se sabe que el número de procesos P usado en las ejecuciones siempre será una potencia de 2 y el proceso 0 será el único que puede acceder al sistema de ficheros.
 
 Responde RAZONADAMENTE a las siguientes cuestiones.
 
 API MPI disponible:
 
 \`\`\`c
+int MPI_Init(int *argc, char ***argv)
+int MPI_Comm_size(MPI_Comm comm, int *size)
+int MPI_Comm_rank(MPI_Comm comm, int *rank)
+int MPI_Send(void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)
+int MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Status *status)
 int MPI_Barrier(MPI_Comm comm)
-int MPI_Bcast(void *buffer, int count, MPI_Datatype dt, int root, MPI_Comm comm)
+int MPI_Bcast(void *buffer, int count, MPI_Datatype datatype, int root, MPI_Comm comm)
 int MPI_Scatter(void *sendbuf, int sendcnt, MPI_Datatype sendtype, void *recvbuf, int recvcnt, MPI_Datatype recvtype, int root, MPI_Comm comm)
+int MPI_Scatterv(const void *sendbuf, const int *sendcounts, const int *displs, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm)
 int MPI_Gather(void *sendbuf, int sendcnt, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm)
-int MPI_Reduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype dt, MPI_Op op, int root, MPI_Comm comm)
-int MPI_Allreduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype dt, MPI_Op op, MPI_Comm comm)
+int MPI_Gatherv(const void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, const int *recvcounts, const int *displs, MPI_Datatype recvtype, int root, MPI_Comm comm)
+int MPI_Reduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm)
 \`\`\``,
-    correctAnswer: `(a) La recursión de f(n) es inherentemente secuencial (cada llamada a f(k) depende de f(k-1) y f(k-2)), por lo que las llamadas recursivas deben permanecer en el proceso 0. La **descomposición funcional** separa el cálculo de \`heavy_computation(n)\` de la recursión. Dado que \`heavy_computation\` se invoca n veces (para n, n-1, ..., 1), cada invocación puede paralelizarse. La **asignación es estática**: cada proceso recibe un subconjunto de las iteraciones del bucle interno de heavy_computation.
+    correctAnswer: `(a) En esta función el paralelismo procede del hecho de que cada computación para un r distinto de 0 que no cumpla condition puede subdividirse en dos partes que pueden calcularse en paralelo, tratándose además de un proceso recursivo. Así pues, es un caso de **descomposición recursiva o divide-y-vencerás**.
 
-(b) Pseudocódigo paralelo:
-\`\`\`
-f_parallel(n):
-  if n <= 1: return 1
-  a = f_parallel(n - 1)          // secuencial
-  b = f_parallel(n - 2)          // secuencial
-  c = heavy_computation_parallel(n) // paralelo con P procesos
-  return a + b + c
+(b) El enunciado indica que siempre que se puede descomponer un cómputo de f, f(i1(r)) y f(i2(r)) tienen el mismo coste, con lo que el trabajo siempre está equilibrado a los distintos niveles de recursividad. Además, como el coste de las funciones usadas dentro de f es fijo, esto indica que si el coste de f(i1(r)) y f(i2(r)) es el mismo, entonces el número de subdivisiones o niveles de recursividad de las dos también es el mismo. Por todo ello la carga puede equilibrarse fácilmente de forma **estática**.
 
-heavy_computation_parallel(n):
-  cada proceso calcula una parte de O(n²/P) iteraciones
-  resultado parcial → Allreduce(SUM) → todos obtienen el total
-\`\`\`
+En cuanto a la propuesta de implementación, una estrategia lógica sería ir dividiendo el trabajo en el procesador 0 hasta obtener una tarea para cada procesador disponible (o al menos para el máximo de procesadores posible en el caso de que la descomposición recursiva finalice antes). Entonces repartirlos entre todos los procesadores, tras lo cual cada procesador haría su parte, y finalmente se sumarían los resultados parciales de cada procesador.
 
-(c) Implementación MPI:
+(c) Al poder haber mucho **desequilibrio de carga** entre las distintas subtareas y no poder disponer por adelantado del coste concreto de cada tarea, tendremos que recurrir a un reparto de tareas **dinámico**.
+
+Una propuesta posible sería usar un esquema **maestro-esclavo** en el que el proceso 0 hace una descomposición inicial entre los demás procesos y éstos se van quedando con algunos de los subproblemas que generan, mientras que los sobrantes se los mandan al 0, al cual le pedirán trabajo cuando se queden sin él. También le enviarían al proceso 0 los resultados de sus computaciones para que los fuese sumando de cara a obtener el resultado final.
+
+(d) Una propuesta de implementación que cumple con el pseudocódigo proporcionado es:
 
 \`\`\`c
-double heavy_comp_parallel(int n) {
-  int i, start, end;
-  double local = 0.0, total;
-  int chunk = n / size;
+int P, myrank, tmp, offset, *inputs;
+float result, rtmp;
 
-  start = rank * chunk;
-  end = (rank == size - 1) ? n : start + chunk;
+MPI_Init(&argc, &argv);
+MPI_Comm_size(MPI_COMM_WORLD, &P);
+MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
 
-  for (i = start; i < end; i++)
-    local += i * n;  // simplificación de O(n²)
-
-  MPI_Allreduce(&local, &total, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
-  return total;
+if (myrank == 0) {
+    inputs = (int *)malloc(sizeof(int) * P);
+    inputs[0] = read_from_file();
+    for (offset = 1; offset < P; offset = offset * 2) {
+        for (i = 0; i < offset; i++) {
+            tmp = inputs[i];
+            inputs[i] = i1(tmp);
+            inputs[i + offset] = i2(tmp);
+        }
+    }
 }
 
-double f_parallel(int n) {
-  if (n <= 1) return 1.0;
-  double a = f_parallel(n - 1);
-  double b = f_parallel(n - 2);
-  double c = heavy_comp_parallel(n);
-  return a + b + c;
+MPI_Scatter(inputs, 1, MPI_INT, &tmp, 1, MPI_INT, 0, MPI_COMM_WORLD);
+rtmp = f(tmp);
+MPI_Reduce(&rtmp, &result, 1, MPI_FLOAT, MPI_SUM, 0, MPI_COMM_WORLD);
+
+if (myrank == 0) {
+    write_to_file(result);
 }
-
-int main(int argc, char **argv) {
-  int n;
-  MPI_Init(&argc, &argv);
-  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  MPI_Comm_size(MPI_COMM_WORLD, &size);
-
-  if (!rank) {
-    n = atoi(argv[1]);
-    printf("f(%d) = %.0f\\n", n, f_parallel(n));
-  } else {
-    // Los esclavos ejecutan heavy_computation cuando son invocados
-    // desde f_parallel (que solo se ejecuta en el proceso 0 a través de
-    // llamadas colectivas)
-  }
-
-  MPI_Finalize();
-  return 0;
-}
-\`\`\`
-
-(d) La solución presenta **mala escalabilidad fuerte**: la parte recursiva secuencial (O(n) llamadas) limita el speedup según la ley de Amdahl. Para n grande, la parte paralelizable (heavy_computation, O(n²)) domina, pero las n llamadas recursivas encadenadas son un cuello de botella secuencial. No presenta **escalabilidad débil** porque aumentar n no escala la parte secuencial proporcionalmente con P. Los cuellos de botella son: (1) la recursión secuencial que no se paraleliza, y (2) la barrera implícita en MPI_Allreduce tras cada heavy_computation.`,
+MPI_Finalize();
+\`\`\``,
     explanation:
-      "La recursión de Fibonacci modificada es inherentemente secuencial: f(k) necesita f(k-1) y f(k-2). Solo heavy_computation puede paralelizarse. La solución paraleliza cada invocación individual de heavy_computation con Allreduce. La ley de Amdahl dicta que el speedup está limitado por la fracción secuencial (las llamadas recursivas + el overhead de las colectivas MPI).",
+      "La descomposición recursiva (divide-y-vencerás) es natural para este algoritmo: cada llamada a f genera dos subproblemas independientes. Con carga equilibrada entre ramas, la asignación estática funciona bien: el proceso 0 expande el árbol recursivo hasta obtener P tareas y las reparte con MPI_Scatter. Si las ramas tienen carga desigual, se necesita asignación dinámica (maestro-esclavo). El resultado se reduce con MPI_Reduce(SUM).",
   },
 
   // ================================================================
