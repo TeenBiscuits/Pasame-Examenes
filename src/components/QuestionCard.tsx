@@ -143,7 +143,8 @@ function MCQuestion({
           </button>
         );
       })}
-      {showResult && (
+      {showResult &&
+        (question.explanation != null || question.explanationImage) && (
         <div className="mt-3 space-y-3">
           <button
             type="button"
@@ -388,7 +389,8 @@ function MatchingQuestion({
           </div>
         );
       })}
-      {showResult && (
+      {showResult &&
+        (question.explanation != null || question.explanationImage) && (
         <div className="mt-3 space-y-3">
           <button
             type="button"
