@@ -17,7 +17,6 @@ import { useTheme } from "./theme/hooks";
 
 const Home = lazy(() => import("./pages/Home"));
 const SubjectHome = lazy(() => import("./pages/SubjectHome"));
-const PracticeHome = lazy(() => import("./pages/PracticeHome"));
 const PracticeTopic = lazy(() => import("./pages/PracticeTopic"));
 const ExamSimulation = lazy(() => import("./pages/ExamSimulation"));
 
@@ -146,7 +145,10 @@ export default function App() {
               <Route path="/:lang" element={<LangGuard />}>
                 <Route index element={<Home />} />
                 <Route path=":subjectId" element={<SubjectHome />} />
-                <Route path=":subjectId/practice" element={<PracticeHome />} />
+                <Route
+                  path=":subjectId/practice"
+                  element={<Navigate to=".." relative="path" replace />}
+                />
                 <Route
                   path=":subjectId/practice/:topic"
                   element={<PracticeTopic />}

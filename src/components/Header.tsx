@@ -50,7 +50,8 @@ export default function Header() {
               <Link
                 to={`/${subjectId}`}
                 className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-                  location.pathname === `/${subjectId}`
+                  location.pathname === `/${subjectId}` ||
+                  location.pathname.startsWith(`/${subjectId}/`)
                     ? "bg-accent-light text-accent-fg"
                     : "text-fg-secondary hover:text-fg"
                 }`}
@@ -62,24 +63,7 @@ export default function Header() {
                   });
                 }}
               >
-                {t.header.home}
-              </Link>
-              <Link
-                to={`/${subjectId}/practice`}
-                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-                  location.pathname.startsWith(`/${subjectId}/practice`)
-                    ? "bg-accent-light text-accent-fg"
-                    : "text-fg-secondary hover:text-fg"
-                }`}
-                onClick={() => {
-                  triggerLight();
-                  track("nav_click", {
-                    target: "practice",
-                    subjectId: subjectId || "",
-                  });
-                }}
-              >
-                {t.header.practice}
+                {subject.name}
               </Link>
             </nav>
           )}

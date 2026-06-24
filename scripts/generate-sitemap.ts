@@ -54,12 +54,6 @@ async function main() {
       changefreq: "weekly",
     });
 
-    urls.push({
-      path: `/${subjectId}/practice`,
-      priority: 0.7,
-      changefreq: "monthly",
-    });
-
     for (const topic of meta.topics) {
       urls.push({
         path: `/${subjectId}/practice/${topic.key}`,
