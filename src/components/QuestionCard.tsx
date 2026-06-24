@@ -66,7 +66,6 @@ function getQuestionTypeLabel(type: QuestionType): string {
   const map: Record<QuestionType, string> = {
     mc: "Multiple Choice (mc)",
     text: "Open Text (text)",
-    calculation: "Calculation (calculation)",
     matching: "Matching (matching)",
   };
   return map[type];
@@ -542,7 +541,7 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
       )}
       {question.type === "mc" && <MCQuestion {...props} />}
-      {(question.type === "text" || question.type === "calculation") && (
+      {question.type === "text" && (
         <TextQuestion {...props} />
       )}
       {question.type === "matching" && <MatchingQuestion {...props} />}

@@ -1,6 +1,6 @@
 import type { Picture } from "vite-imagetools";
 
-export type QuestionType = "mc" | "text" | "matching" | "calculation";
+export type QuestionType = "mc" | "text" | "matching";
 
 export interface QuestionTable {
   headers: string[];

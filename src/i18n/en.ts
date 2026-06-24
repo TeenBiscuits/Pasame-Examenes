@@ -128,7 +128,7 @@ export const en = {
     homeDescription:
       "Open-source platform for practicing university exams by topic or simulating the full exam.",
     defaultDescription:
-      "Practice university exams with model answers and self-grading. Multiple-choice, calculation, and matching questions from past exams.",
+      "Practice university exams with model answers and self-grading. Multiple-choice, text, and matching questions from past exams.",
   },
 };
 

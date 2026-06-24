@@ -150,7 +150,7 @@ export const questions: Question[] = [
     id: "2026-01_q2",
     exam: "2026-01",
     topic: "teoria",
-    type: "calculation",
+    type: "text",
     points: 2,
     question: `Escribe a forma estándar do seguinte problema:
 

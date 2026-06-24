@@ -108,12 +108,12 @@ export const questions: Question[] = [
     explanation: "Because...",
   },
 
-  // --- Text / Open-ended (text|calculation) ---
+  // --- Text / Open-ended (text) ---
   {
     id: "2024_q2",
     exam: "2024",
     topic: "topic-slug",
-    type: "text", // or "calculation" (same behavior, different label)
+    type: "text",
     points: 10,
     question: "Explain...",
     correctAnswer: "Model solution text...",
@@ -141,11 +141,10 @@ export const questions: Question[] = [
 
 - `"mc"` — Multiple choice. `correctAnswer` is a letter string `"a"`–`"e"`. Include `options[]`. Auto-graded.
 - `"text"` — Free-text answer. `correctAnswer` is the model solution string. Self-graded by user. `explanation` required.
-- `"calculation"` — Same as text, shown as calculation question. Self-graded. `explanation` required.
 - `"matching"` — Match items to letters (including true/false with `"V"`/`"F"`). `correctAnswer` is `Record<string, string>`. Auto-graded.
 
 **Required fields:** `id`, `exam`, `topic`, `type`, `points`, `question`, `correctAnswer`.
-**Optional fields:** `explanation` (required for `text`/`calculation`), `image`, `explanationImage`, `table`, `subquestions`, `options` (required for `mc`), `repeated`.
+**Optional fields:** `explanation` (required for `text`), `image`, `explanationImage`, `table`, `subquestions`, `options` (required for `mc`), `repeated`.
 
 - `image?: Picture | string` — imported image shown in the question body. Use vite-imagetools: `import myImage from "./assets/figure.png?w=400;800;1200&format=avif;webp;png&as=picture"`. For JPEG: use `jpeg` instead of `png`. For broken/corrupt images, use a plain import without query params.
 - `explanationImage?: Picture | string` — image shown inside the collapsible solution panel (for all question types: mc, text, matching). Same import format as `image`.
@@ -176,11 +175,11 @@ Hint: remember that \`foo()\` calls the function.`,
 ## Extracting Questions from Exam PDFs
 
 1. Open the PDF and identify each question
-2. Classify each question as `mc`, `text`, `calculation`, or `matching`
+2. Classify each question as `mc`, `text`, or `matching`
 3. For each question, determine:
    - What topic it belongs to (from the `topics` array in `meta.ts`)
    - How many points it's worth
-   - The correct answer (model solution for text/calculation)
+   - The correct answer (model solution for text)
 4. Write the question into `questions.ts` following the schema above
 5. If the question references a figure/chart:
    - Screenshot/crop the figure from the PDF
@@ -212,5 +211,5 @@ public/exams/{subject-id}/
 - [ ] Exam simulation loads for each exam year
 - [ ] Question images display correctly
 - [ ] MC and matching questions auto-grade correctly
-- [ ] Text/calculation questions show model solutions
+- [ ] Text questions show model solutions
 - [ ] PDFs are downloadable from the subject page

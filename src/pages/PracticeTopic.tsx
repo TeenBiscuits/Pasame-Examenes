@@ -40,7 +40,7 @@ function gradeQuestion(
       return 0;
     }
   }
-  if (question.type === "text" || question.type === "calculation") {
+  if (question.type === "text") {
     return selfGrade === "correct" ? question.points : 0;
   }
   return 0;
@@ -71,7 +71,7 @@ export default function PracticeTopic() {
   );
   const textQuestionCount = useMemo(
     () =>
-      questions.filter((q) => q.type === "text" || q.type === "calculation")
+      questions.filter((q) => q.type === "text")
         .length,
     [questions],
   );

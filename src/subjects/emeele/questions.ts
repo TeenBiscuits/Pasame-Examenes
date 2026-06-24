@@ -399,7 +399,7 @@ Logistic regression: Predicts class probabilities (binary/multiclass), uses sigm
     id: "2024_q5a",
     exam: "2024",
     topic: "Neural Networks",
-    type: "calculation",
+    type: "text",
     points: 3,
     question: `Given the neural network with ReLU hidden activations and step-function output:
 w1=2, w2=1, w3=1.5, w4=0.5, w5=1, w6=-1.4, b1=-0.5, b2=0.5, b3=0.5
@@ -524,7 +524,7 @@ More powerful than perceptron because: multiple hidden layers with non-linear ac
     id: "2024_q6",
     exam: "2024",
     topic: "Decision Trees & Ensembles",
-    type: "calculation",
+    type: "text",
     points: 5,
     question: `Using the Gini impurity formula, calculate purity gain for splits S1 (split based on leaf count ≥ 6.5) and S2 (split based on height ≥ 45) from the plant data below. Which split is preferred based on your calculations?`,
     table: {
@@ -755,7 +755,7 @@ Models A and D clearly overfit (large train-validation gaps). Model B is good bu
     id: "2024_q9a",
     exam: "2024",
     topic: "Clustering",
-    type: "calculation",
+    type: "text",
     points: 3,
     repeated: true,
     question: `Apply hierarchical clustering with complete linkage to the dissimilarity matrix:
@@ -802,7 +802,7 @@ Cluster 2: Points 2, 3`,
     id: "2025_q8a",
     exam: "2025",
     topic: "Clustering",
-    type: "calculation",
+    type: "text",
     points: 3,
     repeated: true,
     question: `Perform agglomerative hierarchical clustering on 15 European capitals using single linkage. The distance matrix has 15 cities. Draw a horizontal dendrogram.`,

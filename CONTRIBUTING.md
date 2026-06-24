@@ -68,7 +68,6 @@ Exporta un array `Question[]`. Tipos de pregunta:
 
 - **`mc`** — Opción múltiple. `correctAnswer` es una letra `"a"`–`"e"`. Requiere `options[]`. Corrección automática.
 - **`text`** — Respuesta libre. `correctAnswer` es la solución modelo. Requiere `explanation`. Auto-evaluada por el usuario.
-- **`calculation`** — Igual que text, pero etiquetado como cálculo. Requiere `explanation`. Auto-evaluada por el usuario.
 - **`matching`** — Emparejar conceptos (incluye verdadero/falso con `"V"`/`"F"`). `correctAnswer` es un `Record<string, string>`. Corrección automática.
 
 ```ts
@@ -117,9 +116,9 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos opcionales: `explanation` (requerida para `text`/`calculation`), `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`), `repeated`.
+Campos opcionales: `explanation` (requerida para `text`), `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`), `repeated`.
 
-- `explanation` — opcional para `mc` y `matching`. Requerida para `text` y `calculation`. Nota explicativa mostrada al abrir soluciones. Si se omite en mc/matching, el botón "Abrir soluciones" no aparece.
+- `explanation` — opcional para `mc` y `matching`. Requerida para `text`. Nota explicativa mostrada al abrir soluciones. Si se omite en mc/matching, el botón "Abrir soluciones" no aparece.
 
 - `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la misma pregunta aparece en varios exámenes. Se muestra una etiqueta "Repetida" en la interfaz.
 
@@ -193,10 +192,10 @@ La asignatura debe aparecer en la pantalla principal y todas las funcionalidades
 ### Flujo de trabajo para extraer preguntas de PDFs
 
 1. Abre el PDF e identifica cada pregunta
-2. Clasifícala como `mc`, `text`, `calculation` o `matching`
+2. Clasifícala como `mc`, `text` o `matching`
 3. Asígnale un tema de tu array `topics` en `meta.ts`
 4. Para MC: escribe las opciones exactamente como aparecen, marca la letra correcta
-5. Para text/calculation: escribe una solución modelo
+5. Para text: escribe una solución modelo
 6. Para matching: crea el mapeo ítem → letra
 7. Incluye notas explicativas en `explanation`
 

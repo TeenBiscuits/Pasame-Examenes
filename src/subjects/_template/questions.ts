@@ -76,7 +76,7 @@ export const questions: Question[] = [
     id: "2025-01_q1",
     exam: "2025-01",
     topic: "topic-1",
-    type: "calculation",
+    type: "text",
     points: 15,
     question:
       "Calculate the area of a circle with radius r = 5 cm. Use π ≈ 3.14.",
@@ -111,7 +111,7 @@ Hint: remember that \`foo()\` calls itself recursively.`,
     id: "2025-01_q3",
     exam: "2025-01",
     topic: "topic-1",
-    type: "calculation",
+    type: "text",
     points: 10,
     question: "Calculate the mean and standard deviation for this dataset:",
     table: {

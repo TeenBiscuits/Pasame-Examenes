@@ -47,7 +47,7 @@ function gradeQuestion(
       return 0;
     }
   }
-  if (question.type === "text" || question.type === "calculation") {
+  if (question.type === "text") {
     return selfGrade === "correct" ? question.points : 0;
   }
   return 0;
