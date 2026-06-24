@@ -60,14 +60,36 @@ export default function ExamSimulation() {
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const questions = useMemo(
-    () => (subject && year ? getQuestionsByExam(subject.id, year) : []),
-    [subject, year],
-  );
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [megatopicLabels, setMegatopicLabels] = useState<
+    Record<string, string>
+  >({});
   const examInfo = useMemo(
     () => subject?.exams.find((e: Exam) => e.year === year),
     [subject, year],
   );
+  useEffect(() => {
+    if (subject && year) {
+      getQuestionsByExam(subject.id, year).then(setQuestions);
+    }
+  }, [subject, year]);
+
+  useEffect(() => {
+    if (!subject || questions.length === 0) return;
+    const topics = [...new Set(questions.map((q) => q.topic))];
+    Promise.all(
+      topics.map(async (t) => {
+        const label = await getTopicMegaTopicLabel(subject.id, t);
+        return [t, label] as const;
+      }),
+    ).then((entries) => {
+      const labels: Record<string, string> = {};
+      for (const [t, l] of entries) {
+        if (l != null) labels[t] = l;
+      }
+      setMegatopicLabels(labels);
+    });
+  }, [subject, questions]);
   useDocumentTitle(
     examInfo && subject
       ? `${examInfo.title} \u2014 ${subject.name} \u2014 ${t.home.title}`
@@ -491,10 +513,7 @@ export default function ExamSimulation() {
         index={currentIndex}
         total={questions.length}
         topicLabel={currentTopic?.label || currentQuestion.topic}
-        megatopicLabel={getTopicMegaTopicLabel(
-          subject.id,
-          currentQuestion.topic,
-        )}
+        megatopicLabel={megatopicLabels[currentQuestion.topic]}
         examDate={examInfo?.date || examInfo?.title}
         subjectId={subject.id}
         onAnswer={handleAnswer}

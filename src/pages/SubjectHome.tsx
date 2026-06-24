@@ -1,4 +1,4 @@
-import { useRef, useMemo } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
@@ -7,7 +7,7 @@ import TopicCard from "../components/TopicCard";
 import AddExamModal, {
   type AddExamModalHandle,
 } from "../components/AddExamModal";
-import type { Topic } from "../data/types";
+import type { Question, Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
@@ -19,14 +19,17 @@ export default function SubjectHome() {
   const t = useT();
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
+  const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   useDocumentTitle(
     subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
   );
 
-  const allQuestions = useMemo(
-    () => (subject ? getAllQuestions(subject.id) : []),
-    [subject],
-  );
+  useEffect(() => {
+    if (subject) {
+      getAllQuestions(subject.id).then(setAllQuestions);
+    }
+  }, [subject]);
+
   const seoDescription = useMemo(() => {
     if (!subject) return t.seo.defaultDescription;
     const repeatedCount = allQuestions.filter((q) => q.repeated).length;

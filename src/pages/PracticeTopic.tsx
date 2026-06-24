@@ -56,19 +56,20 @@ export default function PracticeTopic() {
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const questions = useMemo(
-    () => (subject && topic ? getQuestionsByTopic(subject.id, topic) : []),
-    [subject, topic],
-  );
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [megatopicLabel, setMegatopicLabel] = useState<
+    string | undefined
+  >();
   const topicInfo = useMemo(
     () => subject?.topics.find((tp) => tp.key === topic),
     [subject, topic],
   );
-  const megatopicLabel = useMemo(
-    () =>
-      subject && topic ? getTopicMegaTopicLabel(subject.id, topic) : undefined,
-    [subject, topic],
-  );
+  useEffect(() => {
+    if (subject && topic) {
+      getQuestionsByTopic(subject.id, topic).then(setQuestions);
+      getTopicMegaTopicLabel(subject.id, topic).then(setMegatopicLabel);
+    }
+  }, [subject, topic]);
   const textQuestionCount = useMemo(
     () =>
       questions.filter((q) => q.type === "text")
