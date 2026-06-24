@@ -53,9 +53,9 @@ export const meta: SubjectMeta = {
     {
       year: "megarecopilacion",
       title: "Megarecopilación Test XI",
-      description: "82 preguntas · 82 puntos",
-      passPoints: 41,
-      totalPoints: 82,
+      description: "122 preguntas · 122 puntos",
+      passPoints: 61,
+      totalPoints: 122,
       durationMinutes: 90,
     },
   ],
