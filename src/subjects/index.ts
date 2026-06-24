@@ -62,11 +62,3 @@ export async function getTopicMegaTopicLabel(
   if (!subject?.megatopics) return undefined;
   return subject.megatopics.find((mt) => mt.topics.includes(topicKey))?.label;
 }
-
-const _prefetched = new Set<string>();
-
-export function prefetchSubject(subjectId: string): void {
-  if (_prefetched.has(subjectId)) return;
-  _prefetched.add(subjectId);
-  getAllQuestions(subjectId);
-}

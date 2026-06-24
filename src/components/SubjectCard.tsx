@@ -1,10 +1,8 @@
-import { useCallback } from "react";
 import { LangLink as Link } from "../lib/lang-link";
 import type { SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
-import { prefetchSubject } from "../subjects";
 
 interface SubjectCardProps {
   subject: SubjectMeta;
@@ -12,10 +10,6 @@ interface SubjectCardProps {
 
 export default function SubjectCard({ subject }: SubjectCardProps) {
   const t = useT();
-  const prefetch = useCallback(
-    () => prefetchSubject(subject.id),
-    [subject.id],
-  );
 
   return (
     <Link
@@ -25,8 +19,6 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         triggerLight();
         track("subject_card_click", { subjectId: subject.id });
       }}
-      onMouseEnter={prefetch}
-      onFocus={prefetch}
     >
       <div className="flex items-start justify-between mb-3">
         <span className="text-2xl" aria-hidden="true">

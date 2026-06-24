@@ -1,5 +1,5 @@
-import { useRef, useEffect } from "react";
-import { subjects, prefetchSubject } from "../subjects";
+import { useRef } from "react";
+import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
 import AddSubjectModal, {
   type AddSubjectModalHandle,
@@ -17,15 +17,6 @@ export default function Home() {
     pathWithoutLang: "/",
   });
   const modalRef = useRef<AddSubjectModalHandle>(null);
-
-  useEffect(() => {
-    const id = requestIdleCallback(() => {
-      for (const s of subjects.slice(0, 3)) {
-        prefetchSubject(s.id);
-      }
-    });
-    return () => cancelIdleCallback(id);
-  }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
