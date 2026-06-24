@@ -66,10 +66,10 @@ export const meta: SubjectMeta = {
 
 Exporta un array `Question[]`. Tipos de pregunta:
 
-- **`mc`** — Opción múltiple. `correctAnswer` es una letra `"a"`–`"e"`. Requiere `options[]`.
-- **`text`** — Respuesta libre. Auto-evaluada por el usuario contra la solución modelo.
-- **`calculation`** — Igual que text, pero etiquetado como cálculo.
-- **`matching`** — Emparejar conceptos. `correctAnswer` es un `Record<string, string>`.
+- **`mc`** — Opción múltiple. `correctAnswer` es una letra `"a"`–`"e"`. Requiere `options[]`. Corrección automática.
+- **`text`** — Respuesta libre. `correctAnswer` es opcional (solución modelo). Auto-evaluada por el usuario.
+- **`calculation`** — Igual que text, pero etiquetado como cálculo. Auto-evaluada por el usuario.
+- **`matching`** — Emparejar conceptos (incluye verdadero/falso con `"V"`/`"F"`). `correctAnswer` es un `Record<string, string>`. Corrección automática.
 
 ```ts
 import type { Question } from "../../data/types";
@@ -117,7 +117,9 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos opcionales: `image`, `explanationImage`, `table`, `subquestions`, `repeated`.
+Campos opcionales: `correctAnswer`, `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`), `repeated`.
+
+- `correctAnswer` — opcional. Para `mc` y `matching` permite la corrección automática. Para `text`/`calculation` es la solución modelo que se muestra al abrir soluciones. Si se omite en text/calculation, se muestra "No hay solución modelo disponible". Si se omite en mc/matching, la pregunta no se puede auto-corregir.
 
 - `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la misma pregunta aparece en varios exámenes. Se muestra una etiqueta "Repetida" en la interfaz.
 

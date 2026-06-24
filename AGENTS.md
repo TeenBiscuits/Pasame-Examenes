@@ -139,12 +139,13 @@ export const questions: Question[] = [
 
 **Question types:**
 
-- `"mc"` — Multiple choice. `correctAnswer` is a letter string `"a"`–`"e"`. Include `options[]`.
-- `"text"` — Free-text answer. `correctAnswer` is the model solution string. Self-graded by user.
+- `"mc"` — Multiple choice. `correctAnswer` is a letter string `"a"`–`"e"`. Include `options[]`. Auto-graded.
+- `"text"` — Free-text answer. `correctAnswer` is an optional model solution string. Self-graded by user.
 - `"calculation"` — Same as text, shown as calculation question. Self-graded.
-- `"matching"` — Match items to letters. `correctAnswer` is `Record<string, string>`.
+- `"matching"` — Match items to letters (including true/false with `"V"`/`"F"`). `correctAnswer` is a `Record<string, string>`. Auto-graded.
 
-**Optional fields:**
+**Required fields:** `id`, `exam`, `topic`, `type`, `points`, `question`, `explanation`.
+**Optional fields:** `correctAnswer`, `image`, `explanationImage`, `table`, `subquestions`, `options` (required for `mc`), `repeated`.
 
 - `image?: Picture | string` — imported image shown in the question body. Use vite-imagetools: `import myImage from "./assets/figure.png?w=400;800;1200&format=avif;webp;png&as=picture"`. For JPEG: use `jpeg` instead of `png`. For broken/corrupt images, use a plain import without query params.
 - `explanationImage?: Picture | string` — image shown inside the collapsible solution panel (for all question types: mc, text, matching). Same import format as `image`.

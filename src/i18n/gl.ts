@@ -92,6 +92,8 @@ export const gl: Translations = {
     correct_: "Correcto",
     reportIssue: "Reportar erro",
     repeated: "Repetida",
+    noModelSolution: "Non hai solución modelo dispoñible.",
+    noAnswerKey: "Non hai clave de respostas dispoñible.",
   },
   subjectCard: {
     questions: "preguntas",

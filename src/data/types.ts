@@ -16,7 +16,7 @@ export interface Question {
   question: string;
   subquestions?: string[];
   options?: string[];
-  correctAnswer: string | string[] | Record<string, string>;
+  correctAnswer?: string | string[] | Record<string, string>;
   explanation: string;
   image?: Picture | string;
   explanationImage?: Picture | string;

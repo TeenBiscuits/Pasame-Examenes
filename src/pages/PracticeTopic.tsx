@@ -24,9 +24,11 @@ function gradeQuestion(
 ): number {
   if (!answer || answer.trim() === "") return 0;
   if (question.type === "mc") {
+    if (question.correctAnswer == null) return 0;
     return answer === question.correctAnswer ? question.points : 0;
   }
   if (question.type === "matching") {
+    if (question.correctAnswer == null) return 0;
     try {
       const user = JSON.parse(answer) as Record<string, string>;
       const correct = question.correctAnswer as Record<string, string>;

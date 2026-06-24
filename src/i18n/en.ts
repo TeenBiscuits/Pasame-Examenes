@@ -90,6 +90,8 @@ export const en = {
     correct_: "Correct",
     reportIssue: "Report Issue",
     repeated: "Repeated",
+    noModelSolution: "No model solution available.",
+    noAnswerKey: "No answer key available.",
   },
   subjectCard: {
     questions: "questions",

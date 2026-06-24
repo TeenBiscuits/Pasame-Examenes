@@ -100,7 +100,7 @@ function MCQuestion({
         const letter = String.fromCharCode(97 + i);
         const key = `${question.id}-opt-${letter}`;
         const isSelected = savedAnswer === letter;
-        const isCorrect = question.correctAnswer === letter;
+        const isCorrect = question.correctAnswer != null && question.correctAnswer === letter;
         let className =
           "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
         if (showResult && isCorrect) {
@@ -226,14 +226,22 @@ function TextQuestion({
 
           {isOpen && (
             <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-fg-muted">
-                {t.questionCard.modelSolution}
-              </h4>
-              <Markdown className="text-xs whitespace-pre-wrap font-sans text-fg-secondary">
-                {typeof question.correctAnswer === "string"
-                  ? question.correctAnswer
-                  : JSON.stringify(question.correctAnswer, null, 2)}
-              </Markdown>
+              {question.correctAnswer != null ? (
+                <>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-fg-muted">
+                    {t.questionCard.modelSolution}
+                  </h4>
+                  <Markdown className="text-xs whitespace-pre-wrap font-sans text-fg-secondary">
+                    {typeof question.correctAnswer === "string"
+                      ? question.correctAnswer
+                      : JSON.stringify(question.correctAnswer, null, 2)}
+                  </Markdown>
+                </>
+              ) : (
+                <p className="text-xs text-fg-muted italic">
+                  {t.questionCard.noModelSolution}
+                </p>
+              )}
               <Markdown className="text-xs text-fg-muted italic">
                 {question.explanation}
               </Markdown>
@@ -302,7 +310,10 @@ function MatchingQuestion({
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
-  const correctAnswer = question.correctAnswer as Record<string, string>;
+  const correctAnswer =
+    question.correctAnswer != null
+      ? (question.correctAnswer as Record<string, string>)
+      : {};
   const items = Object.keys(correctAnswer);
   const letters = [...new Set(Object.values(correctAnswer))].toSorted(
     (a, b) => {
@@ -328,6 +339,47 @@ function MatchingQuestion({
     setSelected(next);
     onAnswer(question.id, JSON.stringify(next));
   };
+
+  if (items.length === 0) {
+    return (
+      <div className="space-y-2">
+        <p className="text-xs text-fg-muted italic">
+          {t.questionCard.noAnswerKey}
+        </p>
+        {showResult && (
+          <div className="mt-3 space-y-3">
+            <button
+              type="button"
+              className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
+              onClick={() => {
+                triggerLight();
+                const next = !isOpen;
+                track("solution_toggle", {
+                  questionId: question.id,
+                  action: next ? "open" : "close",
+                });
+                setIsOpen(next);
+              }}
+            >
+              {isOpen
+                ? t.questionCard.closeSolution
+                : t.questionCard.openSolution}
+            </button>
+            {isOpen && (
+              <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+                <Markdown className="text-xs text-fg-muted italic">
+                  {question.explanation}
+                </Markdown>
+                {question.explanationImage && (
+                  <SolutionImage image={question.explanationImage} />
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-2">
