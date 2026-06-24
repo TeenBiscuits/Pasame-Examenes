@@ -4158,7 +4158,6 @@ export const questions: Question[] = [
       "C. ANSI/TIA-942",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q2",
@@ -4175,7 +4174,6 @@ export const questions: Question[] = [
       "C. Cableado UTP categoría 6A o superior.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q3",
@@ -4192,7 +4190,6 @@ export const questions: Question[] = [
       "C. Facilita la reducción de la curva de ponderación con la misma frecuencia de referencia.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q4",
@@ -4209,7 +4206,6 @@ export const questions: Question[] = [
       "C. No se utilizan equipos de retransmisión y conmutación de señales de voz analógica en este punto.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q5",
@@ -4222,7 +4218,6 @@ export const questions: Question[] = [
       "¿Cuál es la distancia máxima que puede haber entre una toma de red de pared y el panel de parcheo en una instalación de cableado estructurado?",
     options: ["A. 90 m.", "B. 100 m.", "C. 200 m."],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q6",
@@ -4239,7 +4234,6 @@ export const questions: Question[] = [
       "C. La necesidad de mitigar los efectos del ruido electromagnético.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q7",
@@ -4256,7 +4250,6 @@ export const questions: Question[] = [
       "C. el uso de fuentes de luz basada en tecnología led.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q8",
@@ -4273,7 +4266,6 @@ export const questions: Question[] = [
       "C. La distancia alcanzada depende únicamente de la lente utilizada.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q9",
@@ -4290,7 +4282,6 @@ export const questions: Question[] = [
       "C. Fibra óptica.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q10",
@@ -4307,7 +4298,6 @@ export const questions: Question[] = [
       "C. Capa núcleo únicamente.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q11",
@@ -4324,7 +4314,6 @@ export const questions: Question[] = [
       "C. El enrutado de tráfico procedente de VLANs se debe realizar de forma exclusiva en la capa de distribución.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q12",
@@ -4341,7 +4330,6 @@ export const questions: Question[] = [
       "C. El área de campus, capa de distribución.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q13",
@@ -4357,7 +4345,6 @@ export const questions: Question[] = [
       "C. Física, MAC y LLC.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q14",
@@ -4374,7 +4361,6 @@ export const questions: Question[] = [
       "C. Facilitar la contienda y las oportunidades de transmisión de las estaciones conectadas a la red.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q15",
@@ -4391,7 +4377,6 @@ export const questions: Question[] = [
       "C. Es aceptada por el interface si su destino es una dirección broadcast.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q16",
@@ -4408,7 +4393,6 @@ export const questions: Question[] = [
       "C. Sí, en cualquier caso.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q17",
@@ -4425,7 +4409,6 @@ export const questions: Question[] = [
       "C. Existen problemas de ruido en la red debido a interferencias electromagnéticas y ruido de radiofrecuencia.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q18",
@@ -4442,7 +4425,6 @@ export const questions: Question[] = [
       "C. IEEE 802.1X.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q19",
@@ -4459,7 +4441,6 @@ export const questions: Question[] = [
       "C. Para el mismo número y tipo de estaciones, disminución del número de colisiones frente a un switch conmutado sin VLANs.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q20",
@@ -4476,7 +4457,6 @@ export const questions: Question[] = [
       "C. No es posible la comunicación a nivel de transporte entre equipos situados en VLANs diferentes.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q21",
@@ -4493,7 +4473,6 @@ export const questions: Question[] = [
       "C. Únicamente el tráfico de protocolos de control como Spanning Tree o VTP.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q22",
@@ -4510,7 +4489,6 @@ export const questions: Question[] = [
       "C. Las dos respuestas anteriores son válidas.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q23",
@@ -4527,7 +4505,6 @@ export const questions: Question[] = [
       "C. El mecanismo de detección de colisiones, que determina el momento en el que las estaciones fragmentan la trama para mejorar el rendimiento de la transmisión.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q24",
@@ -4544,7 +4521,6 @@ export const questions: Question[] = [
       "C. Las respuestas anteriores son válidas.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q25",
@@ -4561,7 +4537,6 @@ export const questions: Question[] = [
       "C. El balanceo de carga entre los distintos elementos de una zona.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q26",
@@ -4578,7 +4553,6 @@ export const questions: Question[] = [
       "C. Fichero (File I/O), a través de un protocolo basado en TCP/IP, Fibre Channel o iSCSI.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q27",
@@ -4595,7 +4569,6 @@ export const questions: Question[] = [
       "C. Una mejora en el rendimiento, al eliminar el uso de IP como protocolo de red.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q28",
@@ -4612,7 +4585,6 @@ export const questions: Question[] = [
       "C. El intercambio de información entre switch sobre la capa de datos.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q29",
@@ -4629,7 +4601,6 @@ export const questions: Question[] = [
       "C. Reglas definidas en la tabla de flujos del controlador.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q30",
@@ -4646,7 +4617,6 @@ export const questions: Question[] = [
       "C. La implantación de servicios complejos se lleva a cabo mediante el protocolo openFlow.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q31",
@@ -4663,7 +4633,6 @@ export const questions: Question[] = [
       "C. Cobre (RJ45), MMF (MultiMode Fiber) y SMF (SingleMode Fiber).",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q32",
@@ -4680,7 +4649,6 @@ export const questions: Question[] = [
       "C. Ninguna de las respuestas es correcta.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q33",
@@ -4697,7 +4665,6 @@ export const questions: Question[] = [
       "C. Sólo podrán intercambiar tráfico de red si las VLANs definidas en los Switch A y B tienen el mismo Id.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q34",
@@ -4714,7 +4681,6 @@ export const questions: Question[] = [
       "C. El incremento de la longitud del cable en presencia de sistemas eléctricos cercanos.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q35",
@@ -4731,7 +4697,6 @@ export const questions: Question[] = [
       "C. Todos los archivos de la máquina virtual.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q36",
@@ -4748,7 +4713,6 @@ export const questions: Question[] = [
       "C. Se entiende por capacidad el conjunto de los activos tangibles de una organización.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q37",
@@ -4761,7 +4725,6 @@ export const questions: Question[] = [
       "¿Cuál de los siguientes sistemas de ficheros NO se pueden utilizar con Vmware Esxi?",
     options: ["A. VMFS", "B. CIFS", "C. NFS"],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q38",
@@ -4778,7 +4741,6 @@ export const questions: Question[] = [
       "C. En relación con el valor de un servicio, la utilidad es la seguridad o garantía de que un producto va a satisfacer los requerimientos acordados.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q39",
@@ -4795,7 +4757,6 @@ export const questions: Question[] = [
       "C. El tipo de fuente de luz utilizado por el emisor.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q40",
@@ -4812,7 +4773,6 @@ export const questions: Question[] = [
       "C. Siempre que la longitud total de la trama no supere los 1518 bytes.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q41",
@@ -4829,7 +4789,6 @@ export const questions: Question[] = [
       "C. Configuración de red común.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q42",
@@ -4846,7 +4805,6 @@ export const questions: Question[] = [
       "C. Está estructurada en más de 10 dominios (temáticas) y no es certificable, pero sí nos proporciona un código de buenas prácticas.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q43",
@@ -4863,7 +4821,6 @@ export const questions: Question[] = [
       "C. Todas las respuestas son correctas.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q44",
@@ -4880,7 +4837,6 @@ export const questions: Question[] = [
       "C. Movimiento dinámico de recursos (Distributed Resource Scheduler).",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q45",
@@ -4897,7 +4853,6 @@ export const questions: Question[] = [
       "C. Permita el inicio de Linux por red tanto individualizado por cliente como genérico.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q46",
@@ -4914,7 +4869,6 @@ export const questions: Question[] = [
       "C. Los servicios enhancing son aquellos que son necesarios para prestar servicios core. Pueden ser visibles o no para el cliente pero no son servicios que se le oferten como tales.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q47",
@@ -4931,7 +4885,6 @@ export const questions: Question[] = [
       "C. Categoría 5e.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q48",
@@ -4948,7 +4901,6 @@ export const questions: Question[] = [
       "C. La reducción de la longitud del cable en presencia de sistemas eléctricos cercanos.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q49",
@@ -4965,7 +4917,6 @@ export const questions: Question[] = [
       "C. Par trenzado no apantallado (UTP).",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q50",
@@ -4982,7 +4933,6 @@ export const questions: Question[] = [
       "C. Siempre que la longitud total de la trama sea al menos de 64 bytes.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q51",
@@ -4999,7 +4949,6 @@ export const questions: Question[] = [
       "C. 1006 a 4094.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q52",
@@ -5016,7 +4965,6 @@ export const questions: Question[] = [
       "C. Podrán intercambiar tráfico de nivel de red y de nivel de enlace, a través de los interfaces del router, siempre y cuando las VLANs estén definidas con el mismo Id en los switch SA y SB.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q53",
@@ -5033,7 +4981,6 @@ export const questions: Question[] = [
       "C. La optimización del canal de radio que lleva a cabo el protocolo CSMA/CA de WiFi.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q54",
@@ -5050,7 +4997,6 @@ export const questions: Question[] = [
       "C. Sincronización mediante un dispositivo NAS (p.e. usando TFTP).",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q55",
@@ -5067,7 +5013,6 @@ export const questions: Question[] = [
       "C. Se pueden crear servicios complejos mediante cadenas de funciones de servicios (SFC).",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q56",
@@ -5084,7 +5029,6 @@ export const questions: Question[] = [
       "C. La infraestructura de virtualización (NFVI) y las funciones de red virtualizadas (VNFs).",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q57",
@@ -5101,7 +5045,6 @@ export const questions: Question[] = [
       "C. Procesadores con la misma velocidad de reloj.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q58",
@@ -5118,7 +5061,6 @@ export const questions: Question[] = [
       "C. No hay que enviar nada desde el host origen al host destino ya que la máquina se almacena en un datastore accesible por los dos nodos.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q59",
@@ -5135,7 +5077,6 @@ export const questions: Question[] = [
       "C. Si una máquina virtual está configurada con alta disponibilidad en Vmware (HA) está siendo ejecutada en dos nodos de virtualización simultáneamente.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q60",
@@ -5152,7 +5093,6 @@ export const questions: Question[] = [
       "C. Siempre que hacemos un rollback de un snapshot la máquina virtual quedará en estado apagado.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q61",
@@ -5169,7 +5109,6 @@ export const questions: Question[] = [
       "C. 4 máquinas virtuales, cada una de ellas configurada con 4 GB de RAM.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q62",
@@ -5186,7 +5125,6 @@ export const questions: Question[] = [
       "C. Los hipervisores tipo 2 no son una solución ideal para la virtualización de servidores.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q63",
@@ -5203,7 +5141,6 @@ export const questions: Question[] = [
       "C. Descarte aleatorio de páginas de memoria.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q64",
@@ -5216,7 +5153,6 @@ export const questions: Question[] = [
       "¿Cuál es el sistema de ficheros desarrollado por VMWare?",
     options: ["A. VMFS", "B. NFS", "C. ZFS"],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q65",
@@ -5233,7 +5169,6 @@ export const questions: Question[] = [
       "C. El servidor DRBL permite arranques remotos mediante llave usb y trabaja combinando con Clonezilla Live.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q66",
@@ -5250,7 +5185,6 @@ export const questions: Question[] = [
       "C. DRBL no puede arrancar Windows en los equipos remotos, arranca en Linux.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q67",
@@ -5267,7 +5201,6 @@ export const questions: Question[] = [
       "C. Facilita la reducción de la curva de ponderación con la misma frecuencia de referencia.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q68",
@@ -5284,7 +5217,6 @@ export const questions: Question[] = [
       "C. Categoría 6.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q69",
@@ -5297,7 +5229,6 @@ export const questions: Question[] = [
       "El cable de fibra óptica monomodo utiliza como fuente de luz",
     options: ["A. led", "B. incandescente", "C. laser"],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q70",
@@ -5310,7 +5241,6 @@ export const questions: Question[] = [
       "La máxima distancia recomendada entre un rack de planta situado en una Telecommunications Room y una roseta (information outlet) sin incluir los latiguillos para conexión del switch en el armario y el terminal en la roseta es de ...",
     options: ["A. 100 mts", "B. 80 mts", "C. 90 mts"],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q71",
@@ -5327,7 +5257,6 @@ export const questions: Question[] = [
       "C. método jerárquico de acceso al medio.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q72",
@@ -5343,7 +5272,6 @@ export const questions: Question[] = [
       "C. Física, MAC y LLC.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q73",
@@ -5360,7 +5288,6 @@ export const questions: Question[] = [
       "C. sí, en cualquier caso.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q74",
@@ -5377,7 +5304,6 @@ export const questions: Question[] = [
       "C. No es posible la comunicación a nivel de transporte entre equipos situados en VLAN diferentes.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q75",
@@ -5394,7 +5320,6 @@ export const questions: Question[] = [
       "C. DSSS (Direct Sequence Spread Spectrum).",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q76",
@@ -5411,7 +5336,6 @@ export const questions: Question[] = [
       "C. File (File I/O).",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q77",
@@ -5428,7 +5352,6 @@ export const questions: Question[] = [
       "C. Un servicio es un medio de proporcionar valor a los clientes facilitándoles los resultados que quieren obtener sin necesidad de que estos asuman la responsabilidad de los costes y riesgos específicos.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q78",
@@ -5445,7 +5368,6 @@ export const questions: Question[] = [
       "C. El núcleo central de la Gestión de Servicios TI es la transformación de recursos en servicios con valor, explotando para ello las capacidades de la organización.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q79",
@@ -5462,7 +5384,6 @@ export const questions: Question[] = [
       "C. Una función es un equipo o grupo de personas que junto con las herramientas y otros recursos llevan a cabo uno o más procesos o actividades.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q80",
@@ -5479,7 +5400,6 @@ export const questions: Question[] = [
       "C. Un servicio al cliente interno es un servicio IT que apoya directamente a un proceso de negocio gestionado por otro departamento o unidad de la organización.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q81",
@@ -5496,7 +5416,6 @@ export const questions: Question[] = [
       "C. Ninguna de las anteriores respuestas es correcta.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q82",
@@ -5513,7 +5432,6 @@ export const questions: Question[] = [
       "C. Ninguna de las anteriores respuestas es correcta.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q83",
@@ -5526,7 +5444,6 @@ export const questions: Question[] = [
       "¿Cómo se denomina el sistema de ficheros diseñado por Vmware que está especialmente diseñado para el trabajo con máquinas virtuales y la creación de clusters de hypervisores?",
     options: ["A. NTFS", "B. NFS", "C. VMFS"],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q84",
@@ -5543,7 +5460,6 @@ export const questions: Question[] = [
       "C. Distributed Resource Scheduler (DRS).",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q85",
@@ -5560,7 +5476,6 @@ export const questions: Question[] = [
       "C. La ISO 27002 se basa en las normativas GS y SGSTI de la Commonwealth.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q86",
@@ -5577,7 +5492,6 @@ export const questions: Question[] = [
       "C. PXE es un mecanismo de arranque por red en desuso, todas las BIOS actuales utilizan mecanismos propios de cada fabricante.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q87",
@@ -5590,7 +5504,6 @@ export const questions: Question[] = [
       "La potencia radiada de una conexión WiFi en la banda de 2,4 GHz es de",
     options: ["A. 0,05 W", "B. 0,1 W", "C. 0,2 W"],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q88",
@@ -5603,7 +5516,6 @@ export const questions: Question[] = [
       "El protocolo VTP utilizado para intercambio de información de control acerca de las VLAN con id ...",
     options: ["A. 1", "B. 2 a 1005", "C. 1006 a 4094"],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q89",
@@ -5621,7 +5533,6 @@ export const questions: Question[] = [
       "D. El valor de un servicio puede considerarse como el nivel o grado en que éste cumple las expectativas de los clientes.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q90",
@@ -5639,7 +5550,6 @@ export const questions: Question[] = [
       "D. Sí, tanto de tipo 1 como hipervisor de tipo 2 van instalados directamente en el hardware sin necesidad de un sistema operativo intermediario.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q91",
@@ -5657,7 +5567,6 @@ export const questions: Question[] = [
       "D. No contestar.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q92",
@@ -5674,7 +5583,6 @@ export const questions: Question[] = [
       "D. Física, MAC y LLC.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q93",
@@ -5692,7 +5600,6 @@ export const questions: Question[] = [
       "D. No es posible la comunicación a nivel de transporte entre equipos situados en VLAN diferentes.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q94",
@@ -5710,7 +5617,6 @@ export const questions: Question[] = [
       "D. No contestar.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q95",
@@ -5723,7 +5629,6 @@ export const questions: Question[] = [
       "La máxima distancia recomendada entre un rack de planta situado en una Telecommunications Room y una roseta (information outlet) sin incluir los latiguillos para conexión del switch en el armario y el terminal en la roseta es de ...",
     options: ["A. 100 mts", "B. 80 mts", "C. 90 mts"],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q96",
@@ -5740,7 +5645,6 @@ export const questions: Question[] = [
       "C. El modelo funcional surge como modelo conceptual que pretende representar una solución de compromiso entre la departamentalización funcional de la organización y la departamentalización por producto.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q97",
@@ -5753,7 +5657,6 @@ export const questions: Question[] = [
       "El cable de fibra óptica monomodo utiliza como fuente de luz",
     options: ["A. led", "B. incandescente", "C. laser"],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q98",
@@ -5770,7 +5673,6 @@ export const questions: Question[] = [
       "C. DSSS (Direct Sequence Spread Spectrum).",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q99",
@@ -5787,7 +5689,6 @@ export const questions: Question[] = [
       "C. Los servicios Enhancing son servicios que añaden a los servicios core para hacerlos más atractivos de cara al cliente.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q100",
@@ -5804,7 +5705,6 @@ export const questions: Question[] = [
       "C. El programador es el encargado de elaborar el análisis funcional de necesidades y requerimientos informáticos del cliente o del departamento de la organización para el que se está desarrollando un proyecto.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q101",
@@ -5821,7 +5721,6 @@ export const questions: Question[] = [
       "C. método jerárquico de acceso al medio.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q102",
@@ -5838,7 +5737,6 @@ export const questions: Question[] = [
       "C. Un servicio al cliente interno es un servicio que proporciona la empresa directamente a un cliente externo.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q103",
@@ -5855,7 +5753,6 @@ export const questions: Question[] = [
       "C. Facilita la reducción de la curva de ponderación con la misma frecuencia de referencia.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q104",
@@ -5872,7 +5769,6 @@ export const questions: Question[] = [
       "C. Los servicios Enhancing proporcionan los resultados básicos que desea el cliente, el valor que este busca y por el que está dispuesto a pagar.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q105",
@@ -5889,7 +5785,6 @@ export const questions: Question[] = [
       "C. Todas las respuestas anteriores son correctas.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q106",
@@ -5906,7 +5801,6 @@ export const questions: Question[] = [
       "C. Un Rol es un conjunto de responsabilidades, actividades y autoridades asignadas a una persona o equipo. Los roles se definen normalmente para los procesos o las funciones.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q107",
@@ -5923,7 +5817,6 @@ export const questions: Question[] = [
       "C. El modelo mixto de una organización mantiene la estructura del modelo jerárquico pero aplicando una mayor especialización.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q108",
@@ -5940,7 +5833,6 @@ export const questions: Question[] = [
       "C. Todas las respuestas anteriores son correctas.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q109",
@@ -5957,7 +5849,6 @@ export const questions: Question[] = [
       "C. PXE es un mecanismo de arranque por red en desuso, todas las BIOS actuales utilizan mecanismos propios de cada fabricante.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q110",
@@ -5974,7 +5865,6 @@ export const questions: Question[] = [
       "C. Es el porcentaje de energía consumida por la SAI/UPS en relación al consumo total de todo el edificio de la empresa.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q111",
@@ -5991,7 +5881,6 @@ export const questions: Question[] = [
       "C. La ISO 27002 se basa en las normativas GS y SGSTI de la Commonwealth.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q112",
@@ -6008,7 +5897,6 @@ export const questions: Question[] = [
       "C. El momento de inicio de la difusión pública de la información relativa a todos los tipos de contratos con la excepción opcional de los contratos menores y los procedimientos negociados sin publicidad.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q113",
@@ -6025,7 +5913,6 @@ export const questions: Question[] = [
       "C. El proveedor legalmente podrá incluir una cláusula declinando ciertas responsabilidades.",
     ],
     correctAnswer: "a",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q114",
@@ -6042,7 +5929,6 @@ export const questions: Question[] = [
       "C. Puede hacerlo de cualquiera de las formas citadas.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q115",
@@ -6059,7 +5945,6 @@ export const questions: Question[] = [
       "C. Al propietario o firmante de la licencia de fuentes abiertas utilizada.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q116",
@@ -6076,7 +5961,6 @@ export const questions: Question[] = [
       "C. En el certificado de fiscalización de la intervención.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q117",
@@ -6093,7 +5977,6 @@ export const questions: Question[] = [
       "C. No se utilizan equipos de retransmisión y conmutación de señales de voz analógica en este punto.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q118",
@@ -6110,7 +5993,6 @@ export const questions: Question[] = [
       "C. Cableado UTP categoría 6 o superior.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q119",
@@ -6127,7 +6009,6 @@ export const questions: Question[] = [
       "C. Facilitar la contienda y las oportunidades de transmisión de las estaciones conectadas a la red.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q120",
@@ -6144,7 +6025,6 @@ export const questions: Question[] = [
       "C. DVB se orienta al transporte ATM frente a DOCSIS que se orienta al transporte IP.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q121",
@@ -6161,7 +6041,6 @@ export const questions: Question[] = [
       "C. El uso de paquetes de confirmación ACK, la fragmentación dinámica, el cifrado de nivel 2 y otros factores hacen más ineficiente en la transmisión de datos a las redes WiFi.",
     ],
     correctAnswer: "c",
-    explanation: "",
   },
   {
     id: "megarecopilacion_q122",
@@ -6178,6 +6057,5 @@ export const questions: Question[] = [
       "C. Para el mismo número y tipo de estaciones, disminución del número de colisiones frente a un switch conmutado sin VLANs.",
     ],
     correctAnswer: "b",
-    explanation: "",
   },
 ];
