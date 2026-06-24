@@ -29,6 +29,16 @@ function PageLoader() {
   );
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function SessionTracker() {
   const { lang } = useLang();
   const { theme } = useTheme();
@@ -128,6 +138,7 @@ export default function App() {
     <BrowserRouter>
       <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
         <SessionTracker />
+        <ScrollToTop />
         <Header />
         <main className="flex-grow">
           <Suspense fallback={<PageLoader />}>
