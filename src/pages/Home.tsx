@@ -37,6 +37,29 @@ function TrashIcon() {
   );
 }
 
+function PlaceholderCard() {
+  return (
+    <div
+      className="block w-full p-5 rounded-xl border-2 border-dashed border-border"
+      aria-hidden="true"
+    >
+      <div className="flex items-center gap-3 invisible">
+        <span className="text-2xl">&nbsp;</span>
+        <span className="font-semibold text-base">&nbsp;</span>
+      </div>
+    </div>
+  );
+}
+
+function slotClassName(i: number, isPlaceholder: boolean): string | undefined {
+  if (isPlaceholder) {
+    if (i >= 2) return "hidden lg:block";
+    return "hidden sm:block";
+  }
+  if (i >= 2) return "block sm:hidden lg:block";
+  return undefined;
+}
+
 export default function Home() {
   const t = useT();
   useDocumentTitle(t.home.title);
@@ -63,7 +86,9 @@ export default function Home() {
 
   const slots = Array.from({ length: MAX_SLOTS }, (_, i) => {
     const subject = recentSubjects[i];
-    return subject ? { type: "subject" as const, subject } : { type: "placeholder" as const };
+    return subject
+      ? ({ type: "subject" as const, subject })
+      : ({ type: "placeholder" as const });
   });
 
   return (
@@ -91,10 +116,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {slots.map((slot, i) => (
-              <div
-                key={i}
-                className={i >= 2 ? "block sm:hidden lg:block" : undefined}
-              >
+              <div key={i} className={slotClassName(i, slot.type === "placeholder")}>
                 {slot.type === "subject" ? (
                   <LangLink
                     to={`/${slot.subject.id}`}
@@ -111,28 +133,36 @@ export default function Home() {
                     </div>
                   </LangLink>
                 ) : (
-                  <div className="block w-full p-5 rounded-xl border-2 border-dashed border-border" />
+                  <PlaceholderCard />
                 )}
               </div>
             ))}
           </div>
+          <hr className="mt-10 border-border" />
         </div>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
         {subjects.map((subject) => (
-          <SubjectCard key={subject.id} subject={subject} />
-        ))}
-        <button
-          type="button"
-          onClick={() => modalRef.current?.open()}
-          className="block w-full p-5 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
-        >
-          <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">
-            <span className="text-4xl font-light leading-none">+</span>
-            <span className="text-sm font-medium">{t.home.addSubject}</span>
+          <div
+            key={subject.id}
+            className="animate-fade-in-up timeline-view"
+          >
+            <SubjectCard subject={subject} />
           </div>
-        </button>
+        ))}
+        <div className="animate-fade-in-up timeline-view">
+          <button
+            type="button"
+            onClick={() => modalRef.current?.open()}
+            className="block w-full p-5 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
+          >
+            <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">
+              <span className="text-4xl font-light leading-none">+</span>
+              <span className="text-sm font-medium">{t.home.addSubject}</span>
+            </div>
+          </button>
+        </div>
       </div>
 
       <AddSubjectModal ref={modalRef} onClose={() => {}} />
