@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
 import AddSubjectModal, {
@@ -71,13 +71,10 @@ export default function Home() {
   const modalRef = useRef<AddSubjectModalHandle>(null);
   const [recentKey, setRecentKey] = useState(0);
 
-  const recentSubjects = useMemo(() => {
-    const recentIds = getRecentSubjects();
-    return recentIds
-      .map((id) => subjects.find((s) => s.id === id))
-      .filter((s): s is NonNullable<typeof s> => s != null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [recentKey]);
+  const recentIds = getRecentSubjects();
+  const recentSubjects = recentIds
+    .map((id) => subjects.find((s) => s.id === id))
+    .filter((s): s is NonNullable<typeof s> => s != null);
 
   function handleClearRecent() {
     clearRecentSubjects();
@@ -99,7 +96,7 @@ export default function Home() {
       </p>
 
       {recentSubjects.length > 0 && (
-        <div className="mb-10 text-left">
+        <div className="mb-10 text-left" key={recentKey}>
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-semibold text-fg-muted uppercase tracking-wide">
               {t.home.recentlyVisited}
@@ -116,7 +113,10 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {slots.map((slot, i) => (
-              <div key={i} className={slotClassName(i, slot.type === "placeholder")}>
+              <div
+                key={slot.type === "subject" ? slot.subject.id : `placeholder-${i}`}
+                className={slotClassName(i, slot.type === "placeholder")}
+              >
                 {slot.type === "subject" ? (
                   <LangLink
                     to={`/${slot.subject.id}`}
