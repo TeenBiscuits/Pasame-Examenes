@@ -69,6 +69,7 @@ interface QuestionCardProps {
   showResult?: boolean;
   selfGrade?: "correct" | "incorrect";
   onSelfGrade?: (questionId: string, grade: "correct" | "incorrect") => void;
+  onCorrectAnswer?: () => void;
   direction?: "next" | "prev";
 }
 
@@ -201,6 +202,7 @@ function TextQuestion({
   showResult,
   selfGrade,
   onSelfGrade,
+  onCorrectAnswer,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
@@ -278,6 +280,7 @@ function TextQuestion({
                           grade: "correct",
                         });
                         onSelfGrade(question.id, "correct");
+                        onCorrectAnswer?.();
                       }}
                       className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
                         selfGrade === "correct"

@@ -9,6 +9,7 @@ import {
 import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
+import Confetti from "../components/Confetti";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight, triggerMedium } from "../lib/haptics";
@@ -107,6 +108,7 @@ export default function PracticeTopic() {
     Record<string, boolean>
   >({});
   const attemptIdRef = useRef<string>("");
+  const [confettiFire, setConfettiFire] = useState(0);
   const [direction, setDirection] = useState<"next" | "prev" | undefined>();
   const navRef = useRef<HTMLDivElement>(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
@@ -226,6 +228,7 @@ export default function PracticeTopic() {
       answers,
     });
     setSubmitted(true);
+    if (score > 0) setConfettiFire((c) => c + 1);
   };
 
   const handleSelfGrade = (
@@ -294,6 +297,7 @@ export default function PracticeTopic() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
+      <Confetti fire={confettiFire} />
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
@@ -390,6 +394,7 @@ export default function PracticeTopic() {
         showResult={submitted || !!checkedQuestions[currentQuestion.id]}
         selfGrade={selfGrades[currentQuestion.id]}
         onSelfGrade={handleSelfGrade}
+        onCorrectAnswer={() => setConfettiFire((c) => c + 1)}
         direction={direction}
       />
 
@@ -462,6 +467,12 @@ export default function PracticeTopic() {
                       ...prev,
                       [currentQuestion.id]: true,
                     }));
+                    const pts = gradeQuestion(
+                      currentQuestion,
+                      answers[currentQuestion.id] || "",
+                      selfGrades[currentQuestion.id],
+                    );
+                    if (pts > 0) setConfettiFire((c) => c + 1);
                   }}
                 >
                   {t.practice.check}
