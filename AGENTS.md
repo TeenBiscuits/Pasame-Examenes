@@ -183,7 +183,10 @@ import type { ImageMap } from "../../lib/image";
 
 const imageMap = import.meta.glob<{ default: Picture }>(
   "./assets/*.{png,jpeg,jpg}",
-  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+  {
+    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
+    eager: true,
+  },
 ) as ImageMap;
 ```
 

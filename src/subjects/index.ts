@@ -30,9 +30,7 @@ export function getSubject(id: string): SubjectMeta | undefined {
   return subjects.find((s) => s.id === id);
 }
 
-export async function getAllQuestions(
-  subjectId: string,
-): Promise<Question[]> {
+export async function getAllQuestions(subjectId: string): Promise<Question[]> {
   const modulePath = `./${subjectId}/questions.ts`;
   const mod = await questionsModules[modulePath]?.();
   return mod?.questions ?? [];

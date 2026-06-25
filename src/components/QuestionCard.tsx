@@ -20,8 +20,7 @@ function QuestionImage({
   alt: string;
   maxHeight: "300px" | "400px";
 }) {
-  const heightClass =
-    maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
+  const heightClass = maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
   if (typeof image === "object") {
     return (
       <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
@@ -154,42 +153,42 @@ function MCQuestion({
       })}
       {showResult &&
         (question.explanation != null || question.explanationImage) && (
-        <div className="mt-3 space-y-3">
-          <button
-            type="button"
-            className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
-            onClick={() => {
-              triggerLight();
-              const next = !isOpen;
-              track("solution_toggle", {
-                questionId: question.id,
-                action: next ? "open" : "close",
-              });
-              setIsOpen(next);
-            }}
-          >
-            {isOpen
-              ? t.questionCard.closeSolution
-              : t.questionCard.openSolution}
-          </button>
-          {isOpen && (
-            <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              {question.explanation != null && (
-                <Markdown className="text-xs text-fg-muted italic">
-                  {question.explanation}
-                </Markdown>
-              )}
-              {question.explanationImage && (
-                <QuestionImage
-                  image={question.explanationImage}
-                  alt="Solution illustration"
-                  maxHeight="300px"
-                />
-              )}
-            </div>
-          )}
-        </div>
-      )}
+          <div className="mt-3 space-y-3">
+            <button
+              type="button"
+              className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
+              onClick={() => {
+                triggerLight();
+                const next = !isOpen;
+                track("solution_toggle", {
+                  questionId: question.id,
+                  action: next ? "open" : "close",
+                });
+                setIsOpen(next);
+              }}
+            >
+              {isOpen
+                ? t.questionCard.closeSolution
+                : t.questionCard.openSolution}
+            </button>
+            {isOpen && (
+              <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+                {question.explanation != null && (
+                  <Markdown className="text-xs text-fg-muted italic">
+                    {question.explanation}
+                  </Markdown>
+                )}
+                {question.explanationImage && (
+                  <QuestionImage
+                    image={question.explanationImage}
+                    alt="Solution illustration"
+                    maxHeight="300px"
+                  />
+                )}
+              </div>
+            )}
+          </div>
+        )}
     </div>
   );
 }
@@ -408,42 +407,42 @@ function MatchingQuestion({
       })}
       {showResult &&
         (question.explanation != null || question.explanationImage) && (
-        <div className="mt-3 space-y-3">
-          <button
-            type="button"
-            className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
-            onClick={() => {
-              triggerLight();
-              const next = !isOpen;
-              track("solution_toggle", {
-                questionId: question.id,
-                action: next ? "open" : "close",
-              });
-              setIsOpen(next);
-            }}
-          >
-            {isOpen
-              ? t.questionCard.closeSolution
-              : t.questionCard.openSolution}
-          </button>
-          {isOpen && (
-            <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              {question.explanation != null && (
-                <Markdown className="text-xs text-fg-muted italic">
-                  {question.explanation}
-                </Markdown>
-              )}
-              {question.explanationImage && (
-                <QuestionImage
-                  image={question.explanationImage}
-                  alt="Solution illustration"
-                  maxHeight="300px"
-                />
-              )}
-            </div>
-          )}
-        </div>
-      )}
+          <div className="mt-3 space-y-3">
+            <button
+              type="button"
+              className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
+              onClick={() => {
+                triggerLight();
+                const next = !isOpen;
+                track("solution_toggle", {
+                  questionId: question.id,
+                  action: next ? "open" : "close",
+                });
+                setIsOpen(next);
+              }}
+            >
+              {isOpen
+                ? t.questionCard.closeSolution
+                : t.questionCard.openSolution}
+            </button>
+            {isOpen && (
+              <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+                {question.explanation != null && (
+                  <Markdown className="text-xs text-fg-muted italic">
+                    {question.explanation}
+                  </Markdown>
+                )}
+                {question.explanationImage && (
+                  <QuestionImage
+                    image={question.explanationImage}
+                    alt="Solution illustration"
+                    maxHeight="300px"
+                  />
+                )}
+              </div>
+            )}
+          </div>
+        )}
     </div>
   );
 }
@@ -543,9 +542,7 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
       )}
       {question.type === "mc" && <MCQuestion {...props} />}
-      {question.type === "text" && (
-        <TextQuestion {...props} />
-      )}
+      {question.type === "text" && <TextQuestion {...props} />}
       {question.type === "matching" && <MatchingQuestion {...props} />}
       <div className="mt-4 pt-4 border-t border-border flex items-center justify-end gap-2">
         <span className="text-[10px] font-mono text-fg-muted select-all">

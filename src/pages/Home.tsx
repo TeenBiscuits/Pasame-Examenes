@@ -84,8 +84,8 @@ export default function Home() {
   const slots = Array.from({ length: MAX_SLOTS }, (_, i) => {
     const subject = recentSubjects[i];
     return subject
-      ? ({ type: "subject" as const, subject })
-      : ({ type: "placeholder" as const });
+      ? { type: "subject" as const, subject }
+      : { type: "placeholder" as const };
   });
 
   return (
@@ -114,7 +114,9 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {slots.map((slot, i) => (
               <div
-                key={slot.type === "subject" ? slot.subject.id : `placeholder-${i}`}
+                key={
+                  slot.type === "subject" ? slot.subject.id : `placeholder-${i}`
+                }
                 className={slotClassName(i, slot.type === "placeholder")}
               >
                 {slot.type === "subject" ? (

@@ -57,9 +57,7 @@ export default function PracticeTopic() {
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [megatopicLabel, setMegatopicLabel] = useState<
-    string | undefined
-  >();
+  const [megatopicLabel, setMegatopicLabel] = useState<string | undefined>();
   const topicInfo = useMemo(
     () => subject?.topics.find((tp) => tp.key === topic),
     [subject, topic],
@@ -71,9 +69,7 @@ export default function PracticeTopic() {
     }
   }, [subject, topic]);
   const textQuestionCount = useMemo(
-    () =>
-      questions.filter((q) => q.type === "text")
-        .length,
+    () => questions.filter((q) => q.type === "text").length,
     [questions],
   );
   useDocumentTitle(
@@ -263,7 +259,9 @@ export default function PracticeTopic() {
 
   const examDate = useMemo(() => {
     if (currentQuestion?.exam === "both") return undefined;
-    const exam = currentQuestion ? subject?.exams.find((e) => e.year === currentQuestion.exam) : undefined;
+    const exam = currentQuestion
+      ? subject?.exams.find((e) => e.year === currentQuestion.exam)
+      : undefined;
     return exam?.date || exam?.title;
   }, [subject, currentQuestion]);
 

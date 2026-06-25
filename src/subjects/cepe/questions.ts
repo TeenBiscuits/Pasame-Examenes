@@ -5,7 +5,10 @@ import type { ImageMap } from "../../lib/image";
 
 const imageMap = import.meta.glob<{ default: Picture }>(
   "./assets/*.{png,jpeg,jpg}",
-  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+  {
+    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
+    eager: true,
+  },
 ) as ImageMap;
 
 export const questions: Question[] = [
@@ -2332,7 +2335,10 @@ loop(Next) ->
     type: "text",
     points: 2.5,
     image: getImage(imageMap, "task-graph-2025-07.jpeg"),
-    explanationImage: getImage(imageMap, "task-graph-critical-path-2025-07.jpeg"),
+    explanationImage: getImage(
+      imageMap,
+      "task-graph-critical-path-2025-07.jpeg",
+    ),
     subquestions: [
       "(a) [0.25p] Determina qué tipo de descomposición se ha utilizado.",
       "(b) [0.75p] Identifica el camino crítico, el grado máximo y el grado medio de concurrencia.",
