@@ -146,12 +146,12 @@ export default function Home() {
         {subjects.map((subject) => (
           <div
             key={subject.id}
-            className="animate-fade-in-up timeline-view"
+            className="animate-fade-in-up timeline-view animate-range-entry"
           >
             <SubjectCard subject={subject} />
           </div>
         ))}
-        <div className="animate-fade-in-up timeline-view">
+        <div className="animate-fade-in-up timeline-view animate-range-entry">
           <button
             type="button"
             onClick={() => modalRef.current?.open()}
