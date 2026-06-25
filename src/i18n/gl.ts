@@ -7,6 +7,7 @@ export const gl: Translations = {
       "Plataforma de código aberto para practicar exames universitarios. Elixe unha materia para comezar a practicar con preguntas de exames anteriores.",
     addSubject: "Engadir materia?",
     recentlyVisited: "Visitadas recentemente",
+    clearRecent: "Limpar materias recentes",
   },
   subjectHome: {
     notFound: "Materia non atopada",

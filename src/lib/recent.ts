@@ -20,3 +20,11 @@ export function recordSubjectClick(subjectId: string) {
     /* localStorage unavailable */
   }
 }
+
+export function clearRecentSubjects() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    /* localStorage unavailable */
+  }
+}
