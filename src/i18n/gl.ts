@@ -96,6 +96,7 @@ export const gl: Translations = {
     repeated: "Repetida",
   },
   subjectCard: {
+    topics: "temas",
     questions: "preguntas",
     points: "puntos",
     exams: "exames",

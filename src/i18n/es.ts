@@ -96,6 +96,7 @@ export const es: Translations = {
     repeated: "Repetida",
   },
   subjectCard: {
+    topics: "temas",
     questions: "preguntas",
     points: "puntos",
     exams: "exámenes",

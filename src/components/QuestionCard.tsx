@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
@@ -99,6 +99,41 @@ function MCQuestion({
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
+
+  useEffect(() => {
+    if (showResult || !question.options) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const tag = document.activeElement?.tagName.toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+
+      const key = e.key.toLowerCase();
+      let selectedLetter: string | undefined;
+
+      if (['a', 'b', 'c', 'd', 'e'].includes(key)) {
+        selectedLetter = key;
+      } else if (['1', '2', '3', '4', '5'].includes(key)) {
+        selectedLetter = String.fromCharCode(96 + parseInt(key)); // '1' -> 'a'
+      }
+
+      if (selectedLetter) {
+        const optionIndex = selectedLetter.charCodeAt(0) - 97;
+        if (optionIndex < question.options!.length) {
+          e.preventDefault();
+          triggerSelection();
+          track("question_answer", {
+            questionId: question.id,
+            type: "mc",
+            answer: selectedLetter,
+          });
+          onAnswer(question.id, selectedLetter);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showResult, question.id, question.options, onAnswer]);
 
   if (!question.options) return null;
 
