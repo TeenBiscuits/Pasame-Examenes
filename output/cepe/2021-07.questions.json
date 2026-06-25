@@ -1,0 +1,62 @@
+[
+  {
+    "id": "2021-07_q1",
+    "exam": "2021-07",
+    "topic": "mutex-y-condiciones",
+    "type": "text",
+    "points": 2.5,
+    "question": {
+      "start": "### 1. Clientes en múltiples colas [2.5 puntos]",
+      "end": "Complete la implementaci\u00f3n de `customer` y `server` para que simulen el comportamiento descrito."
+    },
+    "correctAnswer": {
+      "start": "#define N ...\n\nvoid insert(queue *q, void *);",
+      "end": "serve();\n    }\n}"
+    }
+  },
+  {
+    "id": "2021-07_q2",
+    "exam": "2021-07",
+    "topic": "mutex-y-condiciones",
+    "type": "text",
+    "points": 2.5,
+    "question": {
+      "start": "## 2. Threads que simulan corredores de una carrera por relevos [2.5 puntos]",
+      "end": "int pthread_cond_destroy(pthread_cond_t *cond);"
+    },
+    "correctAnswer": {
+      "start": "struct token {\n    int total_num_runners;\n    pthread_cond_t start;",
+      "end": "int pthread_cond_destroy(pthread_cond_t *cond);"
+    }
+  },
+  {
+    "id": "2021-07_q3",
+    "exam": "2021-07",
+    "topic": "preguntas-teoricas",
+    "type": "text",
+    "points": 2.5,
+    "question": {
+      "start": "[2,5p] 1. Conceptos de paralelismo.",
+      "end": "b\u00fasqueda paralelo del apartado b) [0,5p]"
+    },
+    "correctAnswer": {
+      "start": "# SOLUCI\u00d3N\n\n1. a) La tarea de an\u00e1lisis del mapa de la isla no es paralelizable",
+      "end": "el tiempo de cavar en todos los fragmentos es el mismo (como se indica en el apartado c)."
+    }
+  },
+  {
+    "id": "2021-07_q4",
+    "exam": "2021-07",
+    "topic": "ejercicios-mpi",
+    "type": "text",
+    "points": 2.5,
+    "question": {
+      "start": "[2,5p] 2. Dise\u00f1o de algoritmos paralelos.",
+      "end": "int MPI_Reduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm)"
+    },
+    "correctAnswer": {
+      "start": "2. a) La descomposici\u00f3n en tareas a alto nivel sigue un modelo hbrido con 4 fases o tareas:",
+      "end": "MPI_Finalize();\n}"
+    }
+  }
+]

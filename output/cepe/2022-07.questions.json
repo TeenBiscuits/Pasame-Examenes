@@ -1,0 +1,78 @@
+[
+  {
+    "id": "2022-07_q1",
+    "exam": "2022-07",
+    "topic": "mutex-y-condiciones",
+    "type": "text",
+    "points": 2,
+    "question": {
+      "start": "1. Thread activo [2 puntos]",
+      "end": "int pthread_cond_destroy(pthread_cond_t *cond);"
+    },
+    "correctAnswer": {
+      "start": "# Solución\n\n```c\n#define NTHREADS ...",
+      "end": "pthread_mutex_unlock(&amp;args-&gt;t-&gt;m);\n}"
+    }
+  },
+  {
+    "id": "2022-07_q2",
+    "exam": "2022-07",
+    "topic": "mutex-y-condiciones",
+    "type": "text",
+    "points": 2,
+    "question": {
+      "start": "2. Sistema de gestión de memoria [2 puntos]",
+      "end": "struct elem *list_next(struct list_t *list,)"
+    },
+    "correctAnswer": {
+      "start": "Solución\n\n```c\nstruct list_t;",
+      "end": "printf(\"Invalid size %d\\n\", size);\n}"
+    }
+  },
+  {
+    "id": "2022-07_q3",
+    "exam": "2022-07",
+    "topic": "erlang",
+    "type": "text",
+    "points": 1,
+    "question": {
+      "start": "3. Sistema de log [1 punto]",
+      "end": "log_message(Msg, Level) =&gt; io:format(\"[-w]: ~w~n\", [Level, Msg])."
+    },
+    "correctAnswer": {
+      "start": "Solución\n\n```txt\n-module(log).",
+      "end": "log_message(Msg, Level) -&gt; io:format(\"[-w]: -w-n\", [Level, Msg])."
+    }
+  },
+  {
+    "id": "2022-07_q4",
+    "exam": "2022-07",
+    "topic": "preguntas-teoricas",
+    "type": "text",
+    "points": 2.5,
+    "question": {
+      "start": "[2,5p] 1. Conceptos de paralelismo.",
+      "end": "¿sería interesante usar más? [0.5p]"
+    },
+    "correctAnswer": {
+      "start": "# SOLUCIÓN\n\n1. (a) La Ley de Amdahl",
+      "end": "en paralelo en ningún punto del pipeline."
+    },
+    "image": "2022-07_img-0.jpeg"
+  },
+  {
+    "id": "2022-07_q5",
+    "exam": "2022-07",
+    "topic": "ejercicios-mpi",
+    "type": "text",
+    "points": 2.5,
+    "question": {
+      "start": "[2,5p] 2. Diseño de algoritmos paralelos.",
+      "end": "int MPI_Reduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm)"
+    },
+    "correctAnswer": {
+      "start": "2. (a) Sería una descomposición de dominio con una tarea por cada posición",
+      "end": "MPI_Send(A, L, MPI_CHAR, rank-1, 0, MPI_COMM_WORLD);\n}\n}"
+    }
+  }
+]

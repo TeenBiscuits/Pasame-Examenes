@@ -1,0 +1,78 @@
+[
+  {
+    "id": "2020-07_q1",
+    "exam": "2020-07",
+    "topic": "mutex-y-condiciones",
+    "type": "text",
+    "points": 0.75,
+    "question": {
+      "start": "1. Futures [0.75 puntos]",
+      "end": "free(future);\n}"
+    },
+    "correctAnswer": {
+      "start": "# Solución\n\n```c\nstruct future {",
+      "end": "free(future);\n}"
+    }
+  },
+  {
+    "id": "2020-07_q2",
+    "exam": "2020-07",
+    "topic": "mutex-y-condiciones",
+    "type": "text",
+    "points": 0.75,
+    "question": {
+      "start": "2. Paso de peatones [0.75 puntos]",
+      "end": "más campos a la estructura crossing si lo considera necesario."
+    },
+    "correctAnswer": {
+      "start": "void *car(void *ptr) {\n    struct crossing *cross = ptr;\n\n    pthread_mutex_lock(cross-&gt;lock);\n    if(cross-&gt;pedestrians &gt; 0 || cross-&gt;cars_crossing &gt; 0) {",
+      "end": "pthread_mutex_unlock(cross-&gt;lock);\n    }"
+    }
+  },
+  {
+    "id": "2020-07_q3",
+    "exam": "2020-07",
+    "topic": "erlang",
+    "type": "text",
+    "points": 0.5,
+    "question": {
+      "start": "3. Árbol de Procesos [0.5 puntos]",
+      "end": "false si no existe."
+    },
+    "correctAnswer": {
+      "start": "get_value(Tree) -&gt; Tree! {get_value, self()}, receive {get_value_reply, V} -&gt; V end.",
+      "end": "check_exists(Tree, V) -&gt; exists(Tree, V)."
+    },
+    "image": "2020-07_img-0.jpeg"
+  },
+  {
+    "id": "2020-07_q4",
+    "exam": "2020-07",
+    "topic": "preguntas-teoricas",
+    "type": "text",
+    "points": 1,
+    "question": {
+      "start": "[1p] 1. Conceptos de paralelismo.",
+      "end": "speedup esperado? [0,3p]"
+    },
+    "correctAnswer": {
+      "start": "SOLUCIÓN:\n\n1. Ejercicio 1",
+      "end": "speedup = \\frac{t_{seq}}{t_{par}}"
+    }
+  },
+  {
+    "id": "2020-07_q5",
+    "exam": "2020-07",
+    "topic": "ejercicios-mpi",
+    "type": "text",
+    "points": 1,
+    "question": {
+      "start": "[1p] 2. Diseño de algoritmos paralelos.",
+      "end": "int MPI_Reduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm)"
+    },
+    "correctAnswer": {
+      "start": "2. Ejercicio 2",
+      "end": "return debe_continuar;\n}"
+    }
+  }
+]

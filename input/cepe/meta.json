@@ -1,6 +1,4 @@
-import type { SubjectMeta } from "../../data/types";
-
-export const meta: SubjectMeta = {
+{
   "id": "cepe",
   "name": "Concurrencia e Paralelismo",
   "university": "Universidade da Coruña",
@@ -213,4 +211,4 @@ export const meta: SubjectMeta = {
       "hasPdf": true
     }
   ]
-};
+}

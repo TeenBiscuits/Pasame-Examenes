@@ -1,0 +1,80 @@
+[
+  {
+    "id": "2025-07_q1",
+    "exam": "2025-07",
+    "topic": "mutex-y-condiciones",
+    "type": "text",
+    "points": 2,
+    "question": {
+      "start": "1. Cola de espera [2 puntos]",
+      "end": "pthread_t pthread_self();"
+    },
+    "correctAnswer": {
+      "start": "# Solución:",
+      "end": "pthread_mutex_unlock(wr-&gt;m); }"
+    }
+  },
+  {
+    "id": "2025-07_q2",
+    "exam": "2025-07",
+    "topic": "mutex-y-condiciones",
+    "type": "text",
+    "points": 1.5,
+    "question": {
+      "start": "Barrera de emparejamiento [1.5 puntos]",
+      "end": "pair_barrier_b(pair_barrier_t *pb) { ... }"
+    },
+    "correctAnswer": {
+      "start": "} ``` Solución:",
+      "end": "changing qa for qb and viceversa }"
+    }
+  },
+  {
+    "id": "2025-07_q3",
+    "exam": "2025-07",
+    "topic": "erlang",
+    "type": "text",
+    "points": 1.5,
+    "question": {
+      "start": "3. Linea de procesos [1.5 puntos]",
+      "end": "no pueden modificarse. Solución:"
+    },
+    "correctAnswer": {
+      "start": "-module(line).",
+      "end": "{get_pids, B - 1, [self() | Pids], From} end, loop(Next)."
+    },
+    "repeated": true
+  },
+  {
+    "id": "2025-07_q4",
+    "exam": "2025-07",
+    "topic": "preguntas-teoricas",
+    "type": "text",
+    "points": 2.5,
+    "question": {
+      "start": "[2.5p] 1. Conceptos de paralelismo.",
+      "end": "escalabilidad fuerte y/o escalabilidad débil."
+    },
+    "correctAnswer": {
+      "start": "1. (a) Es una descomposición funcional.",
+      "end": "|  80 | 85.0 | 45.0 | 23.0 | 11.0 | 6.0  |"
+    },
+    "image": "2025-07_img-0.jpeg",
+    "explanationImage": "2025-07_img-3.jpeg"
+  },
+  {
+    "id": "2025-07_q5",
+    "exam": "2025-07",
+    "topic": "ejercicios-mpi",
+    "type": "text",
+    "points": 2.5,
+    "question": {
+      "start": "[2.5p] 2. Diseño de algoritmos paralelos.",
+      "end": "int MPI_Reduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype dt, MPI_Op op, int root, MPI_Comm comm)"
+    },
+    "correctAnswer": {
+      "start": "2. (a) Sí, hay un problema.",
+      "end": "MPI_Finalize();"
+    }
+  }
+]
