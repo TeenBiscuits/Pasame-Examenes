@@ -3,6 +3,7 @@ import type { SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
+import { recordSubjectClick } from "../lib/recent";
 
 interface SubjectCardProps {
   subject: SubjectMeta;
@@ -18,6 +19,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       onClick={() => {
         triggerLight();
         track("subject_card_click", { subjectId: subject.id });
+        recordSubjectClick(subject.id);
       }}
     >
       <div className="flex items-start justify-between mb-3">

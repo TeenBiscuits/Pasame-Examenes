@@ -6,6 +6,8 @@ export const es: Translations = {
     subtitle:
       "Plataforma de código abierto para practicar exámenes universitarios. Elige una asignatura para empezar a practicar con preguntas de exámenes anteriores.",
     addSubject: "¿Añadir asignatura?",
+    recentlyVisited: "Visitadas recientemente",
+    clearRecent: "Limpiar asignaturas recientes",
   },
   subjectHome: {
     notFound: "Asignatura no encontrada",

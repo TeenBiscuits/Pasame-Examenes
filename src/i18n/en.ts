@@ -4,6 +4,8 @@ export const en = {
     subtitle:
       "Open-source platform for practicing university exams. Choose a subject below to start drilling questions from past exams.",
     addSubject: "Add Subject?",
+    recentlyVisited: "Recently visited",
+    clearRecent: "Clear recent subjects",
   },
   subjectHome: {
     notFound: "Subject Not Found",
