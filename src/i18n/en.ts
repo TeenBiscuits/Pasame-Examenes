@@ -94,6 +94,7 @@ export const en = {
     repeated: "Repeated",
   },
   subjectCard: {
+    topics: "topics",
     questions: "questions",
     points: "points",
     exams: "exams",
