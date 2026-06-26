@@ -7,12 +7,15 @@ import TopicCard from "../components/TopicCard";
 import AddExamModal, {
   type AddExamModalHandle,
 } from "../components/AddExamModal";
+import ExamCardEditor from "../components/ExamCardEditor";
 import type { Question, Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { useCms } from "../lib/cms-context";
+import EditableField from "../components/CmsEditor/EditableField";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
@@ -20,6 +23,7 @@ export default function SubjectHome() {
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
+  const { isEditing, patchMeta, patchVersion } = useCms();
   useDocumentTitle(
     subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
   );
@@ -28,7 +32,7 @@ export default function SubjectHome() {
     if (subject) {
       getAllQuestions(subject.id).then(setAllQuestions);
     }
-  }, [subject]);
+  }, [subject, patchVersion]);
 
   const seoDescription = useMemo(() => {
     if (!subject) return t.seo.defaultDescription;
@@ -107,7 +111,18 @@ export default function SubjectHome() {
         <p className="text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
           {subject.courseCode} &middot; {subject.university}
         </p>
-        <h1 className="text-3xl font-bold text-fg mb-3">{subject.name}</h1>
+        {isEditing ? (
+          <div className="max-w-xl mx-auto">
+            <EditableField
+              value={subject.name}
+              onChange={(v) => patchMeta(subject.id, { name: v })}
+              label="Subject Name"
+              className="text-xl"
+            />
+          </div>
+        ) : (
+          <h1 className="text-3xl font-bold text-fg mb-3">{subject.name}</h1>
+        )}
         <p className="text-fg-secondary max-w-xl mx-auto">{description}</p>
       </div>
 
@@ -165,24 +180,11 @@ export default function SubjectHome() {
         className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.exams.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
       >
         {subject.exams.map((exam) => (
-          <Link
+          <ExamCardEditor
             key={exam.year}
-            to={`/${subject.id}/exam/${exam.year}`}
-            className="block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
-            onClick={() => {
-              triggerLight();
-              track("exam_card_click", {
-                subjectId: subject.id,
-                year: exam.year,
-              });
-            }}
-          >
-            <div className="text-2xl mb-2" aria-hidden="true">
-              📝
-            </div>
-            <h2 className="font-semibold text-fg">{exam.title}</h2>
-            <p className="text-sm text-fg-muted mt-1">{exam.description}</p>
-          </Link>
+            subjectId={subject.id}
+            exam={exam}
+          />
         ))}
         <button
           type="button"
@@ -248,7 +250,18 @@ export default function SubjectHome() {
           <p className="font-semibold text-fg-muted mb-1">
             {t.subjectHome.acknowledgments}
           </p>
-          <p>{subject.acknowledgments}</p>
+          {isEditing ? (
+            <EditableField
+              value={subject.acknowledgments}
+              onChange={(v) =>
+                patchMeta(subject.id, { acknowledgments: v || null })
+              }
+              type="textarea"
+              label="Acknowledgments"
+            />
+          ) : (
+            <p>{subject.acknowledgments}</p>
+          )}
         </div>
       )}
     </div>

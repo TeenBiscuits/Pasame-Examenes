@@ -10,6 +10,12 @@ import {
   triggerError,
   triggerSelection,
 } from "../lib/haptics";
+import { useCms } from "../lib/cms-context";
+import { getSubject } from "../subjects";
+import EditableField from "./CmsEditor/EditableField";
+import EditableImage from "./CmsEditor/EditableImage";
+import EditableSelect from "./CmsEditor/EditableSelect";
+import type { QuestionPatch } from "../lib/cms-types";
 
 function QuestionImage({
   image,
@@ -113,7 +119,7 @@ function MCQuestion({
       if (['a', 'b', 'c', 'd', 'e'].includes(key)) {
         selectedLetter = key;
       } else if (['1', '2', '3', '4', '5'].includes(key)) {
-        selectedLetter = String.fromCharCode(96 + parseInt(key)); // '1' -> 'a'
+        selectedLetter = String.fromCharCode(96 + parseInt(key));
       }
 
       if (selectedLetter) {
@@ -482,9 +488,219 @@ function MatchingQuestion({
   );
 }
 
+function CmsEditPanel({
+  question,
+  subjectId,
+}: {
+  question: Question;
+  subjectId: string;
+}) {
+  const { patchQuestion, resetQuestionPatch } = useCms();
+  const subject = getSubject(subjectId);
+  const topics = subject?.topics ?? [];
+
+  const patch = (fields: QuestionPatch) => {
+    patchQuestion(subjectId, question.id, fields);
+  };
+
+  return (
+    <div className="mt-4 pt-4 border-t-2 border-amber-400/30 space-y-3">
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-mono text-amber-600 uppercase tracking-wider">
+          CMS Editor
+        </span>
+        <button
+          type="button"
+          className="text-xs text-red-500 hover:text-red-700 underline"
+          onClick={() => {
+            if (confirm("Reset all patches for this question?")) {
+              resetQuestionPatch(subjectId, question.id);
+            }
+          }}
+        >
+          Reset to original
+        </button>
+      </div>
+
+      <EditableField
+        value={question.question}
+        onChange={(v) => patch({ question: v })}
+        type="textarea"
+        label="Question"
+      />
+
+      {question.type === "mc" && question.options && (
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-amber-600 block mb-1">
+            Options
+          </span>
+          {question.options.map((opt, i) => {
+            const letter = String.fromCharCode(97 + i);
+            return (
+              <div key={letter} className="mb-2 ml-4">
+                <span className="text-xs font-mono text-fg-muted">
+                  {letter}.
+                </span>{" "}
+                <EditableField
+                  value={opt.replace(/^[a-eA-E][.)]\s*/, "")}
+                  onChange={(v) => {
+                    const newOptions = [...question.options!];
+                    newOptions[i] = `${letter.toUpperCase()}. ${v}`;
+                    patch({ options: newOptions });
+                  }}
+                  placeholder={`Option ${letter.toUpperCase()}`}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {question.type === "mc" && (
+        <EditableSelect
+          value={
+            typeof question.correctAnswer === "string"
+              ? question.correctAnswer
+              : ""
+          }
+          options={[
+            { label: "A", value: "a" },
+            { label: "B", value: "b" },
+            { label: "C", value: "c" },
+            { label: "D", value: "d" },
+            { label: "E", value: "e" },
+          ]}
+          onChange={(v) => patch({ correctAnswer: v })}
+          label="Correct Answer (MC)"
+        />
+      )}
+
+      {question.type === "text" && (
+        <EditableField
+          value={
+            typeof question.correctAnswer === "string"
+              ? question.correctAnswer
+              : JSON.stringify(question.correctAnswer, null, 2)
+          }
+          onChange={(v) => patch({ correctAnswer: v })}
+          type="textarea"
+          label="Model Solution"
+        />
+      )}
+
+      {question.type === "matching" && (
+        <EditableField
+          value={JSON.stringify(question.correctAnswer, null, 2)}
+          onChange={(v) => {
+            try {
+              const parsed = JSON.parse(v);
+              patch({ correctAnswer: parsed });
+            } catch {
+              // don't update if invalid JSON
+            }
+          }}
+          type="textarea"
+          label="Correct Answer (JSON)"
+        />
+      )}
+
+      {question.subquestions && (
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-amber-600 block mb-1">
+            Subquestions
+          </span>
+          {question.subquestions.map((sq, i) => (
+            <div key={sq} className="mb-1 ml-4">
+              <EditableField
+                value={sq}
+                onChange={(v) => {
+                  const newSubs = [...question.subquestions!];
+                  newSubs[i] = v;
+                  patch({ subquestions: newSubs });
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      <EditableField
+        value={question.explanation ?? ""}
+        onChange={(v) => patch({ explanation: v || null })}
+        type="textarea"
+        label="Explanation"
+        placeholder="No explanation"
+      />
+
+      <EditableImage
+        value={
+          typeof question.image === "object"
+            ? (question.image as Picture).img.src
+            : (question.image as string | undefined)
+        }
+        onChange={(v) => patch({ image: v })}
+        label="Question Image"
+        subjectId={subjectId}
+      />
+
+      <EditableImage
+        value={
+          typeof question.explanationImage === "object"
+            ? (question.explanationImage as Picture).img.src
+            : (question.explanationImage as string | undefined)
+        }
+        onChange={(v) => patch({ explanationImage: v })}
+        label="Explanation Image"
+        subjectId={subjectId}
+      />
+
+      {topics.length > 0 && (
+        <EditableSelect
+          value={question.topic}
+          options={topics.map((t) => ({
+            label: `${t.icon} ${t.label}`,
+            value: t.key,
+          }))}
+          onChange={(v) => patch({ topic: v })}
+          label="Topic"
+        />
+      )}
+
+      <EditableField
+        value={String(question.points)}
+        onChange={(v) => {
+          const n = Number(v);
+          if (!isNaN(n)) patch({ points: n });
+        }}
+        type="number"
+        label="Points"
+      />
+
+      <EditableField
+        value={question.exam}
+        onChange={(v) => patch({ exam: v })}
+        label="Exam"
+      />
+
+      <label className="flex items-center gap-2 cursor-pointer">
+        <span className="text-[10px] font-mono uppercase tracking-wider text-amber-600">
+          Repeated
+        </span>
+        <input
+          type="checkbox"
+          checked={question.repeated ?? false}
+          onChange={(e) => patch({ repeated: e.target.checked })}
+          className="w-4 h-4 accent-amber-500"
+        />
+      </label>
+    </div>
+  );
+}
+
 export default function QuestionCard(props: QuestionCardProps) {
   const { question } = props;
   const t = useT();
+  const { isEditing } = useCms();
 
   const slideClass =
     props.direction === "next"
@@ -495,7 +711,7 @@ export default function QuestionCard(props: QuestionCardProps) {
 
   return (
     <div
-      className={`bg-surface-alt rounded-xl border border-border p-6 shadow-sm ${slideClass}`}
+      className={`bg-surface-alt rounded-xl border-2 p-6 shadow-sm ${slideClass} ${isEditing ? "border-amber-400/60" : "border-border"}`}
     >
       <div className="flex items-center gap-2 mb-4">
         <span className="text-xs font-mono bg-code text-fg-secondary px-2 py-0.5 rounded">
@@ -579,10 +795,18 @@ export default function QuestionCard(props: QuestionCardProps) {
       {question.type === "mc" && <MCQuestion {...props} />}
       {question.type === "text" && <TextQuestion {...props} />}
       {question.type === "matching" && <MatchingQuestion {...props} />}
+      {isEditing && (
+        <CmsEditPanel question={question} subjectId={props.subjectId} />
+      )}
       <div className="mt-4 pt-4 border-t border-border flex items-center justify-end gap-2">
         <span className="text-[10px] font-mono text-fg-muted select-all">
           {question.id}
         </span>
+        {isEditing && (
+          <span className="text-[10px] font-mono text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
+            editing
+          </span>
+        )}
         <a
           href={buildReportUrl(question, props.subjectId)}
           target="_blank"
