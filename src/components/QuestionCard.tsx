@@ -610,7 +610,7 @@ function CmsEditPanel({
             Subquestions
           </span>
           {question.subquestions.map((sq, i) => (
-            <div key={`${question.id}-sub-${i}`} className="mb-1 ml-4">
+            <div key={sq} className="mb-1 ml-4">
               <EditableField
                 value={sq}
                 onChange={(v) => {

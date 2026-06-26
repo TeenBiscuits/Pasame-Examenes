@@ -32,13 +32,6 @@ export default function EditableImage({
     }
   };
 
-  const handleDivKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      startEditing();
-    }
-  };
-
   const currentFilename =
     typeof value === "string"
       ? value
@@ -54,12 +47,10 @@ export default function EditableImage({
         {label}
       </span>
       {!editing ? (
-        <div
-          className="group cursor-pointer rounded-md border border-dashed border-transparent hover:border-amber-400/60 hover:bg-amber-50/30 px-1 py-0.5 -mx-1 -my-0.5 transition-all"
+        <button
+          type="button"
+          className="w-full text-left cursor-pointer rounded-md border border-dashed border-transparent hover:border-amber-400/60 hover:bg-amber-50/30 px-1 py-0.5 -mx-1 -my-0.5 transition-all"
           onClick={startEditing}
-          onKeyDown={handleDivKeyDown}
-          role="button"
-          tabIndex={0}
           aria-label={`Edit ${label}`}
         >
           {currentFilename ? (
@@ -67,7 +58,7 @@ export default function EditableImage({
           ) : (
             <span className="text-sm italic text-fg-muted">No image</span>
           )}
-        </div>
+        </button>
       ) : (
         <div className="rounded-md border-2 border-amber-400 bg-surface p-2">
           {loading ? (

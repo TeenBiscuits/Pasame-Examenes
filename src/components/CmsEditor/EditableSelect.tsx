@@ -17,13 +17,6 @@ export default function EditableSelect({
 
   const selectedOption = options.find((o) => o.value === value);
 
-  const handleDivKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      setEditing(true);
-    }
-  };
-
   return (
     <div>
       {label && (
@@ -32,12 +25,10 @@ export default function EditableSelect({
         </span>
       )}
       {!editing ? (
-        <div
-          className="group cursor-pointer rounded-md border border-dashed border-transparent hover:border-amber-400/60 hover:bg-amber-50/30 px-1 py-0.5 -mx-1 -my-0.5 transition-all text-sm"
+        <button
+          type="button"
+          className="w-full text-left cursor-pointer rounded-md border border-dashed border-transparent hover:border-amber-400/60 hover:bg-amber-50/30 px-1 py-0.5 -mx-1 -my-0.5 transition-all text-sm"
           onClick={() => setEditing(true)}
-          onKeyDown={handleDivKeyDown}
-          role="button"
-          tabIndex={0}
           aria-label={`Edit ${label ?? "selection"}`}
         >
           {selectedOption ? (
@@ -45,7 +36,7 @@ export default function EditableSelect({
           ) : (
             <span className="italic text-fg-muted">{value || "(unset)"}</span>
           )}
-        </div>
+        </button>
       ) : (
         <select
           value={value}

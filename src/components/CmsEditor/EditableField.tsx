@@ -55,21 +55,12 @@ export default function EditableField({
     }
   };
 
-  const handleDivKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      startEditing();
-    }
-  };
-
   if (!editing) {
     return (
-      <div
-        className={`group cursor-pointer rounded-md border border-dashed border-transparent hover:border-amber-400/60 hover:bg-amber-50/30 px-1 py-0.5 -mx-1 -my-0.5 transition-all ${className}`}
+      <button
+        type="button"
+        className={`w-full text-left cursor-pointer rounded-md border border-dashed border-transparent hover:border-amber-400/60 hover:bg-amber-50/30 px-1 py-0.5 -mx-1 -my-0.5 transition-all ${className}`}
         onClick={startEditing}
-        onKeyDown={handleDivKeyDown}
-        role="button"
-        tabIndex={0}
         aria-label={`Edit ${label ?? "field"}`}
       >
         {label && (
@@ -84,7 +75,7 @@ export default function EditableField({
             </span>
           )}
         </span>
-      </div>
+      </button>
     );
   }
 
