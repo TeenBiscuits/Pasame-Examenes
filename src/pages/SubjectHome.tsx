@@ -7,6 +7,7 @@ import TopicCard from "../components/TopicCard";
 import AddExamModal, {
   type AddExamModalHandle,
 } from "../components/AddExamModal";
+import ExamCardEditor from "../components/ExamCardEditor";
 import type { Question, Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -179,98 +180,12 @@ export default function SubjectHome() {
         className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.exams.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
       >
         {subject.exams.map((exam) => (
-        <div key={exam.year}>
-          <Link
-            to={`/${subject.id}/exam/${exam.year}`}
-            className="block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
-            onClick={() => {
-              triggerLight();
-              track("exam_card_click", {
-                subjectId: subject.id,
-                year: exam.year,
-              });
-            }}
-          >
-            <div className="text-2xl mb-2" aria-hidden="true">
-              📝
-            </div>
-            <h2 className="font-semibold text-fg">{exam.title}</h2>
-            <p className="text-sm text-fg-muted mt-1">{exam.description}</p>
-          </Link>
-          {isEditing && (
-            <div className="mt-2 p-2 border border-dashed border-amber-400/60 rounded-lg space-y-2">
-              <span className="text-[10px] font-mono text-amber-600">
-                Edit exam: {exam.year}
-              </span>
-              <EditableField
-                value={exam.title}
-                onChange={(v) =>
-                  patchMeta(subject.id, {
-                    exams: { [exam.year]: { title: v } },
-                  })
-                }
-                label="Title"
-              />
-              <EditableField
-                value={exam.description}
-                onChange={(v) =>
-                  patchMeta(subject.id, {
-                    exams: { [exam.year]: { description: v } },
-                  })
-                }
-                label="Description"
-              />
-              <EditableField
-                value={String(exam.passPoints)}
-                onChange={(v) => {
-                  const n = Number(v);
-                  if (!isNaN(n))
-                    patchMeta(subject.id, {
-                      exams: { [exam.year]: { passPoints: n } },
-                    });
-                }}
-                type="number"
-                label="Pass Points"
-              />
-              <EditableField
-                value={String(exam.totalPoints)}
-                onChange={(v) => {
-                  const n = Number(v);
-                  if (!isNaN(n))
-                    patchMeta(subject.id, {
-                      exams: { [exam.year]: { totalPoints: n } },
-                    });
-                }}
-                type="number"
-                label="Total Points"
-              />
-              <EditableField
-                value={String(exam.durationMinutes)}
-                onChange={(v) => {
-                  const n = Number(v);
-                  if (!isNaN(n))
-                    patchMeta(subject.id, {
-                      exams: { [exam.year]: { durationMinutes: n } },
-                    });
-                }}
-                type="number"
-                label="Duration (min)"
-              />
-              {exam.date && (
-                <EditableField
-                  value={exam.date}
-                  onChange={(v) =>
-                    patchMeta(subject.id, {
-                      exams: { [exam.year]: { date: v || null } },
-                    })
-                  }
-                  label="Date"
-                />
-              )}
-            </div>
-          )}
-        </div>
-      ))}
+          <ExamCardEditor
+            key={exam.year}
+            subjectId={subject.id}
+            exam={exam}
+          />
+        ))}
         <button
           type="button"
           onClick={() => {

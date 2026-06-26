@@ -3,6 +3,7 @@ import {
   useCallback,
   useEffect,
   useRef,
+  useMemo,
   type ReactNode,
 } from "react";
 import { CmsContext } from "./cms-context";
@@ -123,20 +124,28 @@ export function CmsProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  return (
-    <CmsContext.Provider
-      value={{
-        isEditing,
-        toggleEditing,
-        patchVersion,
-        patchesBySubject,
-        patchQuestion,
-        patchMeta,
-        resetQuestionPatch,
-        availableImages,
-      }}
-    >
-      {children}
-    </CmsContext.Provider>
+  const value = useMemo(
+    () => ({
+      isEditing,
+      toggleEditing,
+      patchVersion,
+      patchesBySubject,
+      patchQuestion,
+      patchMeta,
+      resetQuestionPatch,
+      availableImages,
+    }),
+    [
+      isEditing,
+      toggleEditing,
+      patchVersion,
+      patchesBySubject,
+      patchQuestion,
+      patchMeta,
+      resetQuestionPatch,
+      availableImages,
+    ],
   );
+
+  return <CmsContext.Provider value={value}>{children}</CmsContext.Provider>;
 }

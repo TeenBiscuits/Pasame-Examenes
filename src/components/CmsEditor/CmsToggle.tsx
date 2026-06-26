@@ -9,7 +9,7 @@ export default function CmsToggle() {
     <button
       type="button"
       onClick={toggleEditing}
-      title="Ctrl+Shift+E to toggle CMS editing"
+      aria-label="Toggle CMS editor (Ctrl+Shift+E)"
       className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full shadow-lg border-2 transition-all duration-200 flex items-center justify-center text-lg ${
         isEditing
           ? "bg-amber-500 border-amber-600 text-white scale-110"

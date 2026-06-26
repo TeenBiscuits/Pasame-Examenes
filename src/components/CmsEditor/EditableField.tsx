@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 interface EditableFieldProps {
   value: string;
@@ -18,21 +18,21 @@ export default function EditableField({
   placeholder,
 }: EditableFieldProps) {
   const [editing, setEditing] = useState(false);
-  const [local, setLocal] = useState(value);
+  const [local, setLocal] = useState("");
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    if (editing && inputRef.current) {
-      inputRef.current.focus();
-      if (type !== "textarea") {
-        (inputRef.current as HTMLInputElement).select();
-      }
-    }
-  }, [editing, type]);
 
   const startEditing = () => {
     setLocal(value);
     setEditing(true);
+    requestAnimationFrame(() => {
+      const el = inputRef.current;
+      if (el) {
+        el.focus();
+        if (type !== "textarea") {
+          (el as HTMLInputElement).select();
+        }
+      }
+    });
   };
 
   const save = () => {
@@ -43,7 +43,6 @@ export default function EditableField({
   };
 
   const cancel = () => {
-    setLocal(value);
     setEditing(false);
   };
 
@@ -56,12 +55,22 @@ export default function EditableField({
     }
   };
 
+  const handleDivKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      startEditing();
+    }
+  };
+
   if (!editing) {
     return (
       <div
         className={`group cursor-pointer rounded-md border border-dashed border-transparent hover:border-amber-400/60 hover:bg-amber-50/30 px-1 py-0.5 -mx-1 -my-0.5 transition-all ${className}`}
         onClick={startEditing}
-        title="Click to edit"
+        onKeyDown={handleDivKeyDown}
+        role="button"
+        tabIndex={0}
+        aria-label={`Edit ${label ?? "field"}`}
       >
         {label && (
           <span className="text-[10px] font-mono uppercase tracking-wider text-amber-600 block mb-0.5">
@@ -100,7 +109,6 @@ export default function EditableField({
         rows={type === "textarea" ? 4 : undefined}
         placeholder={placeholder}
         type={type === "number" ? "number" : "text"}
-        autoFocus
       />
       <div className="flex items-center gap-2 mt-1">
         <span className="text-[10px] text-amber-600">

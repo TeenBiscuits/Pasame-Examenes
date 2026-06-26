@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useCms } from "../../lib/cms-context";
 
 interface EditableImageProps {
@@ -18,17 +18,24 @@ export default function EditableImage({
   const [editing, setEditing] = useState(false);
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const loadedRef = useRef(false);
 
   const startEditing = () => {
     setEditing(true);
-    if (!loaded) {
+    if (!loadedRef.current) {
       setLoading(true);
       availableImages(subjectId).then(({ images: imgs }) => {
         setImages(imgs);
         setLoading(false);
-        setLoaded(true);
+        loadedRef.current = true;
       });
+    }
+  };
+
+  const handleDivKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      startEditing();
     }
   };
 
@@ -50,7 +57,10 @@ export default function EditableImage({
         <div
           className="group cursor-pointer rounded-md border border-dashed border-transparent hover:border-amber-400/60 hover:bg-amber-50/30 px-1 py-0.5 -mx-1 -my-0.5 transition-all"
           onClick={startEditing}
-          title="Click to change image"
+          onKeyDown={handleDivKeyDown}
+          role="button"
+          tabIndex={0}
+          aria-label={`Edit ${label}`}
         >
           {currentFilename ? (
             <span className="text-sm text-accent">{currentFilename}</span>

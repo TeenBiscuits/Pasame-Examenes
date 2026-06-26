@@ -610,7 +610,7 @@ function CmsEditPanel({
             Subquestions
           </span>
           {question.subquestions.map((sq, i) => (
-            <div key={i} className="mb-1 ml-4">
+            <div key={`${question.id}-sub-${i}`} className="mb-1 ml-4">
               <EditableField
                 value={sq}
                 onChange={(v) => {
@@ -682,7 +682,7 @@ function CmsEditPanel({
         label="Exam"
       />
 
-      <div className="flex items-center gap-2">
+      <label className="flex items-center gap-2 cursor-pointer">
         <span className="text-[10px] font-mono uppercase tracking-wider text-amber-600">
           Repeated
         </span>
@@ -692,7 +692,7 @@ function CmsEditPanel({
           onChange={(e) => patch({ repeated: e.target.checked })}
           className="w-4 h-4 accent-amber-500"
         />
-      </div>
+      </label>
     </div>
   );
 }
