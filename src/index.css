@@ -286,3 +286,83 @@ html[data-theme="catppuccin"] {
   font-family: system-ui, sans-serif;
   color: #6b7280;
 }
+
+/* ── Driver.js tour popover theming ── */
+.tour-popover.driver-popover {
+  background-color: var(--color-surface-alt);
+  color: var(--color-fg);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.tour-popover .driver-popover-arrow {
+  border-color: var(--color-surface-alt);
+}
+
+.tour-popover .driver-popover-title {
+  color: var(--color-fg);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+.tour-popover .driver-popover-description {
+  color: var(--color-fg-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.tour-popover .driver-popover-close-btn {
+  color: var(--color-fg-muted);
+  transition: color 0.15s;
+}
+
+.tour-popover .driver-popover-close-btn:hover {
+  color: var(--color-fg);
+}
+
+.tour-popover .driver-popover-progress-text {
+  color: var(--color-fg-muted);
+  font-size: 0.75rem;
+}
+
+.tour-popover .driver-popover-prev-btn,
+.tour-popover .driver-popover-next-btn {
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+  transition: background-color 0.15s, color 0.15s;
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border: 1px solid transparent;
+}
+
+.tour-popover .driver-popover-prev-btn {
+  background-color: var(--color-code);
+  color: var(--color-fg-secondary);
+  border-color: var(--color-border);
+}
+
+.tour-popover .driver-popover-prev-btn:hover {
+  background-color: var(--color-border);
+}
+
+.tour-popover .driver-popover-next-btn,
+.tour-popover.driver-popover .driver-popover-next-btn.driver-popover-done-btn {
+  background: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+}
+
+.tour-popover .driver-popover-next-btn:hover,
+.tour-popover.driver-popover .driver-popover-next-btn.driver-popover-done-btn:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}

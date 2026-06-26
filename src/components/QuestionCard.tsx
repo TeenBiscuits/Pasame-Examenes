@@ -588,6 +588,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           {question.id}
         </span>
         <a
+          data-tour="report-issue"
           href={buildReportUrl(question, props.subjectId)}
           target="_blank"
           rel="noopener noreferrer"
