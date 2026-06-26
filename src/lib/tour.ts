@@ -34,6 +34,9 @@ export function startPracticeTour(
   const driverObj = driver({
     showProgress: true,
     animate: true,
+    smoothScroll: true,
+    popoverOffset: 24,
+    stagePadding: 4,
     popoverClass: "tour-popover",
     nextBtnText: buttonTexts.next,
     prevBtnText: buttonTexts.previous,
@@ -53,6 +56,9 @@ export function startExamTour(
   const driverObj = driver({
     showProgress: true,
     animate: true,
+    smoothScroll: true,
+    popoverOffset: 24,
+    stagePadding: 4,
     popoverClass: "tour-popover",
     nextBtnText: buttonTexts.next,
     prevBtnText: buttonTexts.previous,
