@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { imagetools } from "vite-imagetools";
+import { cmsPlugin } from "./src/plugins/cms-plugin";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,6 +13,7 @@ export default defineConfig({
       defaultDirectives: () =>
         new URLSearchParams("w=400;800;1200&format=avif;webp;png"),
     }),
+    cmsPlugin(),
   ],
   define: {
     __VERCEL_PRODUCTION__: JSON.stringify(

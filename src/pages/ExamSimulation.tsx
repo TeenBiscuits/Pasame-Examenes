@@ -14,6 +14,7 @@ import { track } from "../lib/umami";
 import { triggerLight, triggerMedium } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { useCms } from "../lib/cms-context";
 
 const getNow = () => Date.now();
 
@@ -58,6 +59,7 @@ export default function ExamSimulation() {
   const navigate = useNavigate();
   const t = useT();
   const langTo = useLangTo();
+  const { patchVersion } = useCms();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -72,7 +74,7 @@ export default function ExamSimulation() {
     if (subject && year) {
       getQuestionsByExam(subject.id, year).then(setQuestions);
     }
-  }, [subject, year]);
+  }, [subject, year, patchVersion]);
 
   useEffect(() => {
     if (!subject || questions.length === 0) return;

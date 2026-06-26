@@ -9,6 +9,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import Header from "./components/Header";
+import CmsToggle from "./components/CmsEditor/CmsToggle";
 import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
 import { track, identify } from "./lib/umami";
@@ -173,6 +174,7 @@ export default function App() {
           </Suspense>
         </main>
         <Footer />
+        <CmsToggle />
       </div>
     </BrowserRouter>
   );

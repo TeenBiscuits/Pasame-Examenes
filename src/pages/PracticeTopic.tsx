@@ -14,6 +14,7 @@ import { track } from "../lib/umami";
 import { triggerLight, triggerMedium } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { useCms } from "../lib/cms-context";
 
 const getNow = () => Date.now();
 
@@ -54,6 +55,7 @@ export default function PracticeTopic() {
   const navigate = useNavigate();
   const t = useT();
   const langTo = useLangTo();
+  const { patchVersion } = useCms();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -67,7 +69,7 @@ export default function PracticeTopic() {
       getQuestionsByTopic(subject.id, topic).then(setQuestions);
       getTopicMegaTopicLabel(subject.id, topic).then(setMegatopicLabel);
     }
-  }, [subject, topic]);
+  }, [subject, topic, patchVersion]);
   const textQuestionCount = useMemo(
     () => questions.filter((q) => q.type === "text").length,
     [questions],
