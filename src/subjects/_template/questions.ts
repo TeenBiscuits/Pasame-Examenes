@@ -16,7 +16,7 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 void imageMap;
 void getImage;
 
-export const questions: Question[] = [
+const questions: Question[] = [
   // ================================================================
   // Exam 2024
   // ================================================================
@@ -234,3 +234,5 @@ Hint: remember that \`foo()\` calls itself recursively.`,
   //   explanation: "Key elements to identify: ...",
   // },
 ];
+
+void questions;

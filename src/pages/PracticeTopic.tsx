@@ -15,6 +15,7 @@ import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { usePracticeSession } from "../hooks/usePracticeSession";
+import { startPracticeTour } from "../lib/tour";
 
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
@@ -108,7 +109,7 @@ function PracticePlayer({
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
-      <div className="mb-6">
+      <div className="mb-6" data-tour="practice-back">
         <Link
           to={`/${subject.id}`}
           className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
@@ -143,6 +144,7 @@ function PracticePlayer({
       <div
         ref={navRef}
         className="flex gap-1 mb-6 overflow-x-auto pb-6"
+        data-tour="practice-nav"
         style={{
           maskImage:
             showLeftFade && showRightFade
@@ -190,8 +192,9 @@ function PracticePlayer({
         })}
       </div>
 
-      <QuestionCard
-        key={currentQuestion.id}
+      <div data-tour="practice-card">
+        <QuestionCard
+          key={currentQuestion.id}
         question={currentQuestion}
         index={currentIndex}
         total={questions.length}
@@ -204,10 +207,11 @@ function PracticePlayer({
         showResult={submitted || !!checkedQuestions[currentQuestion.id]}
         selfGrade={selfGrades[currentQuestion.id]}
         onSelfGrade={onSelfGrade}
-        direction={direction}
-      />
+          direction={direction}
+        />
+      </div>
 
-      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 mt-6 sm:justify-between">
+      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 mt-6 sm:justify-between" data-tour="practice-nav-btns">
         <button
           type="button"
           className="order-1 px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
@@ -246,7 +250,7 @@ function PracticePlayer({
             {t.practice.previous}
           </span>
         </button>
-        <div className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto">
+        <div className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto" data-tour="practice-actions">
           {answers[currentQuestion.id] &&
             !submitted &&
             !checkedQuestions[currentQuestion.id] && (
@@ -482,6 +486,70 @@ export default function PracticeTopic() {
       ro.disconnect();
     };
   }, [questions, setNavState]);
+
+  useEffect(() => {
+    if (questions.length === 0) return;
+    const timer = setTimeout(() => {
+      startPracticeTour(
+        [
+          {
+            element: '[data-tour="practice-back"]',
+            popover: {
+              title: t.tour.practice.step1Title,
+              description: t.tour.practice.step1Desc,
+              side: "bottom",
+            },
+          },
+          {
+            element: '[data-tour="practice-nav"]',
+            popover: {
+              title: t.tour.practice.step2Title,
+              description: t.tour.practice.step2Desc,
+              side: "bottom",
+            },
+          },
+          {
+            element: '[data-tour="practice-card"]',
+            popover: {
+              title: t.tour.practice.step3Title,
+              description: t.tour.practice.step3Desc,
+              side: "top",
+            },
+          },
+          {
+            element: '[data-tour="practice-actions"]',
+            popover: {
+              title: t.tour.practice.step4Title,
+              description: t.tour.practice.step4Desc,
+              side: "top",
+            },
+          },
+          {
+            element: '[data-tour="practice-nav-btns"]',
+            popover: {
+              title: t.tour.practice.step5Title,
+              description: t.tour.practice.step5Desc,
+              side: "top",
+            },
+          },
+          {
+            element: '[data-tour="report-issue"]',
+            popover: {
+              title: t.tour.reportIssueTitle,
+              description: t.tour.reportIssueDesc,
+              side: "top",
+            },
+          },
+        ],
+        {
+          next: t.tour.next,
+          previous: t.tour.previous,
+          done: t.tour.done,
+        },
+      );
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [questions.length, t]);
 
   const totalPoints = questions.reduce((s, q) => s + q.points, 0);
 

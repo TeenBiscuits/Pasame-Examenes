@@ -15,6 +15,7 @@ import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { useExamSession } from "../hooks/useExamSession";
+import { startExamTour } from "../lib/tour";
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -187,7 +188,7 @@ function ExamPlayer({
           {t.exam.backToSubject}
         </Link>
       </div>
-      <div className="flex items-center justify-between mb-6 sticky top-14 bg-surface py-3 -mx-4 px-4 z-40 border-b border-border">
+      <div className="flex items-center justify-between mb-6 sticky top-14 bg-surface py-3 -mx-4 px-4 z-40 border-b border-border" data-tour="exam-header">
         <div>
           <span className="text-lg font-bold text-fg">{examInfo.title}</span>
           <span className="text-sm text-fg-muted ml-3">
@@ -229,6 +230,7 @@ function ExamPlayer({
       <div
         ref={navRef}
         className="flex gap-1 mb-6 overflow-x-auto pb-6"
+        data-tour="exam-nav"
         style={{
           maskImage:
             showLeftFade && showRightFade
@@ -273,8 +275,9 @@ function ExamPlayer({
         })}
       </div>
 
-      <QuestionCard
-        key={currentQuestion.id}
+      <div data-tour="exam-card">
+        <QuestionCard
+          key={currentQuestion.id}
         question={currentQuestion}
         index={currentIndex}
         total={questions.length}
@@ -287,8 +290,9 @@ function ExamPlayer({
         showResult={submitted}
         selfGrade={selfGrades[currentQuestion.id]}
         onSelfGrade={onSelfGrade}
-        direction={direction}
-      />
+          direction={direction}
+        />
+      </div>
 
       <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 mt-6 sm:justify-between">
         <button
@@ -329,7 +333,7 @@ function ExamPlayer({
             {t.exam.previous}
           </span>
         </button>
-        <div className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto">
+        <div className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto" data-tour="exam-submit">
           {!submitted && (
             <button
               type="button"
@@ -559,6 +563,62 @@ export default function ExamSimulation() {
       ro.disconnect();
     };
   }, [questions, started, setNavState]);
+
+  useEffect(() => {
+    if (!started || questions.length === 0) return;
+    const timer = setTimeout(() => {
+      startExamTour(
+        [
+          {
+            element: '[data-tour="exam-header"]',
+            popover: {
+              title: t.tour.exam.step1Title,
+              description: t.tour.exam.step1Desc,
+              side: "bottom",
+            },
+          },
+          {
+            element: '[data-tour="exam-nav"]',
+            popover: {
+              title: t.tour.exam.step2Title,
+              description: t.tour.exam.step2Desc,
+              side: "bottom",
+            },
+          },
+          {
+            element: '[data-tour="exam-card"]',
+            popover: {
+              title: t.tour.exam.step3Title,
+              description: t.tour.exam.step3Desc,
+              side: "top",
+            },
+          },
+          {
+            element: '[data-tour="exam-submit"]',
+            popover: {
+              title: t.tour.exam.step4Title,
+              description: t.tour.exam.step4Desc,
+              side: "top",
+            },
+          },
+          {
+            element: '[data-tour="report-issue"]',
+            popover: {
+              title: t.tour.reportIssueTitle,
+              description: t.tour.reportIssueDesc,
+              side: "top",
+            },
+          },
+        ],
+        {
+          next: t.tour.next,
+          previous: t.tour.previous,
+          done: t.tour.done,
+        },
+      );
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [started, questions.length, t]);
 
   const totalPoints = questions.reduce((s, q) => s + q.points, 0);
 
