@@ -350,7 +350,9 @@ export default function ExamSimulation() {
           </Link>
         </div>
         <div className="text-center">
-          <h1 className="text-3xl font-semibold text-fg mb-2">{examInfo.title}</h1>
+          <h1 className="text-3xl font-semibold text-fg mb-2">
+            {examInfo.title}
+          </h1>
           <p className="text-fg-muted mb-8">
             {subject.name} ({subject.courseCode})
           </p>

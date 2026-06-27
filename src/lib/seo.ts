@@ -86,11 +86,23 @@ export function useSeoHead({
       { id: "og:description", content: description, attr: "property" as const },
       { id: "og:locale", content: meta.locale, attr: "property" as const },
       { id: "og:url", content: canonicalUrl, attr: "property" as const },
-      { id: "og:site_name", content: t.seo.siteName, attr: "property" as const },
+      {
+        id: "og:site_name",
+        content: t.seo.siteName,
+        attr: "property" as const,
+      },
       { id: "og:type", content: "website", attr: "property" as const },
       { id: "twitter:title", content: title, attr: "name" as const },
-      { id: "twitter:description", content: description, attr: "name" as const },
-      { id: "twitter:card", content: "summary_large_image", attr: "name" as const },
+      {
+        id: "twitter:description",
+        content: description,
+        attr: "name" as const,
+      },
+      {
+        id: "twitter:card",
+        content: "summary_large_image",
+        attr: "name" as const,
+      },
     ];
 
     const linkOps = [

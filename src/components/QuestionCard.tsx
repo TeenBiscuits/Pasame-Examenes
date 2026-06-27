@@ -110,9 +110,9 @@ function MCQuestion({
       const key = e.key.toLowerCase();
       let selectedLetter: string | undefined;
 
-      if (['a', 'b', 'c', 'd', 'e'].includes(key)) {
+      if (["a", "b", "c", "d", "e"].includes(key)) {
         selectedLetter = key;
-      } else if (['1', '2', '3', '4', '5'].includes(key)) {
+      } else if (["1", "2", "3", "4", "5"].includes(key)) {
         selectedLetter = String.fromCharCode(96 + parseInt(key)); // '1' -> 'a'
       }
 
@@ -562,7 +562,10 @@ export default function QuestionCard(props: QuestionCardProps) {
             </thead>
             <tbody className="divide-y divide-border bg-surface-alt">
               {question.table.rows.map((row, ri) => (
-                <tr key={`${question.id}-row-${ri}`} className="hover:bg-surface/50 transition-colors">
+                <tr
+                  key={`${question.id}-row-${ri}`}
+                  className="hover:bg-surface/50 transition-colors"
+                >
                   {row.map((cell, ci) => (
                     <td
                       key={`${question.id}-cell-${ri}-${ci}`}

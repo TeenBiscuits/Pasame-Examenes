@@ -110,9 +110,7 @@ function renderTable(mdTable: string, key: string): ReactNode {
     .flatMap((c) => (c.trim() || undefined ? [c.trim()] : []));
   const bodyLines = lines.slice(2);
   const rows = bodyLines.map((line) =>
-    line
-      .split("|")
-      .flatMap((c) => (c.trim() || undefined ? [c.trim()] : [])),
+    line.split("|").flatMap((c) => (c.trim() || undefined ? [c.trim()] : [])),
   );
   return (
     <div
