@@ -16,12 +16,6 @@ declare global {
   }
 }
 
-export function trackPageView() {
-  if (typeof window !== "undefined" && window.umami) {
-    window.umami.track();
-  }
-}
-
 export function track(
   eventName: string,
   eventData?: Record<string, string | number | boolean>,

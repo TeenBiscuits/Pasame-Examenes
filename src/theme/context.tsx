@@ -5,6 +5,7 @@ import {
   useCallback,
   useMemo,
   useEffect,
+  startTransition,
   type ReactNode,
 } from "react";
 import type { Theme } from "./types";
@@ -81,7 +82,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       setThemeState(applyTheme(next));
       return;
     }
-    document.startViewTransition(() => {
+    startTransition(() => {
       setThemeState(applyTheme(next));
     });
   }, []);

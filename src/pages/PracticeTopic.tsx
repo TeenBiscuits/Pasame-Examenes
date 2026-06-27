@@ -299,7 +299,7 @@ export default function PracticeTopic() {
         >
           {t.practice.backToTopics}
         </Link>
-        <h1 className="text-2xl font-bold text-fg mt-2">
+        <h1 className="text-2xl font-semibold text-fg mt-2">
           {topicInfo?.icon} {topicInfo?.label || topic}
         </h1>
         <p className="text-sm text-fg-muted mt-1">

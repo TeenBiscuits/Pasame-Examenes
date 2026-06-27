@@ -26,7 +26,7 @@ function TrashIcon() {
       strokeWidth={1.5}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="w-4 h-4"
+      className="size-4"
     >
       <path d="M3 6h18" />
       <path d="M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2" />
@@ -90,7 +90,7 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
-      <h1 className="text-3xl font-bold text-fg mb-3">{t.home.title}</h1>
+      <h1 className="text-3xl font-semibold text-fg mb-3">{t.home.title}</h1>
       <p className="text-fg-secondary max-w-xl mx-auto mb-10">
         {t.home.subtitle}
       </p>

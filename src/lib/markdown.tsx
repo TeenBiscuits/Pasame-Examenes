@@ -107,14 +107,12 @@ function renderTable(mdTable: string, key: string): ReactNode {
   if (lines.length < 2) return null;
   const headerCells = lines[0]
     .split("|")
-    .map((c) => c.trim())
-    .filter(Boolean);
+    .flatMap((c) => (c.trim() || undefined ? [c.trim()] : []));
   const bodyLines = lines.slice(2);
   const rows = bodyLines.map((line) =>
     line
       .split("|")
-      .map((c) => c.trim())
-      .filter(Boolean),
+      .flatMap((c) => (c.trim() || undefined ? [c.trim()] : [])),
   );
   return (
     <div
@@ -124,9 +122,9 @@ function renderTable(mdTable: string, key: string): ReactNode {
       <table className="min-w-full divide-y divide-border text-sm">
         <thead className="bg-surface">
           <tr>
-            {headerCells.map((h, i) => (
+            {headerCells.map((h) => (
               <th
-                key={i}
+                key={`${key}-h-${h}`}
                 scope="col"
                 className="px-3 py-2 text-left font-semibold text-fg whitespace-nowrap"
               >
@@ -137,10 +135,10 @@ function renderTable(mdTable: string, key: string): ReactNode {
         </thead>
         <tbody className="divide-y divide-border bg-surface-alt">
           {rows.map((row, ri) => (
-            <tr key={ri}>
+            <tr key={`${key}-r-${ri}`}>
               {row.map((cell, ci) => (
                 <td
-                  key={ci}
+                  key={`${key}-c-${ri}-${ci}`}
                   className="px-3 py-2 text-fg-secondary whitespace-nowrap"
                 >
                   <InlineMarkdown>{cell}</InlineMarkdown>
