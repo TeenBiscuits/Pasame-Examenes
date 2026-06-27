@@ -55,6 +55,7 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 | 📋 Xestión de Proxectos             | Universidade da Coruña | 5 (2024, 2026) |
 | 🤖 Introduction to Machine Learning | Linnaeus University    | 2 (2024–2025)  |
 | 🔗 Programación Integrativa         | Universidade da Coruña | 1              |
+| 🌐 Internet y Sistemas Distribuidos | Universidade da Coruña | 1              |
 
 ## Tecnologías
 
