@@ -12,7 +12,6 @@ import { useT } from "../i18n/hooks";
 import { useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
-import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 
 const BASE_URL = "https://pe.pablopl.dev";
@@ -24,9 +23,6 @@ export default function SubjectHome() {
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
-  useDocumentTitle(
-    subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
-  );
 
   useEffect(() => {
     if (subject) {
@@ -49,7 +45,7 @@ export default function SubjectHome() {
     return `${subject.name} (${subject.courseCode}) \u2014 ${clean} \u2014 ${subject.university}`;
   }, [subject, allQuestions, t]);
 
-  useSeoHead({
+  const seoHead = useSeoHead({
     title: subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
     description: seoDescription,
     pathWithoutLang: subject ? `/${subject.id}` : "/",
@@ -77,7 +73,9 @@ export default function SubjectHome() {
 
   if (!subject) {
     return (
-      <div className="max-w-6xl mx-auto px-4 py-16 text-center">
+      <>
+        {seoHead}
+        <div className="max-w-6xl mx-auto px-4 py-16 text-center">
         <h1 className="text-2xl font-semibold text-fg mb-4">
           {t.subjectHome.notFound}
         </h1>
@@ -89,6 +87,7 @@ export default function SubjectHome() {
           {t.subjectHome.returnHome}
         </Link>
       </div>
+      </>
     );
   }
 
@@ -126,7 +125,9 @@ export default function SubjectHome() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
+    <>
+      {seoHead}
+      <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="text-center mb-10">
         <p className="text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
           {subject.courseCode} &middot; {subject.university}
@@ -276,5 +277,6 @@ export default function SubjectHome() {
         </div>
       )}
     </div>
+    </>
   );
 }

@@ -11,6 +11,35 @@ import {
   triggerSelection,
 } from "../lib/haptics";
 
+function buildFaqSchema(question: string, answer: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Question",
+    name: question.replace(/`/g, ""),
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer.replace(/`/g, ""),
+    },
+  };
+}
+
+function FaqJsonLd({
+  question,
+  answer,
+}: {
+  question: string;
+  answer: string;
+}) {
+  return (
+    <script type="application/ld+json">
+      {JSON.stringify(buildFaqSchema(question, answer)).replace(
+        /</g,
+        "\\u003c",
+      )}
+    </script>
+  );
+}
+
 function QuestionImage({
   image,
   alt,
@@ -220,6 +249,12 @@ function MCQuestion({
                     maxHeight="300px"
                   />
                 )}
+                {question.explanation != null && (
+                  <FaqJsonLd
+                    question={question.question}
+                    answer={question.explanation}
+                  />
+                )}
               </div>
             )}
           </div>
@@ -297,6 +332,15 @@ function TextQuestion({
                   maxHeight="300px"
                 />
               )}
+              <FaqJsonLd
+                question={question.question}
+                answer={
+                  question.explanation ??
+                  (typeof question.correctAnswer === "string"
+                    ? question.correctAnswer
+                    : JSON.stringify(question.correctAnswer))
+                }
+              />
 
               {onSelfGrade && (
                 <div className="pt-2 border-t border-border">
@@ -473,6 +517,12 @@ function MatchingQuestion({
                     image={question.explanationImage}
                     alt="Solution illustration"
                     maxHeight="300px"
+                  />
+                )}
+                {question.explanation != null && (
+                  <FaqJsonLd
+                    question={question.question}
+                    answer={question.explanation}
                   />
                 )}
               </div>

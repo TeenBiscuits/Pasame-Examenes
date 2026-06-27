@@ -77,6 +77,55 @@
       data-website-id="63168f0e-a1cf-4ec6-a0c4-58fc7d57a0f4"
     ></script>
     <link rel="preconnect" href="https://analytics.pablopl.dev" />
+    <script src="/route-meta.js"></script>
+    <script>
+      (function () {
+        var meta = window.__ROUTE_META__[location.pathname];
+        if (!meta) return;
+        document.title = meta.title;
+
+        function setMeta(name, content, prop) {
+          var el = document.createElement("meta");
+          if (prop) el.setAttribute("property", name);
+          else el.setAttribute("name", name);
+          el.setAttribute("content", content);
+          document.head.appendChild(el);
+        }
+
+        function setLink(rel, href, extra) {
+          var el = document.createElement("link");
+          el.rel = rel;
+          el.href = href;
+          if (extra) {
+            for (var key in extra) {
+              el.setAttribute(key, extra[key]);
+            }
+          }
+          document.head.appendChild(el);
+        }
+
+        setMeta("description", meta.description);
+        setMeta("robots", "index, follow");
+        setMeta("og:title", meta.title, true);
+        setMeta("og:description", meta.description, true);
+        setMeta("og:url", meta.canonical, true);
+        setLink("canonical", meta.canonical);
+
+        var langs = meta.hreflangs;
+        for (var lang in langs) {
+          setLink("alternate", langs[lang], { hreflang: lang });
+        }
+
+        if (meta.jsonLd) {
+          for (var i = 0; i < meta.jsonLd.length; i++) {
+            var script = document.createElement("script");
+            script.type = "application/ld+json";
+            script.textContent = JSON.stringify(meta.jsonLd[i]);
+            document.head.appendChild(script);
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

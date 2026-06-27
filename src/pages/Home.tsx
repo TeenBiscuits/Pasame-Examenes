@@ -5,7 +5,6 @@ import AddSubjectModal, {
   type AddSubjectModalHandle,
 } from "../components/AddSubjectModal";
 import { useT } from "../i18n/hooks";
-import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { LangLink } from "../lib/lang-link";
 import {
@@ -62,8 +61,7 @@ function slotClassName(i: number, isPlaceholder: boolean): string | undefined {
 
 export default function Home() {
   const t = useT();
-  useDocumentTitle(t.home.title);
-  useSeoHead({
+  const seoHead = useSeoHead({
     title: t.home.title,
     description: t.seo.homeDescription,
     pathWithoutLang: "/",
@@ -89,7 +87,9 @@ export default function Home() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
+    <>
+      {seoHead}
+      <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
       <h1 className="text-3xl font-semibold text-fg mb-3">{t.home.title}</h1>
       <p className="text-fg-secondary max-w-xl mx-auto mb-10">
         {t.home.subtitle}
@@ -169,5 +169,6 @@ export default function Home() {
 
       <AddSubjectModal ref={modalRef} onClose={() => {}} />
     </div>
+    </>
   );
 }

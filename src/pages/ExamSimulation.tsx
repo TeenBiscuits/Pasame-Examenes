@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LangLink as Link } from "../lib/lang-link";
 import { useLangTo } from "../lib/useLangTo";
@@ -13,9 +13,9 @@ import { useT } from "../i18n/hooks";
 import { useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
-import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { useExamSession } from "../hooks/useExamSession";
+import { useQuestionNav } from "../hooks/useQuestionNav";
 import { startExamTour } from "../lib/tour";
 
 const BASE_URL = "https://pe.pablopl.dev";
@@ -428,15 +428,8 @@ export default function ExamSimulation() {
       setMegatopicLabels(labels);
     });
   }, [subject, questions]);
-  useDocumentTitle(
-    examInfo && subject
-      ? `${examInfo.title} \u2014 ${subject.name} \u2014 ${t.home.title}`
-      : subject
-        ? `${subject.name} \u2014 ${t.home.title}`
-        : t.home.title,
-  );
 
-  useSeoHead({
+  const seoHead = useSeoHead({
     title:
       examInfo && subject
         ? `${examInfo.title} \u2014 ${subject.name}`
@@ -495,105 +488,32 @@ export default function ExamSimulation() {
     t,
   );
 
-  const [navState, setNavState] = useState({
-    direction: undefined as "next" | "prev" | undefined,
-    showLeftFade: false,
-    showRightFade: false,
-  });
-  const { direction, showLeftFade, showRightFade } = navState;
-  const setDirection = useCallback(
-    (d: typeof navState.direction) =>
-      setNavState((prev) => ({ ...prev, direction: d })),
-    // setNavState is stable from useState
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+  const {
+    direction,
+    setDirection,
+    showLeftFade,
+    showRightFade,
+    navRef,
+    scrollToNav,
+  } = useQuestionNav(
+    questions.length,
+    currentIndex,
+    setCurrentIndex,
+    started,
+    (dir, fromIdx, toIdx) => {
+      track("exam_navigate", {
+        direction: dir,
+        fromIndex: fromIdx,
+        toIndex: toIdx,
+      });
+    },
   );
-  const navRef = useRef<HTMLDivElement>(null);
-  const currentIndexRef = useRef(currentIndex);
-  const startedRef = useRef(started);
-
-  const scrollToNav = useCallback((index: number) => {
-    const container = navRef.current;
-    if (!container) return;
-    const btn = container.children[index] as HTMLElement | undefined;
-    if (!btn) return;
-    requestAnimationFrame(() => {
-      const cr = container.getBoundingClientRect();
-      const br = btn.getBoundingClientRect();
-      const step = 108;
-      if (br.right > cr.right - 84)
-        container.scrollBy({ left: step, behavior: "smooth" });
-      else if (br.left < cr.left + 84)
-        container.scrollBy({ left: -step, behavior: "smooth" });
-    });
-  }, []);
-
-  useEffect(() => {
-    currentIndexRef.current = currentIndex;
-    startedRef.current = started;
-  });
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!startedRef.current) return;
-      const tag = document.activeElement?.tagName.toLowerCase();
-      if (tag === "input" || tag === "textarea" || tag === "select") return;
-      const idx = currentIndexRef.current;
-      if (e.key === "ArrowLeft" && idx > 0) {
-        e.preventDefault();
-        const nextIndex = idx - 1;
-        triggerLight();
-        setNavState((prev) => ({ ...prev, direction: "prev" }));
-        track("exam_navigate", {
-          direction: "prev",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
-        e.preventDefault();
-        const nextIndex = idx + 1;
-        triggerLight();
-        setNavState((prev) => ({ ...prev, direction: "next" }));
-        track("exam_navigate", {
-          direction: "next",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [questions.length, scrollToNav, setCurrentIndex, setNavState]);
 
   useEffect(() => {
     if (!subject || !examInfo) {
       navigate(langTo("/"), { replace: true });
     }
   }, [subject, examInfo, navigate, langTo]);
-
-  useEffect(() => {
-    const el = navRef.current;
-    if (!el) return;
-    const check = () => {
-      setNavState((prev) => ({
-        ...prev,
-        showLeftFade: el.scrollLeft > 4,
-        showRightFade: el.scrollLeft + el.clientWidth < el.scrollWidth - 4,
-      }));
-    };
-    check();
-    el.addEventListener("scroll", check, { passive: true });
-    const ro = new ResizeObserver(check);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", check);
-      ro.disconnect();
-    };
-  }, [questions, started, setNavState]);
 
   useEffect(() => {
     if (!started || questions.length === 0) return;
@@ -655,7 +575,9 @@ export default function ExamSimulation() {
 
   if (questions.length === 0 || !subject || !examInfo) {
     return (
-      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
+      <>
+        {seoHead}
+        <div className="max-w-3xl mx-auto px-4 py-16 text-center">
         <p className="text-fg-muted">{t.exam.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
@@ -665,23 +587,29 @@ export default function ExamSimulation() {
           {t.exam.backToHome}
         </Link>
       </div>
+      </>
     );
   }
 
   if (!started) {
     return (
-      <ExamStartScreen
+      <>
+        {seoHead}
+        <ExamStartScreen
         subject={subject}
         examInfo={examInfo}
         questions={questions}
         totalPoints={totalPoints}
         onStart={handleStart}
       />
+      </>
     );
   }
 
   return (
-    <ExamPlayer
+    <>
+      {seoHead}
+      <ExamPlayer
       subject={subject}
       examInfo={examInfo}
       questions={questions}
@@ -703,5 +631,6 @@ export default function ExamSimulation() {
       onSelfGrade={handleSelfGrade}
       onSubmit={handleSubmit}
     />
+    </>
   );
 }
