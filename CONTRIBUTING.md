@@ -193,7 +193,21 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 - `explanationImage`: se muestra dentro del panel de solución colapsable (disponible para todos los tipos de pregunta: mc, text, matching).
 - Las imágenes se optimizan automáticamente (múltiples tamaños y formatos: AVIF, WebP, PNG).
 
-#### 6. Verifica
+#### 6. Registra la asignatura en `_visibility.ts`
+
+Edita `src/subjects/_visibility.ts` y añade dos líneas para tu asignatura:
+
+```ts
+import { meta as tuAsignaturaMeta } from "./tu-asignatura/meta";
+import { questions as tuAsignaturaQuestions } from "./tu-asignatura/questions";
+// ... y añade los void correspondientes:
+void tuAsignaturaMeta;
+void tuAsignaturaQuestions;
+```
+
+Este archivo existe para que herramientas de análisis estático como React Doctor vean que los exports de cada asignatura se consumen. La carga real en tiempo de ejecución la hace `import.meta.glob` en `index.ts`.
+
+#### 7. Verifica
 
 ```bash
 pnpm dev
@@ -217,6 +231,7 @@ La asignatura debe aparecer en la pantalla principal y todas las funcionalidades
 src/
 ├── subjects/
 │   ├── index.ts              # Auto-descubrimiento (no editar)
+│   ├── _visibility.ts        # Registro de visibilidad para análisis estático (editar al añadir asignatura)
 │   ├── _template/            # Plantilla para nuevas asignaturas
 │   │   ├── meta.ts
 │   │   └── questions.ts
@@ -313,4 +328,5 @@ pnpm doctor    # React Doctor
 - [ ] Las preguntas repetidas están marcadas con `repeated: true`
 - [ ] `pnpm build` compila sin errores
 - [ ] `pnpm lint` pasa
+- [ ] `pnpm doctor` (React Doctor) no reporta nuevos problemas
 - [ ] La asignatura carga correctamente en `pnpm dev`

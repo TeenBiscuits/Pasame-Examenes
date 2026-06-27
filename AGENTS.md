@@ -37,8 +37,22 @@ pnpm doctor    # React Doctor
 3. Fill in `questions.ts` with the exam questions
 4. Add exam PDFs to `public/exams/{subject-id}/`
 5. Add any question images to `src/subjects/{subject-id}/assets/`
-6. Run `pnpm dev` to verify everything works
-7. The subject is auto-discovered — no other files to edit
+6. **Add your subject's imports to `src/subjects/_visibility.ts`** (see step below)
+7. Run `pnpm dev` to verify everything works
+
+### `_visibility.ts` — Export Visibility Registry
+
+`src/subjects/_visibility.ts` exists so static analysis tools (React Doctor) can see that every subject's named exports are consumed. It explicitly imports and `void`s each subject's `meta` and `questions`. The actual runtime work is done by `import.meta.glob` in `index.ts`.
+
+When you add a subject, add two lines to `_visibility.ts`:
+
+```ts
+import { meta as tuAsignaturaMeta } from "./tu-asignatura/meta";
+import { questions as tuAsignaturaQuestions } from "./tu-asignatura/questions";
+// ... then append the corresponding void expressions:
+void tuAsignaturaMeta;
+void tuAsignaturaQuestions;
+```
 
 ### Subject ID Convention
 
@@ -234,6 +248,7 @@ public/exams/{subject-id}/
 
 - [ ] `pnpm build` succeeds with no errors
 - [ ] `pnpm lint` passes
+- [ ] `pnpm doctor` (React Doctor) reports no new issues
 - [ ] Subject appears on the homepage grid
 - [ ] Subject home page loads with all topics
 - [ ] Practice mode works for each topic
