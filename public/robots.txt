@@ -2,4 +2,6 @@ User-agent: *
 Allow: /
 Disallow:
 
+Crawl-delay: 10
+
 Sitemap: https://pe.pablopl.dev/sitemap.xml

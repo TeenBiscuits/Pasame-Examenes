@@ -157,6 +157,8 @@ export const gl: Translations = {
   },
   seo: {
     siteName: "Pásame Exámenes",
+    ogImageAlt:
+      "Pásame Exámenes — Plataforma de código aberto para practicar exames universitarios",
     locale: "gl_ES",
     homeDescription:
       "Plataforma de código aberto para practicar exames universitarios por tema ou simular o exame completo.",

@@ -9,14 +9,18 @@ import AddExamModal, {
 } from "../components/AddExamModal";
 import type { Question, Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
+import { useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 
+const BASE_URL = "https://pe.pablopl.dev";
+
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
+  const { lang } = useLang();
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
@@ -49,6 +53,26 @@ export default function SubjectHome() {
     title: subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
     description: seoDescription,
     pathWithoutLang: subject ? `/${subject.id}` : "/",
+    structuredData: subject
+      ? {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: t.home.title,
+              item: `${BASE_URL}/${lang}`,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: subject.name,
+              item: `${BASE_URL}/${lang}/${subject.id}`,
+            },
+          ],
+        }
+      : undefined,
   });
 
   if (!subject) {

@@ -10,12 +10,15 @@ import {
 import type { Question } from "../data/types";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
+import { useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { usePracticeSession } from "../hooks/usePracticeSession";
 import { startPracticeTour } from "../lib/tour";
+
+const BASE_URL = "https://pe.pablopl.dev";
 
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
@@ -337,6 +340,7 @@ export default function PracticeTopic() {
   }>();
   const navigate = useNavigate();
   const t = useT();
+  const { lang } = useLang();
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
@@ -375,6 +379,33 @@ export default function PracticeTopic() {
         : t.seo.defaultDescription,
     pathWithoutLang:
       subject && topic ? `/${subject.id}/practice/${topic}` : "/",
+    structuredData:
+      subject && topicInfo
+        ? {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: t.home.title,
+                item: `${BASE_URL}/${lang}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: subject.name,
+                item: `${BASE_URL}/${lang}/${subject.id}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: topicInfo.label,
+                item: `${BASE_URL}/${lang}/${subject.id}/practice/${topic}`,
+              },
+            ],
+          }
+        : undefined,
   });
 
   const {

@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier . --write",
-    "doctor": "npx react-doctor@latest"
+    "doctor": "npx react-doctor@latest",
+    "analyze": "npx vite-bundle-visualizer"
   },
   "dependencies": {
     "driver.js": "^1.4.0",

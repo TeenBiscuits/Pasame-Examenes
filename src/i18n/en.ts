@@ -156,6 +156,8 @@ export const en = {
   },
   seo: {
     siteName: "Pásame Exámenes",
+    ogImageAlt:
+      "Pásame Exámenes — Open-source platform for practicing university exams",
     locale: "en_US",
     homeDescription:
       "Open-source platform for practicing university exams by topic or simulating the full exam.",

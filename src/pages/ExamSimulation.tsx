@@ -10,12 +10,15 @@ import {
 import type { Question, Exam } from "../data/types";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
+import { useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { useExamSession } from "../hooks/useExamSession";
 import { startExamTour } from "../lib/tour";
+
+const BASE_URL = "https://pe.pablopl.dev";
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -391,6 +394,7 @@ export default function ExamSimulation() {
   const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
   const navigate = useNavigate();
   const t = useT();
+  const { lang } = useLang();
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
@@ -442,6 +446,33 @@ export default function ExamSimulation() {
         ? `${examInfo.title} \u2014 ${subject.name} (${subject.courseCode})`
         : t.seo.defaultDescription,
     pathWithoutLang: subject && year ? `/${subject.id}/exam/${year}` : "/",
+    structuredData:
+      examInfo && subject
+        ? {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: t.home.title,
+                item: `${BASE_URL}/${lang}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: subject.name,
+                item: `${BASE_URL}/${lang}/${subject.id}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: examInfo.title,
+                item: `${BASE_URL}/${lang}/${subject.id}/exam/${year}`,
+              },
+            ],
+          }
+        : undefined,
   });
 
   const {

@@ -26,6 +26,7 @@ export default defineConfig({
           if (id.includes("node_modules/react/")) return "vendor";
           if (id.includes("node_modules/react-router-dom")) return "router";
           if (id.includes("node_modules/react-router/")) return "router";
+          if (id.includes("node_modules/driver.js")) return "driver";
         },
       },
     },

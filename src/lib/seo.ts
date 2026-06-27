@@ -59,20 +59,80 @@ function buildCanonicalPath(lang: Lang, pathWithoutLang: string): string {
   return `/${lang}${base}`;
 }
 
+function cleanupJsonLd(ids: string[]) {
+  for (let i = ids.length - 1; i >= 0; i--) {
+    const el = document.getElementById(ids[i]);
+    if (el) el.remove();
+  }
+}
+
+function injectJsonLd(id: string, jsonLd: object) {
+  const existing = document.getElementById(id);
+  if (existing) existing.remove();
+  const script = document.createElement("script");
+  script.id = id;
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(jsonLd);
+  document.head.appendChild(script);
+}
+
 export interface SeoPageMeta {
   title: string;
   description: string;
   pathWithoutLang: string;
+  structuredData?: object | object[];
+}
+
+const IDS = {
+  website: "jsonld-website",
+  breadcrumb: "jsonld-breadcrumb",
+};
+
+function buildWebsiteSchema(locale: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Pásame Exámenes",
+    url: BASE_URL,
+    inLanguage: locale,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
 }
 
 export function useSeoHead({
   title,
   description,
   pathWithoutLang,
+  structuredData,
 }: SeoPageMeta) {
   const t = useT();
   const { lang } = useLang();
   const meta = langMeta[lang];
+
+  useEffect(() => {
+    const schemas: object[] = [buildWebsiteSchema(meta.locale)];
+    const jsonLdIds = [IDS.website];
+    if (structuredData) {
+      const extra = Array.isArray(structuredData)
+        ? structuredData
+        : [structuredData];
+      for (let i = 0; i < extra.length; i++) {
+        jsonLdIds.push(`${IDS.breadcrumb}-${i}`);
+        schemas.push(extra[i]);
+      }
+    }
+    for (let i = 0; i < schemas.length; i++) {
+      injectJsonLd(jsonLdIds[i], schemas[i]);
+    }
+    return () => cleanupJsonLd(jsonLdIds);
+  }, [meta.locale, structuredData]);
 
   useEffect(() => {
     document.documentElement.lang = meta.hreflang;
@@ -81,9 +141,15 @@ export function useSeoHead({
     const canonicalUrl = `${BASE_URL}${canonicalPath}`;
 
     const metaOps = [
+      { id: "meta-robots", content: "index, follow", attr: "name" as const },
       { id: "meta-description", content: description, attr: "name" as const },
       { id: "og:title", content: title, attr: "property" as const },
       { id: "og:description", content: description, attr: "property" as const },
+      {
+        id: "og:image:alt",
+        content: t.seo.ogImageAlt,
+        attr: "property" as const,
+      },
       { id: "og:locale", content: meta.locale, attr: "property" as const },
       { id: "og:url", content: canonicalUrl, attr: "property" as const },
       {
@@ -121,5 +187,5 @@ export function useSeoHead({
     for (const op of linkOps) {
       setLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
     }
-  }, [title, description, pathWithoutLang, lang, meta, t.seo.siteName]);
+  }, [title, description, pathWithoutLang, lang, meta, t.seo.siteName, t.seo.ogImageAlt]);
 }
