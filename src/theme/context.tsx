@@ -1,26 +1,14 @@
-/* eslint-disable react-refresh/only-export-components */
 import {
-  createContext,
   useState,
   useCallback,
   useMemo,
   useEffect,
+  startTransition,
   type ReactNode,
 } from "react";
 import type { Theme } from "./types";
 import { themeOrder } from "./types";
-
-export interface ThemeContextType {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-  cycleTheme: () => void;
-}
-
-export const ThemeContext = createContext<ThemeContextType>({
-  theme: "system",
-  setTheme: () => {},
-  cycleTheme: () => {},
-});
+import { ThemeContext } from "./context-value";
 
 function getInitialTheme(): Theme {
   try {
@@ -81,7 +69,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       setThemeState(applyTheme(next));
       return;
     }
-    document.startViewTransition(() => {
+    startTransition(() => {
       setThemeState(applyTheme(next));
     });
   }, []);

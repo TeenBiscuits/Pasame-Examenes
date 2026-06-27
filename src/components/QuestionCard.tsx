@@ -110,9 +110,9 @@ function MCQuestion({
       const key = e.key.toLowerCase();
       let selectedLetter: string | undefined;
 
-      if (['a', 'b', 'c', 'd', 'e'].includes(key)) {
+      if (["a", "b", "c", "d", "e"].includes(key)) {
         selectedLetter = key;
-      } else if (['1', '2', '3', '4', '5'].includes(key)) {
+      } else if (["1", "2", "3", "4", "5"].includes(key)) {
         selectedLetter = String.fromCharCode(96 + parseInt(key)); // '1' -> 'a'
       }
 
@@ -246,6 +246,7 @@ function TextQuestion({
       </label>
       <textarea
         id={`answer-${question.id}`}
+        aria-label="Your answer"
         className="w-full p-3 border-2 border-border rounded-lg focus:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none resize-y min-h-[120px] text-sm"
         placeholder="Type your answer…"
         autoComplete="off"
@@ -276,7 +277,7 @@ function TextQuestion({
 
           {isOpen && (
             <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-fg-muted">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-fg-muted">
                 {t.questionCard.modelSolution}
               </h4>
               <Markdown className="text-xs whitespace-pre-wrap font-sans text-fg-secondary">
@@ -561,10 +562,13 @@ export default function QuestionCard(props: QuestionCardProps) {
             </thead>
             <tbody className="divide-y divide-border bg-surface-alt">
               {question.table.rows.map((row, ri) => (
-                <tr key={ri} className="hover:bg-surface/50 transition-colors">
+                <tr
+                  key={`${question.id}-row-${ri}`}
+                  className="hover:bg-surface/50 transition-colors"
+                >
                   {row.map((cell, ci) => (
                     <td
-                      key={ci}
+                      key={`${question.id}-cell-${ri}-${ci}`}
                       className="px-4 py-2 text-fg-secondary whitespace-nowrap"
                     >
                       <InlineMarkdown>{cell}</InlineMarkdown>

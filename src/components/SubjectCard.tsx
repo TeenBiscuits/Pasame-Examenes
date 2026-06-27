@@ -47,7 +47,8 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       <p className="text-sm text-fg-muted mb-4">{subject.university}</p>
       <div className="text-xs text-fg-muted flex items-center gap-2">
         <span>
-          {questionCount !== null ? questionCount : "..."} {t.subjectCard.questions}
+          {questionCount !== null ? questionCount : "..."}{" "}
+          {t.subjectCard.questions}
         </span>
         <span>&middot;</span>
         <span>

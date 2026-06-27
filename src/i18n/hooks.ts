@@ -1,5 +1,5 @@
 import { use } from "react";
-import { I18nContext } from "./context";
+import { I18nContext } from "./context-value";
 
 export function useT() {
   return use(I18nContext).t;

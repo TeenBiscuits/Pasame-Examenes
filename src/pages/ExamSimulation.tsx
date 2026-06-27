@@ -1,21 +1,20 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { LangLink as Link, useLangTo } from "../lib/lang-link";
+import { LangLink as Link } from "../lib/lang-link";
+import { useLangTo } from "../lib/useLangTo";
 import {
   getSubject,
   getQuestionsByExam,
   getTopicMegaTopicLabel,
 } from "../subjects";
 import type { Question, Exam } from "../data/types";
-import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { triggerLight, triggerMedium } from "../lib/haptics";
+import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
-
-const getNow = () => Date.now();
+import { useExamSession } from "../hooks/useExamSession";
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -24,373 +23,122 @@ function formatTime(seconds: number) {
   return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
 }
 
-function gradeQuestion(
-  question: Question,
-  answer: string,
-  selfGrade?: "correct" | "incorrect",
-): number {
-  if (!answer || answer.trim() === "") return 0;
-  if (question.type === "mc") {
-    return answer === question.correctAnswer ? question.points : 0;
-  }
-  if (question.type === "matching") {
-    try {
-      const user = JSON.parse(answer) as Record<string, string>;
-      const correct = question.correctAnswer as Record<string, string>;
-      const items = Object.keys(correct);
-      let correctCount = 0;
-      for (const item of items) {
-        if (user[item] === correct[item]) correctCount++;
-      }
-      return Math.round((correctCount / items.length) * question.points);
-    } catch {
-      return 0;
-    }
-  }
-  if (question.type === "text") {
-    return selfGrade === "correct" ? question.points : 0;
-  }
-  return 0;
+interface ExamStartScreenProps {
+  subject: NonNullable<ReturnType<typeof getSubject>>;
+  examInfo: Exam;
+  questions: Question[];
+  totalPoints: number;
+  onStart: () => void;
 }
 
-export default function ExamSimulation() {
-  const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
-  const navigate = useNavigate();
+function ExamStartScreen({
+  subject,
+  examInfo,
+  questions,
+  totalPoints,
+  onStart,
+}: ExamStartScreenProps) {
   const t = useT();
-  const langTo = useLangTo();
-
-  const subject = subjectId ? getSubject(subjectId) : undefined;
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [megatopicLabels, setMegatopicLabels] = useState<
-    Record<string, string>
-  >({});
-  const examInfo = useMemo(
-    () => subject?.exams.find((e: Exam) => e.year === year),
-    [subject, year],
-  );
-  useEffect(() => {
-    if (subject && year) {
-      getQuestionsByExam(subject.id, year).then(setQuestions);
-    }
-  }, [subject, year]);
-
-  useEffect(() => {
-    if (!subject || questions.length === 0) return;
-    const topics = [...new Set(questions.map((q) => q.topic))];
-    Promise.all(
-      topics.map(async (t) => {
-        const label = await getTopicMegaTopicLabel(subject.id, t);
-        return [t, label] as const;
-      }),
-    ).then((entries) => {
-      const labels: Record<string, string> = {};
-      for (const [t, l] of entries) {
-        if (l != null) labels[t] = l;
-      }
-      setMegatopicLabels(labels);
-    });
-  }, [subject, questions]);
-  useDocumentTitle(
-    examInfo && subject
-      ? `${examInfo.title} \u2014 ${subject.name} \u2014 ${t.home.title}`
-      : subject
-        ? `${subject.name} \u2014 ${t.home.title}`
-        : t.home.title,
-  );
-
-  useSeoHead({
-    title:
-      examInfo && subject
-        ? `${examInfo.title} \u2014 ${subject.name}`
-        : t.home.title,
-    description:
-      examInfo && subject
-        ? `${examInfo.title} \u2014 ${subject.name} (${subject.courseCode})`
-        : t.seo.defaultDescription,
-    pathWithoutLang: subject && year ? `/${subject.id}/exam/${year}` : "/",
-  });
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [selfGrades, setSelfGrades] = useState<
-    Record<string, "correct" | "incorrect">
-  >({});
-  const [submitted, setSubmitted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(
-    (examInfo?.durationMinutes || 120) * 60,
-  );
-  const [started, setStarted] = useState(false);
-  const startTimeRef = useRef<number>(0);
-  const attemptIdRef = useRef<string>("");
-  const timeUpTrackedRef = useRef(false);
-  const [direction, setDirection] = useState<"next" | "prev" | undefined>();
-  const navRef = useRef<HTMLDivElement>(null);
-  const [showLeftFade, setShowLeftFade] = useState(false);
-  const [showRightFade, setShowRightFade] = useState(false);
-  const currentIndexRef = useRef(currentIndex);
-  const startedRef = useRef(started);
-
-  const scrollToNav = useCallback((index: number) => {
-    const container = navRef.current;
-    if (!container) return;
-    const btn = container.children[index] as HTMLElement | undefined;
-    if (!btn) return;
-    requestAnimationFrame(() => {
-      const cr = container.getBoundingClientRect();
-      const br = btn.getBoundingClientRect();
-      const step = 108;
-      if (br.right > cr.right - 84)
-        container.scrollBy({ left: step, behavior: "smooth" });
-      else if (br.left < cr.left + 84)
-        container.scrollBy({ left: -step, behavior: "smooth" });
-    });
-  }, []);
-
-  useEffect(() => {
-    currentIndexRef.current = currentIndex;
-    startedRef.current = started;
-  });
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!startedRef.current) return;
-      const tag = document.activeElement?.tagName.toLowerCase();
-      if (tag === "input" || tag === "textarea" || tag === "select") return;
-      const idx = currentIndexRef.current;
-      if (e.key === "ArrowLeft" && idx > 0) {
-        e.preventDefault();
-        const nextIndex = idx - 1;
-        triggerLight();
-        setDirection("prev");
-        track("exam_navigate", {
-          direction: "prev",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
-        e.preventDefault();
-        const nextIndex = idx + 1;
-        triggerLight();
-        setDirection("next");
-        track("exam_navigate", {
-          direction: "next",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [questions.length, scrollToNav]);
-
-  useEffect(() => {
-    if (!subject || !examInfo) {
-      navigate(langTo("/"), { replace: true });
-    }
-  }, [subject, examInfo, navigate, langTo]);
-
-  useEffect(() => {
-    const el = navRef.current;
-    if (!el) return;
-    const check = () => {
-      setShowLeftFade(el.scrollLeft > 4);
-      setShowRightFade(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
-    };
-    check();
-    el.addEventListener("scroll", check, { passive: true });
-    const ro = new ResizeObserver(check);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", check);
-      ro.disconnect();
-    };
-  }, [questions, started]);
-
-  const totalPoints = questions.reduce((s, q) => s + q.points, 0);
-
-  useEffect(() => {
-    if (!started || submitted) return;
-    const timer = setInterval(() => {
-      setTimeLeft((t) => {
-        if (t <= 1) {
-          clearInterval(timer);
-          return 0;
-        }
-        return t - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [started, submitted]);
-
-  useEffect(() => {
-    if (timeLeft === 0 && started && !submitted && !timeUpTrackedRef.current) {
-      timeUpTrackedRef.current = true;
-      track("exam_time_up", {
-        subjectId: subject?.id || "",
-        year: year || "",
-        questionsCount: questions.length,
-      });
-    }
-  }, [timeLeft, started, submitted, subject?.id, year, questions.length]);
-
-  const handleAnswer = useCallback((questionId: string, answer: string) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: answer }));
-  }, []);
-
-  const handleSubmit = () => {
-    if (!subject || !year) return;
-
-    if (!window.confirm(t.exam.submitConfirm)) return;
-
-    triggerMedium();
-    const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
-    const id = getNow().toString();
-    attemptIdRef.current = id;
-    let score = 0;
-    for (const q of questions) {
-      score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
-    }
-    const answeredCount = Object.values(answers).filter(
-      (a) => a && a.trim() !== "",
-    ).length;
-    track("exam_submit", {
-      subjectId: subject.id,
-      year: year || "",
-      score,
-      maxScore: totalPoints,
-      timeSpent: elapsed,
-      questionsCount: questions.length,
-      answered: answeredCount,
-    });
-    saveAttempt(subject.id, {
-      id,
-      exam: year,
-      mode: "exam",
-      date: new Date().toISOString(),
-      score,
-      maxScore: totalPoints,
-      answers,
-      timeSpent: elapsed,
-    });
-    setSubmitted(true);
-  };
-
-  const handleSelfGrade = (
-    questionId: string,
-    grade: "correct" | "incorrect",
-  ) => {
-    if (!subject || !year) return;
-    track("exam_self_grade", {
-      subjectId: subject.id,
-      year: year || "",
-      questionId,
-      grade,
-    });
-    setSelfGrades((prev) => {
-      const next = { ...prev, [questionId]: grade };
-      const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
-      let score = 0;
-      for (const q of questions) {
-        score += gradeQuestion(q, answers[q.id] || "", next[q.id]);
-      }
-      saveAttempt(subject.id, {
-        id: attemptIdRef.current || getNow().toString(),
-        exam: year,
-        mode: "exam",
-        date: new Date().toISOString(),
-        score,
-        maxScore: totalPoints,
-        answers,
-        timeSpent: elapsed,
-      });
-      return next;
-    });
-  };
-
-  const handleStart = () => {
-    triggerMedium();
-    track("exam_start", {
-      subjectId: subject?.id || "",
-      year: year || "",
-      questionsCount: questions.length,
-      totalPoints,
-    });
-    setStarted(true);
-    startTimeRef.current = getNow();
-  };
-
-  if (questions.length === 0 || !subject || !examInfo) {
-    return (
-      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
-        <p className="text-fg-muted">{t.exam.noQuestions}</p>
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in animate-duration-fast">
+      <div className="mb-6">
         <Link
-          to={subject ? `/${subject.id}` : "/"}
-          className="text-accent hover:underline mt-4 inline-block"
-          onClick={() => triggerLight()}
+          to={`/${subject.id}`}
+          className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
         >
-          {t.exam.backToHome}
+          {t.exam.backToSubject}
         </Link>
       </div>
-    );
-  }
-
-  if (!started) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in animate-duration-fast">
-        <div className="mb-6">
-          <Link
-            to={`/${subject.id}`}
-            className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
-          >
-            {t.exam.backToSubject}
-          </Link>
-        </div>
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-fg mb-2">{examInfo.title}</h1>
-          <p className="text-fg-muted mb-8">
-            {subject.name} ({subject.courseCode})
-          </p>
-        </div>
-        <div className="bg-surface-alt rounded-xl border border-border p-8 shadow-sm space-y-4">
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div>
-              <span className="text-fg-muted">{t.exam.questions}</span>
-              <p className="font-semibold">{questions.length}</p>
-            </div>
-            <div>
-              <span className="text-fg-muted">{t.exam.totalPoints}</span>
-              <p className="font-semibold">{totalPoints}p</p>
-            </div>
-            <div>
-              <span className="text-fg-muted">{t.exam.pass}</span>
-              <p className="font-semibold">{examInfo.passPoints}p</p>
-            </div>
-            <div>
-              <span className="text-fg-muted">{t.exam.timeLimit}</span>
-              <p className="font-semibold">
-                {examInfo.durationMinutes} {t.exam.minutes}
-              </p>
-            </div>
-          </div>
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
-            {t.exam.simulationNote}
-          </div>
-          <button
-            type="button"
-            className="w-full py-3 bg-accent text-white rounded-lg hover:bg-accent-hover active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition font-medium animate-pulse"
-            onClick={handleStart}
-          >
-            {t.exam.startExam}
-          </button>
-        </div>
+      <div className="text-center">
+        <h1 className="text-3xl font-semibold text-fg mb-2">
+          {examInfo.title}
+        </h1>
+        <p className="text-fg-muted mb-8">
+          {subject.name} ({subject.courseCode})
+        </p>
       </div>
-    );
-  }
+      <div className="bg-surface-alt rounded-xl border border-border p-8 shadow-sm space-y-4">
+        <div className="grid grid-cols-2 gap-4 text-sm">
+          <div>
+            <span className="text-fg-muted">{t.exam.questions}</span>
+            <p className="font-semibold">{questions.length}</p>
+          </div>
+          <div>
+            <span className="text-fg-muted">{t.exam.totalPoints}</span>
+            <p className="font-semibold">{totalPoints}p</p>
+          </div>
+          <div>
+            <span className="text-fg-muted">{t.exam.pass}</span>
+            <p className="font-semibold">{examInfo.passPoints}p</p>
+          </div>
+          <div>
+            <span className="text-fg-muted">{t.exam.timeLimit}</span>
+            <p className="font-semibold">
+              {examInfo.durationMinutes} {t.exam.minutes}
+            </p>
+          </div>
+        </div>
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
+          {t.exam.simulationNote}
+        </div>
+        <button
+          type="button"
+          className="w-full py-3 bg-accent text-white rounded-lg hover:bg-accent-hover active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition font-medium animate-pulse"
+          onClick={onStart}
+        >
+          {t.exam.startExam}
+        </button>
+      </div>
+    </div>
+  );
+}
 
+interface ExamPlayerProps {
+  subject: NonNullable<ReturnType<typeof getSubject>>;
+  examInfo: Exam;
+  questions: Question[];
+  megatopicLabels: Record<string, string>;
+  currentIndex: number;
+  setCurrentIndex: (i: number) => void;
+  answers: Record<string, string>;
+  selfGrades: Record<string, "correct" | "incorrect">;
+  submitted: boolean;
+  timeLeft: number;
+  totalPoints: number;
+  direction: "next" | "prev" | undefined;
+  setDirection: (d: "next" | "prev" | undefined) => void;
+  showLeftFade: boolean;
+  showRightFade: boolean;
+  navRef: React.RefObject<HTMLDivElement | null>;
+  scrollToNav: (index: number) => void;
+  onAnswer: (questionId: string, answer: string) => void;
+  onSelfGrade: (questionId: string, grade: "correct" | "incorrect") => void;
+  onSubmit: () => void;
+}
+
+function ExamPlayer({
+  subject,
+  examInfo,
+  questions,
+  megatopicLabels,
+  currentIndex,
+  setCurrentIndex,
+  answers,
+  selfGrades,
+  submitted,
+  timeLeft,
+  totalPoints,
+  direction,
+  setDirection,
+  showLeftFade,
+  showRightFade,
+  navRef,
+  scrollToNav,
+  onAnswer,
+  onSelfGrade,
+  onSubmit,
+}: ExamPlayerProps) {
+  const t = useT();
   const currentQuestion = questions[currentIndex];
   const currentTopic = subject.topics.find(
     (tp) => tp.key === currentQuestion.topic,
@@ -399,7 +147,25 @@ export default function ExamSimulation() {
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
-      score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
+      if (!answers[q.id] || answers[q.id].trim() === "") continue;
+      if (q.type === "mc") {
+        if (answers[q.id] === q.correctAnswer) score += q.points;
+      } else if (q.type === "matching") {
+        try {
+          const user = JSON.parse(answers[q.id]) as Record<string, string>;
+          const correct = q.correctAnswer as Record<string, string>;
+          const items = Object.keys(correct);
+          let correctCount = 0;
+          for (const item of items) {
+            if (user[item] === correct[item]) correctCount++;
+          }
+          score += Math.round((correctCount / items.length) * q.points);
+        } catch {
+          /* skip */
+        }
+      } else if (q.type === "text") {
+        if (selfGrades[q.id] === "correct") score += q.points;
+      }
     }
     return score;
   };
@@ -516,11 +282,11 @@ export default function ExamSimulation() {
         megatopicLabel={megatopicLabels[currentQuestion.topic]}
         examDate={examInfo?.date || examInfo?.title}
         subjectId={subject.id}
-        onAnswer={handleAnswer}
+        onAnswer={onAnswer}
         savedAnswer={answers[currentQuestion.id]}
         showResult={submitted}
         selfGrade={selfGrades[currentQuestion.id]}
-        onSelfGrade={handleSelfGrade}
+        onSelfGrade={onSelfGrade}
         direction={direction}
       />
 
@@ -568,7 +334,7 @@ export default function ExamSimulation() {
             <button
               type="button"
               className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition font-medium"
-              onClick={handleSubmit}
+              onClick={onSubmit}
             >
               {t.exam.submitExam}
             </button>
@@ -614,5 +380,237 @@ export default function ExamSimulation() {
         </button>
       </div>
     </div>
+  );
+}
+
+export default function ExamSimulation() {
+  const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
+  const navigate = useNavigate();
+  const t = useT();
+  const langTo = useLangTo();
+
+  const subject = subjectId ? getSubject(subjectId) : undefined;
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [megatopicLabels, setMegatopicLabels] = useState<
+    Record<string, string>
+  >({});
+  const examInfo = useMemo(
+    () => subject?.exams.find((e: Exam) => e.year === year),
+    [subject, year],
+  );
+  useEffect(() => {
+    if (subject && year) {
+      getQuestionsByExam(subject.id, year).then(setQuestions);
+    }
+  }, [subject, year]);
+
+  useEffect(() => {
+    if (!subject || questions.length === 0) return;
+    const topics = [...new Set(questions.map((q) => q.topic))];
+    Promise.all(
+      topics.map(async (t) => {
+        const label = await getTopicMegaTopicLabel(subject.id, t);
+        return [t, label] as const;
+      }),
+    ).then((entries) => {
+      const labels: Record<string, string> = {};
+      for (const [t, l] of entries) {
+        if (l != null) labels[t] = l;
+      }
+      setMegatopicLabels(labels);
+    });
+  }, [subject, questions]);
+  useDocumentTitle(
+    examInfo && subject
+      ? `${examInfo.title} \u2014 ${subject.name} \u2014 ${t.home.title}`
+      : subject
+        ? `${subject.name} \u2014 ${t.home.title}`
+        : t.home.title,
+  );
+
+  useSeoHead({
+    title:
+      examInfo && subject
+        ? `${examInfo.title} \u2014 ${subject.name}`
+        : t.home.title,
+    description:
+      examInfo && subject
+        ? `${examInfo.title} \u2014 ${subject.name} (${subject.courseCode})`
+        : t.seo.defaultDescription,
+    pathWithoutLang: subject && year ? `/${subject.id}/exam/${year}` : "/",
+  });
+
+  const {
+    currentIndex,
+    setCurrentIndex,
+    answers,
+    selfGrades,
+    submitted,
+    timeLeft,
+    started,
+    handleAnswer,
+    handleStart,
+    handleSubmit,
+    handleSelfGrade,
+  } = useExamSession(
+    questions,
+    subject?.id || "",
+    year || "",
+    (examInfo?.durationMinutes || 120) * 60,
+    t,
+  );
+
+  const [navState, setNavState] = useState({
+    direction: undefined as "next" | "prev" | undefined,
+    showLeftFade: false,
+    showRightFade: false,
+  });
+  const { direction, showLeftFade, showRightFade } = navState;
+  const setDirection = useCallback(
+    (d: typeof navState.direction) =>
+      setNavState((prev) => ({ ...prev, direction: d })),
+    // setNavState is stable from useState
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+  const navRef = useRef<HTMLDivElement>(null);
+  const currentIndexRef = useRef(currentIndex);
+  const startedRef = useRef(started);
+
+  const scrollToNav = useCallback((index: number) => {
+    const container = navRef.current;
+    if (!container) return;
+    const btn = container.children[index] as HTMLElement | undefined;
+    if (!btn) return;
+    requestAnimationFrame(() => {
+      const cr = container.getBoundingClientRect();
+      const br = btn.getBoundingClientRect();
+      const step = 108;
+      if (br.right > cr.right - 84)
+        container.scrollBy({ left: step, behavior: "smooth" });
+      else if (br.left < cr.left + 84)
+        container.scrollBy({ left: -step, behavior: "smooth" });
+    });
+  }, []);
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+    startedRef.current = started;
+  });
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!startedRef.current) return;
+      const tag = document.activeElement?.tagName.toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+      const idx = currentIndexRef.current;
+      if (e.key === "ArrowLeft" && idx > 0) {
+        e.preventDefault();
+        const nextIndex = idx - 1;
+        triggerLight();
+        setNavState((prev) => ({ ...prev, direction: "prev" }));
+        track("exam_navigate", {
+          direction: "prev",
+          fromIndex: idx,
+          toIndex: nextIndex,
+        });
+        setCurrentIndex(nextIndex);
+        scrollToNav(nextIndex);
+      } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
+        e.preventDefault();
+        const nextIndex = idx + 1;
+        triggerLight();
+        setNavState((prev) => ({ ...prev, direction: "next" }));
+        track("exam_navigate", {
+          direction: "next",
+          fromIndex: idx,
+          toIndex: nextIndex,
+        });
+        setCurrentIndex(nextIndex);
+        scrollToNav(nextIndex);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [questions.length, scrollToNav, setCurrentIndex, setNavState]);
+
+  useEffect(() => {
+    if (!subject || !examInfo) {
+      navigate(langTo("/"), { replace: true });
+    }
+  }, [subject, examInfo, navigate, langTo]);
+
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const check = () => {
+      setNavState((prev) => ({
+        ...prev,
+        showLeftFade: el.scrollLeft > 4,
+        showRightFade: el.scrollLeft + el.clientWidth < el.scrollWidth - 4,
+      }));
+    };
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", check);
+      ro.disconnect();
+    };
+  }, [questions, started, setNavState]);
+
+  const totalPoints = questions.reduce((s, q) => s + q.points, 0);
+
+  if (questions.length === 0 || !subject || !examInfo) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
+        <p className="text-fg-muted">{t.exam.noQuestions}</p>
+        <Link
+          to={subject ? `/${subject.id}` : "/"}
+          className="text-accent hover:underline mt-4 inline-block"
+          onClick={() => triggerLight()}
+        >
+          {t.exam.backToHome}
+        </Link>
+      </div>
+    );
+  }
+
+  if (!started) {
+    return (
+      <ExamStartScreen
+        subject={subject}
+        examInfo={examInfo}
+        questions={questions}
+        totalPoints={totalPoints}
+        onStart={handleStart}
+      />
+    );
+  }
+
+  return (
+    <ExamPlayer
+      subject={subject}
+      examInfo={examInfo}
+      questions={questions}
+      megatopicLabels={megatopicLabels}
+      currentIndex={currentIndex}
+      setCurrentIndex={setCurrentIndex}
+      answers={answers}
+      selfGrades={selfGrades}
+      submitted={submitted}
+      timeLeft={timeLeft}
+      totalPoints={totalPoints}
+      direction={direction}
+      setDirection={setDirection}
+      showLeftFade={showLeftFade}
+      showRightFade={showRightFade}
+      navRef={navRef}
+      scrollToNav={scrollToNav}
+      onAnswer={handleAnswer}
+      onSelfGrade={handleSelfGrade}
+      onSubmit={handleSubmit}
+    />
   );
 }
