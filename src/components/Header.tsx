@@ -5,7 +5,8 @@ import type { Lang } from "../i18n/context";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import ThemeToggle from "../theme/ThemeToggle";
-import { LangLink as Link, replaceLangInPath } from "../lib/lang-link";
+import { LangLink as Link } from "../lib/lang-link";
+import { replaceLangInPath } from "../lib/lang-link-utils";
 
 const langCycle: Lang[] = ["en", "es", "gl"];
 

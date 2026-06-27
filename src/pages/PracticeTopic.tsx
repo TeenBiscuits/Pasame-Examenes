@@ -1,291 +1,107 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { LangLink as Link, useLangTo } from "../lib/lang-link";
+import { LangLink as Link } from "../lib/lang-link";
+import { useLangTo } from "../lib/useLangTo";
 import {
   getSubject,
   getQuestionsByTopic,
   getTopicMegaTopicLabel,
 } from "../subjects";
 import type { Question } from "../data/types";
-import { saveAttempt } from "../data/store";
 import QuestionCard from "../components/QuestionCard";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { triggerLight, triggerMedium } from "../lib/haptics";
+import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { usePracticeSession } from "../hooks/usePracticeSession";
 
-const getNow = () => Date.now();
-
-function gradeQuestion(
-  question: Question,
-  answer: string,
-  selfGrade?: "correct" | "incorrect",
-): number {
-  if (!answer || answer.trim() === "") return 0;
-  if (question.type === "mc") {
-    return answer === question.correctAnswer ? question.points : 0;
-  }
-  if (question.type === "matching") {
-    try {
-      const user = JSON.parse(answer) as Record<string, string>;
-      const correct = question.correctAnswer as Record<string, string>;
-      const items = Object.keys(correct);
-      let correctCount = 0;
-      for (const item of items) {
-        if (user[item] === correct[item]) correctCount++;
-      }
-      return Math.round((correctCount / items.length) * question.points);
-    } catch {
-      return 0;
-    }
-  }
-  if (question.type === "text") {
-    return selfGrade === "correct" ? question.points : 0;
-  }
-  return 0;
+interface PracticePlayerProps {
+  subject: NonNullable<ReturnType<typeof getSubject>>;
+  topic: string;
+  questions: Question[];
+  megatopicLabel: string | undefined;
+  topicInfo: { icon: string; label: string } | undefined;
+  currentIndex: number;
+  setCurrentIndex: (i: number) => void;
+  answers: Record<string, string>;
+  selfGrades: Record<string, "correct" | "incorrect">;
+  submitted: boolean;
+  checkedQuestions: Record<string, boolean>;
+  totalPoints: number;
+  textQuestionCount: number;
+  direction: "next" | "prev" | undefined;
+  setDirection: (d: "next" | "prev" | undefined) => void;
+  showLeftFade: boolean;
+  showRightFade: boolean;
+  navRef: React.RefObject<HTMLDivElement | null>;
+  scrollToNav: (index: number) => void;
+  onAnswer: (questionId: string, answer: string) => void;
+  onSelfGrade: (questionId: string, grade: "correct" | "incorrect") => void;
+  onSubmit: () => void;
+  onCheckQuestion: (questionId: string) => void;
+  onClearAnswer: (questionId: string) => void;
 }
 
-export default function PracticeTopic() {
-  const { subjectId, topic } = useParams<{
-    subjectId: string;
-    topic: string;
-  }>();
-  const navigate = useNavigate();
+function PracticePlayer({
+  subject,
+  topic,
+  questions,
+  megatopicLabel,
+  topicInfo,
+  currentIndex,
+  setCurrentIndex,
+  answers,
+  selfGrades,
+  submitted,
+  checkedQuestions,
+  totalPoints,
+  textQuestionCount,
+  direction,
+  setDirection,
+  showLeftFade,
+  showRightFade,
+  navRef,
+  scrollToNav,
+  onAnswer,
+  onSelfGrade,
+  onSubmit,
+  onCheckQuestion,
+  onClearAnswer,
+}: PracticePlayerProps) {
   const t = useT();
-  const langTo = useLangTo();
-
-  const subject = subjectId ? getSubject(subjectId) : undefined;
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [megatopicLabel, setMegatopicLabel] = useState<string | undefined>();
-  const topicInfo = useMemo(
-    () => subject?.topics.find((tp) => tp.key === topic),
-    [subject, topic],
-  );
-  useEffect(() => {
-    if (subject && topic) {
-      getQuestionsByTopic(subject.id, topic).then(setQuestions);
-      getTopicMegaTopicLabel(subject.id, topic).then(setMegatopicLabel);
-    }
-  }, [subject, topic]);
-  const textQuestionCount = useMemo(
-    () => questions.filter((q) => q.type === "text").length,
-    [questions],
-  );
-  useDocumentTitle(
-    subject && topicInfo
-      ? `${topicInfo.label} \u2014 ${subject.name} \u2014 ${t.home.title}`
-      : subject
-        ? `${t.home.title} \u2014 ${subject.name}`
-        : t.home.title,
-  );
-
-  useSeoHead({
-    title:
-      subject && topicInfo
-        ? `${topicInfo.label} \u2014 ${subject.name}`
-        : t.home.title,
-    description:
-      subject && topicInfo
-        ? `${questions.length} ${t.subjectCard.questions} \u2014 ${topicInfo.label} \u2014 ${subject.name} (${subject.courseCode})`
-        : t.seo.defaultDescription,
-    pathWithoutLang:
-      subject && topic ? `/${subject.id}/practice/${topic}` : "/",
-  });
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [selfGrades, setSelfGrades] = useState<
-    Record<string, "correct" | "incorrect">
-  >({});
-  const [submitted, setSubmitted] = useState(false);
-  const [checkedQuestions, setCheckedQuestions] = useState<
-    Record<string, boolean>
-  >({});
-  const attemptIdRef = useRef<string>("");
-  const [direction, setDirection] = useState<"next" | "prev" | undefined>();
-  const navRef = useRef<HTMLDivElement>(null);
-  const [showLeftFade, setShowLeftFade] = useState(false);
-  const [showRightFade, setShowRightFade] = useState(false);
-  const currentIndexRef = useRef(currentIndex);
-
-  const scrollToNav = useCallback((index: number) => {
-    const container = navRef.current;
-    if (!container) return;
-    const btn = container.children[index] as HTMLElement | undefined;
-    if (!btn) return;
-    requestAnimationFrame(() => {
-      const cr = container.getBoundingClientRect();
-      const br = btn.getBoundingClientRect();
-      const step = 108;
-      if (br.right > cr.right - 84)
-        container.scrollBy({ left: step, behavior: "smooth" });
-      else if (br.left < cr.left + 84)
-        container.scrollBy({ left: -step, behavior: "smooth" });
-    });
-  }, []);
-
-  useEffect(() => {
-    currentIndexRef.current = currentIndex;
-  });
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const tag = document.activeElement?.tagName.toLowerCase();
-      if (tag === "input" || tag === "textarea" || tag === "select") return;
-      const idx = currentIndexRef.current;
-      if (e.key === "ArrowLeft" && idx > 0) {
-        e.preventDefault();
-        const nextIndex = idx - 1;
-        triggerLight();
-        setDirection("prev");
-        track("practice_navigate", {
-          direction: "prev",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
-        e.preventDefault();
-        const nextIndex = idx + 1;
-        triggerLight();
-        setDirection("next");
-        track("practice_navigate", {
-          direction: "next",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [questions.length, scrollToNav]);
-
-  useEffect(() => {
-    if (!subject || !topicInfo) {
-      navigate(langTo("/"), { replace: true });
-    }
-  }, [subject, topicInfo, navigate, langTo]);
-
-  useEffect(() => {
-    const el = navRef.current;
-    if (!el) return;
-    const check = () => {
-      setShowLeftFade(el.scrollLeft > 4);
-      setShowRightFade(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
-    };
-    check();
-    el.addEventListener("scroll", check, { passive: true });
-    const ro = new ResizeObserver(check);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", check);
-      ro.disconnect();
-    };
-  }, [questions]);
-
-  const handleAnswer = useCallback((questionId: string, answer: string) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: answer }));
-  }, []);
-
-  const handleSubmit = () => {
-    if (!subject) return;
-    triggerMedium();
-    const id = getNow().toString();
-    attemptIdRef.current = id;
-    let score = 0;
-    for (const q of questions) {
-      score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
-    }
-    const answeredCount = Object.values(answers).filter(
-      (a) => a && a.trim() !== "",
-    ).length;
-    track("practice_submit", {
-      subjectId: subject.id,
-      topic: topic || "",
-      score,
-      maxScore: questions.reduce((s, q) => s + q.points, 0),
-      questionsCount: questions.length,
-      answered: answeredCount,
-    });
-    saveAttempt(subject.id, {
-      id,
-      exam: "practice",
-      mode: "practice",
-      topic: topic,
-      date: new Date().toISOString(),
-      score,
-      maxScore: questions.reduce((s, q) => s + q.points, 0),
-      answers,
-    });
-    setSubmitted(true);
-  };
-
-  const handleSelfGrade = (
-    questionId: string,
-    grade: "correct" | "incorrect",
-  ) => {
-    if (!subject) return;
-    track("practice_self_grade", {
-      subjectId: subject.id,
-      topic: topic || "",
-      questionId,
-      grade,
-    });
-    setSelfGrades((prev) => {
-      const next = { ...prev, [questionId]: grade };
-      let score = 0;
-      for (const q of questions) {
-        score += gradeQuestion(q, answers[q.id] || "", next[q.id]);
-      }
-      saveAttempt(subject.id, {
-        id: attemptIdRef.current || getNow().toString(),
-        exam: "practice",
-        mode: "practice",
-        topic: topic,
-        date: new Date().toISOString(),
-        score,
-        maxScore: questions.reduce((s, q) => s + q.points, 0),
-        answers,
-      });
-      return next;
-    });
-  };
-
   const currentQuestion = questions[currentIndex];
 
   const examDate = useMemo(() => {
     if (currentQuestion?.exam === "both") return undefined;
     const exam = currentQuestion
-      ? subject?.exams.find((e) => e.year === currentQuestion.exam)
+      ? subject.exams.find((e) => e.year === currentQuestion.exam)
       : undefined;
     return exam?.date || exam?.title;
   }, [subject, currentQuestion]);
 
-  if (questions.length === 0 || !subject) {
-    return (
-      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
-        <p className="text-fg-muted">{t.practice.noQuestions}</p>
-        <Link
-          to={subject ? `/${subject.id}` : "/"}
-          className="text-accent hover:underline mt-4 inline-block"
-          onClick={() => triggerLight()}
-        >
-          {t.practice.backToHome}
-        </Link>
-      </div>
-    );
-  }
-
-  const totalPoints = questions.reduce((s, q) => s + q.points, 0);
-
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
-      score += gradeQuestion(q, answers[q.id] || "", selfGrades[q.id]);
+      if (!answers[q.id] || answers[q.id].trim() === "") continue;
+      if (q.type === "mc") {
+        if (answers[q.id] === q.correctAnswer) score += q.points;
+      } else if (q.type === "matching") {
+        try {
+          const user = JSON.parse(answers[q.id]) as Record<string, string>;
+          const correct = q.correctAnswer as Record<string, string>;
+          const items = Object.keys(correct);
+          let correctCount = 0;
+          for (const item of items) {
+            if (user[item] === correct[item]) correctCount++;
+          }
+          score += Math.round((correctCount / items.length) * q.points);
+        } catch {
+          /* skip */
+        }
+      } else if (q.type === "text") {
+        if (selfGrades[q.id] === "correct") score += q.points;
+      }
     }
     return score;
   };
@@ -383,11 +199,11 @@ export default function PracticeTopic() {
         megatopicLabel={megatopicLabel}
         examDate={examDate}
         subjectId={subject.id}
-        onAnswer={handleAnswer}
+        onAnswer={onAnswer}
         savedAnswer={answers[currentQuestion.id]}
         showResult={submitted || !!checkedQuestions[currentQuestion.id]}
         selfGrade={selfGrades[currentQuestion.id]}
-        onSelfGrade={handleSelfGrade}
+        onSelfGrade={onSelfGrade}
         direction={direction}
       />
 
@@ -443,7 +259,7 @@ export default function PracticeTopic() {
                     track("practice_clear_answer", {
                       questionId: currentQuestion.id,
                     });
-                    handleAnswer(currentQuestion.id, "");
+                    onClearAnswer(currentQuestion.id);
                   }}
                 >
                   {t.practice.clear}
@@ -451,16 +267,7 @@ export default function PracticeTopic() {
                 <button
                   type="button"
                   className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition"
-                  onClick={() => {
-                    triggerMedium();
-                    track("practice_check_question", {
-                      questionId: currentQuestion.id,
-                    });
-                    setCheckedQuestions((prev) => ({
-                      ...prev,
-                      [currentQuestion.id]: true,
-                    }));
-                  }}
+                  onClick={() => onCheckQuestion(currentQuestion.id)}
                 >
                   {t.practice.check}
                 </button>
@@ -470,7 +277,7 @@ export default function PracticeTopic() {
             <button
               type="button"
               className="px-4 py-2 text-sm rounded-lg bg-accent text-white hover:bg-accent-hover active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition"
-              onClick={handleSubmit}
+              onClick={onSubmit}
             >
               {t.practice.submit}
             </button>
@@ -516,5 +323,216 @@ export default function PracticeTopic() {
         </button>
       </div>
     </div>
+  );
+}
+
+export default function PracticeTopic() {
+  const { subjectId, topic } = useParams<{
+    subjectId: string;
+    topic: string;
+  }>();
+  const navigate = useNavigate();
+  const t = useT();
+  const langTo = useLangTo();
+
+  const subject = subjectId ? getSubject(subjectId) : undefined;
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [megatopicLabel, setMegatopicLabel] = useState<string | undefined>();
+  const topicInfo = useMemo(
+    () => subject?.topics.find((tp) => tp.key === topic),
+    [subject, topic],
+  );
+  useEffect(() => {
+    if (subject && topic) {
+      getQuestionsByTopic(subject.id, topic).then(setQuestions);
+      getTopicMegaTopicLabel(subject.id, topic).then(setMegatopicLabel);
+    }
+  }, [subject, topic]);
+  const textQuestionCount = useMemo(
+    () => questions.filter((q) => q.type === "text").length,
+    [questions],
+  );
+  useDocumentTitle(
+    subject && topicInfo
+      ? `${topicInfo.label} \u2014 ${subject.name} \u2014 ${t.home.title}`
+      : subject
+        ? `${t.home.title} \u2014 ${subject.name}`
+        : t.home.title,
+  );
+
+  useSeoHead({
+    title:
+      subject && topicInfo
+        ? `${topicInfo.label} \u2014 ${subject.name}`
+        : t.home.title,
+    description:
+      subject && topicInfo
+        ? `${questions.length} ${t.subjectCard.questions} \u2014 ${topicInfo.label} \u2014 ${subject.name} (${subject.courseCode})`
+        : t.seo.defaultDescription,
+    pathWithoutLang:
+      subject && topic ? `/${subject.id}/practice/${topic}` : "/",
+  });
+
+  const {
+    currentIndex,
+    setCurrentIndex,
+    answers,
+    selfGrades,
+    submitted,
+    checkedQuestions,
+    handleAnswer,
+    handleSubmit,
+    handleSelfGrade,
+    handleCheckQuestion,
+  } = usePracticeSession(questions, subject?.id || "", topic || "");
+
+  const [navState, setNavState] = useState({
+    direction: undefined as "next" | "prev" | undefined,
+    showLeftFade: false,
+    showRightFade: false,
+  });
+  const { direction, showLeftFade, showRightFade } = navState;
+  const setDirection = useCallback(
+    (d: typeof navState.direction) =>
+      setNavState((prev) => ({ ...prev, direction: d })),
+    // setNavState is stable from useState
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+  const navRef = useRef<HTMLDivElement>(null);
+  const currentIndexRef = useRef(currentIndex);
+
+  const scrollToNav = useCallback((index: number) => {
+    const container = navRef.current;
+    if (!container) return;
+    const btn = container.children[index] as HTMLElement | undefined;
+    if (!btn) return;
+    requestAnimationFrame(() => {
+      const cr = container.getBoundingClientRect();
+      const br = btn.getBoundingClientRect();
+      const step = 108;
+      if (br.right > cr.right - 84)
+        container.scrollBy({ left: step, behavior: "smooth" });
+      else if (br.left < cr.left + 84)
+        container.scrollBy({ left: -step, behavior: "smooth" });
+    });
+  }, []);
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  });
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const tag = document.activeElement?.tagName.toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+      const idx = currentIndexRef.current;
+      if (e.key === "ArrowLeft" && idx > 0) {
+        e.preventDefault();
+        const nextIndex = idx - 1;
+        triggerLight();
+        setNavState((prev) => ({ ...prev, direction: "prev" }));
+        track("practice_navigate", {
+          direction: "prev",
+          fromIndex: idx,
+          toIndex: nextIndex,
+        });
+        setCurrentIndex(nextIndex);
+        scrollToNav(nextIndex);
+      } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
+        e.preventDefault();
+        const nextIndex = idx + 1;
+        triggerLight();
+        setNavState((prev) => ({ ...prev, direction: "next" }));
+        track("practice_navigate", {
+          direction: "next",
+          fromIndex: idx,
+          toIndex: nextIndex,
+        });
+        setCurrentIndex(nextIndex);
+        scrollToNav(nextIndex);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [questions.length, scrollToNav, setCurrentIndex, setNavState]);
+
+  useEffect(() => {
+    if (!subject || !topicInfo) {
+      navigate(langTo("/"), { replace: true });
+    }
+  }, [subject, topicInfo, navigate, langTo]);
+
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const check = () => {
+      setNavState((prev) => ({
+        ...prev,
+        showLeftFade: el.scrollLeft > 4,
+        showRightFade: el.scrollLeft + el.clientWidth < el.scrollWidth - 4,
+      }));
+    };
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", check);
+      ro.disconnect();
+    };
+  }, [questions, setNavState]);
+
+  const totalPoints = questions.reduce((s, q) => s + q.points, 0);
+
+  const handleClearAnswer = useCallback(
+    (questionId: string) => {
+      handleAnswer(questionId, "");
+    },
+    [handleAnswer],
+  );
+
+  if (questions.length === 0 || !subject) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
+        <p className="text-fg-muted">{t.practice.noQuestions}</p>
+        <Link
+          to={subject ? `/${subject.id}` : "/"}
+          className="text-accent hover:underline mt-4 inline-block"
+          onClick={() => triggerLight()}
+        >
+          {t.practice.backToHome}
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <PracticePlayer
+      subject={subject}
+      topic={topic || ""}
+      questions={questions}
+      megatopicLabel={megatopicLabel}
+      topicInfo={topicInfo}
+      currentIndex={currentIndex}
+      setCurrentIndex={setCurrentIndex}
+      answers={answers}
+      selfGrades={selfGrades}
+      submitted={submitted}
+      checkedQuestions={checkedQuestions}
+      totalPoints={totalPoints}
+      textQuestionCount={textQuestionCount}
+      direction={direction}
+      setDirection={setDirection}
+      showLeftFade={showLeftFade}
+      showRightFade={showRightFade}
+      navRef={navRef}
+      scrollToNav={scrollToNav}
+      onAnswer={handleAnswer}
+      onSelfGrade={handleSelfGrade}
+      onSubmit={handleSubmit}
+      onCheckQuestion={handleCheckQuestion}
+      onClearAnswer={handleClearAnswer}
+    />
   );
 }

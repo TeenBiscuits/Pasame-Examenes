@@ -1,30 +1,12 @@
-/* eslint-disable react-refresh/only-export-components */
-import {
-  createContext,
-  useState,
-  useCallback,
-  useMemo,
-  type ReactNode,
-} from "react";
+import { useState, useCallback, useMemo, type ReactNode } from "react";
 import { en, type Translations } from "./en";
 import { es } from "./es";
 import { gl } from "./gl";
+import { I18nContext, type Lang } from "./context-value";
 
-export type Lang = "en" | "es" | "gl";
+export type { Lang } from "./context-value";
 
 const translations: Record<Lang, Translations> = { en, es, gl };
-
-export interface I18nContextType {
-  t: Translations;
-  lang: Lang;
-  setLang: (lang: Lang) => void;
-}
-
-export const I18nContext = createContext<I18nContextType>({
-  t: en,
-  lang: "en",
-  setLang: () => {},
-});
 
 function getLangFromPathname(): Lang | null {
   const match = window.location.pathname.match(/^\/(en|es|gl)(\/|$)/);
