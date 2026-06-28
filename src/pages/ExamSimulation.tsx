@@ -188,7 +188,10 @@ function ExamPlayer({
           {t.exam.backToSubject}
         </Link>
       </div>
-      <div className="flex items-center justify-between mb-6 sticky top-14 bg-surface py-3 -mx-4 px-4 z-40 border-b border-border" data-tour="exam-header">
+      <div
+        className="flex items-center justify-between mb-6 sticky top-14 bg-surface py-3 -mx-4 px-4 z-40 border-b border-border"
+        data-tour="exam-header"
+      >
         <div>
           <span className="text-lg font-bold text-fg">{examInfo.title}</span>
           <span className="text-sm text-fg-muted ml-3">
@@ -278,18 +281,18 @@ function ExamPlayer({
       <div data-tour="exam-card">
         <QuestionCard
           key={currentQuestion.id}
-        question={currentQuestion}
-        index={currentIndex}
-        total={questions.length}
-        topicLabel={currentTopic?.label || currentQuestion.topic}
-        megatopicLabel={megatopicLabels[currentQuestion.topic]}
-        examDate={examInfo?.date || examInfo?.title}
-        subjectId={subject.id}
-        onAnswer={onAnswer}
-        savedAnswer={answers[currentQuestion.id]}
-        showResult={submitted}
-        selfGrade={selfGrades[currentQuestion.id]}
-        onSelfGrade={onSelfGrade}
+          question={currentQuestion}
+          index={currentIndex}
+          total={questions.length}
+          topicLabel={currentTopic?.label || currentQuestion.topic}
+          megatopicLabel={megatopicLabels[currentQuestion.topic]}
+          examDate={examInfo?.date || examInfo?.title}
+          subjectId={subject.id}
+          onAnswer={onAnswer}
+          savedAnswer={answers[currentQuestion.id]}
+          showResult={submitted}
+          selfGrade={selfGrades[currentQuestion.id]}
+          onSelfGrade={onSelfGrade}
           direction={direction}
         />
       </div>
@@ -333,7 +336,10 @@ function ExamPlayer({
             {t.exam.previous}
           </span>
         </button>
-        <div className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto" data-tour="exam-submit">
+        <div
+          className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto"
+          data-tour="exam-submit"
+        >
           {!submitted && (
             <button
               type="button"
