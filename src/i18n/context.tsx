@@ -9,6 +9,7 @@ export type { Lang } from "./context-value";
 const translations: Record<Lang, Translations> = { en, es, gl };
 
 function getLangFromPathname(): Lang | null {
+  if (typeof window === "undefined") return null;
   const match = window.location.pathname.match(/^\/(en|es|gl)(\/|$)/);
   if (match) return match[1] as Lang;
   return null;

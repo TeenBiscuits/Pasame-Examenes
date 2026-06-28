@@ -1,33 +1,20 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
-    tailwindcss(),
     imagetools({
       defaultDirectives: () =>
         new URLSearchParams("w=400;800;1200&format=avif;webp;png"),
     }),
+    tailwindcss(),
+    reactRouter(),
   ],
   define: {
     __VERCEL_PRODUCTION__: JSON.stringify(
       process.env.VERCEL_ENV === "production",
     ),
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks(id: string) {
-          if (id.includes("node_modules/react-dom")) return "vendor";
-          if (id.includes("node_modules/react/")) return "vendor";
-          if (id.includes("node_modules/react-router-dom")) return "router";
-          if (id.includes("node_modules/react-router/")) return "router";
-        },
-      },
-    },
   },
 });

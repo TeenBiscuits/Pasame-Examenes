@@ -207,7 +207,22 @@ void tuAsignaturaQuestions;
 
 Este archivo existe para que herramientas de análisis estático como React Doctor vean que los exports de cada asignatura se consumen. La carga real en tiempo de ejecución la hace `import.meta.glob` en `index.ts`.
 
-#### 7. Verifica
+#### 7. Registra la asignatura en `prerender-urls.ts`
+
+Edita `src/subjects/prerender-urls.ts` y añade la importación y el registro de tu asignatura:
+
+```ts
+import { meta as tuAsignaturaMeta } from "./tu-asignatura/meta";
+// añade tuAsignaturaMeta al array:
+export const allSubjectMetas: SubjectMeta[] = [
+  // ...asignaturas existentes...
+  tuAsignaturaMeta,
+];
+```
+
+Este archivo alimenta la función `prerender()` de `react-router.config.ts` para generar las URLs estáticas durante el build SSG.
+
+#### 8. Verifica
 
 ```bash
 pnpm dev
@@ -228,10 +243,17 @@ La asignatura debe aparecer en la pantalla principal y todas las funcionalidades
 ## Estructura del proyecto
 
 ```
+app/
+├── root.tsx                  # Módulo raíz (HTML shell, providers, layout con Header/Footer)
+└── routes.ts                 # Configuración de rutas (framework React Router)
+
+react-router.config.ts        # Config SSG (ssr: false, prerender())
+
 src/
 ├── subjects/
 │   ├── index.ts              # Auto-descubrimiento (no editar)
 │   ├── _visibility.ts        # Registro de visibilidad para análisis estático (editar al añadir asignatura)
+│   ├── prerender-urls.ts     # URLs para SSG (editar al añadir asignatura)
 │   ├── _template/            # Plantilla para nuevas asignaturas
 │   │   ├── meta.ts
 │   │   └── questions.ts
@@ -274,9 +296,11 @@ src/
 │   ├── AddExamModal.tsx
 │   └── AddSubjectModal.tsx
 ├── pages/                    # Páginas por ruta
+│   ├── LangLayout.tsx        # Validación y sincronización de idioma
+│   ├── CatchAllRedirect.tsx  # Redirección URL sin prefijo → /:lang
+│   ├── PracticeRedirect.tsx  # Redirección /practice → subject home
 │   ├── Home.tsx
 │   ├── SubjectHome.tsx
-│   ├── PracticeHome.tsx
 │   ├── PracticeTopic.tsx
 │   └── ExamSimulation.tsx
 ├── data/
@@ -290,7 +314,7 @@ src/
 │   ├── markdown.tsx          # Renderizado de código inline y bloques
 │   ├── haptics.ts            # Feedback háptico
 │   └── umami.ts              # Analytics wrapper
-└── App.tsx                   # Componente raíz con rutas
+└── main.tsx                  # Punto de entrada (SPA heredado, app/root.tsx es el principal)
 
 public/
 ├── favicon.svg
@@ -309,11 +333,12 @@ public/
 ## Comandos
 
 ```bash
-pnpm dev       # Servidor de desarrollo con HMR
-pnpm build     # Type-check + sitemap + build de producción
+pnpm dev       # Servidor de desarrollo con HMR (React Router dev server)
+pnpm build     # Type-check + sitemap + SSG build (314 páginas estáticas)
 pnpm lint      # ESLint (flat config, type-aware)
 pnpm preview   # Preview del build de producción
 pnpm format    # Prettier
+pnpm typecheck # react-router typegen && tsc -b
 pnpm doctor    # React Doctor
 ```
 
@@ -326,7 +351,9 @@ pnpm doctor    # React Doctor
 - [ ] Los PDFs están en `public/exams/{subject-id}/` o los exámenes sin PDF tienen `hasPdf: false`
 - [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente (usa `image` para el enunciado y `explanationImage` para la solución)
 - [ ] Las preguntas repetidas están marcadas con `repeated: true`
-- [ ] `pnpm build` compila sin errores
+- [ ] La asignatura está registrada en `src/subjects/_visibility.ts`
+- [ ] La asignatura está registrada en `src/subjects/prerender-urls.ts`
+- [ ] `pnpm build` compila sin errores (genera páginas SSG)
 - [ ] `pnpm lint` pasa
 - [ ] `pnpm doctor` (React Doctor) no reporta nuevos problemas
 - [ ] La asignatura carga correctamente en `pnpm dev`

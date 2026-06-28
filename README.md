@@ -29,6 +29,8 @@
 
 Cada asignatura es una carpeta autónoma dentro de `src/subjects/`. Solo necesitas crear la carpeta con dos archivos (`meta.ts` y `questions.ts`) y la asignatura aparece automáticamente en la web. No hay backend: todos los datos son archivos TypeScript y el progreso se guarda en `localStorage`.
 
+La web se genera como sitio estático (SSG) con React Router v8: cada página se pre-renderiza a HTML en el build, lo que proporciona carga instantánea y SEO óptimo sin necesidad de servidor.
+
 ### Modo Práctica
 
 Elige un tema y practica pregunta a pregunta. Cada pregunta se corrige individualmente, con explicaciones detalladas y posibilidad de auto-evaluarte en las preguntas abiertas. Tu progreso por tema se guarda automáticamente.
@@ -65,7 +67,7 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 [![TypeScript 6](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite 8](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![React Router v7](https://img.shields.io/badge/React_Router_v7-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
+[![React Router v8](https://img.shields.io/badge/React_Router_v8-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
 [![Umami](https://img.shields.io/badge/Umami-FFEEAA?logo=umami&logoColor=black)](https://umami.is)
 [![vite-imagetools](https://img.shields.io/badge/vite--imagetools-1cf)](https://github.com/JonasKruckenberg/vite-imagetools)
@@ -76,10 +78,11 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 
 ```bash
 pnpm dev       # Servidor de desarrollo con HMR
-pnpm build     # Type-check + sitemap + build de producción
+pnpm build     # Type-check + sitemap + build SSG (314 páginas estáticas)
 pnpm lint      # ESLint (flat config, type-aware)
 pnpm preview   # Preview del build de producción
 pnpm format    # Prettier
+pnpm typecheck # React Router typegen + tsc
 pnpm doctor    # React Doctor
 ```
 
