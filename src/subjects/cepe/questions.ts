@@ -204,51 +204,65 @@ void recursive_mutex_unlock(recursive_mutex_t *rm) {
     topic: "concurrencia-erlang",
     type: "text",
     points: 1.25,
-    question: `Escriba un módulo Erlang que implemente una barrera con salida periódica. Los procesos se registran en la barrera mediante \`barrier:register(B, Pid)\`. Una vez registrados N procesos, la barrera libera un proceso cada T milisegundos hasta que todos hayan salido.
-
+    question: `En un sistema de comunicación en estrella hay un proceso central que se encarga de propagar los mensajes de los nodos situados en el exterior de la estrella.
+    El nodo C recibe mensajes de los nodos Pi y los copia al resto de nodos de la estrella (es decir, a todos menos al que originó el mensaje). Por ejemplo, si en diagrama de ejemplo el nodo P0 envía un mensaje debe ser recibido por P1,...,P6.
+    El siguiente módulo es un esqueleto del código para el nodo central C, con dos funciones interfaz:
+      a) start(Pids), donde Pids es una lista con los Pids de los procesos que forman parte de la estrella (en el ejemplo [P0, ..., P6])
+      b) send(Center, Msg), donde Center es el Pid de C, y Msg es el mensaje que se desea enviar a los otros procesos de la estrella. Esta función será llamada por los Pi.
 \`\`\`erlang
--module(barrier).
--export([start/2, init/1, register/2]).
+-module(star).
+-export([start/1, send/2]).
 
-start(N, T) -> spawn(?MODULE, init, [N, T, []]).
-register(B, Pid) -> ...
-init(N, T, Pids) -> ...
+start(Pids) ->
+  spawn(?MODULE, loop, [Pids]).
+
+send(Center, Msg) ->
+  ...
+
+loop(Pids) ->
+  receive
+  ...
+  end.
 \`\`\`
+Implemente las funciones loop y send para que los mensajes enviados por los procesos
+a través de send lleguen a todos los demás procesos de la estrella.`,
+    image: getImage(imageMap, "star-2019-06.jpeg"),
+    correctAnswer: `
+\`\`\`erlang
+-module(star).
 
-Donde:
-- N es el número de procesos que deben registrarse antes de empezar a liberar
-- T es el intervalo en milisegundos entre cada liberación
-- Los procesos liberados reciben el mensaje \`done\`
+-export([start/1, send/2]).
 
-Implemente \`register/2\` e \`init/3\`.`,
-    correctAnswer: `\`\`\`erlang
--module(barrier).
--export([start/2, register/2]).
+start(Pids) ->
+  spawn(?MODULE, loop, [Pids]).
 
-start(N, T) -> spawn(?MODULE, init, [N, T, []]).
+send(Center, Msg) ->
+  Center ! {send, Msg, self()}.         %% Send the message to C. C has to
+                                        %%  filter the sender process,
+                                        %%  so we include self() in the message
 
-register(B, Pid) ->
-  B ! {register, Pid},
+loop(Pids) ->
   receive
-    done -> ok
+      {send, Msg, From} ->              %% C receives a message Msg from From, so
+                                        %%  it has to resend it to everyone in Pids
+                                        %%  excluding From
+
+        send_to_all(Pids, Msg, From),   %% We do that in send_to_all
+        loop(Pids)                      %% and loop to process further requests
   end.
 
-init(0, T, Pids) ->
-  release(Pids, T);
-init(N, T, Pids) ->
-  receive
-    {register, Pid} ->
-      init(N - 1, T, [Pid | Pids])
-  end.
+send_to_all([], _, _) ->                %% Empty List, no more processes to send to
+  ok;
 
-release([], _) -> ok;
-release([Pid | Rest], T) ->
-  Pid ! done,
-  timer:sleep(T),
-  release(Rest, T).
-\`\`\``,
-    explanation:
-      "El proceso barrera mantiene una lista de PIDs pendientes. En init, acumula N registros; cuando N llega a 0, pasa a la fase release. release envía done al primer proceso de la lista, espera T ms con timer:sleep, y continúa recursivamente con el resto. Cada registro se atiende secuencialmente vía receive bloquante.",
+send_to_all([From | T], Msg, From) ->   %% Head of the List is the process that sent Msg
+  send_to_all(T, Msg, From);            %%  send to the rest of the processes
+
+send_to_all([P | T], Msg, From) ->      %% P is not equal to From,
+  P ! Msg,                              %% so send Msg to it,
+  send_to_all(T, Msg, From).            %% and send to the rest of the processes
+\`\`\`
+    `,
+    explanation: "",
   },
 
   // --- Paralelismo ---
