@@ -4152,11 +4152,7 @@ export const questions: Question[] = [
     repeated: false,
     question:
       "La norma que recoge los aspectos que se han de tener en cuenta en el diseño de un CPD es:",
-    options: [
-      "A. ISO/IEC 11801v2.",
-      "B. ANSI/TIA-568.",
-      "C. ANSI/TIA-942",
-    ],
+    options: ["A. ISO/IEC 11801v2.", "B. ANSI/TIA-568.", "C. ANSI/TIA-942"],
     correctAnswer: "c",
   },
   {
@@ -4276,11 +4272,7 @@ export const questions: Question[] = [
     repeated: true,
     question:
       "Indica que medio de transmisión no es habitual en cableado vertical",
-    options: [
-      "A. Cable de pares.",
-      "B. Par trenzado.",
-      "C. Fibra óptica.",
-    ],
+    options: ["A. Cable de pares.", "B. Par trenzado.", "C. Fibra óptica."],
     correctAnswer: "b",
   },
   {
@@ -4339,11 +4331,7 @@ export const questions: Question[] = [
     points: 1,
     repeated: true,
     question: "Ethernet cubre las capas OSI..",
-    options: [
-      "A. MAC.",
-      "B. Física y MAC.",
-      "C. Física, MAC y LLC.",
-    ],
+    options: ["A. MAC.", "B. Física y MAC.", "C. Física, MAC y LLC."],
     correctAnswer: "b",
   },
   {
@@ -4369,8 +4357,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: false,
-    question:
-      "¿Qué ocurre cuando una trama Ethernet tiene menos de 64 bytes?",
+    question: "¿Qué ocurre cuando una trama Ethernet tiene menos de 64 bytes?",
     options: [
       "A. Es rechazada por el interface de red si la dirección destino no es reconocida.",
       "B. Es rechazada por el interface de red una vez recibida completamente.",
@@ -4419,11 +4406,7 @@ export const questions: Question[] = [
     repeated: false,
     question:
       "¿Qué protocolo permite transportar información de múltiples VLANs a través de un único enlace, denominado troncal?",
-    options: [
-      "A. IEEE 802.1D.",
-      "B. IEEE 802.1Q.",
-      "C. IEEE 802.1X.",
-    ],
+    options: ["A. IEEE 802.1D.", "B. IEEE 802.1Q.", "C. IEEE 802.1X."],
     correctAnswer: "b",
   },
   {
@@ -4465,8 +4448,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: false,
-    question:
-      "La VLAN con id 1 se utiliza como default para...",
+    question: "La VLAN con id 1 se utiliza como default para...",
     options: [
       "A. El tráfico de los puertos asociados a esa VLAN.",
       "B. El tráfico de los puertos asociados a esa VLAN y otros protocolos como Spanning Tree o VLAN trunking protocol (VTP).",
@@ -4545,8 +4527,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "Una NAS (Network Attached Storage) implica un acceso en modo...",
+    question: "Una NAS (Network Attached Storage) implica un acceso en modo...",
     options: [
       "A. Fichero (File I/O), a través de un protocolo basado en TCP/IP.",
       "B. Bloque (Block I/O), a través de un protocolo basado en Fibre Channel o iSCSI.",
@@ -4577,8 +4558,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: false,
-    question:
-      "El protocolo openFlow permite...",
+    question: "El protocolo openFlow permite...",
     options: [
       "A. La programación de aplicaciones y/o servicios sobre la API northbound de un controlador SDN.",
       "B. La implantación de políticas de control de tráfico mediante la modificación de tablas de flujos en los Switch.",
@@ -4690,7 +4670,7 @@ export const questions: Question[] = [
     points: 1,
     repeated: true,
     question:
-      "¿En un proceso de migración \"Live Migration\" que debe ser copiado desde el hypervisor origen al hypervisor destino donde está ejecutándose la máquina virtual suponiendo que estamos trabajando con almacenamiento compartido?",
+      '¿En un proceso de migración "Live Migration" que debe ser copiado desde el hypervisor origen al hypervisor destino donde está ejecutándose la máquina virtual suponiendo que estamos trabajando con almacenamiento compartido?',
     options: [
       "A. Nada, ya que estamos en un entorno cluster y los dos hypervisores tienen acceso a todos los datos de ejecución de la máquina virtual.",
       "B. Únicamente al estado de memoria de la máquina virtual.",
@@ -4733,8 +4713,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En el estándar ITIL, es verdadero que:",
+    question: "En el estándar ITIL, es verdadero que:",
     options: [
       "A. Los servicios enhancing son aquellos que son necesarios para prestar servicios core. Pueden ser visibles o no para el cliente pero no son servicios que se le oferten como tales.",
       "B. El servicio es un medio de proporcionar valor a los clientes facilitándoles los resultados que quieren obtener sin necesidad de que éstos asuman la responsabilidad de los costes y riesgos específicos.",
@@ -4797,8 +4776,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "SyC - En relación a la ISO 27002, es cierto que:",
+    question: "SyC - En relación a la ISO 27002, es cierto que:",
     options: [
       "A. Es una ISO certificable y más de 100 empresas ya lo están en España.",
       "B. La ISO 27002 basa en las normativas GS y SGSTI de la Commonwealth.",
@@ -4813,8 +4791,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: false,
-    question:
-      "En relación al CPD, es cierto que:",
+    question: "En relación al CPD, es cierto que:",
     options: [
       "A. El modelo colegial surge como modelo conceptual que pretende dar respuesta a la necesidad de coordinar el trabajo en sentido horizontal.",
       "B. El modelo jerárquico se basa en el principio de división del trabajo, del que se deriva la especialización funcional del personal de la organización.",
@@ -4849,7 +4826,7 @@ export const questions: Question[] = [
       "SyC - Cuando instalamos en linux un servidor DRBL, es falso que:",
     options: [
       "A. Si queremos utilizar Clonezilla, éste se apoye en él como mecanismo de inicio por red.",
-      "B. DRBL significa \"Dupe Remote Block Load\", y es una herramienta de clonación similar a Clonezilla aunque limitada a Linux y con una interface gráfica mucho más ergonómica.",
+      'B. DRBL significa "Dupe Remote Block Load", y es una herramienta de clonación similar a Clonezilla aunque limitada a Linux y con una interface gráfica mucho más ergonómica.',
       "C. Permita el inicio de Linux por red tanto individualizado por cliente como genérico.",
     ],
     correctAnswer: "b",
@@ -4861,8 +4838,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En el estándar ITIL, es verdadero que:",
+    question: "En el estándar ITIL, es verdadero que:",
     options: [
       "A. El servicio es un medio de proporcionar valor a los clientes facilitándoles los resultados que quieren obtener sin necesidad de que éstos asuman la responsabilidad de los costes y riesgos específicos.",
       "B. En relación con el valor de un servicio, la utilidad es la seguridad o garantía de que un producto va a satisfacer los requerimientos acordados.",
@@ -4879,11 +4855,7 @@ export const questions: Question[] = [
     repeated: false,
     question:
       "Si nuestra infraestructura cuenta con tarjetas LAN ethernet a 40 Gb, cuál de los siguientes cables de par trenzado, conforme al estándar EIA-568-A/B, debe utilizarse?",
-    options: [
-      "A. Categoría 8.",
-      "B. Categoría 6A.",
-      "C. Categoría 5e.",
-    ],
+    options: ["A. Categoría 8.", "B. Categoría 6A.", "C. Categoría 5e."],
     correctAnswer: "a",
   },
   {
@@ -4943,11 +4915,7 @@ export const questions: Question[] = [
     repeated: true,
     question:
       "El VLAN Trunking Protocol (VTP) es utilizado para intercambio, entre switch, de información de control acerca de las VLANs. ¿Qué identificador de VLAN utilizará?",
-    options: [
-      "A. 2 a 1005.",
-      "B. 1.",
-      "C. 1006 a 4094.",
-    ],
+    options: ["A. 2 a 1005.", "B. 1.", "C. 1006 a 4094."],
     correctAnswer: "b",
   },
   {
@@ -5069,8 +5037,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "¿Cuál de las siguientes afirmaciones es verdadera?",
+    question: "¿Cuál de las siguientes afirmaciones es verdadera?",
     options: [
       "A. Si queremos conseguir que una máquina virtual no tenga caída de servicio (es decir tenga Zero downtime) ante la caída física del nodo Esxi en el que se está ejecutando debemos configurar la máquina Fault Tolerance.",
       "B. Con la alta disponibilidad en Vmware (HA) nunca vamos a perder el servicio que se presta a través de una máquina virtual, incluso aunque se rompa el host Esxi en el que se está ejecutando la máquina virtual.",
@@ -5117,8 +5084,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: false,
-    question:
-      "¿Cuál de las siguientes afirmaciones es falsa?",
+    question: "¿Cuál de las siguientes afirmaciones es falsa?",
     options: [
       "A. Vmware Esx y Vmware Esxi son hipervisores tipo 1.",
       "B. Los hipervisores tipo 2 se ejecutan directamente sobre el hardware de la máquina, no necesitan ningún sistema operativo de intermediario.",
@@ -5149,8 +5115,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "¿Cuál es el sistema de ficheros desarrollado por VMWare?",
+    question: "¿Cuál es el sistema de ficheros desarrollado por VMWare?",
     options: ["A. VMFS", "B. NFS", "C. ZFS"],
     correctAnswer: "a",
   },
@@ -5181,7 +5146,7 @@ export const questions: Question[] = [
       "Mantenimiento de equipos cliente cuando instalamos en linux un servidor DRBL, es falso:",
     options: [
       "A. Permite el arranque de Linux por red tanto de cada equipo con perfil individual bien una configuración genérica para todos.",
-      "B. DRBL significa \"Dupe Remote Block Load\" es una herramienta de clonación similar a Clonezilla aunque limitada a Linux y con una interfaz mucho más ergonómica.",
+      'B. DRBL significa "Dupe Remote Block Load" es una herramienta de clonación similar a Clonezilla aunque limitada a Linux y con una interfaz mucho más ergonómica.',
       "C. DRBL no puede arrancar Windows en los equipos remotos, arranca en Linux.",
     ],
     correctAnswer: "b",
@@ -5193,8 +5158,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "El trenzado en el cable de Par Trenzado no Apantallado (UTP)",
+    question: "El trenzado en el cable de Par Trenzado no Apantallado (UTP)",
     options: [
       "A. Facilita la reducción de la diafonía y mejora la relación señal/ruido.",
       "B. Permite alcanzar mayores distancias ya que disminuye la atenuación a partir de 100 metros.",
@@ -5211,11 +5175,7 @@ export const questions: Question[] = [
     repeated: false,
     question:
       "En un CPD con servidores con tarjeta LAN ethernet 10Gb, cuál de los siguientes cables de par trenzado conforme al estándar EIA-568 debe utilizarse",
-    options: [
-      "A. Categoría 5.",
-      "B. Categoría 5e.",
-      "C. Categoría 6.",
-    ],
+    options: ["A. Categoría 5.", "B. Categoría 5e.", "C. Categoría 6."],
     correctAnswer: "c",
   },
   {
@@ -5225,8 +5185,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "El cable de fibra óptica monomodo utiliza como fuente de luz",
+    question: "El cable de fibra óptica monomodo utiliza como fuente de luz",
     options: ["A. led", "B. incandescente", "C. laser"],
     correctAnswer: "c",
   },
@@ -5249,8 +5208,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "El protocolo CSMA/CD de ethernet implementa un ...",
+    question: "El protocolo CSMA/CD de ethernet implementa un ...",
     options: [
       "A. método centralizado de acceso al medio.",
       "B. método distribuido de acceso al medio.",
@@ -5266,11 +5224,7 @@ export const questions: Question[] = [
     points: 1,
     repeated: true,
     question: "Ethernet cubre las capas OSI",
-    options: [
-      "A. MAC.",
-      "B. Física y MAC.",
-      "C. Física, MAC y LLC.",
-    ],
+    options: ["A. MAC.", "B. Física y MAC.", "C. Física, MAC y LLC."],
     correctAnswer: "b",
   },
   {
@@ -5344,8 +5298,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En el estándar ITIL, es falso que:",
+    question: "En el estándar ITIL, es falso que:",
     options: [
       "A. ITIL se puede adaptar a todos los tipos y tamaño de proveedores de servicios, no tiene que seguirse tal cual sino que la organización lo puede adoptar y adaptar para satisfacer sus necesidades específicas y las de sus clientes.",
       "B. Los servicios Enhancing proporcionan los resultados básicos que desea el cliente, el valor que este busca y por el que está dispuesto a pagar.",
@@ -5360,8 +5313,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En el estándar ITIL, es falso que:",
+    question: "En el estándar ITIL, es falso que:",
     options: [
       "A. Es mucho más complejo adquirir recursos en comparación con capacidades debido a que estos tienen un coste superior a las mismas.",
       "B. Los servicios Core son servicios que proporcionan los resultados básicos que desea el cliente, el valor que este busca y por el que está dispuesto a pagar.",
@@ -5376,8 +5328,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En el estándar ITIL, es falso que:",
+    question: "En el estándar ITIL, es falso que:",
     options: [
       "A. Un cliente externo trabaja en la misma organización que el proveedor TI. Su pago se registra como una transacción interna y nunca es un ingreso real.",
       "B. La garantía es la funcionalidad que ofrece un producto o servicio para satisfacer una necesidad particular.",
@@ -5392,8 +5343,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En el estándar ITIL, es falso que:",
+    question: "En el estándar ITIL, es falso que:",
     options: [
       "A. Los recursos se consideran los activos intangibles de una organización.",
       "B. El valor de un servicio puede considerarse como el nivel o grado en que este cumple las expectativas de los clientes.",
@@ -5468,8 +5418,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En relación a la ISO 27002, es cierto que:",
+    question: "En relación a la ISO 27002, es cierto que:",
     options: [
       "A. Es una ISO certificable y más de 100 empresas ya lo están en España.",
       "B. Está estructurada en más de 10 dominios (temáticas) y no es certificable pero sí nos proporciona un código de buenas prácticas.",
@@ -5608,8 +5557,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En relación a la ISO 27002, es cierto que",
+    question: "En relación a la ISO 27002, es cierto que",
     options: [
       "A. Está estructurada en más de 10 dominios (temáticas) y no es certificable pero sí nos proporciona un código de buenas prácticas.",
       "B. La ISO 27002 se basa en las normativas GS y SGSTI de la Commonwealth.",
@@ -5653,8 +5601,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "El cable de fibra óptica monomodo utiliza como fuente de luz",
+    question: "El cable de fibra óptica monomodo utiliza como fuente de luz",
     options: ["A. led", "B. incandescente", "C. laser"],
     correctAnswer: "c",
   },
@@ -5713,8 +5660,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "El protocolo CSMA/CD de ethernet implementa un ...",
+    question: "El protocolo CSMA/CD de ethernet implementa un ...",
     options: [
       "A. método centralizado de acceso al medio.",
       "B. método distribuido de acceso al medio.",
@@ -5745,8 +5691,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "El trenzado en el cable de Par Trenzado no Apantallado (UTP)",
+    question: "El trenzado en el cable de Par Trenzado no Apantallado (UTP)",
     options: [
       "A. Facilita la reducción de la diafonía y mejora la relación señal/ruido.",
       "B. Permite alcanzar mayores distancias ya que disminuye la atenuación a partir de 100 metros.",
@@ -5761,8 +5706,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En el estándar ITIL, es falso que:",
+    question: "En el estándar ITIL, es falso que:",
     options: [
       "A. ITIL se puede adaptar a todos los tipos y tamaño de proveedores de servicios, no tiene que seguirse tal cual sino que la organización lo puede adoptar y adaptar para satisfacer sus necesidades específicas y las de sus clientes.",
       "B. Un servicio es un medio de proporcionar valor a los clientes facilitándoles los resultados que quieren obtener sin necesidad de que estos asuman la responsabilidad de los costes y riesgos específicos.",
@@ -5777,8 +5721,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: false,
-    question:
-      "En el estándar ITIL, es verdadero que:",
+    question: "En el estándar ITIL, es verdadero que:",
     options: [
       "A. El valor de un servicio puede considerarse como el nivel o grado en que este cumple las expectativas de los clientes (les permite alcanzar los objetivos de negocio).",
       "B. Los recursos se consideran los activos intangibles de una organización.",
@@ -5793,8 +5736,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En el estándar ITIL, es falso que:",
+    question: "En el estándar ITIL, es falso que:",
     options: [
       "A. Un cliente externo trabaja en la misma organización que el proveedor TI. Su pago se registra como una transacción interna y nunca es un ingreso real.",
       "B. Una función es un equipo o grupo de personas que junto con las herramientas y otros recursos llevan a cabo uno o más procesos o actividades.",
@@ -5873,8 +5815,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question:
-      "En relación a la ISO 27002, es cierto que:",
+    question: "En relación a la ISO 27002, es cierto que:",
     options: [
       "A. Es una ISO certificable y más de 100 empresas ya lo están en España.",
       "B. Está estructurada en más de 10 dominios (temáticas) y no es certificable pero sí nos indica un código de buenas prácticas.",

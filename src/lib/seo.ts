@@ -80,27 +80,46 @@ export function useSeoHead({
     const canonicalPath = buildCanonicalPath(lang, pathWithoutLang);
     const canonicalUrl = `${BASE_URL}${canonicalPath}`;
 
-    setMeta("meta-description", description, "name");
-    setMeta("og:title", title, "property");
-    setMeta("og:description", description, "property");
-    setMeta("og:locale", meta.locale, "property");
-    setMeta("og:url", canonicalUrl, "property");
-    setMeta("og:site_name", t.seo.siteName, "property");
-    setMeta("og:type", "website", "property");
-    setMeta("twitter:title", title, "name");
-    setMeta("twitter:description", description, "name");
-    setMeta("twitter:card", "summary_large_image", "name");
+    const metaOps = [
+      { id: "meta-description", content: description, attr: "name" as const },
+      { id: "og:title", content: title, attr: "property" as const },
+      { id: "og:description", content: description, attr: "property" as const },
+      { id: "og:locale", content: meta.locale, attr: "property" as const },
+      { id: "og:url", content: canonicalUrl, attr: "property" as const },
+      {
+        id: "og:site_name",
+        content: t.seo.siteName,
+        attr: "property" as const,
+      },
+      { id: "og:type", content: "website", attr: "property" as const },
+      { id: "twitter:title", content: title, attr: "name" as const },
+      {
+        id: "twitter:description",
+        content: description,
+        attr: "name" as const,
+      },
+      {
+        id: "twitter:card",
+        content: "summary_large_image",
+        attr: "name" as const,
+      },
+    ];
 
-    setLink("link-canonical", "canonical", canonicalUrl);
+    const linkOps = [
+      { id: "link-canonical", rel: "canonical", href: canonicalUrl },
+      ...meta.alternateLocales.map((altLang) => ({
+        id: `link-hreflang-${altLang}`,
+        rel: "alternate" as const,
+        href: `${BASE_URL}${buildCanonicalPath(altLang, pathWithoutLang)}`,
+        extra: { hreflang: langMeta[altLang].hreflang },
+      })),
+    ];
 
-    for (const altLang of meta.alternateLocales) {
-      const altPath = buildCanonicalPath(altLang, pathWithoutLang);
-      setLink(
-        `link-hreflang-${altLang}`,
-        "alternate",
-        `${BASE_URL}${altPath}`,
-        { hreflang: langMeta[altLang].hreflang },
-      );
+    for (const op of metaOps) {
+      setMeta(op.id, op.content, op.attr);
+    }
+    for (const op of linkOps) {
+      setLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
     }
   }, [title, description, pathWithoutLang, lang, meta, t.seo.siteName]);
 }

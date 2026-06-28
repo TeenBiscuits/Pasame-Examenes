@@ -54,7 +54,7 @@ export default function SubjectHome() {
   if (!subject) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold text-fg mb-4">
+        <h1 className="text-2xl font-semibold text-fg mb-4">
           {t.subjectHome.notFound}
         </h1>
         <Link
@@ -107,7 +107,7 @@ export default function SubjectHome() {
         <p className="text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
           {subject.courseCode} &middot; {subject.university}
         </p>
-        <h1 className="text-3xl font-bold text-fg mb-3">{subject.name}</h1>
+        <h1 className="text-3xl font-semibold text-fg mb-3">{subject.name}</h1>
         <p className="text-fg-secondary max-w-xl mx-auto">{description}</p>
       </div>
 

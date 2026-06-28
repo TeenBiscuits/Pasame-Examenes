@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
@@ -20,8 +20,7 @@ function QuestionImage({
   alt: string;
   maxHeight: "300px" | "400px";
 }) {
-  const heightClass =
-    maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
+  const heightClass = maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
   if (typeof image === "object") {
     return (
       <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
@@ -101,6 +100,41 @@ function MCQuestion({
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
 
+  useEffect(() => {
+    if (showResult || !question.options) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const tag = document.activeElement?.tagName.toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+
+      const key = e.key.toLowerCase();
+      let selectedLetter: string | undefined;
+
+      if (["a", "b", "c", "d", "e"].includes(key)) {
+        selectedLetter = key;
+      } else if (["1", "2", "3", "4", "5"].includes(key)) {
+        selectedLetter = String.fromCharCode(96 + parseInt(key)); // '1' -> 'a'
+      }
+
+      if (selectedLetter) {
+        const optionIndex = selectedLetter.charCodeAt(0) - 97;
+        if (optionIndex < question.options!.length) {
+          e.preventDefault();
+          triggerSelection();
+          track("question_answer", {
+            questionId: question.id,
+            type: "mc",
+            answer: selectedLetter,
+          });
+          onAnswer(question.id, selectedLetter);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showResult, question.id, question.options, onAnswer]);
+
   if (!question.options) return null;
 
   return (
@@ -154,42 +188,42 @@ function MCQuestion({
       })}
       {showResult &&
         (question.explanation != null || question.explanationImage) && (
-        <div className="mt-3 space-y-3">
-          <button
-            type="button"
-            className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
-            onClick={() => {
-              triggerLight();
-              const next = !isOpen;
-              track("solution_toggle", {
-                questionId: question.id,
-                action: next ? "open" : "close",
-              });
-              setIsOpen(next);
-            }}
-          >
-            {isOpen
-              ? t.questionCard.closeSolution
-              : t.questionCard.openSolution}
-          </button>
-          {isOpen && (
-            <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              {question.explanation != null && (
-                <Markdown className="text-xs text-fg-muted italic">
-                  {question.explanation}
-                </Markdown>
-              )}
-              {question.explanationImage && (
-                <QuestionImage
-                  image={question.explanationImage}
-                  alt="Solution illustration"
-                  maxHeight="300px"
-                />
-              )}
-            </div>
-          )}
-        </div>
-      )}
+          <div className="mt-3 space-y-3">
+            <button
+              type="button"
+              className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
+              onClick={() => {
+                triggerLight();
+                const next = !isOpen;
+                track("solution_toggle", {
+                  questionId: question.id,
+                  action: next ? "open" : "close",
+                });
+                setIsOpen(next);
+              }}
+            >
+              {isOpen
+                ? t.questionCard.closeSolution
+                : t.questionCard.openSolution}
+            </button>
+            {isOpen && (
+              <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+                {question.explanation != null && (
+                  <Markdown className="text-xs text-fg-muted italic">
+                    {question.explanation}
+                  </Markdown>
+                )}
+                {question.explanationImage && (
+                  <QuestionImage
+                    image={question.explanationImage}
+                    alt="Solution illustration"
+                    maxHeight="300px"
+                  />
+                )}
+              </div>
+            )}
+          </div>
+        )}
     </div>
   );
 }
@@ -212,6 +246,7 @@ function TextQuestion({
       </label>
       <textarea
         id={`answer-${question.id}`}
+        aria-label="Your answer"
         className="w-full p-3 border-2 border-border rounded-lg focus:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none resize-y min-h-[120px] text-sm"
         placeholder="Type your answer…"
         autoComplete="off"
@@ -242,7 +277,7 @@ function TextQuestion({
 
           {isOpen && (
             <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-fg-muted">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-fg-muted">
                 {t.questionCard.modelSolution}
               </h4>
               <Markdown className="text-xs whitespace-pre-wrap font-sans text-fg-secondary">
@@ -408,42 +443,42 @@ function MatchingQuestion({
       })}
       {showResult &&
         (question.explanation != null || question.explanationImage) && (
-        <div className="mt-3 space-y-3">
-          <button
-            type="button"
-            className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
-            onClick={() => {
-              triggerLight();
-              const next = !isOpen;
-              track("solution_toggle", {
-                questionId: question.id,
-                action: next ? "open" : "close",
-              });
-              setIsOpen(next);
-            }}
-          >
-            {isOpen
-              ? t.questionCard.closeSolution
-              : t.questionCard.openSolution}
-          </button>
-          {isOpen && (
-            <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
-              {question.explanation != null && (
-                <Markdown className="text-xs text-fg-muted italic">
-                  {question.explanation}
-                </Markdown>
-              )}
-              {question.explanationImage && (
-                <QuestionImage
-                  image={question.explanationImage}
-                  alt="Solution illustration"
-                  maxHeight="300px"
-                />
-              )}
-            </div>
-          )}
-        </div>
-      )}
+          <div className="mt-3 space-y-3">
+            <button
+              type="button"
+              className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
+              onClick={() => {
+                triggerLight();
+                const next = !isOpen;
+                track("solution_toggle", {
+                  questionId: question.id,
+                  action: next ? "open" : "close",
+                });
+                setIsOpen(next);
+              }}
+            >
+              {isOpen
+                ? t.questionCard.closeSolution
+                : t.questionCard.openSolution}
+            </button>
+            {isOpen && (
+              <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+                {question.explanation != null && (
+                  <Markdown className="text-xs text-fg-muted italic">
+                    {question.explanation}
+                  </Markdown>
+                )}
+                {question.explanationImage && (
+                  <QuestionImage
+                    image={question.explanationImage}
+                    alt="Solution illustration"
+                    maxHeight="300px"
+                  />
+                )}
+              </div>
+            )}
+          </div>
+        )}
     </div>
   );
 }
@@ -527,10 +562,13 @@ export default function QuestionCard(props: QuestionCardProps) {
             </thead>
             <tbody className="divide-y divide-border bg-surface-alt">
               {question.table.rows.map((row, ri) => (
-                <tr key={ri} className="hover:bg-surface/50 transition-colors">
+                <tr
+                  key={`${question.id}-row-${ri}`}
+                  className="hover:bg-surface/50 transition-colors"
+                >
                   {row.map((cell, ci) => (
                     <td
-                      key={ci}
+                      key={`${question.id}-cell-${ri}-${ci}`}
                       className="px-4 py-2 text-fg-secondary whitespace-nowrap"
                     >
                       <InlineMarkdown>{cell}</InlineMarkdown>
@@ -543,15 +581,14 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
       )}
       {question.type === "mc" && <MCQuestion {...props} />}
-      {question.type === "text" && (
-        <TextQuestion {...props} />
-      )}
+      {question.type === "text" && <TextQuestion {...props} />}
       {question.type === "matching" && <MatchingQuestion {...props} />}
       <div className="mt-4 pt-4 border-t border-border flex items-center justify-end gap-2">
         <span className="text-[10px] font-mono text-fg-muted select-all">
           {question.id}
         </span>
         <a
+          data-tour="report-issue"
           href={buildReportUrl(question, props.subjectId)}
           target="_blank"
           rel="noopener noreferrer"

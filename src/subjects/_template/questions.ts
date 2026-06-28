@@ -7,13 +7,16 @@ import type { ImageMap } from "../../lib/image";
 // Just drop image files into assets/ and reference them by filename.
 const imageMap = import.meta.glob<{ default: Picture }>(
   "./assets/*.{png,jpeg,jpg}",
-  { query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" }, eager: true }
+  {
+    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
+    eager: true,
+  },
 ) as ImageMap;
 
 void imageMap;
 void getImage;
 
-export const questions: Question[] = [
+const questions: Question[] = [
   // ================================================================
   // Exam 2024
   // ================================================================
@@ -231,3 +234,5 @@ Hint: remember that \`foo()\` calls itself recursively.`,
   //   explanation: "Key elements to identify: ...",
   // },
 ];
+
+void questions;

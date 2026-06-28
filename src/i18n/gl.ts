@@ -6,6 +6,8 @@ export const gl: Translations = {
     subtitle:
       "Plataforma de código aberto para practicar exames universitarios. Elixe unha materia para comezar a practicar con preguntas de exames anteriores.",
     addSubject: "Engadir materia?",
+    recentlyVisited: "Visitadas recentemente",
+    clearRecent: "Limpar materias recentes",
   },
   subjectHome: {
     notFound: "Materia non atopada",
@@ -94,6 +96,7 @@ export const gl: Translations = {
     repeated: "Repetida",
   },
   subjectCard: {
+    topics: "temas",
     questions: "preguntas",
     points: "puntos",
     exams: "exames",
@@ -122,6 +125,35 @@ export const gl: Translations = {
     contributeDesc:
       "Segue a guía de contribución para engadilo ti mesmo cun pull request",
     email: "Escribe un correo",
+  },
+  tour: {
+    next: "Seguinte",
+    previous: "Anterior",
+    done: "Listo",
+    reportIssueTitle: "Reportar erro",
+    reportIssueDesc: "Atopaches un erro nunha pregunta? Fai clic no botón de reportar para abrir un issue en GitHub e axudar a mellorar o contido.",
+    practice: {
+      step1Title: "Práctica por tema",
+      step1Desc: "Estás practicando preguntas por tema. Usa a ligazón de volver para regresar á páxina da materia cando queiras.",
+      step2Title: "Navegador de preguntas",
+      step2Desc: "Estes botóns numerados permítenche saltar entre preguntas. As respondidas resáltanse e a actual está destacada coa cor de acento.",
+      step3Title: "Responder preguntas",
+      step3Desc: "Fai clic nunha opción para tipo test, escribe a túa resposta para preguntas abertas, ou selecciona letras para emparellar.",
+      step4Title: "Corrixir e enviar",
+      step4Desc: "Usa 'Corrixir' para verificar unha pregunta, 'Limpar' para borrar a túa resposta ou 'Enviar e ver solucións' para velas todas á vez.",
+      step5Title: "Navegar",
+      step5Desc: "Usa os botóns Anterior / Seguinte ou as teclas de frecha (← →) para moverte entre preguntas.",
+    },
+    exam: {
+      step1Title: "Simulación de exame",
+      step1Desc: "Isto simula o formato real do exame. O temporizador está en marcha, xestiona ben o teu tempo! O limiar de aprobado móstrase aquí.",
+      step2Title: "Navegador de preguntas",
+      step2Desc: "Fai clic nos botóns numerados para saltar entre preguntas. As respondidas resáltanse para seguir o teu progreso.",
+      step3Title: "Responder preguntas",
+      step3Desc: "Responde cada pregunta. Para as preguntas abertas, autoavaliarás a túa resposta comparándoa coa solución modelo tras entregar.",
+      step4Title: "Entregar exame",
+      step4Desc: "Cando remates, fai clic en 'Entregar exame' para ver a túa puntuación e as solucións modelo. Non poderás modificar as túas respostas despois.",
+    },
   },
   seo: {
     siteName: "Pásame Exámenes",
