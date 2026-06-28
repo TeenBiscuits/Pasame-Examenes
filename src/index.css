@@ -337,7 +337,9 @@ html[data-theme="catppuccin"] {
   font-size: 0.8125rem;
   font-weight: 500;
   padding: 0.375rem 0.75rem;
-  transition: background-color 0.15s, color 0.15s;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
   background-image: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
@@ -362,7 +364,8 @@ html[data-theme="catppuccin"] {
 }
 
 .tour-popover .driver-popover-next-btn:hover,
-.tour-popover.driver-popover .driver-popover-next-btn.driver-popover-done-btn:hover {
+.tour-popover.driver-popover
+  .driver-popover-next-btn.driver-popover-done-btn:hover {
   background: var(--color-accent-hover);
   border-color: var(--color-accent-hover);
 }

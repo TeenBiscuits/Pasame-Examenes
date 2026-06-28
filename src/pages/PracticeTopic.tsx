@@ -195,23 +195,26 @@ function PracticePlayer({
       <div data-tour="practice-card">
         <QuestionCard
           key={currentQuestion.id}
-        question={currentQuestion}
-        index={currentIndex}
-        total={questions.length}
-        topicLabel={topicInfo?.label || topic || ""}
-        megatopicLabel={megatopicLabel}
-        examDate={examDate}
-        subjectId={subject.id}
-        onAnswer={onAnswer}
-        savedAnswer={answers[currentQuestion.id]}
-        showResult={submitted || !!checkedQuestions[currentQuestion.id]}
-        selfGrade={selfGrades[currentQuestion.id]}
-        onSelfGrade={onSelfGrade}
+          question={currentQuestion}
+          index={currentIndex}
+          total={questions.length}
+          topicLabel={topicInfo?.label || topic || ""}
+          megatopicLabel={megatopicLabel}
+          examDate={examDate}
+          subjectId={subject.id}
+          onAnswer={onAnswer}
+          savedAnswer={answers[currentQuestion.id]}
+          showResult={submitted || !!checkedQuestions[currentQuestion.id]}
+          selfGrade={selfGrades[currentQuestion.id]}
+          onSelfGrade={onSelfGrade}
           direction={direction}
         />
       </div>
 
-      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 mt-6 sm:justify-between" data-tour="practice-nav-btns">
+      <div
+        className="flex flex-wrap sm:flex-nowrap items-center gap-3 mt-6 sm:justify-between"
+        data-tour="practice-nav-btns"
+      >
         <button
           type="button"
           className="order-1 px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
@@ -250,7 +253,10 @@ function PracticePlayer({
             {t.practice.previous}
           </span>
         </button>
-        <div className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto" data-tour="practice-actions">
+        <div
+          className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto"
+          data-tour="practice-actions"
+        >
           {answers[currentQuestion.id] &&
             !submitted &&
             !checkedQuestions[currentQuestion.id] && (

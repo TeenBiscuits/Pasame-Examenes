@@ -86,6 +86,7 @@ archivo por examen.
 
 **Cómo verificar un anclaje manualmente**: Usa Python/normalize para buscar
 el texto del anclaje en el markdown normalizado:
+
 ```python
 import re
 def norm(s): return re.sub(r'\s+', ' ', s).strip()
@@ -112,6 +113,7 @@ debe usar `&gt;` si el texto OCR lo usa.
 de `&bus->m`). Conserva estos artifacts en los anclajes.
 
 **Formato antiguo vs. nuevo** (exámenes pre-2022 vs. 2023+):
+
 - Pre-2022: sin delimitadores ` ```c ` antes del código en soluciones. El
   código va directo tras `# Solución`. Usan coma decimal: `[2,5p]` no `[2.5p]`.
   El carácter `->` es literal, NO `&gt;`.

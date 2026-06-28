@@ -132,28 +132,38 @@ export const es: Translations = {
     previous: "Anterior",
     done: "Listo",
     reportIssueTitle: "Reportar error",
-    reportIssueDesc: "¿Has encontrado un error en una pregunta? Haz clic en el botón de reportar para abrir un issue en GitHub y ayudar a mejorar el contenido.",
+    reportIssueDesc:
+      "¿Has encontrado un error en una pregunta? Haz clic en el botón de reportar para abrir un issue en GitHub y ayudar a mejorar el contenido.",
     practice: {
       step1Title: "Práctica por tema",
-      step1Desc: "Estás practicando preguntas por tema. Usa el enlace de volver para regresar a la página de la asignatura cuando quieras.",
+      step1Desc:
+        "Estás practicando preguntas por tema. Usa el enlace de volver para regresar a la página de la asignatura cuando quieras.",
       step2Title: "Navegador de preguntas",
-      step2Desc: "Estos botones numerados te permiten saltar entre preguntas. Las respondidas se resaltan y la actual está destacada con el color de acento.",
+      step2Desc:
+        "Estos botones numerados te permiten saltar entre preguntas. Las respondidas se resaltan y la actual está destacada con el color de acento.",
       step3Title: "Responder preguntas",
-      step3Desc: "Haz clic en una opción para tipo test, escribe tu respuesta para preguntas abiertas, o selecciona letras para emparejar.",
+      step3Desc:
+        "Haz clic en una opción para tipo test, escribe tu respuesta para preguntas abiertas, o selecciona letras para emparejar.",
       step4Title: "Corregir y enviar",
-      step4Desc: "Usa 'Corregir' para verificar una pregunta, 'Limpiar' para borrar tu respuesta o 'Enviar y ver soluciones' para ver todas a la vez.",
+      step4Desc:
+        "Usa 'Corregir' para verificar una pregunta, 'Limpiar' para borrar tu respuesta o 'Enviar y ver soluciones' para ver todas a la vez.",
       step5Title: "Navegar",
-      step5Desc: "Usa los botones Anterior / Siguiente o las teclas de flecha (← →) para moverte entre preguntas.",
+      step5Desc:
+        "Usa los botones Anterior / Siguiente o las teclas de flecha (← →) para moverte entre preguntas.",
     },
     exam: {
       step1Title: "Simulación de examen",
-      step1Desc: "Esto simula el formato real del examen. ¡El temporizador está en marcha, gestiona bien tu tiempo! El umbral de aprobado se muestra aquí.",
+      step1Desc:
+        "Esto simula el formato real del examen. ¡El temporizador está en marcha, gestiona bien tu tiempo! El umbral de aprobado se muestra aquí.",
       step2Title: "Navegador de preguntas",
-      step2Desc: "Haz clic en los botones numerados para saltar entre preguntas. Las respondidas se resaltan para seguir tu progreso.",
+      step2Desc:
+        "Haz clic en los botones numerados para saltar entre preguntas. Las respondidas se resaltan para seguir tu progreso.",
       step3Title: "Responder preguntas",
-      step3Desc: "Responde cada pregunta. Para las preguntas abiertas, autoevaluarás tu respuesta comparándola con la solución modelo tras entregar.",
+      step3Desc:
+        "Responde cada pregunta. Para las preguntas abiertas, autoevaluarás tu respuesta comparándola con la solución modelo tras entregar.",
       step4Title: "Entregar examen",
-      step4Desc: "Cuando termines, haz clic en 'Entregar examen' para ver tu puntuación y las soluciones modelo. No podrás modificar tus respuestas después.",
+      step4Desc:
+        "Cuando termines, haz clic en 'Entregar examen' para ver tu puntuación y las soluciones modelo. No podrás modificar tus respuestas después.",
     },
   },
   seo: {
