@@ -1786,17 +1786,18 @@ export const questions: Question[] = [
     topic: "t4",
     type: "mc",
     points: 1,
-    question:
-      "Sea un dominio con 3 manifestaciones [M(1),M(2),M(3)] y 2 interpretaciones [I(1),I(2)]. Con la regla R1: M(1)∨M(2)∨M(3)⇒I(1)∨I(2) y asumiendo el criterio de la BLR, ¿cuál de las siguientes opciones es correcta para m4?",
-    options: [
-      "a) m4 i1",
-      "b) m4 i2",
-      "c) m4 i3",
-      "d) Ninguna de las opciones propuestas pertenece a la BLR",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "En m4: M(1)=1, resto=0. Opción A (m4 i1): I(1)=0, I(2)=0 → R1 se rompe (hay manifestación activa pero no interpretación). Opción B (m4 i2): I(2)=1, I(1)=0 → R3 exige M(1)∧M(3) pero M(3)=0. Opción C (m4 i3): I(1)=1 → R2 exige ¬M(1)∧M(2) pero M(1)=1. Ninguna pertenece a la BLR.",
+    question: `Sea un dominio con tres manifestaciones posibles [M(1),M(2),M(3)] y dos interpretaciones posibles [I(1),I(2)]. Desde una perspectiva categórica, y dadas las reglas del dominio:
+    - R1: M(1) ∨ M(2) ∨ M(3) ==> I(1) ∨ I(2)
+    - R2: I(1) ==> ¬M(1) ∧ M(2)
+    - R3: I(2) ∧ ¬I(1) ==> M(1) ∧ M(3)
+    ¿Cuántos posibles conjuntos manifestación-interpretación contiene la Base Lógica Reducida?`,
+    options: ["7", "32", "16", "11"],
+    correctAnswer: "a",
+    explanation: `La Base Lógica Expandida (BLE) contiene todas las combinaciones posibles de variables, que son 2^5 = 32 complejos. Para obtener la Base Lógica Reducida (BLR), aplicamos las restricciones que dictan las reglas, eliminando los complejos absurdos:
+     - R2 exige que: Si I(1) = 1, entonces obligatoriamente M(1) = 0 y M(2) = 1. Esto elimina cualquier combinación donde I(1)=1 y no se cumplan esos valores. De los 16 casos iniciales donde I(1)=1, nos quedamos solo con 4 casos válidos (ya que solo varían I(2) y M(3), dando 2 * 2 = 4).
+     - R3 exige que: Si I(2)=1 e I(1)=0, entonces obligatoriamente M(1)=1 y M(3)=1. De los 8 casos iniciales con estas condiciones, nos quedamos solo con los 2 casos válidos donde M(2) vale 0 o 1.
+     - R1 exige que: Si existe alguna manifestación activa, debe existir alguna interpretación. Nos quedan por evaluar los casos donde I(1)=0 e I(2)=0. Si ambas interpretaciones son 0, ninguna manifestación puede ser 1. Esto nos deja con 1 único caso válido: todos los valores a 0.
+    Sumando los complejos válidos: 4 + 2 + 1 = 7 conjuntos posibles en la BLR.`,
   },
   // --- Subsimbólica ---
   {
@@ -3466,16 +3467,28 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question:
-      "Con las mismas reglas del ejercicio anterior, y sabiendo que tenemos la manifestación M(1), ¿cuál es el conjunto de interpretaciones más probable? p(¬I1∧¬I2)=0.2, p(¬I1∧I2)=0.08, p(I1∧¬I2)=0.34, p(I1∧I2)=0.38.",
-    options: [
-      "a) ¬I(1) ∧ ¬I(2)",
-      "b) ¬I(1) ∧ I(2)",
-      "c) I(1) ∧ ¬I(2)",
-      "d) I(1) ∧ I(2)",
-    ],
+      "Con las mismas reglas del ejercicio anterior, y sabiendo que tenemos la manifestación M(1), ¿cuál es el conjunto de interpretaciones más probable? Ten en cuenta las siguientes probabilidades:",
+    table: {
+      headers: ["Expresión", "Probabilidad"],
+      rows: [
+        ["p(¬I1∧¬I2)", "0.2"],
+        ["p(¬I1∧I2)", "0.08"],
+        ["p(I1∧¬I2)", "0.34"],
+        ["p(I1∧I2)", "0.38"],
+      ],
+    },
+    options: ["¬I(1) ∧ ¬I(2)", "¬I(1) ∧ I(2)", "I(1) ∧ ¬I(2)", "I(1) ∧ I(2)"],
     correctAnswer: "c",
-    explanation:
-      "Con M(1)=1: ¬I1∧¬I2 es inconsistente (R1 exige al menos una I activa). I1∧I2 es inconsistente (R2: I2→M(2)=0 pero R3: I1→M(2)=1, contradicción). Quedan ¬I1∧I2 (p=0.08) y I1∧¬I2 (p=0.34). La más probable es I(1)∧¬I(2) con 0.34.",
+    explanation: `
+    Evaluemos la consistencia de las interpretaciones cuando M(1) =1 :
+    1. ¬I1∧¬I2 es inconsistente porque al estar activa M(1), R1 obliga a que al menos una interpretación sea verdadera.
+    2. I1∧I2 es inconsistente porque R2 exige que si I(2)=1 ==> M(2)=0, mientras que R3 exige que si I(1)=1 ==> M(2)=1, provocando una contradicción.
+    3. Las únicas interpretaciones consistentes con M(1)=1 son:
+        - ¬I1∧I2 (Probabilidad: 0.08)
+        - I1∧¬I2 (Probabilidad: 0.34)
+
+    Al comparar las probabilidades de los estados consistentes, la más probable es **$I(1) \land \neg I(2)$** con $0.34$.
+    `,
   },
   {
     id: "2026-06_q9",
