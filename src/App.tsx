@@ -12,7 +12,7 @@ import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
-import { track, identify } from "./lib/umami";
+import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link-utils";
 import { useTheme } from "./theme/hooks";
 
@@ -47,7 +47,12 @@ function SessionTracker() {
   const { theme } = useTheme();
 
   useEffect(() => {
-    identify({ lang, theme });
+    const id = getDistinctId();
+    if (id) identify({ id });
+  }, []);
+
+  useEffect(() => {
+    setSessionData({ lang, theme });
   }, [lang, theme]);
 
   return null;

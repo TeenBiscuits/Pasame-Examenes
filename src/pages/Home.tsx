@@ -5,6 +5,7 @@ import AddSubjectModal, {
   type AddSubjectModalHandle,
 } from "../components/AddSubjectModal";
 import { useT } from "../i18n/hooks";
+import { track } from "../lib/umami";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { LangLink } from "../lib/lang-link";
@@ -78,6 +79,7 @@ export default function Home() {
 
   function handleClearRecent() {
     clearRecentSubjects();
+    track("clear_recent_subjects", { count: recentSubjects.length });
     setRecentKey((k) => k + 1);
   }
 
@@ -122,7 +124,13 @@ export default function Home() {
                 {slot.type === "subject" ? (
                   <LangLink
                     to={`/${slot.subject.id}`}
-                    onClick={() => recordSubjectClick(slot.subject.id)}
+                    onClick={() => {
+                      recordSubjectClick(slot.subject.id);
+                      track("subject_card_click", {
+                        subjectId: slot.subject.id,
+                        location: "recent",
+                      });
+                    }}
                     className="block w-full p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
                   >
                     <div className="flex items-center gap-3">
@@ -156,7 +164,10 @@ export default function Home() {
         <div className="animate-fade-in-up timeline-view animate-range-entry">
           <button
             type="button"
-            onClick={() => modalRef.current?.open()}
+            onClick={() => {
+              modalRef.current?.open();
+              track("add_subject_modal_open");
+            }}
             className="block w-full p-5 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
           >
             <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">

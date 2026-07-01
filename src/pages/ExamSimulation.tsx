@@ -9,12 +9,14 @@ import {
 } from "../subjects";
 import type { Question, Exam } from "../data/types";
 import QuestionCard from "../components/QuestionCard";
+import QuestionNavChips from "../components/QuestionNavChips";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { useExamSession } from "../hooks/useExamSession";
+import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 
 function formatTime(seconds: number) {
@@ -46,6 +48,13 @@ function ExamStartScreen({
         <Link
           to={`/${subject.id}`}
           className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
+          onClick={() =>
+            track("nav_click", {
+              target: "subject_home",
+              from: "exam_start_screen",
+              subjectId: subject.id,
+            })
+          }
         >
           {t.exam.backToSubject}
         </Link>
@@ -179,8 +188,20 @@ function ExamPlayer({
         <Link
           to={`/${subject.id}`}
           onClick={(e) => {
-            if (!submitted && !window.confirm(t.exam.exitConfirm)) {
-              e.preventDefault();
+            if (!submitted) {
+              if (!window.confirm(t.exam.exitConfirm)) {
+                e.preventDefault();
+              } else {
+                const answeredCount = Object.values(answers).filter(
+                  (a) => a && a.trim() !== "",
+                ).length;
+                track("exam_abandon", {
+                  subjectId: subject.id,
+                  year: examInfo.year,
+                  answeredCount,
+                  timeLeft,
+                });
+              }
             }
           }}
           className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
@@ -227,53 +248,22 @@ function ExamPlayer({
         </div>
       )}
 
-      <div
-        ref={navRef}
-        className="flex gap-1 mb-6 overflow-x-auto pb-6"
-        data-tour="exam-nav"
-        style={{
-          maskImage:
-            showLeftFade && showRightFade
-              ? "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)"
-              : showLeftFade
-                ? "linear-gradient(to right, transparent 0%, black 8%, black 100%)"
-                : showRightFade
-                  ? "linear-gradient(to right, black 0%, black 92%, transparent 100%)"
-                  : undefined,
+      <QuestionNavChips
+        questions={questions}
+        answers={answers}
+        currentIndex={currentIndex}
+        navRef={navRef}
+        showLeftFade={showLeftFade}
+        showRightFade={showRightFade}
+        dataTour="exam-nav"
+        eventName="exam_navigate"
+        eventData={{ subjectId: subject.id, year: examInfo.year }}
+        onSelectIndex={(i, dir) => {
+          setDirection(dir);
+          setCurrentIndex(i);
+          scrollToNav(i);
         }}
-      >
-        {questions.map((q, i) => {
-          const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
-          const isCurrent = i === currentIndex;
-          let cls =
-            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
-          if (isCurrent) cls += " bg-accent text-white border-accent";
-          else if (isAnswered)
-            cls += " bg-accent-light border-accent-border text-accent-fg";
-          else cls += " border-border text-fg-muted hover:border-fg-muted";
-          return (
-            <button
-              type="button"
-              key={q.id}
-              className={cls}
-              onClick={() => {
-                triggerLight();
-                setDirection(
-                  i > currentIndex
-                    ? "next"
-                    : i < currentIndex
-                      ? "prev"
-                      : undefined,
-                );
-                setCurrentIndex(i);
-                scrollToNav(i);
-              }}
-            >
-              {i + 1}
-            </button>
-          );
-        })}
-      </div>
+      />
 
       <div data-tour="exam-card">
         <QuestionCard
@@ -285,6 +275,9 @@ function ExamPlayer({
         megatopicLabel={megatopicLabels[currentQuestion.topic]}
         examDate={examInfo?.date || examInfo?.title}
         subjectId={subject.id}
+        topicKey={currentQuestion.topic}
+        examYear={examInfo.year}
+        mode="exam"
         onAnswer={onAnswer}
         savedAnswer={answers[currentQuestion.id]}
         showResult={submitted}
@@ -303,9 +296,12 @@ function ExamPlayer({
             const nextIndex = Math.max(0, currentIndex - 1);
             setDirection("prev");
             track("exam_navigate", {
+              subjectId: subject.id,
+              year: examInfo.year,
               direction: "prev",
               fromIndex: currentIndex,
               toIndex: nextIndex,
+              source: "arrow",
             });
             setCurrentIndex(nextIndex);
             scrollToNav(nextIndex);
@@ -352,9 +348,12 @@ function ExamPlayer({
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
             setDirection("next");
             track("exam_navigate", {
+              subjectId: subject.id,
+              year: examInfo.year,
               direction: "next",
               fromIndex: currentIndex,
               toIndex: nextIndex,
+              source: "arrow",
             });
             setCurrentIndex(nextIndex);
             scrollToNav(nextIndex);
@@ -502,41 +501,21 @@ export default function ExamSimulation() {
     startedRef.current = started;
   });
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!startedRef.current) return;
-      const tag = document.activeElement?.tagName.toLowerCase();
-      if (tag === "input" || tag === "textarea" || tag === "select") return;
-      const idx = currentIndexRef.current;
-      if (e.key === "ArrowLeft" && idx > 0) {
-        e.preventDefault();
-        const nextIndex = idx - 1;
-        triggerLight();
-        setNavState((prev) => ({ ...prev, direction: "prev" }));
-        track("exam_navigate", {
-          direction: "prev",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
-        e.preventDefault();
-        const nextIndex = idx + 1;
-        triggerLight();
-        setNavState((prev) => ({ ...prev, direction: "next" }));
-        track("exam_navigate", {
-          direction: "next",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [questions.length, scrollToNav, setCurrentIndex, setNavState]);
+  const navEventData = useCallback(
+    () => ({ subjectId: subjectId || "", year: year || "" }),
+    [subjectId, year],
+  );
+
+  useKeyboardNav({
+    enabledRef: startedRef,
+    questionsLength: questions.length,
+    currentIndexRef,
+    setCurrentIndex,
+    scrollToNav,
+    setDirection,
+    eventName: "exam_navigate",
+    eventData: navEventData,
+  });
 
   useEffect(() => {
     if (!subject || !examInfo) {
@@ -629,7 +608,10 @@ export default function ExamSimulation() {
         <Link
           to={subject ? `/${subject.id}` : "/"}
           className="text-accent hover:underline mt-4 inline-block"
-          onClick={() => triggerLight()}
+          onClick={() => {
+            triggerLight();
+            track("nav_click", { target: "home", from: "exam_empty" });
+          }}
         >
           {t.exam.backToHome}
         </Link>

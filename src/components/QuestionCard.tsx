@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
@@ -63,6 +63,9 @@ interface QuestionCardProps {
   megatopicLabel?: string;
   examDate?: string;
   subjectId: string;
+  topicKey?: string;
+  examYear?: string;
+  mode?: "practice" | "exam";
   onAnswer: (questionId: string, answer: string) => void;
   savedAnswer?: string;
   showResult?: boolean;
@@ -96,6 +99,10 @@ function MCQuestion({
   onAnswer,
   savedAnswer,
   showResult,
+  subjectId,
+  topicKey,
+  examYear,
+  mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
@@ -125,6 +132,10 @@ function MCQuestion({
             questionId: question.id,
             type: "mc",
             answer: selectedLetter,
+            subjectId,
+            topic: topicKey,
+            exam: examYear,
+            mode,
           });
           onAnswer(question.id, selectedLetter);
         }
@@ -133,7 +144,16 @@ function MCQuestion({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [showResult, question.id, question.options, onAnswer]);
+  }, [
+    showResult,
+    question.id,
+    question.options,
+    onAnswer,
+    subjectId,
+    topicKey,
+    examYear,
+    mode,
+  ]);
 
   if (!question.options) return null;
 
@@ -168,6 +188,10 @@ function MCQuestion({
                 questionId: question.id,
                 type: "mc",
                 answer: letter,
+                subjectId,
+                topic: topicKey,
+                exam: examYear,
+                mode,
               });
               onAnswer(question.id, letter);
             }}
@@ -198,6 +222,10 @@ function MCQuestion({
                 track("solution_toggle", {
                   questionId: question.id,
                   action: next ? "open" : "close",
+                  subjectId,
+                  topic: topicKey,
+                  exam: examYear,
+                  mode,
                 });
                 setIsOpen(next);
               }}
@@ -235,9 +263,18 @@ function TextQuestion({
   showResult,
   selfGrade,
   onSelfGrade,
+  subjectId,
+  topicKey,
+  examYear,
+  mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
+  const textStartedRef = useRef(false);
+
+  useEffect(() => {
+    textStartedRef.current = false;
+  }, [question.id]);
 
   return (
     <div>
@@ -252,7 +289,21 @@ function TextQuestion({
         autoComplete="off"
         spellCheck={false}
         value={savedAnswer || ""}
-        onChange={(e) => onAnswer(question.id, e.target.value)}
+        onChange={(e) => {
+          onAnswer(question.id, e.target.value);
+          if (!textStartedRef.current) {
+            textStartedRef.current = true;
+            track("question_answer", {
+              questionId: question.id,
+              type: "text",
+              action: "started",
+              subjectId,
+              topic: topicKey,
+              exam: examYear,
+              mode,
+            });
+          }
+        }}
         disabled={!!showResult}
       />
       {showResult && (
@@ -308,10 +359,6 @@ function TextQuestion({
                       type="button"
                       onClick={() => {
                         triggerSuccess();
-                        track("self_grade", {
-                          questionId: question.id,
-                          grade: "correct",
-                        });
                         onSelfGrade(question.id, "correct");
                       }}
                       className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
@@ -326,10 +373,6 @@ function TextQuestion({
                       type="button"
                       onClick={() => {
                         triggerError();
-                        track("self_grade", {
-                          questionId: question.id,
-                          grade: "incorrect",
-                        });
                         onSelfGrade(question.id, "incorrect");
                       }}
                       className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none ${
@@ -356,6 +399,10 @@ function MatchingQuestion({
   onAnswer,
   savedAnswer,
   showResult,
+  subjectId,
+  topicKey,
+  examYear,
+  mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const t = useT();
@@ -427,6 +474,10 @@ function MatchingQuestion({
                         type: "matching",
                         item,
                         answer: letter,
+                        subjectId,
+                        topic: topicKey,
+                        exam: examYear,
+                        mode,
                       });
                       handleSelect(item, letter);
                     }}
@@ -453,6 +504,10 @@ function MatchingQuestion({
                 track("solution_toggle", {
                   questionId: question.id,
                   action: next ? "open" : "close",
+                  subjectId,
+                  topic: topicKey,
+                  exam: examYear,
+                  mode,
                 });
                 setIsOpen(next);
               }}
@@ -598,6 +653,9 @@ export default function QuestionCard(props: QuestionCardProps) {
             track("report_issue", {
               questionId: question.id,
               subjectId: props.subjectId,
+              topic: props.topicKey,
+              exam: props.examYear,
+              mode: props.mode,
             });
           }}
         >

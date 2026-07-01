@@ -9,12 +9,14 @@ import {
 } from "../subjects";
 import type { Question } from "../data/types";
 import QuestionCard from "../components/QuestionCard";
+import QuestionNavChips from "../components/QuestionNavChips";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { usePracticeSession } from "../hooks/usePracticeSession";
+import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 
 interface PracticePlayerProps {
@@ -113,6 +115,7 @@ function PracticePlayer({
         <Link
           to={`/${subject.id}`}
           className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
+          onClick={() => track("nav_click", { target: "subject_home", from: "practice" })}
         >
           {t.practice.backToTopics}
         </Link>
@@ -141,56 +144,23 @@ function PracticePlayer({
         </div>
       )}
 
-      <div
-        ref={navRef}
-        className="flex gap-1 mb-6 overflow-x-auto pb-6"
-        data-tour="practice-nav"
-        style={{
-          maskImage:
-            showLeftFade && showRightFade
-              ? "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)"
-              : showLeftFade
-                ? "linear-gradient(to right, transparent 0%, black 8%, black 100%)"
-                : showRightFade
-                  ? "linear-gradient(to right, black 0%, black 92%, transparent 100%)"
-                  : undefined,
+      <QuestionNavChips
+        questions={questions}
+        answers={answers}
+        currentIndex={currentIndex}
+        navRef={navRef}
+        showLeftFade={showLeftFade}
+        showRightFade={showRightFade}
+        checkedQuestions={checkedQuestions}
+        dataTour="practice-nav"
+        eventName="practice_navigate"
+        eventData={{ subjectId: subject.id, topic: topic || "" }}
+        onSelectIndex={(i, dir) => {
+          setDirection(dir);
+          setCurrentIndex(i);
+          scrollToNav(i);
         }}
-      >
-        {questions.map((q, i) => {
-          const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
-          const isChecked = !!checkedQuestions[q.id];
-          const isCurrent = i === currentIndex;
-          let cls =
-            "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
-          if (isCurrent) cls += " bg-accent text-white border-accent";
-          else if (isChecked)
-            cls += " bg-blue-50 border-blue-300 text-blue-700";
-          else if (isAnswered)
-            cls += " bg-accent-light border-accent-border text-accent-fg";
-          else cls += " border-border text-fg-muted hover:border-fg-muted";
-          return (
-            <button
-              type="button"
-              key={q.id}
-              className={cls}
-              onClick={() => {
-                triggerLight();
-                setDirection(
-                  i > currentIndex
-                    ? "next"
-                    : i < currentIndex
-                      ? "prev"
-                      : undefined,
-                );
-                setCurrentIndex(i);
-                scrollToNav(i);
-              }}
-            >
-              {isChecked && !isCurrent ? "\u2713" : i + 1}
-            </button>
-          );
-        })}
-      </div>
+      />
 
       <div data-tour="practice-card">
         <QuestionCard
@@ -202,6 +172,9 @@ function PracticePlayer({
         megatopicLabel={megatopicLabel}
         examDate={examDate}
         subjectId={subject.id}
+        topicKey={topic || undefined}
+        examYear={currentQuestion?.exam === "both" ? undefined : currentQuestion?.exam}
+        mode="practice"
         onAnswer={onAnswer}
         savedAnswer={answers[currentQuestion.id]}
         showResult={submitted || !!checkedQuestions[currentQuestion.id]}
@@ -220,9 +193,12 @@ function PracticePlayer({
             const nextIndex = Math.max(0, currentIndex - 1);
             setDirection("prev");
             track("practice_navigate", {
+              subjectId: subject.id,
+              topic: topic || "",
               direction: "prev",
               fromIndex: currentIndex,
               toIndex: nextIndex,
+              source: "arrow",
             });
             setCurrentIndex(nextIndex);
             scrollToNav(nextIndex);
@@ -262,6 +238,8 @@ function PracticePlayer({
                     triggerLight();
                     track("practice_clear_answer", {
                       questionId: currentQuestion.id,
+                      subjectId: subject.id,
+                      topic: topic || "",
                     });
                     onClearAnswer(currentQuestion.id);
                   }}
@@ -295,9 +273,12 @@ function PracticePlayer({
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
             setDirection("next");
             track("practice_navigate", {
+              subjectId: subject.id,
+              topic: topic || "",
               direction: "next",
               fromIndex: currentIndex,
               toIndex: nextIndex,
+              source: "arrow",
             });
             setCurrentIndex(nextIndex);
             scrollToNav(nextIndex);
@@ -426,40 +407,26 @@ export default function PracticeTopic() {
     currentIndexRef.current = currentIndex;
   });
 
+  const subjectReadyRef = useRef(false);
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const tag = document.activeElement?.tagName.toLowerCase();
-      if (tag === "input" || tag === "textarea" || tag === "select") return;
-      const idx = currentIndexRef.current;
-      if (e.key === "ArrowLeft" && idx > 0) {
-        e.preventDefault();
-        const nextIndex = idx - 1;
-        triggerLight();
-        setNavState((prev) => ({ ...prev, direction: "prev" }));
-        track("practice_navigate", {
-          direction: "prev",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      } else if (e.key === "ArrowRight" && idx < questions.length - 1) {
-        e.preventDefault();
-        const nextIndex = idx + 1;
-        triggerLight();
-        setNavState((prev) => ({ ...prev, direction: "next" }));
-        track("practice_navigate", {
-          direction: "next",
-          fromIndex: idx,
-          toIndex: nextIndex,
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [questions.length, scrollToNav, setCurrentIndex, setNavState]);
+    subjectReadyRef.current = !!subject;
+  }, [subject]);
+
+  const navEventData = useCallback(
+    () => ({ subjectId: subject?.id || "", topic: topic || "" }),
+    [subject?.id, topic],
+  );
+
+  useKeyboardNav({
+    enabledRef: subjectReadyRef,
+    questionsLength: questions.length,
+    currentIndexRef,
+    setCurrentIndex,
+    scrollToNav,
+    setDirection,
+    eventName: "practice_navigate",
+    eventData: navEventData,
+  });
 
   useEffect(() => {
     if (!subject || !topicInfo) {
@@ -567,7 +534,10 @@ export default function PracticeTopic() {
         <Link
           to={subject ? `/${subject.id}` : "/"}
           className="text-accent hover:underline mt-4 inline-block"
-          onClick={() => triggerLight()}
+          onClick={() => {
+            triggerLight();
+            track("nav_click", { target: "home", from: "practice_empty" });
+          }}
         >
           {t.practice.backToHome}
         </Link>
