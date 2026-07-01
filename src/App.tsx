@@ -47,7 +47,8 @@ function SessionTracker() {
   const { theme } = useTheme();
 
   useEffect(() => {
-    identify({ id: getDistinctId() });
+    const id = getDistinctId();
+    if (id) identify({ id });
   }, []);
 
   useEffect(() => {

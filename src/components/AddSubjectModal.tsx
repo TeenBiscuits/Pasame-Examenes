@@ -15,6 +15,7 @@ interface AddSubjectModalProps {
 function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeMethodRef = useRef<"x" | "backdrop" | "esc">("backdrop");
 
   useImperativeHandle(ref, () => ({
     open: () => dialogRef.current?.showModal(),
@@ -25,17 +26,22 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
-    const handleClose = () => onClose();
     const handleBackdropClick = (e: MouseEvent) => {
-      if (e.target === dialog) dialog.close();
+      if (e.target === dialog) {
+        closeMethodRef.current = "backdrop";
+        dialog.close();
+      }
     };
-    dialog.addEventListener("close", handleClose);
+    const handleCancel = () => {
+      closeMethodRef.current = "esc";
+    };
     dialog.addEventListener("click", handleBackdropClick);
+    dialog.addEventListener("cancel", handleCancel);
     return () => {
-      dialog.removeEventListener("close", handleClose);
       dialog.removeEventListener("click", handleBackdropClick);
+      dialog.removeEventListener("cancel", handleCancel);
     };
-  }, [onClose]);
+  }, []);
 
   return (
     <dialog
@@ -43,7 +49,11 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
       className="animate-dialog m-auto max-w-sm rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="add-subject-title"
       onClose={() => {
-        track("modal_close", { modal: "add_subject", method: "backdrop" });
+        track("modal_close", {
+          modal: "add_subject",
+          method: closeMethodRef.current,
+        });
+        onClose();
       }}
     >
       <div>
@@ -54,7 +64,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
           <button
             type="button"
             onClick={() => {
-              track("modal_close", { modal: "add_subject", method: "x" });
+              closeMethodRef.current = "x";
               dialogRef.current?.close();
             }}
             className="text-fg-muted hover:text-fg-secondary transition-colors cursor-pointer"

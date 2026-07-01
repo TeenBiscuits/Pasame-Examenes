@@ -70,15 +70,17 @@ export default function QuestionNavChips({
             className={cls}
             onClick={() => {
               triggerLight();
-              const data =
-                typeof eventData === "function" ? eventData() : eventData;
-              track(eventName, {
-                ...data,
-                direction: direction || "",
-                fromIndex: currentIndex,
-                toIndex: i,
-                source: "chip",
-              });
+              if (direction !== undefined) {
+                const data =
+                  typeof eventData === "function" ? eventData() : eventData;
+                track(eventName, {
+                  ...data,
+                  direction,
+                  fromIndex: currentIndex,
+                  toIndex: i,
+                  source: "chip",
+                });
+              }
               onSelectIndex(i, direction);
             }}
           >

@@ -52,13 +52,17 @@ export function track(eventName: string, eventData?: UmamiData): void {
 }
 
 export function identify(data: UmamiData & { id?: string }): void {
-  safeRun(() => window.umami!.identify(clean(data) as UmamiCleanData & { id?: string }));
+  if (data.id === "") delete data.id;
+  const cleaned = clean(data) as UmamiCleanData & { id?: string };
+  if (!cleaned) return;
+  safeRun(() => window.umami!.identify(cleaned));
 }
 
 export function setSessionData(data: UmamiData): void {
   const cleaned = clean(data);
   if (!cleaned) return;
-  if (window.umami?.setSessionData) {
+  if (typeof window === "undefined" || !window.umami) return;
+  if (window.umami.setSessionData) {
     safeRun(() => window.umami!.setSessionData!(cleaned));
   } else {
     safeRun(() => window.umami!.identify(cleaned));

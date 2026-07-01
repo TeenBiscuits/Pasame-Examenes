@@ -165,9 +165,9 @@ export default function Home() {
           <button
             type="button"
             onClick={() => {
-            modalRef.current?.open();
-            track("add_subject_modal_open");
-          }}
+              modalRef.current?.open();
+              track("add_subject_modal_open");
+            }}
             className="block w-full p-5 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
           >
             <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">

@@ -22,6 +22,7 @@ function AddExamModal({
 }: AddExamModalProps) {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeMethodRef = useRef<"x" | "backdrop" | "esc">("backdrop");
 
   useImperativeHandle(ref, () => ({
     open: () => dialogRef.current?.showModal(),
@@ -32,17 +33,22 @@ function AddExamModal({
     const dialog = dialogRef.current;
     if (!dialog) return;
 
-    const handleClose = () => onClose();
     const handleBackdropClick = (e: MouseEvent) => {
-      if (e.target === dialog) dialog.close();
+      if (e.target === dialog) {
+        closeMethodRef.current = "backdrop";
+        dialog.close();
+      }
     };
-    dialog.addEventListener("close", handleClose);
+    const handleCancel = () => {
+      closeMethodRef.current = "esc";
+    };
     dialog.addEventListener("click", handleBackdropClick);
+    dialog.addEventListener("cancel", handleCancel);
     return () => {
-      dialog.removeEventListener("close", handleClose);
       dialog.removeEventListener("click", handleBackdropClick);
+      dialog.removeEventListener("cancel", handleCancel);
     };
-  }, [onClose]);
+  }, []);
 
   const issueUrl = `${t.addExam.openIssueUrl}&title=${encodeURIComponent(subjectName)}&subject=${encodeURIComponent(subjectId)}`;
 
@@ -54,9 +60,10 @@ function AddExamModal({
       onClose={() => {
         track("modal_close", {
           modal: "add_exam",
-          method: "backdrop",
+          method: closeMethodRef.current,
           subjectId,
         });
+        onClose();
       }}
     >
       <div>
@@ -67,7 +74,7 @@ function AddExamModal({
           <button
             type="button"
             onClick={() => {
-              track("modal_close", { modal: "add_exam", method: "x", subjectId });
+              closeMethodRef.current = "x";
               dialogRef.current?.close();
             }}
             className="text-fg-muted hover:text-fg-secondary transition-colors cursor-pointer"
