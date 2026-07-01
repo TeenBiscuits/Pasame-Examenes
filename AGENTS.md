@@ -1,259 +1,55 @@
-# AGENTS.md — Pásame Exámenes
+# AGENTS.md - Pasame Examenes
 
-## Development
+## Commands
 
 ```bash
-pnpm dev       # Start Vite dev server (HMR)
-pnpm build     # tsc -b && generate sitemap & IndexNow key && vite build
-pnpm lint      # ESLint (flat config, type-aware via tseslint)
-pnpm format    # Prettier
-pnpm preview   # Preview production build locally
-pnpm doctor    # React Doctor
+pnpm dev       # Vite dev server; src/main.tsx loads react-grab only in DEV
+pnpm build     # tsc -b, generate sitemap, optional IndexNow key, then vite build
+pnpm lint      # ESLint flat config for TS/TSX; scripts/ is ignored
+pnpm format    # Prettier write
+pnpm preview   # Preview production build
+pnpm doctor    # React Doctor via npx
 ```
 
-- **pnpm** is the package manager (`pnpm-lock.yaml`).
-- **No backend** — all data is static TypeScript files. User progress is in `localStorage`.
-- **Tailwind CSS v4** — CSS-first config (`src/index.css` has `@import "tailwindcss"`). No `tailwind.config.js`. Uses `@theme` block for custom design tokens and `tailwind-animations` plugin for extended animations.
-- **Theme system** (`src/theme/`): React context with 5 themes — `light`, `dark`, `pink`, `catppuccin`, and `system` (follows OS preference via `prefers-color-scheme`). Theme is applied via `data-theme` attribute on `<html>`. Persisted in `localStorage`.
-- **`verbatimModuleSyntax: true`** — type-only imports must use `import type`. TypeScript v6 `/ erasableSyntaxOnly`.
-- **`noUnusedLocals` / `noUnusedParameters`** are on — unused imports will fail `tsc`.
-- `pnpm build` runs `tsc -b` first, so it catches type errors. There is no separate `typecheck` script.
-- Vercel rewrites all paths to `/index.html` (SPA), configured in `vercel.json`.
-- Umami analytics script is loaded in `index.html`; the wrapper `src/lib/umami.ts` silently no-ops if unavailable.
+- Use `pnpm`; this repo has `pnpm-lock.yaml` and an empty `pnpm-workspace.yaml` (`packages: []`), so it is a single app, not a monorepo.
+- There is no `test` or standalone `typecheck` script. `pnpm build` is the typecheck source of truth.
+- `pnpm build` rewrites `public/sitemap.xml` and writes `public/${INDEXNOW_KEY}.txt` only when `INDEXNOW_KEY` is set. `SITE_URL` overrides the sitemap base URL; otherwise it uses `https://pe.pablopl.dev`.
+
+## Toolchain Gotchas
+
+- TypeScript 6 uses `verbatimModuleSyntax`, `erasableSyntaxOnly`, `noUnusedLocals`, and `noUnusedParameters`; use `import type` for type-only imports and avoid enums/namespaces/non-erasable TS syntax.
+- Tailwind CSS v4 is configured in CSS, not `tailwind.config.js`: `src/index.css` imports `tailwindcss` and `tailwind-animations`, defines theme tokens in `@theme`, and uses `html[data-theme=...]` overrides.
+- Vite plugins are React, Tailwind, and `vite-imagetools`; image glob queries should request `w=400;800;1200` and `format=avif;webp;png` unless there is a reason to differ.
+- Vercel serves this as an SPA: `vercel.json` rewrites `/en/*`, `/es/*`, `/gl/*`, and all other paths to `/index.html`.
 
 ## Architecture
 
-- **Subject auto-discovery**: `src/subjects/index.ts:12` uses `import.meta.glob` to find all `*/meta.ts` and `*/questions.ts` under `src/subjects/`. Just create the folder — no manual registration.
-- **i18n**: Custom React context (`src/i18n/context.tsx`). Three languages: `en`/`es`/`gl`. Adding a translation string requires updating the `Translations` interface in `en.ts` and adding the value in `es.ts` and `gl.ts`. The language switcher shows the current language's flag and cycles `en` → `es` → `gl` on click.
-- **Routing** (`src/App.tsx`): Routes are nested under `/:lang` (en/es/gl). `/` and bare paths redirect to the detected language. `/:lang` → Home (index), `/:lang/:subjectId` → SubjectHome, `/:lang/:subjectId/practice` → PracticeHome, `/:lang/:subjectId/practice/:topic` → PracticeTopic, `/:lang/:subjectId/exam/:year` → ExamSimulation.
-- **Exam `year` field**: A string used in the URL segment `/exam/:year`. Can be a simple year (`"2024"`) or year-month (`"2020-01"`).
-- **Exam `date` field**: Optional human-readable date displayed on question cards (e.g. `"Enero 2024"`, `"June 2025"`). If omitted, no date is shown.
-- **Data model**: See `src/data/types.ts` for `SubjectMeta`, `Question`, `Exam`, `Topic`, `MegaTopic`, `ExamAttempt`.
+- No backend: subjects/questions are static TypeScript under `src/subjects/`; attempts/progress, language, and theme are persisted in `localStorage`.
+- Runtime subject discovery is in `src/subjects/index.ts`: eager `import.meta.glob` loads every `*/meta.ts`, lazy glob loads `*/questions.ts`, and `_template` is excluded.
+- `src/subjects/_visibility.ts` is still required when adding a subject so React Doctor/static analysis sees named `meta` and `questions` exports as consumed.
+- Routes live in `src/App.tsx` under `/:lang` for `en`, `es`, and `gl`: `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:year`. `/:lang/:subjectId/practice` redirects back to the subject page.
+- i18n is a custom context in `src/i18n/`; adding a string means updating the `Translations` shape in `en.ts` and adding matching values in `es.ts` and `gl.ts`.
+- Theme state is in `src/theme/`; valid themes come from `themeOrder` in `src/theme/types.ts` and are applied with `data-theme` on `<html>`.
+- Analytics scripts are in `index.html`; app code should use `src/lib/umami.ts`, which no-ops when analytics is unavailable.
 
-## Adding a New Subject
+## Subject Data
 
-1. Copy `src/subjects/_template/` → `src/subjects/{subject-id}/`
-2. Fill in `meta.ts` with the subject metadata
-3. Fill in `questions.ts` with the exam questions
-4. Add exam PDFs to `public/exams/{subject-id}/`
-5. Add any question images to `src/subjects/{subject-id}/assets/`
-6. **Add your subject's imports to `src/subjects/_visibility.ts`** (see step below)
-7. Run `pnpm dev` to verify everything works
+- To add a subject, copy `src/subjects/_template/`, then create exported `meta` and `questions` from `src/data/types.ts`; see `CONTRIBUTING.md` for full examples.
+- Subject folder names and `meta.id` must match. Use lowercase kebab-case unless preserving the existing short-code convention (`eseo`, `cepe`, etc.).
+- Topic keys referenced by `questions.ts` must exist in `meta.topics`; topic colors must have matching CSS variables in `src/index.css` (`blue`, `indigo`, `green`, `purple`, `pink`, `amber`, `red`, `cyan`, `orange`).
+- `Exam.year` is a string and is used directly in URLs and PDF filenames. PDFs are linked as `public/exams/{subject-id}/Exam-{year}.pdf`; set `hasPdf: false` for exams without a PDF.
+- Questions can use `exam: "both"` to appear in every exam for that subject. Mark repeated or near-duplicate questions with `repeated: true` so the UI labels/counts them.
+- `mc` answers are stored as lowercase letters (`"a"`-`"e"`); `text` questions show `correctAnswer` as the model solution for self-grading; `matching` uses `Record<string, string>`.
+- Optional `explanation` only controls the extra solution panel for `mc`/`matching`; `text` always opens a model solution and can also show `explanation`.
+- Markdown-style inline code and fenced code blocks are rendered in question text, explanations, model answers, options, subquestions, and table cells via `src/lib/markdown.tsx`.
 
-### `_visibility.ts` — Export Visibility Registry
+## Images
 
-`src/subjects/_visibility.ts` exists so static analysis tools (React Doctor) can see that every subject's named exports are consumed. It explicitly imports and `void`s each subject's `meta` and `questions`. The actual runtime work is done by `import.meta.glob` in `index.ts`.
+- Put question images in `src/subjects/{subject-id}/assets/` and reference them with `getImage(imageMap, "filename.png")`.
+- The standard import block is in `src/subjects/_template/questions.ts`; keep `Picture`/`ImageMap` as type-only imports.
+- Use `image` for the question body and `explanationImage` for the solution panel.
 
-When you add a subject, add two lines to `_visibility.ts`:
+## Verification
 
-```ts
-import { meta as tuAsignaturaMeta } from "./tu-asignatura/meta";
-import { questions as tuAsignaturaQuestions } from "./tu-asignatura/questions";
-// ... then append the corresponding void expressions:
-void tuAsignaturaMeta;
-void tuAsignaturaQuestions;
-```
-
-### Subject ID Convention
-
-Use lowercase kebab-case: `machine-learning`, `calculus-1`, `operating-systems`.
-
-### `meta.ts` — Subject Manifest
-
-```ts
-import type { SubjectMeta } from "../../data/types";
-
-export const meta: SubjectMeta = {
-  id: "your-subject-id", // must match folder name
-  name: "Subject Name", // human-readable
-  university: "University Name",
-  courseCode: "ABC123",
-  icon: "📚", // emoji
-  acknowledgments: "Questions provided by the ... Department. Answers by ...", // optional, shown at page bottom
-  topics: [
-    {
-      key: "topic-slug",
-      label: "Topic Display Name",
-      icon: "📌",
-      color: "blue",
-    },
-  ],
-  megatopics: [
-    // optional: group topics into larger categories
-    {
-      key: "group-slug",
-      label: "Group Display Name",
-      topics: ["topic-slug"], // topic keys belonging to this megatopic
-    },
-  ],
-  exams: [
-    {
-      year: "2024", // string, used in URL /exam/2024
-      title: "2024 Exam", // shown on buttons/cards
-      date: "2024", // optional, human-readable date shown on questions (e.g. "Enero 2024", "June 2025", "2024")
-      description: "60 points · 15 questions",
-      passPoints: 30, // minimum points to pass
-      totalPoints: 60,
-      durationMinutes: 180,
-      hasPdf: true, // optional, default true. Set false if no PDF exists
-    },
-  ],
-};
-```
-
-Available topic colors: `blue`, `indigo`, `green`, `purple`, `pink`, `amber`, `red`, `cyan`, `orange`.
-
-### `questions.ts` — All Exam Questions
-
-```ts
-import type { Question } from "../../data/types";
-
-export const questions: Question[] = [
-  // --- Multiple Choice (mc) ---
-  {
-    id: "2024_q1", // unique, e.g. "{year}_q{number}"
-    exam: "2024", // year string or "both" for shared questions
-    topic: "topic-slug", // must match a key in meta.ts topics
-    type: "mc",
-    points: 5,
-    question: "What is...?",
-    options: ["A. Option one", "B. Option two", "C. Option three"],
-    correctAnswer: "b", // single letter "a"-"e"
-    explanation: "Because...",
-  },
-
-  // --- Text / Open-ended (text) ---
-  {
-    id: "2024_q2",
-    exam: "2024",
-    topic: "topic-slug",
-    type: "text",
-    points: 10,
-    question: "Explain...",
-    correctAnswer: "Model solution text...",
-    explanation: "Key points to cover...",
-  },
-
-  // --- Matching ---
-  {
-    id: "2024_q3",
-    exam: "2024",
-    topic: "topic-slug",
-    type: "matching",
-    points: 5,
-    question: "Match concepts to descriptions:",
-    correctAnswer: {
-      "Concept A": "X", // item -> matching letter
-      "Concept B": "Y",
-    },
-    explanation: "A maps to X because...",
-  },
-];
-```
-
-**Question types:**
-
-- `"mc"` — Multiple choice. `correctAnswer` is a letter string `"a"`–`"e"`. Include `options[]`. Auto-graded.
-- `"text"` — Free-text answer. `correctAnswer` is the model solution string. Self-graded by user. `explanation` required.
-- `"matching"` — Match items to letters (including true/false with `"V"`/`"F"`). `correctAnswer` is `Record<string, string>`. Auto-graded.
-
-**Required fields:** `id`, `exam`, `topic`, `type`, `points`, `question`, `correctAnswer`.
-**Optional fields:** `explanation` (required for `text`), `image`, `explanationImage`, `table`, `subquestions`, `options` (required for `mc`), `repeated`.
-
-- `image?: Picture | string` — imported image shown in the question body. Use the auto-glob pattern (see below).
-- `explanationImage?: Picture | string` — image shown inside the collapsible solution panel (for all question types: mc, text, matching). Same format as `image`.
-- `table?: { headers: string[], rows: string[][] }` — data table
-- `subquestions?: string[]` — list of sub-question text
-- `options?: string[]` — required for `mc` type
-- `repeated?: boolean` — defaults to `false`. Set `true` when the same question appears in multiple exams. Also set `true` for variant questions that share the same pattern.
-
-**Code blocks in text:** `question`, `explanation`, `correctAnswer`, `subquestions`, `options`, and table cell strings support markdown-style code formatting:
-
-- `` `inline code` `` — renders as inline `<code>` with monospace font and pink text on gray background. Works inside any text field.
-- ` ``` ` fenced code blocks — renders as a dark-themed code block. Works in `question`, `explanation`, and `correctAnswer` fields.
-
-Example:
-
-```ts
-question: `What does this code output?
-
-\`\`\`
-def foo():
-    return 42
-print(foo())
-\`\`\`
-
-Hint: remember that \`foo()\` calls the function.`,
-```
-
-## Image Imports
-
-Images in `src/subjects/{subject-id}/assets/` are auto-discovered via `import.meta.glob`. At the top of `questions.ts` add:
-
-```ts
-import type { Picture } from "vite-imagetools";
-import { getImage } from "../../lib/image";
-import type { ImageMap } from "../../lib/image";
-
-const imageMap = import.meta.glob<{ default: Picture }>(
-  "./assets/*.{png,jpeg,jpg}",
-  {
-    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
-    eager: true,
-  },
-) as ImageMap;
-```
-
-Then reference images by filename:
-
-```ts
-{
-  image: getImage(imageMap, "figure-1.png"),
-  explanationImage: getImage(imageMap, "solution-1.png"),
-}
-```
-
-No query strings needed — the glob query handles optimization automatically.
-
-## Extracting Questions from Exam PDFs
-
-1. Open the PDF and identify each question
-2. Classify each question as `mc`, `text`, or `matching`
-3. For each question, determine:
-   - What topic it belongs to (from the `topics` array in `meta.ts`)
-   - How many points it's worth
-   - The correct answer (model solution for text)
-4. Write the question into `questions.ts` following the schema above
-5. If the question references a figure/chart:
-   - Screenshot/crop the figure from the PDF
-   - Save it to `src/subjects/{subject-id}/assets/`
-   - Import it and reference it in the question's `image` field
-6. Copy the original PDF to `public/exams/{subject-id}/Exam-{year}.pdf`
-
-## Directory Structure After Adding
-
-```
-src/subjects/{subject-id}/
-├── meta.ts           # Subject manifest
-├── questions.ts      # All questions
-└── assets/           # Images referenced by questions
-    └── figure-1.png
-
-public/exams/{subject-id}/
-├── Exam-2024.pdf
-└── Exam-2025.pdf
-```
-
-## Verification Checklist
-
-- [ ] `pnpm build` succeeds with no errors
-- [ ] `pnpm lint` passes
-- [ ] `pnpm doctor` (React Doctor) reports no new issues
-- [ ] Subject appears on the homepage grid
-- [ ] Subject home page loads with all topics
-- [ ] Practice mode works for each topic
-- [ ] Exam simulation loads for each exam year
-- [ ] Question images display correctly
-- [ ] MC and matching questions auto-grade correctly
-- [ ] Text questions show model solutions
-- [ ] PDFs are downloadable from the subject page
+- For code changes, run `pnpm build` and `pnpm lint` unless the change is docs-only.
+- For subject additions/large subject edits, also run `pnpm doctor` and manually check the subject page, each topic route, each exam route, images, grading, and PDF links in `pnpm dev`.

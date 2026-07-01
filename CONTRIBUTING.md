@@ -67,7 +67,7 @@ export const meta: SubjectMeta = {
 Exporta un array `Question[]`. Tipos de pregunta:
 
 - **`mc`** — Opción múltiple. `correctAnswer` es una letra `"a"`–`"e"`. Requiere `options[]`. Corrección automática.
-- **`text`** — Respuesta libre. `correctAnswer` es la solución modelo. Requiere `explanation`. Auto-evaluada por el usuario.
+- **`text`** — Respuesta libre. `correctAnswer` es la solución modelo. Auto-evaluada por el usuario; `explanation` puede añadir notas extra.
 - **`matching`** — Emparejar conceptos (incluye verdadero/falso con `"V"`/`"F"`). `correctAnswer` es un `Record<string, string>`. Corrección automática.
 
 ```ts
@@ -116,9 +116,9 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos opcionales: `explanation` (requerida para `text`), `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`), `repeated`.
+Campos opcionales: `explanation`, `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`), `repeated`.
 
-- `explanation` — opcional para `mc` y `matching`. Requerida para `text`. Nota explicativa mostrada al abrir soluciones. Si se omite en mc/matching, el botón "Abrir soluciones" no aparece.
+- `explanation` — nota explicativa mostrada al abrir soluciones. En `mc` y `matching`, si se omite y no hay `explanationImage`, no aparece el botón "Abrir soluciones". En `text`, la solución modelo sale de `correctAnswer` y `explanation` solo añade contexto extra.
 
 - `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la misma pregunta aparece en varios exámenes. Se muestra una etiqueta "Repetida" en la interfaz.
 
@@ -156,7 +156,7 @@ Copia los PDFs originales a `public/exams/{subject-id}/`:
 public/exams/{subject-id}/Exam-2024.pdf
 ```
 
-La convención es `Exam-{year}.pdf`. Si un examen no tiene PDF, marca `hasPdf: false` en su entrada de `meta.ts` para que el enlace de descarga no aparezca. Si ninguna examen tiene PDF, la sección entera se oculta automáticamente.
+La convención es `Exam-{year}.pdf`. Si un examen no tiene PDF, marca `hasPdf: false` en su entrada de `meta.ts` para que el enlace de descarga no aparezca. Si ningún examen tiene PDF, la sección entera se oculta automáticamente.
 
 #### 5. Añade imágenes (si las hay)
 
@@ -223,7 +223,7 @@ La asignatura debe aparecer en la pantalla principal y todas las funcionalidades
 4. Para MC: escribe las opciones exactamente como aparecen, marca la letra correcta
 5. Para text: escribe una solución modelo
 6. Para matching: crea el mapeo ítem → letra
-7. Incluye notas explicativas en `explanation`
+7. Incluye notas explicativas en `explanation` cuando aporten contexto adicional
 
 ## Estructura del proyecto
 
@@ -262,10 +262,12 @@ src/
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
+│   ├── iesede/               # Internet y Sistemas Distribuidos (UDC)
+│   │   ├── meta.ts
+│   │   └── questions.ts
 │   └── pei/                  # Programación Integrativa (UDC)
 │       ├── meta.ts
-│       ├── questions.ts
-│       └── assets/
+│       └── questions.ts
 ├── components/               # Componentes UI compartidos
 │   ├── Header.tsx
 │   ├── SubjectCard.tsx
@@ -276,7 +278,6 @@ src/
 ├── pages/                    # Páginas por ruta
 │   ├── Home.tsx
 │   ├── SubjectHome.tsx
-│   ├── PracticeHome.tsx
 │   ├── PracticeTopic.tsx
 │   └── ExamSimulation.tsx
 ├── data/
@@ -295,27 +296,26 @@ src/
 public/
 ├── favicon.svg
 ├── og.jpg
-└── exams/                    # PDFs originales
-    ├── eseo/
-    ├── esei/
+└── exams/                    # PDFs originales; no todas las asignaturas tienen PDFs
     ├── cepe/
     ├── ece/
     ├── emeele/
     ├── equisi/
-    ├── equispe/
-    └── pei/
+    └── eseo/
 ```
 
 ## Comandos
 
 ```bash
-pnpm dev       # Servidor de desarrollo con HMR
-pnpm build     # Type-check + sitemap + build de producción
-pnpm lint      # ESLint (flat config, type-aware)
+pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
+pnpm build     # tsc -b + sitemap + IndexNow opcional + build de producción
+pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
+pnpm format    # Prettier --write
 pnpm preview   # Preview del build de producción
-pnpm format    # Prettier
 pnpm doctor    # React Doctor
 ```
+
+No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación de tipos. El build reescribe `public/sitemap.xml` y solo genera `public/${INDEXNOW_KEY}.txt` si `INDEXNOW_KEY` está definido.
 
 ## Checklist para Pull Requests
 
@@ -326,6 +326,7 @@ pnpm doctor    # React Doctor
 - [ ] Los PDFs están en `public/exams/{subject-id}/` o los exámenes sin PDF tienen `hasPdf: false`
 - [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente (usa `image` para el enunciado y `explanationImage` para la solución)
 - [ ] Las preguntas repetidas están marcadas con `repeated: true`
+- [ ] Si añadiste una asignatura, sus exports están registrados en `src/subjects/_visibility.ts`
 - [ ] `pnpm build` compila sin errores
 - [ ] `pnpm lint` pasa
 - [ ] `pnpm doctor` (React Doctor) no reporta nuevos problemas

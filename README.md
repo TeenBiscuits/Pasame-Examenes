@@ -75,13 +75,15 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 ## Desarrollo
 
 ```bash
-pnpm dev       # Servidor de desarrollo con HMR
-pnpm build     # Type-check + sitemap + build de producción
-pnpm lint      # ESLint (flat config, type-aware)
+pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
+pnpm build     # tsc -b + sitemap + IndexNow opcional + build de producción
+pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
+pnpm format    # Prettier --write
 pnpm preview   # Preview del build de producción
-pnpm format    # Prettier
 pnpm doctor    # React Doctor
 ```
+
+No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación de tipos.
 
 ## Contribuye ✨
 
