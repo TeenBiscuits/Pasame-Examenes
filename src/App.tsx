@@ -9,6 +9,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import Header from "./components/Header";
+import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
 import { track, identify } from "./lib/umami";
@@ -48,6 +49,20 @@ function SessionTracker() {
   useEffect(() => {
     identify({ lang, theme });
   }, [lang, theme]);
+
+  return null;
+}
+
+function VisitTracker() {
+  useEffect(() => {
+    try {
+      const key = "star_popup_visits";
+      const current = Number(localStorage.getItem(key) || "0");
+      localStorage.setItem(key, String(current + 1));
+    } catch {
+      /* localStorage unavailable */
+    }
+  }, []);
 
   return null;
 }
@@ -140,8 +155,10 @@ export default function App() {
     <BrowserRouter>
       <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
         <SessionTracker />
+        <VisitTracker />
         <ScrollToTop />
         <Header />
+        <StarPopup />
         <main className="flex-grow">
           <Suspense fallback={<PageLoader />}>
             <Routes>

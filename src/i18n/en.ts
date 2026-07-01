@@ -154,6 +154,12 @@ export const en = {
       step4Desc: "When you're done, click 'Submit Exam' to see your score and model solutions. You won't be able to change answers after submitting.",
     },
   },
+  starPopup: {
+    title: "¿Nos darías una estrella?",
+    subtitle: "No queremos tu dinero, solo una estrella en GitHub.",
+    starButton: "¡Dame una estrella!",
+    dismiss: "Ahora no",
+  },
   seo: {
     siteName: "Pásame Exámenes",
     locale: "en_US",

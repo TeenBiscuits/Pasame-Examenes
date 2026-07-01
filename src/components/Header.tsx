@@ -7,6 +7,7 @@ import { triggerLight } from "../lib/haptics";
 import ThemeToggle from "../theme/ThemeToggle";
 import { LangLink as Link } from "../lib/lang-link";
 import { replaceLangInPath } from "../lib/lang-link-utils";
+import GitHubStarButton from "./GitHubStarButton";
 
 const langCycle: Lang[] = ["en", "es", "gl"];
 
@@ -45,30 +46,36 @@ export default function Header() {
           />
           {t.home.title}
         </Link>
-        <div className="flex items-center gap-2 sm:gap-4 text-sm">
+        <div className="flex items-center gap-2 sm:gap-3 text-sm">
           {subject && (
-            <nav className="flex items-center gap-2 sm:gap-4 text-sm">
-              <Link
-                to={`/${subjectId}`}
-                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-                  location.pathname === `/${subjectId}` ||
-                  location.pathname.startsWith(`/${subjectId}/`)
-                    ? "bg-accent-light text-accent-fg"
-                    : "text-fg-secondary hover:text-fg"
-                }`}
-                onClick={() => {
-                  triggerLight();
-                  track("nav_click", {
-                    target: "subject_home",
-                    subjectId: subjectId || "",
-                  });
-                }}
-              >
+            <>
+              <span className="hidden sm:block text-xs text-fg-muted truncate max-w-32">
                 {subject.name}
-              </Link>
-            </nav>
+              </span>
+              <nav className="flex items-center gap-2 sm:gap-3 text-sm">
+                <Link
+                  to={`/${subjectId}`}
+                  className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
+                    location.pathname === `/${subjectId}` ||
+                    location.pathname.startsWith(`/${subjectId}/`)
+                      ? "bg-accent-light text-accent-fg"
+                      : "text-fg-secondary hover:text-fg"
+                  }`}
+                  onClick={() => {
+                    triggerLight();
+                    track("nav_click", {
+                      target: "subject_home",
+                      subjectId: subjectId || "",
+                    });
+                  }}
+                >
+                  {subject.name}
+                </Link>
+              </nav>
+            </>
           )}
           <ThemeToggle />
+          <GitHubStarButton />
           <button
             type="button"
             className="px-2 py-1 text-xs font-medium rounded border border-border hover:bg-surface active:scale-95 transition"
