@@ -49,7 +49,7 @@ export default function Header() {
         <div className="flex items-center gap-2 sm:gap-3 text-sm">
           {subject && (
             <>
-              <span className="hidden sm:block text-xs text-fg-muted truncate max-w-32">
+              <span className="hidden sm:block text-xs text-fg-muted truncate max-w-48">
                 {subject.name}
               </span>
               <nav className="flex items-center gap-2 sm:gap-3 text-sm">

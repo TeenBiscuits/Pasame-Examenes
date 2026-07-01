@@ -39,7 +39,10 @@ function ensureCountLoaded() {
   if (cachedCount !== null || fetchPromise !== null) return;
 
   cachedCount = getStoredCount();
-  if (cachedCount !== null) return;
+  if (cachedCount !== null) {
+    notify();
+    return;
+  }
 
   fetchPromise = fetch(`https://api.github.com/repos/${REPO}`)
     .then((res) => res.json())
@@ -86,8 +89,9 @@ export default function GitHubStarButton() {
   const [count, setCount] = useState(() => getStarCount());
 
   useEffect(() => {
+    const unsubscribe = subscribe(() => setCount(getStarCount()));
     ensureCountLoaded();
-    return subscribe(() => setCount(getStarCount()));
+    return unsubscribe;
   }, []);
 
   const href = `https://github.com/${REPO}`;
