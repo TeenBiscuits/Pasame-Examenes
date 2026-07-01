@@ -8,6 +8,7 @@ import ThemeToggle from "../theme/ThemeToggle";
 import { LangLink as Link } from "../lib/lang-link";
 import { replaceLangInPath } from "../lib/lang-link-utils";
 import GitHubStarButton from "./GitHubStarButton";
+import OverflowAcronym from "./OverflowAcronym";
 
 const langCycle: Lang[] = ["en", "es", "gl"];
 
@@ -49,9 +50,10 @@ export default function Header() {
         <div className="flex items-center gap-2 sm:gap-3 text-sm">
           {subject && (
             <>
-              <span className="hidden sm:block text-xs text-fg-muted truncate max-w-48">
-                {subject.name}
-              </span>
+              <OverflowAcronym
+                name={subject.name}
+                className="hidden sm:block text-xs text-fg-muted truncate max-w-48"
+              />
               <nav className="flex items-center gap-2 sm:gap-3 text-sm">
                 <Link
                   to={`/${subjectId}`}
