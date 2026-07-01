@@ -272,6 +272,10 @@ function TextQuestion({
   const t = useT();
   const textStartedRef = useRef(false);
 
+  useEffect(() => {
+    textStartedRef.current = false;
+  }, [question.id]);
+
   return (
     <div>
       <label htmlFor={`answer-${question.id}`} className="sr-only">
