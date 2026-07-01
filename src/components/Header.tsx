@@ -74,8 +74,8 @@ export default function Header() {
               </nav>
             </>
           )}
-          <ThemeToggle />
           <GitHubStarButton />
+          <ThemeToggle />
           <button
             type="button"
             className="px-2 py-1 text-xs font-medium rounded border border-border hover:bg-surface active:scale-95 transition"

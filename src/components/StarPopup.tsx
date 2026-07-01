@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 
@@ -41,21 +41,24 @@ function StarIcon() {
 export default function StarPopup() {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [open, setOpen] = useState(() => shouldShow());
+  const openRef = useRef<boolean | null>(null);
+  if (openRef.current === null) {
+    openRef.current = shouldShow();
+  }
 
   const dismiss = useCallback(() => {
+    openRef.current = false;
     try {
       localStorage.setItem(STORAGE_KEY_DISMISSED, String(Date.now()));
     } catch {
       /* unavailable */
     }
-    setOpen(false);
     dialogRef.current?.close();
     track("star_popup_dismiss");
   }, []);
 
   useEffect(() => {
-    if (!open) return;
+    if (!openRef.current) return;
     const dialog = dialogRef.current;
     if (!dialog) return;
 
@@ -66,15 +69,15 @@ export default function StarPopup() {
     dialog.showModal();
     dialog.addEventListener("click", handleBackdropClick);
     return () => dialog.removeEventListener("click", handleBackdropClick);
-  }, [open, dismiss]);
+  }, [dismiss]);
 
   function handleStar() {
+    openRef.current = false;
     try {
       localStorage.setItem(STORAGE_KEY_DISMISSED, String(Date.now()));
     } catch {
       /* unavailable */
     }
-    setOpen(false);
     dialogRef.current?.close();
     track("star_popup_click");
   }

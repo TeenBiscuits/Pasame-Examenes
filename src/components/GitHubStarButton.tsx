@@ -7,6 +7,65 @@ const CACHE_TS_KEY = "gh_star_count_ts";
 const CACHE_TTL = 60 * 60 * 1000;
 
 let cachedCount: number | null = null;
+let fetchPromise: Promise<void> | null = null;
+const subscribers = new Set<() => void>();
+
+function notify() {
+  subscribers.forEach((fn) => fn());
+}
+
+function subscribe(fn: () => void) {
+  subscribers.add(fn);
+  return () => {
+    subscribers.delete(fn);
+  };
+}
+
+function getStoredCount(): number | null {
+  try {
+    const stored = sessionStorage.getItem(CACHE_KEY);
+    const storedTs = sessionStorage.getItem(CACHE_TS_KEY);
+    if (stored && storedTs) {
+      const age = Date.now() - Number(storedTs);
+      if (age < CACHE_TTL) return Number(stored);
+    }
+  } catch {
+    /* sessionStorage unavailable */
+  }
+  return null;
+}
+
+function ensureCountLoaded() {
+  if (cachedCount !== null || fetchPromise !== null) return;
+
+  cachedCount = getStoredCount();
+  if (cachedCount !== null) return;
+
+  fetchPromise = fetch(`https://api.github.com/repos/${REPO}`)
+    .then((res) => res.json())
+    .then((data: { stargazers_count?: number }) => {
+      cachedCount = data.stargazers_count ?? null;
+      try {
+        sessionStorage.setItem(CACHE_KEY, String(cachedCount ?? 0));
+        sessionStorage.setItem(CACHE_TS_KEY, String(Date.now()));
+      } catch {
+        /* unavailable */
+      }
+      notify();
+    })
+    .catch(() => {
+      /* fetch failed */
+    });
+}
+
+function getStarCount(): number | null {
+  return cachedCount;
+}
+
+function formatCount(n: number): string {
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
+  return String(n);
+}
 
 function StarIcon({ className }: { className?: string }) {
   return (
@@ -24,55 +83,14 @@ function StarIcon({ className }: { className?: string }) {
 }
 
 export default function GitHubStarButton() {
-  const [count, setCount] = useState<number | null>(() => {
-    try {
-      const stored = sessionStorage.getItem(CACHE_KEY);
-      const storedTs = sessionStorage.getItem(CACHE_TS_KEY);
-      if (stored && storedTs) {
-        const age = Date.now() - Number(storedTs);
-        if (age < CACHE_TTL) {
-          cachedCount = Number(stored);
-          return cachedCount;
-        }
-      }
-    } catch {
-      /* sessionStorage unavailable */
-    }
-    return null;
-  });
+  const [count, setCount] = useState(() => getStarCount());
 
   useEffect(() => {
-    if (cachedCount !== null) return;
-
-    let cancelled = false;
-    fetch(`https://api.github.com/repos/${REPO}`)
-      .then((res) => res.json())
-      .then((data: { stargazers_count?: number }) => {
-        if (cancelled || !data?.stargazers_count) return;
-        cachedCount = data.stargazers_count;
-        try {
-          sessionStorage.setItem(CACHE_KEY, String(cachedCount));
-          sessionStorage.setItem(CACHE_TS_KEY, String(Date.now()));
-        } catch {
-          /* unavailable */
-        }
-        setCount(cachedCount);
-      })
-      .catch(() => {
-        /* fetch failed, leave count null */
-      });
-
-    return () => {
-      cancelled = true;
-    };
+    ensureCountLoaded();
+    return subscribe(() => setCount(getStarCount()));
   }, []);
 
   const href = `https://github.com/${REPO}`;
-
-  const formatCount = (n: number): string => {
-    if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
-    return String(n);
-  };
 
   return (
     <>
