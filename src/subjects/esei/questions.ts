@@ -148,7 +148,7 @@ export const questions: Question[] = [
   {
     id: "2023_q8",
     exam: "2023",
-    topic: "t2",
+    topic: "t3",
     type: "mc",
     points: 1,
     question:
@@ -222,7 +222,7 @@ export const questions: Question[] = [
   {
     id: "2023_q12",
     exam: "2023",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "El ADALINE...",
@@ -277,7 +277,7 @@ export const questions: Question[] = [
   {
     id: "2023_q15",
     exam: "2023",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -297,7 +297,7 @@ export const questions: Question[] = [
   {
     id: "2023_q16",
     exam: "2023",
-    topic: "t4",
+    topic: "t7",
     type: "mc",
     points: 1,
     question:
@@ -316,7 +316,7 @@ export const questions: Question[] = [
   {
     id: "2023_q17",
     exam: "2023",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question:
@@ -335,7 +335,7 @@ export const questions: Question[] = [
   {
     id: "2023_q18",
     exam: "2023",
-    topic: "t10",
+    topic: "t8",
     type: "mc",
     points: 1,
     question:
@@ -374,7 +374,7 @@ export const questions: Question[] = [
   {
     id: "2023_q20",
     exam: "2023",
-    topic: "t9",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -394,7 +394,7 @@ export const questions: Question[] = [
   {
     id: "2023_q21",
     exam: "2023",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -414,7 +414,7 @@ export const questions: Question[] = [
   {
     id: "2023_q22",
     exam: "2023",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "En una RNA, el conjunto de test...",
@@ -522,7 +522,7 @@ export const questions: Question[] = [
   {
     id: "2023_q28",
     exam: "2023",
-    topic: "t2",
+    topic: "t9",
     type: "mc",
     points: 1,
     question: "Diferencias entre SOM y GCS son:",
@@ -706,7 +706,7 @@ export const questions: Question[] = [
   {
     id: "2023_q38",
     exam: "2023",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
@@ -745,7 +745,7 @@ export const questions: Question[] = [
   {
     id: "2023_q40",
     exam: "2023",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question: "El objetivo del operador de mutación es...",
@@ -763,7 +763,7 @@ export const questions: Question[] = [
   {
     id: "2023_q41",
     exam: "2023",
-    topic: "t9",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
@@ -820,7 +820,7 @@ export const questions: Question[] = [
   {
     id: "2023_q44",
     exam: "2023",
-    topic: "t9",
+    topic: "t10",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1007,7 +1007,7 @@ export const questions: Question[] = [
   {
     id: "2024_q9",
     exam: "2024",
-    topic: "t4",
+    topic: "t3",
     type: "mc",
     points: 1,
     question: "El algoritmo de model checking...",
@@ -1116,7 +1116,7 @@ export const questions: Question[] = [
   {
     id: "2024_q15",
     exam: "2024",
-    topic: "t7",
+    topic: "t8",
     type: "mc",
     points: 1,
     question: "En una RNA, el conocimiento está en...",
@@ -1154,7 +1154,7 @@ export const questions: Question[] = [
   {
     id: "2024_q17",
     exam: "2024",
-    topic: "t2",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1193,7 +1193,7 @@ export const questions: Question[] = [
   {
     id: "2024_q19",
     exam: "2024",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question:
@@ -1212,7 +1212,7 @@ export const questions: Question[] = [
   {
     id: "2024_q20",
     exam: "2024",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "La función de transferencia de las neuronas artificiales...",
@@ -1230,7 +1230,7 @@ export const questions: Question[] = [
   {
     id: "2024_q21",
     exam: "2024",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1250,7 +1250,7 @@ export const questions: Question[] = [
   {
     id: "2024_q22",
     exam: "2024",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1270,7 +1270,7 @@ export const questions: Question[] = [
   {
     id: "2024_q23",
     exam: "2024",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1290,7 +1290,7 @@ export const questions: Question[] = [
   {
     id: "2024_q24",
     exam: "2024",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "En una RNA, el conjunto de validación...",
@@ -1308,7 +1308,7 @@ export const questions: Question[] = [
   {
     id: "2024_q25",
     exam: "2024",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1362,7 +1362,7 @@ export const questions: Question[] = [
   {
     id: "2024_q28",
     exam: "2024",
-    topic: "t7",
+    topic: "t8",
     type: "mc",
     points: 1,
     question:
@@ -1544,7 +1544,7 @@ export const questions: Question[] = [
   {
     id: "2024_q38",
     exam: "2024",
-    topic: "t2",
+    topic: "t9",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1803,7 +1803,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q8",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     question: "¿En qué se diferencian las dos ramas clásicas de la IA?",
@@ -1878,7 +1878,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q12",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1898,7 +1898,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q13",
     exam: "2025-05",
-    topic: "t2",
+    topic: "t6",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1918,7 +1918,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q14",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1938,7 +1938,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q15",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     question:
@@ -1957,7 +1957,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q16",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     question:
@@ -1976,7 +1976,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q17",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -1996,7 +1996,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q18",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2016,7 +2016,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q19",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2036,7 +2036,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q20",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2055,7 +2055,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q21",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2075,7 +2075,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q22",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2095,7 +2095,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q23",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question:
@@ -2114,7 +2114,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q24",
     exam: "2025-05",
-    topic: "t10",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2134,7 +2134,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q25",
     exam: "2025-05",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2303,7 +2303,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q34",
     exam: "2025-05",
-    topic: "t3",
+    topic: "t9",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2362,7 +2362,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q37",
     exam: "2025-05",
-    topic: "t4",
+    topic: "t10",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2401,7 +2401,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q39",
     exam: "2025-05",
-    topic: "t3",
+    topic: "t10",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2420,7 +2420,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q40",
     exam: "2025-05",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
@@ -2439,7 +2439,7 @@ export const questions: Question[] = [
   {
     id: "2025-05_q41",
     exam: "2025-05",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
@@ -2516,7 +2516,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q3",
     exam: "2025-07",
-    topic: "t3",
+    topic: "t1",
     type: "mc",
     points: 1,
     question: "Los agentes basados en metas...",
@@ -2666,7 +2666,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q12",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     question:
@@ -2705,7 +2705,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q14",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     question: "¿Qué pretende la IA como ciencia y como ingeniería?",
@@ -2723,7 +2723,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q15",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t1",
     type: "mc",
     points: 1,
     question: "¿Características específicas de los sistemas inteligentes?",
@@ -2741,7 +2741,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q16",
     exam: "2025-07",
-    topic: "t3",
+    topic: "t6",
     type: "mc",
     points: 1,
     question:
@@ -2779,7 +2779,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q18",
     exam: "2025-07",
-    topic: "t2",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2799,7 +2799,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q19",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question:
@@ -2818,7 +2818,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q20",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2838,7 +2838,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q21",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "El número de neuronas ocultas de un perceptrón multicapa...",
@@ -2856,7 +2856,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q22",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2914,7 +2914,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q25",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question:
@@ -2933,7 +2933,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q26",
     exam: "2025-07",
-    topic: "t3",
+    topic: "t8",
     type: "mc",
     points: 1,
     repeated: true,
@@ -2953,7 +2953,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q27",
     exam: "2025-07",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question:
@@ -3136,7 +3136,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q37",
     exam: "2025-07",
-    topic: "t3",
+    topic: "t9",
     type: "mc",
     points: 1,
     question:
@@ -3211,7 +3211,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q41",
     exam: "2025-07",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question: "Los operadores genéticos en Computación Evolutiva...",
@@ -3229,7 +3229,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q42",
     exam: "2025-07",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question: "La técnica de Algoritmos Genéticos...",
@@ -3266,7 +3266,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q44",
     exam: "2025-07",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question: "En un algoritmo genético:",
@@ -3304,7 +3304,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q46",
     exam: "2025-07",
-    topic: "t9",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
@@ -3323,7 +3323,7 @@ export const questions: Question[] = [
   {
     id: "2025-07_q47",
     exam: "2025-07",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
@@ -3450,7 +3450,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q7",
     exam: "2026-06",
-    topic: "t3",
+    topic: "t4",
     type: "mc",
     points: 1,
     question:
@@ -3637,7 +3637,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q17",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     question:
@@ -3656,7 +3656,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q18",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     question:
@@ -3675,7 +3675,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q19",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     repeated: true,
@@ -3695,7 +3695,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q20",
     exam: "2026-06",
-    topic: "t2",
+    topic: "t6",
     type: "mc",
     points: 1,
     repeated: true,
@@ -3715,7 +3715,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q21",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t6",
     type: "mc",
     points: 1,
     repeated: true,
@@ -3811,7 +3811,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q26",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "El ADALINE fue creado",
@@ -3849,7 +3849,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q28",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "Durante el entrenamiento de un perceptrón multicapa se busca...",
@@ -3867,7 +3867,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q29",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -3887,7 +3887,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q30",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -3906,7 +3906,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q31",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -3926,7 +3926,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q32",
     exam: "2026-06",
-    topic: "t9",
+    topic: "t8",
     type: "mc",
     points: 1,
     question: "La Regla Delta...",
@@ -3944,7 +3944,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q33",
     exam: "2026-06",
-    topic: "t3",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "En un perceptrón multicapa el conocimiento de la red está en...",
@@ -3962,7 +3962,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q34",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question:
@@ -3981,7 +3981,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q35",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     repeated: true,
@@ -4001,7 +4001,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q36",
     exam: "2026-06",
-    topic: "t8",
+    topic: "t7",
     type: "mc",
     points: 1,
     question: "El conjunto de patrones de test...",
@@ -4154,7 +4154,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q44",
     exam: "2026-06",
-    topic: "t3",
+    topic: "t9",
     type: "mc",
     points: 1,
     repeated: true,
@@ -4213,7 +4213,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q47",
     exam: "2026-06",
-    topic: "t4",
+    topic: "t10",
     type: "mc",
     points: 1,
     repeated: true,
@@ -4252,7 +4252,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q49",
     exam: "2026-06",
-    topic: "t3",
+    topic: "t10",
     type: "mc",
     points: 1,
     repeated: true,
@@ -4271,7 +4271,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q50",
     exam: "2026-06",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
@@ -4329,7 +4329,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q53",
     exam: "2026-06",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
@@ -4367,7 +4367,7 @@ export const questions: Question[] = [
   {
     id: "2026-06_q55",
     exam: "2026-06",
-    topic: "t2",
+    topic: "t10",
     type: "mc",
     points: 1,
     question:
