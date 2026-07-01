@@ -66,7 +66,7 @@ export default function Header() {
             <>
               <Link
                 to={`/${subjectId}`}
-                className={`md:hidden ${subjectLinkClasses}`}
+                className={`sm:hidden ${subjectLinkClasses}`}
                 onClick={() => {
                   triggerLight();
                   track("nav_click", {
@@ -80,7 +80,7 @@ export default function Header() {
               </Link>
               <Link
                 to={`/${subjectId}`}
-                className={`hidden md:block max-w-56 truncate ${subjectLinkClasses}`}
+                className={`hidden sm:block max-w-56 truncate ${subjectLinkClasses}`}
                 onClick={() => {
                   triggerLight();
                   track("nav_click", {
