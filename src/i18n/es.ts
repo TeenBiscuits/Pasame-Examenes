@@ -156,6 +156,12 @@ export const es: Translations = {
       step4Desc: "Cuando termines, haz clic en 'Entregar examen' para ver tu puntuación y las soluciones modelo. No podrás modificar tus respuestas después.",
     },
   },
+  starPopup: {
+    title: "¿Nos darías una estrella?",
+    subtitle: "No queremos tu dinero, solo una estrella en GitHub.",
+    starButton: "¡Dame una estrella!",
+    dismiss: "Ahora no",
+  },
   seo: {
     siteName: "Pásame Exámenes",
     locale: "es_ES",

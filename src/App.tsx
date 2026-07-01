@@ -9,6 +9,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import Header from "./components/Header";
+import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
 import { track, identify } from "./lib/umami";
@@ -142,6 +143,7 @@ export default function App() {
         <SessionTracker />
         <ScrollToTop />
         <Header />
+        <StarPopup />
         <main className="flex-grow">
           <Suspense fallback={<PageLoader />}>
             <Routes>

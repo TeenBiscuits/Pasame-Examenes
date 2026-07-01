@@ -155,6 +155,12 @@ export const gl: Translations = {
       step4Desc: "Cando remates, fai clic en 'Entregar exame' para ver a túa puntuación e as solucións modelo. Non poderás modificar as túas respostas despois.",
     },
   },
+  starPopup: {
+    title: "Daríasnos unha estrela?",
+    subtitle: "Non queremos o teu diñeiro, só unha estrela en GitHub.",
+    starButton: "Dame unha estrela!",
+    dismiss: "Agora non",
+  },
   seo: {
     siteName: "Pásame Exámenes",
     locale: "gl_ES",

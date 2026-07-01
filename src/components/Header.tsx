@@ -1,4 +1,4 @@
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useMatch, useNavigate } from "react-router-dom";
 import { getSubject } from "../subjects";
 import { useT, useLang } from "../i18n/hooks";
 import type { Lang } from "../i18n/context";
@@ -7,6 +7,7 @@ import { triggerLight } from "../lib/haptics";
 import ThemeToggle from "../theme/ThemeToggle";
 import { LangLink as Link } from "../lib/lang-link";
 import { replaceLangInPath } from "../lib/lang-link-utils";
+import GitHubStarButton from "./GitHubStarButton";
 
 const langCycle: Lang[] = ["en", "es", "gl"];
 
@@ -16,13 +17,28 @@ const langLabel: Record<Lang, string> = {
   gl: "🧜🏻‍♀️ GL",
 };
 
+function acronym(name: string): string {
+  const letters = name.replace(/[^A-Z]/g, "");
+  return letters || name.charAt(0).toUpperCase();
+}
+
 export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { subjectId } = useParams<{ subjectId?: string }>();
+  const match = useMatch("/:lang/:subjectId/*");
+  const subjectId = match?.params.subjectId;
   const t = useT();
   const { lang, setLang } = useLang();
   const subject = subjectId ? getSubject(subjectId) : null;
+
+  const abbr = subject ? acronym(subject.name) : "";
+
+  const subjectLinkClasses = `px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
+    location.pathname === `/${subjectId}` ||
+    location.pathname.startsWith(`/${subjectId}/`)
+      ? "bg-accent-light text-accent-fg"
+      : "text-fg-secondary hover:text-fg"
+  }`;
 
   return (
     <header className="bg-surface-alt border-b border-border sticky top-0 z-50">
@@ -45,17 +61,12 @@ export default function Header() {
           />
           {t.home.title}
         </Link>
-        <div className="flex items-center gap-2 sm:gap-4 text-sm">
+        <div className="flex items-center gap-2 sm:gap-3 text-sm">
           {subject && (
-            <nav className="flex items-center gap-2 sm:gap-4 text-sm">
+            <>
               <Link
                 to={`/${subjectId}`}
-                className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-                  location.pathname === `/${subjectId}` ||
-                  location.pathname.startsWith(`/${subjectId}/`)
-                    ? "bg-accent-light text-accent-fg"
-                    : "text-fg-secondary hover:text-fg"
-                }`}
+                className={`sm:hidden ${subjectLinkClasses}`}
                 onClick={() => {
                   triggerLight();
                   track("nav_click", {
@@ -63,11 +74,27 @@ export default function Header() {
                     subjectId: subjectId || "",
                   });
                 }}
+                title={subject.name}
+              >
+                {abbr}
+              </Link>
+              <Link
+                to={`/${subjectId}`}
+                className={`hidden sm:block max-w-56 truncate ${subjectLinkClasses}`}
+                onClick={() => {
+                  triggerLight();
+                  track("nav_click", {
+                    target: "subject_home",
+                    subjectId: subjectId || "",
+                  });
+                }}
+                title={subject.name}
               >
                 {subject.name}
               </Link>
-            </nav>
+            </>
           )}
+          <GitHubStarButton />
           <ThemeToggle />
           <button
             type="button"
