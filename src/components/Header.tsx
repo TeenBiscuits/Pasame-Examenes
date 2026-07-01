@@ -52,7 +52,7 @@ export default function Header() {
           {subject && (
             <Link
               to={`/${subjectId}`}
-              className={`block max-w-48 truncate px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
+              className={`block max-w-56 truncate px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
                 location.pathname === `/${subjectId}` ||
                 location.pathname.startsWith(`/${subjectId}/`)
                   ? "bg-accent-light text-accent-fg"
