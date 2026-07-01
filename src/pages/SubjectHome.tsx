@@ -60,7 +60,10 @@ export default function SubjectHome() {
         <Link
           to="/"
           className="text-accent hover:underline"
-          onClick={() => triggerLight()}
+          onClick={() => {
+            triggerLight();
+            track("nav_click", { target: "home", reason: "subject_not_found" });
+          }}
         >
           {t.subjectHome.returnHome}
         </Link>
@@ -189,6 +192,7 @@ export default function SubjectHome() {
           onClick={() => {
             triggerLight();
             examModalRef.current?.open();
+            track("add_exam_modal_open", { subjectId: subject.id });
           }}
           className="block w-full p-6 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
         >
@@ -227,7 +231,7 @@ export default function SubjectHome() {
                       className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
                       onClick={() => {
                         triggerLight();
-                        track("file-download", {
+                        track("file_download", {
                           file: `Exam-${exam.year}.pdf`,
                           subjectId: subject.id,
                           year: exam.year,

@@ -43,7 +43,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
       className="animate-dialog m-auto max-w-sm rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="add-subject-title"
       onClose={() => {
-        track("add_subject_modal_close");
+        track("modal_close", { modal: "add_subject", method: "backdrop" });
       }}
     >
       <div>
@@ -54,7 +54,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
           <button
             type="button"
             onClick={() => {
-              track("add_subject_modal_close_btn");
+              track("modal_close", { modal: "add_subject", method: "x" });
               dialogRef.current?.close();
             }}
             className="text-fg-muted hover:text-fg-secondary transition-colors cursor-pointer"

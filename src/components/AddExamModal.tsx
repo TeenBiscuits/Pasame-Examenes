@@ -52,7 +52,11 @@ function AddExamModal({
       className="animate-dialog m-auto max-w-sm rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="add-exam-title"
       onClose={() => {
-        track("add_exam_modal_close", { subjectId });
+        track("modal_close", {
+          modal: "add_exam",
+          method: "backdrop",
+          subjectId,
+        });
       }}
     >
       <div>
@@ -63,7 +67,7 @@ function AddExamModal({
           <button
             type="button"
             onClick={() => {
-              track("add_exam_modal_close_btn", { subjectId });
+              track("modal_close", { modal: "add_exam", method: "x", subjectId });
               dialogRef.current?.close();
             }}
             className="text-fg-muted hover:text-fg-secondary transition-colors cursor-pointer"
