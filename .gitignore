@@ -24,5 +24,11 @@ dist-ssr
 *.sw?
 public/sitemap.xml
 
+# Build output
+build/
+
+# React Router generated
+.react-router/
+
 # Env
 .env

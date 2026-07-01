@@ -1,4 +1,4 @@
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router";
 import { getSubject } from "../subjects";
 import { useT, useLang } from "../i18n/hooks";
 import type { Lang } from "../i18n/context";

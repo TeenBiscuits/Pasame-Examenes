@@ -3,32 +3,61 @@
 ## Development
 
 ```bash
-pnpm dev       # Start Vite dev server (HMR)
-pnpm build     # tsc -b && generate sitemap & IndexNow key && vite build
+pnpm dev       # Start React Router dev server (HMR)
+pnpm build     # tsc -b && generate sitemap & IndexNow key && react-router build
 pnpm lint      # ESLint (flat config, type-aware via tseslint)
 pnpm format    # Prettier
 pnpm preview   # Preview production build locally
+pnpm typecheck # react-router typegen && tsc -b
 pnpm doctor    # React Doctor
 ```
 
 - **pnpm** is the package manager (`pnpm-lock.yaml`).
 - **No backend** — all data is static TypeScript files. User progress is in `localStorage`.
+- **SSG (Static Site Generation)** via React Router v8 framework mode with `prerender()`. Build outputs 314 static HTML pages to `build/client/`.
 - **Tailwind CSS v4** — CSS-first config (`src/index.css` has `@import "tailwindcss"`). No `tailwind.config.js`. Uses `@theme` block for custom design tokens and `tailwind-animations` plugin for extended animations.
 - **Theme system** (`src/theme/`): React context with 5 themes — `light`, `dark`, `pink`, `catppuccin`, and `system` (follows OS preference via `prefers-color-scheme`). Theme is applied via `data-theme` attribute on `<html>`. Persisted in `localStorage`.
 - **`verbatimModuleSyntax: true`** — type-only imports must use `import type`. TypeScript v6 `/ erasableSyntaxOnly`.
 - **`noUnusedLocals` / `noUnusedParameters`** are on — unused imports will fail `tsc`.
-- `pnpm build` runs `tsc -b` first, so it catches type errors. There is no separate `typecheck` script.
-- Vercel rewrites all paths to `/index.html` (SPA), configured in `vercel.json`.
-- Umami analytics script is loaded in `index.html`; the wrapper `src/lib/umami.ts` silently no-ops if unavailable.
+- `pnpm build` runs `tsc -b` first, so it catches type errors.
+- Vercel serves from `build/client/` with `cleanUrls` and a catch-all SPA fallback, configured in `vercel.json`.
+- Umami + Ahrefs analytics scripts are loaded in `app/root.tsx`; the wrapper `src/lib/umami.ts` silently no-ops if unavailable.
 
 ## Architecture
 
+- **React Router v8 Framework**: Entry point is `app/root.tsx` (replaces `src/main.tsx` + `src/App.tsx`). Routes are declared in `app/routes.ts` using `@react-router/dev/routes`. SSG config in `react-router.config.ts`.
 - **Subject auto-discovery**: `src/subjects/index.ts:12` uses `import.meta.glob` to find all `*/meta.ts` and `*/questions.ts` under `src/subjects/`. Just create the folder — no manual registration.
 - **i18n**: Custom React context (`src/i18n/context.tsx`). Three languages: `en`/`es`/`gl`. Adding a translation string requires updating the `Translations` interface in `en.ts` and adding the value in `es.ts` and `gl.ts`. The language switcher shows the current language's flag and cycles `en` → `es` → `gl` on click.
-- **Routing** (`src/App.tsx`): Routes are nested under `/:lang` (en/es/gl). `/` and bare paths redirect to the detected language. `/:lang` → Home (index), `/:lang/:subjectId` → SubjectHome, `/:lang/:subjectId/practice` → PracticeHome, `/:lang/:subjectId/practice/:topic` → PracticeTopic, `/:lang/:subjectId/exam/:year` → ExamSimulation.
+- **Routing** (`app/routes.ts`): Routes are nested under `/:lang` (en/es/gl). `/` and bare paths redirect to the detected language via `CatchAllRedirect`. `/:lang` → Home (index), `/:lang/:subjectId` → SubjectHome, `/:lang/:subjectId/practice/:topic` → PracticeTopic, `/:lang/:subjectId/exam/:year` → ExamSimulation. `/practice` (bare) redirects to the subject home.
+- **Lang layout** (`src/pages/LangLayout.tsx`): Validates the `:lang` param, syncs it to i18n context, and redirects invalid langs to the detected language.
 - **Exam `year` field**: A string used in the URL segment `/exam/:year`. Can be a simple year (`"2024"`) or year-month (`"2020-01"`).
 - **Exam `date` field**: Optional human-readable date displayed on question cards (e.g. `"Enero 2024"`, `"June 2025"`). If omitted, no date is shown.
 - **Data model**: See `src/data/types.ts` for `SubjectMeta`, `Question`, `Exam`, `Topic`, `MegaTopic`, `ExamAttempt`.
+
+## Key Files
+
+```
+app/
+├── root.tsx                # Root route module (HTML shell, providers, layout)
+├── routes.ts               # Route config (framework mode)
+react-router.config.ts      # SSG config (ssr: false, prerender())
+src/
+├── subjects/
+│   ├── index.ts            # Auto-discovery via import.meta.glob
+│   ├── _visibility.ts      # Static analysis export registry
+│   ├── prerender-urls.ts   # Build-time URL enumeration for SSG
+│   ├── _template/          # Template for new subjects
+│   └── ...
+├── pages/
+│   ├── LangLayout.tsx      # Language param validation + sync
+│   ├── CatchAllRedirect.tsx # Bare URL → /:lang redirect
+│   ├── PracticeRedirect.tsx # /practice → subject home redirect
+│   ├── Home.tsx
+│   ├── SubjectHome.tsx
+│   ├── PracticeTopic.tsx
+│   └── ExamSimulation.tsx
+└── ...
+```
 
 ## Adding a New Subject
 
@@ -38,7 +67,8 @@ pnpm doctor    # React Doctor
 4. Add exam PDFs to `public/exams/{subject-id}/`
 5. Add any question images to `src/subjects/{subject-id}/assets/`
 6. **Add your subject's imports to `src/subjects/_visibility.ts`** (see step below)
-7. Run `pnpm dev` to verify everything works
+7. **Add your subject's meta to `src/subjects/prerender-urls.ts`** (see step below)
+8. Run `pnpm dev` to verify everything works
 
 ### `_visibility.ts` — Export Visibility Registry
 
@@ -52,6 +82,19 @@ import { questions as tuAsignaturaQuestions } from "./tu-asignatura/questions";
 // ... then append the corresponding void expressions:
 void tuAsignaturaMeta;
 void tuAsignaturaQuestions;
+```
+
+### `prerender-urls.ts` — SSG URL Registry
+
+`src/subjects/prerender-urls.ts` provides the build-time URL list for static pre-rendering. Import your subject's meta and add it to the `allSubjectMetas` array:
+
+```ts
+import { meta as tuAsignaturaMeta } from "./tu-asignatura/meta";
+// add to the array:
+export const allSubjectMetas: SubjectMeta[] = [
+  // ...existing subjects...
+  tuAsignaturaMeta,
+];
 ```
 
 ### Subject ID Convention
@@ -246,7 +289,7 @@ public/exams/{subject-id}/
 
 ## Verification Checklist
 
-- [ ] `pnpm build` succeeds with no errors
+- [ ] `pnpm build` succeeds with no errors (builds 314+ static pages)
 - [ ] `pnpm lint` passes
 - [ ] `pnpm doctor` (React Doctor) reports no new issues
 - [ ] Subject appears on the homepage grid

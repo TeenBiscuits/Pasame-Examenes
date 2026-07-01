@@ -1,18 +1,16 @@
 import { lazy, Suspense, useEffect } from "react";
 import {
-  BrowserRouter,
-  Routes,
-  Route,
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+  Outlet,
   useLocation,
   useParams,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+} from "react-router";
 import Header from "./components/Header";
 import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
 import { track, identify } from "./lib/umami";
-import { buildLangPath } from "./lib/lang-link-utils";
 import { useTheme } from "./theme/hooks";
 
 const Home = lazy(() => import("./pages/Home"));
@@ -65,14 +63,7 @@ function detectLang(): Lang {
   return "en";
 }
 
-function LangRedirect() {
-  const { pathname } = useLocation();
-  const lang = detectLang();
-  const target = pathname === "/" ? `/${lang}` : `/${lang}${pathname}`;
-  return <Navigate to={target} replace />;
-}
-
-function LangGuard() {
+function LangSync() {
   const { lang: paramLang } = useParams<{ lang: string }>();
   const { lang, setLang } = useLang();
 
@@ -86,21 +77,9 @@ function LangGuard() {
     }
   }, [paramLang, lang, setLang]);
 
-  if (!paramLang || !["en", "es", "gl"].includes(paramLang)) {
-    const detected = detectLang();
-    return (
-      <Navigate
-        to={buildLangPath(
-          detected,
-          location.pathname.replace(/^\/(en|es|gl)\/?/, "/") || "/",
-        )}
-        replace
-      />
-    );
-  }
-
   return <Outlet />;
 }
+
 function Footer() {
   const t = useT();
   return (
@@ -135,45 +114,68 @@ function Footer() {
   );
 }
 
-export default function App() {
+function RootLayout() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
-        <SessionTracker />
-        <ScrollToTop />
-        <Header />
-        <main className="flex-grow">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/:lang" element={<LangGuard />}>
-                <Route index element={<Home />} />
-                <Route path=":subjectId" element={<SubjectHome />} />
-                <Route
-                  path=":subjectId/practice"
-                  element={<Navigate to=".." relative="path" replace />}
-                />
-                <Route
-                  path=":subjectId/practice/:topic"
-                  element={<PracticeTopic />}
-                />
-                <Route
-                  path=":subjectId/exam/:year"
-                  element={<ExamSimulation />}
-                />
-              </Route>
-              <Route path="/" element={<LangRedirect />} />
-              <Route path="/:subjectId" element={<LangRedirect />} />
-              <Route path="/:subjectId/practice" element={<LangRedirect />} />
-              <Route
-                path="/:subjectId/practice/:topic"
-                element={<LangRedirect />}
-              />
-              <Route path="/:subjectId/exam/:year" element={<LangRedirect />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
+      <SessionTracker />
+      <ScrollToTop />
+      <Header />
+      <main className="flex-grow">
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
+      </main>
+      <Footer />
+    </div>
   );
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/:lang",
+    loader: ({ params }) => {
+      const { lang } = params;
+      if (!lang || !["en", "es", "gl"].includes(lang)) {
+        return redirect(`/${detectLang()}`);
+      }
+      return null;
+    },
+    Component: LangSync,
+    children: [
+      {
+        Component: RootLayout,
+        children: [
+          { index: true, element: <Home /> },
+          { path: ":subjectId", element: <SubjectHome /> },
+          {
+            path: ":subjectId/practice",
+            loader: ({ params }) =>
+              redirect(`/${params.lang}/${params.subjectId}`),
+          },
+          {
+            path: ":subjectId/practice/:topic",
+            element: <PracticeTopic />,
+          },
+          {
+            path: ":subjectId/exam/:year",
+            element: <ExamSimulation />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "*",
+    loader: ({ request }) => {
+      const url = new URL(request.url);
+      const lang = detectLang();
+      const target =
+        url.pathname === "/" ? `/${lang}` : `/${lang}${url.pathname}`;
+      return redirect(target);
+    },
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
 }
