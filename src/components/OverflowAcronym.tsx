@@ -16,6 +16,9 @@ export default function OverflowAcronym({ name, className }: OverflowAcronymProp
   const [overflowing, setOverflowing] = useState(false);
 
   useLayoutEffect(() => {
+    didOverflow.current = false;
+    setOverflowing(false);
+
     const el = containerRef.current;
     if (!el) return;
 

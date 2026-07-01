@@ -1,4 +1,4 @@
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useMatch, useNavigate } from "react-router-dom";
 import { getSubject } from "../subjects";
 import { useT, useLang } from "../i18n/hooks";
 import type { Lang } from "../i18n/context";
@@ -21,7 +21,8 @@ const langLabel: Record<Lang, string> = {
 export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { subjectId } = useParams<{ subjectId?: string }>();
+  const match = useMatch("/:lang/:subjectId/*");
+  const subjectId = match?.params.subjectId;
   const t = useT();
   const { lang, setLang } = useLang();
   const subject = subjectId ? getSubject(subjectId) : null;

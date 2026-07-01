@@ -45,7 +45,10 @@ function ensureCountLoaded() {
   }
 
   fetchPromise = fetch(`https://api.github.com/repos/${REPO}`)
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
     .then((data: { stargazers_count?: number }) => {
       cachedCount = data.stargazers_count ?? null;
       try {
