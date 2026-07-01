@@ -8,7 +8,6 @@ import ThemeToggle from "../theme/ThemeToggle";
 import { LangLink as Link } from "../lib/lang-link";
 import { replaceLangInPath } from "../lib/lang-link-utils";
 import GitHubStarButton from "./GitHubStarButton";
-import OverflowAcronym from "./OverflowAcronym";
 
 const langCycle: Lang[] = ["en", "es", "gl"];
 
@@ -18,6 +17,11 @@ const langLabel: Record<Lang, string> = {
   gl: "🧜🏻‍♀️ GL",
 };
 
+function acronym(name: string): string {
+  const letters = name.replace(/[^A-Z]/g, "");
+  return letters || name.charAt(0).toUpperCase();
+}
+
 export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,6 +30,15 @@ export default function Header() {
   const t = useT();
   const { lang, setLang } = useLang();
   const subject = subjectId ? getSubject(subjectId) : null;
+
+  const abbr = subject ? acronym(subject.name) : "";
+
+  const subjectLinkClasses = `px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
+    location.pathname === `/${subjectId}` ||
+    location.pathname.startsWith(`/${subjectId}/`)
+      ? "bg-accent-light text-accent-fg"
+      : "text-fg-secondary hover:text-fg"
+  }`;
 
   return (
     <header className="bg-surface-alt border-b border-border sticky top-0 z-50">
@@ -50,25 +63,36 @@ export default function Header() {
         </Link>
         <div className="flex items-center gap-2 sm:gap-3 text-sm">
           {subject && (
-            <Link
-              to={`/${subjectId}`}
-              className={`block max-w-56 truncate px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-                location.pathname === `/${subjectId}` ||
-                location.pathname.startsWith(`/${subjectId}/`)
-                  ? "bg-accent-light text-accent-fg"
-                  : "text-fg-secondary hover:text-fg"
-              }`}
-              onClick={() => {
-                triggerLight();
-                track("nav_click", {
-                  target: "subject_home",
-                  subjectId: subjectId || "",
-                });
-              }}
-              title={subject.name}
-            >
-              <OverflowAcronym name={subject.name} className="block truncate" />
-            </Link>
+            <>
+              <Link
+                to={`/${subjectId}`}
+                className={`md:hidden ${subjectLinkClasses}`}
+                onClick={() => {
+                  triggerLight();
+                  track("nav_click", {
+                    target: "subject_home",
+                    subjectId: subjectId || "",
+                  });
+                }}
+                title={subject.name}
+              >
+                {abbr}
+              </Link>
+              <Link
+                to={`/${subjectId}`}
+                className={`hidden md:block max-w-56 truncate ${subjectLinkClasses}`}
+                onClick={() => {
+                  triggerLight();
+                  track("nav_click", {
+                    target: "subject_home",
+                    subjectId: subjectId || "",
+                  });
+                }}
+                title={subject.name}
+              >
+                {subject.name}
+              </Link>
+            </>
           )}
           <GitHubStarButton />
           <ThemeToggle />
