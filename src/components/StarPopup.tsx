@@ -17,10 +17,21 @@ function shouldShow(): boolean {
       if (daysSince < COOLDOWN_DAYS) return false;
     }
 
-    const visits = Number(localStorage.getItem(STORAGE_KEY_VISITS) || "0");
+    const visits =
+      Number(localStorage.getItem(STORAGE_KEY_VISITS) || "0") + 1;
+    localStorage.setItem(STORAGE_KEY_VISITS, String(visits));
+
     return visits >= MIN_VISITS && Math.random() < SHOW_CHANCE;
   } catch {
     return false;
+  }
+}
+
+function writeDismissed() {
+  try {
+    localStorage.setItem(STORAGE_KEY_DISMISSED, String(Date.now()));
+  } catch {
+    /* unavailable */
   }
 }
 
@@ -46,40 +57,39 @@ export default function StarPopup() {
     openRef.current = shouldShow();
   }
 
-  const dismiss = useCallback(() => {
+  const finish = useCallback((clickedStar: boolean) => {
+    if (!openRef.current) return;
     openRef.current = false;
-    try {
-      localStorage.setItem(STORAGE_KEY_DISMISSED, String(Date.now()));
-    } catch {
-      /* unavailable */
-    }
+    writeDismissed();
     dialogRef.current?.close();
-    track("star_popup_dismiss");
+    track(clickedStar ? "star_popup_click" : "star_popup_dismiss");
   }, []);
+
+  const dismiss = useCallback(() => finish(false), [finish]);
+  const dismissRef = useRef(dismiss);
+  dismissRef.current = dismiss;
 
   useEffect(() => {
     if (!openRef.current) return;
     const dialog = dialogRef.current;
     if (!dialog) return;
 
+    const handleClose = () => dismissRef.current();
     const handleBackdropClick = (e: MouseEvent) => {
-      if (e.target === dialog) dismiss();
+      if (e.target === dialog) dismissRef.current();
     };
 
     dialog.showModal();
+    dialog.addEventListener("close", handleClose);
     dialog.addEventListener("click", handleBackdropClick);
-    return () => dialog.removeEventListener("click", handleBackdropClick);
-  }, [dismiss]);
+    return () => {
+      dialog.removeEventListener("close", handleClose);
+      dialog.removeEventListener("click", handleBackdropClick);
+    };
+  }, []);
 
   function handleStar() {
-    openRef.current = false;
-    try {
-      localStorage.setItem(STORAGE_KEY_DISMISSED, String(Date.now()));
-    } catch {
-      /* unavailable */
-    }
-    dialogRef.current?.close();
-    track("star_popup_click");
+    finish(true);
   }
 
   const repoUrl = "https://github.com/TeenBiscuits/Pasame-Examenes";

@@ -60,7 +60,7 @@ function ensureCountLoaded() {
       notify();
     })
     .catch(() => {
-      /* fetch failed */
+      fetchPromise = null;
     });
 }
 

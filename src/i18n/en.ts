@@ -155,10 +155,10 @@ export const en = {
     },
   },
   starPopup: {
-    title: "¿Nos darías una estrella?",
-    subtitle: "No queremos tu dinero, solo una estrella en GitHub.",
-    starButton: "¡Dame una estrella!",
-    dismiss: "Ahora no",
+    title: "Would you give us a star?",
+    subtitle: "We don't want your money, just a star on GitHub.",
+    starButton: "Give us a star!",
+    dismiss: "Not now",
   },
   seo: {
     siteName: "Pásame Exámenes",

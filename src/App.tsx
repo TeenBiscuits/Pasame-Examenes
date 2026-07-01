@@ -53,20 +53,6 @@ function SessionTracker() {
   return null;
 }
 
-function VisitTracker() {
-  useEffect(() => {
-    try {
-      const key = "star_popup_visits";
-      const current = Number(localStorage.getItem(key) || "0");
-      localStorage.setItem(key, String(current + 1));
-    } catch {
-      /* localStorage unavailable */
-    }
-  }, []);
-
-  return null;
-}
-
 function detectLang(): Lang {
   try {
     const stored = localStorage.getItem("lang");
@@ -155,7 +141,6 @@ export default function App() {
     <BrowserRouter>
       <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
         <SessionTracker />
-        <VisitTracker />
         <ScrollToTop />
         <Header />
         <StarPopup />
