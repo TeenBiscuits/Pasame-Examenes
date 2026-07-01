@@ -50,32 +50,25 @@ export default function Header() {
         </Link>
         <div className="flex items-center gap-2 sm:gap-3 text-sm">
           {subject && (
-            <>
-              <OverflowAcronym
-                name={subject.name}
-                className="hidden sm:block text-xs text-fg-muted truncate max-w-48"
-              />
-              <nav className="flex items-center gap-2 sm:gap-3 text-sm">
-                <Link
-                  to={`/${subjectId}`}
-                  className={`px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-                    location.pathname === `/${subjectId}` ||
-                    location.pathname.startsWith(`/${subjectId}/`)
-                      ? "bg-accent-light text-accent-fg"
-                      : "text-fg-secondary hover:text-fg"
-                  }`}
-                  onClick={() => {
-                    triggerLight();
-                    track("nav_click", {
-                      target: "subject_home",
-                      subjectId: subjectId || "",
-                    });
-                  }}
-                >
-                  {subject.name}
-                </Link>
-              </nav>
-            </>
+            <Link
+              to={`/${subjectId}`}
+              className={`block max-w-48 truncate px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
+                location.pathname === `/${subjectId}` ||
+                location.pathname.startsWith(`/${subjectId}/`)
+                  ? "bg-accent-light text-accent-fg"
+                  : "text-fg-secondary hover:text-fg"
+              }`}
+              onClick={() => {
+                triggerLight();
+                track("nav_click", {
+                  target: "subject_home",
+                  subjectId: subjectId || "",
+                });
+              }}
+              title={subject.name}
+            >
+              <OverflowAcronym name={subject.name} className="block truncate" />
+            </Link>
           )}
           <GitHubStarButton />
           <ThemeToggle />
