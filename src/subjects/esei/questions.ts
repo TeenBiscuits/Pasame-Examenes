@@ -169,17 +169,44 @@ export const questions: Question[] = [
     topic: "t4",
     type: "mc",
     points: 1,
-    question:
-      "Dada la codificación de Manifestaciones (M) e Interpretaciones (I) en razonamiento categórico y las reglas R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(2)→¬M(2)∧M(1), R3: I(1)∨¬I(2)→M(2)∧M(3). Si se da f = M(1)∧¬M(2)∧¬M(3), entonces:",
+    question: `Dada la siguiente codificación de posibles Manifestaciones ($M$) e Interpretaciones ($I$) en un contexto de razonamiento categórico:
+
+    **Tabla de Manifestaciones (M):**
+
+    |**m1**|**m2**|**m3**|**m4**|**m5**|**m6**|**m7**|**m8**|
+    |---|---|---|---|---|---|---|---|---|
+    |**M(1)**|0|0|0|0|1|1|1|1|
+    |**M(2)**|0|0|1|1|0|0|1|1|
+    |**M(3)**|0|1|0|1|0|1|0|1|
+
+    **Tabla de Interpretaciones (I):**
+
+    |**i1**|**i2**|**i3**|**i4**|
+    |---|---|---|---|---|
+    |**I(1)**|0|0|1|1|
+    |**I(2)**|0|1|0|1|
+
+    Y sea el siguiente conjunto de reglas:
+
+    > R1: $M(1) \vee M(2) \vee M(3) \rightarrow I(1) \vee I(2)$
+    >
+    > R2: $I(2) \rightarrow \neg M(2) \wedge M(1)$
+    >
+    > R3: $I(1) \vee \neg I(2) \rightarrow M(2) \wedge M(3)$
+
+    Si en un momento dado se da la ocurrencia $f = M(1) \wedge \neg M(2) \wedge \neg M(3)$, entonces podríamos deducir que:
+    `,
     options: [
-      "a) La interpretación I(1) es falsa.",
-      "b) La interpretación I(1) es verdadera.",
-      "c) La interpretación I(2) es falsa.",
-      "d) Ninguna de las anteriores.",
+      "La interpretación I(1) es falsa.",
+      "La interpretación I(1) es verdadera.",
+      "La interpretación I(2) es falsa.",
+      "Ninguna de las anteriores.",
     ],
     correctAnswer: "a",
-    explanation:
-      "La evidencia f dice M(1)=1, M(2)=0, M(3)=0. En R3, el consecuente M(2)∧M(3) es falso. Por Modus Tollens, el antecedente I(1)∨¬I(2) debe ser falso. Para que una disyunción sea falsa, ambas partes deben serlo: I(1) es falsa y ¬I(2) es falsa (I(2) verdadera). Por tanto I(1) es falsa.",
+    explanation: `Analizamos lógicamente la manifestación entregada. La evidencia $f$ nos dice categóricamente que $M(1)$ es Verdadera ($1$), $M(2)$ es Falsa ($0$), y $M(3)$ es Falsa ($0$).
+    Si evaluamos esto en la **Regla 3** ($I(1) \vee \neg I(2) \rightarrow M(2) \wedge M(3)$), observamos que el consecuente ($M(2) \wedge M(3)$) es forzosamente **Falso** (porque carecemos de ambas manifestaciones).
+    Por las reglas básicas de la implicación lógica (_Modus Tollens_), si el consecuente de una regla es falso, su antecedente no puede ser verdadero. Esto exige que el bloque $(I(1) \vee \neg I(2))$ sea obligatoriamente **Falso**.
+    Para que una disyunción ("O") sea falsa, ambas partes deben ser falsas: por tanto, **$I(1)$ es Falsa** y $\neg I(2)$ es Falsa (lo que significa que $I(2)$ es Verdadera). La deducción lógica ineludible coincide a la perfección con la opción a).`,
   },
   {
     id: "2023_q10",
