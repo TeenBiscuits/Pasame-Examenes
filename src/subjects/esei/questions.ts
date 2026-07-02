@@ -3480,12 +3480,25 @@ export const questions: Question[] = [
     topic: "t4",
     type: "mc",
     points: 1,
-    question:
-      "Sea un dominio con M(1),M(2),M(3) e I(1),I(2). Con R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(2)→¬M(2)∧M(1), R3: I(1)∨¬I(2)→M(2)∧M(3). ¿Cuál de las siguientes combinaciones pertenece a la BLR?",
+    question: `Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:
+
+    - R1: M(1) ∨ M(2) ∨ M(3) ⇒ I(1) ∨ I(2)
+    - R2: I(2) ⇒ ¬M(2) ∧ M(1)
+    - R3: I(1) ∨ ¬I(2) ⇒ M(2) ∧ M(3)
+
+    ¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?`,
     options: ["a) m4 i1", "b) m4 i2", "c) m4 i3", "d) Ninguna es correcta"],
     correctAnswer: "b",
-    explanation:
-      "m4: M(1)=1, M(2)=0, M(3)=0. Para b) m4 i2 (I(1)=0, I(2)=1): R1 se cumple, R2 se cumple (¬M(2)∧M(1)=1), R3 antecedente falso → implicación cierta. Todas las reglas se satisfacen. Para a) y c) se violan R1 o R3 respectivamente.",
+    explanation: `Analizando la manifestación $m_4$, en la tabla dada sus valores son $M(1)=1, M(2)=0, M(3)=0$. Evaluemos cada opción:
+    - **Para a) $m_4 i_1$ (donde $I(1)=0, I(2)=0$):**
+      - R1 establece que si hay manifestaciones activas (las hay porque $M(1)=1$), debe haber al menos una interpretación activa. Al ser ambas 0, **R1 se viola**. No pertenece a la BLR.
+    - **Para b) $m_4 i_2$ (donde $I(1)=0, I(2)=1$):**
+      - R1: Antecedente Verdadero, Consecuente Verdadero ($I(2)=1$). (Se cumple)
+      - R2: Antecedente Verdadero ($I(2)=1$). Consecuente: $\neg M(2) \land M(1) = \neg 0 \land 1 = 1$. (Se cumple)
+      - R3: Antecedente: $I(1) \lor \neg I(2) = 0 \lor \neg 1 = 0$ (Falso). Al ser el antecedente falso, la implicación se cumple automáticamente. (Se cumple)
+      - Todas las reglas se satisfacen, por lo que **pertenece a la BLR**.
+    - **Para c) $m_4 i_3$ (donde $I(1)=1, I(2)=0$):**
+      - R3: Antecedente: $I(1) \lor \neg I(2) = 1 \lor \neg 0 = 1$ (Verdadero). Consecuente: $M(2) \land M(3) = 0 \land 0 = 0$ (Falso). **R3 se viola** ($1 \implies 0$ es falso). No pertenece a la BLR.`,
   },
   {
     id: "2026-06_q8",
