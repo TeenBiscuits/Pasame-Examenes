@@ -160,6 +160,10 @@ export const en = {
     starButton: "Give us a star!",
     dismiss: "Not now",
   },
+  disclaimer: {
+    text: "Questions have been extracted from reference materials through automated processes and may contain errors. In some cases you can review the original material directly from the website. If you find an error, please",
+    reportLink: "Report the question",
+  },
   seo: {
     siteName: "Pásame Exámenes",
     locale: "en_US",
