@@ -169,17 +169,44 @@ export const questions: Question[] = [
     topic: "t4",
     type: "mc",
     points: 1,
-    question:
-      "Dada la codificación de Manifestaciones (M) e Interpretaciones (I) en razonamiento categórico y las reglas R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(2)→¬M(2)∧M(1), R3: I(1)∨¬I(2)→M(2)∧M(3). Si se da f = M(1)∧¬M(2)∧¬M(3), entonces:",
+    question: `Dada la siguiente codificación de posibles Manifestaciones ($M$) e Interpretaciones ($I$) en un contexto de razonamiento categórico:
+
+    **Tabla de Manifestaciones (M):**
+
+    |**m1**|**m2**|**m3**|**m4**|**m5**|**m6**|**m7**|**m8**|
+    |---|---|---|---|---|---|---|---|---|
+    |**M(1)**|0|0|0|0|1|1|1|1|
+    |**M(2)**|0|0|1|1|0|0|1|1|
+    |**M(3)**|0|1|0|1|0|1|0|1|
+
+    **Tabla de Interpretaciones (I):**
+
+    |**i1**|**i2**|**i3**|**i4**|
+    |---|---|---|---|---|
+    |**I(1)**|0|0|1|1|
+    |**I(2)**|0|1|0|1|
+
+    Y sea el siguiente conjunto de reglas:
+
+    > R1: $M(1) \vee M(2) \vee M(3) \rightarrow I(1) \vee I(2)$
+    >
+    > R2: $I(2) \rightarrow \neg M(2) \wedge M(1)$
+    >
+    > R3: $I(1) \vee \neg I(2) \rightarrow M(2) \wedge M(3)$
+
+    Si en un momento dado se da la ocurrencia $f = M(1) \wedge \neg M(2) \wedge \neg M(3)$, entonces podríamos deducir que:
+    `,
     options: [
-      "a) La interpretación I(1) es falsa.",
-      "b) La interpretación I(1) es verdadera.",
-      "c) La interpretación I(2) es falsa.",
-      "d) Ninguna de las anteriores.",
+      "La interpretación I(1) es falsa.",
+      "La interpretación I(1) es verdadera.",
+      "La interpretación I(2) es falsa.",
+      "Ninguna de las anteriores.",
     ],
     correctAnswer: "a",
-    explanation:
-      "La evidencia f dice M(1)=1, M(2)=0, M(3)=0. En R3, el consecuente M(2)∧M(3) es falso. Por Modus Tollens, el antecedente I(1)∨¬I(2) debe ser falso. Para que una disyunción sea falsa, ambas partes deben serlo: I(1) es falsa y ¬I(2) es falsa (I(2) verdadera). Por tanto I(1) es falsa.",
+    explanation: `Analizamos lógicamente la manifestación entregada. La evidencia $f$ nos dice categóricamente que $M(1)$ es Verdadera ($1$), $M(2)$ es Falsa ($0$), y $M(3)$ es Falsa ($0$).
+    Si evaluamos esto en la **Regla 3** ($I(1) \vee \neg I(2) \rightarrow M(2) \wedge M(3)$), observamos que el consecuente ($M(2) \wedge M(3)$) es forzosamente **Falso** (porque carecemos de ambas manifestaciones).
+    Por las reglas básicas de la implicación lógica (_Modus Tollens_), si el consecuente de una regla es falso, su antecedente no puede ser verdadero. Esto exige que el bloque $(I(1) \vee \neg I(2))$ sea obligatoriamente **Falso**.
+    Para que una disyunción ("O") sea falsa, ambas partes deben ser falsas: por tanto, **$I(1)$ es Falsa** y $\neg I(2)$ es Falsa (lo que significa que $I(2)$ es Verdadera). La deducción lógica ineludible coincide a la perfección con la opción a).`,
   },
   {
     id: "2023_q10",
@@ -1692,9 +1719,9 @@ export const questions: Question[] = [
       "c) A → B → D → H → L → M",
       "d) A* no encuentra la solución",
     ],
-    correctAnswer: "b",
+    correctAnswer: "c",
     explanation:
-      "Traza A*: 1) A: B(f=6), C(f=4). 2) Expande C: F(f=8), G(f=10). 3) Frontera: B(6), F(8), G(10). Expande B: D(9), E(11). 4) Frontera: F(8), D(9), G(10), E(11). Expande F: I(f=7), J(f=5). 5) Frontera: J(5), I(7)... Expande J → K(f=4). Camino: A→C→F→J→K.",
+      "La respuesta correcta es la c, A → B → D → H → L → M, ya que al seguir el camino de la respuesta actual veria que no es solucion asi que volveria mirar la frontera y expandiria D, despues expandiria I pero como tampoco es solucion expandiria H y asi pues hasta el final",
   },
   {
     id: "2025-05_q2",
@@ -3453,12 +3480,25 @@ export const questions: Question[] = [
     topic: "t4",
     type: "mc",
     points: 1,
-    question:
-      "Sea un dominio con M(1),M(2),M(3) e I(1),I(2). Con R1: M(1)∨M(2)∨M(3)→I(1)∨I(2), R2: I(2)→¬M(2)∧M(1), R3: I(1)∨¬I(2)→M(2)∧M(3). ¿Cuál de las siguientes combinaciones pertenece a la BLR?",
+    question: `Sea un dominio con tres manifestaciones posibles $\{M(1), M(2), M(3)\}$ y dos interpretaciones posibles $\{I(1), I(2)\}$. Desde una perspectiva categórica, y dadas las reglas del dominio:
+
+    - R1: M(1) ∨ M(2) ∨ M(3) ⇒ I(1) ∨ I(2)
+    - R2: I(2) ⇒ ¬M(2) ∧ M(1)
+    - R3: I(1) ∨ ¬I(2) ⇒ M(2) ∧ M(3)
+
+    ¿Cuál de las siguientes combinaciones pertenece a la Base Lógica Reducida?`,
     options: ["a) m4 i1", "b) m4 i2", "c) m4 i3", "d) Ninguna es correcta"],
     correctAnswer: "b",
-    explanation:
-      "m4: M(1)=1, M(2)=0, M(3)=0. Para b) m4 i2 (I(1)=0, I(2)=1): R1 se cumple, R2 se cumple (¬M(2)∧M(1)=1), R3 antecedente falso → implicación cierta. Todas las reglas se satisfacen. Para a) y c) se violan R1 o R3 respectivamente.",
+    explanation: `Analizando la manifestación $m_4$, en la tabla dada sus valores son $M(1)=1, M(2)=0, M(3)=0$. Evaluemos cada opción:
+    - **Para a) $m_4 i_1$ (donde $I(1)=0, I(2)=0$):**
+      - R1 establece que si hay manifestaciones activas (las hay porque $M(1)=1$), debe haber al menos una interpretación activa. Al ser ambas 0, **R1 se viola**. No pertenece a la BLR.
+    - **Para b) $m_4 i_2$ (donde $I(1)=0, I(2)=1$):**
+      - R1: Antecedente Verdadero, Consecuente Verdadero ($I(2)=1$). (Se cumple)
+      - R2: Antecedente Verdadero ($I(2)=1$). Consecuente: $\neg M(2) \land M(1) = \neg 0 \land 1 = 1$. (Se cumple)
+      - R3: Antecedente: $I(1) \lor \neg I(2) = 0 \lor \neg 1 = 0$ (Falso). Al ser el antecedente falso, la implicación se cumple automáticamente. (Se cumple)
+      - Todas las reglas se satisfacen, por lo que **pertenece a la BLR**.
+    - **Para c) $m_4 i_3$ (donde $I(1)=1, I(2)=0$):**
+      - R3: Antecedente: $I(1) \lor \neg I(2) = 1 \lor \neg 0 = 1$ (Verdadero). Consecuente: $M(2) \land M(3) = 0 \land 0 = 0$ (Falso). **R3 se viola** ($1 \implies 0$ es falso). No pertenece a la BLR.`,
   },
   {
     id: "2026-06_q8",
