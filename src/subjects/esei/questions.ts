@@ -1692,9 +1692,9 @@ export const questions: Question[] = [
       "c) A → B → D → H → L → M",
       "d) A* no encuentra la solución",
     ],
-    correctAnswer: "b",
+    correctAnswer: "c",
     explanation:
-      "Traza A*: 1) A: B(f=6), C(f=4). 2) Expande C: F(f=8), G(f=10). 3) Frontera: B(6), F(8), G(10). Expande B: D(9), E(11). 4) Frontera: F(8), D(9), G(10), E(11). Expande F: I(f=7), J(f=5). 5) Frontera: J(5), I(7)... Expande J → K(f=4). Camino: A→C→F→J→K.",
+      "La respuesta correcta es la c, A → B → D → H → L → M, ya que al seguir el camino de la respuesta actual veria que no es solucion asi que volveria mirar la frontera y expandiria D, despues expandiria I pero como tampoco es solucion expandiria H y asi pues hasta el final",
   },
   {
     id: "2025-05_q2",
