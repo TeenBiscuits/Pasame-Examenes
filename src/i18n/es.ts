@@ -162,6 +162,10 @@ export const es: Translations = {
     starButton: "¡Dame una estrella!",
     dismiss: "Ahora no",
   },
+  disclaimer: {
+    text: "Las preguntas han sido extraídas de los materiales de referencia por procesos automatizados y podrían contener errores. En algunos casos puede revisar el material original directamente desde la web. Si encuentra algún error no dude en",
+    reportLink: "Reportar la pregunta",
+  },
   seo: {
     siteName: "Pásame Exámenes",
     locale: "es_ES",
