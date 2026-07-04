@@ -161,6 +161,11 @@ export const gl: Translations = {
     starButton: "Dame unha estrela!",
     dismiss: "Agora non",
   },
+  disclaimer: {
+    text: "As preguntas foron extraídas dos materiais de referencia por procesos automatizados e poderían conter erros. Se atopa algún erro non dubide en",
+    reportLink: "Reportar a pregunta",
+    postLinkText: ". Nalgúns casos pode revisar o material orixinal directamente desde a web.",
+  },
   seo: {
     siteName: "Pásame Exámenes",
     locale: "gl_ES",

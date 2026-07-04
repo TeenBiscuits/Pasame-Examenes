@@ -10,6 +10,7 @@ import {
 import type { Question } from "../data/types";
 import QuestionCard from "../components/QuestionCard";
 import QuestionNavChips from "../components/QuestionNavChips";
+import Disclaimer from "../components/Disclaimer";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
@@ -307,6 +308,8 @@ function PracticePlayer({
           </span>
         </button>
       </div>
+
+      <Disclaimer subjectId={subject.id} questionId={currentQuestion.id} questionType={currentQuestion.type} />
     </div>
   );
 }
