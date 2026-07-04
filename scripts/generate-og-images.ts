@@ -96,9 +96,9 @@ async function generateOgImage(
 
   ctx.textBaseline = "top";
 
-  ctx.font = `400 149px "Noto Color Emoji", sans-serif`;
+  ctx.font = `400 180px "Noto Color Emoji", sans-serif`;
   ctx.fillStyle = TEXT_PRIMARY;
-  ctx.fillText(icon, 71, 103);
+  ctx.fillText(icon, 71, 45);
 
   let titleFontSize = 109;
   const maxTitleWidth = 1057;
@@ -111,17 +111,17 @@ async function generateOgImage(
   ctx.textAlign = "left";
   const titleWidth = ctx.measureText(title).width;
   const titleX = Math.max((W - titleWidth) / 2, 71);
-  ctx.fillText(title, titleX, 265);
+  ctx.fillText(title, titleX, 290);
 
   ctx.font = `400 37px Inter`;
   ctx.fillStyle = TEXT_SECONDARY;
   ctx.textAlign = "left";
   const stats = `${questionCount} preguntas · ${topicCount} temas · ${examCount} exámenes`;
-  ctx.fillText(stats, 71, 412);
+  ctx.fillText(stats, 71, 437);
 
   ctx.textAlign = "center";
   const btnX = 827;
-  const btnY = 412;
+  const btnY = 437;
   const btnW = 299;
   const btnH = 84;
   roundedRectPath(ctx, btnX, btnY, btnW, btnH, 12);
