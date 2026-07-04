@@ -17,8 +17,7 @@ function shouldShow(): boolean {
       if (daysSince < COOLDOWN_DAYS) return false;
     }
 
-    const visits =
-      Number(localStorage.getItem(STORAGE_KEY_VISITS) || "0") + 1;
+    const visits = Number(localStorage.getItem(STORAGE_KEY_VISITS) || "0") + 1;
     localStorage.setItem(STORAGE_KEY_VISITS, String(visits));
 
     return visits >= MIN_VISITS && Math.random() < SHOW_CHANCE;
@@ -113,9 +112,7 @@ export default function StarPopup() {
         >
           {t.starPopup.title}
         </h2>
-        <p className="text-sm text-fg-secondary mb-6">
-          {t.starPopup.subtitle}
-        </p>
+        <p className="text-sm text-fg-secondary mb-6">{t.starPopup.subtitle}</p>
 
         <div className="flex flex-col gap-2">
           <a

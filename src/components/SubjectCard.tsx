@@ -31,7 +31,10 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       className="block p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
       onClick={() => {
         triggerLight();
-        track("subject_card_click", { subjectId: subject.id, location: "grid" });
+        track("subject_card_click", {
+          subjectId: subject.id,
+          location: "grid",
+        });
         recordSubjectClick(subject.id);
       }}
     >

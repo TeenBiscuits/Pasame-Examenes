@@ -14,9 +14,10 @@ const metaModules = import.meta.glob<MetaModule>(
   ["./*/meta.ts", "!./_template/meta.ts"],
   { eager: true },
 );
-const questionsModules = import.meta.glob<QuestionsModule>(
-  ["./*/questions.ts", "!./_template/questions.ts"],
-);
+const questionsModules = import.meta.glob<QuestionsModule>([
+  "./*/questions.ts",
+  "!./_template/questions.ts",
+]);
 
 export const subjects: SubjectMeta[] = [];
 for (const m of Object.values(metaModules)) {
