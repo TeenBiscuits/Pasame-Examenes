@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && vite build",
+    "build": "tsc -b && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier . --write",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@napi-rs/canvas": "^1.0.1",
     "@tailwindcss/vite": "^4.3.0",
     "@types/node": "^24",
     "@types/react": "^19.2.14",
