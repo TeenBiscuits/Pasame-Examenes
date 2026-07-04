@@ -18,17 +18,52 @@ interface SubjectMeta {
   courseCode: string;
 }
 
-function replaceMeta(html: string, id: string, content: string): string {
+interface Translations {
+  seo: {
+    siteName: string;
+    locale: string;
+    homeDescription: string;
+    defaultDescription: string;
+  };
+  subjectHome: {
+    description: string;
+  };
+}
+
+const LANGS = { en: "en_US", es: "es_ES", gl: "gl_ES" } as const;
+type Lang = keyof typeof LANGS;
+
+function htmlEscape(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function replaceMetaContent(html: string, id: string, content: string): string {
   const regex = new RegExp(
     `<meta\\s+id="${id}"[^>]*?content="[^"]*"[^>]*?/?>`,
     "g",
   );
   return html.replace(regex, (match) =>
-    match.replace(/\bcontent="[^"]*"/, `content="${content}"`),
+    match.replace(/\bcontent="[^"]*"/, `content="${htmlEscape(content)}"`),
   );
 }
 
-function main() {
+function buildSubjectDescription(
+  t: Translations,
+  meta: SubjectMeta,
+): string {
+  const desc = t.subjectHome.description
+    .replace("{count}", String(meta.questionCount))
+    .replace("{repeated}", "")
+    .replace("{exams}", String(meta.examCount))
+    .replace(/`/g, "");
+  return `${meta.name} (${meta.courseCode}) \u2014 ${desc} \u2014 ${meta.university}`;
+}
+
+async function main() {
   if (!existsSync(indexHtmlPath)) {
     console.error("dist/index.html not found — run vite build first");
     process.exit(1);
@@ -43,7 +78,12 @@ function main() {
     process.exit(1);
   }
 
-  mkdirSync(outDir, { recursive: true });
+  const i18nDir = resolve(root, "src", "i18n");
+  const translations: Record<Lang, Translations> = {
+    en: ((await import(resolve(i18nDir, "en.ts"))) as { en: Translations }).en,
+    es: ((await import(resolve(i18nDir, "es.ts"))) as { es: Translations }).es,
+    gl: ((await import(resolve(i18nDir, "gl.ts"))) as { gl: Translations }).gl,
+  };
 
   const baseHtml = readFileSync(indexHtmlPath, "utf-8");
 
@@ -58,49 +98,81 @@ function main() {
 
   let generated = 0;
 
-  for (const subjectId of knownIds) {
-    const meta = subjectsMeta[subjectId];
-    if (!meta) continue;
+  for (const lang of Object.keys(LANGS) as Lang[]) {
+    const t = translations[lang];
+    const locale = LANGS[lang];
 
-    const ogImagePath = `/og/${subjectId}.png`;
-    const title = `${meta.name} \u2014 Pasame Ex\u00e1menes`;
-    const description = `${meta.name} (${meta.courseCode}): ${meta.questionCount} preguntas en ${meta.topicCount} temas con ${meta.examCount} ex\u00e1menes \u2014 ${meta.university}`;
-    const ogUrl = `https://pe.pablopl.dev/es/${subjectId}`;
+    mkdirSync(resolve(outDir, lang), { recursive: true });
 
-    let html = baseHtml;
+    for (const subjectId of knownIds) {
+      const meta = subjectsMeta[subjectId];
+      if (!meta) continue;
 
-    html = html.replace(
+      const imagePath = `/og/${subjectId}.png`;
+      const title = `${meta.name} \u2014 Pasame Ex\u00e1menes`;
+      const description = buildSubjectDescription(t, meta);
+      const ogUrl = `https://pe.pablopl.dev/${lang}/${subjectId}`;
+
+      let html = baseHtml;
+
+      html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
+
+      html = html.replace(
+        /<meta id="og:image".*?\/?>/g,
+        `<meta id="og:image" property="og:image" content="${imagePath}" />`,
+      );
+      html = html.replace(
+        /<meta id="og:image:type".*?\/?>/g,
+        `<meta id="og:image:type" property="og:image:type" content="image/png" />`,
+      );
+      html = html.replace(
+        /<meta id="twitter:image".*?\/?>/g,
+        `<meta id="twitter:image" name="twitter:image" content="${imagePath}" />`,
+      );
+
+      html = replaceMetaContent(html, "og:title", title);
+      html = replaceMetaContent(html, "og:description", description);
+      html = replaceMetaContent(html, "og:url", ogUrl);
+      html = replaceMetaContent(html, "og:locale", locale);
+      html = replaceMetaContent(html, "twitter:title", title);
+      html = replaceMetaContent(html, "twitter:description", description);
+      html = replaceMetaContent(html, "meta-description", description);
+
+      const outPath = resolve(outDir, lang, `${subjectId}.html`);
+      writeFileSync(outPath, html);
+      generated++;
+    }
+
+    const homeTitle = "Pásame Exámenes";
+    const homeDescription = t.seo.homeDescription;
+    const homeMetaDesc = t.seo.defaultDescription;
+    const homeUrl = `https://pe.pablopl.dev/${lang}`;
+
+    let homeHtml = baseHtml;
+
+    homeHtml = homeHtml.replace(
       /<title>.*?<\/title>/,
-      `<title>${title}</title>`,
+      `<title>${homeTitle}</title>`,
     );
 
-    html = html.replace(
-      /<meta id="og:image".*?\/?>/g,
-      `<meta id="og:image" property="og:image" content="${ogImagePath}" />`,
-    );
-    html = html.replace(
-      /<meta id="og:image:type".*?\/?>/g,
-      `<meta id="og:image:type" property="og:image:type" content="image/png" />`,
-    );
-    html = html.replace(
-      /<meta id="twitter:image".*?\/?>/g,
-      `<meta id="twitter:image" name="twitter:image" content="${ogImagePath}" />`,
-    );
+    homeHtml = replaceMetaContent(homeHtml, "og:title", homeTitle);
+    homeHtml = replaceMetaContent(homeHtml, "og:description", homeDescription);
+    homeHtml = replaceMetaContent(homeHtml, "og:url", homeUrl);
+    homeHtml = replaceMetaContent(homeHtml, "og:locale", locale);
+    homeHtml = replaceMetaContent(homeHtml, "twitter:title", homeTitle);
+    homeHtml = replaceMetaContent(homeHtml, "twitter:description", homeDescription);
+    homeHtml = replaceMetaContent(homeHtml, "meta-description", homeMetaDesc);
 
-    html = replaceMeta(html, "og:title", title);
-    html = replaceMeta(html, "og:description", description);
-    html = replaceMeta(html, "og:url", ogUrl);
-    html = replaceMeta(html, "twitter:title", title);
-    html = replaceMeta(html, "twitter:description", description);
-    html = replaceMeta(html, "meta-description", description);
-
-    const outPath = resolve(outDir, `${subjectId}.html`);
-    writeFileSync(outPath, html);
-    console.log(`  ✓ ${subjectId}.html (${meta.name})`);
+    const homePath = resolve(outDir, lang, "home.html");
+    writeFileSync(homePath, homeHtml);
     generated++;
+    console.log(`  ✓ ${lang}/home.html`);
   }
 
-  console.log(`\nGenerated ${generated} subject pages → ${outDir}`);
+  console.log(`\nGenerated ${generated} subject+home pages → ${outDir}`);
 }
 
-main();
+main().catch((err) => {
+  console.error("Failed to generate subject pages:", err);
+  process.exit(1);
+});

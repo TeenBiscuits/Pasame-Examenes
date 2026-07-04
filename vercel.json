@@ -1,9 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/:lang/:subjectId", "destination": "/og-pages/:subjectId.html" },
-    { "source": "/:lang/:subjectId/practice/:topic", "destination": "/og-pages/:subjectId.html" },
-    { "source": "/:lang/:subjectId/exam/:year", "destination": "/og-pages/:subjectId.html" },
+    { "source": "/:lang", "destination": "/og-pages/:lang/home.html" },
+    { "source": "/:lang/:subjectId", "destination": "/og-pages/:lang/:subjectId.html" },
+    { "source": "/:lang/:subjectId/practice/:topic", "destination": "/og-pages/:lang/:subjectId.html" },
+    { "source": "/:lang/:subjectId/exam/:year", "destination": "/og-pages/:lang/:subjectId.html" },
     { "source": "/en/(.*)", "destination": "/index.html" },
     { "source": "/es/(.*)", "destination": "/index.html" },
     { "source": "/gl/(.*)", "destination": "/index.html" },
