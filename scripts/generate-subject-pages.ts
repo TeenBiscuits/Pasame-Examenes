@@ -115,7 +115,7 @@ async function main() {
 
       let html = baseHtml;
 
-      html = html.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
+      html = html.replace(/<title>.*?<\/title>/, `<title>${htmlEscape(title)}</title>`);
 
       html = html.replace(
         /<meta id="og:image".*?\/?>/g,
@@ -152,7 +152,7 @@ async function main() {
 
     homeHtml = homeHtml.replace(
       /<title>.*?<\/title>/,
-      `<title>${homeTitle}</title>`,
+      `<title>${htmlEscape(homeTitle)}</title>`,
     );
 
     homeHtml = replaceMetaContent(homeHtml, "og:title", homeTitle);
