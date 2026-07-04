@@ -309,7 +309,7 @@ function PracticePlayer({
         </button>
       </div>
 
-      <Disclaimer subjectId={subject.id} />
+      <Disclaimer subjectId={subject.id} questionId={currentQuestion.id} questionType={currentQuestion.type} />
     </div>
   );
 }

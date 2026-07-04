@@ -2,23 +2,39 @@ import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 
-function buildDisclaimerReportUrl(subjectId: string): string {
+import type { QuestionType } from "../data/types";
+import { getQuestionTypeLabel } from "./QuestionCard";
+
+function buildDisclaimerReportUrl(
+  subjectId: string,
+  questionId: string,
+  questionType: QuestionType,
+): string {
   const base = "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new";
   const params = new URLSearchParams();
   params.set("template", "report-question.yml");
   params.set("subject", subjectId);
-  params.set("question-id", "");
+  params.set("question-id", questionId);
+  params.set("question-type", getQuestionTypeLabel(questionType));
   return `${base}?${params.toString()}`;
 }
 
-export default function Disclaimer({ subjectId }: { subjectId: string }) {
+export default function Disclaimer({
+  subjectId,
+  questionId,
+  questionType,
+}: {
+  subjectId: string;
+  questionId: string;
+  questionType: QuestionType;
+}) {
   const t = useT();
   return (
     <div className="mt-8 pt-6 border-t border-border">
       <p className="text-xs text-fg-muted leading-relaxed">
         {t.disclaimer.text}{" "}
         <a
-          href={buildDisclaimerReportUrl(subjectId)}
+          href={buildDisclaimerReportUrl(subjectId, questionId, questionType)}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-xs text-fg-muted hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded"
