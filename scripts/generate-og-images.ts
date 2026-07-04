@@ -156,6 +156,7 @@ async function main() {
   );
 
   let generated = 0;
+  const failures: string[] = [];
 
   for (const dir of subjectDirs) {
     const subjectId = dir.name;
@@ -191,13 +192,19 @@ async function main() {
       console.log(`  ✓ ${subjectId}.png (${meta.name})`);
       generated++;
     } catch (err) {
-      console.warn(
-        `  ✗ ${subjectId}: ${err instanceof Error ? err.message : String(err)}`,
-      );
+      const msg = `${subjectId}: ${err instanceof Error ? err.message : String(err)}`;
+      console.error(`  ✗ ${msg}`);
+      failures.push(msg);
     }
   }
 
   console.log(`\nGenerated ${generated} OG images → ${ogOutputDir}`);
+
+  if (failures.length > 0) {
+    throw new Error(
+      `Failed to generate ${failures.length} OG image(s):\n  - ${failures.join("\n  - ")}`,
+    );
+  }
 }
 
 main().catch((err) => {
