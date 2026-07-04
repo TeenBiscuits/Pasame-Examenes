@@ -18,6 +18,16 @@ interface SubjectMeta {
   courseCode: string;
 }
 
+function replaceMeta(html: string, id: string, content: string): string {
+  const regex = new RegExp(
+    `<meta\\s+id="${id}"[^>]*?content="[^"]*"[^>]*?/?>`,
+    "g",
+  );
+  return html.replace(regex, (match) =>
+    match.replace(/\bcontent="[^"]*"/, `content="${content}"`),
+  );
+}
+
 function main() {
   if (!existsSync(indexHtmlPath)) {
     console.error("dist/index.html not found — run vite build first");
@@ -37,7 +47,6 @@ function main() {
 
   const baseHtml = readFileSync(indexHtmlPath, "utf-8");
 
-  // Also discover subjects from dist/og/ PNG files (in case JSON is stale)
   const ogDir = resolve(distDir, "og");
   const knownIds = new Set<string>();
   if (existsSync(ogDir)) {
@@ -56,8 +65,14 @@ function main() {
     const ogImagePath = `/og/${subjectId}.png`;
     const title = `${meta.name} \u2014 Pasame Ex\u00e1menes`;
     const description = `${meta.name} (${meta.courseCode}): ${meta.questionCount} preguntas en ${meta.topicCount} temas con ${meta.examCount} ex\u00e1menes \u2014 ${meta.university}`;
+    const ogUrl = `https://pe.pablopl.dev/es/${subjectId}`;
 
     let html = baseHtml;
+
+    html = html.replace(
+      /<title>.*?<\/title>/,
+      `<title>${title}</title>`,
+    );
 
     html = html.replace(
       /<meta id="og:image".*?\/?>/g,
@@ -72,23 +87,12 @@ function main() {
       `<meta id="twitter:image" name="twitter:image" content="${ogImagePath}" />`,
     );
 
-    html = html.replace(
-      /<title>.*?<\/title>/,
-      `<title>${title}</title>`,
-    );
-
-    const ogBlock = [
-      `<meta id="og:title" property="og:title" content="${title}" />`,
-      `<meta id="og:description" property="og:description" content="${description}" />`,
-      `<meta id="twitter:title" name="twitter:title" content="${title}" />`,
-      `<meta id="twitter:description" name="twitter:description" content="${description}" />`,
-      `<meta id="twitter:card" name="twitter:card" content="summary_large_image" />`,
-    ].join("\n    ");
-
-    html = html.replace(
-      '<meta id="og:image:height"',
-      `${ogBlock}\n    <meta id="og:image:height"`,
-    );
+    html = replaceMeta(html, "og:title", title);
+    html = replaceMeta(html, "og:description", description);
+    html = replaceMeta(html, "og:url", ogUrl);
+    html = replaceMeta(html, "twitter:title", title);
+    html = replaceMeta(html, "twitter:description", description);
+    html = replaceMeta(html, "meta-description", description);
 
     const outPath = resolve(outDir, `${subjectId}.html`);
     writeFileSync(outPath, html);
