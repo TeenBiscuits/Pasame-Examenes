@@ -7,6 +7,7 @@ function buildDisclaimerReportUrl(subjectId: string): string {
   const params = new URLSearchParams();
   params.set("template", "report-question.yml");
   params.set("subject", subjectId);
+  params.set("question-id", "");
   return `${base}?${params.toString()}`;
 }
 
@@ -46,6 +47,7 @@ export default function Disclaimer({ subjectId }: { subjectId: string }) {
           </svg>
           {t.disclaimer.reportLink}
         </a>
+        {t.disclaimer.postLinkText}
       </p>
     </div>
   );

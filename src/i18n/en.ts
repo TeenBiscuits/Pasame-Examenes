@@ -161,8 +161,9 @@ export const en = {
     dismiss: "Not now",
   },
   disclaimer: {
-    text: "Questions have been extracted from reference materials through automated processes and may contain errors. In some cases you can review the original material directly from the website. If you find an error, please",
+    text: "Questions have been extracted from reference materials through automated processes and may contain errors. If you find an error, please",
     reportLink: "Report the question",
+    postLinkText: ". In some cases you can review the original material directly from the website.",
   },
   seo: {
     siteName: "Pásame Exámenes",

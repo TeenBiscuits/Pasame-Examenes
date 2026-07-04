@@ -162,8 +162,9 @@ export const gl: Translations = {
     dismiss: "Agora non",
   },
   disclaimer: {
-    text: "As preguntas foron extraídas dos materiais de referencia por procesos automatizados e poderían conter erros. Nalgúns casos pode revisar o material orixinal directamente desde a web. Se atopa algún erro non dubide en",
+    text: "As preguntas foron extraídas dos materiais de referencia por procesos automatizados e poderían conter erros. Se atopa algún erro non dubide en",
     reportLink: "Reportar a pregunta",
+    postLinkText: ". Nalgúns casos pode revisar o material orixinal directamente desde a web.",
   },
   seo: {
     siteName: "Pásame Exámenes",
