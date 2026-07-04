@@ -25,6 +25,7 @@ dist-ssr
 
 # Project Ignores
 public/sitemap.xml
+public/subjects-meta.json
 public/og
 
 # Env
