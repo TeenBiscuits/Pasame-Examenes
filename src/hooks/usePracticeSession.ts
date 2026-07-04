@@ -160,7 +160,7 @@ export function usePracticeSession(
     [subjectId, topic, questions, state.answers, state.selfGrades],
   );
 
-const handleCheckQuestion = useCallback(
+  const handleCheckQuestion = useCallback(
     (questionId: string) => {
       track("practice_check_question", { subjectId, topic, questionId });
       dispatch({ type: "CHECK_QUESTION", questionId });

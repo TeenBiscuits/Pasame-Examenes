@@ -49,6 +49,7 @@ export default function SubjectHome() {
     title: subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
     description: seoDescription,
     pathWithoutLang: subject ? `/${subject.id}` : "/",
+    ogImage: subject ? `/og/${subject.id}.png` : undefined,
   });
 
   if (!subject) {

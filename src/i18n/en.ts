@@ -130,28 +130,38 @@ export const en = {
     previous: "Previous",
     done: "Done",
     reportIssueTitle: "Report Issue",
-    reportIssueDesc: "Found a mistake in a question? Click the report button to open a GitHub issue and help improve the content.",
+    reportIssueDesc:
+      "Found a mistake in a question? Click the report button to open a GitHub issue and help improve the content.",
     practice: {
       step1Title: "Topic Practice",
-      step1Desc: "You're now practicing questions by topic. Use the back link to return to the subject page anytime.",
+      step1Desc:
+        "You're now practicing questions by topic. Use the back link to return to the subject page anytime.",
       step2Title: "Question Navigator",
-      step2Desc: "These numbered buttons let you jump between questions. Answered ones are highlighted, and the current one is highlighted with the accent color.",
+      step2Desc:
+        "These numbered buttons let you jump between questions. Answered ones are highlighted, and the current one is highlighted with the accent color.",
       step3Title: "Answer Questions",
-      step3Desc: "Click an option for multiple-choice, type your answer for text questions, or select matching letters for matching questions.",
+      step3Desc:
+        "Click an option for multiple-choice, type your answer for text questions, or select matching letters for matching questions.",
       step4Title: "Check & Submit",
-      step4Desc: "Use 'Check' to verify a single question, 'Clear' to erase your answer, or 'Submit & Show Answers' to see all solutions at once.",
+      step4Desc:
+        "Use 'Check' to verify a single question, 'Clear' to erase your answer, or 'Submit & Show Answers' to see all solutions at once.",
       step5Title: "Navigate",
-      step5Desc: "Use the Previous / Next buttons or your keyboard arrow keys (← →) to move between questions.",
+      step5Desc:
+        "Use the Previous / Next buttons or your keyboard arrow keys (← →) to move between questions.",
     },
     exam: {
       step1Title: "Exam Simulation",
-      step1Desc: "This simulates the real exam format. The timer is counting down, so manage your time wisely! The pass threshold is shown here.",
+      step1Desc:
+        "This simulates the real exam format. The timer is counting down, so manage your time wisely! The pass threshold is shown here.",
       step2Title: "Question Navigator",
-      step2Desc: "Click numbered buttons to jump between questions. Answered questions are highlighted so you can track your progress.",
+      step2Desc:
+        "Click numbered buttons to jump between questions. Answered questions are highlighted so you can track your progress.",
       step3Title: "Answer Questions",
-      step3Desc: "Answer each question. For open-ended text questions, you'll self-grade your answer against the model solution after submission.",
+      step3Desc:
+        "Answer each question. For open-ended text questions, you'll self-grade your answer against the model solution after submission.",
       step4Title: "Submit Exam",
-      step4Desc: "When you're done, click 'Submit Exam' to see your score and model solutions. You won't be able to change answers after submitting.",
+      step4Desc:
+        "When you're done, click 'Submit Exam' to see your score and model solutions. You won't be able to change answers after submitting.",
     },
   },
   starPopup: {
@@ -163,7 +173,8 @@ export const en = {
   disclaimer: {
     text: "Questions have been extracted from reference materials through automated processes and may contain errors. If you find an error, please",
     reportLink: "Report the question",
-    postLinkText: ". In some cases you can review the original material directly from the website.",
+    postLinkText:
+      ". In some cases you can review the original material directly from the website.",
   },
   seo: {
     siteName: "Pásame Exámenes",

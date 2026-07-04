@@ -63,12 +63,14 @@ export interface SeoPageMeta {
   title: string;
   description: string;
   pathWithoutLang: string;
+  ogImage?: string;
 }
 
 export function useSeoHead({
   title,
   description,
   pathWithoutLang,
+  ogImage,
 }: SeoPageMeta) {
   const t = useT();
   const { lang } = useLang();
@@ -80,7 +82,26 @@ export function useSeoHead({
     const canonicalPath = buildCanonicalPath(lang, pathWithoutLang);
     const canonicalUrl = `${BASE_URL}${canonicalPath}`;
 
+    const imageUrl = ogImage || "/og.jpg";
+    const imageType = imageUrl.endsWith(".png") ? "image/png" : "image/jpeg";
+    const ogImageOps = [
+      {
+        id: "og:image",
+        content: `${BASE_URL}${imageUrl}`,
+        attr: "property" as const,
+      },
+      { id: "og:image:type", content: imageType, attr: "property" as const },
+      { id: "og:image:width", content: "1200", attr: "property" as const },
+      { id: "og:image:height", content: "630", attr: "property" as const },
+      {
+        id: "twitter:image",
+        content: `${BASE_URL}${imageUrl}`,
+        attr: "name" as const,
+      },
+    ];
+
     const metaOps = [
+      ...ogImageOps,
       { id: "meta-description", content: description, attr: "name" as const },
       { id: "og:title", content: title, attr: "property" as const },
       { id: "og:description", content: description, attr: "property" as const },
@@ -121,5 +142,13 @@ export function useSeoHead({
     for (const op of linkOps) {
       setLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
     }
-  }, [title, description, pathWithoutLang, lang, meta, t.seo.siteName]);
+  }, [
+    title,
+    description,
+    pathWithoutLang,
+    lang,
+    meta,
+    t.seo.siteName,
+    ogImage,
+  ]);
 }
