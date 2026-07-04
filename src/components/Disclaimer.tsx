@@ -3,7 +3,15 @@ import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 
 import type { QuestionType } from "../data/types";
-import { getQuestionTypeLabel } from "./QuestionCard";
+
+function getQuestionTypeLabel(type: QuestionType): string {
+  const map: Record<QuestionType, string> = {
+    mc: "Multiple Choice (mc)",
+    text: "Open Text (text)",
+    matching: "Matching (matching)",
+  };
+  return map[type];
+}
 
 function buildDisclaimerReportUrl(
   subjectId: string,

@@ -74,7 +74,7 @@ interface QuestionCardProps {
   direction?: "next" | "prev";
 }
 
-export function getQuestionTypeLabel(type: QuestionType): string {
+function getQuestionTypeLabel(type: QuestionType): string {
   const map: Record<QuestionType, string> = {
     mc: "Multiple Choice (mc)",
     text: "Open Text (text)",
