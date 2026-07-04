@@ -22,7 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Project Ignores
 public/sitemap.xml
+public/og
 
 # Env
 .env
