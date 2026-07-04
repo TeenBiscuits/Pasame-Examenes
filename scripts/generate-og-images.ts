@@ -28,31 +28,10 @@ const BUTTON_TEXT = "#FFFFFF";
 GlobalFonts.registerFromPath(resolve(fontsDir, "inter-regular.ttf"), "Inter");
 GlobalFonts.registerFromPath(resolve(fontsDir, "inter-bold.ttf"), "Inter");
 GlobalFonts.registerFromPath(resolve(fontsDir, "inter-extrabold.ttf"), "Inter");
-GlobalFonts.loadSystemFonts();
-
-const emojiCache = new Map<string, Buffer | null>();
-
-async function fetchEmojiSvg(emoji: string): Promise<Buffer | null> {
-  if (emojiCache.has(emoji)) return emojiCache.get(emoji) ?? null;
-  const codepoint = [...emoji]
-    .map((c) => c.codePointAt(0)!.toString(16))
-    .join("-");
-  try {
-    const url = `https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/svg/${codepoint}.svg`;
-    const res = await fetch(url);
-    if (!res.ok) {
-      emojiCache.set(emoji, null);
-      return null;
-    }
-    const svgText = await res.text();
-    const buf = Buffer.from(svgText);
-    emojiCache.set(emoji, buf);
-    return buf;
-  } catch {
-    emojiCache.set(emoji, null);
-    return null;
-  }
-}
+GlobalFonts.registerFromPath(
+  resolve(fontsDir, "NotoColorEmoji-Regular.ttf"),
+  "Noto Color Emoji",
+);
 
 function countQuestions(questionsPath: string): number {
   try {
@@ -115,17 +94,11 @@ async function generateOgImage(
   const favicon = await loadImage(faviconSvg);
   ctx.drawImage(favicon, 1013, 45, 115, 115);
 
-  const emojiSvg = await fetchEmojiSvg(icon);
-  if (emojiSvg) {
-    const emojiImg = await loadImage(emojiSvg);
-    ctx.drawImage(emojiImg, 71, 103, 149, 149);
-  } else {
-    ctx.font = `400 149px sans-serif`;
-    ctx.fillStyle = TEXT_PRIMARY;
-    ctx.fillText(icon, 71, 103);
-  }
-
   ctx.textBaseline = "top";
+
+  ctx.font = `400 149px "Noto Color Emoji", sans-serif`;
+  ctx.fillStyle = TEXT_PRIMARY;
+  ctx.fillText(icon, 71, 103);
 
   let titleFontSize = 109;
   const maxTitleWidth = 1057;
