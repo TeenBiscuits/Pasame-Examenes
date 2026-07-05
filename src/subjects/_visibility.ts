@@ -19,6 +19,8 @@ import { meta as eseoMeta } from "./eseo/meta";
 import { questions as eseoQuestions } from "./eseo/questions";
 import { meta as iesedeMeta } from "./iesede/meta";
 import { questions as iesedeQuestions } from "./iesede/questions";
+import { meta as peeseMeta } from "./peese/meta";
+import { questions as peeseQuestions } from "./peese/questions";
 import { meta as peiMeta } from "./pei/meta";
 import { questions as peiQuestions } from "./pei/questions";
 
@@ -38,5 +40,7 @@ void eseoMeta;
 void eseoQuestions;
 void iesedeMeta;
 void iesedeQuestions;
+void peeseMeta;
+void peeseQuestions;
 void peiMeta;
 void peiQuestions;
