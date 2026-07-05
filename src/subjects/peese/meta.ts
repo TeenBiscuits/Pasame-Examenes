@@ -11,9 +11,9 @@ export const meta: SubjectMeta = {
   topics: [{ key: "teoria", label: "Teoría", icon: "📖", color: "blue" }],
   exams: [
     {
-      year: "2026-01",
-      title: "Enero 2026",
-      date: "Enero 2026",
+      year: "2026-05",
+      title: "Mayo 2026",
+      date: "Mayo 2026",
       description: "8.5 ptos · 17 preguntas",
       passPoints: 4.25,
       totalPoints: 8.5,

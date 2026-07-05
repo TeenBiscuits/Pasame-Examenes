@@ -2,12 +2,12 @@ import type { Question } from "../../data/types";
 
 export const questions: Question[] = [
   // ================================================================
-  // Enero 2026 — Teoría (8.5 ptos, 17 preguntas)
+  // Mayo 2026 — Teoría (8.5 ptos, 17 preguntas)
   // ================================================================
 
   {
-    id: "2026-01_t1",
-    exam: "2026-01",
+    id: "2026-05_t1",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -24,8 +24,8 @@ export const questions: Question[] = [
       "La fase de análisis produce modelos que reflejan los requisitos del usuario. Los modelos de arquitectura se obtienen en la fase de diseño.",
   },
   {
-    id: "2026-01_t2",
-    exam: "2026-01",
+    id: "2026-05_t2",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -41,8 +41,8 @@ export const questions: Question[] = [
       "El modelo en V promueve pruebas tempranas al vincular cada fase de desarrollo con su correspondiente fase de verificación/validación.",
   },
   {
-    id: "2026-01_t3",
-    exam: "2026-01",
+    id: "2026-05_t3",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -59,8 +59,8 @@ export const questions: Question[] = [
       "El enfoque estructurado separa explícitamente el modelado de procesos (DFD) y el modelado de datos (DER). El enfoque OO los unifica en clases.",
   },
   {
-    id: "2026-01_t4",
-    exam: "2026-01",
+    id: "2026-05_t4",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -77,8 +77,8 @@ export const questions: Question[] = [
       "Es falso que todos los procesos deban explosionarse al mismo nivel. Cada rama de la jerarquía puede alcanzar distinta profundidad según la complejidad del proceso.",
   },
   {
-    id: "2026-01_t5",
-    exam: "2026-01",
+    id: "2026-05_t5",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -95,8 +95,8 @@ export const questions: Question[] = [
       "Las pruebas de caja negra se centran en el comportamiento observable, verificando salidas para entradas dadas sin conocer la implementación interna.",
   },
   {
-    id: "2026-01_t6",
-    exam: "2026-01",
+    id: "2026-05_t6",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -113,8 +113,8 @@ export const questions: Question[] = [
       "ISO/IEC 25000 (SQuaRE) establece un marco común para evaluar la calidad del producto software, no del proceso.",
   },
   {
-    id: "2026-01_t7",
-    exam: "2026-01",
+    id: "2026-05_t7",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -131,8 +131,8 @@ export const questions: Question[] = [
       "El modelo en espiral combina elementos del modelo en cascada con prototipado iterativo, y permite desarrollar versiones incrementales.",
   },
   {
-    id: "2026-01_t8",
-    exam: "2026-01",
+    id: "2026-05_t8",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -149,8 +149,8 @@ export const questions: Question[] = [
       "Los tipos de requisito estándar son: de negocio, de usuario y de sistema (funcionales y no funcionales). «Requisitos opcionales» no es un tipo reconocido.",
   },
   {
-    id: "2026-01_t9",
-    exam: "2026-01",
+    id: "2026-05_t9",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -167,8 +167,8 @@ export const questions: Question[] = [
       "Las pruebas de integración verifican la interacción entre módulos, detectando errores en interfaces y flujo de datos entre componentes.",
   },
   {
-    id: "2026-01_t10",
-    exam: "2026-01",
+    id: "2026-05_t10",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -185,8 +185,8 @@ export const questions: Question[] = [
       "La relación «extend» modela comportamiento opcional que se añade a un caso de uso base bajo ciertas condiciones. «Include» es obligatorio.",
   },
   {
-    id: "2026-01_t11",
-    exam: "2026-01",
+    id: "2026-05_t11",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -203,8 +203,8 @@ export const questions: Question[] = [
       "Un módulo que realiza tareas no relacionadas tiene baja cohesión. El principio de alta cohesión establece que cada módulo debe tener una responsabilidad clara y única.",
   },
   {
-    id: "2026-01_t12",
-    exam: "2026-01",
+    id: "2026-05_t12",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -221,8 +221,8 @@ export const questions: Question[] = [
       "Ambas técnicas (análisis de transformación y de transacción) se usan en Diseño Estructurado para derivar la arquitectura a partir de DFDs.",
   },
   {
-    id: "2026-01_t13",
-    exam: "2026-01",
+    id: "2026-05_t13",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -239,8 +239,8 @@ export const questions: Question[] = [
       "El mantenimiento perfectivo mejora el rendimiento o añade nuevas funcionalidades no previstas originalmente. El correctivo repara defectos.",
   },
   {
-    id: "2026-01_t14",
-    exam: "2026-01",
+    id: "2026-05_t14",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -257,8 +257,8 @@ export const questions: Question[] = [
       "Los bloques except vacíos ocultan las excepciones, impidiendo la detección y resolución del fallo, lo que compromete la depuración.",
   },
   {
-    id: "2026-01_t15",
-    exam: "2026-01",
+    id: "2026-05_t15",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -275,8 +275,8 @@ export const questions: Question[] = [
       "Scrum define tres roles: Scrum Master, Product Owner y Equipo de Desarrollo. El rol de Jefe de Proyecto no existe en Scrum.",
   },
   {
-    id: "2026-01_t16",
-    exam: "2026-01",
+    id: "2026-05_t16",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -293,8 +293,8 @@ export const questions: Question[] = [
       "Tanto la localización (principio de mantener relacionado lo que se usa junto) como la abstracción son principios fundamentales de la Ingeniería del Software.",
   },
   {
-    id: "2026-01_t17",
-    exam: "2026-01",
+    id: "2026-05_t17",
+    exam: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
