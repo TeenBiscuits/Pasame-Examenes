@@ -1,4 +1,4 @@
-import type { Picture } from "vite-imagetools";
+import type { QuestionImage } from "../lib/image";
 
 export type QuestionType = "mc" | "text" | "matching";
 
@@ -18,8 +18,8 @@ export interface Question {
   options?: string[];
   correctAnswer: string | string[] | Record<string, string>;
   explanation?: string;
-  image?: Picture | string;
-  explanationImage?: Picture | string;
+  image?: QuestionImage;
+  explanationImage?: QuestionImage;
   table?: QuestionTable;
   repeated?: boolean;
 }

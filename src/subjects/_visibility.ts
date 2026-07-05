@@ -1,7 +1,6 @@
 // This file exists purely to make static analysis tools see that every
-// subject's named exports are consumed.  It is never imported by any
-// runtime code — Vite's import.meta.glob in index.ts does the actual
-// work.  When adding a subject, add its pair of imports here.
+// subject's named exports are consumed. Runtime discovery is explicit in
+// index.ts. When adding a subject, add its pair of imports here.
 
 import { meta as bedeMeta } from "./bede/meta";
 import { questions as bedeQuestions } from "./bede/questions";

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 
@@ -51,10 +51,8 @@ function StarIcon() {
 export default function StarPopup() {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const openRef = useRef<boolean | null>(null);
-  if (openRef.current === null) {
-    openRef.current = shouldShow();
-  }
+  const [initialOpen] = useState(shouldShow);
+  const openRef = useRef(initialOpen);
 
   const finish = useCallback((clickedStar: boolean) => {
     if (!openRef.current) return;
@@ -66,7 +64,10 @@ export default function StarPopup() {
 
   const dismiss = useCallback(() => finish(false), [finish]);
   const dismissRef = useRef(dismiss);
-  dismissRef.current = dismiss;
+
+  useEffect(() => {
+    dismissRef.current = dismiss;
+  }, [dismiss]);
 
   useEffect(() => {
     if (!openRef.current) return;

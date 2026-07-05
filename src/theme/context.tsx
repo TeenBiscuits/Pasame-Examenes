@@ -11,6 +11,7 @@ import { themeOrder } from "./types";
 import { ThemeContext } from "./context-value";
 
 function getInitialTheme(): Theme {
+  if (typeof window === "undefined") return "system";
   try {
     const stored = localStorage.getItem("theme");
     if (stored && themeOrder.includes(stored as Theme)) return stored as Theme;
@@ -29,6 +30,7 @@ const themeColors: Record<Exclude<Theme, "system">, string> = {
 
 function resolveThemeColor(theme: Theme): string {
   if (theme === "system") {
+    if (typeof window === "undefined") return themeColors.light;
     return window.matchMedia("(prefers-color-scheme: dark)").matches
       ? themeColors.dark
       : themeColors.light;

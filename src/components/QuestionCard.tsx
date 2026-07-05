@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import type { Picture } from "vite-imagetools";
+import Image from "next/image";
 import type { Question, QuestionType } from "../data/types";
+import type { QuestionImage as QuestionImageType } from "../lib/image";
 import { useT } from "../i18n/hooks";
 import { Markdown, InlineMarkdown } from "../lib/markdown";
 import { track } from "../lib/umami";
@@ -16,23 +17,24 @@ function QuestionImage({
   alt,
   maxHeight,
 }: {
-  image: Picture | string;
+    image: QuestionImageType;
   alt: string;
   maxHeight: "300px" | "400px";
 }) {
   const heightClass = maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
-  if (typeof image === "object") {
+  if (typeof image === "object" && "sources" in image) {
     return (
       <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
         <picture>
           {Object.entries(image.sources).map(([format, srcset]) => (
             <source key={format} srcSet={srcset} type={`image/${format}`} />
           ))}
-          <img
+          <Image
             src={image.img.src}
             alt={alt}
             width={image.img.w}
             height={image.img.h}
+            unoptimized
             style={{
               aspectRatio: `${image.img.w} / ${image.img.h}`,
             }}
@@ -43,11 +45,29 @@ function QuestionImage({
       </div>
     );
   }
+  if (typeof image === "object") {
+    return (
+      <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
+        <Image
+          src={image.src}
+          alt={alt}
+          width={image.width}
+          height={image.height}
+          unoptimized
+          className={`${heightClass} max-w-full object-contain`}
+          loading="lazy"
+        />
+      </div>
+    );
+  }
   return (
     <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
-      <img
+      <Image
         src={image}
         alt={alt}
+        width={800}
+        height={600}
+        unoptimized
         className={`${heightClass} max-w-full object-contain`}
         loading="lazy"
       />

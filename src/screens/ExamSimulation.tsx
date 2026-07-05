@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "next/navigation";
 import { LangLink as Link } from "../lib/lang-link";
-import { useLangTo } from "../lib/useLangTo";
 import {
   getSubject,
   getQuestionsByExam,
@@ -400,10 +399,10 @@ function ExamPlayer({
 }
 
 export default function ExamSimulation() {
-  const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
-  const navigate = useNavigate();
+  const params = useParams<{ subjectId?: string; year?: string; slug?: string[] }>();
+  const subjectId = params?.subjectId ?? params?.slug?.[0];
+  const year = params?.year ?? params?.slug?.[2];
   const t = useT();
-  const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -530,12 +529,6 @@ export default function ExamSimulation() {
     eventName: "exam_navigate",
     eventData: navEventData,
   });
-
-  useEffect(() => {
-    if (!subject || !examInfo) {
-      navigate(langTo("/"), { replace: true });
-    }
-  }, [subject, examInfo, navigate, langTo]);
 
   useEffect(() => {
     const el = navRef.current;

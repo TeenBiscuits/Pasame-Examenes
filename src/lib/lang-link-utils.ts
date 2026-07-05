@@ -1,6 +1,6 @@
 import type { Lang } from "../i18n/context";
 
-export function buildLangPath(lang: Lang, path: string): string {
+function buildLangPath(lang: Lang, path: string): string {
   if (path === "/") return `/${lang}`;
   return `/${lang}${path}`;
 }

@@ -1,25 +1,15 @@
 import { lazy, Suspense, useEffect } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-  useParams,
-  Navigate,
-  Outlet,
-} from "react-router-dom";
+import { usePathname } from "next/navigation";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
-import type { Lang } from "./i18n/context";
 import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
-import { buildLangPath } from "./lib/lang-link-utils";
 import { useTheme } from "./theme/hooks";
 
-const Home = lazy(() => import("./pages/Home"));
-const SubjectHome = lazy(() => import("./pages/SubjectHome"));
-const PracticeTopic = lazy(() => import("./pages/PracticeTopic"));
-const ExamSimulation = lazy(() => import("./pages/ExamSimulation"));
+const Home = lazy(() => import("./screens/Home"));
+const SubjectHome = lazy(() => import("./screens/SubjectHome"));
+const PracticeTopic = lazy(() => import("./screens/PracticeTopic"));
+const ExamSimulation = lazy(() => import("./screens/ExamSimulation"));
 
 function PageLoader() {
   return (
@@ -33,7 +23,7 @@ function PageLoader() {
 }
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,54 +48,30 @@ function SessionTracker() {
   return null;
 }
 
-function detectLang(): Lang {
-  try {
-    const stored = localStorage.getItem("lang");
-    if (stored === "en" || stored === "es" || stored === "gl")
-      return stored as Lang;
-  } catch {
-    /* localStorage unavailable */
-  }
-  const nav = navigator.language.toLowerCase();
-  if (nav.startsWith("es")) return "es";
-  return "en";
-}
-
-function LangRedirect() {
-  const { pathname } = useLocation();
-  const lang = detectLang();
-  const target = pathname === "/" ? `/${lang}` : `/${lang}${pathname}`;
-  return <Navigate to={target} replace />;
-}
-
-function LangGuard() {
-  const { lang: paramLang } = useParams<{ lang: string }>();
-  const { lang, setLang } = useLang();
-
-  useEffect(() => {
-    if (
-      paramLang &&
-      (paramLang === "en" || paramLang === "es" || paramLang === "gl") &&
-      paramLang !== lang
-    ) {
-      setLang(paramLang);
-    }
-  }, [paramLang, lang, setLang]);
+function CurrentPage() {
+  const pathname = usePathname() ?? "/";
+  const parts = pathname.split("/").filter(Boolean);
+  const [paramLang, subjectId, section, value] = parts;
 
   if (!paramLang || !["en", "es", "gl"].includes(paramLang)) {
-    const detected = detectLang();
-    return (
-      <Navigate
-        to={buildLangPath(
-          detected,
-          location.pathname.replace(/^\/(en|es|gl)\/?/, "/") || "/",
-        )}
-        replace
-      />
-    );
+    return <Home />;
   }
 
-  return <Outlet />;
+  if (!subjectId)
+    return (
+      <Home />
+    );
+  if (section === "practice" && value)
+    return (
+      <PracticeTopic />
+    );
+  if (section === "exam" && value)
+    return (
+      <ExamSimulation />
+    );
+  return (
+    <SubjectHome />
+  );
 }
 function Footer() {
   const t = useT();
@@ -143,44 +109,17 @@ function Footer() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
-        <SessionTracker />
-        <ScrollToTop />
-        <Header />
-        <StarPopup />
-        <main className="flex-grow">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/:lang" element={<LangGuard />}>
-                <Route index element={<Home />} />
-                <Route path=":subjectId" element={<SubjectHome />} />
-                <Route
-                  path=":subjectId/practice"
-                  element={<Navigate to=".." relative="path" replace />}
-                />
-                <Route
-                  path=":subjectId/practice/:topic"
-                  element={<PracticeTopic />}
-                />
-                <Route
-                  path=":subjectId/exam/:year"
-                  element={<ExamSimulation />}
-                />
-              </Route>
-              <Route path="/" element={<LangRedirect />} />
-              <Route path="/:subjectId" element={<LangRedirect />} />
-              <Route path="/:subjectId/practice" element={<LangRedirect />} />
-              <Route
-                path="/:subjectId/practice/:topic"
-                element={<LangRedirect />}
-              />
-              <Route path="/:subjectId/exam/:year" element={<LangRedirect />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
+      <SessionTracker />
+      <ScrollToTop />
+      <Header />
+      <StarPopup />
+      <main className="flex-grow">
+        <Suspense fallback={<PageLoader />}>
+          <CurrentPage />
+        </Suspense>
+      </main>
+      <Footer />
+    </div>
   );
 }

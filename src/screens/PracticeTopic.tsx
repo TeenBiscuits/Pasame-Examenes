@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "next/navigation";
 import { LangLink as Link } from "../lib/lang-link";
-import { useLangTo } from "../lib/useLangTo";
 import {
   getSubject,
   getQuestionsByTopic,
@@ -329,13 +328,10 @@ function PracticePlayer({
 }
 
 export default function PracticeTopic() {
-  const { subjectId, topic } = useParams<{
-    subjectId: string;
-    topic: string;
-  }>();
-  const navigate = useNavigate();
+  const params = useParams<{ subjectId?: string; topic?: string; slug?: string[] }>();
+  const subjectId = params?.subjectId ?? params?.slug?.[0];
+  const topic = params?.topic ?? params?.slug?.[2];
   const t = useT();
-  const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -445,12 +441,6 @@ export default function PracticeTopic() {
     eventName: "practice_navigate",
     eventData: navEventData,
   });
-
-  useEffect(() => {
-    if (!subject || !topicInfo) {
-      navigate(langTo("/"), { replace: true });
-    }
-  }, [subject, topicInfo, navigate, langTo]);
 
   useEffect(() => {
     const el = navRef.current;

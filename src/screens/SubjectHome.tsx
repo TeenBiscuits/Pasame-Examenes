@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "next/navigation";
 import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
 import { getTopicProgress } from "../data/store";
@@ -15,7 +15,8 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 
 export default function SubjectHome() {
-  const { subjectId } = useParams<{ subjectId: string }>();
+  const params = useParams<{ subjectId?: string; slug?: string[] }>();
+  const subjectId = params?.subjectId ?? params?.slug?.[0];
   const t = useT();
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;

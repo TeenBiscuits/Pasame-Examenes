@@ -1,37 +1,73 @@
 import type { SubjectMeta, Question } from "../data/types";
+import { meta as bede } from "./bede/meta";
+import { questions as bedeQuestions } from "./bede/questions";
+import { meta as cepe } from "./cepe/meta";
+import { questions as cepeQuestions } from "./cepe/questions";
+import { meta as deese } from "./deese/meta";
+import { questions as deeseQuestions } from "./deese/questions";
+import { meta as ece } from "./ece/meta";
+import { questions as eceQuestions } from "./ece/questions";
+import { meta as emeele } from "./emeele/meta";
+import { questions as emeeleQuestions } from "./emeele/questions";
+import { meta as equisi } from "./equisi/meta";
+import { questions as equisiQuestions } from "./equisi/questions";
+import { meta as equispe } from "./equispe/meta";
+import { questions as equispeQuestions } from "./equispe/questions";
+import { meta as esei } from "./esei/meta";
+import { questions as eseiQuestions } from "./esei/questions";
+import { meta as eseo } from "./eseo/meta";
+import { questions as eseoQuestions } from "./eseo/questions";
+import { meta as iesede } from "./iesede/meta";
+import { questions as iesedeQuestions } from "./iesede/questions";
+import { meta as pei } from "./pei/meta";
+import { questions as peiQuestions } from "./pei/questions";
+import { meta as peese } from "./peese/meta";
+import { questions as peeseQuestions } from "./peese/questions";
+import { meta as redes } from "./redes/meta";
+import { questions as redesQuestions } from "./redes/questions";
 
-interface MetaModule {
-  meta: SubjectMeta;
-}
+export const subjects: SubjectMeta[] = [
+  bede,
+  cepe,
+  deese,
+  ece,
+  emeele,
+  equisi,
+  equispe,
+  esei,
+  eseo,
+  iesede,
+  pei,
+  peese,
+  redes,
+];
 
-interface QuestionsModule {
-  questions: Question[];
-}
-
-// Auto-discover subjects using Vite's import.meta.glob.
-// Exclude _template — it's a copy-paste starter, not a real subject.
-const metaModules = import.meta.glob<MetaModule>(
-  ["./*/meta.ts", "!./_template/meta.ts"],
-  { eager: true },
-);
-const questionsModules = import.meta.glob<QuestionsModule>([
-  "./*/questions.ts",
-  "!./_template/questions.ts",
-]);
-
-export const subjects: SubjectMeta[] = [];
-for (const m of Object.values(metaModules)) {
-  subjects.push(m.meta);
-}
+const questionsBySubject: Record<string, Question[]> = {
+  bede: bedeQuestions,
+  cepe: cepeQuestions,
+  deese: deeseQuestions,
+  ece: eceQuestions,
+  emeele: emeeleQuestions,
+  equisi: equisiQuestions,
+  equispe: equispeQuestions,
+  esei: eseiQuestions,
+  eseo: eseoQuestions,
+  iesede: iesedeQuestions,
+  pei: peiQuestions,
+  peese: peeseQuestions,
+  redes: redesQuestions,
+};
 
 export function getSubject(id: string): SubjectMeta | undefined {
   return subjects.find((s) => s.id === id);
 }
 
 export async function getAllQuestions(subjectId: string): Promise<Question[]> {
-  const modulePath = `./${subjectId}/questions.ts`;
-  const mod = await questionsModules[modulePath]?.();
-  return mod?.questions ?? [];
+  return questionsBySubject[subjectId] ?? [];
+}
+
+export function getQuestionCount(subjectId: string): number {
+  return questionsBySubject[subjectId]?.length ?? 0;
 }
 
 export async function getQuestionsByTopic(
@@ -60,6 +96,5 @@ export async function getTopicMegaTopicLabel(
 }
 
 // Reachability marker: makes _visibility.ts discoverable by static analysis
-// tools so they see every subject's named exports as consumed. The glob
-// patterns above do the actual work at runtime.
+// tools so they see every subject's named exports as consumed.
 import("./_visibility");

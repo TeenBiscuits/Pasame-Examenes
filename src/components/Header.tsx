@@ -1,4 +1,5 @@
-import { useLocation, useMatch, useNavigate } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import { getSubject } from "../subjects";
 import { useT, useLang } from "../i18n/hooks";
 import type { Lang } from "../i18n/context";
@@ -23,10 +24,9 @@ function acronym(name: string): string {
 }
 
 export default function Header() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const match = useMatch("/:lang/:subjectId/*");
-  const subjectId = match?.params.subjectId;
+  const pathname = usePathname() ?? "/";
+  const router = useRouter();
+  const [, , subjectId] = pathname.split("/");
   const t = useT();
   const { lang, setLang } = useLang();
   const subject = subjectId ? getSubject(subjectId) : null;
@@ -34,8 +34,8 @@ export default function Header() {
   const abbr = subject ? acronym(subject.name) : "";
 
   const subjectLinkClasses = `px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-    location.pathname === `/${subjectId}` ||
-    location.pathname.startsWith(`/${subjectId}/`)
+    pathname === `/${lang}/${subjectId}` ||
+    pathname.startsWith(`/${lang}/${subjectId}/`)
       ? "bg-accent-light text-accent-fg"
       : "text-fg-secondary hover:text-fg"
   }`;
@@ -51,11 +51,12 @@ export default function Header() {
             track("nav_click", { target: "home" });
           }}
         >
-          <img
+          <Image
             src="/favicon.svg"
             alt=""
             width={28}
             height={32}
+            unoptimized
             className="w-7 h-8"
             aria-hidden="true"
           />
@@ -105,9 +106,7 @@ export default function Header() {
               const nextLang = langCycle[(idx + 1) % langCycle.length];
               track("lang_toggle", { lang: nextLang });
               setLang(nextLang);
-              navigate(replaceLangInPath(location.pathname, nextLang), {
-                replace: true,
-              });
+              router.replace(replaceLangInPath(pathname, nextLang));
             }}
             aria-label={langLabel[lang]}
           >
