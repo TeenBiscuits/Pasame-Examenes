@@ -6200,6 +6200,7 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "Las direcciones de clase A, B, C se diferencian en:",
     options: [
       "A. Tamaño del identificador de red y del de host",
@@ -6218,6 +6219,7 @@ export const questions: Question[] = [
     topic: "tema-11",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "¿Cuándo envía una máquina un ARP Request?",
     options: [
       "A. Cuando quiere averiguar la dirección de Ethernet de otra máquina",
@@ -6236,6 +6238,7 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "La interfaz de loopback evita que determinados paquetes IP salgas de la red. ¿Cuáles?",
     options: [
       "A. Paquetes cuya dirección IP de destino sea la propia máquina",
@@ -6254,6 +6257,7 @@ export const questions: Question[] = [
     topic: "tema-9",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "ICMP es un protocolo cuya principal función es:",
     options: [
       "A. Comunicar mensajes de error y otras condiciones especiales",
@@ -6323,6 +6327,7 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
+    repeated: true,
     question: "Supón que te conectas con tu portátil a una red a la que nunca te has conectado antes. Desde el primer momento y sin configurar nada, tienes acceso a la red como un nodo más. ¿A qué se debe esto?",
     options: [
       "A. Tu equipo ha encontrado un servidor DHCP que le ha enviado toda la info necesaria",
