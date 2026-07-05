@@ -216,7 +216,9 @@ async function main() {
 
   const metaOutPath = resolve(root, "public", "subjects-meta.json");
   writeFileSync(metaOutPath, JSON.stringify(subjectsMeta, null, 2));
-  console.log(`\n  ✓ subjects-meta.json (${Object.keys(subjectsMeta).length} subjects)`);
+  console.log(
+    `\n  ✓ subjects-meta.json (${Object.keys(subjectsMeta).length} subjects)`,
+  );
 
   console.log(`\nGenerated ${generated} OG images → ${ogOutputDir}`);
 

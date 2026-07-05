@@ -1903,7 +1903,7 @@ export const questions: Question[] = [
     question: "La red...",
     options: [
       "A. Puede ser cableada (punto a punto) o inalámbrica (broadcast)",
-      "B. Maneja hardware de red, que suelen ser routers y switches, y nodos, llamados \"hosts\"",
+      'B. Maneja hardware de red, que suelen ser routers y switches, y nodos, llamados "hosts"',
       "C. Puede ser LAN para cortas distancias y WAN para largas dsitancias",
       "D. Todas las opciones",
     ],
@@ -2001,7 +2001,8 @@ export const questions: Question[] = [
       "D. Multiplexación por división en el tiempo. Las tramas son las señales usadas a lo largo del tiempo",
     ],
     correctAnswer: "a",
-    explanation: "Apunte. Las señales pueden estar en distintas frecuencias dentro del BW!",
+    explanation:
+      "Apunte. Las señales pueden estar en distintas frecuencias dentro del BW!",
   },
   {
     id: "redes_udc_q9",
@@ -2103,7 +2104,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "Cual de estos no es un tipo de retardo en las redes de conmutación de paquetes",
+    question:
+      "Cual de estos no es un tipo de retardo en las redes de conmutación de paquetes",
     options: [
       "A. Retardo de procesamiento",
       "B. Retardo de cola",
@@ -2118,7 +2120,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "El retardo fruto de que el router deba examinar la cabecera y determinar hacia dónde seguir el paquete es...",
+    question:
+      "El retardo fruto de que el router deba examinar la cabecera y determinar hacia dónde seguir el paquete es...",
     options: [
       "A. Retardo de procesamiento",
       "B. Retardo de cola",
@@ -2133,7 +2136,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "El retardo fruto del tiempo de espera para ser transmitido en el buffer de salida es el...",
+    question:
+      "El retardo fruto del tiempo de espera para ser transmitido en el buffer de salida es el...",
     options: [
       "A. Retardo de procesamiento",
       "B. Retardo de cola",
@@ -2148,7 +2152,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "El retardo fruto del tiempo para transmitir todos los bits del paquete de enlace es el...",
+    question:
+      "El retardo fruto del tiempo para transmitir todos los bits del paquete de enlace es el...",
     options: [
       "A. Retardo de procesamiento",
       "B. Retardo de cola",
@@ -2163,7 +2168,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "El retardo fruto del tiempo necesario para enviarse desde el inicio del enlace hasta el siguiente router es el...",
+    question:
+      "El retardo fruto del tiempo necesario para enviarse desde el inicio del enlace hasta el siguiente router es el...",
     options: [
       "A. Retardo de procesamiento",
       "B. Retardo de cola",
@@ -2178,7 +2184,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "El acceso residencial conecta sistemas terminales del hogar a través de...",
+    question:
+      "El acceso residencial conecta sistemas terminales del hogar a través de...",
     options: [
       "A. un ISP, con BW que puede ser de fibra óptica, satélite, módem o DSL",
       "B. un LAN para conectar el sistema terminal al router, por ethernet para redes cableadas o wifi para inalámbricas",
@@ -2193,7 +2200,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "El acceso a la red que conecta sistemas terminales del hogar a través de un ISP es el",
+    question:
+      "El acceso a la red que conecta sistemas terminales del hogar a través de un ISP es el",
     options: [
       "A. Acceso residencial",
       "B. Acceso de empresa",
@@ -2223,13 +2231,9 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "Conjunto de mensajes válidos (sintáctico + semántico) que registran cualquier actividad en internet mediante dos o más entidades remotas",
-    options: [
-      "A. Protocolo",
-      "B. Servicio",
-      "C. Arquitectura",
-      "D. OSI",
-    ],
+    question:
+      "Conjunto de mensajes válidos (sintáctico + semántico) que registran cualquier actividad en internet mediante dos o más entidades remotas",
+    options: ["A. Protocolo", "B. Servicio", "C. Arquitectura", "D. OSI"],
     correctAnswer: "a",
   },
   {
@@ -2299,7 +2303,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "Pueden retransmitir paquetes dañados y controlar el flujo de transmisión de datos",
+    question:
+      "Pueden retransmitir paquetes dañados y controlar el flujo de transmisión de datos",
     options: [
       "A. Nivel físico",
       "B. Nivel enlace",
@@ -2389,7 +2394,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "Concatena un conjunto de enlaces para formar la abstracción de un enlace extremo-extremo",
+    question:
+      "Concatena un conjunto de enlaces para formar la abstracción de un enlace extremo-extremo",
     options: [
       "A. Nivel sesión",
       "B. Nivel enlace",
@@ -2524,7 +2530,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "Añade un id específico para cada app, conocido como el número de puerto",
+    question:
+      "Añade un id específico para cada app, conocido como el número de puerto",
     options: [
       "A. Nivel sesión",
       "B. Nivel aplicación",
@@ -2539,7 +2546,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "Permite que aunque haya pérdida, duplicación o corrupción de paquetes, estos lleguen a su destino",
+    question:
+      "Permite que aunque haya pérdida, duplicación o corrupción de paquetes, estos lleguen a su destino",
     options: [
       "A. Nivel sesión",
       "B. Nivel aplicación",
@@ -2584,7 +2592,8 @@ export const questions: Question[] = [
     topic: "tema-1",
     type: "mc",
     points: 1,
-    question: "Oculta diferencias de representación de datos entre aplicaciones, además de cifrar y comprimir datos",
+    question:
+      "Oculta diferencias de representación de datos entre aplicaciones, además de cifrar y comprimir datos",
     options: [
       "A. Nivel presentación",
       "B. Nivel aplicación",
@@ -2692,13 +2701,9 @@ export const questions: Question[] = [
     topic: "tema-2",
     type: "mc",
     points: 1,
-    question: "Para crear una internet/interred entre dos o más redes necesito un",
-    options: [
-      "A. Router",
-      "B. Hub",
-      "C. Bus",
-      "D. Todas las anteriores",
-    ],
+    question:
+      "Para crear una internet/interred entre dos o más redes necesito un",
+    options: ["A. Router", "B. Hub", "C. Bus", "D. Todas las anteriores"],
     correctAnswer: "a",
   },
   {
@@ -2723,12 +2728,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Los protocolos de salto a salto se usan en las capas",
-    options: [
-      "A. Transporte",
-      "B. Enlace",
-      "C. Red",
-      "D. Transporte y físico",
-    ],
+    options: ["A. Transporte", "B. Enlace", "C. Red", "D. Transporte y físico"],
     correctAnswer: "c",
   },
   {
@@ -2745,7 +2745,8 @@ export const questions: Question[] = [
       "D. Transporte y aplicación",
     ],
     correctAnswer: "a",
-    explanation: "Se basan en direcciones del nivel de enlace, es decir, direcciones MAC",
+    explanation:
+      "Se basan en direcciones del nivel de enlace, es decir, direcciones MAC",
   },
   {
     id: "redes_udc_q58",
@@ -3072,12 +3073,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Lo que convierte las IP privadas en públicas es el",
-    options: [
-      "A. NAT",
-      "B. TCP/IP",
-      "C. ARP",
-      "D. DNS",
-    ],
+    options: ["A. NAT", "B. TCP/IP", "C. ARP", "D. DNS"],
     correctAnswer: "a",
   },
   {
@@ -3148,7 +3144,8 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "El broadcasting y multicasting que realizan una comunicación desde una máquina a un conjunto solo es posible con el protocolo",
+    question:
+      "El broadcasting y multicasting que realizan una comunicación desde una máquina a un conjunto solo es posible con el protocolo",
     options: [
       "A. UDP",
       "B. TCP",
@@ -3163,7 +3160,8 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Un ordenador, sino está suscrito a una red, descarta los paquetes enviados por la misma. Esto ocurre en",
+    question:
+      "Un ordenador, sino está suscrito a una red, descarta los paquetes enviados por la misma. Esto ocurre en",
     options: [
       "A. Multicast",
       "B. Broadcast",
@@ -3171,7 +3169,8 @@ export const questions: Question[] = [
       "D. Multicast+broadcast",
     ],
     correctAnswer: "a",
-    explanation: "El multicast permite exactamente eso, el broadcast es el que tiene este problema",
+    explanation:
+      "El multicast permite exactamente eso, el broadcast es el que tiene este problema",
   },
   {
     id: "redes_udc_q86",
@@ -3258,12 +3257,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Los well known ports",
-    options: [
-      "A. 1-1023",
-      "B. 1-1024",
-      "C. 1024-4095",
-      "D. 1023-4096",
-    ],
+    options: ["A. 1-1023", "B. 1-1024", "C. 1024-4095", "D. 1023-4096"],
     correctAnswer: "a",
   },
   {
@@ -3272,7 +3266,8 @@ export const questions: Question[] = [
     topic: "tema-5",
     type: "mc",
     points: 1,
-    question: "Cada servicio usa un puerto libre cualquiera. Cuando este finaliza, se deja libre. Estos son los puertos",
+    question:
+      "Cada servicio usa un puerto libre cualquiera. Cuando este finaliza, se deja libre. Estos son los puertos",
     options: [
       "A. Efímeros",
       "B. Temporales",
@@ -3605,13 +3600,9 @@ export const questions: Question[] = [
     topic: "tema-3-4",
     type: "mc",
     points: 1,
-    question: "Los métodos HTTP que permiten obtener un mensaje del servidor sin el objeto solicitado es",
-    options: [
-      "A. GET",
-      "B. HEAD",
-      "C. POST",
-      "D. PUT",
-    ],
+    question:
+      "Los métodos HTTP que permiten obtener un mensaje del servidor sin el objeto solicitado es",
+    options: ["A. GET", "B. HEAD", "C. POST", "D. PUT"],
     correctAnswer: "b",
   },
   {
@@ -3621,12 +3612,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Los métodos HTTP que permiten rellenar un formulario",
-    options: [
-      "A. GET",
-      "B. UPDATE",
-      "C. POST",
-      "D. PUT",
-    ],
+    options: ["A. GET", "B. UPDATE", "C. POST", "D. PUT"],
     correctAnswer: "c",
   },
   {
@@ -3636,12 +3622,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Los métodos HTTP que permite actualizar una imagen",
-    options: [
-      "A. GET",
-      "B. UPDATE",
-      "C. POST",
-      "D. PUT",
-    ],
+    options: ["A. GET", "B. UPDATE", "C. POST", "D. PUT"],
     correctAnswer: "d",
   },
   {
@@ -3700,7 +3681,7 @@ export const questions: Question[] = [
       "A. Estándar que indica el tipo del contenido de respuesta HTTP",
       "B. Documento único con todos los tipos de la cabecera de la petición (html,csv, plain...)",
       "C. Encapsula un solo archivo en una única transacción",
-      "D. Sigue una estructura de \"tipo-subtipo\"",
+      'D. Sigue una estructura de "tipo-subtipo"',
     ],
     correctAnswer: "a",
   },
@@ -3892,7 +3873,8 @@ export const questions: Question[] = [
     topic: "tema-3-4",
     type: "mc",
     points: 1,
-    question: "Con respecto a las consultas recursivas DNS.... Seleccione la falsa",
+    question:
+      "Con respecto a las consultas recursivas DNS.... Seleccione la falsa",
     options: [
       "A. El servidor DNS hará todo el trabajo necesario para devolver la respuesta completa a la petición",
       "B. Puede implicar múltiples transacciones del servidor con otros servidores DNS",
@@ -3907,7 +3889,8 @@ export const questions: Question[] = [
     topic: "tema-3-4",
     type: "mc",
     points: 1,
-    question: "Con respecto a las consultas iterativas DNS.... Seleccione la falsa",
+    question:
+      "Con respecto a las consultas iterativas DNS.... Seleccione la falsa",
     options: [
       "A. Si un servidor DNS tiene la respuesta, entonces siempre la devuelve",
       "B. Si un servidor DNS no tiene respuesta, devolverá información útil pero no hará peticiones adicionales",
@@ -4058,12 +4041,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "P2P, seleccione la falsa",
-    options: [
-      "A. BitTorrent",
-      "B. Napster",
-      "C. Bitcoin",
-      "D. Google",
-    ],
+    options: ["A. BitTorrent", "B. Napster", "C. Bitcoin", "D. Google"],
     correctAnswer: "d",
   },
   {
@@ -4181,12 +4159,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "La cabecera IP suele tener",
-    options: [
-      "A. 20 bytes",
-      "B. 8 bytes",
-      "C. 32 bytes",
-      "D. 4 bytes",
-    ],
+    options: ["A. 20 bytes", "B. 8 bytes", "C. 32 bytes", "D. 4 bytes"],
     correctAnswer: "a",
   },
   {
@@ -4196,12 +4169,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "La cabecera UDP suele tener",
-    options: [
-      "A. 20 bytes",
-      "B. 8 bytes",
-      "C. 32 bytes",
-      "D. 4 bytes",
-    ],
+    options: ["A. 20 bytes", "B. 8 bytes", "C. 32 bytes", "D. 4 bytes"],
     correctAnswer: "b",
   },
   {
@@ -4285,7 +4253,8 @@ export const questions: Question[] = [
     topic: "tema-5",
     type: "mc",
     points: 1,
-    question: "En la cabecera TCP, el puerto de origen y destino + dirección IP",
+    question:
+      "En la cabecera TCP, el puerto de origen y destino + dirección IP",
     options: [
       "A. Identifican unívocamente la conexión TCP",
       "B. Identifican el número de byte en el flujo de bytes TCP entre el emisor y receptor",
@@ -4361,12 +4330,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Los ACK selectivos son los",
-    options: [
-      "A. SACK",
-      "B. ACKS",
-      "C. Selective ACK",
-      "D. STCP",
-    ],
+    options: ["A. SACK", "B. ACKS", "C. Selective ACK", "D. STCP"],
     correctAnswer: "a",
   },
   {
@@ -4390,13 +4354,9 @@ export const questions: Question[] = [
     topic: "tema-5",
     type: "mc",
     points: 1,
-    question: "Cuando se recibe este flag, el emisor reduce su velocidad de transmisión",
-    options: [
-      "A. CWR",
-      "B. ECE",
-      "C. URG",
-      "D. ACK",
-    ],
+    question:
+      "Cuando se recibe este flag, el emisor reduce su velocidad de transmisión",
+    options: ["A. CWR", "B. ECE", "C. URG", "D. ACK"],
     correctAnswer: "a",
   },
   {
@@ -4405,13 +4365,9 @@ export const questions: Question[] = [
     topic: "tema-5",
     type: "mc",
     points: 1,
-    question: "Cuando se recibe este flag, el emisor confirma la recepción de un paquete con el flag ECN",
-    options: [
-      "A. CWR",
-      "B. ECE",
-      "C. URG",
-      "D. ACK",
-    ],
+    question:
+      "Cuando se recibe este flag, el emisor confirma la recepción de un paquete con el flag ECN",
+    options: ["A. CWR", "B. ECE", "C. URG", "D. ACK"],
     correctAnswer: "b",
   },
   {
@@ -4421,12 +4377,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Cuando se recibe este flag, se confirma la conexión establecida",
-    options: [
-      "A. CWR",
-      "B. ECE",
-      "C. URG",
-      "D. ACK",
-    ],
+    options: ["A. CWR", "B. ECE", "C. URG", "D. ACK"],
     correctAnswer: "d",
   },
   {
@@ -4436,12 +4387,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Cuando se recibe este flag, se reinicia la conexión",
-    options: [
-      "A. RST",
-      "B. SYN",
-      "C. FIN",
-      "D. PSH",
-    ],
+    options: ["A. RST", "B. SYN", "C. FIN", "D. PSH"],
     correctAnswer: "a",
   },
   {
@@ -4450,13 +4396,9 @@ export const questions: Question[] = [
     topic: "tema-5",
     type: "mc",
     points: 1,
-    question: "Cuando se recibe este flag, se sincronizan los número de secuencia para el inicio de una conexión",
-    options: [
-      "A. RST",
-      "B. SYN",
-      "C. FIN",
-      "D. PSH",
-    ],
+    question:
+      "Cuando se recibe este flag, se sincronizan los número de secuencia para el inicio de una conexión",
+    options: ["A. RST", "B. SYN", "C. FIN", "D. PSH"],
     correctAnswer: "b",
   },
   {
@@ -4466,12 +4408,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Cuando se recibe este flag, el emisor termina el envío de datos",
-    options: [
-      "A. RST",
-      "B. SYN",
-      "C. FIN",
-      "D. ENV",
-    ],
+    options: ["A. RST", "B. SYN", "C. FIN", "D. ENV"],
     correctAnswer: "c",
   },
   {
@@ -4604,12 +4541,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "TCP espera 2 veces el MSL por si se ha perdido el último ACK",
-    options: [
-      "A. TIME_WAIT",
-      "B. FIN_WAIT_2",
-      "C. TIME_WAIT_2",
-      "D. WAIT_ASL",
-    ],
+    options: ["A. TIME_WAIT", "B. FIN_WAIT_2", "C. TIME_WAIT_2", "D. WAIT_ASL"],
     correctAnswer: "a",
   },
   {
@@ -4648,7 +4580,8 @@ export const questions: Question[] = [
     topic: "tema-6",
     type: "mc",
     points: 1,
-    question: "Si como cliente, envías un SYN para establecer una conexión TCP a un servidor y recibes un RST, eso significa que",
+    question:
+      "Si como cliente, envías un SYN para establecer una conexión TCP a un servidor y recibes un RST, eso significa que",
     options: [
       "A. El puerto está cerrado",
       "B. El puerto no existe",
@@ -4768,7 +4701,8 @@ export const questions: Question[] = [
     topic: "tema-6",
     type: "mc",
     points: 1,
-    question: "El intercambio de datos TCP se basa en un ARQ retroceder N, pero con unos matices",
+    question:
+      "El intercambio de datos TCP se basa en un ARQ retroceder N, pero con unos matices",
     options: [
       "A. Cuando un receptor recibe un paquete fuera de orden, lo almacena en el buffer y envía un ACK del último correctamente recibido",
       "B. El emisor no mantiene un temporizador para cada grupo de paquetes enviados, permitiendo la entrada de varios aunque sea fuera de orden",
@@ -4784,12 +4718,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "El tiempo de espera antes de retransmitir otro dato es",
-    options: [
-      "A. RTO",
-      "B. RTT",
-      "C. TSOPT",
-      "D. ACKTPT",
-    ],
+    options: ["A. RTO", "B. RTT", "C. TSOPT", "D. ACKTPT"],
     correctAnswer: "a",
   },
   {
@@ -4798,7 +4727,8 @@ export const questions: Question[] = [
     topic: "tema-6",
     type: "mc",
     points: 1,
-    question: "Una manera de garantizar un flujo de datos interactivos consiste en",
+    question:
+      "Una manera de garantizar un flujo de datos interactivos consiste en",
     options: [
       "A. En el envío del ACK enviar un eco (otro ACK) con retardo hasta el siguiente tick del reloj",
       "B. El envío de una ráfaga de ACKs por dato, garantizando que al menos uno de ellos llega correctamente",
@@ -4832,12 +4762,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "La IP proporciona una servicio en la capa de",
-    options: [
-      "A. Aplicación",
-      "B. Enlace",
-      "C. Transporte",
-      "D. Red",
-    ],
+    options: ["A. Aplicación", "B. Enlace", "C. Transporte", "D. Red"],
     correctAnswer: "d",
   },
   {
@@ -4846,13 +4771,9 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Proporciona un servicio de entrega de datagramas no fiable y no orientado a conexión",
-    options: [
-      "A. IP",
-      "B. DNS",
-      "C. Gateway",
-      "D. MAC",
-    ],
+    question:
+      "Proporciona un servicio de entrega de datagramas no fiable y no orientado a conexión",
+    options: ["A. IP", "B. DNS", "C. Gateway", "D. MAC"],
     correctAnswer: "a",
   },
   {
@@ -4861,7 +4782,8 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Cuando se dice que la IP ofrece un servicio no fiable se refiere a que",
+    question:
+      "Cuando se dice que la IP ofrece un servicio no fiable se refiere a que",
     options: [
       "A. No hay garantías de que un datagrama alcance su destino final",
       "B. No mantiene información de los datagramas",
@@ -4876,7 +4798,8 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Cuando se dice que la IP ofrece un servicio no orientado a la conexión por que",
+    question:
+      "Cuando se dice que la IP ofrece un servicio no orientado a la conexión por que",
     options: [
       "A. No hay garantías de que un datagrama alcance su destino final",
       "B. No mantiene información de los datagramas",
@@ -5026,15 +4949,12 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Para la IP 10.58.26.129, si le aplicamos una máscara de 255.255.0.0, tendríamos esta cantidad de bits de subred",
-    options: [
-      "A. 16",
-      "B. 8",
-      "C. 24",
-      "D. 4",
-    ],
+    question:
+      "Para la IP 10.58.26.129, si le aplicamos una máscara de 255.255.0.0, tendríamos esta cantidad de bits de subred",
+    options: ["A. 16", "B. 8", "C. 24", "D. 4"],
     correctAnswer: "b",
-    explanation: "Recordad. Para calcular el número de bits de subred es tan sencillo como restar el número de bits de host por los de red. Los de red se sacan por las direcciones. 1-126  -> 8 127-191 -> 16 192+ -> 24 En este caso, la máscara tiene 16 \"1\", 16-8 = 8",
+    explanation:
+      'Recordad. Para calcular el número de bits de subred es tan sencillo como restar el número de bits de host por los de red. Los de red se sacan por las direcciones. 1-126  -> 8 127-191 -> 16 192+ -> 24 En este caso, la máscara tiene 16 "1", 16-8 = 8',
   },
   {
     id: "redes_udc_q209",
@@ -5042,13 +4962,9 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "El número de subredes para una dirección con 4 bits de subred es de",
-    options: [
-      "A. 32",
-      "B. 8",
-      "C. 24",
-      "D. 16",
-    ],
+    question:
+      "El número de subredes para una dirección con 4 bits de subred es de",
+    options: ["A. 32", "B. 8", "C. 24", "D. 16"],
     correctAnswer: "d",
     explanation: "2 ^ bits subred",
   },
@@ -5058,13 +4974,9 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "El número de hosts por subred para una dirección con 4 bits de subred es de",
-    options: [
-      "A. 24",
-      "B. 6",
-      "C. 22",
-      "D. 14",
-    ],
+    question:
+      "El número de hosts por subred para una dirección con 4 bits de subred es de",
+    options: ["A. 24", "B. 6", "C. 22", "D. 14"],
     correctAnswer: "d",
     explanation: "2 ^ bits subred - 2",
   },
@@ -5074,7 +4986,8 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Para un rango de 210.53.23.0-63 y con una máscara de 255.255.255.192, diríamos que (con FLSM)",
+    question:
+      "Para un rango de 210.53.23.0-63 y con una máscara de 255.255.255.192, diríamos que (con FLSM)",
     options: [
       "A. Dirección subred -> 210.53.23.0 Dirección broadcast -> 210.53.23.63",
       "B. Dirección subred -> 210.53.23.0 Dirección broadcast -> 210.53.23.192",
@@ -5149,13 +5062,9 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Lo que permite conectar dispositivos de red interna a internet (exterior) es",
-    options: [
-      "A. NAT",
-      "B. APIPA",
-      "C. ISP",
-      "D. WLAN o LAN",
-    ],
+    question:
+      "Lo que permite conectar dispositivos de red interna a internet (exterior) es",
+    options: ["A. NAT", "B. APIPA", "C. ISP", "D. WLAN o LAN"],
     correctAnswer: "a",
   },
   {
@@ -5165,12 +5074,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "La direcciones privadas del la clase A contienen",
-    options: [
-      "A. 1 red",
-      "B. 16 redes",
-      "C. 256 redes",
-      "D. 1024 redes",
-    ],
+    options: ["A. 1 red", "B. 16 redes", "C. 256 redes", "D. 1024 redes"],
     correctAnswer: "a",
   },
   {
@@ -5180,12 +5084,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "La direcciones privadas del la clase B contienen",
-    options: [
-      "A. 1 red",
-      "B. 16 redes",
-      "C. 256 redes",
-      "D. 1024 redes",
-    ],
+    options: ["A. 1 red", "B. 16 redes", "C. 256 redes", "D. 1024 redes"],
     correctAnswer: "b",
   },
   {
@@ -5195,12 +5094,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "La direcciones privadas del la clase C contienen",
-    options: [
-      "A. 1 red",
-      "B. 16 redes",
-      "C. 256 redes",
-      "D. 1024 redes",
-    ],
+    options: ["A. 1 red", "B. 16 redes", "C. 256 redes", "D. 1024 redes"],
     correctAnswer: "c",
   },
   {
@@ -5255,12 +5149,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "192.168.0 - 192.168.255.0",
-    options: [
-      "A. Clase A",
-      "B. Clase B",
-      "C. Clase C",
-      "D. Clase D",
-    ],
+    options: ["A. Clase A", "B. Clase B", "C. Clase C", "D. Clase D"],
     correctAnswer: "c",
   },
   {
@@ -5270,12 +5159,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "10.0.0.0",
-    options: [
-      "A. Clase A",
-      "B. Clase B",
-      "C. Clase C",
-      "D. Clase D",
-    ],
+    options: ["A. Clase A", "B. Clase B", "C. Clase C", "D. Clase D"],
     correctAnswer: "a",
   },
   {
@@ -5285,12 +5169,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "172.16.0.0 – 172.31.0.0",
-    options: [
-      "A. Clase A",
-      "B. Clase B",
-      "C. Clase C",
-      "D. Clase D",
-    ],
+    options: ["A. Clase A", "B. Clase B", "C. Clase C", "D. Clase D"],
     correctAnswer: "b",
   },
   {
@@ -5315,12 +5194,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Tipo de NAT que traduce mapeando números de puerto",
-    options: [
-      "A. PAT o NAPT",
-      "B. Basic NAT",
-      "C. CGNAT",
-      "D. Port NAT",
-    ],
+    options: ["A. PAT o NAPT", "B. Basic NAT", "C. CGNAT", "D. Port NAT"],
     correctAnswer: "a",
   },
   {
@@ -5329,13 +5203,9 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Tipo de NAT donde cada dirección privada tiene una dirección pública",
-    options: [
-      "A. PAT",
-      "B. Basic NAT",
-      "C. CGNAT",
-      "D. NAPT",
-    ],
+    question:
+      "Tipo de NAT donde cada dirección privada tiene una dirección pública",
+    options: ["A. PAT", "B. Basic NAT", "C. CGNAT", "D. NAPT"],
     correctAnswer: "b",
   },
   {
@@ -5344,13 +5214,9 @@ export const questions: Question[] = [
     topic: "tema-7",
     type: "mc",
     points: 1,
-    question: "Tipo de NAT que usa redes privadas a nivel ISP para compartir un pool de IPs públicas a múltiples clientes",
-    options: [
-      "A. PAT",
-      "B. Basic NAT",
-      "C. CGNAT",
-      "D. NAPT",
-    ],
+    question:
+      "Tipo de NAT que usa redes privadas a nivel ISP para compartir un pool de IPs públicas a múltiples clientes",
+    options: ["A. PAT", "B. Basic NAT", "C. CGNAT", "D. NAPT"],
     correctAnswer: "c",
   },
   {
@@ -5407,13 +5273,9 @@ export const questions: Question[] = [
     topic: "tema-8",
     type: "mc",
     points: 1,
-    question: "Dispositivo que tiene varias interfaces de red que implementa los niveles de red, enlace y físico",
-    options: [
-      "A. Router",
-      "B. Firewall",
-      "C. Switch",
-      "D. Port",
-    ],
+    question:
+      "Dispositivo que tiene varias interfaces de red que implementa los niveles de red, enlace y físico",
+    options: ["A. Router", "B. Firewall", "C. Switch", "D. Port"],
     correctAnswer: "a",
   },
   {
@@ -5422,7 +5284,8 @@ export const questions: Question[] = [
     topic: "tema-8",
     type: "mc",
     points: 1,
-    question: "Cuando se dice que el enrutamiento de IP se hace salto a salto, se refiere a que",
+    question:
+      "Cuando se dice que el enrutamiento de IP se hace salto a salto, se refiere a que",
     options: [
       "A. Los datagramas, a no ser que el destino esté directamente conectado con la máquina, se envían de router en router hasta llegar",
       "B. Los datagramas, independientemente de dónde esté el destino, se envían de capa en capa (físico, enlace, red) hasta llegar al destino",
@@ -5437,7 +5300,8 @@ export const questions: Question[] = [
     topic: "tema-8",
     type: "mc",
     points: 1,
-    question: "Escoja la opción correcta con respecto a la tabla de enrutamiento",
+    question:
+      "Escoja la opción correcta con respecto a la tabla de enrutamiento",
     options: [
       "A. Todo dispositivo conectado a internet tiene en memoria una tabla de enrutamiento",
       "B. Cada entrada de la tabla de enrutamiento tiene la dirección pública y su dirección privada asociada",
@@ -5452,7 +5316,8 @@ export const questions: Question[] = [
     topic: "tema-8",
     type: "mc",
     points: 1,
-    question: "Escoja la opción incorrecta con respecto a la tabla de enrutamiento",
+    question:
+      "Escoja la opción incorrecta con respecto a la tabla de enrutamiento",
     options: [
       "A. Contiene la dirección IP de destino",
       "B. La dirección IP de destino puede ser una dirección de red si host ID == 0",
@@ -5468,7 +5333,8 @@ export const questions: Question[] = [
     topic: "tema-8",
     type: "mc",
     points: 1,
-    question: "Escoja la opción correcta con respecto al algoritmo de enrutamiento",
+    question:
+      "Escoja la opción correcta con respecto al algoritmo de enrutamiento",
     options: [
       "A. A partir de la IP de destino de un datagrama, busca la entrada correcta en la tabla de enrutamiento",
       "B. Para un algoritmo correcto es importante el orden de las entradas en la tabla",
@@ -5483,7 +5349,8 @@ export const questions: Question[] = [
     topic: "tema-8",
     type: "mc",
     points: 1,
-    question: "Escoja la opción correcta con respecto al algoritmo de enrutamiento",
+    question:
+      "Escoja la opción correcta con respecto al algoritmo de enrutamiento",
     options: [
       "A. Si el Flag G está desactivado, entonces el datagrama se envía directamente a la interfaz de salida",
       "B. Si el Flag G está activado, se selecciona aquella dirección con una máscara mayor (longest match prefix)",
@@ -5591,13 +5458,9 @@ export const questions: Question[] = [
     topic: "tema-9",
     type: "mc",
     points: 1,
-    question: "La herramienta que permite ver el camino que sigue un datagrama hacia un destino es",
-    options: [
-      "A. traceroute",
-      "B. datapath",
-      "C. pathfinder",
-      "D. iprouter",
-    ],
+    question:
+      "La herramienta que permite ver el camino que sigue un datagrama hacia un destino es",
+    options: ["A. traceroute", "B. datapath", "C. pathfinder", "D. iprouter"],
     correctAnswer: "a",
   },
   {
@@ -5715,12 +5578,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "2000::/3",
-    options: [
-      "A. Unicast global",
-      "B. Multicast",
-      "C. Anycast",
-      "D. Loopback",
-    ],
+    options: ["A. Unicast global", "B. Multicast", "C. Anycast", "D. Loopback"],
     correctAnswer: "a",
   },
   {
@@ -5760,12 +5618,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "FFxx/8",
-    options: [
-      "A. Unicast",
-      "B. Multicast",
-      "C. Anycast",
-      "D. Loopback",
-    ],
+    options: ["A. Unicast", "B. Multicast", "C. Anycast", "D. Loopback"],
     correctAnswer: "b",
   },
   {
@@ -5775,12 +5628,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "::1/128 o ::/128",
-    options: [
-      "A. Unicast",
-      "B. Multicast",
-      "C. Anycast",
-      "D. Loopback",
-    ],
+    options: ["A. Unicast", "B. Multicast", "C. Anycast", "D. Loopback"],
     correctAnswer: "d",
   },
   {
@@ -5790,12 +5638,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "DNS en IPv6",
-    options: [
-      "A. AAAA",
-      "B. AAAAAA",
-      "C. AA",
-      "D. A",
-    ],
+    options: ["A. AAAA", "B. AAAAAA", "C. AA", "D. A"],
     correctAnswer: "a",
   },
   {
@@ -5838,12 +5681,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "La dirección MAC de broadcast es",
-    options: [
-      "A. FF:FF:FF:FF:FF:FF",
-      "B. 255.255.255.255",
-      "C. ::1",
-      "D. ::0",
-    ],
+    options: ["A. FF:FF:FF:FF:FF:FF", "B. 255.255.255.255", "C. ::1", "D. ::0"],
     correctAnswer: "a",
   },
   {
@@ -5853,12 +5691,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Lo que permite la correspondencia entre IPs y direcciones MAC",
-    options: [
-      "A. ARP",
-      "B. Ethernet",
-      "C. UDP",
-      "D. SMPT",
-    ],
+    options: ["A. ARP", "B. Ethernet", "C. UDP", "D. SMPT"],
     correctAnswer: "a",
   },
   {
@@ -5886,7 +5719,8 @@ export const questions: Question[] = [
     topic: "tema-12",
     type: "mc",
     points: 1,
-    question: "Escoja la opción falsa con respecto a las tecnologías del nivel de enlace",
+    question:
+      "Escoja la opción falsa con respecto a las tecnologías del nivel de enlace",
     options: [
       "A. En las redes LAN y de radio el retardo de propagación entre las estaciones es mucho más pequeño que el tiempo de transmisión entre las tramas",
       "B. En la técnica CSMA una estación escucha el medio antes de transmitir, esperando o lanzando",
@@ -5902,7 +5736,8 @@ export const questions: Question[] = [
     topic: "tema-12",
     type: "mc",
     points: 1,
-    question: "Escoja la opción falsa con respecto a las tecnologías del nivel de enlace",
+    question:
+      "Escoja la opción falsa con respecto a las tecnologías del nivel de enlace",
     options: [
       "A. En el CSMA/CD, el tiempo de detectar una colisión es menor o igual a dos veces el retardo de propagación E2E",
       "B. Una trama debe ser lo suficientemente larga para detectar la colisión antes de que acabe su transmisión",
@@ -5917,13 +5752,9 @@ export const questions: Question[] = [
     topic: "tema-12",
     type: "mc",
     points: 1,
-    question: "El grupo de estaciones que se comunican entre sí en el protocolo de WiFi",
-    options: [
-      "A. BSS",
-      "B. ESS",
-      "C. RTRS",
-      "D. CSMI",
-    ],
+    question:
+      "El grupo de estaciones que se comunican entre sí en el protocolo de WiFi",
+    options: ["A. BSS", "B. ESS", "C. RTRS", "D. CSMI"],
     correctAnswer: "a",
   },
   {
@@ -5977,13 +5808,9 @@ export const questions: Question[] = [
     topic: "tema-12",
     type: "mc",
     points: 1,
-    question: "En WiFi, lo que identifica a la red inalámbrica asociada al punto de acceso",
-    options: [
-      "A. IP",
-      "B. IP pública",
-      "C. SSID",
-      "D. MAC del PA",
-    ],
+    question:
+      "En WiFi, lo que identifica a la red inalámbrica asociada al punto de acceso",
+    options: ["A. IP", "B. IP pública", "C. SSID", "D. MAC del PA"],
     correctAnswer: "c",
   },
   {
@@ -6012,12 +5839,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "¿Cuál de estas es una técnica de transición IPv4 a IPv6?",
-    options: [
-      "A. DHCP",
-      "B. ICMPv6",
-      "C. Pila dual",
-      "D. ARP",
-    ],
+    options: ["A. DHCP", "B. ICMPv6", "C. Pila dual", "D. ARP"],
     correctAnswer: "c",
   },
 
@@ -6030,12 +5852,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "La direccion 10.0.0.10/8",
-    options: [
-      "A. pública",
-      "B. multicast",
-      "C. privada",
-      "D. broadcast",
-    ],
+    options: ["A. pública", "B. multicast", "C. privada", "D. broadcast"],
     correctAnswer: "c",
   },
 
@@ -6065,7 +5882,8 @@ export const questions: Question[] = [
     topic: "tema-12",
     type: "mc",
     points: 1,
-    question: "En una red Ethernet a 10 Mbps el retardo de propagación es equivalente a la velocidad de la luz. Por lo tanto",
+    question:
+      "En una red Ethernet a 10 Mbps el retardo de propagación es equivalente a la velocidad de la luz. Por lo tanto",
     options: [
       "A. el retardo de transmisión es mucho menor que el retardo de propagación.",
       "B. el retardo de transmisión es mucho mayor que el retardo de propagación.",
@@ -6083,7 +5901,8 @@ export const questions: Question[] = [
     topic: "tema-6",
     type: "mc",
     points: 1,
-    question: "Si un cliente TCP envía un segmento SYN 51900:51900, pero no hay un receptor escuchando en el puerto de destino, ¿qué respuesta recibirá el cliente?",
+    question:
+      "Si un cliente TCP envía un segmento SYN 51900:51900, pero no hay un receptor escuchando en el puerto de destino, ¿qué respuesta recibirá el cliente?",
     options: [
       "A. SYN 51900:51900",
       "B. SYN 51900:51900, ACK 51900",
@@ -6113,7 +5932,8 @@ export const questions: Question[] = [
     topic: "tema-6",
     type: "mc",
     points: 1,
-    question: "En el protocolo ARQ retroceder N (Go-Back-N) con un tamaño de ventana de 7 paquetes, si el receptor ha recibido correctamente los paquetes 1, 2, 3, 4, 5, 6 y 7, enviado los correspondientes ACKs pero se ha perdido el ACK 5, ¿qué paquete o paquetes deberá retransmitir el emisor?",
+    question:
+      "En el protocolo ARQ retroceder N (Go-Back-N) con un tamaño de ventana de 7 paquetes, si el receptor ha recibido correctamente los paquetes 1, 2, 3, 4, 5, 6 y 7, enviado los correspondientes ACKs pero se ha perdido el ACK 5, ¿qué paquete o paquetes deberá retransmitir el emisor?",
     options: [
       "A. el 5",
       "B. el 5,6,7",
@@ -6128,7 +5948,8 @@ export const questions: Question[] = [
     topic: "tema-6",
     type: "mc",
     points: 1,
-    question: "En el protocolo protocolo ARQ de repetición selectiva con un tamaño de ventana de 7 paquetes, si el receptor ha recibido correctamente los paquetes 1, 2, 3, 4, 5, 6 y 7, enviado los correspondientes ACKs pero se ha perdido el ACK 5, ¿qué paquete o paquetes deberá retransmitir el emisor?",
+    question:
+      "En el protocolo protocolo ARQ de repetición selectiva con un tamaño de ventana de 7 paquetes, si el receptor ha recibido correctamente los paquetes 1, 2, 3, 4, 5, 6 y 7, enviado los correspondientes ACKs pero se ha perdido el ACK 5, ¿qué paquete o paquetes deberá retransmitir el emisor?",
     options: [
       "A. el 5",
       "B. el 5,6,7",
@@ -6146,7 +5967,8 @@ export const questions: Question[] = [
     topic: "tema-3-4",
     type: "mc",
     points: 1,
-    question: "Si quiero enviar un correo electrónico a john.doe@gmail.com desde mi cuenta de profe@udc.es, ¿cuál de las siguientes afirmaciones es correcta?",
+    question:
+      "Si quiero enviar un correo electrónico a john.doe@gmail.com desde mi cuenta de profe@udc.es, ¿cuál de las siguientes afirmaciones es correcta?",
     options: [
       "A. se envía con el protocolo POP3 desde el servidor de correo de la UDC al servidor de correo de Gmail",
       "B. se envía con el protocolo SMPT desde el servidor de correo de la UDC al servidor de correo de Gmail",
@@ -6164,7 +5986,8 @@ export const questions: Question[] = [
     topic: "tema-5",
     type: "mc",
     points: 1,
-    question: "¿Cuál de estas funciones de nivel de transporte realiza TCP pero no UDP?",
+    question:
+      "¿Cuál de estas funciones de nivel de transporte realiza TCP pero no UDP?",
     options: [
       "A. envío de mensajes multicast",
       "B. retransmisión de mensajes perdidos",
@@ -6239,7 +6062,8 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question: "La interfaz de loopback evita que determinados paquetes IP salgas de la red. ¿Cuáles?",
+    question:
+      "La interfaz de loopback evita que determinados paquetes IP salgas de la red. ¿Cuáles?",
     options: [
       "A. Paquetes cuya dirección IP de destino sea la propia máquina",
       "B. Paquetes cuya IP de destino sea una dirección de broadcast",
@@ -6309,7 +6133,8 @@ export const questions: Question[] = [
     topic: "tema-6",
     type: "mc",
     points: 1,
-    question: "En una conexión TCP, durante el establecimiento de conexión el cliente indica MSS 1024 y el servidor MSS 512. ¿De qué tamaño serán los segmentos intercambiados?",
+    question:
+      "En una conexión TCP, durante el establecimiento de conexión el cliente indica MSS 1024 y el servidor MSS 512. ¿De qué tamaño serán los segmentos intercambiados?",
     options: [
       "A. 512",
       "B. 1024",
@@ -6328,7 +6153,8 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     repeated: true,
-    question: "Supón que te conectas con tu portátil a una red a la que nunca te has conectado antes. Desde el primer momento y sin configurar nada, tienes acceso a la red como un nodo más. ¿A qué se debe esto?",
+    question:
+      "Supón que te conectas con tu portátil a una red a la que nunca te has conectado antes. Desde el primer momento y sin configurar nada, tienes acceso a la red como un nodo más. ¿A qué se debe esto?",
     options: [
       "A. Tu equipo ha encontrado un servidor DHCP que le ha enviado toda la info necesaria",
       "B. Tu equipo a h encontrado un servidor DNS y un servidor ARP",
@@ -6382,13 +6208,9 @@ export const questions: Question[] = [
     topic: "tema-9",
     type: "mc",
     points: 1,
-    question: "El reensamblaje de datagramas IP fragmentados, ¿en qué nivel se produce?",
-    options: [
-      "A. Red",
-      "B. Enlace",
-      "C. Aplicación",
-      "D. Transporte",
-    ],
+    question:
+      "El reensamblaje de datagramas IP fragmentados, ¿en qué nivel se produce?",
+    options: ["A. Red", "B. Enlace", "C. Aplicación", "D. Transporte"],
     correctAnswer: "a",
   },
 
@@ -6400,7 +6222,8 @@ export const questions: Question[] = [
     topic: "tema-6",
     type: "mc",
     points: 1,
-    question: "Poniendo el caso de flujo de datos no interactivos. Qué ocurriría si se pierde el segmento de actualización de ventana? Asuma que no se dispone de ningún tipo de control de flujo especial",
+    question:
+      "Poniendo el caso de flujo de datos no interactivos. Qué ocurriría si se pierde el segmento de actualización de ventana? Asuma que no se dispone de ningún tipo de control de flujo especial",
     options: [
       "A. Se entra en una situación de interbloqueo",
       "B. No pasa nada, porque el sistema de ACKs acumulativos impide que se pierda un dato en ese segmento",
@@ -6469,7 +6292,6 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
 
   // END_DAYPO_UDC
 ];

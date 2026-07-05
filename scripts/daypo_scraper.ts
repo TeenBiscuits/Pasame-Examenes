@@ -186,8 +186,7 @@ function buildTsOutput(test: DaypoTest, topic: string, exam: string): string {
       .filter((idx) => idx >= 0 && idx < LETTERS.length)
       .map((idx) => LETTERS[idx]);
     const options = q.options.map(
-      (o, oi) =>
-        `${String.fromCharCode(65 + oi)}. ${o}`,
+      (o, oi) => `${String.fromCharCode(65 + oi)}. ${o}`,
     );
 
     lines.push("  {");
@@ -196,19 +195,16 @@ function buildTsOutput(test: DaypoTest, topic: string, exam: string): string {
     lines.push(`    topic: "${topic}",`);
     lines.push(`    type: "mc",`);
     lines.push(`    points: 1,`);
-    lines.push(
-      `    question: ${JSON.stringify(q.question)},`,
-    );
+    lines.push(`    question: ${JSON.stringify(q.question)},`);
 
     if (options.length > 0) {
       lines.push(`    options: ${JSON.stringify(options)},`);
     }
 
     const hasMultipleCorrect = correctLetters.length > 1;
-    const fallbackExplanation =
-      hasMultipleCorrect
-        ? `Daypo correct options: ${correctLetters.join(", ").toUpperCase()}`
-        : "";
+    const fallbackExplanation = hasMultipleCorrect
+      ? `Daypo correct options: ${correctLetters.join(", ").toUpperCase()}`
+      : "";
 
     if (correctLetters.length >= 1) {
       lines.push(`    correctAnswer: "${correctLetters[0]}",`);
@@ -221,13 +217,9 @@ function buildTsOutput(test: DaypoTest, topic: string, exam: string): string {
         `    explanation: ${JSON.stringify(`${fallbackExplanation}. ${q.hint}`)},`,
       );
     } else if (fallbackExplanation) {
-      lines.push(
-        `    explanation: ${JSON.stringify(fallbackExplanation)},`,
-      );
+      lines.push(`    explanation: ${JSON.stringify(fallbackExplanation)},`);
     } else if (q.hint) {
-      lines.push(
-        `    explanation: ${JSON.stringify(q.hint)},`,
-      );
+      lines.push(`    explanation: ${JSON.stringify(q.hint)},`);
     }
 
     lines.push("  },");
