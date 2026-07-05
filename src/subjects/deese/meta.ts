@@ -5,7 +5,7 @@ export const meta: SubjectMeta = {
   name: "Deseño de Software",
   university: "Universidade da Coruña",
   courseCode: "202317",
-  icon: "🏗️",
+  icon: "🎨",
   acknowledgments:
     "Exámenes y soluciones originales proporcionadas por el profesorado de la asignatura.",
   topics: [

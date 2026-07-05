@@ -55,6 +55,7 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 | 💽 Sistemas Operativos              | Universidade da Coruña | 9 (2020–2024)  |
 | 🧠 Sistemas Intelixentes            | Universidade da Coruña | 5 (2023–2026)  |
 | ⚡ Concorrencia e Paralelismo       | Universidade da Coruña | 16 (2018–2025) |
+| 🎨 Deseño de Software               | Universidade da Coruña | 2 (2020-2022)  |
 | 💻 Estrutura de Computadores        | Universidade da Coruña | 11 (2021–2026) |
 | 🏗️ Xestión de Infraestruturas       | Universidade da Coruña | 4              |
 | 📋 Xestión de Proxectos             | Universidade da Coruña | 5 (2024-2026)  |
