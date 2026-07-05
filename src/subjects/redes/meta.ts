@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "202319",
   icon: "🕸️",
   acknowledgments:
-    "Recopilatorio de preguntas de exámenes de Redes (Junio y Julio desde 2008) proporcionado por el alumnado de la asignatura de forma anónima.",
+    "Exámenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
   topics: [
     {
       key: "tema-1",
