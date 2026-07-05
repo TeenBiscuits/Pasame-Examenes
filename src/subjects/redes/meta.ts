@@ -86,5 +86,14 @@ export const meta: SubjectMeta = {
       durationMinutes: 120,
       hasPdf: false,
     },
+    {
+      year: "daypo-recopilatorio-udc",
+      title: "Daypo Recopilatorio (UDC)",
+      description: "298 preguntas · 298 puntos",
+      passPoints: 149,
+      totalPoints: 298,
+      durationMinutes: 240,
+      hasPdf: false,
+    },
   ],
 };
