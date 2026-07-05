@@ -4,10 +4,15 @@
 
 <div align="center">
 
-[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![React 19](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![TypeScript 6](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite 8](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![React Router v7](https://img.shields.io/badge/React_Router_v7-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
+[![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
+[![i18n](https://img.shields.io/badge/i18n-en_|_es_|_gl-34d399)](https://github.com/TeenBiscuits/Pasame-Examenes)
+[![driver.js](https://img.shields.io/badge/driver.js-FF5722)](https://driverjs.com)
+[![web-haptics](https://img.shields.io/badge/web--haptics-yellow)](https://haptics.lochie.me)
 [![Vercel](https://img.shields.io/badge/Vercel-black?logo=vercel&logoColor=white)](https://vercel.com)
 [![Pull Request](https://img.shields.io/github/issues-pr-closed/TeenBiscuits/Pasame-Examenes.svg?label=Pull%20Request)](https://github.com/TeenBiscuits/Pasame-Examenes/pulls)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE.md)
@@ -52,31 +57,18 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 | ⚡ Concorrencia e Paralelismo       | Universidade da Coruña | 16 (2018–2025) |
 | 💻 Estrutura de Computadores        | Universidade da Coruña | 11 (2021–2026) |
 | 🏗️ Xestión de Infraestruturas       | Universidade da Coruña | 4              |
-| 📋 Xestión de Proxectos             | Universidade da Coruña | 5 (2024, 2026) |
+| 📋 Xestión de Proxectos             | Universidade da Coruña | 5 (2024-2026)  |
 | 🤖 Introduction to Machine Learning | Linnaeus University    | 2 (2024–2025)  |
+| 🕸️ Redes                            | Universidade da Coruña | 3 (2008-2025)  |
 | 🔗 Programación Integrativa         | Universidade da Coruña | 1              |
+| 🗓️ Proceso Software                 | Universidade da Coruña | 1 (2026)       |
 | 🌐 Internet y Sistemas Distribuidos | Universidade da Coruña | 1              |
-
-## Tecnologías
-
-<div align="center">
-
-[![React 19](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![TypeScript 6](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite 8](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![React Router v7](https://img.shields.io/badge/React_Router_v7-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
-[![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
-[![Umami](https://img.shields.io/badge/Umami-FFEEAA?logo=umami&logoColor=black)](https://umami.is)
-[![vite-imagetools](https://img.shields.io/badge/vite--imagetools-1cf)](https://github.com/JonasKruckenberg/vite-imagetools)
-
-</div>
 
 ## Desarrollo
 
 ```bash
 pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
-pnpm build     # tsc -b + sitemap + IndexNow opcional + build de producción
+pnpm build     # tsc -b + sitemap + IndexNow + OG images + build producción + páginas estáticas
 pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
 pnpm format    # Prettier --write
 pnpm preview   # Preview del build de producción
@@ -84,6 +76,14 @@ pnpm doctor    # React Doctor
 ```
 
 No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación de tipos.
+
+### i18n y temas
+
+La plataforma es trilingüe (español, inglés, gallego) con un sistema de i18n propio en `src/i18n/`. Incluye 4 temas visuales (claro, oscuro, rosa, Catppuccin) conmutables desde la interfaz, aplicados mediante `data-theme` en `<html>`.
+
+### Generación de OG images
+
+El build genera automáticamente imágenes Open Graph por asignatura y página principal usando `@napi-rs/canvas`, que los crawlers usan para previsualizaciones en redes sociales.
 
 ## Contribuye ✨
 
