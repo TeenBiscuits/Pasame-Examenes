@@ -6,9 +6,8 @@
 
 [![React 19](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)](https://react.dev)
 [![TypeScript 6](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite 8](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![Next.js 16](https://img.shields.io/badge/Next.js_16-black?logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![React Router v7](https://img.shields.io/badge/React_Router_v7-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
 [![i18n](https://img.shields.io/badge/i18n-en_|_es_|_gl-34d399)](https://github.com/TeenBiscuits/Pasame-Examenes)
 [![driver.js](https://img.shields.io/badge/driver.js-FF5722)](https://driverjs.com)
@@ -68,9 +67,9 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 ## Desarrollo
 
 ```bash
-pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
-pnpm build     # tsc -b + sitemap + IndexNow + OG images + build producción + páginas estáticas
-pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
+pnpm dev       # Servidor Next.js con webpack; carga react-grab solo en desarrollo
+pnpm build     # Sitemap + IndexNow + OG images + export estático de Next.js
+pnpm lint      # ESLint flat config para TS/TSX
 pnpm format    # Prettier --write
 pnpm preview   # Preview del build de producción
 pnpm doctor    # React Doctor

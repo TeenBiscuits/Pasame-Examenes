@@ -174,16 +174,13 @@ Si alguna pregunta referencia figuras o gráficos (en el enunciado o en la soluc
 3. Configura la carga automática de imágenes al inicio de `questions.ts`:
 
 ```ts
-import type { Picture } from "vite-imagetools";
 import { getImage } from "../../lib/image";
 import type { ImageMap } from "../../lib/image";
 
-const imageMap = import.meta.glob<{ default: Picture }>(
-  "./assets/*.{png,jpeg,jpg}",
-  {
-    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
-    eager: true,
-  },
+const imageMap = require.context(
+  "./assets",
+  false,
+  /\.(png|jpe?g)$/,
 ) as ImageMap;
 ```
 
@@ -198,7 +195,7 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 
 - `image`: se muestra en el cuerpo de la pregunta, antes de las opciones de respuesta.
 - `explanationImage`: se muestra dentro del panel de solución colapsable (disponible para todos los tipos de pregunta: mc, text, matching).
-- Las imágenes se optimizan automáticamente (múltiples tamaños y formatos: AVIF, WebP, PNG).
+- Las imágenes se sirven con dimensiones estáticas mediante Next/Image en modo export estático.
 
 #### 6. Registra la asignatura en `_visibility.ts`
 
@@ -212,7 +209,7 @@ void tuAsignaturaMeta;
 void tuAsignaturaQuestions;
 ```
 
-Este archivo existe para que herramientas de análisis estático como React Doctor vean que los exports de cada asignatura se consumen. La carga real en tiempo de ejecución la hace `import.meta.glob` en `index.ts`.
+Este archivo existe para que herramientas de análisis estático como React Doctor vean que los exports de cada asignatura se consumen. La carga real está registrada explícitamente en `src/subjects/index.ts`; añade allí también los imports de `meta` y `questions`.
 
 #### 7. Verifica
 
@@ -314,15 +311,15 @@ public/
 ## Comandos
 
 ```bash
-pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
-pnpm build     # tsc -b + sitemap + IndexNow opcional + build de producción
-pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
+pnpm dev       # Servidor Next.js con webpack; carga react-grab solo en desarrollo
+pnpm build     # Sitemap + IndexNow opcional + OG images + export estático de Next.js
+pnpm lint      # ESLint flat config para TS/TSX
 pnpm format    # Prettier --write
 pnpm preview   # Preview del build de producción
 pnpm doctor    # React Doctor
 ```
 
-No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación de tipos. El build reescribe `public/sitemap.xml` y solo genera `public/${INDEXNOW_KEY}.txt` si `INDEXNOW_KEY` está definido.
+No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación de tipos. El build reescribe `public/sitemap.xml`, regenera `public/og/` y solo genera `public/${INDEXNOW_KEY}.txt` si `INDEXNOW_KEY` está definido.
 
 ## Checklist para Pull Requests
 
