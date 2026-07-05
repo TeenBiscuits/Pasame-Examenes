@@ -4,7 +4,7 @@ export const meta: SubjectMeta = {
   id: "iesede",
   name: "Internet y Sistemas Distribuidos",
   university: "Universidade da Coruña",
-  courseCode: "ISD",
+  courseCode: "200188",
   icon: "🌐",
   acknowledgments: "Examen transcrito desde fotos.",
   topics: [
