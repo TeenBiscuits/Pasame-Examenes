@@ -204,15 +204,27 @@ function buildTsOutput(test: DaypoTest, topic: string, exam: string): string {
       lines.push(`    options: ${JSON.stringify(options)},`);
     }
 
-    if (correctLetters.length === 1) {
+    const hasMultipleCorrect = correctLetters.length > 1;
+    const fallbackExplanation =
+      hasMultipleCorrect
+        ? `Daypo correct options: ${correctLetters.join(", ").toUpperCase()}`
+        : "";
+
+    if (correctLetters.length >= 1) {
       lines.push(`    correctAnswer: "${correctLetters[0]}",`);
-    } else if (correctLetters.length > 1) {
-      lines.push(`    correctAnswer: ${JSON.stringify(correctLetters)},`);
     } else {
       lines.push(`    correctAnswer: "a",`);
     }
 
-    if (q.hint) {
+    if (q.hint && fallbackExplanation) {
+      lines.push(
+        `    explanation: ${JSON.stringify(`${fallbackExplanation}. ${q.hint}`)},`,
+      );
+    } else if (fallbackExplanation) {
+      lines.push(
+        `    explanation: ${JSON.stringify(fallbackExplanation)},`,
+      );
+    } else if (q.hint) {
       lines.push(
         `    explanation: ${JSON.stringify(q.hint)},`,
       );
@@ -260,6 +272,16 @@ async function main() {
 
   console.log("Parsing questions...");
   const test = parseXml(xml);
+
+  const multiCorrectCount = test.questions.filter(
+    (q) => parseCorrectIndices(q.code).length > 1,
+  ).length;
+
+  if (multiCorrectCount > 0) {
+    console.warn(
+      `Warning: ${multiCorrectCount} question(s) have multiple correct answers in Daypo. Only the first correct answer is used; check the explanation field for all correct options.`,
+    );
+  }
 
   console.log("Generating TypeScript...");
   const ts = buildTsOutput(test, topic, exam);
