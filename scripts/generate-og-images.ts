@@ -107,12 +107,12 @@ async function generateOgImage(
     titleFontSize -= 4;
     ctx.font = `800 ${titleFontSize}px Inter`;
   }
+  ctx.textBaseline = "middle";
   ctx.fillStyle = TEXT_PRIMARY;
   ctx.textAlign = "left";
-  const titleWidth = ctx.measureText(title).width;
-  const titleX = Math.max((W - titleWidth) / 2, 71);
-  ctx.fillText(title, titleX, 290);
+  ctx.fillText(title, 71, H / 2);
 
+  ctx.textBaseline = "top";
   ctx.font = `400 37px Inter`;
   ctx.fillStyle = TEXT_SECONDARY;
   ctx.textAlign = "left";
