@@ -148,6 +148,18 @@ async function main() {
 
   let generated = 0;
   const failures: string[] = [];
+  const subjectsMeta: Record<
+    string,
+    {
+      name: string;
+      icon: string;
+      questionCount: number;
+      topicCount: number;
+      examCount: number;
+      university: string;
+      courseCode: string;
+    }
+  > = {};
 
   for (const dir of subjectDirs) {
     const subjectId = dir.name;
@@ -164,6 +176,8 @@ async function main() {
           icon: string;
           topics: unknown[];
           exams: unknown[];
+          university: string;
+          courseCode: string;
         };
       };
       const { meta } = mod;
@@ -181,6 +195,17 @@ async function main() {
       const outPath = resolve(ogOutputDir, `${subjectId}.png`);
       writeFileSync(outPath, png);
       console.log(`  ✓ ${subjectId}.png (${meta.name})`);
+
+      subjectsMeta[subjectId] = {
+        name: meta.name,
+        icon: meta.icon,
+        questionCount,
+        topicCount: meta.topics.length,
+        examCount: meta.exams.length,
+        university: meta.university,
+        courseCode: meta.courseCode,
+      };
+
       generated++;
     } catch (err) {
       const msg = `${subjectId}: ${err instanceof Error ? err.message : String(err)}`;
@@ -188,6 +213,10 @@ async function main() {
       failures.push(msg);
     }
   }
+
+  const metaOutPath = resolve(root, "public", "subjects-meta.json");
+  writeFileSync(metaOutPath, JSON.stringify(subjectsMeta, null, 2));
+  console.log(`\n  ✓ subjects-meta.json (${Object.keys(subjectsMeta).length} subjects)`);
 
   console.log(`\nGenerated ${generated} OG images → ${ogOutputDir}`);
 
