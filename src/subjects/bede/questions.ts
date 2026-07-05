@@ -4,7 +4,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_01",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -19,7 +19,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_02",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -34,7 +34,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_03",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -49,7 +49,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_04",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -64,7 +64,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_05",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "En el modelo relacional, un atributo de una tupla:",
@@ -78,7 +78,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_06",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -93,7 +93,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_07",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -108,7 +108,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_08",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: 'Las técnicas "Esperar-Morir" y "Hervir-Esperar" son...',
@@ -122,7 +122,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_09",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -137,7 +137,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_10",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "En el protocolo de bloqueo riguros de dos fases",
@@ -151,7 +151,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_11",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -166,7 +166,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_12",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "En el nivel de aislamiento REPEATABLE READ",
@@ -180,7 +180,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_13",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "Una transacción",
@@ -194,7 +194,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_14",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "El nivel de aislamiento Read committed",
@@ -208,7 +208,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_15",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "En un sistema de control de concurrencia por multiversionado",
@@ -222,7 +222,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_16",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -237,7 +237,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_17",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "Usando bloqueos compartidos y exclusivos",
@@ -251,7 +251,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_18",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "Usando un mecanismo multiversión",
@@ -265,7 +265,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_19",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "Con el nivel de aislamiento READ COMMITTED",
@@ -279,7 +279,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_20",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un tamaño de bloque físico grande en un sistema de ficheros",
@@ -293,7 +293,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_21",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En el hash extensible",
@@ -307,7 +307,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_22",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un árbol B+",
@@ -321,7 +321,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_23",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Para actualizar un resgistro de un fichero son necesarias",
@@ -335,7 +335,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_24",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un indice disperso",
@@ -349,7 +349,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_25",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un factor de bloqueo alto en un fichero",
@@ -363,7 +363,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_26",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En los ficheros ordenados ¿Qué es cierto?",
@@ -377,7 +377,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_27",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En hash normal (estático), ¿Qué es cierto?",
@@ -391,7 +391,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_28",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -402,7 +402,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_29",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En un fichero hash estático",
@@ -416,7 +416,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_30",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "los ficheros en montículo (heap)",
@@ -430,7 +430,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_31",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -445,7 +445,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_32",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -456,7 +456,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_33",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -471,7 +471,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_34",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -486,7 +486,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_35",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -501,7 +501,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_36",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un factor de bloqueo alto en un fichero",
@@ -515,7 +515,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_37",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -526,7 +526,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_38",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "La técnica slotted-page",
@@ -540,7 +540,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_39",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un árbol B+",
@@ -554,7 +554,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_40",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -569,7 +569,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_41",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -580,7 +580,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_42",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "El protocolo de bloqueo de dos fases",
@@ -594,7 +594,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_43",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "Los logs o registros histórico son utilizados para ",
@@ -608,7 +608,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_44",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -623,7 +623,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_45",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "Cuando hacemos Rollback en Oracle",
@@ -637,7 +637,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_46",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "Un usuario dado de alta en un SGBD Oracle ",
@@ -651,7 +651,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_47",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -666,7 +666,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_48",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Usar la técnica de hash es más adecuado cuando:",
@@ -680,7 +680,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_49",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -695,7 +695,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_50",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -710,7 +710,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_51",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "La técnica slotted-page",
@@ -724,7 +724,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_52",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -739,7 +739,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_53",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -754,7 +754,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_54",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -769,7 +769,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_55",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -784,7 +784,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_56",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -799,7 +799,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_57",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En una lectura secuencial de un fichero lo que conviene es ",
@@ -813,7 +813,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_58",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un índice disperso",
@@ -827,7 +827,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_59",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -842,7 +842,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_60",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -853,7 +853,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_61",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -864,7 +864,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_62",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -875,7 +875,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_63",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En un árbol heterogéneo",
@@ -889,7 +889,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_64",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -904,7 +904,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_65",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Árboles B",
@@ -918,7 +918,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_66",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question:
@@ -933,7 +933,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_67",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -948,7 +948,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_68",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -959,7 +959,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_69",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -970,7 +970,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_70",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -981,7 +981,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_71",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -992,7 +992,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_72",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1007,7 +1007,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_73",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1022,7 +1022,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_74",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1037,7 +1037,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_75",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1052,7 +1052,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_76",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1067,7 +1067,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_77",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1082,7 +1082,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_78",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1097,7 +1097,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_79",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1112,7 +1112,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_80",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "El protocolo de bloqueo de dos fases",
@@ -1126,7 +1126,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_81",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "El uso de bloqueos compartidos y exclusivos",
@@ -1140,7 +1140,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_82",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1155,7 +1155,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_83",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1170,7 +1170,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_84",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "Los logs o registros históricos son utilizados para",
@@ -1184,7 +1184,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_85",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un factor de bloqueo alto en un fichero",
@@ -1198,7 +1198,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_86",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En los ficheros ordenados ¿qué es cierto?",
@@ -1212,7 +1212,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_87",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En hash normal(estático) ¿qué es cierto?",
@@ -1226,7 +1226,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_88",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un índice",
@@ -1240,7 +1240,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_89",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1251,7 +1251,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_90",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "En el protocolo de bloqueo riguroso de dos fases",
@@ -1265,7 +1265,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_91",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question:
@@ -1280,7 +1280,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_92",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "En el nivel de aislamiento REPEATABLE READ",
@@ -1294,7 +1294,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_93",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Un árbol B+",
@@ -1308,7 +1308,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_94",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
     question: "En el modelo relacional, un atributo de una tupla",
@@ -1322,7 +1322,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_95",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Para actualizar un registro de un fichero son necesarias",
@@ -1336,7 +1336,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_96",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "En los ficheros ordenados ¿qué es cierto?",
@@ -1350,7 +1350,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_97",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "La técnica de Hash es más acertada cuando",
@@ -1364,7 +1364,7 @@ export const questions: Question[] = [
   {
     id: "daypo-preguntas_98",
     exam: "daypo-preguntas",
-    topic: "teoria",
+    topic: "ficheros",
     type: "mc",
     points: 1,
     question: "Usar un indice sobr eun campo que no es clave primaria",

@@ -5,10 +5,13 @@ export const meta: SubjectMeta = {
   name: "Bases de Datos",
   university: "Universidade da Coruña",
   courseCode: "202315",
-  icon: "🗄️",
+  icon: "🗃️",
   acknowledgments:
     "Exámenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
-  topics: [{ key: "teoria", label: "Teoría", icon: "📖", color: "blue" }],
+  topics: [
+    { key: "recuperacion-concurrencia", label: "Recuperación y Concurrencia", icon: "🔄", color: "purple" },
+    { key: "ficheros", label: "Ficheros", icon: "📁", color: "green" },
+  ],
   exams: [
     {
       year: "daypo-preguntas",
