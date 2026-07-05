@@ -5,6 +5,11 @@
       "source": "/",
       "destination": "/es",
       "permanent": false
+    },
+    {
+      "source": "/:lang(en|es|gl)/:subjectId/practice",
+      "destination": "/:lang/:subjectId",
+      "permanent": false
     }
   ],
   "headers": [
