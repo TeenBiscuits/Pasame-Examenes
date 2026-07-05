@@ -73,11 +73,12 @@ async function fetchXml(ntest: number, referer: string): Promise<string> {
   return response.text();
 }
 
-function parseCorrectIndex(code: string): number {
+function parseCorrectIndices(code: string): number[] {
+  const indices: number[] = [];
   for (let i = 0; i < code.length; i++) {
-    if (code[i] === "2") return i;
+    if (code[i] === "2") indices.push(i);
   }
-  return -1;
+  return indices;
 }
 
 function unescapeXml(s: string): string {
@@ -180,11 +181,10 @@ function buildTsOutput(test: DaypoTest, topic: string, exam: string): string {
   for (let i = 0; i < test.questions.length; i++) {
     const q = test.questions[i];
     const qId = `${exam}_${String(i + 1).padStart(2, "0")}`;
-    const correctIdx = parseCorrectIndex(q.code);
-    const correctLetter =
-      correctIdx >= 0 && correctIdx < LETTERS.length
-        ? LETTERS[correctIdx]
-        : "a";
+    const correctIndices = parseCorrectIndices(q.code);
+    const correctLetters = correctIndices
+      .filter((idx) => idx >= 0 && idx < LETTERS.length)
+      .map((idx) => LETTERS[idx]);
     const options = q.options.map(
       (o, oi) =>
         `${String.fromCharCode(65 + oi)}. ${o}`,
@@ -204,7 +204,13 @@ function buildTsOutput(test: DaypoTest, topic: string, exam: string): string {
       lines.push(`    options: ${JSON.stringify(options)},`);
     }
 
-    lines.push(`    correctAnswer: "${correctLetter}",`);
+    if (correctLetters.length === 1) {
+      lines.push(`    correctAnswer: "${correctLetters[0]}",`);
+    } else if (correctLetters.length > 1) {
+      lines.push(`    correctAnswer: ${JSON.stringify(correctLetters)},`);
+    } else {
+      lines.push(`    correctAnswer: "a",`);
+    }
 
     if (q.hint) {
       lines.push(
@@ -258,7 +264,9 @@ async function main() {
   console.log("Generating TypeScript...");
   const ts = buildTsOutput(test, topic, exam);
 
-  const slug = url.replace(/\.html$/, "").split("/").pop() || `daypo-${ntest}`;
+  const pathname = new URL(url).pathname;
+  const lastSegment = pathname.split("/").filter(Boolean).pop();
+  const slug = lastSegment?.replace(/\.html$/, "") || `daypo-${ntest}`;
   const outPath = resolve(flags.output || `${slug}.ts`);
 
   writeFileSync(outPath, ts, "utf-8");
