@@ -25,6 +25,8 @@ import { meta as peeseMeta } from "./peese/meta";
 import { questions as peeseQuestions } from "./peese/questions";
 import { meta as peiMeta } from "./pei/meta";
 import { questions as peiQuestions } from "./pei/questions";
+import { meta as deeseMeta } from "./deese/meta";
+import { questions as deeseQuestions } from "./deese/questions";
 import { meta as redesMeta } from "./redes/meta";
 import { questions as redesQuestions } from "./redes/questions";
 
@@ -50,5 +52,7 @@ void peeseMeta;
 void peeseQuestions;
 void peiMeta;
 void peiQuestions;
+void deeseMeta;
+void deeseQuestions;
 void redesMeta;
 void redesQuestions;
