@@ -7,9 +7,14 @@ export const meta: SubjectMeta = {
   courseCode: "202315",
   icon: "🗃️",
   acknowledgments:
-    "Exámenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
+    "Recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
   topics: [
-    { key: "recuperacion-concurrencia", label: "Recuperación y Concurrencia", icon: "🔄", color: "purple" },
+    {
+      key: "recuperacion-concurrencia",
+      label: "Recuperación y Concurrencia",
+      icon: "🔄",
+      color: "purple",
+    },
     { key: "ficheros", label: "Ficheros", icon: "📁", color: "green" },
   ],
   exams: [
