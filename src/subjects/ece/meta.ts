@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "202314",
   icon: "💻",
   acknowledgments:
-    "Preguntas extraídas de los exámenes oficiales de la asignatura.",
+    "Exámenes y soluciones originales proporcionadas por el profesorado de la asignatura.",
   topics: [
     { key: "rendimiento", label: "Rendimiento", icon: "⚡", color: "blue" },
     { key: "segmentacion", label: "Segmentación", icon: "🔄", color: "green" },

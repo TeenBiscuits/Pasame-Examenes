@@ -6,7 +6,8 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "200188",
   icon: "🌐",
-  acknowledgments: "Examen transcrito desde fotos.",
+  acknowledgments:
+    "Examen original proporcionado por el alumnado de la asignatura de forma anónima.",
   topics: [
     {
       key: "general",

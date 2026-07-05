@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "202321",
   icon: "🗓️",
   acknowledgments:
-    "Examen original proporcionado por el alumnado de la asignatura.",
+    "Examen original proporcionado por el alumnado de la asignatura de forma anónima.",
   topics: [{ key: "teoria", label: "Teoría", icon: "📖", color: "blue" }],
   exams: [
     {

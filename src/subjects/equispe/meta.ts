@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "202323",
   icon: "📋",
   acknowledgments:
-    "Preguntas recopiladas de exámenes oficiais do Grao en Enxeñaría Informática.",
+    "Examenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
   topics: [
     {
       key: "teoria",

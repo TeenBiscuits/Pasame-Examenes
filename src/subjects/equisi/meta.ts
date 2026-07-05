@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "200190",
   icon: "🏗️",
   acknowledgments:
-    "Preguntas recopiladas de exámenes oficiais do Grao en Enxeñaría Informática e de daypo.com.",
+    "Examenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
   topics: [
     {
       key: "modulo-i",
