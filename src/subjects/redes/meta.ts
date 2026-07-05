@@ -95,5 +95,14 @@ export const meta: SubjectMeta = {
       durationMinutes: 240,
       hasPdf: false,
     },
+    {
+      year: "2025-05",
+      title: "Mayo 2025 (incompl.)",
+      description: "37 preguntas · 37 puntos",
+      passPoints: 19,
+      totalPoints: 37,
+      durationMinutes: 120,
+      hasPdf: false,
+    },
   ],
 };
