@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "202317",
   icon: "🎨",
   acknowledgments:
-    "Exámenes y soluciones originales proporcionadas por el profesorado de la asignatura.",
+    "Exámenes originales proporcionados por el alumnado de la asignatura de forma anónima.",
   topics: [
     {
       key: "intro-y-objetos",
