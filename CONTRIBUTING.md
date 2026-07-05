@@ -64,6 +64,13 @@ export const meta: SubjectMeta = {
 
 #### 3. Añade las preguntas en `questions.ts`
 
+> [!TIP]
+> Puedes extraer preguntas de cualquier daypo en formato `Question[]` usando [`scripts/daypo_scraper.ts`](scripts/daypo_scraper.ts):
+>
+> ```bash
+> pnpm tsx scripts/daypo_scraper.ts https://www.daypo.com/mi-test.html --topic mi-tema --exam 2024 -o src/subjects/mi-asignatura/preguntas.ts
+> ```
+
 Exporta un array `Question[]`. Tipos de pregunta:
 
 - **`mc`** — Opción múltiple. `correctAnswer` es una letra `"a"`–`"e"`. Requiere `options[]`. Corrección automática.

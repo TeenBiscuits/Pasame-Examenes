@@ -1,4 +1,10 @@
-import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
+import {
+  readFileSync,
+  writeFileSync,
+  readdirSync,
+  existsSync,
+  mkdirSync,
+} from "node:fs";
 import { resolve, dirname } from "node:path";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
@@ -51,10 +57,7 @@ function replaceMetaContent(html: string, id: string, content: string): string {
   );
 }
 
-function buildSubjectDescription(
-  t: Translations,
-  meta: SubjectMeta,
-): string {
+function buildSubjectDescription(t: Translations, meta: SubjectMeta): string {
   const desc = t.subjectHome.description
     .replace("{count}", String(meta.questionCount))
     .replace("{repeated}", "")
@@ -115,7 +118,10 @@ async function main() {
 
       let html = baseHtml;
 
-      html = html.replace(/<title>.*?<\/title>/, `<title>${htmlEscape(title)}</title>`);
+      html = html.replace(
+        /<title>.*?<\/title>/,
+        `<title>${htmlEscape(title)}</title>`,
+      );
 
       html = html.replace(
         /<meta id="og:image".*?\/?>/g,
@@ -160,7 +166,11 @@ async function main() {
     homeHtml = replaceMetaContent(homeHtml, "og:url", homeUrl);
     homeHtml = replaceMetaContent(homeHtml, "og:locale", locale);
     homeHtml = replaceMetaContent(homeHtml, "twitter:title", homeTitle);
-    homeHtml = replaceMetaContent(homeHtml, "twitter:description", homeDescription);
+    homeHtml = replaceMetaContent(
+      homeHtml,
+      "twitter:description",
+      homeDescription,
+    );
     homeHtml = replaceMetaContent(homeHtml, "meta-description", homeMetaDesc);
 
     const homePath = resolve(outDir, lang, "home.html");
