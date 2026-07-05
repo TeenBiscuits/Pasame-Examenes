@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "200190",
   icon: "🏗️",
   acknowledgments:
-    "Examenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
+    "Exámenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
   topics: [
     {
       key: "modulo-i",

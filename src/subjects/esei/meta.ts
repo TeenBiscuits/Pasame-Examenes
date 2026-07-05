@@ -7,7 +7,7 @@ export const meta: SubjectMeta = {
   courseCode: "202322",
   icon: "🧠",
   acknowledgments:
-    "Examenes originales proporcionados por el alumnado de la asignatura de forma anónima.",
+    "Exámenes originales proporcionados por el alumnado de la asignatura de forma anónima.",
   topics: [
     {
       key: "t1",
