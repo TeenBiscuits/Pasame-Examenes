@@ -64,6 +64,9 @@ export const meta: SubjectMeta = {
 
 #### 3. Añade las preguntas en `questions.ts`
 
+> [!TIP]
+> Puedes extraer a formato markdown las preguntas de cualquier daypo usando el script [`scripts/daypo_scraper.py`](scripts/daypo_scraper.py).
+
 Exporta un array `Question[]`. Tipos de pregunta:
 
 - **`mc`** — Opción múltiple. `correctAnswer` es una letra `"a"`–`"e"`. Requiere `options[]`. Corrección automática.
