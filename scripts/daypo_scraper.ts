@@ -3,15 +3,15 @@
  * Scrape a daypo.com test and export questions as a TypeScript Question array.
  *
  * Usage:
- *     tsx scripts/daypo_scraper.ts <url> [--output FILE] [--topic TOPIC] [--exam EXAM]
+ *     tsx scripts/daypo_scraper.ts <url> [--output FILE] [--topic TOPIC] [--exam EXAM] [--assets-dir DIR]
  *
  * Examples:
  *     tsx scripts/daypo_scraper.ts https://www.daypo.com/xp-practica.html
  *     tsx scripts/daypo_scraper.ts https://www.daypo.com/xp-teoria.html --topic teoria --exam scraped --output xp-teoria.ts
  */
 
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 const LETTERS = ["a", "b", "c", "d", "e"] as const;
 
@@ -21,6 +21,7 @@ interface DaypoQuestion {
   code: string;
   options: string[];
   hint: string;
+  imageId: string;
 }
 
 interface DaypoTest {
@@ -28,6 +29,10 @@ interface DaypoTest {
   description: string;
   author: string;
   questions: DaypoQuestion[];
+}
+
+interface DownloadedImage {
+  filename: string;
 }
 
 function parseArgs(args: string[]) {
@@ -100,6 +105,21 @@ function extractTag(xml: string, tag: string): string {
   return xml.substring(start + open.length, end);
 }
 
+function normalizeFilenamePart(s: string): string {
+  return s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
+
+function extractImageId(xml: string): string {
+  const match = /<b\b[^>]*>([^<]+)<\/b>/.exec(xml);
+  return match ? unescapeXml(match[1]).trim() : "";
+}
+
 function parseXml(xml: string): DaypoTest {
   const title = unescapeXml(extractTag(xml, "t"));
   const description = unescapeXml(extractTag(xml, "d"));
@@ -151,6 +171,7 @@ function parseXml(xml: string): DaypoTest {
     const question = unescapeXml(extractTag(inner, "p"));
     const code = extractTag(inner, "c");
     const hint = unescapeXml(extractTag(inner, "h"));
+    const imageId = extractImageId(inner);
 
     const options: string[] = [];
     let oPos = 0;
@@ -163,7 +184,7 @@ function parseXml(xml: string): DaypoTest {
       oPos = oEnd + 4;
     }
 
-    questions.push({ type, question, code, options, hint });
+    questions.push({ type, question, code, options, hint, imageId });
 
     pos = searchPos;
   }
@@ -171,12 +192,76 @@ function parseXml(xml: string): DaypoTest {
   return { title, description, author, questions };
 }
 
-function buildTsOutput(test: DaypoTest, topic: string, exam: string): string {
-  const lines: string[] = [
-    'import type { Question } from "../../data/types";',
-    "",
-    "export const questions: Question[] = [",
+async function downloadImages(
+  test: DaypoTest,
+  ntest: number,
+  referer: string,
+  assetsDir: string,
+  filenamePrefix: string,
+): Promise<Map<string, DownloadedImage>> {
+  const imageIds = [
+    ...new Set(test.questions.map((q) => q.imageId).filter(Boolean)),
   ];
+  const downloaded = new Map<string, DownloadedImage>();
+
+  if (imageIds.length === 0) {
+    return downloaded;
+  }
+
+  mkdirSync(assetsDir, { recursive: true });
+
+  for (const imageId of imageIds) {
+    const filename = `${filenamePrefix}-image-${normalizeFilenamePart(imageId)}.jpg`;
+    const imageUrl = `https://www.daypo.com/testimages/${Math.floor(
+      ntest / 10000,
+    )}/${ntest}_${imageId}.jpg`;
+    const response = await fetch(imageUrl, {
+      headers: { "User-Agent": "Mozilla/5.0", Referer: referer },
+    });
+
+    if (!response.ok) {
+      console.warn(
+        `Warning: could not download image ${imageId}: ${response.status}`,
+      );
+      continue;
+    }
+
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    writeFileSync(resolve(assetsDir, filename), bytes);
+    downloaded.set(imageId, { filename });
+  }
+
+  return downloaded;
+}
+
+function buildTsOutput(
+  test: DaypoTest,
+  topic: string,
+  exam: string,
+  images: Map<string, DownloadedImage>,
+): string {
+  const hasImages = test.questions.some(
+    (q) => q.imageId && images.has(q.imageId),
+  );
+  const lines: string[] = ['import type { Question } from "../../data/types";'];
+
+  if (hasImages) {
+    lines.push('import type { Picture } from "vite-imagetools";');
+    lines.push('import { getImage } from "../../lib/image";');
+    lines.push('import type { ImageMap } from "../../lib/image";');
+    lines.push("");
+    lines.push(
+      'const imageMap = import.meta.glob<{ default: Picture }>("./assets/*.{png,jpeg,jpg}", {',
+    );
+    lines.push(
+      '  query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },',
+    );
+    lines.push("  eager: true,");
+    lines.push("}) as ImageMap;");
+  }
+
+  lines.push("");
+  lines.push("export const questions: Question[] = [");
 
   for (let i = 0; i < test.questions.length; i++) {
     const q = test.questions[i];
@@ -196,6 +281,13 @@ function buildTsOutput(test: DaypoTest, topic: string, exam: string): string {
     lines.push(`    type: "mc",`);
     lines.push(`    points: 1,`);
     lines.push(`    question: ${JSON.stringify(q.question)},`);
+
+    const image = q.imageId ? images.get(q.imageId) : undefined;
+    if (image) {
+      lines.push(
+        `    image: getImage(imageMap, ${JSON.stringify(image.filename)}),`,
+      );
+    }
 
     if (options.length > 0) {
       lines.push(`    options: ${JSON.stringify(options)},`);
@@ -265,6 +357,27 @@ async function main() {
   console.log("Parsing questions...");
   const test = parseXml(xml);
 
+  const pathname = new URL(url).pathname;
+  const lastSegment = pathname.split("/").filter(Boolean).pop();
+  const slug = lastSegment?.replace(/\.html$/, "") || `daypo-${ntest}`;
+  const outPath = resolve(flags.output || `${slug}.ts`);
+  const assetsDir = flags["assets-dir"]
+    ? resolve(flags["assets-dir"])
+    : resolve(dirname(outPath), "assets");
+  const filenamePrefix =
+    normalizeFilenamePart(exam || slug) || `daypo-${ntest}`;
+
+  const imageCount = test.questions.filter((q) => q.imageId).length;
+  let images = new Map<string, DownloadedImage>();
+  if (imageCount > 0) {
+    console.log(
+      `Downloading ${
+        new Set(test.questions.map((q) => q.imageId).filter(Boolean)).size
+      } image(s)...`,
+    );
+    images = await downloadImages(test, ntest, url, assetsDir, filenamePrefix);
+  }
+
   const multiCorrectCount = test.questions.filter(
     (q) => parseCorrectIndices(q.code).length > 1,
   ).length;
@@ -276,17 +389,16 @@ async function main() {
   }
 
   console.log("Generating TypeScript...");
-  const ts = buildTsOutput(test, topic, exam);
-
-  const pathname = new URL(url).pathname;
-  const lastSegment = pathname.split("/").filter(Boolean).pop();
-  const slug = lastSegment?.replace(/\.html$/, "") || `daypo-${ntest}`;
-  const outPath = resolve(flags.output || `${slug}.ts`);
+  const ts = buildTsOutput(test, topic, exam, images);
 
   writeFileSync(outPath, ts, "utf-8");
   console.log(
     `Done. ${test.questions.length} questions exported to: ${outPath}`,
   );
+
+  if (images.size > 0) {
+    console.log(`Images saved to: ${assetsDir}`);
+  }
 }
 
 main().catch((err) => {
