@@ -132,7 +132,7 @@ export function getRouteMetadata(lang: Lang, slug: string[]): Metadata {
 export function getStaticRouteParams() {
   const slugs: string[][] = [[], ["404"]];
   for (const subject of subjects) {
-    slugs.push([subject.id]);
+    slugs.push([subject.id], [subject.id, "practice"], [subject.id, "exam"]);
     for (const topic of subject.topics) {
       slugs.push([subject.id, "practice", topic.key]);
     }
