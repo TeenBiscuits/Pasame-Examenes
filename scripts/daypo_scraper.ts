@@ -11,7 +11,7 @@
  */
 
 import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { dirname, relative, resolve } from "node:path";
 
 const LETTERS = ["a", "b", "c", "d", "e"] as const;
 
@@ -116,8 +116,37 @@ function normalizeFilenamePart(s: string): string {
 }
 
 function extractImageId(xml: string): string {
-  const match = /<b\b[^>]*>([^<]+)<\/b>/.exec(xml);
+  const questionEnd = xml.indexOf("</p>");
+  const searchStart = questionEnd === -1 ? 0 : questionEnd + 4;
+  const codeStart = xml.indexOf("<c>", searchStart);
+  const imageBlock = xml.slice(
+    searchStart,
+    codeStart === -1 ? undefined : codeStart,
+  );
+  const match = /<b\b[^>]*>([^<]+)<\/b>/.exec(imageBlock);
   return match ? unescapeXml(match[1]).trim() : "";
+}
+
+function extensionFromContentType(contentType: string | null): string {
+  const type = contentType?.split(";", 1)[0]?.trim().toLowerCase();
+  if (type === "image/png") return "png";
+  if (type === "image/gif") return "gif";
+  if (type === "image/webp") return "webp";
+  return "jpg";
+}
+
+function buildImageGlobPattern(outPath: string, assetsDir: string): string {
+  const relativeAssetsDir = relative(dirname(outPath), assetsDir).replaceAll(
+    "\\",
+    "/",
+  );
+  const globDir =
+    relativeAssetsDir === ""
+      ? "."
+      : relativeAssetsDir.startsWith(".")
+        ? relativeAssetsDir
+        : `./${relativeAssetsDir}`;
+  return `${globDir}/*.{png,jpeg,jpg,gif,webp}`;
 }
 
 function parseXml(xml: string): DaypoTest {
@@ -211,10 +240,9 @@ async function downloadImages(
   mkdirSync(assetsDir, { recursive: true });
 
   for (const imageId of imageIds) {
-    const filename = `${filenamePrefix}-image-${normalizeFilenamePart(imageId)}.jpg`;
     const imageUrl = `https://www.daypo.com/testimages/${Math.floor(
       ntest / 10000,
-    )}/${ntest}_${imageId}.jpg`;
+    )}/${ntest}_${encodeURIComponent(imageId)}.jpg`;
     const response = await fetch(imageUrl, {
       headers: { "User-Agent": "Mozilla/5.0", Referer: referer },
     });
@@ -226,6 +254,9 @@ async function downloadImages(
       continue;
     }
 
+    const filename = `${filenamePrefix}-image-${normalizeFilenamePart(
+      imageId,
+    )}.${extensionFromContentType(response.headers.get("content-type"))}`;
     const bytes = new Uint8Array(await response.arrayBuffer());
     writeFileSync(resolve(assetsDir, filename), bytes);
     downloaded.set(imageId, { filename });
@@ -239,6 +270,7 @@ function buildTsOutput(
   topic: string,
   exam: string,
   images: Map<string, DownloadedImage>,
+  imageGlobPattern: string,
 ): string {
   const hasImages = test.questions.some(
     (q) => q.imageId && images.has(q.imageId),
@@ -251,7 +283,9 @@ function buildTsOutput(
     lines.push('import type { ImageMap } from "../../lib/image";');
     lines.push("");
     lines.push(
-      'const imageMap = import.meta.glob<{ default: Picture }>("./assets/*.{png,jpeg,jpg}", {',
+      `const imageMap = import.meta.glob<{ default: Picture }>(${JSON.stringify(
+        imageGlobPattern,
+      )}, {`,
     );
     lines.push(
       '  query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },',
@@ -389,7 +423,13 @@ async function main() {
   }
 
   console.log("Generating TypeScript...");
-  const ts = buildTsOutput(test, topic, exam, images);
+  const ts = buildTsOutput(
+    test,
+    topic,
+    exam,
+    images,
+    buildImageGlobPattern(outPath, assetsDir),
+  );
 
   writeFileSync(outPath, ts, "utf-8");
   console.log(
