@@ -10,7 +10,9 @@ const outputPath = resolve(root, "vercel.json");
 function main() {
   const entries = readdirSync(subjectsDir, { withFileTypes: true });
   const subjectDirs = entries.filter(
-    (e) => e.isDirectory() && e.name !== "_template",
+    (e) =>
+      e.isDirectory() &&
+      !(process.env.VERCEL_ENV === "production" && e.name === "_template"),
   );
   const subjectIds = subjectDirs.map((d) => d.name).sort();
 

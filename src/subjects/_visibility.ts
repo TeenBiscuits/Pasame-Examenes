@@ -29,6 +29,8 @@ import { meta as deeseMeta } from "./deese/meta";
 import { questions as deeseQuestions } from "./deese/questions";
 import { meta as redesMeta } from "./redes/meta";
 import { questions as redesQuestions } from "./redes/questions";
+import { meta as templateMeta } from "./_template/meta";
+import { questions as templateQuestions } from "./_template/questions";
 
 void bedeMeta;
 void bedeQuestions;
@@ -56,3 +58,5 @@ void deeseMeta;
 void deeseQuestions;
 void redesMeta;
 void redesQuestions;
+void templateMeta;
+void templateQuestions;

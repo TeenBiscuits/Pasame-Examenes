@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tailwind-animations";
+@plugin "@tailwindcss/typography";
 
 html {
   scroll-behavior: smooth;
@@ -15,6 +16,8 @@ body {
 
 /* ── Theme tokens (light defaults) ── */
 @theme {
+  --font-sans: "Roboto Variable", sans-serif;
+  --font-mono: "Cascadia Code Variable", monospace;
   --color-surface: #f9fafb;
   --color-surface-alt: #ffffff;
   --color-fg: #111827;
