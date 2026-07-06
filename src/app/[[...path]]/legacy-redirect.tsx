@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type { Lang } from "../../i18n/context";
 import { getSubject } from "../../subjects";
 
@@ -46,10 +46,10 @@ function isLang(segment: string | undefined): segment is Lang {
 }
 
 export default function LegacyRedirect() {
-  const pathname = usePathname() ?? "/";
   const router = useRouter();
 
   useEffect(() => {
+    const pathname = window.location.pathname;
     const segments = pathname.split("/").filter(Boolean);
     const [first, ...rest] = segments;
     const lang = isLang(first) ? first : detectLang();
@@ -57,7 +57,7 @@ export default function LegacyRedirect() {
     const targetPath = buildLegacyTargetPath(path);
     const target = targetPath == null ? `/${lang}/404` : `/${lang}${targetPath}`;
     router.replace(target);
-  }, [pathname, router]);
+  }, [router]);
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-surface text-fg">
