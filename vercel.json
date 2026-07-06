@@ -10,6 +10,31 @@
       "source": "/:lang(en|es|gl)/:subjectId/practice",
       "destination": "/:lang/:subjectId",
       "permanent": false
+    },
+    {
+      "source": "/:lang(en|es|gl)/:subjectId/exam",
+      "destination": "/:lang/:subjectId",
+      "permanent": false
+    },
+    {
+      "source": "/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)",
+      "destination": "/es/:subjectId",
+      "permanent": false
+    },
+    {
+      "source": "/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/practice",
+      "destination": "/es/:subjectId",
+      "permanent": false
+    },
+    {
+      "source": "/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/practice/:topic",
+      "destination": "/es/:subjectId/practice/:topic",
+      "permanent": false
+    },
+    {
+      "source": "/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/exam/:year",
+      "destination": "/es/:subjectId/exam/:year",
+      "permanent": false
     }
   ],
   "headers": [
