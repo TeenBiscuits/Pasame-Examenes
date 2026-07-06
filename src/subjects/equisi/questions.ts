@@ -1,15 +1,25 @@
 import type { Question } from "../../data/types";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
+
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  {
+    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
+    eager: true,
+  },
+) as ImageMap;
 
 export const questions: Question[] = [
-  // Total: 130 questions
   {
-    id: "daypo-modulo-i_q1",
+    id: "daypo-modulo-i_01",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Para la siguiente imagen...",
+    image: getImage(imageMap, "daypo-modulo-i-image-0.jpg"),
     options: [
       "A. Es un pulso rectangular",
       "B. Vale 1 dentro del rango -T/2<t<T/2",
@@ -18,15 +28,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q2",
+    id: "daypo-modulo-i_02",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Para la siguiente imagen...",
+    image: getImage(imageMap, "daypo-modulo-i-image-1.jpg"),
     options: [
       "A. Es una señal escalón unidad",
       "B. Se puede representar u(t) en función de un pulso (pt)",
@@ -37,9 +46,8 @@ export const questions: Question[] = [
     explanation:
       "Lo que se puede representar es un pulso p(t) en función de u(t), no al revés",
   },
-
   {
-    id: "daypo-modulo-i_q3",
+    id: "daypo-modulo-i_03",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -54,9 +62,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q4",
+    id: "daypo-modulo-i_04",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -70,14 +77,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q5",
+    id: "daypo-modulo-i_05",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
     question: "Esto es un....",
+    image: getImage(imageMap, "daypo-modulo-i-image-2.jpg"),
     options: [
       "A. Tren de pulsos",
       "B. Un pulso cuadrado desplazado",
@@ -86,15 +93,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q6",
+    id: "daypo-modulo-i_06",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "¿Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-3.jpg"),
     options: [
       "A. Esto es un pulso unidad δ(t), o delta Dirac. Es el límite de una función pulso rectangular. Afecta aritméticamente a otros pulsos",
       "B. Esto es un pulso unitario δ(t). No es una señal convencional, sino un pulso de energía que no afecta a otros pulsos",
@@ -103,15 +109,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q7",
+    id: "daypo-modulo-i_07",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "¿Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-4.jpg"),
     options: [
       "A. Esto son dos señales sinusoidales.",
       "B. Esto es una señal sinusoidal",
@@ -120,9 +125,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q8",
+    id: "daypo-modulo-i_08",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -136,9 +140,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q9",
+    id: "daypo-modulo-i_09",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -152,9 +155,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q10",
+    id: "daypo-modulo-i_10",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -168,14 +170,13 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q11",
+    id: "daypo-modulo-i_11",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    question: "Qué es la frecuencia angular",
+    question: "Qué es la frecuencia angular ",
     options: [
       "A. Permite simplificar la representación trigonométrica de una señal sinusoidal",
       "B. ω = 2πf",
@@ -184,26 +185,24 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q12",
+    id: "daypo-modulo-i_12",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-5.jpg"),
     options: [
-      "A. Es una señal sinc.",
+      "A. Es una señal sinc. ",
       "B. Es una señal fork",
       "C. Es una señal cosc",
       "D. Es una señal R o de persistencia",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q13",
+    id: "daypo-modulo-i_13",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -217,9 +216,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q14",
+    id: "daypo-modulo-i_14",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -228,9 +226,8 @@ export const questions: Question[] = [
     options: ["A. independiente de n", "B. dependiente de n", "C. 0", "D. Inf"],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q15",
+    id: "daypo-modulo-i_15",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -244,9 +241,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q16",
+    id: "daypo-modulo-i_16",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -261,14 +257,12 @@ export const questions: Question[] = [
     correctAnswer: "d",
     explanation: "La unidad es W, no W/s. W = J/s",
   },
-
   {
-    id: "daypo-modulo-i_q17",
+    id: "daypo-modulo-i_17",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Escoja la opción falsa",
     options: [
       "A. La atenuación de la señal en medios guiados se mide en dB/km",
@@ -278,9 +272,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q18",
+    id: "daypo-modulo-i_18",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -294,9 +287,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q19",
+    id: "daypo-modulo-i_19",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -310,9 +302,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q20",
+    id: "daypo-modulo-i_20",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -326,14 +317,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q21",
+    id: "daypo-modulo-i_21",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "ISI",
     options: [
       "A. Interferencia Inter-Simbólica, común en las comunicaciones inalámbricas.",
@@ -343,14 +332,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q22",
+    id: "daypo-modulo-i_22",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "ISI",
     options: [
       "A. Común en comunicaciones inalámbricas, donde un símbolo interfiere con símbolos posteriores. Normalmente causada por propagación de trayectos múltiples o respuestas no lineales del canal",
@@ -360,15 +347,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q23",
+    id: "daypo-modulo-i_23",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-6.jpg"),
     options: [
       "A. Ejemplo de ISI",
       "B. Ejemplo de convolución",
@@ -377,14 +363,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q24",
+    id: "daypo-modulo-i_24",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
     question: "Qué ocasiona esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-7.jpg"),
     options: [
       "A. ISI",
       "B. Convolución",
@@ -393,9 +379,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q25",
+    id: "daypo-modulo-i_25",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -409,30 +394,27 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q26",
+    id: "daypo-modulo-i_26",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    question: "En cuanto a la suma, la propiedad de convolución dice que es",
+    question: "En cuanto a la suma, la propiedad de convolución dice que es ",
     options: [
-      "A. Distributiva",
+      "A. Distributiva ",
       "B. Multiplicativa",
       "C. Aditiva",
       "D. Todas las anteriores",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q27",
+    id: "daypo-modulo-i_27",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Escoja la opción falsa",
     options: [
       "A. Para hacer la convolución de un pulso unidad, debemos reescribirlo en función de 𝜏",
@@ -442,14 +424,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q28",
+    id: "daypo-modulo-i_28",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Escoja la opción falsa",
     options: [
       "A. La convolución de un pulso unidad con respecto a t-t0 tiene el mismo efecto que uno con respecto a 0",
@@ -459,14 +439,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q29",
+    id: "daypo-modulo-i_29",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Escoja la opción falsa",
     options: [
       "A. El resultado integral de la convolución de dos pulsos cuadrados idénticos con el mismo comienzo, siempre dará un pulso triangular",
@@ -476,9 +454,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q30",
+    id: "daypo-modulo-i_30",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -493,9 +470,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q31",
+    id: "daypo-modulo-i_31",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -509,9 +485,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q32",
+    id: "daypo-modulo-i_32",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -525,9 +500,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q33",
+    id: "daypo-modulo-i_33",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -541,9 +515,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q34",
+    id: "daypo-modulo-i_34",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -557,15 +530,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q35",
+    id: "daypo-modulo-i_35",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-8.jpg"),
     options: [
       "A. Un tren de pulsos",
       "B. El resultado de la señal modulada 2-PAM del mensaje 01101",
@@ -574,9 +546,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q36",
+    id: "daypo-modulo-i_36",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -590,9 +561,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q37",
+    id: "daypo-modulo-i_37",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -606,9 +576,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q38",
+    id: "daypo-modulo-i_38",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -622,16 +591,15 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q39",
+    id: "daypo-modulo-i_39",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
     question: "Seleccione la opción falsa",
     options: [
-      "A. El ruido grande puede ocasionar tanta distorsión que ocasione confusión entre símbolos, causando errores de transmisión",
+      "A. El ruido grande puede ocasionar tanta distorsión que ocasione confusión entre símbolos, causando errores de transmisión ",
       "B. Siempre va a existir ruido en una señal transmitida, por poco que sea",
       "C. Si se aumenta la potencia de la señal recibida, podemos reducir el suelo de ruido",
       "D. Existen distintos tipos de ruido según lo que afecten (ruido térmico, impulsivo...)",
@@ -639,9 +607,8 @@ export const questions: Question[] = [
     correctAnswer: "c",
     explanation: "Al aumentar la potencia, aumenta el ruido",
   },
-
   {
-    id: "daypo-modulo-i_q40",
+    id: "daypo-modulo-i_40",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -655,9 +622,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q41",
+    id: "daypo-modulo-i_41",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -666,14 +632,13 @@ export const questions: Question[] = [
     options: [
       "A. Signal to Noise Ratio. Se mide en W",
       "B. Signal to Noise Ratio. No tiene dimensiones, pero se puede expresar en dB",
-      "C. Mide la calidad de la señal recibida. A mayor valor, menor distorsión",
+      "C. Mide la calidad de la señal recibida. A mayor valor, menor distorsión ",
       "D. b) y c)",
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q42",
+    id: "daypo-modulo-i_42",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -689,9 +654,8 @@ export const questions: Question[] = [
     explanation:
       "Se expresa en dB. Es solamente en 2-PAM donde la energía de pulso coincide con la energía de bit",
   },
-
   {
-    id: "daypo-modulo-i_q43",
+    id: "daypo-modulo-i_43",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -705,14 +669,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q44",
+    id: "daypo-modulo-i_44",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Transformada de Fourier",
     options: [
       "A. Permite representar una señal en el dominio de la frecuencia",
@@ -724,14 +686,12 @@ export const questions: Question[] = [
     explanation:
       "X(w) es el espectro de x(t), y sí se puede volver, con la transformada de fourier inversa (no coña)",
   },
-
   {
-    id: "daypo-modulo-i_q45",
+    id: "daypo-modulo-i_45",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Transformada de Fourier",
     options: [
       "A. Transforma una señal del dominio del tiempo al dominio de la frecuencia",
@@ -741,9 +701,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q46",
+    id: "daypo-modulo-i_46",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -751,21 +710,20 @@ export const questions: Question[] = [
     question: "La transformada de Fourier sobre un pulso rectangular da una...",
     options: [
       "A. Señal sinc",
-      "B. Señal sinusoidal",
+      "B. Señal sinusoidal ",
       "C. Señal triangular",
       "D. Ninguna de las opciones son correctas",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q47",
+    id: "daypo-modulo-i_47",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-10.jpg"),
     options: [
       "A. Resultado de ver a Fourier en acción",
       "B. Resultado de ver a Fourier Inverso en acción",
@@ -776,15 +734,14 @@ export const questions: Question[] = [
     explanation:
       "Fijaos en las unidades. Si no fuese por eso, podría ser la inversa de fourier",
   },
-
   {
-    id: "daypo-modulo-i_q48",
+    id: "daypo-modulo-i_48",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-11.jpg"),
     options: [
       "A. La relación de Parseval",
       "B. La transformada de Fourier",
@@ -793,9 +750,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q49",
+    id: "daypo-modulo-i_49",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -809,9 +765,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q50",
+    id: "daypo-modulo-i_50",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -825,15 +780,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q51",
+    id: "daypo-modulo-i_51",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-12.jpg"),
     options: [
       "A. Ejemplo de la propiedad de escalado en tiempo para señales en el dominio del tiempo",
       "B. Ejemplo de la propiedad de escalado en tiempo para señales en el dominio de la frecuencia",
@@ -842,9 +796,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q52",
+    id: "daypo-modulo-i_52",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -858,9 +811,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q53",
+    id: "daypo-modulo-i_53",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -875,9 +827,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q54",
+    id: "daypo-modulo-i_54",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -891,9 +842,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q55",
+    id: "daypo-modulo-i_55",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -907,9 +857,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q56",
+    id: "daypo-modulo-i_56",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -923,9 +872,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q57",
+    id: "daypo-modulo-i_57",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -939,9 +887,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q58",
+    id: "daypo-modulo-i_58",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -955,9 +902,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q59",
+    id: "daypo-modulo-i_59",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -972,9 +918,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q60",
+    id: "daypo-modulo-i_60",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -988,15 +933,14 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q61",
+    id: "daypo-modulo-i_61",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-modulo-i-image-13.jpg"),
     options: [
       "A. Tren de pulsos 4ASK con pulsos rectangulares",
       "B. Tren de pulsos 4PAM con pulsos rectangulares",
@@ -1005,9 +949,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q62",
+    id: "daypo-modulo-i_62",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1021,9 +964,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q63",
+    id: "daypo-modulo-i_63",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1032,14 +974,13 @@ export const questions: Question[] = [
     options: [
       "A. La información se transporta en una dimensión de la señal cambiando la amplitud",
       "B. Es un sistema de modulación donde se lanzan preguntas en forma de BITS y se devuelve una onda final",
-      "C. La información se transporta en las dos dimensiones de la señal",
+      "C.  La información se transporta en las dos dimensiones de la señal\ntransmitida",
       "D. La información se transporta en en la fase de la señal transmitida",
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q64",
+    id: "daypo-modulo-i_64",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1053,14 +994,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q65",
+    id: "daypo-modulo-i_65",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "La codificación de un canal",
     options: [
       "A. Implica añadir redundancia a la fuente para combatir los errores introducidos por el canal",
@@ -1070,14 +1009,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q66",
+    id: "daypo-modulo-i_66",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "La codificación de un canal",
     options: [
       "A. Añade redundancia transmitiendo N bits por cada K bits, siendo K<N",
@@ -1087,9 +1024,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q67",
+    id: "daypo-modulo-i_67",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1097,15 +1033,14 @@ export const questions: Question[] = [
     question: "BSC",
     options: [
       "A. Canal binario simétrico, altera el bit transmitido con probabilidad de p. Eso quiere decir que hay un 50% de probabilidades de haber recibido el bit correcto",
-      "B. Canal binario simétrico, altera el bit transmitido con probabilidad de p.",
+      "B. Canal binario simétrico, altera el bit transmitido con probabilidad de p. ",
       "C. Byte-Secure Channel, es un canal de transporte seguro de bits que reduce la tasa de ruido",
       "D. Bytes-Secure Concurrency, es un método de codificación que repite el bit enviado por probabilidad del mismo",
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q68",
+    id: "daypo-modulo-i_68",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1119,9 +1054,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q69",
+    id: "daypo-modulo-i_69",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1137,9 +1071,8 @@ export const questions: Question[] = [
     explanation:
       "Es una colección de 2^k elementos y La tasa de codificación será r = k/n. Por ejemplo, un 3-repetición será, con k=1 y n =3 -> 1/3",
   },
-
   {
-    id: "daypo-modulo-i_q70",
+    id: "daypo-modulo-i_70",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1153,14 +1086,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q71",
+    id: "daypo-modulo-i_71",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "La decodificación...",
     options: [
       "A. Dada una palabra recibida, escogemos como transmitida aquella palabra código más próxima en distancia de hamming",
@@ -1170,14 +1101,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q72",
+    id: "daypo-modulo-i_72",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "La decodificación...",
     options: [
       "A. Dada una palabra recibida, escogemos como transmitida aquella palabra código más próxima en distancia de hamming",
@@ -1187,9 +1116,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q73",
+    id: "daypo-modulo-i_73",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1203,9 +1131,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q74",
+    id: "daypo-modulo-i_74",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1219,9 +1146,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q75",
+    id: "daypo-modulo-i_75",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1235,9 +1161,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q76",
+    id: "daypo-modulo-i_76",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1251,28 +1176,25 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
     explanation:
-      "Un código binario es lineal si es cerrado respecto a la suma de n-tuplas.",
+      "Un código binario es lineal si es cerrado respecto a la suma de n-tuplas.\nTodo código binario lineal incluye la palabra 0.\nUn código lineal es un subespacio vectorial del espacio vectorial {0,1}^n, de dimensión k",
   },
-
   {
-    id: "daypo-modulo-i_q77",
+    id: "daypo-modulo-i_77",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Escoja la opción falsa",
     options: [
-      "A. Para cada palabra código de peso de Hamming pH",
+      "A. Para cada palabra código de peso de Hamming pH\nexisten pH columnas de H cuya suma es el vector 0",
       "B. Si existen pH columnas de H que suman 0, entonces existe una palabra código con peso de Hamming pH.",
       "C. Con respecto al código Hamming, Pueden corregir cualquier patrón de error de 2 bits si dmin=1",
-      "D. La distancia mínima (= palabra con menor peso de",
+      "D. La distancia mínima (= palabra con menor peso de\nHamming) de un código es igual al mínimo número de columnas de H que hay que sumar para obtener el vector 0.",
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q78",
+    id: "daypo-modulo-i_78",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1280,15 +1202,14 @@ export const questions: Question[] = [
     question: "Un standard array",
     options: [
       "A. Tabla que a cada síndrome le hace corresponder el patrón de error con menos peso que lo produce",
-      `B. Tabla que permite la decodificación óptima mediante el uso de errores "e" transmitidos por el canal "c"`,
+      'B. Tabla que permite la decodificación óptima mediante el uso de errores "e" transmitidos por el canal "c"',
       "C. Tabla que permite generar la matriz paridad de un código hamming",
       "D. Tabla que permite generar la matriz generadora de la matriz paridad de un código hamming",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q79",
+    id: "daypo-modulo-i_79",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1302,9 +1223,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q80",
+    id: "daypo-modulo-i_80",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1318,9 +1238,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q81",
+    id: "daypo-modulo-i_81",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1334,9 +1253,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q82",
+    id: "daypo-modulo-i_82",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1351,9 +1269,8 @@ export const questions: Question[] = [
     correctAnswer: "b",
     explanation: "2^3 - 1",
   },
-
   {
-    id: "daypo-modulo-i_q83",
+    id: "daypo-modulo-i_83",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1367,9 +1284,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q84",
+    id: "daypo-modulo-i_84",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1383,9 +1299,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q85",
+    id: "daypo-modulo-i_85",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1395,14 +1310,13 @@ export const questions: Question[] = [
     options: [
       "A. Puede detectar si hubo exactamente 1 o 2 errores",
       "B. La capacidad de corrección sigue siendo 1 error",
-      "C. Independientemente del dmin, estos son usados en las memorias ECC de servidores, donde se denomina SECDED",
+      "C. Independientemente del dmin, estos son usados en las memorias ECC de servidores, donde se denomina SECDED ",
       "D. Todas las anteriores",
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q86",
+    id: "daypo-modulo-i_86",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1416,14 +1330,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q87",
+    id: "daypo-modulo-i_87",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Escoja la opción falsa",
     options: [
       "A. Cualquier código escogido de forma aleatoria NO permite alcanzar la capacidad del canal",
@@ -1433,14 +1345,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q88",
+    id: "daypo-modulo-i_88",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Escoja la opción falsa",
     options: [
       "A. Las palabras de un código convolucional se generan no sólo a partir de los bits de información actuales sino también con la información anterior en el tiempo",
@@ -1450,9 +1360,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q89",
+    id: "daypo-modulo-i_89",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1466,9 +1375,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q90",
+    id: "daypo-modulo-i_90",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1482,9 +1390,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q91",
+    id: "daypo-modulo-i_91",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1499,9 +1406,8 @@ export const questions: Question[] = [
     correctAnswer: "a",
     explanation: "Tienen 1 canales de 40 MHz SIN solapamiento",
   },
-
   {
-    id: "daypo-modulo-i_q92",
+    id: "daypo-modulo-i_92",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1515,9 +1421,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q93",
+    id: "daypo-modulo-i_93",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1531,9 +1436,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q94",
+    id: "daypo-modulo-i_94",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1547,11 +1451,10 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
     explanation:
-      "Si usamos un MCS (Modulation and Coding Scheme) con ƞ y R sobre un canal, tendremos la tasa resultante vb=BRƞ.",
+      "Si usamos un MCS (Modulation and Coding Scheme) con ƞ y R sobre un canal, tendremos la tasa resultante vb=BRƞ. ",
   },
-
   {
-    id: "daypo-modulo-i_q95",
+    id: "daypo-modulo-i_95",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1565,9 +1468,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q96",
+    id: "daypo-modulo-i_96",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1581,9 +1483,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q97",
+    id: "daypo-modulo-i_97",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1597,9 +1498,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q98",
+    id: "daypo-modulo-i_98",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1613,9 +1513,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q99",
+    id: "daypo-modulo-i_99",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1629,9 +1528,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q100",
+    id: "daypo-modulo-i_100",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1645,9 +1543,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q101",
+    id: "daypo-modulo-i_101",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1661,9 +1558,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q102",
+    id: "daypo-modulo-i_102",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1677,9 +1573,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q103",
+    id: "daypo-modulo-i_103",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1693,9 +1588,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q104",
+    id: "daypo-modulo-i_104",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1709,9 +1603,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-i_q105",
+    id: "daypo-modulo-i_105",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1725,9 +1618,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q106",
+    id: "daypo-modulo-i_106",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1741,9 +1633,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q107",
+    id: "daypo-modulo-i_107",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1757,9 +1648,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q108",
+    id: "daypo-modulo-i_108",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1768,14 +1658,13 @@ export const questions: Question[] = [
     options: [
       "A. Es el tiempo entre un intervalo [0,CW] que espera antes de enviar el mensaje una vez se ha detectado el medio libre",
       "B. Es el tiempo entre un intervalo [0,CW] que espera antes de enviar el mensaje una vez se ha detectado el medio ocupado",
-      "C. Es el tiempo entre un intervalo [0,CW] que espera antes de enviar el mensaje",
+      "C. Es el tiempo entre un intervalo [0,CW] que espera antes de enviar el mensaje ",
       "D. Cuando llega a CW, se transmite el mensaje",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q109",
+    id: "daypo-modulo-i_109",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1789,9 +1678,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q110",
+    id: "daypo-modulo-i_110",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1805,9 +1693,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q111",
+    id: "daypo-modulo-i_111",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1821,14 +1708,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q112",
+    id: "daypo-modulo-i_112",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "MACA, indique la verdadera",
     options: [
       "A. Evita el problema del nodo oculto",
@@ -1838,14 +1723,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q113",
+    id: "daypo-modulo-i_113",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "MACA, indique la verdadera",
     options: [
       "A. Solo puede existir colisiones RTS en el caso de nodo oculto",
@@ -1855,9 +1738,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q114",
+    id: "daypo-modulo-i_114",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1871,9 +1753,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q115",
+    id: "daypo-modulo-i_115",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1889,9 +1770,8 @@ export const questions: Question[] = [
     explanation:
       "SIFS es el tiempo de máxima prioridad, usado para los ACK y CTS. El PIFS es el punto de coordinación",
   },
-
   {
-    id: "daypo-modulo-i_q116",
+    id: "daypo-modulo-i_116",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1905,9 +1785,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q117",
+    id: "daypo-modulo-i_117",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1921,9 +1800,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q118",
+    id: "daypo-modulo-i_118",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1937,9 +1815,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q119",
+    id: "daypo-modulo-i_119",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1953,9 +1830,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q120",
+    id: "daypo-modulo-i_120",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1969,9 +1845,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q121",
+    id: "daypo-modulo-i_121",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -1985,9 +1860,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q122",
+    id: "daypo-modulo-i_122",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -2001,9 +1875,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-i_q123",
+    id: "daypo-modulo-i_123",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -2017,14 +1890,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q124",
+    id: "daypo-modulo-i_124",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "EDCF, escoja la verdadera",
     options: [
       "A. AIFS más corto para paquetes de mayor prioridad",
@@ -2034,14 +1905,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q125",
+    id: "daypo-modulo-i_125",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "EDCF, escoja la falsa",
     options: [
       "A. Voice tiene mínima latencia",
@@ -2051,14 +1920,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q126",
+    id: "daypo-modulo-i_126",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "EDCF, escoja la verdadera",
     options: [
       "A. El tiempo máximo de espera y de voz y video son el mismo",
@@ -2068,14 +1935,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q127",
+    id: "daypo-modulo-i_127",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "EDCF, escoja la verdadera",
     options: [
       "A. El tiempo máximo de espera y de voz y video son el mismo",
@@ -2085,9 +1950,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q128",
+    id: "daypo-modulo-i_128",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
@@ -2102,14 +1966,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-i_q129",
+    id: "daypo-modulo-i_129",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "EDCF, escoja la falsa",
     options: [
       "A. Tiene mayor throughput de vídeo",
@@ -2119,14 +1981,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-
   {
-    id: "daypo-modulo-i_q130",
+    id: "daypo-modulo-i_130",
     exam: "daypo-modulo-i",
     topic: "modulo-i",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "EDCF, escoja la verdadera",
     options: [
       "A. Tiene un retardo y jitter de la voz y vídeo significativamente reducido",
@@ -2136,9 +1996,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "d",
   },
-  // Total: 109 questions
   {
-    id: "daypo-modulo-ii_q1",
+    id: "daypo-modulo-ii_01",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2151,9 +2010,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q2",
+    id: "daypo-modulo-ii_02",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2167,14 +2025,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q3",
+    id: "daypo-modulo-ii_03",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Par Trenzado, escoja la falsa",
     options: [
       "A. Formado por dos hilos conductores recubiertos de aislante entrelazados de manera helicoidal",
@@ -2185,14 +2041,12 @@ export const questions: Question[] = [
     explanation:
       "De hecho lo reduce, y aumenta el aislamiento del ruido exterior.",
   },
-
   {
-    id: "daypo-modulo-ii_q4",
+    id: "daypo-modulo-ii_04",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Par Trenzado, escoja la falsa",
     options: [
       "A. Los cables de apantallamiento interno son UTP",
@@ -2201,9 +2055,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q5",
+    id: "daypo-modulo-ii_05",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2216,14 +2069,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q6",
+    id: "daypo-modulo-ii_06",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Fibra óptica, escoja la opción verdadera",
     options: [
       "A. El tipo de cable es de cristal, pero nunca de plástico",
@@ -2234,14 +2085,12 @@ export const questions: Question[] = [
     explanation:
       "La señal digital es unidireccional. Otras cosas de interés es que tiene una S/N excelente, con una atenuación baja, de 1-8 db/km",
   },
-
   {
-    id: "daypo-modulo-ii_q7",
+    id: "daypo-modulo-ii_07",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "Fibra óptica, escoja la opción verdadera",
     options: [
       "A. La distancia entre repetidores debe ser de 100km monomodo",
@@ -2252,9 +2101,8 @@ export const questions: Question[] = [
     explanation:
       "Pensemos que se usa para movidas de larga distancia y taliscuá",
   },
-
   {
-    id: "daypo-modulo-ii_q8",
+    id: "daypo-modulo-ii_08",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2270,38 +2118,34 @@ export const questions: Question[] = [
     explanation:
       "Ese sería el caso de la monomodo. Pensemos siempre que la monomodo se usa para movidas a largas distancias y la multimodo, como tiene pérdidas, para cortas",
   },
-
   {
-    id: "daypo-modulo-ii_q9",
+    id: "daypo-modulo-ii_09",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
     question:
-      "La distancia máxima sin repetidores que viaja un haz de luz en una monomodo es de",
+      "La distancia máxima sin repetidores que viaja un haz de luz en una monomodo es de ",
     options: ["A. 100km", "B. 1000km", "C. 10km"],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q10",
+    id: "daypo-modulo-ii_10",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
     question:
-      "La distancia máxima sin repetidores que viajan varios haces de luz en una multimodo es de",
+      "La distancia máxima sin repetidores que viajan varios haces de luz en una multimodo es de ",
     options: ["A. 550mts - 2km", "B. 2km", "C. 1km"],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q11",
+    id: "daypo-modulo-ii_11",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "La fibra monomodo usa ... para generar el haz de luz",
     options: [
       "A. LED",
@@ -2310,14 +2154,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q12",
+    id: "daypo-modulo-ii_12",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "La fibra multimodo usa ... para generar el haz de luz",
     options: [
       "A. LED",
@@ -2326,9 +2168,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q13",
+    id: "daypo-modulo-ii_13",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2341,9 +2182,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q14",
+    id: "daypo-modulo-ii_14",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2359,9 +2199,8 @@ export const questions: Question[] = [
     explanation:
       "Ojo, en campus, longitudes grandes. Deben conectar los exteriores, MDA-MDA",
   },
-
   {
-    id: "daypo-modulo-ii_q15",
+    id: "daypo-modulo-ii_15",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2373,9 +2212,8 @@ export const questions: Question[] = [
     explanation:
       "Pasillo caliente se refiere a la zona entre racks donde existen las conexiones.",
   },
-
   {
-    id: "daypo-modulo-ii_q16",
+    id: "daypo-modulo-ii_16",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2390,9 +2228,8 @@ export const questions: Question[] = [
     explanation:
       "Para acordarnos. MDA es Main, HDA es Horizontal, ZDA es Zone y EDA es equipment. Un árbol perfecto.",
   },
-
   {
-    id: "daypo-modulo-ii_q17",
+    id: "daypo-modulo-ii_17",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2405,9 +2242,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q18",
+    id: "daypo-modulo-ii_18",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2421,9 +2257,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q19",
+    id: "daypo-modulo-ii_19",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2439,14 +2274,12 @@ export const questions: Question[] = [
     explanation:
       "El proveedor de servicios es ISP, mientras que también existe una zona de acceso remoto para VPN",
   },
-
   {
-    id: "daypo-modulo-ii_q20",
+    id: "daypo-modulo-ii_20",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "La capa de acceso...",
     options: [
       "A. Selecciona al usuario final acceso a internet y está formada por switches de capa 2",
@@ -2455,14 +2288,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q21",
+    id: "daypo-modulo-ii_21",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "La capa de acceso...",
     options: [
       "A. Selecciona al usuario final acceso a internet y está formada por switches de capa 2",
@@ -2471,9 +2302,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q22",
+    id: "daypo-modulo-ii_22",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2486,9 +2316,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q23",
+    id: "daypo-modulo-ii_23",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2503,9 +2332,8 @@ export const questions: Question[] = [
     explanation:
       "Muy poca latencia! trata datos que tienen que estar ready muy rápido",
   },
-
   {
-    id: "daypo-modulo-ii_q24",
+    id: "daypo-modulo-ii_24",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2518,9 +2346,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q25",
+    id: "daypo-modulo-ii_25",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2533,9 +2360,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q26",
+    id: "daypo-modulo-ii_26",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2544,9 +2370,8 @@ export const questions: Question[] = [
     options: ["A. NAS", "B. DAS", "C. SAN"],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q27",
+    id: "daypo-modulo-ii_27",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2555,9 +2380,8 @@ export const questions: Question[] = [
     options: ["A. NAS", "B. DAS-SAN", "C. SAN"],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q28",
+    id: "daypo-modulo-ii_28",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2570,9 +2394,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q29",
+    id: "daypo-modulo-ii_29",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2585,9 +2408,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q30",
+    id: "daypo-modulo-ii_30",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2600,9 +2422,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q31",
+    id: "daypo-modulo-ii_31",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2615,9 +2436,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q32",
+    id: "daypo-modulo-ii_32",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2630,9 +2450,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q33",
+    id: "daypo-modulo-ii_33",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2645,9 +2464,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q34",
+    id: "daypo-modulo-ii_34",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2660,9 +2478,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q35",
+    id: "daypo-modulo-ii_35",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2676,9 +2493,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q36",
+    id: "daypo-modulo-ii_36",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2691,14 +2507,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q37",
+    id: "daypo-modulo-ii_37",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "NAS",
     options: [
       "A. Presenta cuello de botella, no tiene HA y no usa vMotion",
@@ -2707,14 +2521,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q38",
+    id: "daypo-modulo-ii_38",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "SAN",
     options: [
       "A. Presenta cuello de botella, no tiene HA y no usa vMotion",
@@ -2723,14 +2535,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q39",
+    id: "daypo-modulo-ii_39",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "NAS",
     options: [
       "A. Usa TCP/IP",
@@ -2739,14 +2549,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q40",
+    id: "daypo-modulo-ii_40",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "NAS",
     options: [
       "A. Usa protocolo NFS",
@@ -2755,14 +2563,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q41",
+    id: "daypo-modulo-ii_41",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "SAN",
     options: [
       "A. Minimiza el tiempo de respuesta y latencia, con rutas redundantes gracias al HA y presenta zonificación",
@@ -2771,9 +2577,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q42",
+    id: "daypo-modulo-ii_42",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2786,9 +2591,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q43",
+    id: "daypo-modulo-ii_43",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2803,9 +2607,8 @@ export const questions: Question[] = [
     correctAnswer: "c",
     explanation: "5 niveles",
   },
-
   {
-    id: "daypo-modulo-ii_q44",
+    id: "daypo-modulo-ii_44",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2818,9 +2621,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q45",
+    id: "daypo-modulo-ii_45",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2833,9 +2635,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q46",
+    id: "daypo-modulo-ii_46",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2848,9 +2649,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q47",
+    id: "daypo-modulo-ii_47",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2863,9 +2663,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q48",
+    id: "daypo-modulo-ii_48",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2879,9 +2678,8 @@ export const questions: Question[] = [
     correctAnswer: "c",
     explanation: "Lo hace mediante conmutadores",
   },
-
   {
-    id: "daypo-modulo-ii_q49",
+    id: "daypo-modulo-ii_49",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2889,14 +2687,13 @@ export const questions: Question[] = [
     question: "El zoning",
     options: [
       "A. Permite segmentar los puertos del switch para que se aíslen puertos entre sí formando grupos, garantizando integridad de datos",
-      "B. Permite agregar puertos entre sí, para redirigir el tráfico web a un puerto protegido",
+      "B. Permite agregar puertos entre sí, para redirigir el tráfico web a un puerto protegido ",
       "C. Es una de las técnicas implementadas por algoritmos de tolerancia a fallos",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q50",
+    id: "daypo-modulo-ii_50",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2909,9 +2706,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q51",
+    id: "daypo-modulo-ii_51",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2924,9 +2720,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q52",
+    id: "daypo-modulo-ii_52",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2940,9 +2735,8 @@ export const questions: Question[] = [
     correctAnswer: "b",
     explanation: "Tipo bus",
   },
-
   {
-    id: "daypo-modulo-ii_q53",
+    id: "daypo-modulo-ii_53",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2957,9 +2751,8 @@ export const questions: Question[] = [
     correctAnswer: "c",
     explanation: "Sí que lo hace",
   },
-
   {
-    id: "daypo-modulo-ii_q54",
+    id: "daypo-modulo-ii_54",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2973,9 +2766,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q55",
+    id: "daypo-modulo-ii_55",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -2990,9 +2782,8 @@ export const questions: Question[] = [
     explanation:
       "Se administran de manera individual, aunque las directivas puedan actualizarse en cualquier momento al ser dinámicas",
   },
-
   {
-    id: "daypo-modulo-ii_q56",
+    id: "daypo-modulo-ii_56",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3007,9 +2798,8 @@ export const questions: Question[] = [
     correctAnswer: "c",
     explanation: "Tier 3 es el de bajo rendimiento, RAID5 y SATA",
   },
-
   {
-    id: "daypo-modulo-ii_q57",
+    id: "daypo-modulo-ii_57",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3018,9 +2808,8 @@ export const questions: Question[] = [
     options: ["A. All-flash", "B. Híbridos", "C. Sólidos"],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q58",
+    id: "daypo-modulo-ii_58",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3034,9 +2823,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q59",
+    id: "daypo-modulo-ii_59",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3050,9 +2838,8 @@ export const questions: Question[] = [
     correctAnswer: "c",
     explanation: "50%",
   },
-
   {
-    id: "daypo-modulo-ii_q60",
+    id: "daypo-modulo-ii_60",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3068,9 +2855,8 @@ export const questions: Question[] = [
     explanation:
       "Cada uno estará en uno distinto, no por estar replicados ahora son la misma cocacola del desierto pero yo te digo tu te crees la última cocacola del desierto pero más allá hay un jugo de naranja que me va a hacer mejor a mí que una coca cola oiste pue",
   },
-
   {
-    id: "daypo-modulo-ii_q61",
+    id: "daypo-modulo-ii_61",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3082,11 +2868,11 @@ export const questions: Question[] = [
       "C. Los sistemas esenciales deben tener un RPO < 15 minutos, mientras que los sistemas esenciales menor que 2 horas",
     ],
     correctAnswer: "c",
-    explanation: "Sistemas esenciales, máxima prioridad, RTO<15 mins",
+    explanation:
+      "Sistemas esenciales, máxima prioridad, RTO<15 mins\nSistemas importantes, RTO < 2 horas, RPO 4 horas\nOtros, RTO < 4 horas, RPO 24 horas",
   },
-
   {
-    id: "daypo-modulo-ii_q62",
+    id: "daypo-modulo-ii_62",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3099,9 +2885,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q63",
+    id: "daypo-modulo-ii_63",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3111,26 +2896,24 @@ export const questions: Question[] = [
     options: ["A. NFV, SDN", "B. NFV", "C. Ninguna de las anteriores"],
     correctAnswer: "a",
     explanation:
-      "NFV es Virtualización de Funciones de Red. Virtualiza servicios de red como firewalls, enrutadores y balanceadores, entre otros. Se ejecuta a nivel de hardware",
+      "NFV es Virtualización de Funciones de Red. Virtualiza servicios de red como firewalls, enrutadores y balanceadores, entre otros. Se ejecuta a nivel de hardware\n\nSDN, redes definidas por Software, separa capa de control de capa de datos, por lo que podemos programar el control de red",
   },
-
   {
-    id: "daypo-modulo-ii_q64",
+    id: "daypo-modulo-ii_64",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
     question: "SDN",
     options: [
-      "A. Tienen como objetivo simplificar la creación y administración de redes, separando el control de los datos, abstrayéndolos",
+      "A. Tienen como objetivo simplificar la creación y administración de redes, separando el control de los datos, abstrayéndolos ",
       "B. Es el protocolo convencional de networking, es un sistema de conexión cableada y conmutada",
       "C. Ninguna de las anteriores",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q65",
+    id: "daypo-modulo-ii_65",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3140,9 +2923,8 @@ export const questions: Question[] = [
     options: ["A. SDN", "B. NFV", "C. Ninguna de las anteriores"],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q66",
+    id: "daypo-modulo-ii_66",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3155,9 +2937,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q67",
+    id: "daypo-modulo-ii_67",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3171,9 +2952,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q68",
+    id: "daypo-modulo-ii_68",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3185,11 +2965,10 @@ export const questions: Question[] = [
       "C. Independencia del controlador para escalado y seguridad",
     ],
     correctAnswer: "c",
-    explanation: "Obviamente depende del controlador, es el pivote",
+    explanation: "Obviamente depende del controlador, es el pivote ",
   },
-
   {
-    id: "daypo-modulo-ii_q69",
+    id: "daypo-modulo-ii_69",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3198,9 +2977,8 @@ export const questions: Question[] = [
     options: ["A. OpenDaylight", "B. ONOS", "C. OpenVPN"],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q70",
+    id: "daypo-modulo-ii_70",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3213,9 +2991,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q71",
+    id: "daypo-modulo-ii_71",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3230,9 +3007,8 @@ export const questions: Question[] = [
     explanation:
       "OpenFlow es un protocolo abierto que permite gestionar las tablas de flujos de switch y routers multipropietario.",
   },
-
   {
-    id: "daypo-modulo-ii_q72",
+    id: "daypo-modulo-ii_72",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3245,9 +3021,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q73",
+    id: "daypo-modulo-ii_73",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3260,9 +3035,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q74",
+    id: "daypo-modulo-ii_74",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3275,9 +3049,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q75",
+    id: "daypo-modulo-ii_75",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3290,9 +3063,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q76",
+    id: "daypo-modulo-ii_76",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3301,9 +3073,8 @@ export const questions: Question[] = [
     options: ["A. Cisco One", "B. HP", "C. AWS"],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q77",
+    id: "daypo-modulo-ii_77",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3311,15 +3082,14 @@ export const questions: Question[] = [
     question: "OpenNebula, seleccione la incorrecta",
     options: [
       "A. Es un IaaS",
-      "B. Tiene un sistema de administración centralizada.",
+      "B. Tiene un sistema de administración centralizada.\n- Cómputo, que contiene las VM\n- Almacenamiento, que contiene datos distribuidos\n- Red, que contiene los NFV",
       "C. El nivel de seguridad que usa solo es ACLs y Zonas",
     ],
     correctAnswer: "c",
     explanation: "Usa esos + VDC y Federaciones. Es tocho",
   },
-
   {
-    id: "daypo-modulo-ii_q78",
+    id: "daypo-modulo-ii_78",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3333,14 +3103,12 @@ export const questions: Question[] = [
     correctAnswer: "c",
     explanation: "Usado por PYMES, no es un modelo complejo",
   },
-
   {
-    id: "daypo-modulo-ii_q79",
+    id: "daypo-modulo-ii_79",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "El modelo funcional de una CPD, escoja la incorrecta",
     options: [
       "A. La actividad de la empresa se divide en funciones",
@@ -3350,14 +3118,12 @@ export const questions: Question[] = [
     correctAnswer: "b",
     explanation: "El supervisor trabaja exclusivamente en su especialidad",
   },
-
   {
-    id: "daypo-modulo-ii_q80",
+    id: "daypo-modulo-ii_80",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "El modelo funcional de una CPD, escoja la incorrecta",
     options: [
       "A. Cada empleado tiene más de un supervisor -> confusión",
@@ -3366,14 +3132,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q81",
+    id: "daypo-modulo-ii_81",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "El modelo mixto de una CPD, escoja la incorrecta",
     options: [
       "A. Cada empleado tiene varios supervisores según la especialización",
@@ -3382,14 +3146,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q82",
+    id: "daypo-modulo-ii_82",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "El modelo mixto de una CPD, escoja la incorrecta",
     options: [
       "A. La toma de decisiones se ralentiza debido a la consulta de asesores",
@@ -3398,30 +3160,26 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q83",
+    id: "daypo-modulo-ii_83",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "El modelo colegial de una CPD, escoja la incorrecta",
     options: [
       "A. Es más fácil coordinar cualquier nivel de la estructura",
       "B. Es más lento en la toma de decisiones",
-      "C. Es el medio usado en los colegios",
+      "C. Es el medio usado en los colegios ",
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q84",
+    id: "daypo-modulo-ii_84",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "El modelo colegial de una CPD, escoja la incorrecta",
     options: [
       "A. La efectividad de los comités se dificulta por el número de componentes",
@@ -3430,14 +3188,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q85",
+    id: "daypo-modulo-ii_85",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "El modelo matricial de una CPD, escoja la incorrecta",
     options: [
       "A. La asistencia técnica está garantizada por la dirección funcional",
@@ -3446,14 +3202,12 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q86",
+    id: "daypo-modulo-ii_86",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
-    repeated: true,
     question: "El modelo matricial de una CPD, escoja la incorrecta",
     options: [
       "A. Permite reagrupación dinámica del personal",
@@ -3462,9 +3216,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q87",
+    id: "daypo-modulo-ii_87",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3477,9 +3230,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q88",
+    id: "daypo-modulo-ii_88",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3492,9 +3244,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q89",
+    id: "daypo-modulo-ii_89",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3507,9 +3258,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q90",
+    id: "daypo-modulo-ii_90",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3522,9 +3272,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q91",
+    id: "daypo-modulo-ii_91",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3537,9 +3286,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q92",
+    id: "daypo-modulo-ii_92",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3552,9 +3300,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q93",
+    id: "daypo-modulo-ii_93",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3569,9 +3316,8 @@ export const questions: Question[] = [
     explanation:
       "El que falta es BEST-PRACTICA. Representa las experiencias de aprendizaje y tendencias de los mejores proveedores de servicios del mundo",
   },
-
   {
-    id: "daypo-modulo-ii_q94",
+    id: "daypo-modulo-ii_94",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3584,9 +3330,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q95",
+    id: "daypo-modulo-ii_95",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3599,24 +3344,22 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q96",
+    id: "daypo-modulo-ii_96",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
     question: "Los servicios visibles por el cliente",
     options: [
-      "A. Se divide en cliente interno (proceso de negocio o unidad de organización) y cliente externo (el servicio proporcionado hacia afuera)",
+      "A. Se divide en cliente interno (proceso de negocio o unidad de organización) y cliente externo (el servicio proporcionado hacia afuera) ",
       "B. Proporcionan los resultados básicos que desea el cliente, el valor que éste busca y por el que está dispuesto a pagar",
       "C. a) y b)",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q97",
+    id: "daypo-modulo-ii_97",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3629,39 +3372,36 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q98",
+    id: "daypo-modulo-ii_98",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
     question: "Los servicios Enabling por el cliente",
     options: [
-      "A. Son necesarios para prestar servicios core. Pueden ser visibles o no para el cliente pero no son servicios que se le",
-      "B. No son esenciales para prestar",
+      "A. Son necesarios para prestar servicios core. Pueden ser visibles o no para el cliente pero no son servicios que se le\noferten como tales",
+      "B. No son esenciales para prestar\nservicios core pero se utilizan para animar a los clientes a usar los servicios core o\npara diferenciarse de la competencia",
       "C. a) y b)",
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q99",
+    id: "daypo-modulo-ii_99",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
     points: 1,
     question: "Los servicios Enhancing por el cliente",
     options: [
-      "A. Proporcionan los resultados básicos que",
-      "B. No son esenciales para prestar",
+      "A. Proporcionan los resultados básicos que\ndesea el cliente, el valor que éste busca y por el que está dispuesto a pagar",
+      "B. No son esenciales para prestar\nservicios core pero se utilizan para animar a los clientes a usar los servicios core o\npara diferenciarse de la competencia.",
       "C. a) y b)",
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q100",
+    id: "daypo-modulo-ii_100",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3674,9 +3414,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q101",
+    id: "daypo-modulo-ii_101",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3690,9 +3429,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "b",
   },
-
   {
-    id: "daypo-modulo-ii_q102",
+    id: "daypo-modulo-ii_102",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3706,9 +3444,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q103",
+    id: "daypo-modulo-ii_103",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3722,9 +3459,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q104",
+    id: "daypo-modulo-ii_104",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3738,9 +3474,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q105",
+    id: "daypo-modulo-ii_105",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3753,9 +3488,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "a",
   },
-
   {
-    id: "daypo-modulo-ii_q106",
+    id: "daypo-modulo-ii_106",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3769,9 +3503,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q107",
+    id: "daypo-modulo-ii_107",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3785,9 +3518,8 @@ export const questions: Question[] = [
     correctAnswer: "b",
     explanation: "NO son ideales",
   },
-
   {
-    id: "daypo-modulo-ii_q108",
+    id: "daypo-modulo-ii_108",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
@@ -3800,9 +3532,8 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-
   {
-    id: "daypo-modulo-ii_q109",
+    id: "daypo-modulo-ii_109",
     exam: "daypo-modulo-ii",
     topic: "modulo-ii",
     type: "mc",
