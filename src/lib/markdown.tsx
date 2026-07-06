@@ -12,7 +12,7 @@ import type { ComponentProps } from "react";
 import "katex/dist/katex.min.css";
 
 const fullRemarkPlugins = [remarkGfm, remarkMath];
-const inlineRemarkPlugins = [remarkMath];
+const inlineRemarkPlugins = [remarkGfm, remarkMath];
 const rehypePlugins = [rehypeKatex];
 
 const codeStyleLight = {
@@ -76,9 +76,13 @@ export function Markdown({
   children: string;
   className?: string;
 }) {
+  const isDark = useIsDark();
+
   if (!children) return null;
   return (
-    <div className={className}>
+    <div
+      className={`prose prose-sm max-w-none ${isDark ? "prose-invert" : ""} ${className ?? ""}`}
+    >
       <ReactMarkdown
         remarkPlugins={fullRemarkPlugins}
         rehypePlugins={rehypePlugins}
