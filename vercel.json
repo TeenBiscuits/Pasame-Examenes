@@ -6,15 +6,15 @@
         "destination": "/og-pages/:lang/home.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)",
+        "source": "/:lang(en|es|gl)/:subjectId(_template|bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)",
         "destination": "/og-pages/:lang/:subjectId.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/practice/:topic*",
+        "source": "/:lang(en|es|gl)/:subjectId(_template|bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/practice/:topic*",
         "destination": "/og-pages/:lang/:subjectId.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/exam/:year",
+        "source": "/:lang(en|es|gl)/:subjectId(_template|bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/exam/:year",
         "destination": "/og-pages/:lang/:subjectId.html"
     },
     {

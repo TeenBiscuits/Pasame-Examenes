@@ -16,7 +16,7 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 void imageMap;
 void getImage;
 
-const questions: Question[] = [
+export const questions: Question[] = [
   // ================================================================
   // Exam 2024
   // ================================================================
