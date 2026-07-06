@@ -73,7 +73,9 @@ function CodeRenderer({
   }
 
   return (
-    <div className="not-prose my-3 rounded-lg border border-border bg-code-block overflow-hidden">
+    <div
+      className={`not-prose my-3 rounded-lg border border-border overflow-hidden ${isDark ? "bg-code-block" : "bg-code"}`}
+    >
       <div className="flex items-center px-4 py-1.5 border-b border-border/50">
         <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-fg-muted">
           {match[1]}
