@@ -32,6 +32,11 @@
       "permanent": false
     },
     {
+      "source": "/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/exam",
+      "destination": "/es/:subjectId",
+      "permanent": false
+    },
+    {
       "source": "/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/exam/:year",
       "destination": "/es/:subjectId/exam/:year",
       "permanent": false
