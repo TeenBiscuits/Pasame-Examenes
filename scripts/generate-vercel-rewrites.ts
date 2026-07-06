@@ -22,7 +22,7 @@ function main() {
 
   const template = readFileSync(templatePath, "utf-8");
   const rewritesJson = JSON.stringify(rewrites, null, 4);
-  const output = template.replace("__REWRITES__", rewritesJson);
+  const output = template.split("__REWRITES__").join(rewritesJson);
 
   writeFileSync(outputPath, output);
   console.log(

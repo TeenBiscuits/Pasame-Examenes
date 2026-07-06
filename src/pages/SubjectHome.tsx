@@ -22,6 +22,10 @@ export default function SubjectHome() {
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
+  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
+    null,
+  );
+  const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
   const seoMeta = useMemo(
     () =>
       subject
@@ -35,7 +39,10 @@ export default function SubjectHome() {
 
   useEffect(() => {
     if (subject) {
-      getAllQuestions(subject.id).then(setAllQuestions);
+      getAllQuestions(subject.id).then((questions) => {
+        setAllQuestions(questions);
+        setQuestionsLoadedFor(subject.id);
+      });
     }
   }, [subject]);
 
@@ -45,6 +52,7 @@ export default function SubjectHome() {
     pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,
+    enabled: !subject || questionsLoaded,
   });
 
   if (!subject) {

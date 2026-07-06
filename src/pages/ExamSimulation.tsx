@@ -409,6 +409,9 @@ export default function ExamSimulation() {
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
+    null,
+  );
   const [megatopicLabels, setMegatopicLabels] = useState<
     Record<string, string>
   >({});
@@ -418,9 +421,14 @@ export default function ExamSimulation() {
   );
   useEffect(() => {
     if (subject && year) {
-      getQuestionsByExam(subject.id, year).then(setQuestions);
+      getQuestionsByExam(subject.id, year).then((examQuestions) => {
+        setQuestions(examQuestions);
+        setQuestionsLoadedFor(`${subject.id}/${year}`);
+      });
     }
   }, [subject, year]);
+  const questionsLoaded =
+    !!subject && !!year && questionsLoadedFor === `${subject.id}/${year}`;
 
   useEffect(() => {
     if (!subject || questions.length === 0) return;
@@ -455,6 +463,7 @@ export default function ExamSimulation() {
     pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,
+    enabled: !(subject && examInfo) || questionsLoaded,
   });
 
   const {

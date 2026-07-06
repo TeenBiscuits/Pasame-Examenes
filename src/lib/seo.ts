@@ -72,6 +72,7 @@ export interface SeoPageMeta {
   pathWithoutLang: string;
   ogImage?: string;
   jsonLd?: string;
+  enabled?: boolean;
 }
 
 export function useSeoHead({
@@ -80,12 +81,15 @@ export function useSeoHead({
   pathWithoutLang,
   ogImage,
   jsonLd,
+  enabled = true,
 }: SeoPageMeta) {
   const t = useT();
   const { lang } = useLang();
   const meta = langMeta[lang];
 
   useEffect(() => {
+    if (!enabled) return;
+
     document.documentElement.lang = meta.hreflang;
 
     const canonicalPath = buildCanonicalPath(lang, pathWithoutLang);
@@ -167,5 +171,6 @@ export function useSeoHead({
     t.seo.siteName,
     ogImage,
     jsonLd,
+    enabled,
   ]);
 }

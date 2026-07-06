@@ -341,6 +341,9 @@ export default function PracticeTopic() {
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
+    null,
+  );
   const [megatopicLabel, setMegatopicLabel] = useState<string | undefined>();
   const topicInfo = useMemo(
     () => subject?.topics.find((tp) => tp.key === topic),
@@ -348,10 +351,15 @@ export default function PracticeTopic() {
   );
   useEffect(() => {
     if (subject && topic) {
-      getQuestionsByTopic(subject.id, topic).then(setQuestions);
+      getQuestionsByTopic(subject.id, topic).then((topicQuestions) => {
+        setQuestions(topicQuestions);
+        setQuestionsLoadedFor(`${subject.id}/${topic}`);
+      });
       getTopicMegaTopicLabel(subject.id, topic).then(setMegatopicLabel);
     }
   }, [subject, topic]);
+  const questionsLoaded =
+    !!subject && !!topic && questionsLoadedFor === `${subject.id}/${topic}`;
   const textQuestionCount = useMemo(
     () => questions.filter((q) => q.type === "text").length,
     [questions],
@@ -373,6 +381,7 @@ export default function PracticeTopic() {
     pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,
+    enabled: !(subject && topicInfo) || questionsLoaded,
   });
 
   const {
