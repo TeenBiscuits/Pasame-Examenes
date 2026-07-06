@@ -2,6 +2,8 @@ if (import.meta.env.DEV) {
   import("react-grab");
 }
 
+import "@fontsource-variable/roboto";
+import "@fontsource-variable/cascadia-code";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
