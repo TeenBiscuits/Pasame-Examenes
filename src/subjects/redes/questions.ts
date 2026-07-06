@@ -222,6 +222,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "El DNS (Domain Name System):",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-0.jpg"),
     options: [
       "A. Sirve para convertir direcciones IP en nombres de máquinas.",
       "B. Sirve para convertir nombres de máquinas en direcciones IP.",
@@ -327,6 +328,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Si queremos establecer una conexión TCP entre las máquinas 2 y 3. El valor del MSS para la conexión será de:",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-0.jpg"),
     options: [
       "A. 1460 en los dos sentidos.",
       "B. 760 en los dos sentidos.",
@@ -342,6 +344,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Para el establecimiento de conexión de la Figura 2, indica los valores de ACK que envía el servidor B (apertura pasiva) y el cliente A (apertura activa):",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-1.jpg"),
     options: [
       "A. 43216 y 27891, respectivamente.",
       "B. 43215 y 27890, respectivamente.",
@@ -357,6 +360,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       'En el establecimiento simultáneo de una conexión TCP de la Figura 3, indica qué se envía en "PQT 1":',
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-2.jpg"),
     options: ["A. SYN 78463 y ACK 34219.", "B. SYN 78463.", "C. ACK 34219."],
     correctAnswer: "a",
   },
@@ -460,6 +464,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Siguiendo con la conexión, si se envía un paquete TCP de 2048 bytes desde la máquina 3:",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-0.jpg"),
     options: [
       "A. Se envían 3 paquetes TCP y por lo tanto, 3 paquetes IP (pero no fragmentados).",
       "B. Se envía 1 paquete TCP, pero fragmentado en 3 paquetes IP.",
@@ -504,6 +509,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "En base a la Figura 4 y sabiendo que debido a un error, la máquina B se ha apagado y vuelto a encender, ¿qué respuesta recibirá la máquina A?",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-3.jpg"),
     options: [
       "A. RST 25301:25301 (0), ACK 95573.",
       "B. RST 0:0 (0), ACK 95573.",
@@ -996,6 +1002,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Al enviar 2048 bytes de datos UDP (sin incluir la cabecera UDP) desde la máquina 3 a la máquina 1, por el segmento C circulan:",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-0.jpg"),
     options: [
       "A. 2 fragmentos IP de 1480 y 568 bytes.",
       "B. 2 fragmentos IP: de 1500 y 596 bytes.",
@@ -1011,6 +1018,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Al enviar 2048 bytes de datos UDP (sin incluir la cabecera UDP) desde la máquina 3 a la máquina 1, por el segmento A circulan:",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-0.jpg"),
     options: [
       "A. 3 fragmentos IP: 2 de 800 bytes y 1 de 504 bytes.",
       "B. 3 fragmentos IP: de 796, 724 y 596 bytes, respectivamente.",
@@ -1026,6 +1034,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "¿Qué offset (en decimal) se almacenará en el último fragmento que circule por el segmento A?",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-0.jpg"),
     options: ["A. 1480", "B. 1472", "C. 1500"],
     correctAnswer: "a",
   },
@@ -1036,6 +1045,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "¿Y cuántos fragmentos circularán por el segmento B?",
+    image: getImage(imageMap, "daypo-recopilatorio-lara-image-0.jpg"),
     options: ["A. 2", "B. 1", "C. 3"],
     correctAnswer: "c",
   },
@@ -2856,6 +2866,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-recopilatorio-udc-image-0.jpg"),
     options: [
       "A. Un hub ethernet",
       "B. Un switch ethernet",
@@ -2871,6 +2882,7 @@ export const questions: Question[] = [
     type: "mc",
     points: 1,
     question: "Qué es esto?",
+    image: getImage(imageMap, "daypo-recopilatorio-udc-image-1.jpg"),
     options: [
       "A. Un hub ethernet",
       "B. Un switch ethernet",
