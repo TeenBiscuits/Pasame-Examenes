@@ -11,11 +11,12 @@ import type { Question } from "../data/types";
 import QuestionCard from "../components/QuestionCard";
 import QuestionNavChips from "../components/QuestionNavChips";
 import Disclaimer from "../components/Disclaimer";
-import { useT } from "../i18n/hooks";
+import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { buildTopicMeta } from "../seo/meta";
 import { usePracticeSession } from "../hooks/usePracticeSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
@@ -335,6 +336,7 @@ export default function PracticeTopic() {
   }>();
   const navigate = useNavigate();
   const t = useT();
+  const { lang } = useLang();
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
@@ -354,26 +356,23 @@ export default function PracticeTopic() {
     () => questions.filter((q) => q.type === "text").length,
     [questions],
   );
-  useDocumentTitle(
-    subject && topicInfo
-      ? `${topicInfo.label} \u2014 ${subject.name} \u2014 ${t.home.title}`
-      : subject
-        ? `${t.home.title} \u2014 ${subject.name}`
-        : t.home.title,
+  const seoMeta = useMemo(
+    () =>
+      subject && topicInfo
+        ? buildTopicMeta(lang, subject, topicInfo, {
+            topicQuestionCounts: { [topicInfo.key]: questions.length },
+          })
+        : undefined,
+    [subject, topicInfo, lang, questions.length],
   );
+  useDocumentTitle(seoMeta?.title ?? t.home.title);
 
   useSeoHead({
-    title:
-      subject && topicInfo
-        ? `${topicInfo.label} \u2014 ${subject.name}`
-        : t.home.title,
-    description:
-      subject && topicInfo
-        ? `${questions.length} ${t.subjectCard.questions} \u2014 ${topicInfo.label} \u2014 ${subject.name} (${subject.courseCode})`
-        : t.seo.defaultDescription,
-    pathWithoutLang:
-      subject && topic ? `/${subject.id}/practice/${topic}` : "/",
+    title: seoMeta?.title ?? t.home.title,
+    description: seoMeta?.description ?? t.seo.defaultDescription,
+    pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
+    jsonLd: seoMeta?.jsonLd,
   });
 
   const {

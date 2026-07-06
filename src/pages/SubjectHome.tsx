@@ -8,21 +8,30 @@ import AddExamModal, {
   type AddExamModalHandle,
 } from "../components/AddExamModal";
 import type { Question, Topic } from "../data/types";
-import { useT } from "../i18n/hooks";
+import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { buildSubjectMeta } from "../seo/meta";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
+  const { lang } = useLang();
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
-  useDocumentTitle(
-    subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
+  const seoMeta = useMemo(
+    () =>
+      subject
+        ? buildSubjectMeta(lang, subject, {
+            questionCount: allQuestions.length,
+          })
+        : undefined,
+    [subject, lang, allQuestions.length],
   );
+  useDocumentTitle(seoMeta?.title ?? t.home.title);
 
   useEffect(() => {
     if (subject) {
@@ -46,10 +55,11 @@ export default function SubjectHome() {
   }, [subject, allQuestions, t]);
 
   useSeoHead({
-    title: subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
-    description: seoDescription,
-    pathWithoutLang: subject ? `/${subject.id}` : "/",
+    title: seoMeta?.title ?? t.home.title,
+    description: seoMeta?.description ?? seoDescription,
+    pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
+    jsonLd: seoMeta?.jsonLd,
   });
 
   if (!subject) {

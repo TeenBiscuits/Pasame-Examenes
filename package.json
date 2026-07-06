@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && tsx scripts/generate-vercel-rewrites.ts && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && vite build && tsx scripts/generate-subject-pages.ts",
+    "build": "tsx scripts/generate-page-meta-map.ts && tsc -b && tsx scripts/generate-vercel-rewrites.ts && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier . --write",
@@ -38,6 +38,7 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12",
-    "vite-imagetools": "^10.0.1"
+    "vite-imagetools": "^10.0.1",
+    "vite-plugin-react-meta-map": "^1.0.9"
   }
 }

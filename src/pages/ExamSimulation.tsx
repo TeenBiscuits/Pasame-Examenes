@@ -11,11 +11,12 @@ import type { Question, Exam } from "../data/types";
 import QuestionCard from "../components/QuestionCard";
 import QuestionNavChips from "../components/QuestionNavChips";
 import Disclaimer from "../components/Disclaimer";
-import { useT } from "../i18n/hooks";
+import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { buildExamMeta } from "../seo/meta";
 import { useExamSession } from "../hooks/useExamSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
@@ -403,6 +404,7 @@ export default function ExamSimulation() {
   const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
   const navigate = useNavigate();
   const t = useT();
+  const { lang } = useLang();
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
@@ -436,25 +438,23 @@ export default function ExamSimulation() {
       setMegatopicLabels(labels);
     });
   }, [subject, questions]);
-  useDocumentTitle(
-    examInfo && subject
-      ? `${examInfo.title} \u2014 ${subject.name} \u2014 ${t.home.title}`
-      : subject
-        ? `${subject.name} \u2014 ${t.home.title}`
-        : t.home.title,
+  const seoMeta = useMemo(
+    () =>
+      examInfo && subject
+        ? buildExamMeta(lang, subject, examInfo, {
+            examQuestionCounts: { [examInfo.year]: questions.length },
+          })
+        : undefined,
+    [examInfo, subject, lang, questions.length],
   );
+  useDocumentTitle(seoMeta?.title ?? t.home.title);
 
   useSeoHead({
-    title:
-      examInfo && subject
-        ? `${examInfo.title} \u2014 ${subject.name}`
-        : t.home.title,
-    description:
-      examInfo && subject
-        ? `${examInfo.title} \u2014 ${subject.name} (${subject.courseCode})`
-        : t.seo.defaultDescription,
-    pathWithoutLang: subject && year ? `/${subject.id}/exam/${year}` : "/",
+    title: seoMeta?.title ?? t.home.title,
+    description: seoMeta?.description ?? t.seo.defaultDescription,
+    pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
+    jsonLd: seoMeta?.jsonLd,
   });
 
   const {

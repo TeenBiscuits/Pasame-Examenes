@@ -1,17 +1,12 @@
 import { useEffect } from "react";
 import { useT, useLang } from "../i18n/hooks";
-import type { Lang } from "../i18n/context";
-
-const BASE_URL = "https://pe.pablopl.dev";
-
-const langMeta: Record<
-  Lang,
-  { locale: string; hreflang: string; alternateLocales: Lang[] }
-> = {
-  en: { locale: "en_US", hreflang: "en", alternateLocales: ["es", "gl"] },
-  es: { locale: "es_ES", hreflang: "es", alternateLocales: ["en", "gl"] },
-  gl: { locale: "gl_ES", hreflang: "gl", alternateLocales: ["en", "es"] },
-};
+import {
+  BASE_URL,
+  DEFAULT_LANG,
+  LANGS,
+  buildCanonicalPath,
+  langMeta,
+} from "../seo/meta";
 
 function setMeta(
   id: string,
@@ -51,12 +46,24 @@ function setLink(
     document.head.appendChild(el);
   } else {
     el.href = href;
+    if (extra) {
+      for (const [key, val] of Object.entries(extra)) {
+        el.setAttribute(key, val);
+      }
+    }
   }
 }
 
-function buildCanonicalPath(lang: Lang, pathWithoutLang: string): string {
-  const base = pathWithoutLang === "/" ? "" : pathWithoutLang;
-  return `/${lang}${base}`;
+function setJsonLd(jsonLd?: string) {
+  if (!jsonLd) return;
+  let el = document.getElementById("schema-jsonld") as HTMLScriptElement | null;
+  if (!el) {
+    el = document.createElement("script");
+    el.id = "schema-jsonld";
+    el.type = "application/ld+json";
+    document.head.appendChild(el);
+  }
+  el.textContent = jsonLd;
 }
 
 export interface SeoPageMeta {
@@ -64,6 +71,7 @@ export interface SeoPageMeta {
   description: string;
   pathWithoutLang: string;
   ogImage?: string;
+  jsonLd?: string;
 }
 
 export function useSeoHead({
@@ -71,6 +79,7 @@ export function useSeoHead({
   description,
   pathWithoutLang,
   ogImage,
+  jsonLd,
 }: SeoPageMeta) {
   const t = useT();
   const { lang } = useLang();
@@ -128,12 +137,18 @@ export function useSeoHead({
 
     const linkOps = [
       { id: "link-canonical", rel: "canonical", href: canonicalUrl },
-      ...meta.alternateLocales.map((altLang) => ({
+      ...LANGS.map((altLang) => ({
         id: `link-hreflang-${altLang}`,
         rel: "alternate" as const,
         href: `${BASE_URL}${buildCanonicalPath(altLang, pathWithoutLang)}`,
         extra: { hreflang: langMeta[altLang].hreflang },
       })),
+      {
+        id: "link-hreflang-x-default",
+        rel: "alternate" as const,
+        href: `${BASE_URL}${buildCanonicalPath(DEFAULT_LANG, pathWithoutLang)}`,
+        extra: { hreflang: "x-default" },
+      },
     ];
 
     for (const op of metaOps) {
@@ -142,6 +157,7 @@ export function useSeoHead({
     for (const op of linkOps) {
       setLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
     }
+    setJsonLd(jsonLd);
   }, [
     title,
     description,
@@ -150,5 +166,6 @@ export function useSeoHead({
     meta,
     t.seo.siteName,
     ogImage,
+    jsonLd,
   ]);
 }

@@ -66,7 +66,6 @@ export default function StarPopup() {
 
   const dismiss = useCallback(() => finish(false), [finish]);
   const dismissRef = useRef(dismiss);
-  dismissRef.current = dismiss;
 
   useEffect(() => {
     if (!openRef.current) return;

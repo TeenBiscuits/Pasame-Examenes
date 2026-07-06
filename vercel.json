@@ -2,20 +2,1648 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-        "source": "/:lang(en|es|gl)",
-        "destination": "/og-pages/:lang/home.html"
+        "source": "/en",
+        "destination": "/seo/en.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)",
-        "destination": "/og-pages/:lang/:subjectId.html"
+        "source": "/en/bede",
+        "destination": "/seo/en/bede.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/practice/:topic*",
-        "destination": "/og-pages/:lang/:subjectId.html"
+        "source": "/en/bede/practice/recuperacion-concurrencia",
+        "destination": "/seo/en/bede/practice/recuperacion-concurrencia.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/exam/:year",
-        "destination": "/og-pages/:lang/:subjectId.html"
+        "source": "/en/bede/practice/ficheros",
+        "destination": "/seo/en/bede/practice/ficheros.html"
+    },
+    {
+        "source": "/en/bede/exam/daypo-preguntas",
+        "destination": "/seo/en/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/en/cepe",
+        "destination": "/seo/en/cepe.html"
+    },
+    {
+        "source": "/en/cepe/practice/concurrencia-mutex",
+        "destination": "/seo/en/cepe/practice/concurrencia-mutex.html"
+    },
+    {
+        "source": "/en/cepe/practice/concurrencia-erlang",
+        "destination": "/seo/en/cepe/practice/concurrencia-erlang.html"
+    },
+    {
+        "source": "/en/cepe/practice/paralelismo-teoria",
+        "destination": "/seo/en/cepe/practice/paralelismo-teoria.html"
+    },
+    {
+        "source": "/en/cepe/practice/paralelismo-mpi",
+        "destination": "/seo/en/cepe/practice/paralelismo-mpi.html"
+    },
+    {
+        "source": "/en/cepe/exam/2018-06",
+        "destination": "/seo/en/cepe/exam/2018-06.html"
+    },
+    {
+        "source": "/en/cepe/exam/2018-07",
+        "destination": "/seo/en/cepe/exam/2018-07.html"
+    },
+    {
+        "source": "/en/cepe/exam/2019-06",
+        "destination": "/seo/en/cepe/exam/2019-06.html"
+    },
+    {
+        "source": "/en/cepe/exam/2019-07",
+        "destination": "/seo/en/cepe/exam/2019-07.html"
+    },
+    {
+        "source": "/en/cepe/exam/2020-06",
+        "destination": "/seo/en/cepe/exam/2020-06.html"
+    },
+    {
+        "source": "/en/cepe/exam/2020-07",
+        "destination": "/seo/en/cepe/exam/2020-07.html"
+    },
+    {
+        "source": "/en/cepe/exam/2021-06",
+        "destination": "/seo/en/cepe/exam/2021-06.html"
+    },
+    {
+        "source": "/en/cepe/exam/2021-07",
+        "destination": "/seo/en/cepe/exam/2021-07.html"
+    },
+    {
+        "source": "/en/cepe/exam/2022-06",
+        "destination": "/seo/en/cepe/exam/2022-06.html"
+    },
+    {
+        "source": "/en/cepe/exam/2022-07",
+        "destination": "/seo/en/cepe/exam/2022-07.html"
+    },
+    {
+        "source": "/en/cepe/exam/2023-06",
+        "destination": "/seo/en/cepe/exam/2023-06.html"
+    },
+    {
+        "source": "/en/cepe/exam/2023-07",
+        "destination": "/seo/en/cepe/exam/2023-07.html"
+    },
+    {
+        "source": "/en/cepe/exam/2024-06",
+        "destination": "/seo/en/cepe/exam/2024-06.html"
+    },
+    {
+        "source": "/en/cepe/exam/2024-07",
+        "destination": "/seo/en/cepe/exam/2024-07.html"
+    },
+    {
+        "source": "/en/cepe/exam/2025-06",
+        "destination": "/seo/en/cepe/exam/2025-06.html"
+    },
+    {
+        "source": "/en/cepe/exam/2025-07",
+        "destination": "/seo/en/cepe/exam/2025-07.html"
+    },
+    {
+        "source": "/en/deese",
+        "destination": "/seo/en/deese.html"
+    },
+    {
+        "source": "/en/deese/practice/intro-y-objetos",
+        "destination": "/seo/en/deese/practice/intro-y-objetos.html"
+    },
+    {
+        "source": "/en/deese/practice/propiedades-oo",
+        "destination": "/seo/en/deese/practice/propiedades-oo.html"
+    },
+    {
+        "source": "/en/deese/practice/uml",
+        "destination": "/seo/en/deese/practice/uml.html"
+    },
+    {
+        "source": "/en/deese/practice/principios-diseno",
+        "destination": "/seo/en/deese/practice/principios-diseno.html"
+    },
+    {
+        "source": "/en/deese/practice/patrones-diseno",
+        "destination": "/seo/en/deese/practice/patrones-diseno.html"
+    },
+    {
+        "source": "/en/deese/exam/2020-01",
+        "destination": "/seo/en/deese/exam/2020-01.html"
+    },
+    {
+        "source": "/en/deese/exam/2022-01",
+        "destination": "/seo/en/deese/exam/2022-01.html"
+    },
+    {
+        "source": "/en/ece",
+        "destination": "/seo/en/ece.html"
+    },
+    {
+        "source": "/en/ece/practice/rendimiento",
+        "destination": "/seo/en/ece/practice/rendimiento.html"
+    },
+    {
+        "source": "/en/ece/practice/segmentacion",
+        "destination": "/seo/en/ece/practice/segmentacion.html"
+    },
+    {
+        "source": "/en/ece/practice/cache",
+        "destination": "/seo/en/ece/practice/cache.html"
+    },
+    {
+        "source": "/en/ece/practice/memoria-virtual",
+        "destination": "/seo/en/ece/practice/memoria-virtual.html"
+    },
+    {
+        "source": "/en/ece/practice/buses",
+        "destination": "/seo/en/ece/practice/buses.html"
+    },
+    {
+        "source": "/en/ece/practice/raid",
+        "destination": "/seo/en/ece/practice/raid.html"
+    },
+    {
+        "source": "/en/ece/exam/2021-01",
+        "destination": "/seo/en/ece/exam/2021-01.html"
+    },
+    {
+        "source": "/en/ece/exam/2021-07",
+        "destination": "/seo/en/ece/exam/2021-07.html"
+    },
+    {
+        "source": "/en/ece/exam/2022-01",
+        "destination": "/seo/en/ece/exam/2022-01.html"
+    },
+    {
+        "source": "/en/ece/exam/2022-07",
+        "destination": "/seo/en/ece/exam/2022-07.html"
+    },
+    {
+        "source": "/en/ece/exam/2023-01",
+        "destination": "/seo/en/ece/exam/2023-01.html"
+    },
+    {
+        "source": "/en/ece/exam/2023-07",
+        "destination": "/seo/en/ece/exam/2023-07.html"
+    },
+    {
+        "source": "/en/ece/exam/2024-01",
+        "destination": "/seo/en/ece/exam/2024-01.html"
+    },
+    {
+        "source": "/en/ece/exam/2024-07",
+        "destination": "/seo/en/ece/exam/2024-07.html"
+    },
+    {
+        "source": "/en/ece/exam/2025-01",
+        "destination": "/seo/en/ece/exam/2025-01.html"
+    },
+    {
+        "source": "/en/ece/exam/2025-07",
+        "destination": "/seo/en/ece/exam/2025-07.html"
+    },
+    {
+        "source": "/en/ece/exam/2026-01",
+        "destination": "/seo/en/ece/exam/2026-01.html"
+    },
+    {
+        "source": "/en/emeele",
+        "destination": "/seo/en/emeele.html"
+    },
+    {
+        "source": "/en/emeele/practice/kNN",
+        "destination": "/seo/en/emeele/practice/kNN.html"
+    },
+    {
+        "source": "/en/emeele/practice/Bias-Variance",
+        "destination": "/seo/en/emeele/practice/Bias-Variance.html"
+    },
+    {
+        "source": "/en/emeele/practice/Linear & Logistic Regression",
+        "destination": "/seo/en/emeele/practice/Linear & Logistic Regression.html"
+    },
+    {
+        "source": "/en/emeele/practice/Model Selection & Regularization",
+        "destination": "/seo/en/emeele/practice/Model Selection & Regularization.html"
+    },
+    {
+        "source": "/en/emeele/practice/Neural Networks",
+        "destination": "/seo/en/emeele/practice/Neural Networks.html"
+    },
+    {
+        "source": "/en/emeele/practice/Decision Trees & Ensembles",
+        "destination": "/seo/en/emeele/practice/Decision Trees & Ensembles.html"
+    },
+    {
+        "source": "/en/emeele/practice/Support Vector Machines",
+        "destination": "/seo/en/emeele/practice/Support Vector Machines.html"
+    },
+    {
+        "source": "/en/emeele/practice/Clustering",
+        "destination": "/seo/en/emeele/practice/Clustering.html"
+    },
+    {
+        "source": "/en/emeele/practice/Dimensionality Reduction",
+        "destination": "/seo/en/emeele/practice/Dimensionality Reduction.html"
+    },
+    {
+        "source": "/en/emeele/exam/2024",
+        "destination": "/seo/en/emeele/exam/2024.html"
+    },
+    {
+        "source": "/en/emeele/exam/2025",
+        "destination": "/seo/en/emeele/exam/2025.html"
+    },
+    {
+        "source": "/en/equisi",
+        "destination": "/seo/en/equisi.html"
+    },
+    {
+        "source": "/en/equisi/practice/modulo-i",
+        "destination": "/seo/en/equisi/practice/modulo-i.html"
+    },
+    {
+        "source": "/en/equisi/practice/modulo-ii",
+        "destination": "/seo/en/equisi/practice/modulo-ii.html"
+    },
+    {
+        "source": "/en/equisi/exam/2024-07",
+        "destination": "/seo/en/equisi/exam/2024-07.html"
+    },
+    {
+        "source": "/en/equisi/exam/daypo-modulo-i",
+        "destination": "/seo/en/equisi/exam/daypo-modulo-i.html"
+    },
+    {
+        "source": "/en/equisi/exam/daypo-modulo-ii",
+        "destination": "/seo/en/equisi/exam/daypo-modulo-ii.html"
+    },
+    {
+        "source": "/en/equisi/exam/megarecopilacion",
+        "destination": "/seo/en/equisi/exam/megarecopilacion.html"
+    },
+    {
+        "source": "/en/equispe",
+        "destination": "/seo/en/equispe.html"
+    },
+    {
+        "source": "/en/equispe/practice/teoria",
+        "destination": "/seo/en/equispe/practice/teoria.html"
+    },
+    {
+        "source": "/en/equispe/practice/practica",
+        "destination": "/seo/en/equispe/practice/practica.html"
+    },
+    {
+        "source": "/en/equispe/exam/2024-01",
+        "destination": "/seo/en/equispe/exam/2024-01.html"
+    },
+    {
+        "source": "/en/equispe/exam/2026-01",
+        "destination": "/seo/en/equispe/exam/2026-01.html"
+    },
+    {
+        "source": "/en/equispe/exam/daypo-tipo-udc",
+        "destination": "/seo/en/equispe/exam/daypo-tipo-udc.html"
+    },
+    {
+        "source": "/en/equispe/exam/daypo-teoria",
+        "destination": "/seo/en/equispe/exam/daypo-teoria.html"
+    },
+    {
+        "source": "/en/equispe/exam/daypo-practica",
+        "destination": "/seo/en/equispe/exam/daypo-practica.html"
+    },
+    {
+        "source": "/en/esei",
+        "destination": "/seo/en/esei.html"
+    },
+    {
+        "source": "/en/esei/practice/t1",
+        "destination": "/seo/en/esei/practice/t1.html"
+    },
+    {
+        "source": "/en/esei/practice/t2",
+        "destination": "/seo/en/esei/practice/t2.html"
+    },
+    {
+        "source": "/en/esei/practice/t3",
+        "destination": "/seo/en/esei/practice/t3.html"
+    },
+    {
+        "source": "/en/esei/practice/t4",
+        "destination": "/seo/en/esei/practice/t4.html"
+    },
+    {
+        "source": "/en/esei/practice/t5",
+        "destination": "/seo/en/esei/practice/t5.html"
+    },
+    {
+        "source": "/en/esei/practice/t6",
+        "destination": "/seo/en/esei/practice/t6.html"
+    },
+    {
+        "source": "/en/esei/practice/t7",
+        "destination": "/seo/en/esei/practice/t7.html"
+    },
+    {
+        "source": "/en/esei/practice/t8",
+        "destination": "/seo/en/esei/practice/t8.html"
+    },
+    {
+        "source": "/en/esei/practice/t9",
+        "destination": "/seo/en/esei/practice/t9.html"
+    },
+    {
+        "source": "/en/esei/practice/t10",
+        "destination": "/seo/en/esei/practice/t10.html"
+    },
+    {
+        "source": "/en/esei/exam/2023",
+        "destination": "/seo/en/esei/exam/2023.html"
+    },
+    {
+        "source": "/en/esei/exam/2024",
+        "destination": "/seo/en/esei/exam/2024.html"
+    },
+    {
+        "source": "/en/esei/exam/2025-05",
+        "destination": "/seo/en/esei/exam/2025-05.html"
+    },
+    {
+        "source": "/en/esei/exam/2025-07",
+        "destination": "/seo/en/esei/exam/2025-07.html"
+    },
+    {
+        "source": "/en/esei/exam/2026-06",
+        "destination": "/seo/en/esei/exam/2026-06.html"
+    },
+    {
+        "source": "/en/eseo",
+        "destination": "/seo/en/eseo.html"
+    },
+    {
+        "source": "/en/eseo/practice/sistema-ficheros",
+        "destination": "/seo/en/eseo/practice/sistema-ficheros.html"
+    },
+    {
+        "source": "/en/eseo/practice/memoria",
+        "destination": "/seo/en/eseo/practice/memoria.html"
+    },
+    {
+        "source": "/en/eseo/practice/procesos",
+        "destination": "/seo/en/eseo/practice/procesos.html"
+    },
+    {
+        "source": "/en/eseo/practice/entrada-salida",
+        "destination": "/seo/en/eseo/practice/entrada-salida.html"
+    },
+    {
+        "source": "/en/eseo/exam/2020-01",
+        "destination": "/seo/en/eseo/exam/2020-01.html"
+    },
+    {
+        "source": "/en/eseo/exam/2021-01",
+        "destination": "/seo/en/eseo/exam/2021-01.html"
+    },
+    {
+        "source": "/en/eseo/exam/2021-07",
+        "destination": "/seo/en/eseo/exam/2021-07.html"
+    },
+    {
+        "source": "/en/eseo/exam/2022-01",
+        "destination": "/seo/en/eseo/exam/2022-01.html"
+    },
+    {
+        "source": "/en/eseo/exam/2022-07",
+        "destination": "/seo/en/eseo/exam/2022-07.html"
+    },
+    {
+        "source": "/en/eseo/exam/2023-01",
+        "destination": "/seo/en/eseo/exam/2023-01.html"
+    },
+    {
+        "source": "/en/eseo/exam/2023-07",
+        "destination": "/seo/en/eseo/exam/2023-07.html"
+    },
+    {
+        "source": "/en/eseo/exam/2024-01",
+        "destination": "/seo/en/eseo/exam/2024-01.html"
+    },
+    {
+        "source": "/en/eseo/exam/2024-07",
+        "destination": "/seo/en/eseo/exam/2024-07.html"
+    },
+    {
+        "source": "/en/iesede",
+        "destination": "/seo/en/iesede.html"
+    },
+    {
+        "source": "/en/iesede/practice/general",
+        "destination": "/seo/en/iesede/practice/general.html"
+    },
+    {
+        "source": "/en/iesede/exam/examen_recopilatorio",
+        "destination": "/seo/en/iesede/exam/examen_recopilatorio.html"
+    },
+    {
+        "source": "/en/peese",
+        "destination": "/seo/en/peese.html"
+    },
+    {
+        "source": "/en/peese/practice/teoria",
+        "destination": "/seo/en/peese/practice/teoria.html"
+    },
+    {
+        "source": "/en/peese/exam/2026-05",
+        "destination": "/seo/en/peese/exam/2026-05.html"
+    },
+    {
+        "source": "/en/pei",
+        "destination": "/seo/en/pei.html"
+    },
+    {
+        "source": "/en/pei/practice/pandas",
+        "destination": "/seo/en/pei/practice/pandas.html"
+    },
+    {
+        "source": "/en/pei/practice/poo",
+        "destination": "/seo/en/pei/practice/poo.html"
+    },
+    {
+        "source": "/en/pei/practice/scripting",
+        "destination": "/seo/en/pei/practice/scripting.html"
+    },
+    {
+        "source": "/en/pei/practice/django-apis",
+        "destination": "/seo/en/pei/practice/django-apis.html"
+    },
+    {
+        "source": "/en/pei/practice/conceptos",
+        "destination": "/seo/en/pei/practice/conceptos.html"
+    },
+    {
+        "source": "/en/pei/exam/recopilacion",
+        "destination": "/seo/en/pei/exam/recopilacion.html"
+    },
+    {
+        "source": "/en/redes",
+        "destination": "/seo/en/redes.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-1",
+        "destination": "/seo/en/redes/practice/tema-1.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-2",
+        "destination": "/seo/en/redes/practice/tema-2.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-3-4",
+        "destination": "/seo/en/redes/practice/tema-3-4.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-5",
+        "destination": "/seo/en/redes/practice/tema-5.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-6",
+        "destination": "/seo/en/redes/practice/tema-6.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-7",
+        "destination": "/seo/en/redes/practice/tema-7.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-8",
+        "destination": "/seo/en/redes/practice/tema-8.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-9",
+        "destination": "/seo/en/redes/practice/tema-9.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-10",
+        "destination": "/seo/en/redes/practice/tema-10.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-11",
+        "destination": "/seo/en/redes/practice/tema-11.html"
+    },
+    {
+        "source": "/en/redes/practice/tema-12",
+        "destination": "/seo/en/redes/practice/tema-12.html"
+    },
+    {
+        "source": "/en/redes/exam/daypo-recopilatorio-lara",
+        "destination": "/seo/en/redes/exam/daypo-recopilatorio-lara.html"
+    },
+    {
+        "source": "/en/redes/exam/daypo-recopilatorio-udc",
+        "destination": "/seo/en/redes/exam/daypo-recopilatorio-udc.html"
+    },
+    {
+        "source": "/en/redes/exam/2025-05",
+        "destination": "/seo/en/redes/exam/2025-05.html"
+    },
+    {
+        "source": "/es",
+        "destination": "/seo/es.html"
+    },
+    {
+        "source": "/es/bede",
+        "destination": "/seo/es/bede.html"
+    },
+    {
+        "source": "/es/bede/practice/recuperacion-concurrencia",
+        "destination": "/seo/es/bede/practice/recuperacion-concurrencia.html"
+    },
+    {
+        "source": "/es/bede/practice/ficheros",
+        "destination": "/seo/es/bede/practice/ficheros.html"
+    },
+    {
+        "source": "/es/bede/exam/daypo-preguntas",
+        "destination": "/seo/es/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/es/cepe",
+        "destination": "/seo/es/cepe.html"
+    },
+    {
+        "source": "/es/cepe/practice/concurrencia-mutex",
+        "destination": "/seo/es/cepe/practice/concurrencia-mutex.html"
+    },
+    {
+        "source": "/es/cepe/practice/concurrencia-erlang",
+        "destination": "/seo/es/cepe/practice/concurrencia-erlang.html"
+    },
+    {
+        "source": "/es/cepe/practice/paralelismo-teoria",
+        "destination": "/seo/es/cepe/practice/paralelismo-teoria.html"
+    },
+    {
+        "source": "/es/cepe/practice/paralelismo-mpi",
+        "destination": "/seo/es/cepe/practice/paralelismo-mpi.html"
+    },
+    {
+        "source": "/es/cepe/exam/2018-06",
+        "destination": "/seo/es/cepe/exam/2018-06.html"
+    },
+    {
+        "source": "/es/cepe/exam/2018-07",
+        "destination": "/seo/es/cepe/exam/2018-07.html"
+    },
+    {
+        "source": "/es/cepe/exam/2019-06",
+        "destination": "/seo/es/cepe/exam/2019-06.html"
+    },
+    {
+        "source": "/es/cepe/exam/2019-07",
+        "destination": "/seo/es/cepe/exam/2019-07.html"
+    },
+    {
+        "source": "/es/cepe/exam/2020-06",
+        "destination": "/seo/es/cepe/exam/2020-06.html"
+    },
+    {
+        "source": "/es/cepe/exam/2020-07",
+        "destination": "/seo/es/cepe/exam/2020-07.html"
+    },
+    {
+        "source": "/es/cepe/exam/2021-06",
+        "destination": "/seo/es/cepe/exam/2021-06.html"
+    },
+    {
+        "source": "/es/cepe/exam/2021-07",
+        "destination": "/seo/es/cepe/exam/2021-07.html"
+    },
+    {
+        "source": "/es/cepe/exam/2022-06",
+        "destination": "/seo/es/cepe/exam/2022-06.html"
+    },
+    {
+        "source": "/es/cepe/exam/2022-07",
+        "destination": "/seo/es/cepe/exam/2022-07.html"
+    },
+    {
+        "source": "/es/cepe/exam/2023-06",
+        "destination": "/seo/es/cepe/exam/2023-06.html"
+    },
+    {
+        "source": "/es/cepe/exam/2023-07",
+        "destination": "/seo/es/cepe/exam/2023-07.html"
+    },
+    {
+        "source": "/es/cepe/exam/2024-06",
+        "destination": "/seo/es/cepe/exam/2024-06.html"
+    },
+    {
+        "source": "/es/cepe/exam/2024-07",
+        "destination": "/seo/es/cepe/exam/2024-07.html"
+    },
+    {
+        "source": "/es/cepe/exam/2025-06",
+        "destination": "/seo/es/cepe/exam/2025-06.html"
+    },
+    {
+        "source": "/es/cepe/exam/2025-07",
+        "destination": "/seo/es/cepe/exam/2025-07.html"
+    },
+    {
+        "source": "/es/deese",
+        "destination": "/seo/es/deese.html"
+    },
+    {
+        "source": "/es/deese/practice/intro-y-objetos",
+        "destination": "/seo/es/deese/practice/intro-y-objetos.html"
+    },
+    {
+        "source": "/es/deese/practice/propiedades-oo",
+        "destination": "/seo/es/deese/practice/propiedades-oo.html"
+    },
+    {
+        "source": "/es/deese/practice/uml",
+        "destination": "/seo/es/deese/practice/uml.html"
+    },
+    {
+        "source": "/es/deese/practice/principios-diseno",
+        "destination": "/seo/es/deese/practice/principios-diseno.html"
+    },
+    {
+        "source": "/es/deese/practice/patrones-diseno",
+        "destination": "/seo/es/deese/practice/patrones-diseno.html"
+    },
+    {
+        "source": "/es/deese/exam/2020-01",
+        "destination": "/seo/es/deese/exam/2020-01.html"
+    },
+    {
+        "source": "/es/deese/exam/2022-01",
+        "destination": "/seo/es/deese/exam/2022-01.html"
+    },
+    {
+        "source": "/es/ece",
+        "destination": "/seo/es/ece.html"
+    },
+    {
+        "source": "/es/ece/practice/rendimiento",
+        "destination": "/seo/es/ece/practice/rendimiento.html"
+    },
+    {
+        "source": "/es/ece/practice/segmentacion",
+        "destination": "/seo/es/ece/practice/segmentacion.html"
+    },
+    {
+        "source": "/es/ece/practice/cache",
+        "destination": "/seo/es/ece/practice/cache.html"
+    },
+    {
+        "source": "/es/ece/practice/memoria-virtual",
+        "destination": "/seo/es/ece/practice/memoria-virtual.html"
+    },
+    {
+        "source": "/es/ece/practice/buses",
+        "destination": "/seo/es/ece/practice/buses.html"
+    },
+    {
+        "source": "/es/ece/practice/raid",
+        "destination": "/seo/es/ece/practice/raid.html"
+    },
+    {
+        "source": "/es/ece/exam/2021-01",
+        "destination": "/seo/es/ece/exam/2021-01.html"
+    },
+    {
+        "source": "/es/ece/exam/2021-07",
+        "destination": "/seo/es/ece/exam/2021-07.html"
+    },
+    {
+        "source": "/es/ece/exam/2022-01",
+        "destination": "/seo/es/ece/exam/2022-01.html"
+    },
+    {
+        "source": "/es/ece/exam/2022-07",
+        "destination": "/seo/es/ece/exam/2022-07.html"
+    },
+    {
+        "source": "/es/ece/exam/2023-01",
+        "destination": "/seo/es/ece/exam/2023-01.html"
+    },
+    {
+        "source": "/es/ece/exam/2023-07",
+        "destination": "/seo/es/ece/exam/2023-07.html"
+    },
+    {
+        "source": "/es/ece/exam/2024-01",
+        "destination": "/seo/es/ece/exam/2024-01.html"
+    },
+    {
+        "source": "/es/ece/exam/2024-07",
+        "destination": "/seo/es/ece/exam/2024-07.html"
+    },
+    {
+        "source": "/es/ece/exam/2025-01",
+        "destination": "/seo/es/ece/exam/2025-01.html"
+    },
+    {
+        "source": "/es/ece/exam/2025-07",
+        "destination": "/seo/es/ece/exam/2025-07.html"
+    },
+    {
+        "source": "/es/ece/exam/2026-01",
+        "destination": "/seo/es/ece/exam/2026-01.html"
+    },
+    {
+        "source": "/es/emeele",
+        "destination": "/seo/es/emeele.html"
+    },
+    {
+        "source": "/es/emeele/practice/kNN",
+        "destination": "/seo/es/emeele/practice/kNN.html"
+    },
+    {
+        "source": "/es/emeele/practice/Bias-Variance",
+        "destination": "/seo/es/emeele/practice/Bias-Variance.html"
+    },
+    {
+        "source": "/es/emeele/practice/Linear & Logistic Regression",
+        "destination": "/seo/es/emeele/practice/Linear & Logistic Regression.html"
+    },
+    {
+        "source": "/es/emeele/practice/Model Selection & Regularization",
+        "destination": "/seo/es/emeele/practice/Model Selection & Regularization.html"
+    },
+    {
+        "source": "/es/emeele/practice/Neural Networks",
+        "destination": "/seo/es/emeele/practice/Neural Networks.html"
+    },
+    {
+        "source": "/es/emeele/practice/Decision Trees & Ensembles",
+        "destination": "/seo/es/emeele/practice/Decision Trees & Ensembles.html"
+    },
+    {
+        "source": "/es/emeele/practice/Support Vector Machines",
+        "destination": "/seo/es/emeele/practice/Support Vector Machines.html"
+    },
+    {
+        "source": "/es/emeele/practice/Clustering",
+        "destination": "/seo/es/emeele/practice/Clustering.html"
+    },
+    {
+        "source": "/es/emeele/practice/Dimensionality Reduction",
+        "destination": "/seo/es/emeele/practice/Dimensionality Reduction.html"
+    },
+    {
+        "source": "/es/emeele/exam/2024",
+        "destination": "/seo/es/emeele/exam/2024.html"
+    },
+    {
+        "source": "/es/emeele/exam/2025",
+        "destination": "/seo/es/emeele/exam/2025.html"
+    },
+    {
+        "source": "/es/equisi",
+        "destination": "/seo/es/equisi.html"
+    },
+    {
+        "source": "/es/equisi/practice/modulo-i",
+        "destination": "/seo/es/equisi/practice/modulo-i.html"
+    },
+    {
+        "source": "/es/equisi/practice/modulo-ii",
+        "destination": "/seo/es/equisi/practice/modulo-ii.html"
+    },
+    {
+        "source": "/es/equisi/exam/2024-07",
+        "destination": "/seo/es/equisi/exam/2024-07.html"
+    },
+    {
+        "source": "/es/equisi/exam/daypo-modulo-i",
+        "destination": "/seo/es/equisi/exam/daypo-modulo-i.html"
+    },
+    {
+        "source": "/es/equisi/exam/daypo-modulo-ii",
+        "destination": "/seo/es/equisi/exam/daypo-modulo-ii.html"
+    },
+    {
+        "source": "/es/equisi/exam/megarecopilacion",
+        "destination": "/seo/es/equisi/exam/megarecopilacion.html"
+    },
+    {
+        "source": "/es/equispe",
+        "destination": "/seo/es/equispe.html"
+    },
+    {
+        "source": "/es/equispe/practice/teoria",
+        "destination": "/seo/es/equispe/practice/teoria.html"
+    },
+    {
+        "source": "/es/equispe/practice/practica",
+        "destination": "/seo/es/equispe/practice/practica.html"
+    },
+    {
+        "source": "/es/equispe/exam/2024-01",
+        "destination": "/seo/es/equispe/exam/2024-01.html"
+    },
+    {
+        "source": "/es/equispe/exam/2026-01",
+        "destination": "/seo/es/equispe/exam/2026-01.html"
+    },
+    {
+        "source": "/es/equispe/exam/daypo-tipo-udc",
+        "destination": "/seo/es/equispe/exam/daypo-tipo-udc.html"
+    },
+    {
+        "source": "/es/equispe/exam/daypo-teoria",
+        "destination": "/seo/es/equispe/exam/daypo-teoria.html"
+    },
+    {
+        "source": "/es/equispe/exam/daypo-practica",
+        "destination": "/seo/es/equispe/exam/daypo-practica.html"
+    },
+    {
+        "source": "/es/esei",
+        "destination": "/seo/es/esei.html"
+    },
+    {
+        "source": "/es/esei/practice/t1",
+        "destination": "/seo/es/esei/practice/t1.html"
+    },
+    {
+        "source": "/es/esei/practice/t2",
+        "destination": "/seo/es/esei/practice/t2.html"
+    },
+    {
+        "source": "/es/esei/practice/t3",
+        "destination": "/seo/es/esei/practice/t3.html"
+    },
+    {
+        "source": "/es/esei/practice/t4",
+        "destination": "/seo/es/esei/practice/t4.html"
+    },
+    {
+        "source": "/es/esei/practice/t5",
+        "destination": "/seo/es/esei/practice/t5.html"
+    },
+    {
+        "source": "/es/esei/practice/t6",
+        "destination": "/seo/es/esei/practice/t6.html"
+    },
+    {
+        "source": "/es/esei/practice/t7",
+        "destination": "/seo/es/esei/practice/t7.html"
+    },
+    {
+        "source": "/es/esei/practice/t8",
+        "destination": "/seo/es/esei/practice/t8.html"
+    },
+    {
+        "source": "/es/esei/practice/t9",
+        "destination": "/seo/es/esei/practice/t9.html"
+    },
+    {
+        "source": "/es/esei/practice/t10",
+        "destination": "/seo/es/esei/practice/t10.html"
+    },
+    {
+        "source": "/es/esei/exam/2023",
+        "destination": "/seo/es/esei/exam/2023.html"
+    },
+    {
+        "source": "/es/esei/exam/2024",
+        "destination": "/seo/es/esei/exam/2024.html"
+    },
+    {
+        "source": "/es/esei/exam/2025-05",
+        "destination": "/seo/es/esei/exam/2025-05.html"
+    },
+    {
+        "source": "/es/esei/exam/2025-07",
+        "destination": "/seo/es/esei/exam/2025-07.html"
+    },
+    {
+        "source": "/es/esei/exam/2026-06",
+        "destination": "/seo/es/esei/exam/2026-06.html"
+    },
+    {
+        "source": "/es/eseo",
+        "destination": "/seo/es/eseo.html"
+    },
+    {
+        "source": "/es/eseo/practice/sistema-ficheros",
+        "destination": "/seo/es/eseo/practice/sistema-ficheros.html"
+    },
+    {
+        "source": "/es/eseo/practice/memoria",
+        "destination": "/seo/es/eseo/practice/memoria.html"
+    },
+    {
+        "source": "/es/eseo/practice/procesos",
+        "destination": "/seo/es/eseo/practice/procesos.html"
+    },
+    {
+        "source": "/es/eseo/practice/entrada-salida",
+        "destination": "/seo/es/eseo/practice/entrada-salida.html"
+    },
+    {
+        "source": "/es/eseo/exam/2020-01",
+        "destination": "/seo/es/eseo/exam/2020-01.html"
+    },
+    {
+        "source": "/es/eseo/exam/2021-01",
+        "destination": "/seo/es/eseo/exam/2021-01.html"
+    },
+    {
+        "source": "/es/eseo/exam/2021-07",
+        "destination": "/seo/es/eseo/exam/2021-07.html"
+    },
+    {
+        "source": "/es/eseo/exam/2022-01",
+        "destination": "/seo/es/eseo/exam/2022-01.html"
+    },
+    {
+        "source": "/es/eseo/exam/2022-07",
+        "destination": "/seo/es/eseo/exam/2022-07.html"
+    },
+    {
+        "source": "/es/eseo/exam/2023-01",
+        "destination": "/seo/es/eseo/exam/2023-01.html"
+    },
+    {
+        "source": "/es/eseo/exam/2023-07",
+        "destination": "/seo/es/eseo/exam/2023-07.html"
+    },
+    {
+        "source": "/es/eseo/exam/2024-01",
+        "destination": "/seo/es/eseo/exam/2024-01.html"
+    },
+    {
+        "source": "/es/eseo/exam/2024-07",
+        "destination": "/seo/es/eseo/exam/2024-07.html"
+    },
+    {
+        "source": "/es/iesede",
+        "destination": "/seo/es/iesede.html"
+    },
+    {
+        "source": "/es/iesede/practice/general",
+        "destination": "/seo/es/iesede/practice/general.html"
+    },
+    {
+        "source": "/es/iesede/exam/examen_recopilatorio",
+        "destination": "/seo/es/iesede/exam/examen_recopilatorio.html"
+    },
+    {
+        "source": "/es/peese",
+        "destination": "/seo/es/peese.html"
+    },
+    {
+        "source": "/es/peese/practice/teoria",
+        "destination": "/seo/es/peese/practice/teoria.html"
+    },
+    {
+        "source": "/es/peese/exam/2026-05",
+        "destination": "/seo/es/peese/exam/2026-05.html"
+    },
+    {
+        "source": "/es/pei",
+        "destination": "/seo/es/pei.html"
+    },
+    {
+        "source": "/es/pei/practice/pandas",
+        "destination": "/seo/es/pei/practice/pandas.html"
+    },
+    {
+        "source": "/es/pei/practice/poo",
+        "destination": "/seo/es/pei/practice/poo.html"
+    },
+    {
+        "source": "/es/pei/practice/scripting",
+        "destination": "/seo/es/pei/practice/scripting.html"
+    },
+    {
+        "source": "/es/pei/practice/django-apis",
+        "destination": "/seo/es/pei/practice/django-apis.html"
+    },
+    {
+        "source": "/es/pei/practice/conceptos",
+        "destination": "/seo/es/pei/practice/conceptos.html"
+    },
+    {
+        "source": "/es/pei/exam/recopilacion",
+        "destination": "/seo/es/pei/exam/recopilacion.html"
+    },
+    {
+        "source": "/es/redes",
+        "destination": "/seo/es/redes.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-1",
+        "destination": "/seo/es/redes/practice/tema-1.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-2",
+        "destination": "/seo/es/redes/practice/tema-2.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-3-4",
+        "destination": "/seo/es/redes/practice/tema-3-4.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-5",
+        "destination": "/seo/es/redes/practice/tema-5.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-6",
+        "destination": "/seo/es/redes/practice/tema-6.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-7",
+        "destination": "/seo/es/redes/practice/tema-7.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-8",
+        "destination": "/seo/es/redes/practice/tema-8.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-9",
+        "destination": "/seo/es/redes/practice/tema-9.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-10",
+        "destination": "/seo/es/redes/practice/tema-10.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-11",
+        "destination": "/seo/es/redes/practice/tema-11.html"
+    },
+    {
+        "source": "/es/redes/practice/tema-12",
+        "destination": "/seo/es/redes/practice/tema-12.html"
+    },
+    {
+        "source": "/es/redes/exam/daypo-recopilatorio-lara",
+        "destination": "/seo/es/redes/exam/daypo-recopilatorio-lara.html"
+    },
+    {
+        "source": "/es/redes/exam/daypo-recopilatorio-udc",
+        "destination": "/seo/es/redes/exam/daypo-recopilatorio-udc.html"
+    },
+    {
+        "source": "/es/redes/exam/2025-05",
+        "destination": "/seo/es/redes/exam/2025-05.html"
+    },
+    {
+        "source": "/gl",
+        "destination": "/seo/gl.html"
+    },
+    {
+        "source": "/gl/bede",
+        "destination": "/seo/gl/bede.html"
+    },
+    {
+        "source": "/gl/bede/practice/recuperacion-concurrencia",
+        "destination": "/seo/gl/bede/practice/recuperacion-concurrencia.html"
+    },
+    {
+        "source": "/gl/bede/practice/ficheros",
+        "destination": "/seo/gl/bede/practice/ficheros.html"
+    },
+    {
+        "source": "/gl/bede/exam/daypo-preguntas",
+        "destination": "/seo/gl/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/gl/cepe",
+        "destination": "/seo/gl/cepe.html"
+    },
+    {
+        "source": "/gl/cepe/practice/concurrencia-mutex",
+        "destination": "/seo/gl/cepe/practice/concurrencia-mutex.html"
+    },
+    {
+        "source": "/gl/cepe/practice/concurrencia-erlang",
+        "destination": "/seo/gl/cepe/practice/concurrencia-erlang.html"
+    },
+    {
+        "source": "/gl/cepe/practice/paralelismo-teoria",
+        "destination": "/seo/gl/cepe/practice/paralelismo-teoria.html"
+    },
+    {
+        "source": "/gl/cepe/practice/paralelismo-mpi",
+        "destination": "/seo/gl/cepe/practice/paralelismo-mpi.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2018-06",
+        "destination": "/seo/gl/cepe/exam/2018-06.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2018-07",
+        "destination": "/seo/gl/cepe/exam/2018-07.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2019-06",
+        "destination": "/seo/gl/cepe/exam/2019-06.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2019-07",
+        "destination": "/seo/gl/cepe/exam/2019-07.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2020-06",
+        "destination": "/seo/gl/cepe/exam/2020-06.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2020-07",
+        "destination": "/seo/gl/cepe/exam/2020-07.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2021-06",
+        "destination": "/seo/gl/cepe/exam/2021-06.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2021-07",
+        "destination": "/seo/gl/cepe/exam/2021-07.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2022-06",
+        "destination": "/seo/gl/cepe/exam/2022-06.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2022-07",
+        "destination": "/seo/gl/cepe/exam/2022-07.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2023-06",
+        "destination": "/seo/gl/cepe/exam/2023-06.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2023-07",
+        "destination": "/seo/gl/cepe/exam/2023-07.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2024-06",
+        "destination": "/seo/gl/cepe/exam/2024-06.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2024-07",
+        "destination": "/seo/gl/cepe/exam/2024-07.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2025-06",
+        "destination": "/seo/gl/cepe/exam/2025-06.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2025-07",
+        "destination": "/seo/gl/cepe/exam/2025-07.html"
+    },
+    {
+        "source": "/gl/deese",
+        "destination": "/seo/gl/deese.html"
+    },
+    {
+        "source": "/gl/deese/practice/intro-y-objetos",
+        "destination": "/seo/gl/deese/practice/intro-y-objetos.html"
+    },
+    {
+        "source": "/gl/deese/practice/propiedades-oo",
+        "destination": "/seo/gl/deese/practice/propiedades-oo.html"
+    },
+    {
+        "source": "/gl/deese/practice/uml",
+        "destination": "/seo/gl/deese/practice/uml.html"
+    },
+    {
+        "source": "/gl/deese/practice/principios-diseno",
+        "destination": "/seo/gl/deese/practice/principios-diseno.html"
+    },
+    {
+        "source": "/gl/deese/practice/patrones-diseno",
+        "destination": "/seo/gl/deese/practice/patrones-diseno.html"
+    },
+    {
+        "source": "/gl/deese/exam/2020-01",
+        "destination": "/seo/gl/deese/exam/2020-01.html"
+    },
+    {
+        "source": "/gl/deese/exam/2022-01",
+        "destination": "/seo/gl/deese/exam/2022-01.html"
+    },
+    {
+        "source": "/gl/ece",
+        "destination": "/seo/gl/ece.html"
+    },
+    {
+        "source": "/gl/ece/practice/rendimiento",
+        "destination": "/seo/gl/ece/practice/rendimiento.html"
+    },
+    {
+        "source": "/gl/ece/practice/segmentacion",
+        "destination": "/seo/gl/ece/practice/segmentacion.html"
+    },
+    {
+        "source": "/gl/ece/practice/cache",
+        "destination": "/seo/gl/ece/practice/cache.html"
+    },
+    {
+        "source": "/gl/ece/practice/memoria-virtual",
+        "destination": "/seo/gl/ece/practice/memoria-virtual.html"
+    },
+    {
+        "source": "/gl/ece/practice/buses",
+        "destination": "/seo/gl/ece/practice/buses.html"
+    },
+    {
+        "source": "/gl/ece/practice/raid",
+        "destination": "/seo/gl/ece/practice/raid.html"
+    },
+    {
+        "source": "/gl/ece/exam/2021-01",
+        "destination": "/seo/gl/ece/exam/2021-01.html"
+    },
+    {
+        "source": "/gl/ece/exam/2021-07",
+        "destination": "/seo/gl/ece/exam/2021-07.html"
+    },
+    {
+        "source": "/gl/ece/exam/2022-01",
+        "destination": "/seo/gl/ece/exam/2022-01.html"
+    },
+    {
+        "source": "/gl/ece/exam/2022-07",
+        "destination": "/seo/gl/ece/exam/2022-07.html"
+    },
+    {
+        "source": "/gl/ece/exam/2023-01",
+        "destination": "/seo/gl/ece/exam/2023-01.html"
+    },
+    {
+        "source": "/gl/ece/exam/2023-07",
+        "destination": "/seo/gl/ece/exam/2023-07.html"
+    },
+    {
+        "source": "/gl/ece/exam/2024-01",
+        "destination": "/seo/gl/ece/exam/2024-01.html"
+    },
+    {
+        "source": "/gl/ece/exam/2024-07",
+        "destination": "/seo/gl/ece/exam/2024-07.html"
+    },
+    {
+        "source": "/gl/ece/exam/2025-01",
+        "destination": "/seo/gl/ece/exam/2025-01.html"
+    },
+    {
+        "source": "/gl/ece/exam/2025-07",
+        "destination": "/seo/gl/ece/exam/2025-07.html"
+    },
+    {
+        "source": "/gl/ece/exam/2026-01",
+        "destination": "/seo/gl/ece/exam/2026-01.html"
+    },
+    {
+        "source": "/gl/emeele",
+        "destination": "/seo/gl/emeele.html"
+    },
+    {
+        "source": "/gl/emeele/practice/kNN",
+        "destination": "/seo/gl/emeele/practice/kNN.html"
+    },
+    {
+        "source": "/gl/emeele/practice/Bias-Variance",
+        "destination": "/seo/gl/emeele/practice/Bias-Variance.html"
+    },
+    {
+        "source": "/gl/emeele/practice/Linear & Logistic Regression",
+        "destination": "/seo/gl/emeele/practice/Linear & Logistic Regression.html"
+    },
+    {
+        "source": "/gl/emeele/practice/Model Selection & Regularization",
+        "destination": "/seo/gl/emeele/practice/Model Selection & Regularization.html"
+    },
+    {
+        "source": "/gl/emeele/practice/Neural Networks",
+        "destination": "/seo/gl/emeele/practice/Neural Networks.html"
+    },
+    {
+        "source": "/gl/emeele/practice/Decision Trees & Ensembles",
+        "destination": "/seo/gl/emeele/practice/Decision Trees & Ensembles.html"
+    },
+    {
+        "source": "/gl/emeele/practice/Support Vector Machines",
+        "destination": "/seo/gl/emeele/practice/Support Vector Machines.html"
+    },
+    {
+        "source": "/gl/emeele/practice/Clustering",
+        "destination": "/seo/gl/emeele/practice/Clustering.html"
+    },
+    {
+        "source": "/gl/emeele/practice/Dimensionality Reduction",
+        "destination": "/seo/gl/emeele/practice/Dimensionality Reduction.html"
+    },
+    {
+        "source": "/gl/emeele/exam/2024",
+        "destination": "/seo/gl/emeele/exam/2024.html"
+    },
+    {
+        "source": "/gl/emeele/exam/2025",
+        "destination": "/seo/gl/emeele/exam/2025.html"
+    },
+    {
+        "source": "/gl/equisi",
+        "destination": "/seo/gl/equisi.html"
+    },
+    {
+        "source": "/gl/equisi/practice/modulo-i",
+        "destination": "/seo/gl/equisi/practice/modulo-i.html"
+    },
+    {
+        "source": "/gl/equisi/practice/modulo-ii",
+        "destination": "/seo/gl/equisi/practice/modulo-ii.html"
+    },
+    {
+        "source": "/gl/equisi/exam/2024-07",
+        "destination": "/seo/gl/equisi/exam/2024-07.html"
+    },
+    {
+        "source": "/gl/equisi/exam/daypo-modulo-i",
+        "destination": "/seo/gl/equisi/exam/daypo-modulo-i.html"
+    },
+    {
+        "source": "/gl/equisi/exam/daypo-modulo-ii",
+        "destination": "/seo/gl/equisi/exam/daypo-modulo-ii.html"
+    },
+    {
+        "source": "/gl/equisi/exam/megarecopilacion",
+        "destination": "/seo/gl/equisi/exam/megarecopilacion.html"
+    },
+    {
+        "source": "/gl/equispe",
+        "destination": "/seo/gl/equispe.html"
+    },
+    {
+        "source": "/gl/equispe/practice/teoria",
+        "destination": "/seo/gl/equispe/practice/teoria.html"
+    },
+    {
+        "source": "/gl/equispe/practice/practica",
+        "destination": "/seo/gl/equispe/practice/practica.html"
+    },
+    {
+        "source": "/gl/equispe/exam/2024-01",
+        "destination": "/seo/gl/equispe/exam/2024-01.html"
+    },
+    {
+        "source": "/gl/equispe/exam/2026-01",
+        "destination": "/seo/gl/equispe/exam/2026-01.html"
+    },
+    {
+        "source": "/gl/equispe/exam/daypo-tipo-udc",
+        "destination": "/seo/gl/equispe/exam/daypo-tipo-udc.html"
+    },
+    {
+        "source": "/gl/equispe/exam/daypo-teoria",
+        "destination": "/seo/gl/equispe/exam/daypo-teoria.html"
+    },
+    {
+        "source": "/gl/equispe/exam/daypo-practica",
+        "destination": "/seo/gl/equispe/exam/daypo-practica.html"
+    },
+    {
+        "source": "/gl/esei",
+        "destination": "/seo/gl/esei.html"
+    },
+    {
+        "source": "/gl/esei/practice/t1",
+        "destination": "/seo/gl/esei/practice/t1.html"
+    },
+    {
+        "source": "/gl/esei/practice/t2",
+        "destination": "/seo/gl/esei/practice/t2.html"
+    },
+    {
+        "source": "/gl/esei/practice/t3",
+        "destination": "/seo/gl/esei/practice/t3.html"
+    },
+    {
+        "source": "/gl/esei/practice/t4",
+        "destination": "/seo/gl/esei/practice/t4.html"
+    },
+    {
+        "source": "/gl/esei/practice/t5",
+        "destination": "/seo/gl/esei/practice/t5.html"
+    },
+    {
+        "source": "/gl/esei/practice/t6",
+        "destination": "/seo/gl/esei/practice/t6.html"
+    },
+    {
+        "source": "/gl/esei/practice/t7",
+        "destination": "/seo/gl/esei/practice/t7.html"
+    },
+    {
+        "source": "/gl/esei/practice/t8",
+        "destination": "/seo/gl/esei/practice/t8.html"
+    },
+    {
+        "source": "/gl/esei/practice/t9",
+        "destination": "/seo/gl/esei/practice/t9.html"
+    },
+    {
+        "source": "/gl/esei/practice/t10",
+        "destination": "/seo/gl/esei/practice/t10.html"
+    },
+    {
+        "source": "/gl/esei/exam/2023",
+        "destination": "/seo/gl/esei/exam/2023.html"
+    },
+    {
+        "source": "/gl/esei/exam/2024",
+        "destination": "/seo/gl/esei/exam/2024.html"
+    },
+    {
+        "source": "/gl/esei/exam/2025-05",
+        "destination": "/seo/gl/esei/exam/2025-05.html"
+    },
+    {
+        "source": "/gl/esei/exam/2025-07",
+        "destination": "/seo/gl/esei/exam/2025-07.html"
+    },
+    {
+        "source": "/gl/esei/exam/2026-06",
+        "destination": "/seo/gl/esei/exam/2026-06.html"
+    },
+    {
+        "source": "/gl/eseo",
+        "destination": "/seo/gl/eseo.html"
+    },
+    {
+        "source": "/gl/eseo/practice/sistema-ficheros",
+        "destination": "/seo/gl/eseo/practice/sistema-ficheros.html"
+    },
+    {
+        "source": "/gl/eseo/practice/memoria",
+        "destination": "/seo/gl/eseo/practice/memoria.html"
+    },
+    {
+        "source": "/gl/eseo/practice/procesos",
+        "destination": "/seo/gl/eseo/practice/procesos.html"
+    },
+    {
+        "source": "/gl/eseo/practice/entrada-salida",
+        "destination": "/seo/gl/eseo/practice/entrada-salida.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2020-01",
+        "destination": "/seo/gl/eseo/exam/2020-01.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2021-01",
+        "destination": "/seo/gl/eseo/exam/2021-01.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2021-07",
+        "destination": "/seo/gl/eseo/exam/2021-07.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2022-01",
+        "destination": "/seo/gl/eseo/exam/2022-01.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2022-07",
+        "destination": "/seo/gl/eseo/exam/2022-07.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2023-01",
+        "destination": "/seo/gl/eseo/exam/2023-01.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2023-07",
+        "destination": "/seo/gl/eseo/exam/2023-07.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2024-01",
+        "destination": "/seo/gl/eseo/exam/2024-01.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2024-07",
+        "destination": "/seo/gl/eseo/exam/2024-07.html"
+    },
+    {
+        "source": "/gl/iesede",
+        "destination": "/seo/gl/iesede.html"
+    },
+    {
+        "source": "/gl/iesede/practice/general",
+        "destination": "/seo/gl/iesede/practice/general.html"
+    },
+    {
+        "source": "/gl/iesede/exam/examen_recopilatorio",
+        "destination": "/seo/gl/iesede/exam/examen_recopilatorio.html"
+    },
+    {
+        "source": "/gl/peese",
+        "destination": "/seo/gl/peese.html"
+    },
+    {
+        "source": "/gl/peese/practice/teoria",
+        "destination": "/seo/gl/peese/practice/teoria.html"
+    },
+    {
+        "source": "/gl/peese/exam/2026-05",
+        "destination": "/seo/gl/peese/exam/2026-05.html"
+    },
+    {
+        "source": "/gl/pei",
+        "destination": "/seo/gl/pei.html"
+    },
+    {
+        "source": "/gl/pei/practice/pandas",
+        "destination": "/seo/gl/pei/practice/pandas.html"
+    },
+    {
+        "source": "/gl/pei/practice/poo",
+        "destination": "/seo/gl/pei/practice/poo.html"
+    },
+    {
+        "source": "/gl/pei/practice/scripting",
+        "destination": "/seo/gl/pei/practice/scripting.html"
+    },
+    {
+        "source": "/gl/pei/practice/django-apis",
+        "destination": "/seo/gl/pei/practice/django-apis.html"
+    },
+    {
+        "source": "/gl/pei/practice/conceptos",
+        "destination": "/seo/gl/pei/practice/conceptos.html"
+    },
+    {
+        "source": "/gl/pei/exam/recopilacion",
+        "destination": "/seo/gl/pei/exam/recopilacion.html"
+    },
+    {
+        "source": "/gl/redes",
+        "destination": "/seo/gl/redes.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-1",
+        "destination": "/seo/gl/redes/practice/tema-1.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-2",
+        "destination": "/seo/gl/redes/practice/tema-2.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-3-4",
+        "destination": "/seo/gl/redes/practice/tema-3-4.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-5",
+        "destination": "/seo/gl/redes/practice/tema-5.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-6",
+        "destination": "/seo/gl/redes/practice/tema-6.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-7",
+        "destination": "/seo/gl/redes/practice/tema-7.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-8",
+        "destination": "/seo/gl/redes/practice/tema-8.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-9",
+        "destination": "/seo/gl/redes/practice/tema-9.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-10",
+        "destination": "/seo/gl/redes/practice/tema-10.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-11",
+        "destination": "/seo/gl/redes/practice/tema-11.html"
+    },
+    {
+        "source": "/gl/redes/practice/tema-12",
+        "destination": "/seo/gl/redes/practice/tema-12.html"
+    },
+    {
+        "source": "/gl/redes/exam/daypo-recopilatorio-lara",
+        "destination": "/seo/gl/redes/exam/daypo-recopilatorio-lara.html"
+    },
+    {
+        "source": "/gl/redes/exam/daypo-recopilatorio-udc",
+        "destination": "/seo/gl/redes/exam/daypo-recopilatorio-udc.html"
+    },
+    {
+        "source": "/gl/redes/exam/2025-05",
+        "destination": "/seo/gl/redes/exam/2025-05.html"
     },
     {
         "source": "/en/(.*)",
