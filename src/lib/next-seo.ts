@@ -34,7 +34,42 @@ function subjectDescription(lang: Lang, subjectId: string) {
   return `${subject.name} (${subject.courseCode}) — ${desc} — ${subject.university}`;
 }
 
+function notFoundMetadata(lang: Lang): Metadata {
+  const t = translations[lang];
+  const url = `${BASE_URL}/${lang}/404`;
+  return {
+    title: `404 — ${t.home.title}`,
+    description: t.seo.defaultDescription,
+    alternates: {
+      canonical: url,
+      languages: Object.fromEntries(
+        LANGS.map((alternateLang) => [
+          alternateLang,
+          `${BASE_URL}/${alternateLang}/404`,
+        ]),
+      ),
+    },
+    openGraph: {
+      title: `404 — ${t.home.title}`,
+      description: t.seo.defaultDescription,
+      url,
+      siteName: t.seo.siteName,
+      type: "website",
+      locale: locales[lang],
+      images: [{ url: "/og.jpg", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `404 — ${t.home.title}`,
+      description: t.seo.defaultDescription,
+      images: ["/og.jpg"],
+    },
+  };
+}
+
 export function getRouteMetadata(lang: Lang, slug: string[]): Metadata {
+  if (slug[0] === "404") return notFoundMetadata(lang);
+
   const t = translations[lang];
   const [subjectId, section, value] = slug;
   const subject = subjectId ? getSubject(subjectId) : undefined;
@@ -95,7 +130,7 @@ export function getRouteMetadata(lang: Lang, slug: string[]): Metadata {
 }
 
 export function getStaticRouteParams() {
-  const slugs: string[][] = [[]];
+  const slugs: string[][] = [[], ["404"]];
   for (const subject of subjects) {
     slugs.push([subject.id]);
     for (const topic of subject.topics) {

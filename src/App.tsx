@@ -1,15 +1,17 @@
 import { lazy, Suspense, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
 import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
 import { useTheme } from "./theme/hooks";
+import { getSubject } from "./subjects";
 
 const Home = lazy(() => import("./screens/Home"));
 const SubjectHome = lazy(() => import("./screens/SubjectHome"));
 const PracticeTopic = lazy(() => import("./screens/PracticeTopic"));
 const ExamSimulation = lazy(() => import("./screens/ExamSimulation"));
+const NotFound = lazy(() => import("./screens/NotFound"));
 
 function PageLoader() {
   return (
@@ -48,6 +50,16 @@ function SessionTracker() {
   return null;
 }
 
+function RedirectTo404({ lang }: { lang: string }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace(`/${lang}/404`);
+  }, [lang, router]);
+
+  return <PageLoader />;
+}
+
 function CurrentPage() {
   const pathname = usePathname() ?? "/";
   const parts = pathname.split("/").filter(Boolean);
@@ -57,18 +69,35 @@ function CurrentPage() {
     return <Home />;
   }
 
+  if (subjectId === "404") return <NotFound />;
+
   if (!subjectId)
     return (
       <Home />
     );
+
+  const subject = getSubject(subjectId);
+  if (!subject) return <RedirectTo404 lang={paramLang} />;
+
   if (section === "practice" && value)
-    return (
+    return subject.topics.some((topic) => topic.key === value) ? (
       <PracticeTopic />
+    ) : (
+      <RedirectTo404 lang={paramLang} />
     );
+
   if (section === "exam" && value)
-    return (
+    return subject.exams.some((exam) => exam.year === value) ? (
       <ExamSimulation />
+    ) : (
+      <RedirectTo404 lang={paramLang} />
     );
+
+  if (section)
+    return (
+      <RedirectTo404 lang={paramLang} />
+    );
+
   return (
     <SubjectHome />
   );

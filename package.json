@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && next build --webpack",
+    "build": "rm -rf dist && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && next build --webpack",
     "lint": "eslint .",
     "preview": "npx serve@latest dist",
     "format": "prettier . --write",
