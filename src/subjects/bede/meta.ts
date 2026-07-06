@@ -26,6 +26,7 @@ export const meta: SubjectMeta = {
       totalPoints: 98,
       durationMinutes: 120,
       hasPdf: false,
+      daypoUrl: "https://www.daypo.com/bd-preguntas-examen-udc.html",
     },
   ],
 };

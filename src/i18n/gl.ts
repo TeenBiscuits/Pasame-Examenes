@@ -19,6 +19,10 @@ export const gl: Translations = {
     originalExams: "Documentos orixinais de exame",
     examDocsDescription:
       "Descarga ou visualiza os PDFs orixinais nos que se basean estas preguntas e simulacións.",
+    originalDaypos: "Tests Daypo orixinais",
+    daypoDocsDescription:
+      "Abre os tests Daypo orixinais usados como fonte para estas preguntas de práctica.",
+    daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Agradecementos",
     addExam: "Engadir exame?",

@@ -19,6 +19,10 @@ export const es: Translations = {
     originalExams: "Documentos originales de examen",
     examDocsDescription:
       "Descarga o visualiza los PDFs originales en los que se basan estas preguntas y simulaciones.",
+    originalDaypos: "Tests Daypo originales",
+    daypoDocsDescription:
+      "Abre los tests Daypo originales usados como fuente para estas preguntas de práctica.",
+    daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Agradecimientos",
     addExam: "¿Añadir examen?",

@@ -40,6 +40,7 @@ export const meta: SubjectMeta = {
       totalPoints: 130,
       durationMinutes: 120,
       hasPdf: false,
+      daypoUrl: "https://www.daypo.com/xi-udc-modulo-i.html",
     },
     {
       year: "daypo-modulo-ii",
@@ -49,6 +50,7 @@ export const meta: SubjectMeta = {
       totalPoints: 109,
       durationMinutes: 120,
       hasPdf: false,
+      daypoUrl: "https://www.daypo.com/xi-udc-modulo-ii.html",
     },
     {
       year: "megarecopilacion",
