@@ -12,10 +12,10 @@
     "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
-    "driver.js": "^1.4.0",
+    "driver.js": "^1.6.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.17.0",
+    "react-router-dom": "^7.18.1",
     "tailwind-animations": "^1.0.1",
     "web-haptics": "^0.0.6"
   },
