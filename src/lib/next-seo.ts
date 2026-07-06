@@ -140,5 +140,22 @@ export function getStaticRouteParams() {
       slugs.push([subject.id, "exam", exam.year]);
     }
   }
-  return LANGS.flatMap((lang) => slugs.map((slug) => ({ lang, slug })));
+  const localizedRoutes = LANGS.flatMap((lang) =>
+    slugs.map((slug) => ({ lang, slug })),
+  );
+  const legacyRoutes = subjects.flatMap((subject) => {
+    const subjectRoutes = [
+      { lang: subject.id, slug: [] as string[] },
+      { lang: subject.id, slug: ["practice"] },
+      { lang: subject.id, slug: ["exam"] },
+    ];
+    for (const topic of subject.topics) {
+      subjectRoutes.push({ lang: subject.id, slug: ["practice", topic.key] });
+    }
+    for (const exam of subject.exams) {
+      subjectRoutes.push({ lang: subject.id, slug: ["exam", exam.year] });
+    }
+    return subjectRoutes;
+  });
+  return [...localizedRoutes, ...legacyRoutes];
 }

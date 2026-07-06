@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LegacyRedirect from "../../[[...path]]/legacy-redirect";
 import ClientApp from "./client-app";
 import { getRouteMetadata, getStaticRouteParams, isLang } from "../../../lib/next-seo";
 
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { lang } = await params;
+  if (!isLang(lang)) return <LegacyRedirect />;
   const safeLang = isLang(lang) ? lang : "es";
   return <ClientApp key={safeLang} lang={safeLang} />;
 }
