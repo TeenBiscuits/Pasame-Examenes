@@ -1,4 +1,5 @@
 import type { Question } from "../../data/types";
+/* eslint-disable no-useless-escape */
 import type { Picture } from "vite-imagetools";
 import { getImage } from "../../lib/image";
 import type { ImageMap } from "../../lib/image";

@@ -1,14 +1,15 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
 import AddSubjectModal, {
   type AddSubjectModalHandle,
 } from "../components/AddSubjectModal";
-import { useT } from "../i18n/hooks";
+import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { LangLink } from "../lib/lang-link";
+import { buildHomeMeta } from "../seo/meta";
 import {
   getRecentSubjects,
   recordSubjectClick,
@@ -63,11 +64,14 @@ function slotClassName(i: number, isPlaceholder: boolean): string | undefined {
 
 export default function Home() {
   const t = useT();
-  useDocumentTitle(t.home.title);
+  const { lang } = useLang();
+  const seoMeta = useMemo(() => buildHomeMeta(lang), [lang]);
+  useDocumentTitle(seoMeta.title);
   useSeoHead({
-    title: t.home.title,
-    description: t.seo.homeDescription,
-    pathWithoutLang: "/",
+    title: seoMeta.title,
+    description: seoMeta.description,
+    pathWithoutLang: seoMeta.pathWithoutLang,
+    jsonLd: seoMeta.jsonLd,
   });
   const modalRef = useRef<AddSubjectModalHandle>(null);
   const [recentKey, setRecentKey] = useState(0);

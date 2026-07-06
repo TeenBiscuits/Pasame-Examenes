@@ -8,48 +8,51 @@ import AddExamModal, {
   type AddExamModalHandle,
 } from "../components/AddExamModal";
 import type { Question, Topic } from "../data/types";
-import { useT } from "../i18n/hooks";
+import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { buildSubjectMeta } from "../seo/meta";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
+  const { lang } = useLang();
   const examModalRef = useRef<AddExamModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
-  useDocumentTitle(
-    subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
+  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
+    null,
   );
+  const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
+  const seoMeta = useMemo(
+    () =>
+      subject
+        ? buildSubjectMeta(lang, subject, {
+            questionCount: allQuestions.length,
+          })
+        : undefined,
+    [subject, lang, allQuestions.length],
+  );
+  useDocumentTitle(seoMeta?.title ?? t.home.title);
 
   useEffect(() => {
     if (subject) {
-      getAllQuestions(subject.id).then(setAllQuestions);
+      getAllQuestions(subject.id).then((questions) => {
+        setAllQuestions(questions);
+        setQuestionsLoadedFor(subject.id);
+      });
     }
   }, [subject]);
 
-  const seoDescription = useMemo(() => {
-    if (!subject) return t.seo.defaultDescription;
-    const repeatedCount = allQuestions.filter((q) => q.repeated).length;
-    const repeatedText =
-      repeatedCount >= 20
-        ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
-        : "";
-    const desc = t.subjectHome.description
-      .replace("{count}", String(allQuestions.length))
-      .replace("{repeated}", repeatedText)
-      .replace("{exams}", String(subject.exams.length));
-    const clean = desc.replace(/`/g, "");
-    return `${subject.name} (${subject.courseCode}) \u2014 ${clean} \u2014 ${subject.university}`;
-  }, [subject, allQuestions, t]);
-
   useSeoHead({
-    title: subject ? `${subject.name} \u2014 ${t.home.title}` : t.home.title,
-    description: seoDescription,
-    pathWithoutLang: subject ? `/${subject.id}` : "/",
+    title: seoMeta?.title ?? t.home.title,
+    description: seoMeta?.description ?? t.seo.defaultDescription,
+    pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
+    jsonLd: seoMeta?.jsonLd,
+    enabled: !subject || questionsLoaded,
   });
 
   if (!subject) {

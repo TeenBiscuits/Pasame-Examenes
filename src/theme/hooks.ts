@@ -1,5 +1,21 @@
-import { use, useState, useEffect } from "react";
+import { use, useSyncExternalStore } from "react";
 import { ThemeContext } from "./context-value";
+
+const darkQuery = "(prefers-color-scheme: dark)";
+
+function subscribeToDarkPreference(onChange: () => void) {
+  const mq = window.matchMedia(darkQuery);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+
+function getDarkPreferenceSnapshot() {
+  return window.matchMedia(darkQuery).matches;
+}
+
+function getServerDarkPreferenceSnapshot() {
+  return false;
+}
 
 export function useTheme() {
   return use(ThemeContext);
@@ -7,20 +23,11 @@ export function useTheme() {
 
 export function useIsDark(): boolean {
   const { theme } = useTheme();
-  const [prefersDark, setPrefersDark] = useState(() =>
-    typeof window !== "undefined"
-      ? window.matchMedia("(prefers-color-scheme: dark)").matches
-      : false,
+  const prefersDark = useSyncExternalStore(
+    subscribeToDarkPreference,
+    getDarkPreferenceSnapshot,
+    getServerDarkPreferenceSnapshot,
   );
-
-  useEffect(() => {
-    if (theme !== "system") return;
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    setPrefersDark(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setPrefersDark(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [theme]);
 
   if (theme === "system") return prefersDark;
   return theme === "dark" || theme === "catppuccin";
