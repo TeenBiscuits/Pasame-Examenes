@@ -1,4 +1,107 @@
-import type { ReactNode } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import {
+  oneLight,
+  oneDark,
+} from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useIsDark } from "../theme/hooks";
+import type { ComponentProps } from "react";
+import "katex/dist/katex.min.css";
+
+const fullRemarkPlugins = [remarkGfm, remarkMath];
+const inlineRemarkPlugins = [remarkGfm, remarkMath];
+const rehypePlugins = [rehypeKatex];
+const inlineRehypePlugins: [typeof rehypeKatex, { output: "html" }][] = [
+  [rehypeKatex, { output: "html" }],
+];
+
+const codeFont =
+  '"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace';
+
+const codeStyleLight = {
+  ...oneLight,
+  'pre[class*="language-"]': {
+    ...oneLight['pre[class*="language-"]'],
+    fontFamily: codeFont,
+    background: "transparent",
+    margin: 0,
+    padding: 0,
+    overflow: "visible",
+  },
+  'code[class*="language-"]': {
+    ...oneLight['code[class*="language-"]'],
+    fontFamily: codeFont,
+    background: "transparent",
+  },
+};
+
+const codeStyleDark = {
+  ...oneDark,
+  'pre[class*="language-"]': {
+    ...oneDark['pre[class*="language-"]'],
+    fontFamily: codeFont,
+    background: "transparent",
+    margin: 0,
+    padding: 0,
+    overflow: "visible",
+  },
+  'code[class*="language-"]': {
+    ...oneDark['code[class*="language-"]'],
+    fontFamily: codeFont,
+    background: "transparent",
+  },
+};
+
+function CodeRenderer({
+  className,
+  children,
+  ...rest
+}: ComponentProps<"code">) {
+  const isDark = useIsDark();
+  const match = /language-(\w+)/.exec(className || "");
+  const code = String(children).replace(/\n$/, "");
+
+  if (!match) {
+    return (
+      <code
+        className="font-mono text-[0.85em] bg-code text-pink-600 px-1.5 py-0.5 rounded"
+        {...rest}
+      >
+        {children}
+      </code>
+    );
+  }
+
+  return (
+    <div
+      className={`not-prose my-3 rounded-lg border border-border overflow-hidden ${isDark ? "bg-code-block" : "bg-code"}`}
+    >
+      <div className="flex items-center px-4 py-1.5 border-b border-border/50">
+        <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-fg-muted">
+          {match[1]}
+        </span>
+      </div>
+      <div className="overflow-x-auto text-sm leading-relaxed">
+        <SyntaxHighlighter
+          PreTag="pre"
+          language={match[1]}
+          style={isDark ? codeStyleDark : codeStyleLight}
+          customStyle={{
+            margin: 0,
+            padding: "1rem",
+            borderRadius: 0,
+            background: "transparent",
+          }}
+        >
+          {code}
+        </SyntaxHighlighter>
+      </div>
+    </div>
+  );
+}
 
 export function Markdown({
   children,
@@ -7,145 +110,49 @@ export function Markdown({
   children: string;
   className?: string;
 }) {
+  const isDark = useIsDark();
+
   if (!children) return null;
-  const nodes = renderBlocks(children);
-  if (nodes.length === 1 && typeof nodes[0] === "string") {
-    return <span className={className}>{nodes[0]}</span>;
-  }
-  return <div className={className}>{nodes}</div>;
+  return (
+    <div
+      className={`prose prose-sm max-w-none ${isDark ? "prose-invert" : ""} ${className ?? ""}`}
+    >
+      <ReactMarkdown
+        remarkPlugins={fullRemarkPlugins}
+        rehypePlugins={rehypePlugins}
+        components={{
+          pre: ({ children }) => <>{children}</>,
+          code: CodeRenderer,
+        }}
+      >
+        {children}
+      </ReactMarkdown>
+    </div>
+  );
 }
 
 export function InlineMarkdown({ children }: { children: string }) {
   if (!children) return null;
-  return <>{parseInline(children)}</>;
-}
-
-function parseInline(text: string): ReactNode[] {
-  const parts = text.split(/(`[^`]+`)/g);
-  return parts.map((part) => {
-    if (part.startsWith("`") && part.endsWith("`")) {
-      const code = part.slice(1, -1);
-      return (
-        <code
-          key={`code-${code.slice(0, 20)}`}
-          className="font-mono text-[0.85em] bg-code text-pink-600 px-1.5 py-0.5 rounded"
-        >
-          {code}
-        </code>
-      );
-    }
-    return part;
-  });
-}
-
-function renderBlocks(text: string): ReactNode[] {
-  const parts = text.split(/(```[\s\S]*?```)/g);
-  const result: ReactNode[] = [];
-  let keyIndex = 0;
-  for (const part of parts) {
-    if (part.length === 0) continue;
-    if (part.startsWith("```") && part.endsWith("```")) {
-      const code = part.slice(3, -3).replace(/^\n/, "").trimEnd();
-      result.push(
-        <div
-          key={`cb-${keyIndex++}`}
-          className="my-3 rounded-lg border border-border bg-code-block overflow-hidden"
-        >
-          <pre className="p-4 overflow-x-auto text-xs leading-relaxed">
-            <code className="text-gray-100 font-mono whitespace-pre">
-              {code}
-            </code>
-          </pre>
-        </div>,
-      );
-    } else {
-      const nodes = renderTableBlocks(part, keyIndex);
-      keyIndex += nodes.length;
-      result.push(...nodes);
-    }
-  }
-  return result;
-}
-
-const TABLE_RE = /(\|.+\|\n\|[-| :]+\|\n(?:\|.+\|\n?)*)/g;
-
-function renderTableBlocks(text: string, startKey: number): ReactNode[] {
-  const result: ReactNode[] = [];
-  let lastIndex = 0;
-  let keyIndex = startKey;
-  let match: RegExpExecArray | null;
-  const re = new RegExp(TABLE_RE.source, "g");
-  while ((match = re.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      const before = text.slice(lastIndex, match.index);
-      if (before.trim()) {
-        result.push(
-          <span key={`t-${keyIndex++}`} className="whitespace-pre-line">
-            {parseInline(before)}
-          </span>,
-        );
-      }
-    }
-    result.push(renderTable(match[1], `table-${keyIndex++}`));
-    lastIndex = match.index + match[1].length;
-  }
-  if (lastIndex < text.length) {
-    const after = text.slice(lastIndex);
-    if (after.trim()) {
-      result.push(
-        <span key={`t-${keyIndex}`} className="whitespace-pre-line">
-          {parseInline(after)}
-        </span>,
-      );
-    }
-  }
-  return result;
-}
-
-function renderTable(mdTable: string, key: string): ReactNode {
-  const lines = mdTable.trim().split("\n");
-  if (lines.length < 2) return null;
-  const headerCells = lines[0]
-    .split("|")
-    .flatMap((c) => (c.trim() || undefined ? [c.trim()] : []));
-  const bodyLines = lines.slice(2);
-  const rows = bodyLines.map((line) =>
-    line.split("|").flatMap((c) => (c.trim() || undefined ? [c.trim()] : [])),
-  );
   return (
-    <div
-      key={key}
-      className="my-3 overflow-x-auto rounded-lg border border-border"
+    <ReactMarkdown
+      remarkPlugins={inlineRemarkPlugins}
+      rehypePlugins={inlineRehypePlugins}
+      allowedElements={[
+        "a",
+        "code",
+        "del",
+        "em",
+        "strong",
+        "sub",
+        "sup",
+        "br",
+        "span",
+        "img",
+      ]}
+      components={{ code: CodeRenderer }}
+      unwrapDisallowed
     >
-      <table className="min-w-full divide-y divide-border text-sm">
-        <thead className="bg-surface">
-          <tr>
-            {headerCells.map((h) => (
-              <th
-                key={`${key}-h-${h}`}
-                scope="col"
-                className="px-3 py-2 text-left font-semibold text-fg whitespace-nowrap"
-              >
-                <InlineMarkdown>{h}</InlineMarkdown>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-border bg-surface-alt">
-          {rows.map((row, ri) => (
-            <tr key={`${key}-r-${ri}`}>
-              {row.map((cell, ci) => (
-                <td
-                  key={`${key}-c-${ri}-${ci}`}
-                  className="px-3 py-2 text-fg-secondary whitespace-nowrap"
-                >
-                  <InlineMarkdown>{cell}</InlineMarkdown>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+      {children}
+    </ReactMarkdown>
   );
 }
