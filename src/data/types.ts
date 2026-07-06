@@ -14,12 +14,18 @@ export interface Question {
   type: QuestionType;
   points: number;
   question: string;
+  /** @deprecated Inline subquestions as markdown lists in `question` instead. */
   subquestions?: string[];
   options?: string[];
   correctAnswer: string | string[] | Record<string, string>;
+  /**
+   * For mc/matching: an extra note shown in the solution panel.
+   * @deprecated For text questions, use `correctAnswer` as the model solution instead.
+   */
   explanation?: string;
   image?: Picture | string;
   explanationImage?: Picture | string;
+  /** @deprecated Use markdown pipe tables inside `question` instead. */
   table?: QuestionTable;
   repeated?: boolean;
 }

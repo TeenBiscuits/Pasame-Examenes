@@ -1,6 +1,6 @@
 import type { SubjectMeta } from "../../data/types";
 
-const meta: SubjectMeta = {
+export const meta: SubjectMeta = {
   id: "_template",
   name: "Template Subject",
   university: "Template University",
