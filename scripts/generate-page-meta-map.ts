@@ -21,6 +21,9 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Keep subject question files using literal single-line `topic`, `exam`, and `id`
+// fields. These counts are only used for SEO copy, so avoiding dynamic imports
+// of image-heavy question modules keeps build-time metadata generation cheap.
 function countMatches(
   content: string,
   field: "topic" | "exam",

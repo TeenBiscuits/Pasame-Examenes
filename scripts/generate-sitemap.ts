@@ -9,7 +9,7 @@ const root = resolve(__dirname, "..");
 const BASE_URL = process.env.SITE_URL || "https://pe.pablopl.dev";
 
 function withSitemapBase(url: string): string {
-  return url.replace("https://pe.pablopl.dev", BASE_URL);
+  return url.replaceAll("https://pe.pablopl.dev", BASE_URL);
 }
 
 function escapeXml(str: string): string {

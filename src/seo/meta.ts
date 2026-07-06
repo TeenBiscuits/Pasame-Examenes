@@ -50,7 +50,13 @@ export function buildCanonicalPath(
   lang: Lang,
   pathWithoutLang: string,
 ): string {
-  const base = pathWithoutLang === "/" ? "" : pathWithoutLang;
+  const base =
+    pathWithoutLang === "/"
+      ? ""
+      : pathWithoutLang
+          .split("/")
+          .map((segment) => (segment ? encodeURIComponent(segment) : segment))
+          .join("/");
   return `/${lang}${base}`;
 }
 

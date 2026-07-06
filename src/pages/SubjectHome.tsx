@@ -39,24 +39,9 @@ export default function SubjectHome() {
     }
   }, [subject]);
 
-  const seoDescription = useMemo(() => {
-    if (!subject) return t.seo.defaultDescription;
-    const repeatedCount = allQuestions.filter((q) => q.repeated).length;
-    const repeatedText =
-      repeatedCount >= 20
-        ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
-        : "";
-    const desc = t.subjectHome.description
-      .replace("{count}", String(allQuestions.length))
-      .replace("{repeated}", repeatedText)
-      .replace("{exams}", String(subject.exams.length));
-    const clean = desc.replace(/`/g, "");
-    return `${subject.name} (${subject.courseCode}) \u2014 ${clean} \u2014 ${subject.university}`;
-  }, [subject, allQuestions, t]);
-
   useSeoHead({
     title: seoMeta?.title ?? t.home.title,
-    description: seoMeta?.description ?? seoDescription,
+    description: seoMeta?.description ?? t.seo.defaultDescription,
     pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,

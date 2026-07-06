@@ -1762,164 +1762,164 @@ export const pages = [
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bias-Variance Tradeoff: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Bias-Variance\",\"inLanguage\":\"en\",\"description\":\"Practice 5 Bias-Variance Tradeoff questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Bias-Variance Tradeoff\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Bias-Variance Tradeoff\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Bias-Variance\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Bias-Variance\"}]}"
   },
   {
-    "url": "seo/en/emeele/practice/Linear & Logistic Regression.html",
+    "url": "seo/en/emeele/practice/Linear%20%26%20Logistic%20Regression.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/emeele/practice/Linear & Logistic Regression",
     "title": "Linear & Logistic Regression: Introduction to Machine Learning exam questions",
     "description": "Practice 5 Linear & Logistic Regression questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Linear & Logistic Regression",
+    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Linear%20%26%20Logistic%20Regression",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Linear & Logistic Regression: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Linear & Logistic Regression\",\"inLanguage\":\"en\",\"description\":\"Practice 5 Linear & Logistic Regression questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Linear & Logistic Regression\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Linear & Logistic Regression\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Linear & Logistic Regression\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Linear & Logistic Regression\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Linear & Logistic Regression: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Linear%20%26%20Logistic%20Regression\",\"inLanguage\":\"en\",\"description\":\"Practice 5 Linear & Logistic Regression questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Linear & Logistic Regression\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Linear & Logistic Regression\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Linear%20%26%20Logistic%20Regression\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Linear%20%26%20Logistic%20Regression\"}]}"
   },
   {
-    "url": "seo/en/emeele/practice/Model Selection & Regularization.html",
+    "url": "seo/en/emeele/practice/Model%20Selection%20%26%20Regularization.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/emeele/practice/Model Selection & Regularization",
     "title": "Model Selection & Regularization: Introduction to Machine Learning exam questions",
     "description": "Practice 5 Model Selection & Regularization questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Model Selection & Regularization",
+    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Model%20Selection%20%26%20Regularization",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Model Selection & Regularization: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Model Selection & Regularization\",\"inLanguage\":\"en\",\"description\":\"Practice 5 Model Selection & Regularization questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Model Selection & Regularization\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Model Selection & Regularization\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Model Selection & Regularization\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Model Selection & Regularization\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Model Selection & Regularization: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Model%20Selection%20%26%20Regularization\",\"inLanguage\":\"en\",\"description\":\"Practice 5 Model Selection & Regularization questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Model Selection & Regularization\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Model Selection & Regularization\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Model%20Selection%20%26%20Regularization\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Model%20Selection%20%26%20Regularization\"}]}"
   },
   {
-    "url": "seo/en/emeele/practice/Neural Networks.html",
+    "url": "seo/en/emeele/practice/Neural%20Networks.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/emeele/practice/Neural Networks",
     "title": "Neural Networks: Introduction to Machine Learning exam questions",
     "description": "Practice 6 Neural Networks questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Neural Networks",
+    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Neural%20Networks",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Neural Networks: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Neural Networks\",\"inLanguage\":\"en\",\"description\":\"Practice 6 Neural Networks questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Neural Networks\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Neural Networks\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Neural Networks\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Neural Networks\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Neural Networks: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Neural%20Networks\",\"inLanguage\":\"en\",\"description\":\"Practice 6 Neural Networks questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Neural Networks\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Neural Networks\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Neural%20Networks\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Neural%20Networks\"}]}"
   },
   {
-    "url": "seo/en/emeele/practice/Decision Trees & Ensembles.html",
+    "url": "seo/en/emeele/practice/Decision%20Trees%20%26%20Ensembles.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/emeele/practice/Decision Trees & Ensembles",
     "title": "Decision Trees & Ensembles: Introduction to Machine Learning exam questions",
     "description": "Practice 4 Decision Trees & Ensembles questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Decision Trees & Ensembles",
+    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Decision%20Trees%20%26%20Ensembles",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Decision Trees & Ensembles: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Decision Trees & Ensembles\",\"inLanguage\":\"en\",\"description\":\"Practice 4 Decision Trees & Ensembles questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Decision Trees & Ensembles\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Decision Trees & Ensembles\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Decision Trees & Ensembles\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Decision Trees & Ensembles\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Decision Trees & Ensembles: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Decision%20Trees%20%26%20Ensembles\",\"inLanguage\":\"en\",\"description\":\"Practice 4 Decision Trees & Ensembles questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Decision Trees & Ensembles\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Decision Trees & Ensembles\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Decision%20Trees%20%26%20Ensembles\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Decision%20Trees%20%26%20Ensembles\"}]}"
   },
   {
-    "url": "seo/en/emeele/practice/Support Vector Machines.html",
+    "url": "seo/en/emeele/practice/Support%20Vector%20Machines.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/emeele/practice/Support Vector Machines",
     "title": "Support Vector Machines: Introduction to Machine Learning exam questions",
     "description": "Practice 6 Support Vector Machines questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Support Vector Machines",
+    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Support%20Vector%20Machines",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Support Vector Machines: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Support Vector Machines\",\"inLanguage\":\"en\",\"description\":\"Practice 6 Support Vector Machines questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Support Vector Machines\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Support Vector Machines\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Support Vector Machines\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Support Vector Machines\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Support Vector Machines: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Support%20Vector%20Machines\",\"inLanguage\":\"en\",\"description\":\"Practice 6 Support Vector Machines questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Support Vector Machines\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Support Vector Machines\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Support%20Vector%20Machines\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Support%20Vector%20Machines\"}]}"
   },
   {
     "url": "seo/en/emeele/practice/Clustering.html",
@@ -1954,36 +1954,36 @@ export const pages = [
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Clustering: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Clustering\",\"inLanguage\":\"en\",\"description\":\"Practice 6 Clustering questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Clustering\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Clustering\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Clustering\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Clustering\"}]}"
   },
   {
-    "url": "seo/en/emeele/practice/Dimensionality Reduction.html",
+    "url": "seo/en/emeele/practice/Dimensionality%20Reduction.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/emeele/practice/Dimensionality Reduction",
     "title": "Dimensionality Reduction: Introduction to Machine Learning exam questions",
     "description": "Practice 4 Dimensionality Reduction questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Dimensionality Reduction",
+    "canonicalUrl": "https://pe.pablopl.dev/en/emeele/practice/Dimensionality%20Reduction",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Dimensionality Reduction: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Dimensionality Reduction\",\"inLanguage\":\"en\",\"description\":\"Practice 4 Dimensionality Reduction questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Dimensionality Reduction\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dimensionality Reduction\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Dimensionality Reduction\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Dimensionality Reduction\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Dimensionality Reduction: Introduction to Machine Learning exam questions\",\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Dimensionality%20Reduction\",\"inLanguage\":\"en\",\"description\":\"Practice 4 Dimensionality Reduction questions from past Introduction to Machine Learning exams with model answers and self-grading. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Dimensionality Reduction\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/en/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dimensionality Reduction\",\"item\":\"https://pe.pablopl.dev/en/emeele/practice/Dimensionality%20Reduction\"}],\"url\":\"https://pe.pablopl.dev/en/emeele/practice/Dimensionality%20Reduction\"}]}"
   },
   {
     "url": "seo/en/emeele/exam/2024.html",
@@ -6146,164 +6146,164 @@ export const pages = [
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bias-Variance Tradeoff: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Bias-Variance\",\"inLanguage\":\"es\",\"description\":\"Practica 5 preguntas de Bias-Variance Tradeoff de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Bias-Variance Tradeoff\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Bias-Variance Tradeoff\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Bias-Variance\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Bias-Variance\"}]}"
   },
   {
-    "url": "seo/es/emeele/practice/Linear & Logistic Regression.html",
+    "url": "seo/es/emeele/practice/Linear%20%26%20Logistic%20Regression.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/emeele/practice/Linear & Logistic Regression",
     "title": "Linear & Logistic Regression: preguntas de Introduction to Machine Learning",
     "description": "Practica 5 preguntas de Linear & Logistic Regression de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression",
+    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Linear & Logistic Regression: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression\",\"inLanguage\":\"es\",\"description\":\"Practica 5 preguntas de Linear & Logistic Regression de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Linear & Logistic Regression\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Linear & Logistic Regression\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Linear & Logistic Regression: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression\",\"inLanguage\":\"es\",\"description\":\"Practica 5 preguntas de Linear & Logistic Regression de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Linear & Logistic Regression\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Linear & Logistic Regression\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression\"}]}"
   },
   {
-    "url": "seo/es/emeele/practice/Model Selection & Regularization.html",
+    "url": "seo/es/emeele/practice/Model%20Selection%20%26%20Regularization.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/emeele/practice/Model Selection & Regularization",
     "title": "Model Selection & Regularization: preguntas de Introduction to Machine Learning",
     "description": "Practica 5 preguntas de Model Selection & Regularization de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization",
+    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Model Selection & Regularization: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization\",\"inLanguage\":\"es\",\"description\":\"Practica 5 preguntas de Model Selection & Regularization de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Model Selection & Regularization\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Model Selection & Regularization\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Model Selection & Regularization: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization\",\"inLanguage\":\"es\",\"description\":\"Practica 5 preguntas de Model Selection & Regularization de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Model Selection & Regularization\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Model Selection & Regularization\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization\"}]}"
   },
   {
-    "url": "seo/es/emeele/practice/Neural Networks.html",
+    "url": "seo/es/emeele/practice/Neural%20Networks.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/emeele/practice/Neural Networks",
     "title": "Neural Networks: preguntas de Introduction to Machine Learning",
     "description": "Practica 6 preguntas de Neural Networks de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Neural Networks",
+    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Neural Networks: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Neural Networks\",\"inLanguage\":\"es\",\"description\":\"Practica 6 preguntas de Neural Networks de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Neural Networks\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Neural Networks\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Neural Networks\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Neural Networks\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Neural Networks: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks\",\"inLanguage\":\"es\",\"description\":\"Practica 6 preguntas de Neural Networks de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Neural Networks\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Neural Networks\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks\"}]}"
   },
   {
-    "url": "seo/es/emeele/practice/Decision Trees & Ensembles.html",
+    "url": "seo/es/emeele/practice/Decision%20Trees%20%26%20Ensembles.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/emeele/practice/Decision Trees & Ensembles",
     "title": "Decision Trees & Ensembles: preguntas de Introduction to Machine Learning",
     "description": "Practica 4 preguntas de Decision Trees & Ensembles de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles",
+    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Decision Trees & Ensembles: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles\",\"inLanguage\":\"es\",\"description\":\"Practica 4 preguntas de Decision Trees & Ensembles de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Decision Trees & Ensembles\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Decision Trees & Ensembles\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Decision Trees & Ensembles: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles\",\"inLanguage\":\"es\",\"description\":\"Practica 4 preguntas de Decision Trees & Ensembles de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Decision Trees & Ensembles\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Decision Trees & Ensembles\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles\"}]}"
   },
   {
-    "url": "seo/es/emeele/practice/Support Vector Machines.html",
+    "url": "seo/es/emeele/practice/Support%20Vector%20Machines.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/emeele/practice/Support Vector Machines",
     "title": "Support Vector Machines: preguntas de Introduction to Machine Learning",
     "description": "Practica 6 preguntas de Support Vector Machines de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines",
+    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Support Vector Machines: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines\",\"inLanguage\":\"es\",\"description\":\"Practica 6 preguntas de Support Vector Machines de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Support Vector Machines\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Support Vector Machines\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Support Vector Machines: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines\",\"inLanguage\":\"es\",\"description\":\"Practica 6 preguntas de Support Vector Machines de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Support Vector Machines\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Support Vector Machines\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines\"}]}"
   },
   {
     "url": "seo/es/emeele/practice/Clustering.html",
@@ -6338,36 +6338,36 @@ export const pages = [
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Clustering: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Clustering\",\"inLanguage\":\"es\",\"description\":\"Practica 6 preguntas de Clustering de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Clustering\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Clustering\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Clustering\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Clustering\"}]}"
   },
   {
-    "url": "seo/es/emeele/practice/Dimensionality Reduction.html",
+    "url": "seo/es/emeele/practice/Dimensionality%20Reduction.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/emeele/practice/Dimensionality Reduction",
     "title": "Dimensionality Reduction: preguntas de Introduction to Machine Learning",
     "description": "Practica 4 preguntas de Dimensionality Reduction de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction",
+    "canonicalUrl": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Dimensionality Reduction: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction\",\"inLanguage\":\"es\",\"description\":\"Practica 4 preguntas de Dimensionality Reduction de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Dimensionality Reduction\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dimensionality Reduction\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Dimensionality Reduction: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction\",\"inLanguage\":\"es\",\"description\":\"Practica 4 preguntas de Dimensionality Reduction de exámenes anteriores de Introduction to Machine Learning, con respuestas modelo y autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Dimensionality Reduction\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/es/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dimensionality Reduction\",\"item\":\"https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction\"}],\"url\":\"https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction\"}]}"
   },
   {
     "url": "seo/es/emeele/exam/2024.html",
@@ -10530,164 +10530,164 @@ export const pages = [
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bias-Variance Tradeoff: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Bias-Variance\",\"inLanguage\":\"gl\",\"description\":\"Practica 5 preguntas de Bias-Variance Tradeoff de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Bias-Variance Tradeoff\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Bias-Variance Tradeoff\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Bias-Variance\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Bias-Variance\"}]}"
   },
   {
-    "url": "seo/gl/emeele/practice/Linear & Logistic Regression.html",
+    "url": "seo/gl/emeele/practice/Linear%20%26%20Logistic%20Regression.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/emeele/practice/Linear & Logistic Regression",
     "title": "Linear & Logistic Regression: preguntas de Introduction to Machine Learning",
     "description": "Practica 5 preguntas de Linear & Logistic Regression de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Linear & Logistic Regression",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Linear%20%26%20Logistic%20Regression",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Linear%20%26%20Logistic%20Regression"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear & Logistic Regression"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Linear%20%26%20Logistic%20Regression"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Linear & Logistic Regression: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Linear & Logistic Regression\",\"inLanguage\":\"gl\",\"description\":\"Practica 5 preguntas de Linear & Logistic Regression de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Linear & Logistic Regression\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Linear & Logistic Regression\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Linear & Logistic Regression\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Linear & Logistic Regression\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Linear & Logistic Regression: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Linear%20%26%20Logistic%20Regression\",\"inLanguage\":\"gl\",\"description\":\"Practica 5 preguntas de Linear & Logistic Regression de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Linear & Logistic Regression\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Linear & Logistic Regression\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Linear%20%26%20Logistic%20Regression\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Linear%20%26%20Logistic%20Regression\"}]}"
   },
   {
-    "url": "seo/gl/emeele/practice/Model Selection & Regularization.html",
+    "url": "seo/gl/emeele/practice/Model%20Selection%20%26%20Regularization.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/emeele/practice/Model Selection & Regularization",
     "title": "Model Selection & Regularization: preguntas de Introduction to Machine Learning",
     "description": "Practica 5 preguntas de Model Selection & Regularization de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Model Selection & Regularization",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Model%20Selection%20%26%20Regularization",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Model%20Selection%20%26%20Regularization"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Model Selection & Regularization"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Model%20Selection%20%26%20Regularization"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Model Selection & Regularization: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Model Selection & Regularization\",\"inLanguage\":\"gl\",\"description\":\"Practica 5 preguntas de Model Selection & Regularization de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Model Selection & Regularization\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Model Selection & Regularization\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Model Selection & Regularization\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Model Selection & Regularization\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Model Selection & Regularization: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Model%20Selection%20%26%20Regularization\",\"inLanguage\":\"gl\",\"description\":\"Practica 5 preguntas de Model Selection & Regularization de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Model Selection & Regularization\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Model Selection & Regularization\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Model%20Selection%20%26%20Regularization\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Model%20Selection%20%26%20Regularization\"}]}"
   },
   {
-    "url": "seo/gl/emeele/practice/Neural Networks.html",
+    "url": "seo/gl/emeele/practice/Neural%20Networks.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/emeele/practice/Neural Networks",
     "title": "Neural Networks: preguntas de Introduction to Machine Learning",
     "description": "Practica 6 preguntas de Neural Networks de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Neural Networks",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Neural%20Networks",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Neural%20Networks"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural Networks"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Neural%20Networks"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Neural Networks: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Neural Networks\",\"inLanguage\":\"gl\",\"description\":\"Practica 6 preguntas de Neural Networks de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Neural Networks\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Neural Networks\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Neural Networks\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Neural Networks\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Neural Networks: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Neural%20Networks\",\"inLanguage\":\"gl\",\"description\":\"Practica 6 preguntas de Neural Networks de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Neural Networks\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Neural Networks\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Neural%20Networks\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Neural%20Networks\"}]}"
   },
   {
-    "url": "seo/gl/emeele/practice/Decision Trees & Ensembles.html",
+    "url": "seo/gl/emeele/practice/Decision%20Trees%20%26%20Ensembles.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/emeele/practice/Decision Trees & Ensembles",
     "title": "Decision Trees & Ensembles: preguntas de Introduction to Machine Learning",
     "description": "Practica 4 preguntas de Decision Trees & Ensembles de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Decision Trees & Ensembles",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Decision%20Trees%20%26%20Ensembles",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision Trees & Ensembles"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Decision%20Trees%20%26%20Ensembles"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Decision Trees & Ensembles: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Decision Trees & Ensembles\",\"inLanguage\":\"gl\",\"description\":\"Practica 4 preguntas de Decision Trees & Ensembles de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Decision Trees & Ensembles\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Decision Trees & Ensembles\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Decision Trees & Ensembles\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Decision Trees & Ensembles\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Decision Trees & Ensembles: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Decision%20Trees%20%26%20Ensembles\",\"inLanguage\":\"gl\",\"description\":\"Practica 4 preguntas de Decision Trees & Ensembles de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Decision Trees & Ensembles\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Decision Trees & Ensembles\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Decision%20Trees%20%26%20Ensembles\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Decision%20Trees%20%26%20Ensembles\"}]}"
   },
   {
-    "url": "seo/gl/emeele/practice/Support Vector Machines.html",
+    "url": "seo/gl/emeele/practice/Support%20Vector%20Machines.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/emeele/practice/Support Vector Machines",
     "title": "Support Vector Machines: preguntas de Introduction to Machine Learning",
     "description": "Practica 6 preguntas de Support Vector Machines de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Support Vector Machines",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Support%20Vector%20Machines",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Support%20Vector%20Machines"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Support Vector Machines"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Support%20Vector%20Machines"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Support Vector Machines: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Support Vector Machines\",\"inLanguage\":\"gl\",\"description\":\"Practica 6 preguntas de Support Vector Machines de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Support Vector Machines\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Support Vector Machines\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Support Vector Machines\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Support Vector Machines\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Support Vector Machines: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Support%20Vector%20Machines\",\"inLanguage\":\"gl\",\"description\":\"Practica 6 preguntas de Support Vector Machines de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Support Vector Machines\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Support Vector Machines\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Support%20Vector%20Machines\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Support%20Vector%20Machines\"}]}"
   },
   {
     "url": "seo/gl/emeele/practice/Clustering.html",
@@ -10722,36 +10722,36 @@ export const pages = [
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Clustering: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Clustering\",\"inLanguage\":\"gl\",\"description\":\"Practica 6 preguntas de Clustering de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Clustering\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Clustering\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Clustering\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Clustering\"}]}"
   },
   {
-    "url": "seo/gl/emeele/practice/Dimensionality Reduction.html",
+    "url": "seo/gl/emeele/practice/Dimensionality%20Reduction.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/emeele/practice/Dimensionality Reduction",
     "title": "Dimensionality Reduction: preguntas de Introduction to Machine Learning",
     "description": "Practica 4 preguntas de Dimensionality Reduction de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.",
     "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Dimensionality Reduction",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/emeele/practice/Dimensionality%20Reduction",
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
     "alternates": [
       {
         "lang": "en",
-        "href": "https://pe.pablopl.dev/en/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/en/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "es",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/gl/emeele/practice/Dimensionality%20Reduction"
       },
       {
         "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality Reduction"
+        "href": "https://pe.pablopl.dev/es/emeele/practice/Dimensionality%20Reduction"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Dimensionality Reduction: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Dimensionality Reduction\",\"inLanguage\":\"gl\",\"description\":\"Practica 4 preguntas de Dimensionality Reduction de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Dimensionality Reduction\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dimensionality Reduction\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Dimensionality Reduction\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Dimensionality Reduction\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Dimensionality Reduction: preguntas de Introduction to Machine Learning\",\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Dimensionality%20Reduction\",\"inLanguage\":\"gl\",\"description\":\"Practica 4 preguntas de Dimensionality Reduction de exames anteriores de Introduction to Machine Learning, con respostas modelo e autocorrección. 2DV516, Linnaeus University.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Dimensionality Reduction\"},{\"@type\":\"Course\",\"name\":\"Introduction to Machine Learning\",\"courseCode\":\"2DV516\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Introduction to Machine Learning\",\"item\":\"https://pe.pablopl.dev/gl/emeele\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dimensionality Reduction\",\"item\":\"https://pe.pablopl.dev/gl/emeele/practice/Dimensionality%20Reduction\"}],\"url\":\"https://pe.pablopl.dev/gl/emeele/practice/Dimensionality%20Reduction\"}]}"
   },
   {
     "url": "seo/gl/emeele/exam/2024.html",
