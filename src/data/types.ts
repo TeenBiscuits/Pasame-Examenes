@@ -52,6 +52,7 @@ export interface Exam {
   durationMinutes: number;
   description: string;
   hasPdf?: boolean;
+  daypoUrl?: string;
 }
 
 export interface SubjectMeta {

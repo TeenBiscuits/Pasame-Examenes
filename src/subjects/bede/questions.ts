@@ -1,4 +1,15 @@
 import type { Question } from "../../data/types";
+import type { Picture } from "vite-imagetools";
+import { getImage } from "../../lib/image";
+import type { ImageMap } from "../../lib/image";
+
+const imageMap = import.meta.glob<{ default: Picture }>(
+  "./assets/*.{png,jpeg,jpg}",
+  {
+    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
+    eager: true,
+  },
+) as ImageMap;
 
 export const questions: Question[] = [
   {
@@ -520,6 +531,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Hash extensible: borramos el registro J en este fichero conservando el L ¿Qué valor tendrán después d y d´ para que el bloque que contenga a L?",
+    image: getImage(imageMap, "daypo-preguntas-image-0.jpg"),
     options: ["A. d=3 d´=3", "B. d=3 d´=2", "C. d=2 d´=2"],
     correctAnswer: "c",
   },
@@ -574,6 +586,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Árboles B: Si borramos el valor 20 en este árbol, con d=1 ¿Qué valores almacenará el nodo que ahora tiene el 17?",
+    image: getImage(imageMap, "daypo-preguntas-image-1.jpg"),
     options: ["A. 17", "B. 14", "C. 12 y 14"],
     correctAnswer: "b",
   },
@@ -613,6 +626,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Considera el siguiente plan de ejecución, en el que dos transacciones acceden al mismo dato X ¿Qué problema se puede producir?",
+    image: getImage(imageMap, "daypo-preguntas-image-2.jpg"),
     options: [
       "A. Problema de pérdida",
       "B. Problema de lectura sucia",
@@ -847,6 +861,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Árboles B: Si añadimos el valor 7 en este árbol, con d=1 ¿qué valores almacenará el nodo que ahora contiene el valor 2?",
+    image: getImage(imageMap, "daypo-preguntas-image-3.jpg"),
     options: ["A. 2 y 5", "B. 2 y 4", "C. 4"],
     correctAnswer: "c",
   },
@@ -858,6 +873,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Árboles B: si añadimos el valor 13 en este árbol, con d=1 ¿qué valores almacenará el nodo que ahora contiene el valor 17?",
+    image: getImage(imageMap, "daypo-preguntas-image-3.jpg"),
     options: ["A. 14", "B. 14 y 17", "C. 12 y 17"],
     correctAnswer: "a",
   },
@@ -869,6 +885,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Árboles B: si borramos el valor 12 en este árbol, con d=1 ¿qué  valores almacenará el nodo que ahora contiene el valor 17?",
+    image: getImage(imageMap, "daypo-preguntas-image-3.jpg"),
     options: ["A. 14", "B. 17", "C. 12 y 14"],
     correctAnswer: "b",
   },
@@ -1145,6 +1162,7 @@ export const questions: Question[] = [
     points: 1,
     question:
       "Supongamos el siguiente ejemplo de utilización de esquemas de multiversión para control de concurrencia ¿qué versión del dato x leerá una transacción cuya marca temporal asociada es 2?",
+    image: getImage(imageMap, "daypo-preguntas-image-4.jpg"),
     options: [
       "A. la versión Q2",
       "B. la versión Q1",

@@ -49,6 +49,7 @@ export const meta: SubjectMeta = {
       totalPoints: 63,
       durationMinutes: 90,
       hasPdf: false,
+      daypoUrl: "https://www.daypo.com/xp-examen-tipo-udc.html",
     },
     {
       year: "daypo-teoria",
@@ -58,6 +59,7 @@ export const meta: SubjectMeta = {
       totalPoints: 34,
       durationMinutes: 60,
       hasPdf: false,
+      daypoUrl: "https://www.daypo.com/xp-teoria.html",
     },
     {
       year: "daypo-practica",
@@ -67,6 +69,7 @@ export const meta: SubjectMeta = {
       totalPoints: 58,
       durationMinutes: 90,
       hasPdf: false,
+      daypoUrl: "https://www.daypo.com/xp-practica.html",
     },
   ],
 };

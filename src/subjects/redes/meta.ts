@@ -85,6 +85,7 @@ export const meta: SubjectMeta = {
       totalPoints: 125,
       durationMinutes: 120,
       hasPdf: false,
+      daypoUrl: "https://www.daypo.com/redes-udc-examen-fic.html",
     },
     {
       year: "daypo-recopilatorio-udc",
@@ -94,6 +95,7 @@ export const meta: SubjectMeta = {
       totalPoints: 298,
       durationMinutes: 240,
       hasPdf: false,
+      daypoUrl: "https://www.daypo.com/redes-udc.html",
     },
     {
       year: "2025-05",

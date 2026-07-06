@@ -17,6 +17,10 @@ export const en = {
     originalExams: "Original Exam Documents",
     examDocsDescription:
       "Download or view the original PDF exams that these practice questions and simulations are based on.",
+    originalDaypos: "Original Daypo Tests",
+    daypoDocsDescription:
+      "Open the original Daypo tests used as the source for these practice questions.",
+    daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Acknowledgments",
     addExam: "Add Exam?",

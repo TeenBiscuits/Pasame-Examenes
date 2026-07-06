@@ -248,6 +248,42 @@ export default function SubjectHome() {
         </div>
       )}
 
+      {subject.exams.some((exam) => exam.daypoUrl) && (
+        <div className="bg-surface rounded-xl p-6 border border-border mb-10">
+          <h3 className="font-semibold text-fg mb-2">
+            {t.subjectHome.originalDaypos}
+          </h3>
+          <p className="text-sm text-fg-secondary mb-4">
+            {t.subjectHome.daypoDocsDescription}
+          </p>
+          <div className="flex flex-wrap gap-4">
+            {subject.exams.flatMap((exam) =>
+              exam.daypoUrl == null
+                ? []
+                : [
+                    <a
+                      key={exam.year}
+                      href={exam.daypoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
+                      onClick={() => {
+                        triggerLight();
+                        track("daypo_open", {
+                          subjectId: subject.id,
+                          year: exam.year,
+                        });
+                      }}
+                    >
+                      <span aria-hidden="true">🌐</span> {exam.title}{" "}
+                      {t.subjectHome.daypo}
+                    </a>,
+                  ],
+            )}
+          </div>
+        </div>
+      )}
+
       {subject.acknowledgments && (
         <div className="text-right text-sm text-fg-muted mt-10">
           <p className="font-semibold text-fg-muted mb-1">

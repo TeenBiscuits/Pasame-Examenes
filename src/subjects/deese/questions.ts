@@ -374,7 +374,8 @@ class Test {
     topic: "uml",
     type: "mc",
     points: 1,
-    question: "¿Cuál de las siguientes relaciones representa a una Composición UML?",
+    question:
+      "¿Cuál de las siguientes relaciones representa a una Composición UML?",
     image: getImage(imageMap, "2020-q15-composicion.jpeg"),
     options: [
       "A. La relación entre A1 y A2.",
@@ -525,8 +526,7 @@ class Mercado {
     topic: "principios-diseno",
     type: "mc",
     points: 1,
-    question:
-      "En el Principio Abierto-Cerrado... (señala la falsa)",
+    question: "En el Principio Abierto-Cerrado... (señala la falsa)",
     options: [
       "A. Se fomenta el uso del polimorfismo y la ligadura dinámica, y se desaconseja el uso de condicionales basadas en instanceof.",
       "B. Se fomenta que el código de la superclase contenga referencias a las subclases.",
@@ -582,17 +582,15 @@ objectA.getObjectB().getObjectC().doSomething();
     topic: "principios-diseno",
     type: "mc",
     points: 1,
-    question:
-      "Los principios KISS y YAGNI... señala la falsa",
+    question: "Los principios KISS y YAGNI... señala la falsa",
     options: [
       "A. Son principios propios de las metodologías ágiles.",
       "B. Intentan que no caigamos en la sobreingeniería.",
-      "C. KISS es un acrónimo de \"Keep It Simple, Stupid\".",
-      "D. YAGNI es un acrónimo de \"You Are Going Nowhere, Idiot\".",
+      'C. KISS es un acrónimo de "Keep It Simple, Stupid".',
+      'D. YAGNI es un acrónimo de "You Are Going Nowhere, Idiot".',
     ],
     correctAnswer: "d",
-    explanation:
-      'D es falsa. YAGNI significa "You Aren\'t Gonna Need It".',
+    explanation: 'D es falsa. YAGNI significa "You Aren\'t Gonna Need It".',
   },
 
   // --- Tema 6: Patrones de Diseño ---
@@ -676,8 +674,7 @@ public final class RGBColor {
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
-    question:
-      "En una colección de objetos, ¿qué es un iterador fail-fast?",
+    question: "En una colección de objetos, ¿qué es un iterador fail-fast?",
     options: [
       "A. Un iterador de prueba que siempre lanza una excepción al intentar usarlo.",
       "B. Un iterador que lanza una excepción si se intenta leer la colección con más de un iterador simultáneo.",
@@ -713,8 +710,7 @@ public final class RGBColor {
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
-    question:
-      "¿Cuál de estos patrones de diseño usa elementos estáticos?",
+    question: "¿Cuál de estos patrones de diseño usa elementos estáticos?",
     options: [
       "A. Inmutable. El método getInmutable() de la clase mutable es static.",
       "B. Instancia Única. El método getInstancia() es static.",
@@ -901,8 +897,7 @@ public record Box(int value) { }
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
-    question:
-      "¿Soporta Java duck typing (tipado del pato)?",
+    question: "¿Soporta Java duck typing (tipado del pato)?",
     options: [
       "A. Sí, porque Java es un lenguaje con tipado dinámico.",
       "B. Sí, a través del uso de clases abstractas.",
@@ -985,12 +980,7 @@ class BirdsFarm {
     points: 1,
     question:
       "En UML, cuando el nombre de un método aparece subrayado, significa que ese método es...",
-    options: [
-      "A. público",
-      "B. estático",
-      "C. final",
-      "D. abstracto",
-    ],
+    options: ["A. público", "B. estático", "C. final", "D. abstracto"],
     correctAnswer: "b",
     explanation:
       "En UML, el subrayado indica que un elemento es estático (pertenece a la clase, no a las instancias). Para métodos abstractos se usa cursiva.",
@@ -1041,12 +1031,7 @@ class BirdsFarm {
     question:
       "¿Cuál es la implementación correcta del siguiente diagrama de clases UML?",
     image: getImage(imageMap, "2022-q14-clases.jpeg"),
-    options: [
-      "A.",
-      "B.",
-      "C.",
-      "D.",
-    ],
+    options: ["A.", "B.", "C.", "D."],
     correctAnswer: "a",
     explanation:
       "La implementación correcta corresponde a la opción A, que implementa fielmente las relaciones mostradas en el diagrama de clases.",
@@ -1222,8 +1207,7 @@ public class ManageClient {
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
-    question:
-      "En el push model del patrón Observador... (señala la falsa)",
+    question: "En el push model del patrón Observador... (señala la falsa)",
     options: [
       "A. El sujeto manda a los observadores información detallada acerca de lo que ha cambiado.",
       "B. La comunicación es más eficiente ya que no se fuerza a descubrir a los observadores qué ha cambiado.",
@@ -1303,7 +1287,7 @@ public class SongList {
       "A. public enum Number {ACE, TWO, THREE, ...} / public enum Suit {SPADES, HEARTS, ...} / public record Card(Number number, Suit suit) {}",
       "B. public final class Integer extends Number { private int value; ... }",
       "C. for(Enumeration e = collection.getEnumeration(); e.hasMoreElements(); ) ...",
-      "D. CurrencyConverter cc1 = CurrencyConverter.incomingCurrency(\"USD\").outgoingCurrency(\"EUR\").build(); cc1.convert(50.00);",
+      'D. CurrencyConverter cc1 = CurrencyConverter.incomingCurrency("USD").outgoingCurrency("EUR").build(); cc1.convert(50.00);',
     ],
     correctAnswer: "d",
     explanation:
