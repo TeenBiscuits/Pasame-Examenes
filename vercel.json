@@ -2,38 +2,38 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-        "source": "/:lang(en|es|gl)",
-        "destination": "/og-pages/:lang/home.html"
+      "source": "/:lang(en|es|gl)",
+      "destination": "/og-pages/:lang/home.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)",
-        "destination": "/og-pages/:lang/:subjectId.html"
+      "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)",
+      "destination": "/og-pages/:lang/:subjectId.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/practice/:topic*",
-        "destination": "/og-pages/:lang/:subjectId.html"
+      "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/practice/:topic*",
+      "destination": "/og-pages/:lang/:subjectId.html"
     },
     {
-        "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/exam/:year",
-        "destination": "/og-pages/:lang/:subjectId.html"
+      "source": "/:lang(en|es|gl)/:subjectId(bede|cepe|deese|ece|emeele|equisi|equispe|esei|eseo|iesede|peese|pei|redes)/exam/:year",
+      "destination": "/og-pages/:lang/:subjectId.html"
     },
     {
-        "source": "/en/(.*)",
-        "destination": "/index.html"
+      "source": "/en/(.*)",
+      "destination": "/index.html"
     },
     {
-        "source": "/es/(.*)",
-        "destination": "/index.html"
+      "source": "/es/(.*)",
+      "destination": "/index.html"
     },
     {
-        "source": "/gl/(.*)",
-        "destination": "/index.html"
+      "source": "/gl/(.*)",
+      "destination": "/index.html"
     },
     {
-        "source": "/(.*)",
-        "destination": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-],
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
