@@ -4,7 +4,7 @@ export const es: Translations = {
   home: {
     title: "Pásame Exámenes",
     subtitle:
-      "Plataforma de código abierto para practicar exámenes universitarios. Elige una asignatura para empezar a practicar con preguntas de exámenes anteriores.",
+      'Plataforma de código abierto para practicar "exámenes" universitarios. Elige una asignatura para empezar a practicar con preguntas de exámenes anteriores.',
     addSubject: "¿Añadir asignatura?",
     recentlyVisited: "Visitadas recientemente",
     clearRecent: "Limpiar asignaturas recientes",
@@ -15,7 +15,8 @@ export const es: Translations = {
     description:
       "Practica {count} preguntas{repeated} de {exams} exámenes con respuestas modelo y autocorrección.",
     practiceByTopic: "Practicar por tema",
-    examSimulations: "Simulaciones de examen completas",
+    examSimulations:
+      "Simulaciones de exámenes/pruebas/recopilatorios completas",
     originalExams: "Documentos originales de examen",
     examDocsDescription:
       "Descarga o visualiza los PDFs originales en los que se basan estas preguntas y simulaciones.",
@@ -24,8 +25,8 @@ export const es: Translations = {
       "Abre los tests Daypo originales usados como fuente para estas preguntas de práctica.",
     daypo: "Daypo",
     pdf: "PDF",
-    acknowledgments: "Agradecimientos",
-    addExam: "¿Añadir examen?",
+    acknowledgments: "Agradecimientos y exención de responsabilidad",
+    addExam: "¿Añadir examen/prueba/recopilatorio?",
     repeatedSuffix: "{count} repetidas a lo largo de los años",
   },
   practiceHome: {
@@ -103,7 +104,7 @@ export const es: Translations = {
     topics: "temas",
     questions: "preguntas",
     points: "puntos",
-    exams: "exámenes",
+    exams: '"exámenes"',
   },
   addSubject: {
     title: "Añadir asignatura",
@@ -119,11 +120,11 @@ export const es: Translations = {
     email: "Escribe un correo",
   },
   addExam: {
-    title: "Añadir examen",
+    title: "Añadir examen/prueba/recopilatorio",
     close: "Cerrar",
     openIssue: "Abrir un issue",
     openIssueDesc:
-      "Solicita un nuevo examen para esta asignatura usando la plantilla de GitHub",
+      "Solicita una nueva prueba para esta asignatura usando la plantilla de GitHub",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=add-exam.yml",
     contribute: "¡Contribuye!",
@@ -156,7 +157,7 @@ export const es: Translations = {
         "Usa los botones Anterior / Siguiente o las teclas de flecha (← →) para moverte entre preguntas.",
     },
     exam: {
-      step1Title: "Simulación de examen",
+      step1Title: "Simulación de prueba",
       step1Desc:
         "Esto simula el formato real del examen. ¡El temporizador está en marcha, gestiona bien tu tiempo! El umbral de aprobado se muestra aquí.",
       step2Title: "Navegador de preguntas",
@@ -186,7 +187,7 @@ export const es: Translations = {
     siteName: "Pásame Exámenes",
     locale: "es_ES",
     homeDescription:
-      "Plataforma de código abierto para practicar exámenes universitarios por tema o simular el examen completo.",
+      'Plataforma de código abierto para practicar "exámenes" universitarios por tema o simular el examen completo.',
     defaultDescription:
       "Practica exámenes universitarios con respuestas modelo y autocorrección. Preguntas tipo test, de desarrollo y de emparejar de exámenes anteriores.",
   },

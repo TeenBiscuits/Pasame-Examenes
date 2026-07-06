@@ -116,7 +116,7 @@ async function generateOgImage(
   ctx.font = `400 37px Inter`;
   ctx.fillStyle = TEXT_SECONDARY;
   ctx.textAlign = "left";
-  const stats = `${questionCount} preguntas · ${topicCount} temas · ${examCount} exámenes`;
+  const stats = `${questionCount} preguntas · ${topicCount} temas · ${examCount} "exámenes"`;
   ctx.fillText(stats, 71, 437);
 
   ctx.textAlign = "center";

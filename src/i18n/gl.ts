@@ -4,7 +4,7 @@ export const gl: Translations = {
   home: {
     title: "Pásame Exámenes",
     subtitle:
-      "Plataforma de código aberto para practicar exames universitarios. Elixe unha materia para comezar a practicar con preguntas de exames anteriores.",
+      'Plataforma de código aberto para practicar "exames" universitarios. Elixe unha materia para comezar a practicar con preguntas de exames anteriores.',
     addSubject: "Engadir materia?",
     recentlyVisited: "Visitadas recentemente",
     clearRecent: "Limpar materias recentes",
@@ -15,7 +15,7 @@ export const gl: Translations = {
     description:
       "Practica {count} preguntas{repeated} de {exams} exames con respostas modelo e autocorrección.",
     practiceByTopic: "Practicar por tema",
-    examSimulations: "Simulacións de exame completas",
+    examSimulations: "Simulacións/probas/compilacións de exames completos",
     originalExams: "Documentos orixinais de exame",
     examDocsDescription:
       "Descarga ou visualiza os PDFs orixinais nos que se basean estas preguntas e simulacións.",
@@ -24,8 +24,8 @@ export const gl: Translations = {
       "Abre os tests Daypo orixinais usados como fonte para estas preguntas de práctica.",
     daypo: "Daypo",
     pdf: "PDF",
-    acknowledgments: "Agradecementos",
-    addExam: "Engadir exame?",
+    acknowledgments: "Agradecementos e exención de responsabilidade",
+    addExam: "Engadir exame/proba/compilación?",
     repeatedSuffix: "{count} repetidas ao longo dos anos",
   },
   practiceHome: {
@@ -103,7 +103,7 @@ export const gl: Translations = {
     topics: "temas",
     questions: "preguntas",
     points: "puntos",
-    exams: "exames",
+    exams: '"exames"',
   },
   addSubject: {
     title: "Engadir materia",
@@ -122,7 +122,7 @@ export const gl: Translations = {
     close: "Pechar",
     openIssue: "Abrir un issue",
     openIssueDesc:
-      "Solicita un novo exame para esta materia usando o modelo de GitHub",
+      "Solicita unha nova proba para esta materia usando o modelo de GitHub",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=add-exam.yml",
     contribute: "Contribúe!",
@@ -155,7 +155,7 @@ export const gl: Translations = {
         "Usa os botóns Anterior / Seguinte ou as teclas de frecha (← →) para moverte entre preguntas.",
     },
     exam: {
-      step1Title: "Simulación de exame",
+      step1Title: "Simulación de proba",
       step1Desc:
         "Isto simula o formato real do exame. O temporizador está en marcha, xestiona ben o teu tempo! O limiar de aprobado móstrase aquí.",
       step2Title: "Navegador de preguntas",
@@ -185,7 +185,7 @@ export const gl: Translations = {
     siteName: "Pásame Exámenes",
     locale: "gl_ES",
     homeDescription:
-      "Plataforma de código aberto para practicar exames universitarios por tema ou simular o exame completo.",
+      'Plataforma de código aberto para practicar "exames" universitarios por tema ou simular o exame completo.',
     defaultDescription:
       "Practica exames universitarios con respostas modelo e autocorrección. Preguntas tipo test, de desenvolvemento e de emparellar de exames anteriores.",
   },

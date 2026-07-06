@@ -48,9 +48,9 @@ body:
   - type: textarea
     id: exam-info
     attributes:
-      label: Información sobre los exámenes
+      label: Información sobre los exámenes/pruebas/recopilatorios
       description: |
-        ¿De qué años hay exámenes disponibles? ¿Cuánto duran? ¿Cuántos puntos valen?
+        ¿De qué años hay exámenes/pruebas/recopilatorios disponibles? ¿Cuánto duran? ¿Cuántos puntos valen?
         Si tienes los PDFs, puedes mencionarlo aquí.
       placeholder: |
         - Examen 2024: 60 puntos, 3 horas, 15 preguntas

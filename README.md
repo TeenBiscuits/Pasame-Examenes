@@ -22,7 +22,7 @@
 
 <div align="center">
 <br/>
-<b>Pásame Exámenes</b> es una plataforma open source para practicar exámenes universitarios por tema o simular el examen completo con temporizador y autocorrección.
+<b>Pásame Exámenes</b> es una plataforma open source para practicar "exámenes" universitarios por tema o simular el examen completo con temporizador y autocorrección.
 <br/>
 </div>
 
@@ -50,7 +50,7 @@ Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y 
 
 ## Asignaturas
 
-| Asignatura                          | Universidad            | Exámenes       |
+| Asignatura                          | Universidad            | Exámenes/etc   |
 | ----------------------------------- | ---------------------- | -------------- |
 | 💽 Sistemas Operativos              | Universidade da Coruña | 9 (2020–2024)  |
 | 🧠 Sistemas Intelixentes            | Universidade da Coruña | 5 (2023–2026)  |
@@ -90,7 +90,7 @@ El build genera automáticamente imágenes Open Graph por asignatura y página p
 
 ¡Toda contribución es bienvenida! Puedes:
 
-- Añadir **nuevas asignaturas** con sus exámenes
+- Añadir **nuevas asignaturas** con sus exámenes/pruebas/recopilatorios
 - Corregir **errores** en preguntas existentes
 - Reportar **issues** directamente desde cualquier pregunta
 - Mejorar la **web** (features, diseño, accesibilidad)

@@ -1,12 +1,12 @@
-name: Añadir nuevos exámenes
-description: Solicitar añadir exámenes de años anteriores a una asignatura existente
+name: Añadir nuevos exámenes/pruebas/recopilatorios
+description: Solicitar añadir exámenes/pruebas/recopilatorios de años anteriores a una asignatura existente
 title: "[Nuevo Examen]"
 labels: ["new-exam", "enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        ¡Gracias por ayudar a ampliar Pásame Exámenes! Usa esta plantilla para solicitar que se añadan exámenes de años anteriores a una asignatura que ya existe en la plataforma.
+        ¡Gracias por ayudar a ampliar Pásame Exámenes! Usa esta plantilla para solicitar que se añadan exámenes/pruebas/recopilatorios de años anteriores a una asignatura que ya existe en la plataforma.
 
   - type: input
     id: subject

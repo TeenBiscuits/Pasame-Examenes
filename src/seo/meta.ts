@@ -180,15 +180,15 @@ export function buildSubjectMeta(
   const tr = t(lang);
   const pathWithoutLang = `/${subject.id}`;
   const titleStem: Record<Lang, string> = {
-    en: `${subject.name}: past exams and solved questions`,
-    es: `${subject.name}: exámenes y preguntas resueltas`,
-    gl: `${subject.name}: exames e preguntas resoltas`,
+    en: `${subject.name}: past "exams" and solved questions`,
+    es: `${subject.name}: "exámenes" y preguntas resueltas`,
+    gl: `${subject.name}: "exames" e preguntas resoltas`,
   };
   const count = stats.questionCount;
   const descriptionByLang: Record<Lang, string> = {
-    en: `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${subject.exams.length} past exams with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
-    es: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${subject.exams.length} exámenes anteriores con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
-    gl: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${subject.exams.length} exames anteriores con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    en: `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${subject.exams.length} past "exams" with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
+    es: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${subject.exams.length} "exámenes" anteriores con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    gl: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${subject.exams.length} "exames" anteriores con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
   };
   const title = appendBrand(titleStem[lang], tr.seo.siteName);
   const description = descriptionByLang[lang];
@@ -240,9 +240,9 @@ export function buildTopicMeta(
     gl: `${topic.label}: preguntas de ${subject.name}`,
   };
   const descriptionByLang: Record<Lang, string> = {
-    en: `Practice ${count ? `${count} ` : ""}${topic.label} questions from past ${subject.name} exams with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
-    es: `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de exámenes anteriores de ${subject.name}, con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
-    gl: `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de exames anteriores de ${subject.name}, con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    en: `Practice ${count ? `${count} ` : ""}${topic.label} questions from past ${subject.name} "exams" with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
+    es: `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de "exámenes" anteriores de ${subject.name}, con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    gl: `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de "exames" anteriores de ${subject.name}, con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
   };
   const title = appendBrand(titleStem[lang], tr.seo.siteName);
   const description = descriptionByLang[lang];

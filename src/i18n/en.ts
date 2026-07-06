@@ -2,7 +2,7 @@ export const en = {
   home: {
     title: "Pásame Exámenes",
     subtitle:
-      "Open-source platform for practicing university exams. Choose a subject below to start drilling questions from past exams.",
+      'Open-source platform for practicing university "exams". Choose a subject below to start drilling questions from past exams.',
     addSubject: "Add Subject?",
     recentlyVisited: "Recently visited",
     clearRecent: "Clear recent subjects",
@@ -13,7 +13,7 @@ export const en = {
     description:
       "Practice {count} questions{repeated} from {exams} exams with model answers and self-grading.",
     practiceByTopic: "Practice by Topic",
-    examSimulations: "Full Exam Simulations",
+    examSimulations: "Complete exam simulations/tests/compilations",
     originalExams: "Original Exam Documents",
     examDocsDescription:
       "Download or view the original PDF exams that these practice questions and simulations are based on.",
@@ -22,8 +22,8 @@ export const en = {
       "Open the original Daypo tests used as the source for these practice questions.",
     daypo: "Daypo",
     pdf: "PDF",
-    acknowledgments: "Acknowledgments",
-    addExam: "Add Exam?",
+    acknowledgments: "Acknowledgments and Disclaimer",
+    addExam: "Add exam/test/compilation?",
     repeatedSuffix: "{count} repeated questions across years",
   },
   practiceHome: {
@@ -101,14 +101,13 @@ export const en = {
     topics: "topics",
     questions: "questions",
     points: "points",
-    exams: "exams",
+    exams: '"exams"',
   },
   addSubject: {
     title: "Add a Subject",
     close: "Close",
     openIssue: "Open an Issue",
-    openIssueDesc:
-      "Request a new subject via a pre-filled GitHub issue template",
+    openIssueDesc: "Request a new test via a pre-filled GitHub issue template",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml",
     contribute: "Contribute!",
@@ -184,7 +183,7 @@ export const en = {
     siteName: "Pásame Exámenes",
     locale: "en_US",
     homeDescription:
-      "Open-source platform for practicing university exams by topic or simulating the full exam.",
+      'Open-source platform for practicing university "exams" by topic or simulating the full exam.',
     defaultDescription:
       "Practice university exams with model answers and self-grading. Multiple-choice, text, and matching questions from past exams.",
   },
