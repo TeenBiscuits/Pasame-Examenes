@@ -11,7 +11,7 @@ const outputPath = resolve(root, "vercel.json");
 function main() {
   const rewrites = [
     ...pages.map((page) => ({
-      source: page.canonicalUrl.replace("https://pe.pablopl.dev", ""),
+      source: page.canonicalUrl.replaceAll("https://pe.pablopl.dev", ""),
       destination: `/${page.url}`,
     })),
     { source: "/en/(.*)", destination: "/index.html" },

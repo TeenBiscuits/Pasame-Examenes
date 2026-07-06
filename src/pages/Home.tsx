@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
 import AddSubjectModal, {
@@ -65,7 +65,7 @@ function slotClassName(i: number, isPlaceholder: boolean): string | undefined {
 export default function Home() {
   const t = useT();
   const { lang } = useLang();
-  const seoMeta = buildHomeMeta(lang);
+  const seoMeta = useMemo(() => buildHomeMeta(lang), [lang]);
   useDocumentTitle(seoMeta.title);
   useSeoHead({
     title: seoMeta.title,
