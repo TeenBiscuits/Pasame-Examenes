@@ -15,12 +15,21 @@ const fullRemarkPlugins = [remarkGfm, remarkMath];
 const inlineRemarkPlugins = [remarkGfm, remarkMath];
 const rehypePlugins = [rehypeKatex];
 
+const codeFont =
+  '"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace';
+
 const codeStyleLight = {
   ...oneLight,
   'pre[class*="language-"]': {
     ...oneLight['pre[class*="language-"]'],
-    fontFamily:
-      '"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace',
+    fontFamily: codeFont,
+    background: "transparent",
+    margin: 0,
+    padding: 0,
+  },
+  'code[class*="language-"]': {
+    ...oneLight['code[class*="language-"]'],
+    fontFamily: codeFont,
   },
 };
 
@@ -28,8 +37,14 @@ const codeStyleDark = {
   ...oneDark,
   'pre[class*="language-"]': {
     ...oneDark['pre[class*="language-"]'],
-    fontFamily:
-      '"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace',
+    fontFamily: codeFont,
+    background: "transparent",
+    margin: 0,
+    padding: 0,
+  },
+  'code[class*="language-"]': {
+    ...oneDark['code[class*="language-"]'],
+    fontFamily: codeFont,
   },
 };
 
@@ -54,18 +69,28 @@ function CodeRenderer({
   }
 
   return (
-    <SyntaxHighlighter
-      PreTag="div"
-      language={match[1]}
-      style={isDark ? codeStyleDark : codeStyleLight}
-      customStyle={{
-        margin: 0,
-        borderRadius: "0.5rem",
-        fontSize: "0.875rem",
-      }}
-    >
-      {code}
-    </SyntaxHighlighter>
+    <div className="my-3 rounded-lg border border-border bg-code-block overflow-hidden">
+      <div className="flex items-center px-4 py-1.5 border-b border-border/50">
+        <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-fg-muted">
+          {match[1]}
+        </span>
+      </div>
+      <div className="overflow-x-auto text-sm leading-relaxed">
+        <SyntaxHighlighter
+          PreTag="div"
+          language={match[1]}
+          style={isDark ? codeStyleDark : codeStyleLight}
+          customStyle={{
+            margin: 0,
+            padding: "1rem",
+            borderRadius: 0,
+            background: "transparent",
+          }}
+        >
+          {code}
+        </SyntaxHighlighter>
+      </div>
+    </div>
   );
 }
 
@@ -86,7 +111,10 @@ export function Markdown({
       <ReactMarkdown
         remarkPlugins={fullRemarkPlugins}
         rehypePlugins={rehypePlugins}
-        components={{ code: CodeRenderer }}
+        components={{
+          pre: ({ children }) => <>{children}</>,
+          code: CodeRenderer,
+        }}
       >
         {children}
       </ReactMarkdown>
