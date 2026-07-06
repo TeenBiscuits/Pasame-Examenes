@@ -19,19 +19,26 @@ function detectLang(): Lang {
   return "es";
 }
 
-function isValidLegacyPath(path: string[]) {
-  if (path.length === 0) return true;
+function buildLegacyTargetPath(path: string[]) {
+  if (path.length === 0) return "";
   const [subjectId, section, value] = path;
   const subject = getSubject(subjectId);
-  if (!subject) return false;
-  if (!section) return true;
+  if (!subject) return null;
+  if (!section) return `/${subject.id}`;
+  if ((section === "practice" || section === "exam") && !value) {
+    return `/${subject.id}`;
+  }
   if (section === "practice" && value) {
-    return subject.topics.some((topic) => topic.key === value);
+    return subject.topics.some((topic) => topic.key === value)
+      ? `/${subject.id}/practice/${value}`
+      : null;
   }
   if (section === "exam" && value) {
-    return subject.exams.some((exam) => exam.year === value);
+    return subject.exams.some((exam) => exam.year === value)
+      ? `/${subject.id}/exam/${value}`
+      : null;
   }
-  return false;
+  return null;
 }
 
 function isLang(segment: string | undefined): segment is Lang {
@@ -47,9 +54,8 @@ export default function LegacyRedirect() {
     const [first, ...rest] = segments;
     const lang = isLang(first) ? first : detectLang();
     const path = isLang(first) ? rest : segments;
-    const target = isValidLegacyPath(path)
-      ? `/${lang}${path.length === 0 ? "" : `/${path.join("/")}`}`
-      : `/${lang}/404`;
+    const targetPath = buildLegacyTargetPath(path);
+    const target = targetPath == null ? `/${lang}/404` : `/${lang}${targetPath}`;
     router.replace(target);
   }, [pathname, router]);
 

@@ -51,11 +51,15 @@ function SessionTracker() {
 }
 
 function RedirectTo404({ lang }: { lang: string }) {
+  return <RedirectToPath target={`/${lang}/404`} />;
+}
+
+function RedirectToPath({ target }: { target: string }) {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace(`/${lang}/404`);
-  }, [lang, router]);
+    router.replace(target);
+  }, [router, target]);
 
   return <PageLoader />;
 }
@@ -78,6 +82,10 @@ function CurrentPage() {
 
   const subject = getSubject(subjectId);
   if (!subject) return <RedirectTo404 lang={paramLang} />;
+
+  if ((section === "practice" || section === "exam") && !value) {
+    return <RedirectToPath target={`/${paramLang}/${subject.id}`} />;
+  }
 
   if (section === "practice" && value)
     return subject.topics.some((topic) => topic.key === value) ? (
