@@ -53,6 +53,7 @@ export interface Exam {
   description: string;
   hasPdf?: boolean;
   daypoUrl?: string;
+  deleteRights?: boolean;
 }
 
 export interface SubjectMeta {

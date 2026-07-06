@@ -416,7 +416,7 @@ export default function ExamSimulation() {
     Record<string, string>
   >({});
   const examInfo = useMemo(
-    () => subject?.exams.find((e: Exam) => e.year === year),
+    () => subject?.exams.find((e: Exam) => e.year === year && !e.deleteRights),
     [subject, year],
   );
   useEffect(() => {
@@ -541,8 +541,10 @@ export default function ExamSimulation() {
   });
 
   useEffect(() => {
-    if (!subject || !examInfo) {
+    if (!subject) {
       navigate(langTo("/"), { replace: true });
+    } else if (!examInfo) {
+      navigate(langTo(`/${subject.id}`), { replace: true });
     }
   }, [subject, examInfo, navigate, langTo]);
 

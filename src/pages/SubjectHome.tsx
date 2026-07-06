@@ -7,6 +7,9 @@ import TopicCard from "../components/TopicCard";
 import AddExamModal, {
   type AddExamModalHandle,
 } from "../components/AddExamModal";
+import CopyrightReportModal, {
+  type CopyrightReportModalHandle,
+} from "../components/CopyrightReportModal";
 import type { Question, Topic } from "../data/types";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -20,6 +23,7 @@ export default function SubjectHome() {
   const t = useT();
   const { lang } = useLang();
   const examModalRef = useRef<AddExamModalHandle>(null);
+  const copyrightModalRef = useRef<CopyrightReportModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
@@ -76,6 +80,7 @@ export default function SubjectHome() {
   }
 
   const repeatedCount = allQuestions.filter((q) => q.repeated).length;
+  const availableExams = subject.exams.filter((exam) => !exam.deleteRights);
   const progress = getTopicProgress(
     subject.id,
     allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
@@ -89,7 +94,7 @@ export default function SubjectHome() {
   const description = t.subjectHome.description
     .replace("{count}", String(allQuestions.length))
     .replace("{repeated}", repeatedText)
-    .replace("{exams}", String(subject.exams.length));
+    .replace("{exams}", String(availableExams.length));
 
   const renderTopicCard = (topic: Topic) => {
     const topicQs = allQuestions.filter((q) => q.topic === topic.key);
@@ -171,40 +176,75 @@ export default function SubjectHome() {
       <div
         className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.exams.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
       >
-        {subject.exams.map((exam) => (
-          <Link
-            key={exam.year}
-            to={`/${subject.id}/exam/${exam.year}`}
-            className="block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
+        {subject.exams.map((exam) =>
+          exam.deleteRights ? (
+            <div
+              key={exam.year}
+              className="block p-6 rounded-xl border-2 border-dashed border-t-red-border bg-t-red-bg/70"
+            >
+              <div className="text-2xl text-t-red-hover mb-2" aria-hidden="true">
+                !
+              </div>
+              <h2 className="font-semibold text-fg">{exam.title}</h2>
+              <p className="text-sm font-medium text-fg-secondary mt-2">
+                {t.subjectHome.copyrightRemoved}
+              </p>
+            </div>
+          ) : (
+            <Link
+              key={exam.year}
+              to={`/${subject.id}/exam/${exam.year}`}
+              className="block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
+              onClick={() => {
+                triggerLight();
+                track("exam_card_click", {
+                  subjectId: subject.id,
+                  year: exam.year,
+                });
+              }}
+            >
+              <div className="text-2xl mb-2" aria-hidden="true">
+                📝
+              </div>
+              <h2 className="font-semibold text-fg">{exam.title}</h2>
+              <p className="text-sm text-fg-muted mt-1">{exam.description}</p>
+            </Link>
+          ),
+        )}
+        <div className="grid grid-cols-2 gap-4">
+          <button
+            type="button"
             onClick={() => {
               triggerLight();
-              track("exam_card_click", {
-                subjectId: subject.id,
-                year: exam.year,
-              });
+              examModalRef.current?.open();
+              track("add_exam_modal_open", { subjectId: subject.id });
             }}
+            className="block w-full p-4 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
           >
-            <div className="text-2xl mb-2" aria-hidden="true">
-              📝
+            <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
+              <span className="text-4xl font-light leading-none">+</span>
+              <span className="text-sm font-medium">{t.subjectHome.addExam}</span>
             </div>
-            <h2 className="font-semibold text-fg">{exam.title}</h2>
-            <p className="text-sm text-fg-muted mt-1">{exam.description}</p>
-          </Link>
-        ))}
-        <button
-          type="button"
-          onClick={() => {
-            triggerLight();
-            examModalRef.current?.open();
-            track("add_exam_modal_open", { subjectId: subject.id });
-          }}
-          className="block w-full p-6 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
-        >
-          <div className="flex flex-col items-center justify-center gap-2">
-            <span className="text-4xl font-light leading-none">+</span>
-            <span className="text-sm font-medium">{t.subjectHome.addExam}</span>
-          </div>
-        </button>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              triggerLight();
+              copyrightModalRef.current?.open();
+              track("copyright_report_modal_open", { subjectId: subject.id });
+            }}
+            className="block w-full p-4 rounded-xl border-2 border-dashed border-t-red-border text-fg-secondary bg-t-red-bg/40 hover:text-fg hover:border-t-red-hover hover:bg-t-red-bg hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
+          >
+            <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
+              <span className="text-4xl font-light leading-none text-t-red-hover">
+                !
+              </span>
+              <span className="text-sm font-medium">
+                {t.subjectHome.reportCopyright}
+              </span>
+            </div>
+          </button>
+        </div>
       </div>
 
       <AddExamModal
@@ -213,8 +253,16 @@ export default function SubjectHome() {
         subjectId={subject.id}
         subjectName={subject.name}
       />
+      <CopyrightReportModal
+        ref={copyrightModalRef}
+        onClose={() => {}}
+        subjectId={subject.id}
+        subjectName={subject.name}
+      />
 
-      {subject.exams.some((exam) => exam.hasPdf !== false) && (
+      {subject.exams.some(
+        (exam) => !exam.deleteRights && exam.hasPdf !== false,
+      ) && (
         <div className="bg-surface rounded-xl p-6 border border-border mb-10">
           <h3 className="font-semibold text-fg mb-2">
             {t.subjectHome.originalExams}
@@ -224,7 +272,7 @@ export default function SubjectHome() {
           </p>
           <div className="flex flex-wrap gap-4">
             {subject.exams.flatMap((exam) =>
-              exam.hasPdf === false
+              exam.deleteRights || exam.hasPdf === false
                 ? []
                 : [
                     <a
@@ -251,7 +299,7 @@ export default function SubjectHome() {
         </div>
       )}
 
-      {subject.exams.some((exam) => exam.daypoUrl) && (
+      {subject.exams.some((exam) => !exam.deleteRights && exam.daypoUrl) && (
         <div className="bg-surface rounded-xl p-6 border border-border mb-10">
           <h3 className="font-semibold text-fg mb-2">
             {t.subjectHome.originalDaypos}
@@ -261,7 +309,7 @@ export default function SubjectHome() {
           </p>
           <div className="flex flex-wrap gap-4">
             {subject.exams.flatMap((exam) =>
-              exam.daypoUrl == null
+              exam.deleteRights || exam.daypoUrl == null
                 ? []
                 : [
                     <a

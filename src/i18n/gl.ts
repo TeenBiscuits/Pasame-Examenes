@@ -25,7 +25,9 @@ export const gl: Translations = {
     daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Agradecementos e exención de responsabilidade",
-    addExam: "Engadir exame/proba/compilación?",
+    addExam: "Engadir?",
+    reportCopyright: "Reportar dereitos de autor",
+    copyrightRemoved: "Retirada por dereitos de autor",
     repeatedSuffix: "{count} repetidas ao longo dos anos",
   },
   practiceHome: {
@@ -129,6 +131,18 @@ export const gl: Translations = {
     contributeDesc:
       "Segue a guía de contribución para engadilo ti mesmo cun pull request",
     email: "Escribe un correo",
+  },
+  copyrightReport: {
+    title: "Reportar dereitos de autor",
+    close: "Pechar",
+    description:
+      "Se un exame, proba, compilación ou pregunta debe retirarse por dereitos de autor, envía un correo a pablo.portas@udc.es.",
+    includeDetails:
+      "Inclúe a materia, o exame/ano ou pregunta afectada e o motivo da solicitude de retirada.",
+    email: "Enviar solicitude de retirada",
+    emailSubject: "Solicitude de retirada por dereitos de autor - {subjectName}",
+    emailBody:
+      "Materia: {subjectName}\nID da materia: {subjectId}\n\nExame/ano ou pregunta afectada:\n\nMotivo da solicitude de retirada:\n",
   },
   tour: {
     next: "Seguinte",

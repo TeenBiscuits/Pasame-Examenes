@@ -14,6 +14,9 @@ interface SubjectCardProps {
 export default function SubjectCard({ subject }: SubjectCardProps) {
   const t = useT();
   const [questionCount, setQuestionCount] = useState<number | null>(null);
+  const availableExamCount = subject.exams.filter(
+    (exam) => !exam.deleteRights,
+  ).length;
 
   useEffect(() => {
     let mounted = true;
@@ -59,7 +62,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         </span>
         <span>&middot;</span>
         <span>
-          {subject.exams.length} {t.subjectCard.exams}
+          {availableExamCount} {t.subjectCard.exams}
         </span>
       </div>
     </Link>

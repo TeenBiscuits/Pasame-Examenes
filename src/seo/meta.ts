@@ -184,11 +184,14 @@ export function buildSubjectMeta(
     es: `${subject.name}: "exámenes" y preguntas resueltas`,
     gl: `${subject.name}: "exames" e preguntas resoltas`,
   };
+  const availableExamCount = subject.exams.filter(
+    (exam) => !exam.deleteRights,
+  ).length;
   const count = stats.questionCount;
   const descriptionByLang: Record<Lang, string> = {
-    en: `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${subject.exams.length} past "exams" with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
-    es: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${subject.exams.length} "exámenes" anteriores con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
-    gl: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${subject.exams.length} "exames" anteriores con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    en: `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${availableExamCount} past "exams" with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
+    es: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} "exámenes" anteriores con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    gl: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} "exames" anteriores con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
   };
   const title = appendBrand(titleStem[lang], tr.seo.siteName);
   const description = descriptionByLang[lang];

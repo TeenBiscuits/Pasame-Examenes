@@ -23,7 +23,9 @@ export const en = {
     daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Acknowledgments and Disclaimer",
-    addExam: "Add exam/test/compilation?",
+    addExam: "Add?",
+    reportCopyright: "Report copyright",
+    copyrightRemoved: "Removed for copyright reasons",
     repeatedSuffix: "{count} repeated questions across years",
   },
   practiceHome: {
@@ -127,6 +129,18 @@ export const en = {
     contributeDesc:
       "Follow the contribution guide to add it yourself via pull request",
     email: "Send an email",
+  },
+  copyrightReport: {
+    title: "Report copyright",
+    close: "Close",
+    description:
+      "If an exam, test, compilation, or question should be removed for copyright reasons, send an email to pablo.portas@udc.es.",
+    includeDetails:
+      "Please include the subject, exam/year or affected question, and the reason for the removal request.",
+    email: "Send removal request",
+    emailSubject: "Copyright removal request - {subjectName}",
+    emailBody:
+      "Subject: {subjectName}\nSubject ID: {subjectId}\n\nAffected exam/year or question:\n\nReason for removal request:\n",
   },
   tour: {
     next: "Next",

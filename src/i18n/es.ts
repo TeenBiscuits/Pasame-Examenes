@@ -26,7 +26,9 @@ export const es: Translations = {
     daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Agradecimientos y exención de responsabilidad",
-    addExam: "¿Añadir examen/prueba/recopilatorio?",
+    addExam: "¿Añadir?",
+    reportCopyright: "Reportar derechos de autor",
+    copyrightRemoved: "Retirada por derechos de autor",
     repeatedSuffix: "{count} repetidas a lo largo de los años",
   },
   practiceHome: {
@@ -131,6 +133,18 @@ export const es: Translations = {
     contributeDesc:
       "Sigue la guía de contribución para añadirlo tú mismo con un pull request",
     email: "Escribe un correo",
+  },
+  copyrightReport: {
+    title: "Reportar derechos de autor",
+    close: "Cerrar",
+    description:
+      "Si un examen, prueba, recopilatorio o pregunta debe retirarse por derechos de autor, envía un correo a pablo.portas@udc.es.",
+    includeDetails:
+      "Incluye la asignatura, el examen/año o pregunta afectada y el motivo de la solicitud de retirada.",
+    email: "Enviar solicitud de retirada",
+    emailSubject: "Solicitud de retirada por derechos de autor - {subjectName}",
+    emailBody:
+      "Asignatura: {subjectName}\nID de asignatura: {subjectId}\n\nExamen/año o pregunta afectada:\n\nMotivo de la solicitud de retirada:\n",
   },
   tour: {
     next: "Siguiente",

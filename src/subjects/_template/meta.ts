@@ -44,6 +44,17 @@ export const meta: SubjectMeta = {
       durationMinutes: 150,
       hasPdf: false,
     },
+    {
+      year: "2023",
+      title: "2023 Exam",
+      date: "2023",
+      description: "Removed for copyright reasons",
+      passPoints: 0,
+      totalPoints: 0,
+      durationMinutes: 0,
+      hasPdf: false,
+      deleteRights: true,
+    },
   ],
 };
 
