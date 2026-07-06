@@ -26,10 +26,12 @@ const codeStyleLight = {
     background: "transparent",
     margin: 0,
     padding: 0,
+    overflow: "visible",
   },
   'code[class*="language-"]': {
     ...oneLight['code[class*="language-"]'],
     fontFamily: codeFont,
+    background: "transparent",
   },
 };
 
@@ -41,10 +43,12 @@ const codeStyleDark = {
     background: "transparent",
     margin: 0,
     padding: 0,
+    overflow: "visible",
   },
   'code[class*="language-"]': {
     ...oneDark['code[class*="language-"]'],
     fontFamily: codeFont,
+    background: "transparent",
   },
 };
 
