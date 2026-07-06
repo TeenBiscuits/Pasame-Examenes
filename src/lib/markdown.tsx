@@ -69,7 +69,7 @@ function CodeRenderer({
   }
 
   return (
-    <div className="my-3 rounded-lg border border-border bg-code-block overflow-hidden">
+    <div className="not-prose my-3 rounded-lg border border-border bg-code-block overflow-hidden">
       <div className="flex items-center px-4 py-1.5 border-b border-border/50">
         <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-fg-muted">
           {match[1]}
@@ -77,7 +77,7 @@ function CodeRenderer({
       </div>
       <div className="overflow-x-auto text-sm leading-relaxed">
         <SyntaxHighlighter
-          PreTag="div"
+          PreTag="pre"
           language={match[1]}
           style={isDark ? codeStyleDark : codeStyleLight}
           customStyle={{
