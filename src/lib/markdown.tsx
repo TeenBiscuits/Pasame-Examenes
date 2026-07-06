@@ -14,6 +14,9 @@ import "katex/dist/katex.min.css";
 const fullRemarkPlugins = [remarkGfm, remarkMath];
 const inlineRemarkPlugins = [remarkGfm, remarkMath];
 const rehypePlugins = [rehypeKatex];
+const inlineRehypePlugins: [typeof rehypeKatex, { output: "html" }][] = [
+  [rehypeKatex, { output: "html" }],
+];
 
 const codeFont =
   '"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace';
@@ -133,7 +136,7 @@ export function InlineMarkdown({ children }: { children: string }) {
   return (
     <ReactMarkdown
       remarkPlugins={inlineRemarkPlugins}
-      rehypePlugins={rehypePlugins}
+      rehypePlugins={inlineRehypePlugins}
       allowedElements={[
         "a",
         "code",
