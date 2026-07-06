@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
 import AddSubjectModal, {
@@ -11,8 +11,10 @@ import { useSeoHead } from "../lib/seo";
 import { LangLink } from "../lib/lang-link";
 import {
   getRecentSubjects,
+  getServerRecentSubjects,
   recordSubjectClick,
   clearRecentSubjects,
+  subscribeRecentSubjects,
 } from "../lib/recent";
 
 const MAX_SLOTS = 3;
@@ -70,9 +72,12 @@ export default function Home() {
     pathWithoutLang: "/",
   });
   const modalRef = useRef<AddSubjectModalHandle>(null);
-  const [recentKey, setRecentKey] = useState(0);
+  const recentIds = useSyncExternalStore(
+    subscribeRecentSubjects,
+    getRecentSubjects,
+    getServerRecentSubjects,
+  );
 
-  const recentIds = getRecentSubjects();
   const recentSubjects = recentIds
     .map((id) => subjects.find((s) => s.id === id))
     .filter((s): s is NonNullable<typeof s> => s != null);
@@ -80,7 +85,6 @@ export default function Home() {
   function handleClearRecent() {
     clearRecentSubjects();
     track("clear_recent_subjects", { count: recentSubjects.length });
-    setRecentKey((k) => k + 1);
   }
 
   const slots = Array.from({ length: MAX_SLOTS }, (_, i) => {
@@ -98,7 +102,7 @@ export default function Home() {
       </p>
 
       {recentSubjects.length > 0 && (
-        <div className="mb-10 text-left" key={recentKey}>
+        <div className="mb-10 text-left">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-semibold text-fg-muted uppercase tracking-wide">
               {t.home.recentlyVisited}
