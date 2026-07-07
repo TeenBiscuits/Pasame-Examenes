@@ -108,5 +108,15 @@ export const meta: SubjectMeta = {
       durationMinutes: 120,
       hasPdf: false,
     },
+    {
+      year: "2026-01",
+      title: "Recopilatorio Enero 2026",
+      date: "Enero 2026",
+      description: "41 preguntas · 41 puntos",
+      passPoints: 21,
+      totalPoints: 41,
+      durationMinutes: 120,
+      hasPdf: false,
+    },
   ],
 };

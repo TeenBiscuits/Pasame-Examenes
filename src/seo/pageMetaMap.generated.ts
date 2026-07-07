@@ -3911,7 +3911,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes",
     "title": "Redes: compilations and solved questions | Pásame Exámenes",
-    "description": "Practice 460 Redes questions from 3 compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 501 Redes questions from 4 compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -3935,7 +3935,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Redes: compilations and solved questions | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/en/redes\",\"inLanguage\":\"en\",\"description\":\"Practice 460 Redes questions from 3 compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"}],\"url\":\"https://pe.pablopl.dev/en/redes\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Redes: compilations and solved questions | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/en/redes\",\"inLanguage\":\"en\",\"description\":\"Practice 501 Redes questions from 4 compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"}],\"url\":\"https://pe.pablopl.dev/en/redes\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-1.html",
@@ -3943,7 +3943,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-1",
     "title": "Tema 1. Redes de ordenadores e Internet: Redes practice questions",
-    "description": "Practice 54 Tema 1. Redes de ordenadores e Internet questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 57 Tema 1. Redes de ordenadores e Internet questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-1",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -3967,7 +3967,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-1"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 1. Redes de ordenadores e Internet: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-1\",\"inLanguage\":\"en\",\"description\":\"Practice 54 Tema 1. Redes de ordenadores e Internet questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 1. Redes de ordenadores e Internet\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 1. Redes de ordenadores e Internet\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-1\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-1\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 1. Redes de ordenadores e Internet: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-1\",\"inLanguage\":\"en\",\"description\":\"Practice 57 Tema 1. Redes de ordenadores e Internet questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 1. Redes de ordenadores e Internet\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 1. Redes de ordenadores e Internet\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-1\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-1\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-2.html",
@@ -3975,7 +3975,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-2",
     "title": "Tema 2. Introducción a TCP/IP: Redes practice questions",
-    "description": "Practice 19 Tema 2. Introducción a TCP/IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 20 Tema 2. Introducción a TCP/IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-2",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -3999,7 +3999,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-2"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 2. Introducción a TCP/IP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-2\",\"inLanguage\":\"en\",\"description\":\"Practice 19 Tema 2. Introducción a TCP/IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 2. Introducción a TCP/IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 2. Introducción a TCP/IP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-2\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-2\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 2. Introducción a TCP/IP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-2\",\"inLanguage\":\"en\",\"description\":\"Practice 20 Tema 2. Introducción a TCP/IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 2. Introducción a TCP/IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 2. Introducción a TCP/IP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-2\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-2\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-3-4.html",
@@ -4007,7 +4007,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-3-4",
     "title": "Tema 3-4. Protocolos nivel de aplicación: Redes practice questions",
-    "description": "Practice 77 Tema 3-4. Protocolos nivel de aplicación questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 81 Tema 3-4. Protocolos nivel de aplicación questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-3-4",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4031,7 +4031,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-3-4"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-3-4\",\"inLanguage\":\"en\",\"description\":\"Practice 77 Tema 3-4. Protocolos nivel de aplicación questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 3-4. Protocolos nivel de aplicación\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-3-4\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-3-4\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-3-4\",\"inLanguage\":\"en\",\"description\":\"Practice 81 Tema 3-4. Protocolos nivel de aplicación questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 3-4. Protocolos nivel de aplicación\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-3-4\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-3-4\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-5.html",
@@ -4039,7 +4039,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-5",
     "title": "Tema 5. Protocolos de transporte UDP y TCP: Redes practice questions",
-    "description": "Practice 51 Tema 5. Protocolos de transporte UDP y TCP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 54 Tema 5. Protocolos de transporte UDP y TCP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-5",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4063,7 +4063,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-5"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-5\",\"inLanguage\":\"en\",\"description\":\"Practice 51 Tema 5. Protocolos de transporte UDP y TCP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-5\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-5\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-5\",\"inLanguage\":\"en\",\"description\":\"Practice 54 Tema 5. Protocolos de transporte UDP y TCP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-5\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-5\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-6.html",
@@ -4071,7 +4071,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-6",
     "title": "Tema 6. Intercambio de datos TCP: Redes practice questions",
-    "description": "Practice 48 Tema 6. Intercambio de datos TCP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 52 Tema 6. Intercambio de datos TCP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-6",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4095,7 +4095,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-6"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 6. Intercambio de datos TCP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-6\",\"inLanguage\":\"en\",\"description\":\"Practice 48 Tema 6. Intercambio de datos TCP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 6. Intercambio de datos TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 6. Intercambio de datos TCP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-6\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-6\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 6. Intercambio de datos TCP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-6\",\"inLanguage\":\"en\",\"description\":\"Practice 52 Tema 6. Intercambio de datos TCP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 6. Intercambio de datos TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 6. Intercambio de datos TCP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-6\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-6\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-7.html",
@@ -4103,7 +4103,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-7",
     "title": "Tema 7. Nivel de red: protocolo IP: Redes practice questions",
-    "description": "Practice 81 Tema 7. Nivel de red: protocolo IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 90 Tema 7. Nivel de red: protocolo IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-7",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4127,7 +4127,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-7"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 7. Nivel de red: protocolo IP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-7\",\"inLanguage\":\"en\",\"description\":\"Practice 81 Tema 7. Nivel de red: protocolo IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 7. Nivel de red: protocolo IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 7. Nivel de red: protocolo IP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-7\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-7\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 7. Nivel de red: protocolo IP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-7\",\"inLanguage\":\"en\",\"description\":\"Practice 90 Tema 7. Nivel de red: protocolo IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 7. Nivel de red: protocolo IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 7. Nivel de red: protocolo IP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-7\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-7\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-8.html",
@@ -4135,7 +4135,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-8",
     "title": "Tema 8. Enrutamiento: Redes practice questions",
-    "description": "Practice 22 Tema 8. Enrutamiento questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 25 Tema 8. Enrutamiento questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-8",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4159,7 +4159,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-8"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 8. Enrutamiento: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-8\",\"inLanguage\":\"en\",\"description\":\"Practice 22 Tema 8. Enrutamiento questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 8. Enrutamiento\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 8. Enrutamiento\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-8\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-8\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 8. Enrutamiento: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-8\",\"inLanguage\":\"en\",\"description\":\"Practice 25 Tema 8. Enrutamiento questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 8. Enrutamiento\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 8. Enrutamiento\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-8\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-8\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-9.html",
@@ -4167,7 +4167,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-9",
     "title": "Tema 9. ICMP y fragmentación IP: Redes practice questions",
-    "description": "Practice 24 Tema 9. ICMP y fragmentación IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 30 Tema 9. ICMP y fragmentación IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-9",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4191,7 +4191,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-9"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 9. ICMP y fragmentación IP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-9\",\"inLanguage\":\"en\",\"description\":\"Practice 24 Tema 9. ICMP y fragmentación IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 9. ICMP y fragmentación IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 9. ICMP y fragmentación IP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-9\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-9\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 9. ICMP y fragmentación IP: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-9\",\"inLanguage\":\"en\",\"description\":\"Practice 30 Tema 9. ICMP y fragmentación IP questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 9. ICMP y fragmentación IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 9. ICMP y fragmentación IP\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-9\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-9\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-10.html",
@@ -4199,7 +4199,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-10",
     "title": "Tema 10. Protocolo IPv6: Redes practice questions",
-    "description": "Practice 11 Tema 10. Protocolo IPv6 questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 13 Tema 10. Protocolo IPv6 questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-10",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4223,7 +4223,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-10"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 10. Protocolo IPv6: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-10\",\"inLanguage\":\"en\",\"description\":\"Practice 11 Tema 10. Protocolo IPv6 questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 10. Protocolo IPv6\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 10. Protocolo IPv6\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-10\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-10\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 10. Protocolo IPv6: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-10\",\"inLanguage\":\"en\",\"description\":\"Practice 13 Tema 10. Protocolo IPv6 questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 10. Protocolo IPv6\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 10. Protocolo IPv6\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-10\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-10\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-11.html",
@@ -4231,7 +4231,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-11",
     "title": "Tema 11. TCP/IP y nivel de enlace: Redes practice questions",
-    "description": "Practice 24 Tema 11. TCP/IP y nivel de enlace questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 29 Tema 11. TCP/IP y nivel de enlace questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-11",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4255,7 +4255,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-11"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 11. TCP/IP y nivel de enlace: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-11\",\"inLanguage\":\"en\",\"description\":\"Practice 24 Tema 11. TCP/IP y nivel de enlace questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 11. TCP/IP y nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 11. TCP/IP y nivel de enlace\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-11\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-11\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 11. TCP/IP y nivel de enlace: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-11\",\"inLanguage\":\"en\",\"description\":\"Practice 29 Tema 11. TCP/IP y nivel de enlace questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 11. TCP/IP y nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 11. TCP/IP y nivel de enlace\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-11\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-11\"}]}"
   },
   {
     "url": "seo/en/redes/practice/tema-12.html",
@@ -4263,7 +4263,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/redes/practice/tema-12",
     "title": "Tema 12. Tecnologías del nivel de enlace: Redes practice questions",
-    "description": "Practice 49 Tema 12. Tecnologías del nivel de enlace questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
+    "description": "Practice 50 Tema 12. Tecnologías del nivel de enlace questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/practice/tema-12",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4287,7 +4287,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-12"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 12. Tecnologías del nivel de enlace: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-12\",\"inLanguage\":\"en\",\"description\":\"Practice 49 Tema 12. Tecnologías del nivel de enlace questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 12. Tecnologías del nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 12. Tecnologías del nivel de enlace\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-12\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-12\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 12. Tecnologías del nivel de enlace: Redes practice questions\",\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-12\",\"inLanguage\":\"en\",\"description\":\"Practice 50 Tema 12. Tecnologías del nivel de enlace questions from Redes compilations with model answers and self-grading. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 12. Tecnologías del nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 12. Tecnologías del nivel de enlace\",\"item\":\"https://pe.pablopl.dev/en/redes/practice/tema-12\"}],\"url\":\"https://pe.pablopl.dev/en/redes/practice/tema-12\"}]}"
   },
   {
     "url": "seo/en/redes/exam/daypo-recopilatorio-lara.html",
@@ -4358,8 +4358,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/redes/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 Redes: timed practice",
-    "description": "Practice the Posibles preguntas Mayo 2025 Redes timed set with 37 questions. 37 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Mayo 2025 Redes: timed practice",
+    "description": "Practice the Recopilatorio Mayo 2025 Redes timed set with 37 questions. 37 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4383,7 +4383,39 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 Redes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Mayo 2025 Redes timed set with 37 questions. 37 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 Redes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Mayo 2025 Redes timed set with 37 questions. 37 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\"}]}"
+  },
+  {
+    "url": "seo/en/redes/exam/2026-01.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "en",
+    "pathWithoutLang": "/redes/exam/2026-01",
+    "title": "Recopilatorio Enero 2026 Redes: timed practice",
+    "description": "Practice the Recopilatorio Enero 2026 Redes timed set with 41 questions. 41 points, 120 minutes, model answers and self-grading.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/en/redes/exam/2026-01",
+    "ogImage": "https://pe.pablopl.dev/og/redes.png",
+    "ogImageType": "image/png",
+    "locale": "en_US",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/redes/exam/2026-01"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/redes/exam/2026-01"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/redes/exam/2026-01"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/redes/exam/2026-01"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2026 Redes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/redes/exam/2026-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Enero 2026 Redes timed set with 41 questions. 41 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2026\",\"item\":\"https://pe.pablopl.dev/en/redes/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/en/redes/exam/2026-01\"}]}"
   },
   {
     "url": "seo/es.html",
@@ -8295,7 +8327,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes",
     "title": "Redes: recopilatorios y preguntas resueltas | Pásame Exámenes",
-    "description": "Practica 460 preguntas de Redes de 3 recopilatorios de práctica con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 501 preguntas de Redes de 4 recopilatorios de práctica con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8319,7 +8351,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Redes: recopilatorios y preguntas resueltas | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/redes\",\"inLanguage\":\"es\",\"description\":\"Practica 460 preguntas de Redes de 3 recopilatorios de práctica con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"}],\"url\":\"https://pe.pablopl.dev/es/redes\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Redes: recopilatorios y preguntas resueltas | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/redes\",\"inLanguage\":\"es\",\"description\":\"Practica 501 preguntas de Redes de 4 recopilatorios de práctica con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"}],\"url\":\"https://pe.pablopl.dev/es/redes\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-1.html",
@@ -8327,7 +8359,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-1",
     "title": "Tema 1. Redes de ordenadores e Internet: preguntas de Redes",
-    "description": "Practica 54 preguntas de Tema 1. Redes de ordenadores e Internet de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 57 preguntas de Tema 1. Redes de ordenadores e Internet de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-1",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8351,7 +8383,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-1"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 1. Redes de ordenadores e Internet: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-1\",\"inLanguage\":\"es\",\"description\":\"Practica 54 preguntas de Tema 1. Redes de ordenadores e Internet de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 1. Redes de ordenadores e Internet\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 1. Redes de ordenadores e Internet\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-1\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-1\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 1. Redes de ordenadores e Internet: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-1\",\"inLanguage\":\"es\",\"description\":\"Practica 57 preguntas de Tema 1. Redes de ordenadores e Internet de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 1. Redes de ordenadores e Internet\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 1. Redes de ordenadores e Internet\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-1\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-1\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-2.html",
@@ -8359,7 +8391,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-2",
     "title": "Tema 2. Introducción a TCP/IP: preguntas de Redes",
-    "description": "Practica 19 preguntas de Tema 2. Introducción a TCP/IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 20 preguntas de Tema 2. Introducción a TCP/IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-2",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8383,7 +8415,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-2"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 2. Introducción a TCP/IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-2\",\"inLanguage\":\"es\",\"description\":\"Practica 19 preguntas de Tema 2. Introducción a TCP/IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 2. Introducción a TCP/IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 2. Introducción a TCP/IP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-2\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-2\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 2. Introducción a TCP/IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-2\",\"inLanguage\":\"es\",\"description\":\"Practica 20 preguntas de Tema 2. Introducción a TCP/IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 2. Introducción a TCP/IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 2. Introducción a TCP/IP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-2\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-2\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-3-4.html",
@@ -8391,7 +8423,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-3-4",
     "title": "Tema 3-4. Protocolos nivel de aplicación: preguntas de Redes",
-    "description": "Practica 77 preguntas de Tema 3-4. Protocolos nivel de aplicación de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 81 preguntas de Tema 3-4. Protocolos nivel de aplicación de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-3-4",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8415,7 +8447,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-3-4"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-3-4\",\"inLanguage\":\"es\",\"description\":\"Practica 77 preguntas de Tema 3-4. Protocolos nivel de aplicación de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 3-4. Protocolos nivel de aplicación\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-3-4\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-3-4\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-3-4\",\"inLanguage\":\"es\",\"description\":\"Practica 81 preguntas de Tema 3-4. Protocolos nivel de aplicación de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 3-4. Protocolos nivel de aplicación\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-3-4\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-3-4\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-5.html",
@@ -8423,7 +8455,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-5",
     "title": "Tema 5. Protocolos de transporte UDP y TCP: preguntas de Redes",
-    "description": "Practica 51 preguntas de Tema 5. Protocolos de transporte UDP y TCP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 54 preguntas de Tema 5. Protocolos de transporte UDP y TCP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-5",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8447,7 +8479,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-5"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-5\",\"inLanguage\":\"es\",\"description\":\"Practica 51 preguntas de Tema 5. Protocolos de transporte UDP y TCP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-5\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-5\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-5\",\"inLanguage\":\"es\",\"description\":\"Practica 54 preguntas de Tema 5. Protocolos de transporte UDP y TCP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-5\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-5\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-6.html",
@@ -8455,7 +8487,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-6",
     "title": "Tema 6. Intercambio de datos TCP: preguntas de Redes",
-    "description": "Practica 48 preguntas de Tema 6. Intercambio de datos TCP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 52 preguntas de Tema 6. Intercambio de datos TCP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-6",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8479,7 +8511,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-6"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 6. Intercambio de datos TCP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-6\",\"inLanguage\":\"es\",\"description\":\"Practica 48 preguntas de Tema 6. Intercambio de datos TCP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 6. Intercambio de datos TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 6. Intercambio de datos TCP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-6\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-6\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 6. Intercambio de datos TCP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-6\",\"inLanguage\":\"es\",\"description\":\"Practica 52 preguntas de Tema 6. Intercambio de datos TCP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 6. Intercambio de datos TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 6. Intercambio de datos TCP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-6\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-6\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-7.html",
@@ -8487,7 +8519,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-7",
     "title": "Tema 7. Nivel de red: protocolo IP: preguntas de Redes",
-    "description": "Practica 81 preguntas de Tema 7. Nivel de red: protocolo IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 90 preguntas de Tema 7. Nivel de red: protocolo IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-7",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8511,7 +8543,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-7"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 7. Nivel de red: protocolo IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-7\",\"inLanguage\":\"es\",\"description\":\"Practica 81 preguntas de Tema 7. Nivel de red: protocolo IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 7. Nivel de red: protocolo IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 7. Nivel de red: protocolo IP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-7\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-7\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 7. Nivel de red: protocolo IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-7\",\"inLanguage\":\"es\",\"description\":\"Practica 90 preguntas de Tema 7. Nivel de red: protocolo IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 7. Nivel de red: protocolo IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 7. Nivel de red: protocolo IP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-7\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-7\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-8.html",
@@ -8519,7 +8551,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-8",
     "title": "Tema 8. Enrutamiento: preguntas de Redes | Pásame Exámenes",
-    "description": "Practica 22 preguntas de Tema 8. Enrutamiento de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 25 preguntas de Tema 8. Enrutamiento de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-8",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8543,7 +8575,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-8"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 8. Enrutamiento: preguntas de Redes | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-8\",\"inLanguage\":\"es\",\"description\":\"Practica 22 preguntas de Tema 8. Enrutamiento de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 8. Enrutamiento\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 8. Enrutamiento\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-8\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-8\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 8. Enrutamiento: preguntas de Redes | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-8\",\"inLanguage\":\"es\",\"description\":\"Practica 25 preguntas de Tema 8. Enrutamiento de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 8. Enrutamiento\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 8. Enrutamiento\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-8\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-8\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-9.html",
@@ -8551,7 +8583,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-9",
     "title": "Tema 9. ICMP y fragmentación IP: preguntas de Redes",
-    "description": "Practica 24 preguntas de Tema 9. ICMP y fragmentación IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 30 preguntas de Tema 9. ICMP y fragmentación IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-9",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8575,7 +8607,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-9"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 9. ICMP y fragmentación IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-9\",\"inLanguage\":\"es\",\"description\":\"Practica 24 preguntas de Tema 9. ICMP y fragmentación IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 9. ICMP y fragmentación IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 9. ICMP y fragmentación IP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-9\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-9\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 9. ICMP y fragmentación IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-9\",\"inLanguage\":\"es\",\"description\":\"Practica 30 preguntas de Tema 9. ICMP y fragmentación IP de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 9. ICMP y fragmentación IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 9. ICMP y fragmentación IP\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-9\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-9\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-10.html",
@@ -8583,7 +8615,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-10",
     "title": "Tema 10. Protocolo IPv6: preguntas de Redes | Pásame Exámenes",
-    "description": "Practica 11 preguntas de Tema 10. Protocolo IPv6 de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 13 preguntas de Tema 10. Protocolo IPv6 de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-10",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8607,7 +8639,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-10"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 10. Protocolo IPv6: preguntas de Redes | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-10\",\"inLanguage\":\"es\",\"description\":\"Practica 11 preguntas de Tema 10. Protocolo IPv6 de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 10. Protocolo IPv6\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 10. Protocolo IPv6\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-10\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-10\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 10. Protocolo IPv6: preguntas de Redes | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-10\",\"inLanguage\":\"es\",\"description\":\"Practica 13 preguntas de Tema 10. Protocolo IPv6 de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 10. Protocolo IPv6\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 10. Protocolo IPv6\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-10\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-10\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-11.html",
@@ -8615,7 +8647,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-11",
     "title": "Tema 11. TCP/IP y nivel de enlace: preguntas de Redes",
-    "description": "Practica 24 preguntas de Tema 11. TCP/IP y nivel de enlace de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 29 preguntas de Tema 11. TCP/IP y nivel de enlace de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-11",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8639,7 +8671,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-11"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 11. TCP/IP y nivel de enlace: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-11\",\"inLanguage\":\"es\",\"description\":\"Practica 24 preguntas de Tema 11. TCP/IP y nivel de enlace de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 11. TCP/IP y nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 11. TCP/IP y nivel de enlace\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-11\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-11\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 11. TCP/IP y nivel de enlace: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-11\",\"inLanguage\":\"es\",\"description\":\"Practica 29 preguntas de Tema 11. TCP/IP y nivel de enlace de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 11. TCP/IP y nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 11. TCP/IP y nivel de enlace\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-11\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-11\"}]}"
   },
   {
     "url": "seo/es/redes/practice/tema-12.html",
@@ -8647,7 +8679,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/redes/practice/tema-12",
     "title": "Tema 12. Tecnologías del nivel de enlace: preguntas de Redes",
-    "description": "Practica 49 preguntas de Tema 12. Tecnologías del nivel de enlace de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 50 preguntas de Tema 12. Tecnologías del nivel de enlace de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/practice/tema-12",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8671,7 +8703,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-12"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 12. Tecnologías del nivel de enlace: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-12\",\"inLanguage\":\"es\",\"description\":\"Practica 49 preguntas de Tema 12. Tecnologías del nivel de enlace de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 12. Tecnologías del nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 12. Tecnologías del nivel de enlace\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-12\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-12\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 12. Tecnologías del nivel de enlace: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-12\",\"inLanguage\":\"es\",\"description\":\"Practica 50 preguntas de Tema 12. Tecnologías del nivel de enlace de recopilatorios de Redes, con respuestas modelo y autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 12. Tecnologías del nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 12. Tecnologías del nivel de enlace\",\"item\":\"https://pe.pablopl.dev/es/redes/practice/tema-12\"}],\"url\":\"https://pe.pablopl.dev/es/redes/practice/tema-12\"}]}"
   },
   {
     "url": "seo/es/redes/exam/daypo-recopilatorio-lara.html",
@@ -8742,8 +8774,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/redes/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 de Redes: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Mayo 2025 de Redes: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8767,7 +8799,39 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\"}]}"
+  },
+  {
+    "url": "seo/es/redes/exam/2026-01.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "es",
+    "pathWithoutLang": "/redes/exam/2026-01",
+    "title": "Recopilatorio Enero 2026 de Redes: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Enero 2026 de Redes con 41 preguntas. 41 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/es/redes/exam/2026-01",
+    "ogImage": "https://pe.pablopl.dev/og/redes.png",
+    "ogImageType": "image/png",
+    "locale": "es_ES",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/redes/exam/2026-01"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/redes/exam/2026-01"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/redes/exam/2026-01"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/redes/exam/2026-01"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2026 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/redes/exam/2026-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Enero 2026 de Redes con 41 preguntas. 41 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2026\",\"item\":\"https://pe.pablopl.dev/es/redes/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/es/redes/exam/2026-01\"}]}"
   },
   {
     "url": "seo/gl.html",
@@ -12679,7 +12743,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes",
     "title": "Redes: recompilacións e preguntas resoltas | Pásame Exámenes",
-    "description": "Practica 460 preguntas de Redes de 3 recompilacións de práctica con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 501 preguntas de Redes de 4 recompilacións de práctica con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12703,7 +12767,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Redes: recompilacións e preguntas resoltas | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/redes\",\"inLanguage\":\"gl\",\"description\":\"Practica 460 preguntas de Redes de 3 recompilacións de práctica con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"}],\"url\":\"https://pe.pablopl.dev/gl/redes\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Redes: recompilacións e preguntas resoltas | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/redes\",\"inLanguage\":\"gl\",\"description\":\"Practica 501 preguntas de Redes de 4 recompilacións de práctica con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"}],\"url\":\"https://pe.pablopl.dev/gl/redes\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-1.html",
@@ -12711,7 +12775,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-1",
     "title": "Tema 1. Redes de ordenadores e Internet: preguntas de Redes",
-    "description": "Practica 54 preguntas de Tema 1. Redes de ordenadores e Internet de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 57 preguntas de Tema 1. Redes de ordenadores e Internet de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-1",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12735,7 +12799,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-1"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 1. Redes de ordenadores e Internet: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-1\",\"inLanguage\":\"gl\",\"description\":\"Practica 54 preguntas de Tema 1. Redes de ordenadores e Internet de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 1. Redes de ordenadores e Internet\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 1. Redes de ordenadores e Internet\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-1\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-1\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 1. Redes de ordenadores e Internet: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-1\",\"inLanguage\":\"gl\",\"description\":\"Practica 57 preguntas de Tema 1. Redes de ordenadores e Internet de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 1. Redes de ordenadores e Internet\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 1. Redes de ordenadores e Internet\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-1\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-1\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-2.html",
@@ -12743,7 +12807,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-2",
     "title": "Tema 2. Introducción a TCP/IP: preguntas de Redes",
-    "description": "Practica 19 preguntas de Tema 2. Introducción a TCP/IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 20 preguntas de Tema 2. Introducción a TCP/IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-2",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12767,7 +12831,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-2"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 2. Introducción a TCP/IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-2\",\"inLanguage\":\"gl\",\"description\":\"Practica 19 preguntas de Tema 2. Introducción a TCP/IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 2. Introducción a TCP/IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 2. Introducción a TCP/IP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-2\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-2\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 2. Introducción a TCP/IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-2\",\"inLanguage\":\"gl\",\"description\":\"Practica 20 preguntas de Tema 2. Introducción a TCP/IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 2. Introducción a TCP/IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 2. Introducción a TCP/IP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-2\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-2\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-3-4.html",
@@ -12775,7 +12839,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-3-4",
     "title": "Tema 3-4. Protocolos nivel de aplicación: preguntas de Redes",
-    "description": "Practica 77 preguntas de Tema 3-4. Protocolos nivel de aplicación de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 81 preguntas de Tema 3-4. Protocolos nivel de aplicación de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-3-4",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12799,7 +12863,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-3-4"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-3-4\",\"inLanguage\":\"gl\",\"description\":\"Practica 77 preguntas de Tema 3-4. Protocolos nivel de aplicación de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 3-4. Protocolos nivel de aplicación\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-3-4\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-3-4\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-3-4\",\"inLanguage\":\"gl\",\"description\":\"Practica 81 preguntas de Tema 3-4. Protocolos nivel de aplicación de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 3-4. Protocolos nivel de aplicación\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 3-4. Protocolos nivel de aplicación\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-3-4\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-3-4\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-5.html",
@@ -12807,7 +12871,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-5",
     "title": "Tema 5. Protocolos de transporte UDP y TCP: preguntas de Redes",
-    "description": "Practica 51 preguntas de Tema 5. Protocolos de transporte UDP y TCP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 54 preguntas de Tema 5. Protocolos de transporte UDP y TCP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-5",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12831,7 +12895,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-5"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-5\",\"inLanguage\":\"gl\",\"description\":\"Practica 51 preguntas de Tema 5. Protocolos de transporte UDP y TCP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-5\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-5\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-5\",\"inLanguage\":\"gl\",\"description\":\"Practica 54 preguntas de Tema 5. Protocolos de transporte UDP y TCP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 5. Protocolos de transporte UDP y TCP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-5\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-5\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-6.html",
@@ -12839,7 +12903,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-6",
     "title": "Tema 6. Intercambio de datos TCP: preguntas de Redes",
-    "description": "Practica 48 preguntas de Tema 6. Intercambio de datos TCP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 52 preguntas de Tema 6. Intercambio de datos TCP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-6",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12863,7 +12927,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-6"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 6. Intercambio de datos TCP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-6\",\"inLanguage\":\"gl\",\"description\":\"Practica 48 preguntas de Tema 6. Intercambio de datos TCP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 6. Intercambio de datos TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 6. Intercambio de datos TCP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-6\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-6\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 6. Intercambio de datos TCP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-6\",\"inLanguage\":\"gl\",\"description\":\"Practica 52 preguntas de Tema 6. Intercambio de datos TCP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 6. Intercambio de datos TCP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 6. Intercambio de datos TCP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-6\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-6\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-7.html",
@@ -12871,7 +12935,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-7",
     "title": "Tema 7. Nivel de red: protocolo IP: preguntas de Redes",
-    "description": "Practica 81 preguntas de Tema 7. Nivel de red: protocolo IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 90 preguntas de Tema 7. Nivel de red: protocolo IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-7",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12895,7 +12959,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-7"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 7. Nivel de red: protocolo IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-7\",\"inLanguage\":\"gl\",\"description\":\"Practica 81 preguntas de Tema 7. Nivel de red: protocolo IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 7. Nivel de red: protocolo IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 7. Nivel de red: protocolo IP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-7\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-7\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 7. Nivel de red: protocolo IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-7\",\"inLanguage\":\"gl\",\"description\":\"Practica 90 preguntas de Tema 7. Nivel de red: protocolo IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 7. Nivel de red: protocolo IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 7. Nivel de red: protocolo IP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-7\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-7\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-8.html",
@@ -12903,7 +12967,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-8",
     "title": "Tema 8. Enrutamiento: preguntas de Redes | Pásame Exámenes",
-    "description": "Practica 22 preguntas de Tema 8. Enrutamiento de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 25 preguntas de Tema 8. Enrutamiento de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-8",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12927,7 +12991,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-8"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 8. Enrutamiento: preguntas de Redes | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-8\",\"inLanguage\":\"gl\",\"description\":\"Practica 22 preguntas de Tema 8. Enrutamiento de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 8. Enrutamiento\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 8. Enrutamiento\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-8\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-8\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 8. Enrutamiento: preguntas de Redes | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-8\",\"inLanguage\":\"gl\",\"description\":\"Practica 25 preguntas de Tema 8. Enrutamiento de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 8. Enrutamiento\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 8. Enrutamiento\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-8\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-8\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-9.html",
@@ -12935,7 +12999,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-9",
     "title": "Tema 9. ICMP y fragmentación IP: preguntas de Redes",
-    "description": "Practica 24 preguntas de Tema 9. ICMP y fragmentación IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 30 preguntas de Tema 9. ICMP y fragmentación IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-9",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12959,7 +13023,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-9"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 9. ICMP y fragmentación IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-9\",\"inLanguage\":\"gl\",\"description\":\"Practica 24 preguntas de Tema 9. ICMP y fragmentación IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 9. ICMP y fragmentación IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 9. ICMP y fragmentación IP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-9\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-9\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 9. ICMP y fragmentación IP: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-9\",\"inLanguage\":\"gl\",\"description\":\"Practica 30 preguntas de Tema 9. ICMP y fragmentación IP de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 9. ICMP y fragmentación IP\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 9. ICMP y fragmentación IP\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-9\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-9\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-10.html",
@@ -12967,7 +13031,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-10",
     "title": "Tema 10. Protocolo IPv6: preguntas de Redes | Pásame Exámenes",
-    "description": "Practica 11 preguntas de Tema 10. Protocolo IPv6 de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 13 preguntas de Tema 10. Protocolo IPv6 de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-10",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -12991,7 +13055,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-10"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 10. Protocolo IPv6: preguntas de Redes | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-10\",\"inLanguage\":\"gl\",\"description\":\"Practica 11 preguntas de Tema 10. Protocolo IPv6 de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 10. Protocolo IPv6\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 10. Protocolo IPv6\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-10\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-10\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 10. Protocolo IPv6: preguntas de Redes | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-10\",\"inLanguage\":\"gl\",\"description\":\"Practica 13 preguntas de Tema 10. Protocolo IPv6 de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 10. Protocolo IPv6\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 10. Protocolo IPv6\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-10\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-10\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-11.html",
@@ -12999,7 +13063,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-11",
     "title": "Tema 11. TCP/IP y nivel de enlace: preguntas de Redes",
-    "description": "Practica 24 preguntas de Tema 11. TCP/IP y nivel de enlace de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 29 preguntas de Tema 11. TCP/IP y nivel de enlace de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-11",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -13023,7 +13087,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-11"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 11. TCP/IP y nivel de enlace: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-11\",\"inLanguage\":\"gl\",\"description\":\"Practica 24 preguntas de Tema 11. TCP/IP y nivel de enlace de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 11. TCP/IP y nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 11. TCP/IP y nivel de enlace\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-11\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-11\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 11. TCP/IP y nivel de enlace: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-11\",\"inLanguage\":\"gl\",\"description\":\"Practica 29 preguntas de Tema 11. TCP/IP y nivel de enlace de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 11. TCP/IP y nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 11. TCP/IP y nivel de enlace\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-11\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-11\"}]}"
   },
   {
     "url": "seo/gl/redes/practice/tema-12.html",
@@ -13031,7 +13095,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/redes/practice/tema-12",
     "title": "Tema 12. Tecnologías del nivel de enlace: preguntas de Redes",
-    "description": "Practica 49 preguntas de Tema 12. Tecnologías del nivel de enlace de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
+    "description": "Practica 50 preguntas de Tema 12. Tecnologías del nivel de enlace de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/practice/tema-12",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -13055,7 +13119,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/practice/tema-12"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 12. Tecnologías del nivel de enlace: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-12\",\"inLanguage\":\"gl\",\"description\":\"Practica 49 preguntas de Tema 12. Tecnologías del nivel de enlace de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 12. Tecnologías del nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 12. Tecnologías del nivel de enlace\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-12\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-12\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Tema 12. Tecnologías del nivel de enlace: preguntas de Redes\",\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-12\",\"inLanguage\":\"gl\",\"description\":\"Practica 50 preguntas de Tema 12. Tecnologías del nivel de enlace de recompilacións de Redes, con respostas modelo e autocorrección. 202319, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Tema 12. Tecnologías del nivel de enlace\"},{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Tema 12. Tecnologías del nivel de enlace\",\"item\":\"https://pe.pablopl.dev/gl/redes/practice/tema-12\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/practice/tema-12\"}]}"
   },
   {
     "url": "seo/gl/redes/exam/daypo-recopilatorio-lara.html",
@@ -13126,8 +13190,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/redes/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 de Redes: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Mayo 2025 de Redes: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -13151,6 +13215,38 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\"}]}"
+  },
+  {
+    "url": "seo/gl/redes/exam/2026-01.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "gl",
+    "pathWithoutLang": "/redes/exam/2026-01",
+    "title": "Recopilatorio Enero 2026 de Redes: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Enero 2026 de Redes con 41 preguntas. 41 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/redes/exam/2026-01",
+    "ogImage": "https://pe.pablopl.dev/og/redes.png",
+    "ogImageType": "image/png",
+    "locale": "gl_ES",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/redes/exam/2026-01"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/redes/exam/2026-01"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/redes/exam/2026-01"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/redes/exam/2026-01"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2026 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2026-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Enero 2026 de Redes con 41 preguntas. 41 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2026\",\"item\":\"https://pe.pablopl.dev/gl/redes/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2026-01\"}]}"
   }
 ] as const satisfies readonly PageMetaData[];

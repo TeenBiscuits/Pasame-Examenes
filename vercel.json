@@ -550,6 +550,10 @@
         "destination": "/seo/en/redes/exam/2025-05.html"
     },
     {
+        "source": "/en/redes/exam/2026-01",
+        "destination": "/seo/en/redes/exam/2026-01.html"
+    },
+    {
         "source": "/es",
         "destination": "/seo/es.html"
     },
@@ -1098,6 +1102,10 @@
         "destination": "/seo/es/redes/exam/2025-05.html"
     },
     {
+        "source": "/es/redes/exam/2026-01",
+        "destination": "/seo/es/redes/exam/2026-01.html"
+    },
+    {
         "source": "/gl",
         "destination": "/seo/gl.html"
     },
@@ -1644,6 +1652,10 @@
     {
         "source": "/gl/redes/exam/2025-05",
         "destination": "/seo/gl/redes/exam/2025-05.html"
+    },
+    {
+        "source": "/gl/redes/exam/2026-01",
+        "destination": "/seo/gl/redes/exam/2026-01.html"
     },
     {
         "source": "/en/(.*)",
