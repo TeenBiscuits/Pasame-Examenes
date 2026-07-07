@@ -45,5 +45,15 @@ export const meta: SubjectMeta = {
       durationMinutes: 120,
       hasPdf: false,
     },
+    {
+      year: "recopilatorio-mayo-2022",
+      title: "Recopilatorio Mayo 2022",
+      date: "Mayo 2022",
+      description: "6 ptos · 13 preguntas",
+      passPoints: 3,
+      totalPoints: 6,
+      durationMinutes: 120,
+      hasPdf: false,
+    },
   ],
 };

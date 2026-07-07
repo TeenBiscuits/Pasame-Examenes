@@ -1671,4 +1671,249 @@ CREATE TABLE emp (
     ],
     correctAnswer: "c",
   },
+  {
+    id: "recopilatorio-mayo-2022_01",
+    exam: "recopilatorio-mayo-2022",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 2,
+    question: `Modelo entidad-relación.
+
+Dibuja el diagrama entidad-relación que modela el minimundo que se describe a continuación.
+
+Debes identificar claramente las entidades fuertes y débiles (identificando también como débil el tipo de relación que se establece entre ellas), todos los atributos e identificadores de los tipos de entidad, y los atributos, cardinalidad y participación de los tipos de relación, utilizando la notación utilizada en clase (no uses la notación mínimos-máximos).
+
+Queremos diseñar la base de datos de una cadena de supermercados. De cada supermercado almacenamos un código único, nombre, dirección y teléfonos.
+
+Almacenamos información del personal del supermercado. De cada empleado almacenamos el NSS, el nombre, la dirección, la fecha de nacimiento, el número de teléfono y el correo electrónico. En un momento dado, en cada supermercado trabajan varios empleados; y cada empleado está destinado a un solo supermercado y ocupa un solo puesto (reponedor, cajero, carnicero, etc.). Pero debemos poder consultar no solo el personal actual de cada supermercado, sino también el personal del supermercado en cualquier momento en el pasado. Y, para cada empleado, debemos poder consultar el puesto que ocupó en cada uno de los períodos que trabajó. Por ejemplo, el empleado con NSS 34555333Z puede trabajar:
+
+- En el supermercado SUP-1 del 07/01/20 al 07/08/20 como reponedor.
+- Del 08/08/20 al 01/07/22 en el supermercado SUP-99 de supervisor.
+- Desde el 01/07/22 a la fecha vuelve a laborar en el SUP-1 como supervisor.
+
+Como puedes ver, puede trabajar en el mismo supermercado durante varios períodos de tiempo, con el mismo trabajo o con otro diferente.
+
+Necesitamos almacenar los productos a la venta, que son iguales en todos los supermercados. De cada producto almacenamos un código único, nombre y precio de venta actual. Aunque los productos pueden cambiar de precio incluso dentro del mismo día, sólo almacenamos el precio que tiene actualmente.
+
+Cada cierto tiempo aparecen promociones (válidas para todos los supermercados) que incluyen obsequios por la compra de determinados productos. Para cada promoción queremos guardar su código (diferente para cada promoción), nombre y fechas de inicio y finalización del período en el que se aplica. También queremos registrar los productos específicos incluidos en la promoción, y el regalo específico asociado a cada uno de ellos (que puede cambiar de promoción a promoción, y en una misma promoción puede ser diferente para cada producto). Por ejemplo, en la promoción "Verano 2021" (vigente del 01/07/2021 al 31/07/2021), el producto "Yogures Maldonado Pack 4" tenía asociado el regalo "Álbum de cromos", mientras que "Gaseosa espirituosa" tenía asociado el regalo "Bolsa de playa". Y en la promoción "Otoño 2021" (del 10/01/2021 al 15/10/2021), "Gaseosa espirituosa" cambió de regalo: pasó a ser "Copa e cristal"; y "Yogures Maldonado Pack 4" ya no formaba parte de la promoción.
+
+De cada venta a un cliente guardamos información sobre la factura simplificada (o tique de compra). Cada factura simplificada se genera en un supermercado y tiene un número único (dentro de todas las facturas simplificadas de todos los supermercados de la cadena), una fecha y una hora.
+
+La factura debe incluir la lista de productos y el número de unidades de cada producto. Observa que dependiendo de cómo coloque el cliente los productos en la cinta de la caja, puede que el cajero pase un producto al principio del proceso, pase otros productos, y cuando lleguen al final, haya más unidades del mismo producto. Es decir, dentro de la factura simplificada A-0001 pueden aparecer:
+
+- 4 unidades del producto X-0034.
+- 5 unidades del producto C-0001.
+- 2 unidades del producto X-0034 (que ya aparecía en la primera línea).
+
+En la factura simplificada deben figurar las dos líneas de producto diferenciadas X-0034. Para diferenciar líneas dentro de la misma factura simplificada, puedes usar un número de línea dentro de la factura simplificada, que comienza en 1 en cada factura simplificada.
+
+De cada línea hay que saber el producto, el número de unidades, el precio del producto activo en el momento de la creación de la factura simplificada y el subtotal, es decir, el número de unidades por el precio del producto.
+
+Importante: ten en cuenta que en la información del producto sólo mantenemos el precio actual del producto, mientras que para cada línea de una factura necesitamos saber el precio del producto en el momento en que se generó la factura simplificada.
+
+Finalmente, para cada factura simplificada necesitamos saber el importe total.
+
+Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para identificar entidades; si algún dato puede calcularse, represéntalo igualmente como atributo derivado; evita almacenar información duplicada.`,
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2022_02",
+    exam: "recopilatorio-mayo-2022",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 0.75,
+    question:
+      "Paso relacional. Transforma el siguiente diagrama ER al esquema relacional equivalente (los esquemas de relación correspondientes al diagrama ER), indicando claramente las claves primarias y representando gráficamente (con flechas) las restricciones de integridad referencial existentes. Utiliza la notación vista en clase.",
+    image: getImage(imageMap, "recopilatorio-mayo-2022-paso-relacional.png"),
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2022_03",
+    exam: "recopilatorio-mayo-2022",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 1.25,
+    question: `Normalización.
+
+**a) Dependencias funcionales [0.4 p]**
+
+Un sitio web de información cinematográfica recopila información sobre diferentes películas, el género cinematográfico al que corresponden y el director/a (o directores/as) de dichas películas.
+
+Considera la relación universal vinculada a la base de datos del sitio web, en la que cada tupla vincula a un director/a con una película de las dirigidas por él/ella:
+
+\`\`\`
+Dirigido(codP, títuloP, añoP, codG, nomG, aptoG, codD, nomD, paisD)
+\`\`\`
+
+Descripción resumida de atributos: \`codP\` identifica una película; \`tituloP\` no es único; cada película tiene un único año de estreno y un único género; \`codG\` identifica el género; \`nomG\` es único por género; \`aptoG\` indica si el género es adecuado para público infantil; \`codD\` identifica un director/a; cada director/a tiene un nombre y un único país; una película puede tener varios directores/as y un director/a puede dirigir varias películas.
+
+Indica el conjunto de dependencias funcionales completas que se producen en \`Dirigido\`.
+
+**b) Forma normal y claves [0.25 p]**
+
+Una compañía telefónica almacena información sobre recibos de consumo de datos de teléfonos móviles con contrato en vigor:
+
+\`\`\`
+Recibo(numTelefono, fechaIniContrato, tipoTarifa, nombreTarifa, precioTarifa, nifUsu, nombreUsu, dirección, fechaRecibo, consumo, importeTotal)
+\`\`\`
+
+Dependencias funcionales completas asociadas a \`Recibo\`:
+
+1. \`nifUsu -> nombreUsu, dirección\`
+2. \`tipoTarifa -> nombreTarifa, precioTarifa\`
+3. \`nombreTarifa -> tipoTarifa, precioTarifa\`
+4. \`numTelefono -> nifUsu, nombreUsu, dirección, fechaIniContrato, tipoTarifa\`
+5. \`numTelefono, fechaRecibo -> consumo, importeTotal\`
+
+Indica la/s clave/s candidata/s que existen y la forma normal en que está \`Recibo\`. Puedes suponer que, como mínimo, está en 1FN.
+
+**c) Descomposición [0.6 p]**
+
+Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda información y todas las relaciones estén en FNBC. Escribe el resultado final con los esquemas de las relaciones, claves candidatas y dependencias funcionales completas de cada una.`,
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2022_04",
+    exam: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "Si queremos realizar una lectura secuencial de un fichero, ¿qué es más beneficioso?",
+    options: [
+      "A. Usar un tamaño de bloque físico grande.",
+      "B. Usar un tamaño de bloque físico pequeño.",
+      "C. El tamaño de bloque físico no es relevante puesto que se van a leer todos los registros.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2022_05",
+    exam: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "En una estructura de bloques con slots (o estrategia slotted-page), ¿qué es cierto?",
+    options: [
+      "A. Se almacenan registros de tamaño fijo que se insertan rellenando el hueco de otro registro previamente borrado.",
+      "B. Cada bloque está compuesto por varios slots, y cada uno de ellos puede ser transferido a memoria independientemente de los demás.",
+      "C. El número de registros que caben como máximo en cada bloque es variable, puesto que se almacenan registros de tamaño variable.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "recopilatorio-mayo-2022_06",
+    exam: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "Hash extensible: borramos el registro L en este fichero, conservando el J. ¿Qué valor tendrán después d y d' (para el bloque que contenga J)?",
+    image: getImage(imageMap, "recopilatorio-mayo-2022-hash-extensible.png"),
+    options: ["A. d=3, d'=3", "B. d=2, d'=2", "C. d=3, d'=2"],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2022_07",
+    exam: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question: "En un árbol homogéneo...",
+    options: [
+      "A. Cada nodo posee dos tipos de punteros.",
+      "B. Las búsquedas siempre llegan a nivel de nodos hoja.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2022_08",
+    exam: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "En la tabla `PEDIDO(código, fecha, producto, marca, sección, unidades)`, que físicamente se guarda en un fichero montículo (heap), hay almacenadas miles de tuplas, pero nunca hay más de dos o tres tuplas que compartan el mismo valor del campo fecha. ¿Crearías un índice sobre el atributo fecha?",
+    options: [
+      "A. No, el índice puede que no ayude mucho en las búsquedas por el atributo fecha, e incluso puede que las empeore.",
+      "B. Sí, el índice ayudará en operaciones de búsqueda sobre el campo fecha.",
+      "C. El índice sería incorrecto y no sería útil para ningún tipo de búsqueda.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2022_09",
+    exam: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "Árboles B: si insertamos el valor 30 en este árbol, con d=1, ¿qué valor/es almacenará el nodo que ahora contiene el valor 17?",
+    image: getImage(imageMap, "recopilatorio-mayo-2022-arbol-b.png"),
+    options: ["A. 17", "B. 17 y 20", "C. 17 y 25"],
+    correctAnswer: "c",
+  },
+  {
+    id: "recopilatorio-mayo-2022_10",
+    exam: "recopilatorio-mayo-2022",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: "El protocolo de bloqueo riguroso de dos fases:",
+    options: [
+      "A. Especifica que se tienen que adquirir todos los bloqueos justo en el momento de comenzar la transacción.",
+      "B. Especifica que se tienen que liberar todos los bloqueos justo en el momento de terminar la transacción.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2022_11",
+    exam: "recopilatorio-mayo-2022",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: "Transacciones:",
+    options: [
+      "A. Una ejecución concurrente de dos transacciones es siempre correcta si ambas usan bloqueos de lectura/escritura para acceder a los datos que necesitan.",
+      "B. Para que una ejecución concurrente de dos transacciones se considere correcta debe producir el mismo resultado final que alguna planificación serie de ambas transacciones.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2022_12",
+    exam: "recopilatorio-mayo-2022",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question:
+      "Si en una transacción se produce el problema de la lectura fantasma:",
+    options: [
+      "A. Quiere decir que se hace una lectura que no devuelve ningún dato, cuando realmente sí que había datos en la base de datos que deberían haber aparecido en el resultado de la consulta.",
+      "B. Quiere decir que se hace una consulta, y el valor devuelto de un dato es demasiado viejo (hay una versión más actualizada de ese dato).",
+      "C. Quiere decir que durante la transacción se hace dos veces la misma consulta, y en la segunda ocasión se recupera un número de filas diferente a la primera vez que se ejecutó la consulta (sin que la transacción haya hecho ninguna actualización que pueda haber dado lugar a ese cambio).",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "recopilatorio-mayo-2022_13",
+    exam: "recopilatorio-mayo-2022",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: `Supongamos el siguiente ejemplo de utilización de esquema de multiversión para control de concurrencia. ¿Qué ocurrirá si una transacción, cuya marca temporal asociada es 2, quiere escribir el dato X?
+
+| Versión X | ML | ME |
+| --- | --- | --- |
+| Q1 | 4 | 1 |`,
+    options: [
+      "A. El contenido de la versión Q1 será sobrescrito.",
+      "B. Se creará una nueva versión Q2.",
+      "C. La transacción será abortada.",
+    ],
+    correctAnswer: "c",
+  },
 ];

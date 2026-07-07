@@ -30,6 +30,10 @@
         "destination": "/seo/en/bede/exam/recopilatorio-mayo-2026.html"
     },
     {
+        "source": "/en/bede/exam/recopilatorio-mayo-2022",
+        "destination": "/seo/en/bede/exam/recopilatorio-mayo-2022.html"
+    },
+    {
         "source": "/en/cepe",
         "destination": "/seo/en/cepe.html"
     },
@@ -590,6 +594,10 @@
         "destination": "/seo/es/bede/exam/recopilatorio-mayo-2026.html"
     },
     {
+        "source": "/es/bede/exam/recopilatorio-mayo-2022",
+        "destination": "/seo/es/bede/exam/recopilatorio-mayo-2022.html"
+    },
+    {
         "source": "/es/cepe",
         "destination": "/seo/es/cepe.html"
     },
@@ -1148,6 +1156,10 @@
     {
         "source": "/gl/bede/exam/recopilatorio-mayo-2026",
         "destination": "/seo/gl/bede/exam/recopilatorio-mayo-2026.html"
+    },
+    {
+        "source": "/gl/bede/exam/recopilatorio-mayo-2022",
+        "destination": "/seo/gl/bede/exam/recopilatorio-mayo-2022.html"
     },
     {
         "source": "/gl/cepe",
