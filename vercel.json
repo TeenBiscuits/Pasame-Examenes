@@ -10,6 +10,10 @@
         "destination": "/seo/en/bede.html"
     },
     {
+        "source": "/en/bede/practice/modelado-normalizacion",
+        "destination": "/seo/en/bede/practice/modelado-normalizacion.html"
+    },
+    {
         "source": "/en/bede/practice/recuperacion-concurrencia",
         "destination": "/seo/en/bede/practice/recuperacion-concurrencia.html"
     },
@@ -20,6 +24,10 @@
     {
         "source": "/en/bede/exam/daypo-preguntas",
         "destination": "/seo/en/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/en/bede/exam/recopilatorio-mayo-2026",
+        "destination": "/seo/en/bede/exam/recopilatorio-mayo-2026.html"
     },
     {
         "source": "/en/cepe",
@@ -562,6 +570,10 @@
         "destination": "/seo/es/bede.html"
     },
     {
+        "source": "/es/bede/practice/modelado-normalizacion",
+        "destination": "/seo/es/bede/practice/modelado-normalizacion.html"
+    },
+    {
         "source": "/es/bede/practice/recuperacion-concurrencia",
         "destination": "/seo/es/bede/practice/recuperacion-concurrencia.html"
     },
@@ -572,6 +584,10 @@
     {
         "source": "/es/bede/exam/daypo-preguntas",
         "destination": "/seo/es/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/es/bede/exam/recopilatorio-mayo-2026",
+        "destination": "/seo/es/bede/exam/recopilatorio-mayo-2026.html"
     },
     {
         "source": "/es/cepe",
@@ -1114,6 +1130,10 @@
         "destination": "/seo/gl/bede.html"
     },
     {
+        "source": "/gl/bede/practice/modelado-normalizacion",
+        "destination": "/seo/gl/bede/practice/modelado-normalizacion.html"
+    },
+    {
         "source": "/gl/bede/practice/recuperacion-concurrencia",
         "destination": "/seo/gl/bede/practice/recuperacion-concurrencia.html"
     },
@@ -1124,6 +1144,10 @@
     {
         "source": "/gl/bede/exam/daypo-preguntas",
         "destination": "/seo/gl/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/gl/bede/exam/recopilatorio-mayo-2026",
+        "destination": "/seo/gl/bede/exam/recopilatorio-mayo-2026.html"
     },
     {
         "source": "/gl/cepe",

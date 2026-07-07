@@ -39,7 +39,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/bede",
     "title": "Bases de Datos: compilations and solved questions",
-    "description": "Practice 98 Bases de Datos questions from 1 compilations with model answers and self-grading. 202315, Universidade da Coruña.",
+    "description": "Practice 111 Bases de Datos questions from 2 compilations with model answers and self-grading. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/bede",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -63,7 +63,39 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bases de Datos: compilations and solved questions\",\"url\":\"https://pe.pablopl.dev/en/bede\",\"inLanguage\":\"en\",\"description\":\"Practice 98 Bases de Datos questions from 1 compilations with model answers and self-grading. 202315, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"}],\"url\":\"https://pe.pablopl.dev/en/bede\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bases de Datos: compilations and solved questions\",\"url\":\"https://pe.pablopl.dev/en/bede\",\"inLanguage\":\"en\",\"description\":\"Practice 111 Bases de Datos questions from 2 compilations with model answers and self-grading. 202315, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"}],\"url\":\"https://pe.pablopl.dev/en/bede\"}]}"
+  },
+  {
+    "url": "seo/en/bede/practice/modelado-normalizacion.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "en",
+    "pathWithoutLang": "/bede/practice/modelado-normalizacion",
+    "title": "Modelado y Normalización: Bases de Datos practice questions",
+    "description": "Practice 3 Modelado y Normalización questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/en/bede/practice/modelado-normalizacion",
+    "ogImage": "https://pe.pablopl.dev/og/bede.png",
+    "ogImageType": "image/png",
+    "locale": "en_US",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Modelado y Normalización: Bases de Datos practice questions\",\"url\":\"https://pe.pablopl.dev/en/bede/practice/modelado-normalizacion\",\"inLanguage\":\"en\",\"description\":\"Practice 3 Modelado y Normalización questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Modelado y Normalización\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Modelado y Normalización\",\"item\":\"https://pe.pablopl.dev/en/bede/practice/modelado-normalizacion\"}],\"url\":\"https://pe.pablopl.dev/en/bede/practice/modelado-normalizacion\"}]}"
   },
   {
     "url": "seo/en/bede/practice/recuperacion-concurrencia.html",
@@ -71,7 +103,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/bede/practice/recuperacion-concurrencia",
     "title": "Recuperación y Concurrencia: Bases de Datos practice questions",
-    "description": "Practice 48 Recuperación y Concurrencia questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.",
+    "description": "Practice 53 Recuperación y Concurrencia questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/bede/practice/recuperacion-concurrencia",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -95,7 +127,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Recuperación y Concurrencia: Bases de Datos practice questions\",\"url\":\"https://pe.pablopl.dev/en/bede/practice/recuperacion-concurrencia\",\"inLanguage\":\"en\",\"description\":\"Practice 48 Recuperación y Concurrencia questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Recuperación y Concurrencia\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recuperación y Concurrencia\",\"item\":\"https://pe.pablopl.dev/en/bede/practice/recuperacion-concurrencia\"}],\"url\":\"https://pe.pablopl.dev/en/bede/practice/recuperacion-concurrencia\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Recuperación y Concurrencia: Bases de Datos practice questions\",\"url\":\"https://pe.pablopl.dev/en/bede/practice/recuperacion-concurrencia\",\"inLanguage\":\"en\",\"description\":\"Practice 53 Recuperación y Concurrencia questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Recuperación y Concurrencia\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recuperación y Concurrencia\",\"item\":\"https://pe.pablopl.dev/en/bede/practice/recuperacion-concurrencia\"}],\"url\":\"https://pe.pablopl.dev/en/bede/practice/recuperacion-concurrencia\"}]}"
   },
   {
     "url": "seo/en/bede/practice/ficheros.html",
@@ -103,7 +135,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/bede/practice/ficheros",
     "title": "Ficheros: Bases de Datos practice questions | Pásame Exámenes",
-    "description": "Practice 50 Ficheros questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.",
+    "description": "Practice 55 Ficheros questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/bede/practice/ficheros",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -127,7 +159,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede/practice/ficheros"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Ficheros: Bases de Datos practice questions | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/en/bede/practice/ficheros\",\"inLanguage\":\"en\",\"description\":\"Practice 50 Ficheros questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Ficheros\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ficheros\",\"item\":\"https://pe.pablopl.dev/en/bede/practice/ficheros\"}],\"url\":\"https://pe.pablopl.dev/en/bede/practice/ficheros\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Ficheros: Bases de Datos practice questions | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/en/bede/practice/ficheros\",\"inLanguage\":\"en\",\"description\":\"Practice 55 Ficheros questions from Bases de Datos compilations with model answers and self-grading. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Ficheros\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ficheros\",\"item\":\"https://pe.pablopl.dev/en/bede/practice/ficheros\"}],\"url\":\"https://pe.pablopl.dev/en/bede/practice/ficheros\"}]}"
   },
   {
     "url": "seo/en/bede/exam/daypo-preguntas.html",
@@ -160,6 +192,38 @@ export const pages = [
       }
     ],
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Daypo Preguntas Bases de Datos: timed practice\",\"url\":\"https://pe.pablopl.dev/en/bede/exam/daypo-preguntas\",\"inLanguage\":\"en\",\"description\":\"Practice the Daypo Preguntas Bases de Datos timed set with 98 questions. 98 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Daypo Preguntas\",\"item\":\"https://pe.pablopl.dev/en/bede/exam/daypo-preguntas\"}],\"url\":\"https://pe.pablopl.dev/en/bede/exam/daypo-preguntas\"}]}"
+  },
+  {
+    "url": "seo/en/bede/exam/recopilatorio-mayo-2026.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "en",
+    "pathWithoutLang": "/bede/exam/recopilatorio-mayo-2026",
+    "title": "Recopilatorio Mayo 2026 Bases de Datos: timed practice",
+    "description": "Practice the Recopilatorio Mayo 2026 Bases de Datos timed set with 13 questions. 6 points, 120 minutes, model answers and self-grading.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/en/bede/exam/recopilatorio-mayo-2026",
+    "ogImage": "https://pe.pablopl.dev/og/bede.png",
+    "ogImageType": "image/png",
+    "locale": "en_US",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2026 Bases de Datos: timed practice\",\"url\":\"https://pe.pablopl.dev/en/bede/exam/recopilatorio-mayo-2026\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Mayo 2026 Bases de Datos timed set with 13 questions. 6 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/en/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2026\",\"item\":\"https://pe.pablopl.dev/en/bede/exam/recopilatorio-mayo-2026\"}],\"url\":\"https://pe.pablopl.dev/en/bede/exam/recopilatorio-mayo-2026\"}]}"
   },
   {
     "url": "seo/en/cepe.html",
@@ -4455,7 +4519,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/bede",
     "title": "Bases de Datos: recopilatorios y preguntas resueltas",
-    "description": "Practica 98 preguntas de Bases de Datos de 1 recopilatorios de práctica con respuestas modelo y autocorrección. 202315, Universidade da Coruña.",
+    "description": "Practica 111 preguntas de Bases de Datos de 2 recopilatorios de práctica con respuestas modelo y autocorrección. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/bede",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -4479,7 +4543,39 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bases de Datos: recopilatorios y preguntas resueltas\",\"url\":\"https://pe.pablopl.dev/es/bede\",\"inLanguage\":\"es\",\"description\":\"Practica 98 preguntas de Bases de Datos de 1 recopilatorios de práctica con respuestas modelo y autocorrección. 202315, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"}],\"url\":\"https://pe.pablopl.dev/es/bede\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bases de Datos: recopilatorios y preguntas resueltas\",\"url\":\"https://pe.pablopl.dev/es/bede\",\"inLanguage\":\"es\",\"description\":\"Practica 111 preguntas de Bases de Datos de 2 recopilatorios de práctica con respuestas modelo y autocorrección. 202315, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"}],\"url\":\"https://pe.pablopl.dev/es/bede\"}]}"
+  },
+  {
+    "url": "seo/es/bede/practice/modelado-normalizacion.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "es",
+    "pathWithoutLang": "/bede/practice/modelado-normalizacion",
+    "title": "Modelado y Normalización: preguntas de Bases de Datos",
+    "description": "Practica 3 preguntas de Modelado y Normalización de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion",
+    "ogImage": "https://pe.pablopl.dev/og/bede.png",
+    "ogImageType": "image/png",
+    "locale": "es_ES",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Modelado y Normalización: preguntas de Bases de Datos\",\"url\":\"https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion\",\"inLanguage\":\"es\",\"description\":\"Practica 3 preguntas de Modelado y Normalización de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Modelado y Normalización\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Modelado y Normalización\",\"item\":\"https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion\"}],\"url\":\"https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion\"}]}"
   },
   {
     "url": "seo/es/bede/practice/recuperacion-concurrencia.html",
@@ -4487,7 +4583,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/bede/practice/recuperacion-concurrencia",
     "title": "Recuperación y Concurrencia: preguntas de Bases de Datos",
-    "description": "Practica 48 preguntas de Recuperación y Concurrencia de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.",
+    "description": "Practica 53 preguntas de Recuperación y Concurrencia de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -4511,7 +4607,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Recuperación y Concurrencia: preguntas de Bases de Datos\",\"url\":\"https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia\",\"inLanguage\":\"es\",\"description\":\"Practica 48 preguntas de Recuperación y Concurrencia de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Recuperación y Concurrencia\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recuperación y Concurrencia\",\"item\":\"https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia\"}],\"url\":\"https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Recuperación y Concurrencia: preguntas de Bases de Datos\",\"url\":\"https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia\",\"inLanguage\":\"es\",\"description\":\"Practica 53 preguntas de Recuperación y Concurrencia de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Recuperación y Concurrencia\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recuperación y Concurrencia\",\"item\":\"https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia\"}],\"url\":\"https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia\"}]}"
   },
   {
     "url": "seo/es/bede/practice/ficheros.html",
@@ -4519,7 +4615,7 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/bede/practice/ficheros",
     "title": "Ficheros: preguntas de Bases de Datos | Pásame Exámenes",
-    "description": "Practica 50 preguntas de Ficheros de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.",
+    "description": "Practica 55 preguntas de Ficheros de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/bede/practice/ficheros",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -4543,7 +4639,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede/practice/ficheros"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Ficheros: preguntas de Bases de Datos | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/bede/practice/ficheros\",\"inLanguage\":\"es\",\"description\":\"Practica 50 preguntas de Ficheros de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Ficheros\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ficheros\",\"item\":\"https://pe.pablopl.dev/es/bede/practice/ficheros\"}],\"url\":\"https://pe.pablopl.dev/es/bede/practice/ficheros\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Ficheros: preguntas de Bases de Datos | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/bede/practice/ficheros\",\"inLanguage\":\"es\",\"description\":\"Practica 55 preguntas de Ficheros de recopilatorios de Bases de Datos, con respuestas modelo y autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Ficheros\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ficheros\",\"item\":\"https://pe.pablopl.dev/es/bede/practice/ficheros\"}],\"url\":\"https://pe.pablopl.dev/es/bede/practice/ficheros\"}]}"
   },
   {
     "url": "seo/es/bede/exam/daypo-preguntas.html",
@@ -4576,6 +4672,38 @@ export const pages = [
       }
     ],
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Daypo Preguntas de Bases de Datos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/bede/exam/daypo-preguntas\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Daypo Preguntas de Bases de Datos con 98 preguntas. 98 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Daypo Preguntas\",\"item\":\"https://pe.pablopl.dev/es/bede/exam/daypo-preguntas\"}],\"url\":\"https://pe.pablopl.dev/es/bede/exam/daypo-preguntas\"}]}"
+  },
+  {
+    "url": "seo/es/bede/exam/recopilatorio-mayo-2026.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "es",
+    "pathWithoutLang": "/bede/exam/recopilatorio-mayo-2026",
+    "title": "Recopilatorio Mayo 2026 de Bases de Datos: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Mayo 2026 de Bases de Datos con 13 preguntas. 6 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026",
+    "ogImage": "https://pe.pablopl.dev/og/bede.png",
+    "ogImageType": "image/png",
+    "locale": "es_ES",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2026 de Bases de Datos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Mayo 2026 de Bases de Datos con 13 preguntas. 6 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/es/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2026\",\"item\":\"https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026\"}],\"url\":\"https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026\"}]}"
   },
   {
     "url": "seo/es/cepe.html",
@@ -8871,7 +8999,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/bede",
     "title": "Bases de Datos: recompilacións e preguntas resoltas",
-    "description": "Practica 98 preguntas de Bases de Datos de 1 recompilacións de práctica con respostas modelo e autocorrección. 202315, Universidade da Coruña.",
+    "description": "Practica 111 preguntas de Bases de Datos de 2 recompilacións de práctica con respostas modelo e autocorrección. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/bede",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -8895,7 +9023,39 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bases de Datos: recompilacións e preguntas resoltas\",\"url\":\"https://pe.pablopl.dev/gl/bede\",\"inLanguage\":\"gl\",\"description\":\"Practica 98 preguntas de Bases de Datos de 1 recompilacións de práctica con respostas modelo e autocorrección. 202315, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"}],\"url\":\"https://pe.pablopl.dev/gl/bede\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Bases de Datos: recompilacións e preguntas resoltas\",\"url\":\"https://pe.pablopl.dev/gl/bede\",\"inLanguage\":\"gl\",\"description\":\"Practica 111 preguntas de Bases de Datos de 2 recompilacións de práctica con respostas modelo e autocorrección. 202315, Universidade da Coruña.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"}],\"url\":\"https://pe.pablopl.dev/gl/bede\"}]}"
+  },
+  {
+    "url": "seo/gl/bede/practice/modelado-normalizacion.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "gl",
+    "pathWithoutLang": "/bede/practice/modelado-normalizacion",
+    "title": "Modelado y Normalización: preguntas de Bases de Datos",
+    "description": "Practica 3 preguntas de Modelado y Normalización de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/bede/practice/modelado-normalizacion",
+    "ogImage": "https://pe.pablopl.dev/og/bede.png",
+    "ogImageType": "image/png",
+    "locale": "gl_ES",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/bede/practice/modelado-normalizacion"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/bede/practice/modelado-normalizacion"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Modelado y Normalización: preguntas de Bases de Datos\",\"url\":\"https://pe.pablopl.dev/gl/bede/practice/modelado-normalizacion\",\"inLanguage\":\"gl\",\"description\":\"Practica 3 preguntas de Modelado y Normalización de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Modelado y Normalización\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Modelado y Normalización\",\"item\":\"https://pe.pablopl.dev/gl/bede/practice/modelado-normalizacion\"}],\"url\":\"https://pe.pablopl.dev/gl/bede/practice/modelado-normalizacion\"}]}"
   },
   {
     "url": "seo/gl/bede/practice/recuperacion-concurrencia.html",
@@ -8903,7 +9063,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/bede/practice/recuperacion-concurrencia",
     "title": "Recuperación y Concurrencia: preguntas de Bases de Datos",
-    "description": "Practica 48 preguntas de Recuperación y Concurrencia de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.",
+    "description": "Practica 53 preguntas de Recuperación y Concurrencia de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/bede/practice/recuperacion-concurrencia",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -8927,7 +9087,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede/practice/recuperacion-concurrencia"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Recuperación y Concurrencia: preguntas de Bases de Datos\",\"url\":\"https://pe.pablopl.dev/gl/bede/practice/recuperacion-concurrencia\",\"inLanguage\":\"gl\",\"description\":\"Practica 48 preguntas de Recuperación y Concurrencia de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Recuperación y Concurrencia\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recuperación y Concurrencia\",\"item\":\"https://pe.pablopl.dev/gl/bede/practice/recuperacion-concurrencia\"}],\"url\":\"https://pe.pablopl.dev/gl/bede/practice/recuperacion-concurrencia\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Recuperación y Concurrencia: preguntas de Bases de Datos\",\"url\":\"https://pe.pablopl.dev/gl/bede/practice/recuperacion-concurrencia\",\"inLanguage\":\"gl\",\"description\":\"Practica 53 preguntas de Recuperación y Concurrencia de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Recuperación y Concurrencia\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recuperación y Concurrencia\",\"item\":\"https://pe.pablopl.dev/gl/bede/practice/recuperacion-concurrencia\"}],\"url\":\"https://pe.pablopl.dev/gl/bede/practice/recuperacion-concurrencia\"}]}"
   },
   {
     "url": "seo/gl/bede/practice/ficheros.html",
@@ -8935,7 +9095,7 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/bede/practice/ficheros",
     "title": "Ficheros: preguntas de Bases de Datos | Pásame Exámenes",
-    "description": "Practica 50 preguntas de Ficheros de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.",
+    "description": "Practica 55 preguntas de Ficheros de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/bede/practice/ficheros",
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
@@ -8959,7 +9119,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/bede/practice/ficheros"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Ficheros: preguntas de Bases de Datos | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/bede/practice/ficheros\",\"inLanguage\":\"gl\",\"description\":\"Practica 50 preguntas de Ficheros de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Ficheros\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ficheros\",\"item\":\"https://pe.pablopl.dev/gl/bede/practice/ficheros\"}],\"url\":\"https://pe.pablopl.dev/gl/bede/practice/ficheros\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Ficheros: preguntas de Bases de Datos | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/bede/practice/ficheros\",\"inLanguage\":\"gl\",\"description\":\"Practica 55 preguntas de Ficheros de recompilacións de Bases de Datos, con respostas modelo e autocorrección. 202315, Universidade da Coruña.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Ficheros\"},{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ficheros\",\"item\":\"https://pe.pablopl.dev/gl/bede/practice/ficheros\"}],\"url\":\"https://pe.pablopl.dev/gl/bede/practice/ficheros\"}]}"
   },
   {
     "url": "seo/gl/bede/exam/daypo-preguntas.html",
@@ -8992,6 +9152,38 @@ export const pages = [
       }
     ],
     "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Daypo Preguntas de Bases de Datos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/bede/exam/daypo-preguntas\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Daypo Preguntas de Bases de Datos con 98 preguntas. 98 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Daypo Preguntas\",\"item\":\"https://pe.pablopl.dev/gl/bede/exam/daypo-preguntas\"}],\"url\":\"https://pe.pablopl.dev/gl/bede/exam/daypo-preguntas\"}]}"
+  },
+  {
+    "url": "seo/gl/bede/exam/recopilatorio-mayo-2026.html",
+    "bundleEntryPoint": "/src/main.tsx",
+    "lang": "gl",
+    "pathWithoutLang": "/bede/exam/recopilatorio-mayo-2026",
+    "title": "Recopilatorio Mayo 2026 de Bases de Datos: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Mayo 2026 de Bases de Datos con 13 preguntas. 6 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "siteName": "Pásame Exámenes",
+    "canonicalUrl": "https://pe.pablopl.dev/gl/bede/exam/recopilatorio-mayo-2026",
+    "ogImage": "https://pe.pablopl.dev/og/bede.png",
+    "ogImageType": "image/png",
+    "locale": "gl_ES",
+    "alternates": [
+      {
+        "lang": "en",
+        "href": "https://pe.pablopl.dev/en/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "es",
+        "href": "https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "gl",
+        "href": "https://pe.pablopl.dev/gl/bede/exam/recopilatorio-mayo-2026"
+      },
+      {
+        "lang": "x-default",
+        "href": "https://pe.pablopl.dev/es/bede/exam/recopilatorio-mayo-2026"
+      }
+    ],
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2026 de Bases de Datos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/bede/exam/recopilatorio-mayo-2026\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Mayo 2026 de Bases de Datos con 13 preguntas. 6 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Bases de Datos\",\"courseCode\":\"202315\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bases de Datos\",\"item\":\"https://pe.pablopl.dev/gl/bede\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2026\",\"item\":\"https://pe.pablopl.dev/gl/bede/exam/recopilatorio-mayo-2026\"}],\"url\":\"https://pe.pablopl.dev/gl/bede/exam/recopilatorio-mayo-2026\"}]}"
   },
   {
     "url": "seo/gl/cepe.html",

@@ -11,6 +11,12 @@ export const meta: SubjectMeta = {
     "Las preguntas y respuestas incluidas en esta plataforma son ejercicios originales creados por estudiantes a partir del temario oficial. No se reproducen exámenes oficiales, enunciados originales ni materiales docentes protegidos del profesorado o de la universidad. Si se detecta alguna coincidencia sustancial no autorizada, puede notificarse para su revisión y retirada.",
   topics: [
     {
+      key: "modelado-normalizacion",
+      label: "Modelado y Normalización",
+      icon: "🧩",
+      color: "blue",
+    },
+    {
       key: "recuperacion-concurrencia",
       label: "Recuperación y Concurrencia",
       icon: "🔄",
@@ -28,6 +34,16 @@ export const meta: SubjectMeta = {
       durationMinutes: 120,
       hasPdf: false,
       daypoUrl: "https://www.daypo.com/bd-preguntas-examen-udc.html",
+    },
+    {
+      year: "recopilatorio-mayo-2026",
+      title: "Recopilatorio Mayo 2026",
+      date: "Mayo 2026",
+      description: "6 ptos · 13 preguntas",
+      passPoints: 3,
+      totalPoints: 6,
+      durationMinutes: 120,
+      hasPdf: false,
     },
   ],
 };
