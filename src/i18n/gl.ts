@@ -31,6 +31,7 @@ export const gl: Translations = {
     daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Agradecementos e exención de responsabilidade",
+    contentLicense: "Licenza específica do contido",
     addExam: "Engadir?",
     reportCopyright: "Reportar dereitos de autor",
     copyrightRemoved: "Retirada por dereitos de autor",
@@ -46,8 +47,161 @@ export const gl: Translations = {
     practice: "Practicar",
   },
   footer: {
-    byline: "Pásame Exámenes - Plataforma de estudo de código aberto",
-    github: "TeenBiscuits/Pasame-Examenes",
+    github: "GitHub",
+    by: "por",
+    isLicensedUnder: "está licenciado baixo",
+    licenses: "Licenzas",
+    privacy: "Política de privacidade",
+    close: "Pechar",
+    licenseTitle: "Licenzas",
+    licenseIntro:
+      "Pásame Exámenes separa a licenza do software da web da licenza do contido publicado nela.",
+    contentLicenseTitle: "Contido: CC BY-NC-SA 4.0",
+    contentLicenseDescription:
+      "Salvo que a páxina dunha materia indique outra cousa, o contido subido a esta web está licenciado baixo CC BY-NC-SA 4.0.",
+    softwareLicenseTitle: "Software: Apache 2.0",
+    softwareLicenseDescription:
+      "O código fonte da plataforma está licenciado baixo Apache License, Version 2.0.",
+    licensePage: "Páxina da licenza",
+    legalText: "Texto legal",
+    linksLabel: "Ligazóns legais e do proxecto",
+    privacyTitle: "Política de privacidade",
+    privacyLastUpdated: "Última actualización: 8 de xullo de 2026",
+    privacySummary:
+      "Pásame Exámenes é unha web educativa e de código aberto, sen contas de usuario e sen backend propio. Usa almacenamento local do navegador para preferencias e progreso de estudo, e analítica para entender uso, rendemento e erros.",
+    privacySections: [
+      {
+        title: "Responsable",
+        paragraphs: [
+          "O responsable do tratamento desta web é Pablo Portas López. Podes contactar co responsable sobre cuestións de privacidade en pablo.portas@udc.es.",
+        ],
+      },
+      {
+        title: "Datos que tratamos",
+        paragraphs: [
+          "A web pode tratar datos técnicos de acceso, datos locais de preferencias, progreso local de estudo e datos de analítica.",
+        ],
+        items: [
+          "Datos técnicos: enderezo IP, navegador, dispositivo, URL solicitada, referrer, idioma, data e hora, e rexistros similares de servidor ou CDN.",
+          "Preferencias locais: idioma seleccionado, tema seleccionado, tours vistos, estado do popup de GitHub e materias visitadas recentemente.",
+          "Progreso de estudo almacenado localmente: intentos, puntuacións, temas e progreso por materia gardados no teu navegador.",
+          "Datos de analítica: páxinas vistas, eventos de interacción, rendemento, información aproximada de dispositivo/navegador e un identificador anónimo local para Umami.",
+          "Replays de sesión e heatmaps na instancia self-hosted de Umami, activados cunha mostraxe aleatoria do 30%.",
+          "Caché temporal do contador de estrelas de GitHub en sessionStorage tras solicitar datos públicos do repositorio a GitHub.",
+        ],
+      },
+      {
+        title: "Finalidades",
+        paragraphs: [
+          "Os datos trátanse unicamente para finalidades relacionadas con operar, protexer, medir e mellorar a web.",
+        ],
+        items: [
+          "Prestar a web e enrutar solicitudes mediante infraestrutura de hosting e CDN.",
+          "Lembrar o teu idioma, tema, materias recentes, tours e avisos descartados.",
+          "Gardar progreso de estudo localmente para que poidas continuar practicando no mesmo dispositivo.",
+          "Medir uso, rendemento, erros, patróns de navegación e interaccións con funcións.",
+          "Mellorar contido, usabilidade, accesibilidade e fiabilidade.",
+          "Previr abuso, diagnosticar problemas técnicos e manter a seguridade.",
+        ],
+      },
+      {
+        title: "Base xurídica",
+        paragraphs: [
+          "Baixo o RGPD, a base xurídica principal é o interese lexítimo: manter a web dispoñible, segura, comprensible e útil para estudantes. Isto inclúe analítica, medición de rendemento, heatmaps e replays de sesión, limitados mediante minimización de datos e unha mostraxe aleatoria do 30% para replays e heatmaps.",
+          "As preferencias e o progreso local trátanse para proporcionar a funcionalidade solicitada pola persoa usuaria. Tamén poden aplicarse obrigas legais cando sexa necesario.",
+        ],
+      },
+      {
+        title: "Almacenamento local",
+        paragraphs: [
+          "A maioría de datos relacionados co estudo almacénanse só no teu navegador mediante localStorage ou sessionStorage. Non forman parte dunha conta de usuario e poden eliminarse borrando os datos deste sitio na configuración do navegador.",
+          "O identificador anónimo de Umami tamén se garda localmente como umami_uid. Ao borrar os datos locais deste sitio reiníciase ese identificador e elimínanse preferencias e progreso gardados localmente.",
+        ],
+      },
+      {
+        title: "Analítica, replays e heatmaps",
+        paragraphs: [
+          "A analítica recóllese cunha instancia self-hosted de Umami en analytics.pablopl.dev. Umami é operado polo responsable desta web; os datos non se envían a Umami Software como provedor cloud de analítica.",
+          "Umami está configurado para respectar Do Not Track no script estándar de analítica. Os replays de sesión e heatmaps úsanse para entender problemas de usabilidade e móstranse aleatoriamente no 30% das visitas.",
+          "Tamén se usa Ahrefs Analytics para entender tráfico e rendemento da web. Ahrefs trata datos conforme á súa propia política de privacidade.",
+        ],
+      },
+      {
+        title: "Conservación",
+        paragraphs: [
+          "Os datos locais do navegador consérvanse ata que os elimines ou ata que o navegador os borre. Os datos técnicos e de analítica consérvanse durante o tempo necesario para obter estatísticas, mellorar o servizo, diagnosticar incidencias e manter a seguridade. Os datos agregados ou anonimizados poden conservarse durante máis tempo cando xa non identifican unha persoa usuaria.",
+        ],
+      },
+      {
+        title: "Transferencias internacionais",
+        paragraphs: [
+          "Algúns provedores externos poden tratar datos fóra do Espazo Económico Europeo. Cando ocorra, farase conforme ás garantías descritas na política de privacidade ou condicións de tratamento de cada provedor. A configuración self-hosted de Umami non implica transferencia de datos de analítica a Umami Software.",
+        ],
+      },
+      {
+        title: "Os teus dereitos RGPD",
+        paragraphs: [
+          "Podes solicitar acceso, rectificación, supresión, limitación, portabilidade ou oposición ao tratamento cando proceda. Tamén podes presentar unha reclamación ante unha autoridade de protección de datos.",
+          "Para exercer os teus dereitos, escribe a pablo.portas@udc.es. Como non hai contas, algúns datos poden existir só no teu navegador e podes eliminalos directamente borrando os datos locais deste sitio.",
+        ],
+      },
+      {
+        title: "Cambios",
+        paragraphs: [
+          "Esta política pode actualizarse se a web cambia os seus tratamentos de datos, configuración de analítica ou provedores. A versión máis recente está dispoñible desde o pé de páxina da web.",
+        ],
+      },
+    ],
+    privacyProvidersTitle: "Provedores externos e referencias",
+    privacyProvidersIntro:
+      "Estes provedores ou referencias son relevantes para o funcionamento e medición da web:",
+    privacyProviders: [
+      {
+        name: "Vercel",
+        description: "Infraestrutura de hosting e despregamento.",
+        href: "https://vercel.com/legal/privacy-policy",
+        linkLabel: "Política de privacidade",
+        target: "vercel_privacy",
+      },
+      {
+        name: "Cloudflare",
+        description: "CDN, seguridade, caché e entrega de tráfico.",
+        href: "https://www.cloudflare.com/privacypolicy/",
+        linkLabel: "Política de privacidade",
+        target: "cloudflare_privacy",
+      },
+      {
+        name: "Umami",
+        description:
+          "Software de analítica self-hosted usado en analytics.pablopl.dev; enlázase como documentación/referencia do software, non como encargado cloud desta web.",
+        href: "https://umami.is/privacy",
+        linkLabel: "Privacidade de Umami",
+        target: "umami_privacy",
+      },
+      {
+        name: "Documentación de Umami",
+        description:
+          "Documentación sobre funcións de tracking e payloads de analítica recollidos.",
+        href: "https://umami.is/docs/tracker-functions",
+        linkLabel: "Docs de tracking",
+        target: "umami_docs",
+      },
+      {
+        name: "Ahrefs",
+        description: "Analítica externa de tráfico e rendemento da web.",
+        href: "https://ahrefs.com/legal/privacy-policy",
+        linkLabel: "Política de privacidade",
+        target: "ahrefs_privacy",
+      },
+      {
+        name: "GitHub",
+        description:
+          "Aloxamento do repositorio e API pública usada para mostrar o contador de estrelas do repositorio.",
+        href: "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+        linkLabel: "Declaración de privacidade",
+        target: "github_privacy",
+      },
+    ],
   },
   practice: {
     backToTopics: "← Volver a temas",
