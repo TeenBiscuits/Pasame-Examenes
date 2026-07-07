@@ -2,6 +2,8 @@ import { useEffect, useImperativeHandle, useRef, type Ref } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 
+const CONTACT_EMAIL = "pablo.portas@udc.es";
+
 export interface CopyrightReportModalHandle {
   open: () => void;
   close: () => void;
@@ -57,7 +59,7 @@ function CopyrightReportModal({
   const emailBody = t.copyrightReport.emailBody
     .replace("{subjectName}", subjectName)
     .replace("{subjectId}", subjectId);
-  const mailtoUrl = `mailto:pablo.portas@udc.es?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+  const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
   return (
     <dialog
@@ -125,7 +127,7 @@ function CopyrightReportModal({
               <div className="font-medium text-sm">
                 {t.copyrightReport.email}
               </div>
-              <div className="text-xs text-fg-muted">pablo.portas@udc.es</div>
+              <div className="text-xs text-fg-muted">{CONTACT_EMAIL}</div>
             </div>
           </a>
         </div>

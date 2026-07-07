@@ -108,6 +108,7 @@ function drawCommunityIcon(
 ) {
   ctx.beginPath();
   ctx.arc(x + 9.5, y + 7.5, 5.4, 0, Math.PI * 2);
+  ctx.moveTo(x + 20.5 + 4.8, y + 8);
   ctx.arc(x + 20.5, y + 8, 4.8, 0, Math.PI * 2);
   ctx.fill();
 
@@ -262,6 +263,7 @@ async function main() {
       questionCount: number;
       topicCount: number;
       examCount: number;
+      contentPolicy: ContentPolicy;
       university: string;
       courseCode: string;
     }
