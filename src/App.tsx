@@ -110,7 +110,7 @@ function LangGuard() {
 function Footer() {
   const t = useT();
   return (
-    <footer className="bg-surface-alt border-t border-border pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] text-sm text-fg-muted">
+    <footer className="border-t border-border bg-surface-alt/80 pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] text-sm text-fg-muted backdrop-blur">
       <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="font-medium">{t.footer.byline}</p>
         <a
@@ -149,7 +149,7 @@ export default function App() {
         <ScrollToTop />
         <Header />
         <StarPopup />
-        <main className="flex-grow">
+        <main className="app-shell flex-grow">
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/:lang" element={<LangGuard />}>

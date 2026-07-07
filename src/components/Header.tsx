@@ -33,19 +33,19 @@ export default function Header() {
 
   const abbr = subject ? acronym(subject.name) : "";
 
-  const subjectLinkClasses = `px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-    location.pathname === `/${subjectId}` ||
-    location.pathname.startsWith(`/${subjectId}/`)
-      ? "bg-accent-light text-accent-fg"
-      : "text-fg-secondary hover:text-fg"
+  const subjectLinkClasses = `px-3 py-1.5 rounded-full font-mono text-xs font-semibold tracking-wide transition-colors ${
+    location.pathname === `/${lang}/${subjectId}` ||
+    location.pathname.startsWith(`/${lang}/${subjectId}/`)
+      ? "bg-accent text-white"
+      : "border border-border bg-surface text-fg-secondary hover:text-fg"
   }`;
 
   return (
-    <header className="bg-surface-alt border-b border-border sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-surface-alt/85 backdrop-blur-md">
+      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link
           to="/"
-          className="font-bold text-lg text-fg hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md transition-colors flex items-center gap-2.5"
+          className="group flex items-center gap-2.5 rounded-lg text-fg transition-colors hover:text-accent"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home" });
@@ -56,10 +56,12 @@ export default function Header() {
             alt=""
             width={28}
             height={32}
-            className="w-7 h-8"
+            className="h-8 w-7 rotate-[-3deg] transition-transform group-hover:rotate-3"
             aria-hidden="true"
           />
-          {t.home.title}
+          <span className="font-mono text-base font-black tracking-[-0.06em] sm:text-lg">
+            {t.home.title}
+          </span>
         </Link>
         <div className="flex items-center gap-2 sm:gap-3 text-sm">
           {subject && (
@@ -98,7 +100,7 @@ export default function Header() {
           <ThemeToggle />
           <button
             type="button"
-            className="px-2 py-1 text-xs font-medium rounded border border-border hover:bg-surface active:scale-95 transition"
+            className="rounded-full border border-border bg-surface px-2.5 py-1.5 font-mono text-xs font-semibold text-fg-secondary transition hover:border-accent hover:text-accent active:scale-95"
             onClick={() => {
               triggerLight();
               const idx = langCycle.indexOf(lang);

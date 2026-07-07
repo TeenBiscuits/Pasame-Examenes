@@ -165,7 +165,7 @@ function MCQuestion({
         const isSelected = savedAnswer === letter;
         const isCorrect = question.correctAnswer === letter;
         let className =
-          "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
+          "w-full p-3 rounded-xl border cursor-pointer active:scale-[0.98] transition duration-150 text-left text-sm flex items-start gap-3";
         if (showResult && isCorrect) {
           className += " bg-accent-light border-accent";
         } else if (showResult && isSelected && !isCorrect) {
@@ -284,7 +284,7 @@ function TextQuestion({
       <textarea
         id={`answer-${question.id}`}
         aria-label="Your answer"
-        className="w-full p-3 border-2 border-border rounded-lg focus:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none resize-y min-h-[120px] text-sm"
+        className="answer-paper w-full min-h-[120px] resize-y rounded-xl border border-border p-3 ps-12 text-sm focus:border-accent"
         placeholder="Type your answer…"
         autoComplete="off"
         spellCheck={false}
@@ -551,16 +551,16 @@ export default function QuestionCard(props: QuestionCardProps) {
 
   return (
     <div
-      className={`bg-surface-alt rounded-xl border border-border p-6 shadow-sm ${slideClass}`}
+      className={`answer-paper rounded-2xl border border-border p-5 shadow-sm sm:p-6 ${slideClass}`}
     >
-      <div className="flex items-center gap-2 mb-4">
-        <span className="text-xs font-mono bg-code text-fg-secondary px-2 py-0.5 rounded">
+      <div className="mb-5 flex flex-wrap items-center gap-2 ps-8 sm:ps-10">
+        <span className="rounded-full bg-code px-2.5 py-1 font-mono text-xs font-bold text-fg-secondary">
           Q{props.index + 1}/{props.total}
         </span>
-        <span className="text-xs font-mono bg-accent-light text-accent-fg px-2 py-0.5 rounded">
+        <span className="rounded-full bg-accent-light px-2.5 py-1 font-mono text-xs font-bold text-accent-fg">
           {question.points}p
         </span>
-        <span className="text-xs text-fg-muted">
+        <span className="text-xs font-medium text-fg-muted">
           {props.megatopicLabel
             ? `${props.megatopicLabel} › ${props.topicLabel}`
             : props.topicLabel}
@@ -578,7 +578,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           </span>
         )}
       </div>
-      <Markdown className="text-sm text-fg font-medium mb-4">
+      <Markdown className="mb-5 ps-8 text-sm font-medium leading-7 text-fg sm:ps-10">
         {question.question}
       </Markdown>
       {question.subquestions && (

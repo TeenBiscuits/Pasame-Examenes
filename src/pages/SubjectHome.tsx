@@ -87,7 +87,7 @@ export default function SubjectHome() {
     .replace("{exams}", String(availableExams.length));
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
+    <div className="max-w-6xl mx-auto px-4 py-8 sm:py-10 animate-fade-in animate-duration-fast">
       <SubjectHeader subject={subject} description={description} />
       <TopicsSection
         subject={subject}
@@ -154,15 +154,26 @@ function SubjectHeader({
   description: string;
 }) {
   return (
-    <div className="text-center mb-10">
-      <p className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
+    <div className="study-hero mb-10 px-5 py-8 text-left sm:px-8 sm:py-9">
+      <p className="mb-4 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] text-fg-muted">
         <ContentPolicyIcon subject={subject} className="size-4" svgOnly />
         <span>
           {subject.courseCode} &middot; {subject.university}
         </span>
       </p>
-      <h1 className="text-3xl font-semibold text-fg mb-3">{subject.name}</h1>
-      <p className="text-fg-secondary max-w-xl mx-auto">{description}</p>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <div className="mb-4 grid size-14 place-items-center rounded-2xl border border-border bg-surface-alt text-3xl shadow-sm" aria-hidden="true">
+            {subject.icon}
+          </div>
+          <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-fg sm:text-5xl">
+            {subject.name}
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-fg-secondary text-pretty">
+            {description}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -199,7 +210,7 @@ function TopicsSection({
 
   return (
     <>
-      <h2 className="text-lg font-semibold text-fg mb-4">
+      <h2 className="section-label mb-4">
         {t.subjectHome.practiceByTopic}
       </h2>
       {subject.megatopics ? (
@@ -211,9 +222,9 @@ function TopicsSection({
             if (megatopicTopics.length === 0) return null;
             return (
               <div key={megatopic.key} className="mb-8">
-                <h2 className="text-md font-medium text-fg-secondary mt-2 mb-3">
+                <h3 className="mt-2 mb-3 text-base font-semibold text-fg-secondary">
                   {megatopic.label}
-                </h2>
+                </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {megatopicTopics.map(renderTopicCard)}
                 </div>
@@ -271,7 +282,7 @@ function ExamSimulationsSection({
 
   return (
     <>
-      <h2 className="text-lg font-semibold text-fg mb-4">
+      <h2 className="section-label mb-4">
         {hasAuthorizedExams
           ? t.subjectHome.examSimulations
           : t.subjectHome.practiceSimulations}
@@ -300,7 +311,7 @@ function RemovedExamCard({ title }: { title: string }) {
   const t = useT();
 
   return (
-    <div className="block p-6 rounded-xl border-2 border-dashed border-t-red-border bg-t-red-bg/70">
+    <div className="file-card-soft block p-6 border-t-red-border bg-t-red-bg/70">
       <div className="text-2xl text-t-red-hover mb-2" aria-hidden="true">
         !
       </div>
@@ -325,7 +336,7 @@ function ExamCard({
   return (
     <Link
       to={`/${subject.id}/exam/${exam.year}`}
-      className="relative block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
+      className="file-card relative block p-6 ps-7 transition duration-200 hover:-translate-y-0.5"
       onClick={() => {
         triggerLight();
         track("exam_card_click", {
@@ -336,7 +347,7 @@ function ExamCard({
     >
       {isVerified ? (
         <span
-          className="absolute right-3 top-3 inline-flex size-6 shrink-0 items-center justify-center rounded border border-t-amber-border bg-t-amber-bg text-t-amber-hover"
+          className="absolute right-3 top-3 inline-flex size-7 shrink-0 items-center justify-center rounded-full border border-t-amber-border bg-t-amber-bg text-t-amber-hover"
           role="img"
           aria-label={t.contentPolicy.authorized}
           title={t.contentPolicy.authorized}
@@ -356,10 +367,10 @@ function ExamCard({
           </svg>
         </span>
       ) : null}
-      <div className="text-2xl mb-2" aria-hidden="true">
+      <div className="mb-3 grid size-11 place-items-center rounded-2xl border border-border bg-surface text-2xl" aria-hidden="true">
         📝
       </div>
-      <h2 className="font-semibold text-fg">{exam.title}</h2>
+      <h2 className="text-lg font-semibold text-fg">{exam.title}</h2>
       <p className="text-sm text-fg-muted mt-1">{exam.description}</p>
     </Link>
   );
@@ -385,7 +396,7 @@ function ExamActionButtons({
           onAddExam();
           track("add_exam_modal_open", { subjectId });
         }}
-        className="block w-full p-4 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
+        className="file-card-soft block w-full p-4 text-fg-muted transition duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
       >
         <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
           <span className="text-4xl font-light leading-none">+</span>
@@ -399,7 +410,7 @@ function ExamActionButtons({
           onReportCopyright();
           track("copyright_report_modal_open", { subjectId });
         }}
-        className="block w-full p-4 rounded-xl border-2 border-dashed border-t-red-border text-fg-secondary bg-t-red-bg/40 hover:text-fg hover:border-t-red-hover hover:bg-t-red-bg hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
+        className="file-card-soft block w-full border-t-red-border bg-t-red-bg/40 p-4 text-fg-secondary transition duration-200 hover:-translate-y-0.5 hover:border-t-red-hover hover:bg-t-red-bg hover:text-fg"
       >
         <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
           <span className="text-4xl font-light leading-none text-t-red-hover">
@@ -447,7 +458,7 @@ function PdfLinksSection({
           href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
+          className="inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-light px-4 py-2 text-sm font-semibold text-accent-fg transition duration-150 hover:border-accent active:scale-95"
           onClick={() => {
             triggerLight();
             track("file_download", {
@@ -497,7 +508,7 @@ function DaypoLinksSection({
           href={exam.daypoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
+          className="inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-light px-4 py-2 text-sm font-semibold text-accent-fg transition duration-150 hover:border-accent active:scale-95"
           onClick={() => {
             triggerLight();
             track("daypo_open", {
@@ -523,7 +534,7 @@ function ResourceLinksShell({
   children: ReactNode;
 }) {
   return (
-    <div className="bg-surface rounded-xl p-6 border border-border mb-10">
+    <div className="mb-10 rounded-2xl border border-border bg-surface-alt/75 p-6 shadow-sm">
       <h3 className="font-semibold text-fg mb-2">{title}</h3>
       <p className="text-sm text-fg-secondary mb-4">{description}</p>
       <div className="flex flex-wrap gap-4">{children}</div>
