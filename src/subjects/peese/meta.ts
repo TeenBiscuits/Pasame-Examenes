@@ -13,7 +13,7 @@ export const meta: SubjectMeta = {
   exams: [
     {
       year: "2026-05",
-      title: "Posibles preguntas Mayo 2026",
+      title: "Recopilatorio Mayo 2026",
       date: "Mayo 2026",
       description: "8.5 ptos · 17 preguntas",
       passPoints: 4.25,

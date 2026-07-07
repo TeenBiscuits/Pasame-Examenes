@@ -26,7 +26,7 @@ export const meta: SubjectMeta = {
   exams: [
     {
       year: "2024-01",
-      title: "Posibles preguntas Xaneiro 2024",
+      title: "Recopilatorio Xaneiro 2024",
       date: "Xaneiro 2024",
       description: "16 preguntas · 10 puntos",
       passPoints: 5,
@@ -35,7 +35,7 @@ export const meta: SubjectMeta = {
     },
     {
       year: "2026-01",
-      title: "Posibles preguntas Xaneiro 2026",
+      title: "Recopilatorio Xaneiro 2026",
       date: "Xaneiro 2026",
       description: "18 preguntas · 25 puntos",
       passPoints: 13,

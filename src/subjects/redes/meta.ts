@@ -100,7 +100,7 @@ export const meta: SubjectMeta = {
     },
     {
       year: "2025-05",
-      title: "Posibles preguntas Mayo 2025",
+      title: "Recopilatorio Mayo 2025",
       date: "Mayo 2025",
       description: "37 preguntas · 37 puntos",
       passPoints: 19,
