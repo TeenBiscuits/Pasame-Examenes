@@ -6,6 +6,8 @@ import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { recordSubjectClick } from "../lib/recent";
 import { getAllQuestions } from "../subjects";
+import { hasAuthorizedExamContent } from "../lib/content-policy";
+import ContentPolicyIcon from "./ContentPolicyIcon";
 
 interface SubjectCardProps {
   subject: SubjectMeta;
@@ -17,6 +19,9 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   const availableExamCount = subject.exams.filter(
     (exam) => !exam.deleteRights,
   ).length;
+  const examCountLabel = hasAuthorizedExamContent(subject)
+    ? t.subjectCard.exams
+    : t.subjectCard.practiceSets;
 
   useEffect(() => {
     let mounted = true;
@@ -45,9 +50,12 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         <span className="text-2xl" aria-hidden="true">
           {subject.icon}
         </span>
-        <span className="text-xs font-mono font-semibold bg-code text-fg-secondary px-2 py-0.5 rounded">
-          {subject.courseCode}
-        </span>
+        <div className="flex items-center gap-2">
+          <ContentPolicyIcon subject={subject} />
+          <span className="inline-flex h-6 items-center rounded bg-code px-2 font-mono text-xs font-semibold text-fg-secondary">
+            {subject.courseCode}
+          </span>
+        </div>
       </div>
       <h2 className="font-semibold text-fg text-base mb-1">{subject.name}</h2>
       <p className="text-sm text-fg-muted mb-4">{subject.university}</p>
@@ -62,7 +70,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         </span>
         <span>&middot;</span>
         <span>
-          {availableExamCount} {t.subjectCard.exams}
+          {availableExamCount} {examCountLabel}
         </span>
       </div>
     </Link>

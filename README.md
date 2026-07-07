@@ -22,7 +22,7 @@
 
 <div align="center">
 <br/>
-<b>Pásame Exámenes</b> es una plataforma open source para practicar "exámenes" universitarios por tema o simular el examen completo con temporizador y autocorrección.
+<b>Pásame Exámenes</b> es una plataforma open source para practicar preguntas universitarias por tema o en modo cronometrado con temporizador y autocorrección.
 <br/>
 </div>
 
@@ -38,9 +38,9 @@ Cada asignatura es una carpeta autónoma dentro de `src/subjects/`. Solo necesit
 
 Elige un tema y practica pregunta a pregunta. Cada pregunta se corrige individualmente, con explicaciones detalladas y posibilidad de auto-evaluarte en las preguntas abiertas. Tu progreso por tema se guarda automáticamente.
 
-### Modo Examen
+### Modo cronometrado
 
-Simula el examen real: temporizador en cuenta atrás, puntuación en directo, y auto-entrega opcional. Al terminar, revisas todas las respuestas y ves si apruebas o suspendes.
+Practica con temporizador, puntuación en directo y auto-entrega opcional. En asignaturas con exámenes autorizados puede reflejar el formato real; en el resto usa recopilatorios o ejercicios originales con estructura orientativa.
 
 ### Tipos de pregunta
 
@@ -90,13 +90,16 @@ El build genera automáticamente imágenes Open Graph por asignatura y página p
 
 ¡Toda contribución es bienvenida! Puedes:
 
-- Añadir **nuevas asignaturas** con sus exámenes/pruebas/recopilatorios
+- Añadir **nuevas asignaturas** con exámenes autorizados, pruebas, recopilatorios o ejercicios originales
 - Corregir **errores** en preguntas existentes
 - Reportar **issues** directamente desde cualquier pregunta
 - Mejorar la **web** (features, diseño, accesibilidad)
 
 > [!IMPORTANT]  
 > Lee la [guía de contribución](./CONTRIBUTING.md) para empezar.
+
+> [!CAUTION]
+> No se aceptan enunciados, PDFs o materiales docentes protegidos sin autorización para compartirlos.
 
 ## Licencia
 

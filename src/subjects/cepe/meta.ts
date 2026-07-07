@@ -6,6 +6,7 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "202320",
   icon: "⚡",
+  contentPolicy: "authorized-exams",
   acknowledgments:
     "Exámenes y soluciones originales proporcionadas por el profesorado de la asignatura.",
   topics: [

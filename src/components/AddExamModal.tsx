@@ -96,6 +96,10 @@ function AddExamModal({
         </div>
 
         <div className="space-y-3">
+          <p className="rounded-xl border border-border bg-surface/50 p-3 text-xs text-fg-muted">
+            {t.addExam.legalNotice}
+          </p>
+
           <a
             href={issueUrl}
             target="_blank"

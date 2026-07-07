@@ -1,18 +1,29 @@
-name: Añadir nuevos exámenes/pruebas/recopilatorios
-description: Solicitar añadir exámenes/pruebas/recopilatorios de años anteriores a una asignatura existente
+name: Añadir material de práctica autorizado
+description: Solicitar añadir exámenes autorizados, pruebas, recopilatorios o ejercicios originales a una asignatura existente
 title: "[Nuevo Examen]"
 labels: ["new-exam", "enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        ¡Gracias por ayudar a ampliar Pásame Exámenes! Usa esta plantilla para solicitar que se añadan exámenes/pruebas/recopilatorios de años anteriores a una asignatura que ya existe en la plataforma.
+        ¡Gracias por ayudar a ampliar Pásame Exámenes! Usa esta plantilla para solicitar que se añadan exámenes autorizados, pruebas, recopilatorios o ejercicios originales a una asignatura que ya existe en la plataforma.
+
+        No envíes enunciados, PDFs o materiales docentes protegidos si no tienes permiso para compartirlos.
+
+  - type: checkboxes
+    id: rights-confirmation
+    attributes:
+      label: Derechos de uso
+      description: Confirma que el material puede compartirse en la plataforma.
+      options:
+        - label: El material es original, tengo autorización para compartirlo, o procede de una fuente pública/permitida.
+          required: true
 
   - type: input
     id: subject
     attributes:
       label: Asignatura
-      description: ¿A qué asignatura pertenece este examen? (ej. "eseo", "emeele")
+      description: ¿A qué asignatura pertenece este material? (ej. "eseo", "emeele")
       placeholder: "ej: eseo"
     validations:
       required: true
@@ -20,8 +31,8 @@ body:
   - type: input
     id: exam-year
     attributes:
-      label: Año del examen
-      description: El año (y opcionalmente mes) del examen a añadir
+      label: Año o identificador
+      description: El año, mes o identificador del examen/prueba/recopilatorio a añadir
       placeholder: "ej: 2025 o 2024-06"
     validations:
       required: true
@@ -55,15 +66,15 @@ body:
   - type: checkboxes
     id: has-pdf
     attributes:
-      label: ¿Tienes el PDF del examen?
-      description: Marca esta casilla si dispones del PDF del examen para compartir, de tenerlo, adjuntalo más adelante.
+      label: ¿Tienes un PDF autorizado?
+      description: Marca esta casilla solo si dispones de un PDF que puede compartirse públicamente o con autorización.
       options:
-        - label: Tengo el PDF del examen (o similar)
+        - label: Tengo un PDF autorizado o público que puede compartirse
 
   - type: textarea
     id: questions
     attributes:
       label: Preguntas y soluciones (opcional)
       description: |
-        Si dispones de las preguntas y sus soluciones, puedes detallarlas aquí.
-        Cuanta más información proporciones, más rápido se podrá añadir el examen.
+        Si dispones de preguntas y soluciones originales o autorizadas, puedes detallarlas aquí.
+        Cuanta más información proporciones, más rápido se podrá revisar y añadir el material.

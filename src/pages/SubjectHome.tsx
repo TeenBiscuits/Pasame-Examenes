@@ -10,6 +10,7 @@ import AddExamModal, {
 import CopyrightReportModal, {
   type CopyrightReportModalHandle,
 } from "../components/CopyrightReportModal";
+import ContentPolicyIcon from "../components/ContentPolicyIcon";
 import type { Question, Topic } from "../data/types";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -17,6 +18,7 @@ import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
+import { hasAuthorizedExamContent } from "../lib/content-policy";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
@@ -81,6 +83,7 @@ export default function SubjectHome() {
 
   const repeatedCount = allQuestions.filter((q) => q.repeated).length;
   const availableExams = subject.exams.filter((exam) => !exam.deleteRights);
+  const hasAuthorizedExams = hasAuthorizedExamContent(subject);
   const progress = getTopicProgress(
     subject.id,
     allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
@@ -91,7 +94,10 @@ export default function SubjectHome() {
       ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
       : "";
 
-  const description = t.subjectHome.description
+  const descriptionTemplate = hasAuthorizedExams
+    ? t.subjectHome.description
+    : t.subjectHome.communityDescription;
+  const description = descriptionTemplate
     .replace("{count}", String(allQuestions.length))
     .replace("{repeated}", repeatedText)
     .replace("{exams}", String(availableExams.length));
@@ -116,8 +122,11 @@ export default function SubjectHome() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="text-center mb-10">
-        <p className="text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
-          {subject.courseCode} &middot; {subject.university}
+        <p className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
+          <ContentPolicyIcon subject={subject} className="size-4" svgOnly />
+          <span>
+            {subject.courseCode} &middot; {subject.university}
+          </span>
         </p>
         <h1 className="text-3xl font-semibold text-fg mb-3">{subject.name}</h1>
         <p className="text-fg-secondary max-w-xl mx-auto">{description}</p>
@@ -171,7 +180,9 @@ export default function SubjectHome() {
       )}
 
       <h2 className="text-lg font-semibold text-fg mb-4">
-        {t.subjectHome.examSimulations}
+        {hasAuthorizedExams
+          ? t.subjectHome.examSimulations
+          : t.subjectHome.practiceSimulations}
       </h2>
       <div
         className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.exams.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
@@ -265,10 +276,14 @@ export default function SubjectHome() {
       ) && (
         <div className="bg-surface rounded-xl p-6 border border-border mb-10">
           <h3 className="font-semibold text-fg mb-2">
-            {t.subjectHome.originalExams}
+            {hasAuthorizedExams
+              ? t.subjectHome.originalExams
+              : t.subjectHome.sourceMaterials}
           </h3>
           <p className="text-sm text-fg-secondary mb-4">
-            {t.subjectHome.examDocsDescription}
+            {hasAuthorizedExams
+              ? t.subjectHome.examDocsDescription
+              : t.subjectHome.sourceMaterialsDescription}
           </p>
           <div className="flex flex-wrap gap-4">
             {subject.exams.flatMap((exam) =>
@@ -302,10 +317,14 @@ export default function SubjectHome() {
       {subject.exams.some((exam) => !exam.deleteRights && exam.daypoUrl) && (
         <div className="bg-surface rounded-xl p-6 border border-border mb-10">
           <h3 className="font-semibold text-fg mb-2">
-            {t.subjectHome.originalDaypos}
+            {hasAuthorizedExams
+              ? t.subjectHome.originalDaypos
+              : t.subjectHome.sourceMaterials}
           </h3>
           <p className="text-sm text-fg-secondary mb-4">
-            {t.subjectHome.daypoDocsDescription}
+            {hasAuthorizedExams
+              ? t.subjectHome.daypoDocsDescription
+              : t.subjectHome.sourceMaterialsDescription}
           </p>
           <div className="flex flex-wrap gap-4">
             {subject.exams.flatMap((exam) =>

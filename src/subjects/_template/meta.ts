@@ -6,6 +6,7 @@ export const meta: SubjectMeta = {
   university: "Template University",
   courseCode: "TMP101",
   icon: "📝",
+  contentPolicy: "community-practice",
   acknowledgments:
     "Questions provided by the Template Department. Answers by Prof. Example.",
   topics: [

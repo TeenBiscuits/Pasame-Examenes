@@ -24,6 +24,16 @@ const TEXT_PRIMARY = "#111827";
 const TEXT_SECONDARY = "#6B7280";
 const BUTTON_BG = "#16A34A";
 const BUTTON_TEXT = "#FFFFFF";
+const BADGE_BORDER = "#D1D5DB";
+const BADGE_BG = "#FFFFFF";
+const BADGE_AUTHORIZED_TEXT = "#15803D";
+const BADGE_COMMUNITY_TEXT = "#2563EB";
+const BADGE_AUTHORIZED_BG = "#F0FDF4";
+const BADGE_AUTHORIZED_BORDER = "#BBF7D0";
+const BADGE_COMMUNITY_BG = "#EFF6FF";
+const BADGE_COMMUNITY_BORDER = "#93C5FD";
+
+type ContentPolicy = "authorized-exams" | "community-practice";
 
 GlobalFonts.registerFromPath(resolve(fontsDir, "inter-regular.ttf"), "Inter");
 GlobalFonts.registerFromPath(resolve(fontsDir, "inter-bold.ttf"), "Inter");
@@ -64,12 +74,81 @@ function roundedRectPath(
   ctx.closePath();
 }
 
+function drawMortarboardIcon(
+  ctx: ReturnType<ReturnType<typeof createCanvas>["getContext"]>,
+  x: number,
+  y: number,
+) {
+  ctx.beginPath();
+  ctx.moveTo(x + 14, y + 2);
+  ctx.bezierCurveTo(x + 13.4, y + 1.7, x + 12.6, y + 1.7, x + 12, y + 2);
+  ctx.lineTo(x + 2.2, y + 6.9);
+  ctx.bezierCurveTo(x + 1.4, y + 7.3, x + 1.4, y + 8.7, x + 2.2, y + 9.1);
+  ctx.lineTo(x + 12, y + 14);
+  ctx.bezierCurveTo(x + 12.6, y + 14.3, x + 13.4, y + 14.3, x + 14, y + 14);
+  ctx.lineTo(x + 21.8, y + 10.1);
+  ctx.lineTo(x + 21.8, y + 16);
+  ctx.bezierCurveTo(x + 21.8, y + 17.1, x + 22.7, y + 18, x + 23.8, y + 18);
+  ctx.bezierCurveTo(x + 24.9, y + 18, x + 25.8, y + 17.1, x + 25.8, y + 16);
+  ctx.lineTo(x + 25.8, y + 8);
+  ctx.bezierCurveTo(x + 25.8, y + 7.4, x + 25.4, y + 6.9, x + 24.8, y + 6.7);
+  ctx.lineTo(x + 14, y + 2);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.roundRect(x + 5.5, y + 12.7, 15, 8.3, 3);
+  ctx.fill();
+}
+
+function drawCommunityIcon(
+  ctx: ReturnType<ReturnType<typeof createCanvas>["getContext"]>,
+  x: number,
+  y: number,
+) {
+  ctx.beginPath();
+  ctx.arc(x + 9.5, y + 7.5, 5.4, 0, Math.PI * 2);
+  ctx.arc(x + 20.5, y + 8, 4.8, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.roundRect(x + 1, y + 16, 18, 10.5, 4.5);
+  ctx.roundRect(x + 16.5, y + 17, 13.5, 9.5, 4.5);
+  ctx.fill();
+}
+
+function drawPolicyBadgeIcon(
+  ctx: ReturnType<ReturnType<typeof createCanvas>["getContext"]>,
+  x: number,
+  y: number,
+  isAuthorized: boolean,
+) {
+  roundedRectPath(ctx, x, y, 36, 36, 7);
+  ctx.fillStyle = isAuthorized ? BADGE_AUTHORIZED_BG : BADGE_COMMUNITY_BG;
+  ctx.fill();
+  ctx.strokeStyle = isAuthorized
+    ? BADGE_AUTHORIZED_BORDER
+    : BADGE_COMMUNITY_BORDER;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  ctx.fillStyle = isAuthorized
+    ? BADGE_AUTHORIZED_TEXT
+    : BADGE_COMMUNITY_TEXT;
+  if (isAuthorized) {
+    drawMortarboardIcon(ctx, x + 5, y + 7);
+  } else {
+    drawCommunityIcon(ctx, x + 3, y + 5);
+  }
+}
+
 async function generateOgImage(
   icon: string,
   title: string,
   questionCount: number,
   topicCount: number,
   examCount: number,
+  contentPolicy: ContentPolicy,
   faviconSvg: Buffer,
 ): Promise<Buffer> {
   const canvas = createCanvas(W, H);
@@ -116,14 +195,39 @@ async function generateOgImage(
   ctx.font = `400 37px Inter`;
   ctx.fillStyle = TEXT_SECONDARY;
   ctx.textAlign = "left";
-  const stats = `${questionCount} preguntas · ${topicCount} temas · ${examCount} "exámenes"`;
-  ctx.fillText(stats, 71, 437);
+  const hasAuthorizedExams = contentPolicy === "authorized-exams";
+  const examLabel = hasAuthorizedExams ? "exámenes" : "recopilatorios";
+  const stats = `${questionCount} preguntas · ${topicCount} temas · ${examCount} ${examLabel}`;
+  const statsY = 421;
+  ctx.fillText(stats, 71, statsY);
+
+  const policyLabel = hasAuthorizedExams
+    ? "Exámenes verificados"
+    : "Recopilatorios comunitarios";
+  const badgeX = 71;
+  const badgeY = 476;
+  const badgeH = 45;
+  ctx.font = `600 24px Inter`;
+  const badgeW = Math.ceil(ctx.measureText(policyLabel).width) + 91;
+  roundedRectPath(ctx, badgeX, badgeY, badgeW, badgeH, 12);
+  ctx.fillStyle = BADGE_BG;
+  ctx.fill();
+  ctx.strokeStyle = BADGE_BORDER;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  drawPolicyBadgeIcon(ctx, badgeX + 5, badgeY + 4.5, hasAuthorizedExams);
+  ctx.fillStyle = hasAuthorizedExams
+    ? BADGE_AUTHORIZED_TEXT
+    : BADGE_COMMUNITY_TEXT;
+  ctx.textBaseline = "middle";
+  ctx.fillText(policyLabel, badgeX + 58, badgeY + badgeH / 2);
 
   ctx.textAlign = "center";
   const btnX = 827;
-  const btnY = 437;
+  const btnY = statsY;
   const btnW = 299;
-  const btnH = 84;
+  const btnH = badgeY + badgeH - statsY;
   roundedRectPath(ctx, btnX, btnY, btnW, btnH, 12);
   ctx.fillStyle = BUTTON_BG;
   ctx.fill();
@@ -178,6 +282,7 @@ async function main() {
           icon: string;
           topics: unknown[];
           exams: unknown[];
+          contentPolicy?: ContentPolicy;
           university: string;
           courseCode: string;
         };
@@ -185,12 +290,14 @@ async function main() {
       const { meta } = mod;
 
       const questionCount = countQuestions(questionsPath);
+      const contentPolicy = meta.contentPolicy ?? "community-practice";
       const png = await generateOgImage(
         meta.icon,
         meta.name,
         questionCount,
         meta.topics.length,
         meta.exams.length,
+        contentPolicy,
         faviconSvg,
       );
 
@@ -204,6 +311,7 @@ async function main() {
         questionCount,
         topicCount: meta.topics.length,
         examCount: meta.exams.length,
+        contentPolicy,
         university: meta.university,
         courseCode: meta.courseCode,
       };

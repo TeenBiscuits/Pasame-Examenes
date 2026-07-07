@@ -4,7 +4,7 @@ export const gl: Translations = {
   home: {
     title: "Pásame Exámenes",
     subtitle:
-      'Plataforma de código aberto para practicar "exames" universitarios. Elixe unha materia para comezar a practicar con preguntas de exames anteriores.',
+      "Plataforma de código aberto para practicar preguntas universitarias. Elixe unha materia para estudar por tema ou en modo cronometrado.",
     addSubject: "Engadir materia?",
     recentlyVisited: "Visitadas recentemente",
     clearRecent: "Limpar materias recentes",
@@ -14,11 +14,17 @@ export const gl: Translations = {
     returnHome: "Volver ao inicio",
     description:
       "Practica {count} preguntas{repeated} de {exams} exames con respostas modelo e autocorrección.",
+    communityDescription:
+      "Practica {count} preguntas{repeated} de {exams} recompilacións con respostas modelo e autocorrección.",
     practiceByTopic: "Practicar por tema",
-    examSimulations: "Simulacións/probas/compilacións de exames completos",
+    examSimulations: "Exames",
+    practiceSimulations: "Recompilacións",
     originalExams: "Documentos orixinais de exame",
     examDocsDescription:
       "Descarga ou visualiza os PDFs orixinais nos que se basean estas preguntas e simulacións.",
+    sourceMaterials: "Materiais fonte",
+    sourceMaterialsDescription:
+      "Abre os materiais autorizados ou públicos usados como fonte para estas preguntas de práctica.",
     originalDaypos: "Tests Daypo orixinais",
     daypoDocsDescription:
       "Abre os tests Daypo orixinais usados como fonte para estas preguntas de práctica.",
@@ -74,6 +80,8 @@ export const gl: Translations = {
     startExam: "Comezar exame",
     simulationNote:
       "Esta simulación reflicte o formato real do exame. Para as preguntas abertas, autoavalia as túas respostas coas solucións modelo que se mostran tras enviar. As preguntas de test e emparellar autocorríxense.",
+    practiceNote:
+      "Esta práctica cronometrada usa unha estrutura orientativa para estudar. Para as preguntas abertas, autoavalia as túas respostas coas solucións modelo que se mostran tras enviar. As preguntas de test e emparellar autocorríxense.",
     submitted: "Exame enviado.",
     passThreshold: "Limiar de aprobado",
     reviewNote:
@@ -105,7 +113,12 @@ export const gl: Translations = {
     topics: "temas",
     questions: "preguntas",
     points: "puntos",
-    exams: '"exames"',
+    exams: "exames",
+    practiceSets: "recompilacións",
+  },
+  contentPolicy: {
+    authorized: "Materiais de exame verificados",
+    community: "Materiais de práctica da comunidade",
   },
   addSubject: {
     title: "Engadir materia",
@@ -120,17 +133,19 @@ export const gl: Translations = {
     email: "Escribe un correo",
   },
   addExam: {
-    title: "Engadir exame",
+    title: "Engadir material de práctica",
     close: "Pechar",
     openIssue: "Abrir un issue",
     openIssueDesc:
-      "Solicita unha nova proba para esta materia usando o modelo de GitHub",
+      "Propón un exame autorizado, recompilación ou exercicios orixinais usando o modelo de GitHub",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=add-exam.yml",
     contribute: "Contribúe!",
     contributeDesc:
-      "Segue a guía de contribución para engadilo ti mesmo cun pull request",
+      "Segue a guía de contribución para engadir contido autorizado ou orixinal cun pull request",
     email: "Escribe un correo",
+    legalNotice:
+      "Envía só contido orixinal, materiais autorizados ou fontes públicas con permiso para compartirse.",
   },
   copyrightReport: {
     title: "Reportar dereitos de autor",
@@ -172,6 +187,8 @@ export const gl: Translations = {
       step1Title: "Simulación de proba",
       step1Desc:
         "Isto simula o formato real do exame. O temporizador está en marcha, xestiona ben o teu tempo! O limiar de aprobado móstrase aquí.",
+      practiceStep1Desc:
+        "Isto é unha práctica cronometrada cunha estrutura orientativa. O temporizador está en marcha, xestiona ben o teu tempo! O limiar de aprobado móstrase aquí.",
       step2Title: "Navegador de preguntas",
       step2Desc:
         "Fai clic nos botóns numerados para saltar entre preguntas. As respondidas resáltanse para seguir o teu progreso.",
@@ -199,8 +216,8 @@ export const gl: Translations = {
     siteName: "Pásame Exámenes",
     locale: "gl_ES",
     homeDescription:
-      'Plataforma de código aberto para practicar "exames" universitarios por tema ou simular o exame completo.',
+      "Plataforma de código aberto para practicar preguntas universitarias por tema ou en modo cronometrado.",
     defaultDescription:
-      "Practica exames universitarios con respostas modelo e autocorrección. Preguntas tipo test, de desenvolvemento e de emparellar de exames anteriores.",
+      "Practica preguntas universitarias con respostas modelo e autocorrección. Preguntas tipo test, de desenvolvemento e de emparellar.",
   },
 };

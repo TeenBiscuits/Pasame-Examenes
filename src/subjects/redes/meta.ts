@@ -6,6 +6,7 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "202319",
   icon: "🕸️",
+  contentPolicy: "community-practice",
   acknowledgments:
     "Las preguntas y respuestas incluidas en esta plataforma son ejercicios originales creados por estudiantes anónimos a partir del temario oficial. No se reproducen exámenes oficiales, enunciados originales ni materiales docentes protegidos del profesorado o de la universidad. Si se detecta alguna coincidencia sustancial no autorizada, puede notificarse para su revisión y retirada.",
   topics: [
