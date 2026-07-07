@@ -319,10 +319,13 @@ function ExamCard({
   subject: SubjectMeta;
   exam: SubjectMeta["exams"][number];
 }) {
+  const t = useT();
+  const isVerified = hasAuthorizedExamContent(subject);
+
   return (
     <Link
       to={`/${subject.id}/exam/${exam.year}`}
-      className="block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
+      className="relative block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
       onClick={() => {
         triggerLight();
         track("exam_card_click", {
@@ -331,6 +334,28 @@ function ExamCard({
         });
       }}
     >
+      {isVerified ? (
+        <span
+          className="absolute right-3 top-3 inline-flex size-6 shrink-0 items-center justify-center rounded border border-t-amber-border bg-t-amber-bg text-t-amber-hover"
+          role="img"
+          aria-label={t.contentPolicy.authorized}
+          title={t.contentPolicy.authorized}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="size-4"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </span>
+      ) : null}
       <div className="text-2xl mb-2" aria-hidden="true">
         📝
       </div>
