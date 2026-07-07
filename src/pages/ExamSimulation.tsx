@@ -21,6 +21,7 @@ import { useExamSession } from "../hooks/useExamSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
+import { formatPoints, roundPoints } from "../lib/points";
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -81,11 +82,11 @@ function ExamStartScreen({
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.totalPoints}</span>
-            <p className="font-semibold">{totalPoints}p</p>
+            <p className="font-semibold">{formatPoints(totalPoints)}p</p>
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.pass}</span>
-            <p className="font-semibold">{examInfo.passPoints}p</p>
+            <p className="font-semibold">{formatPoints(examInfo.passPoints)}p</p>
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.timeLimit}</span>
@@ -183,7 +184,7 @@ function ExamPlayer({
         if (selfGrades[q.id] === "correct") score += q.points;
       }
     }
-    return score;
+    return roundPoints(score);
   };
 
   const score = getScore();
@@ -222,7 +223,7 @@ function ExamPlayer({
         <div>
           <span className="text-lg font-bold text-fg">{examInfo.title}</span>
           <span className="text-sm text-fg-muted ml-3">
-            {totalPoints}p {t.exam.total}
+            {formatPoints(totalPoints)}p {t.exam.total}
           </span>
         </div>
         <div className="flex items-center gap-4">
@@ -237,7 +238,7 @@ function ExamPlayer({
             <span
               className={`text-sm font-bold px-3 py-1 rounded animate-fade-in ${score >= examInfo.passPoints ? "bg-accent-light text-accent-fg" : "bg-red-50 text-red-700"}`}
             >
-              {score}/{totalPoints}p{" "}
+              {formatPoints(score)}/{formatPoints(totalPoints)}p{" "}
               {score >= examInfo.passPoints ? t.exam.pass_ : t.exam.fail}
             </span>
           )}
@@ -247,12 +248,12 @@ function ExamPlayer({
       {submitted && (
         <div className="mb-6 p-4 rounded-lg bg-accent-light border border-accent-border text-sm animate-fade-in-up">
           <p className="font-semibold text-fg mb-1">
-            {t.exam.submitted} {t.exam.score}: {score}
+            {t.exam.submitted} {t.exam.score}: {formatPoints(score)}
             {t.exam.outOf}
-            {totalPoints} ({Math.round((score / totalPoints) * 100)}%)
+            {formatPoints(totalPoints)} ({Math.round((score / totalPoints) * 100)}%)
           </p>
           <p className="text-accent-fg">
-            {t.exam.passThreshold}: {examInfo.passPoints}p. {t.exam.reviewNote}
+            {t.exam.passThreshold}: {formatPoints(examInfo.passPoints)}p. {t.exam.reviewNote}
           </p>
         </div>
       )}
@@ -632,7 +633,7 @@ export default function ExamSimulation() {
     return () => clearTimeout(timer);
   }, [started, questions.length, subject, t]);
 
-  const totalPoints = questions.reduce((s, q) => s + q.points, 0);
+  const totalPoints = roundPoints(questions.reduce((s, q) => s + q.points, 0));
 
   if (questions.length === 0 || !subject || !examInfo) {
     return (

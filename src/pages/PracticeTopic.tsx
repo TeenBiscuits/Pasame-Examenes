@@ -20,6 +20,7 @@ import { buildTopicMeta } from "../seo/meta";
 import { usePracticeSession } from "../hooks/usePracticeSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
+import { formatPoints, roundPoints } from "../lib/points";
 
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
@@ -108,7 +109,7 @@ function PracticePlayer({
         if (selfGrades[q.id] === "correct") score += q.points;
       }
     }
-    return score;
+    return roundPoints(score);
   };
 
   return (
@@ -127,8 +128,8 @@ function PracticePlayer({
           {topicInfo?.icon} {topicInfo?.label || topic}
         </h1>
         <p className="text-sm text-fg-muted mt-1">
-          {questions.length} {t.subjectCard.questions} &middot; {totalPoints}{" "}
-          {t.practice.pointsTotal}
+          {questions.length} {t.subjectCard.questions} &middot;{" "}
+          {formatPoints(totalPoints)} {t.practice.pointsTotal}
         </p>
       </div>
 
@@ -136,7 +137,8 @@ function PracticePlayer({
         <div className="mb-6 p-4 rounded-lg bg-accent-light border border-accent-border animate-fade-in-up">
           <p className="font-semibold text-fg">
             {submitted ? t.practice.score : t.practice.runningScore}:{" "}
-            {getScore()} {t.exam.outOf} {totalPoints} {t.practice.points}
+            {formatPoints(getScore())} {t.exam.outOf} {formatPoints(totalPoints)}{" "}
+            {t.practice.points}
           </p>
           <p className="text-sm text-accent-fg mt-1">
             {submitted
@@ -544,7 +546,7 @@ export default function PracticeTopic() {
     return () => clearTimeout(timer);
   }, [questions.length, t]);
 
-  const totalPoints = questions.reduce((s, q) => s + q.points, 0);
+  const totalPoints = roundPoints(questions.reduce((s, q) => s + q.points, 0));
 
   const handleClearAnswer = useCallback(
     (questionId: string) => {

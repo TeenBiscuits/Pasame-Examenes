@@ -4,6 +4,7 @@ import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { Markdown, InlineMarkdown } from "../lib/markdown";
 import { track } from "../lib/umami";
+import { formatPoints } from "../lib/points";
 import {
   triggerLight,
   triggerSuccess,
@@ -558,7 +559,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           Q{props.index + 1}/{props.total}
         </span>
         <span className="text-xs font-mono bg-accent-light text-accent-fg px-2 py-0.5 rounded">
-          {question.points}p
+          {formatPoints(question.points)}p
         </span>
         <span className="text-xs text-fg-muted">
           {props.megatopicLabel

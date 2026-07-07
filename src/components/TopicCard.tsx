@@ -3,6 +3,7 @@ import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
+import { formatPoints } from "../lib/points";
 
 interface TopicCardProps {
   subjectId: string;
@@ -51,8 +52,8 @@ export default function TopicCard({
           {topic.icon}
         </span>
         <span className="text-xs text-fg-muted font-medium">
-          {questionCount} {t.subjectCard.questions} &middot; {pointsCount}{" "}
-          {t.subjectCard.points}
+          {questionCount} {t.subjectCard.questions} &middot;{" "}
+          {formatPoints(pointsCount)} {t.subjectCard.points}
         </span>
       </div>
       <h2 className="font-semibold text-fg text-sm mb-2">{topic.label}</h2>
