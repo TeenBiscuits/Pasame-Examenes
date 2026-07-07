@@ -6434,7 +6434,7 @@ export const questions: Question[] = [
     question:
       "Respecto a la Figura 3, sabiendo que el MTU de las redes A y B es de 1500 bytes y suponiendo que se envían 2060 bytes de datos UDP (sin incluir cabecera/s UDP) desde el host X al host Y, ¿cuál de los siguientes es el tamaño del menor de los fragmentos que circula por la red B?",
     image: getImage(imageMap, "Figura3.png"),
-    options: ["A. 600.", "B. 608.", "C. 2080.", "D. 2088."],
+    options: ["A. 600", "B. 608", "C. 2080", "D. 2088"],
     correctAnswer: "b",
   },
   {
@@ -6446,7 +6446,7 @@ export const questions: Question[] = [
     question:
       "Respecto a la Figura 3 y con la misma información de la pregunta anterior, por la red A, ¿cuál es el offset (en decimal) del segundo fragmento?",
     image: getImage(imageMap, "Figura3.png"),
-    options: ["A. 0.", "B. 1480.", "C. 1500.", "D. 2060."],
+    options: ["A. 0", "B. 1480", "C. 1500", "D. 2060"],
     correctAnswer: "b",
   },
   {
@@ -6458,7 +6458,7 @@ export const questions: Question[] = [
     question:
       "Respecto a la Figura 3 y con la misma información de la pregunta anterior, por la red A, ¿cuántos fragmentos tendrán el flag MF activado?",
     image: getImage(imageMap, "Figura3.png"),
-    options: ["A. 0.", "B. 1.", "C. 2.", "D. Todos."],
+    options: ["A. 0", "B. 1", "C. 2", "D. Todos"],
     correctAnswer: "b",
   },
   {
