@@ -43,6 +43,8 @@ export interface MegaTopic {
   topics: string[];
 }
 
+export type ContentPolicy = "authorized-exams" | "community-practice";
+
 export interface Exam {
   year: string;
   title: string;
@@ -53,6 +55,7 @@ export interface Exam {
   description: string;
   hasPdf?: boolean;
   daypoUrl?: string;
+  deleteRights?: boolean;
 }
 
 export interface SubjectMeta {
@@ -61,6 +64,7 @@ export interface SubjectMeta {
   university: string;
   courseCode: string;
   icon: string;
+  contentPolicy?: ContentPolicy;
   acknowledgments?: string;
   topics: Topic[];
   megatopics?: MegaTopic[];

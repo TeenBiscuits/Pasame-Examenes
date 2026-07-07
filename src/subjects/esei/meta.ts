@@ -6,8 +6,9 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "202322",
   icon: "🧠",
+  contentPolicy: "community-practice",
   acknowledgments:
-    "Exámenes originales proporcionados por el alumnado de la asignatura de forma anónima.",
+    "Las preguntas y respuestas incluidas en esta plataforma son ejercicios originales creados por estudiantes anónimos a partir del temario oficial. No se reproducen exámenes oficiales, enunciados originales ni materiales docentes protegidos del profesorado o de la universidad. Si se detecta alguna coincidencia sustancial no autorizada, puede notificarse para su revisión y retirada.",
   topics: [
     {
       key: "t1",
@@ -85,7 +86,7 @@ export const meta: SubjectMeta = {
   exams: [
     {
       year: "2023",
-      title: "2023",
+      title: "Posibles preguntas 2023",
       date: "2023",
       description: "45 preguntas",
       passPoints: 22,
@@ -95,7 +96,7 @@ export const meta: SubjectMeta = {
     },
     {
       year: "2024",
-      title: "2024",
+      title: "Posibles preguntas 2024",
       date: "2024",
       description: "44 preguntas",
       passPoints: 22,
@@ -105,7 +106,7 @@ export const meta: SubjectMeta = {
     },
     {
       year: "2025-05",
-      title: "Mayo 2025",
+      title: "Posibles preguntas Mayo 2025",
       date: "Mayo 2025",
       description: "42 preguntas",
       passPoints: 21,
@@ -115,7 +116,7 @@ export const meta: SubjectMeta = {
     },
     {
       year: "2025-07",
-      title: "Julio 2025",
+      title: "Posibles preguntas Julio 2025",
       date: "Julio 2025",
       description: "47 preguntas",
       passPoints: 23,
@@ -125,7 +126,7 @@ export const meta: SubjectMeta = {
     },
     {
       year: "2026-06",
-      title: "Junio 2026",
+      title: "Posibles preguntas Junio 2026",
       date: "Junio 2026",
       description: "56 preguntas",
       passPoints: 28,

@@ -8,6 +8,8 @@ body:
       value: |
         ¡Gracias por sugerir una nueva asignatura para Pásame Exámenes! Cuanta más información proporciones, más fácil será añadirla.
 
+        No envíes enunciados, PDFs o materiales docentes protegidos si no tienes permiso para compartirlos.
+
   - type: input
     id: subject-name
     attributes:
@@ -48,10 +50,10 @@ body:
   - type: textarea
     id: exam-info
     attributes:
-      label: Información sobre los exámenes
+      label: Información sobre exámenes autorizados/pruebas/recopilatorios
       description: |
-        ¿De qué años hay exámenes disponibles? ¿Cuánto duran? ¿Cuántos puntos valen?
-        Si tienes los PDFs, puedes mencionarlo aquí.
+        ¿De qué años hay exámenes autorizados, pruebas o recopilatorios disponibles? ¿Cuánto duran? ¿Cuántos puntos valen?
+        Si tienes PDFs que pueden compartirse públicamente o con autorización, puedes mencionarlo aquí.
       placeholder: |
         - Examen 2024: 60 puntos, 3 horas, 15 preguntas
         - Examen 2023: 50 puntos, 2.5 horas, 12 preguntas

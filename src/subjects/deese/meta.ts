@@ -6,8 +6,9 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "202317",
   icon: "🎨",
+  contentPolicy: "community-practice",
   acknowledgments:
-    "Exámenes originales proporcionados por el alumnado de la asignatura de forma anónima.",
+    "Las preguntas y respuestas incluidas en esta plataforma son ejercicios originales creados por estudiantes anónimos a partir del temario oficial. No se reproducen exámenes oficiales, enunciados originales ni materiales docentes protegidos del profesorado o de la universidad. Si se detecta alguna coincidencia sustancial no autorizada, puede notificarse para su revisión y retirada.",
   topics: [
     {
       key: "intro-y-objetos",
@@ -43,7 +44,7 @@ export const meta: SubjectMeta = {
   exams: [
     {
       year: "2020-01",
-      title: "Enero 2020",
+      title: "Posibles preguntas Enero 2020",
       date: "Enero 2020",
       description: "150 min · 30 preguntas",
       passPoints: 15,
@@ -53,7 +54,7 @@ export const meta: SubjectMeta = {
     },
     {
       year: "2022-01",
-      title: "Enero 2022",
+      title: "Posibles preguntas Enero 2022",
       date: "Enero 2022",
       description: "150 min · 25 preguntas",
       passPoints: 13,

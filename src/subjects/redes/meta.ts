@@ -6,8 +6,9 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "202319",
   icon: "🕸️",
+  contentPolicy: "community-practice",
   acknowledgments:
-    "Exámenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
+    "Las preguntas y respuestas incluidas en esta plataforma son ejercicios originales creados por estudiantes anónimos a partir del temario oficial. No se reproducen exámenes oficiales, enunciados originales ni materiales docentes protegidos del profesorado o de la universidad. Si se detecta alguna coincidencia sustancial no autorizada, puede notificarse para su revisión y retirada.",
   topics: [
     {
       key: "tema-1",
@@ -99,8 +100,8 @@ export const meta: SubjectMeta = {
     },
     {
       year: "2025-05",
-      title: "Mayo 2025 (incompl.)",
-      date: "2025-05",
+      title: "Posibles preguntas Mayo 2025",
+      date: "Mayo 2025",
       description: "37 preguntas · 37 puntos",
       passPoints: 19,
       totalPoints: 37,

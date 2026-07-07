@@ -6,8 +6,9 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "200190",
   icon: "🏗️",
+  contentPolicy: "community-practice",
   acknowledgments:
-    "Exámenes originales y recopilatorios proporcionados por el alumnado de la asignatura de forma anónima.",
+    "Las preguntas y respuestas incluidas en esta plataforma son ejercicios originales creados por estudiantes anónimos a partir del temario oficial. No se reproducen exámenes oficiales, enunciados originales ni materiales docentes protegidos del profesorado o de la universidad. Si se detecta alguna coincidencia sustancial no autorizada, puede notificarse para su revisión y retirada.",
   topics: [
     {
       key: "modulo-i",
@@ -25,7 +26,7 @@ export const meta: SubjectMeta = {
   exams: [
     {
       year: "2024-07",
-      title: "Xullo 2024",
+      title: "Posibles preguntas Xullo 2024",
       date: "Xullo 2024",
       description: "20 preguntas · 10 puntos",
       passPoints: 5,

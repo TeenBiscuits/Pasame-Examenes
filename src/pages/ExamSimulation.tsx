@@ -20,6 +20,7 @@ import { buildExamMeta } from "../seo/meta";
 import { useExamSession } from "../hooks/useExamSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
+import { hasAuthorizedExamContent } from "../lib/content-policy";
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -44,6 +45,9 @@ function ExamStartScreen({
   onStart,
 }: ExamStartScreenProps) {
   const t = useT();
+  const simulationNote = hasAuthorizedExamContent(subject)
+    ? t.exam.simulationNote
+    : t.exam.practiceNote;
   return (
     <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in animate-duration-fast">
       <div className="mb-6">
@@ -91,7 +95,7 @@ function ExamStartScreen({
           </div>
         </div>
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
-          {t.exam.simulationNote}
+          {simulationNote}
         </div>
         <button
           type="button"
@@ -416,7 +420,7 @@ export default function ExamSimulation() {
     Record<string, string>
   >({});
   const examInfo = useMemo(
-    () => subject?.exams.find((e: Exam) => e.year === year),
+    () => subject?.exams.find((e: Exam) => e.year === year && !e.deleteRights),
     [subject, year],
   );
   useEffect(() => {
@@ -541,8 +545,10 @@ export default function ExamSimulation() {
   });
 
   useEffect(() => {
-    if (!subject || !examInfo) {
+    if (!subject) {
       navigate(langTo("/"), { replace: true });
+    } else if (!examInfo) {
+      navigate(langTo(`/${subject.id}`), { replace: true });
     }
   }, [subject, examInfo, navigate, langTo]);
 
@@ -568,6 +574,10 @@ export default function ExamSimulation() {
 
   useEffect(() => {
     if (!started || questions.length === 0) return;
+    const step1Description =
+      subject && hasAuthorizedExamContent(subject)
+        ? t.tour.exam.step1Desc
+        : t.tour.exam.practiceStep1Desc;
     const timer = setTimeout(() => {
       startExamTour(
         [
@@ -575,7 +585,7 @@ export default function ExamSimulation() {
             element: '[data-tour="exam-header"]',
             popover: {
               title: t.tour.exam.step1Title,
-              description: t.tour.exam.step1Desc,
+              description: step1Description,
               side: "bottom",
             },
           },
@@ -620,7 +630,7 @@ export default function ExamSimulation() {
       );
     }, 500);
     return () => clearTimeout(timer);
-  }, [started, questions.length, t]);
+  }, [started, questions.length, subject, t]);
 
   const totalPoints = questions.reduce((s, q) => s + q.points, 0);
 

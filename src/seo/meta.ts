@@ -3,6 +3,7 @@ import { en } from "../i18n/en";
 import { es } from "../i18n/es";
 import { gl } from "../i18n/gl";
 import type { Lang } from "../i18n/context";
+import { hasAuthorizedExamContent } from "../lib/content-policy";
 
 export const BASE_URL = "https://pe.pablopl.dev";
 export const LANGS = ["en", "es", "gl"] as const;
@@ -141,14 +142,14 @@ function makePageMeta(
 export function buildHomeMeta(lang: Lang): PageMetaData {
   const tr = t(lang);
   const titleByLang: Record<Lang, string> = {
-    en: "Practice University Exams",
-    es: "Practica exámenes universitarios",
-    gl: "Practica exames universitarios",
+    en: "Practice University Questions",
+    es: "Practica preguntas universitarias",
+    gl: "Practica preguntas universitarias",
   };
   const descriptionByLang: Record<Lang, string> = {
-    en: "Practice past university exams by topic or simulate full exams with model answers, self-grading, and multiple-choice, text, and matching questions.",
-    es: "Practica exámenes universitarios anteriores por tema o simula exámenes completos con respuestas modelo, autocorrección y preguntas tipo test o desarrollo.",
-    gl: "Practica exames universitarios anteriores por tema ou simula exames completos con respostas modelo, autocorrección e preguntas tipo test ou desenvolvemento.",
+    en: "Practice university questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.",
+    es: "Practica preguntas universitarias por tema o en modo cronometrado con respuestas modelo, autocorrección y preguntas tipo test o desarrollo.",
+    gl: "Practica preguntas universitarias por tema ou en modo cronometrado con respostas modelo, autocorrección e preguntas tipo test ou desenvolvemento.",
   };
   const title = appendBrand(titleByLang[lang], tr.seo.siteName);
   const description = descriptionByLang[lang];
@@ -179,16 +180,32 @@ export function buildSubjectMeta(
 ): PageMetaData {
   const tr = t(lang);
   const pathWithoutLang = `/${subject.id}`;
+  const availableExamCount = subject.exams.filter(
+    (exam) => !exam.deleteRights,
+  ).length;
+  const hasAuthorizedExams = hasAuthorizedExamContent(subject);
   const titleStem: Record<Lang, string> = {
-    en: `${subject.name}: past exams and solved questions`,
-    es: `${subject.name}: exámenes y preguntas resueltas`,
-    gl: `${subject.name}: exames e preguntas resoltas`,
+    en: hasAuthorizedExams
+      ? `${subject.name}: exams and solved questions`
+      : `${subject.name}: compilations and solved questions`,
+    es: hasAuthorizedExams
+      ? `${subject.name}: exámenes y preguntas resueltas`
+      : `${subject.name}: recopilatorios y preguntas resueltas`,
+    gl: hasAuthorizedExams
+      ? `${subject.name}: exames e preguntas resoltas`
+      : `${subject.name}: recompilacións e preguntas resoltas`,
   };
   const count = stats.questionCount;
   const descriptionByLang: Record<Lang, string> = {
-    en: `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${subject.exams.length} past exams with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
-    es: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${subject.exams.length} exámenes anteriores con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
-    gl: `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${subject.exams.length} exames anteriores con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    en: hasAuthorizedExams
+      ? `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${availableExamCount} exams with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`
+      : `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${availableExamCount} compilations with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
+    es: hasAuthorizedExams
+      ? `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} exámenes con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`
+      : `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} recopilatorios de práctica con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    gl: hasAuthorizedExams
+      ? `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} exames con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`
+      : `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} recompilacións de práctica con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
   };
   const title = appendBrand(titleStem[lang], tr.seo.siteName);
   const description = descriptionByLang[lang];
@@ -234,15 +251,22 @@ export function buildTopicMeta(
   const tr = t(lang);
   const pathWithoutLang = `/${subject.id}/practice/${topic.key}`;
   const count = stats.topicQuestionCounts?.[topic.key];
+  const hasAuthorizedExams = hasAuthorizedExamContent(subject);
   const titleStem: Record<Lang, string> = {
-    en: `${topic.label}: ${subject.name} exam questions`,
+    en: `${topic.label}: ${subject.name} ${hasAuthorizedExams ? "exam" : "practice"} questions`,
     es: `${topic.label}: preguntas de ${subject.name}`,
     gl: `${topic.label}: preguntas de ${subject.name}`,
   };
   const descriptionByLang: Record<Lang, string> = {
-    en: `Practice ${count ? `${count} ` : ""}${topic.label} questions from past ${subject.name} exams with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
-    es: `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de exámenes anteriores de ${subject.name}, con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
-    gl: `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de exames anteriores de ${subject.name}, con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    en: hasAuthorizedExams
+      ? `Practice ${count ? `${count} ` : ""}${topic.label} questions from ${subject.name} exams with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`
+      : `Practice ${count ? `${count} ` : ""}${topic.label} questions from ${subject.name} compilations with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
+    es: hasAuthorizedExams
+      ? `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de exámenes de ${subject.name}, con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`
+      : `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de recopilatorios de ${subject.name}, con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
+    gl: hasAuthorizedExams
+      ? `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de exames de ${subject.name}, con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`
+      : `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de recompilacións de ${subject.name}, con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
   };
   const title = appendBrand(titleStem[lang], tr.seo.siteName);
   const description = descriptionByLang[lang];
@@ -288,15 +312,22 @@ export function buildExamMeta(
   const tr = t(lang);
   const pathWithoutLang = `/${subject.id}/exam/${exam.year}`;
   const count = stats.examQuestionCounts?.[exam.year];
+  const hasAuthorizedExams = hasAuthorizedExamContent(subject);
   const titleStem: Record<Lang, string> = {
-    en: `${exam.title} ${subject.name}: exam simulator`,
-    es: `${exam.title} de ${subject.name}: simulador`,
-    gl: `${exam.title} de ${subject.name}: simulador`,
+    en: `${exam.title} ${subject.name}: ${hasAuthorizedExams ? "exam simulator" : "timed practice"}`,
+    es: `${exam.title} de ${subject.name}: ${hasAuthorizedExams ? "simulador" : "práctica cronometrada"}`,
+    gl: `${exam.title} de ${subject.name}: ${hasAuthorizedExams ? "simulador" : "práctica cronometrada"}`,
   };
   const descriptionByLang: Record<Lang, string> = {
-    en: `Simulate the ${exam.title} ${subject.name} exam${count ? ` with ${count} questions` : ""}. ${exam.totalPoints} points, ${exam.durationMinutes} minutes, model answers and self-grading.`,
-    es: `Simula el examen ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respuestas modelo y autocorrección.`,
-    gl: `Simula o exame ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respostas modelo e autocorrección.`,
+    en: hasAuthorizedExams
+      ? `Simulate the ${exam.title} ${subject.name} exam${count ? ` with ${count} questions` : ""}. ${exam.totalPoints} points, ${exam.durationMinutes} minutes, model answers and self-grading.`
+      : `Practice the ${exam.title} ${subject.name} timed set${count ? ` with ${count} questions` : ""}. ${exam.totalPoints} points, ${exam.durationMinutes} minutes, model answers and self-grading.`,
+    es: hasAuthorizedExams
+      ? `Simula el examen ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respuestas modelo y autocorrección.`
+      : `Practica el recopilatorio cronometrado ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respuestas modelo y autocorrección.`,
+    gl: hasAuthorizedExams
+      ? `Simula o exame ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respostas modelo e autocorrección.`
+      : `Practica a recompilación cronometrada ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respostas modelo e autocorrección.`,
   };
   const title = appendBrand(titleStem[lang], tr.seo.siteName);
   const description = descriptionByLang[lang];

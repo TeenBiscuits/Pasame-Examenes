@@ -6,6 +6,7 @@ export const meta: SubjectMeta = {
   university: "Linnaeus University",
   courseCode: "2DV516",
   icon: "🤖",
+  contentPolicy: "authorized-exams",
   topics: [
     { key: "kNN", label: "k-Nearest Neighbors", icon: "🎯", color: "blue" },
     {

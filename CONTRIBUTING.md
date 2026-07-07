@@ -1,6 +1,17 @@
 # Contribuir a Pásame Exámenes
 
-¡Gracias por ayudar a hacer crecer esta plataforma open source de práctica de exámenes!
+¡Gracias por ayudar a hacer crecer esta plataforma open source de práctica universitaria!
+
+## Derechos de autor y fuentes
+
+Solo se aceptan contenidos que cumplan al menos una de estas condiciones:
+
+- Son ejercicios originales creados por quien contribuye.
+- Proceden de exámenes o materiales publicados oficialmente con permiso para compartirse.
+- Han sido proporcionados o autorizados por el profesorado o la institución.
+- Proceden de una fuente pública compatible con su uso en la plataforma.
+
+No envíes enunciados, PDFs, soluciones o materiales docentes protegidos si no tienes autorización para compartirlos. Si una asignatura no comparte sus exámenes, aporta ejercicios originales basados en el temario en lugar de recreaciones exactas.
 
 ## Cómo contribuir
 
@@ -31,6 +42,7 @@ export const meta: SubjectMeta = {
   icon: "📚",
   acknowledgments:
     "Preguntas proporcionadas por el departamento de... Respuestas por...", // opcional, se muestra al final de la página
+  contentPolicy: "community-practice", // "authorized-exams" solo si los exámenes pueden compartirse
   topics: [
     {
       key: "tema-slug",
@@ -155,15 +167,15 @@ Pista: recuerda que \`foo()\` se llama recursivamente.`,
 
 **Preguntas repetidas:** Si una misma pregunta (o una variante casi idéntica) aparece en varios exámenes con distinto `exam`, marca `repeated: true` en cada ocurrencia. La interfaz mostrará un contador de repetidas en la página de la asignatura.
 
-#### 4. Añade los PDFs de los exámenes
+#### 4. Añade PDFs autorizados, si los hay
 
-Copia los PDFs originales a `public/exams/{subject-id}/`:
+Copia únicamente PDFs que puedan compartirse públicamente o con autorización a `public/exams/{subject-id}/`:
 
 ```
 public/exams/{subject-id}/Exam-2024.pdf
 ```
 
-La convención es `Exam-{year}.pdf`. Si un examen no tiene PDF, marca `hasPdf: false` en su entrada de `meta.ts` para que el enlace de descarga no aparezca. Si ningún examen tiene PDF, la sección entera se oculta automáticamente.
+La convención es `Exam-{year}.pdf`. Si un examen o recopilatorio no tiene PDF autorizado, marca `hasPdf: false` en su entrada de `meta.ts` para que el enlace de descarga no aparezca. Si ningún elemento tiene PDF, la sección entera se oculta automáticamente.
 
 #### 5. Añade imágenes (si las hay)
 
@@ -222,15 +234,16 @@ pnpm dev
 
 La asignatura debe aparecer en la pantalla principal y todas las funcionalidades deben funcionar.
 
-### Flujo de trabajo para extraer preguntas de PDFs
+### Flujo de trabajo para añadir preguntas desde material autorizado
 
-1. Abre el PDF e identifica cada pregunta
-2. Clasifícala como `mc`, `text` o `matching`
-3. Asígnale un tema de tu array `topics` en `meta.ts`
-4. Para MC: escribe las opciones exactamente como aparecen, marca la letra correcta
-5. Para text: escribe una solución modelo
-6. Para matching: crea el mapeo ítem → letra
-7. Incluye notas explicativas en `explanation` cuando aporten contexto adicional
+1. Comprueba que tienes permiso para usar el material o redacta preguntas originales basadas en el temario
+2. Abre el PDF autorizado o tus notas e identifica cada pregunta
+3. Clasifícala como `mc`, `text` o `matching`
+4. Asígnale un tema de tu array `topics` en `meta.ts`
+5. Para MC: escribe opciones originales o autorizadas, marca la letra correcta
+6. Para text: escribe una solución modelo
+7. Para matching: crea el mapeo ítem → letra
+8. Incluye notas explicativas en `explanation` cuando aporten contexto adicional
 
 ## Estructura del proyecto
 
@@ -303,7 +316,7 @@ src/
 public/
 ├── favicon.svg
 ├── og.jpg
-└── exams/                    # PDFs originales; no todas las asignaturas tienen PDFs
+└── exams/                    # PDFs autorizados; no todas las asignaturas tienen PDFs
     ├── cepe/
     ├── ece/
     ├── emeele/
@@ -330,7 +343,8 @@ No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación d
 - [ ] Todas las `topic` en `questions.ts` existen en `meta.ts`
 - [ ] Las preguntas MC tienen opciones y una letra válida (`"a"`–`"e"`)
 - [ ] Los bloques de código usan `\`\`\`` en template literals de TypeScript
-- [ ] Los PDFs están en `public/exams/{subject-id}/` o los exámenes sin PDF tienen `hasPdf: false`
+- [ ] El contenido es original, autorizado o procede de una fuente pública compatible
+- [ ] Los PDFs autorizados están en `public/exams/{subject-id}/` o los elementos sin PDF tienen `hasPdf: false`
 - [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente (usa `image` para el enunciado y `explanationImage` para la solución)
 - [ ] Las preguntas repetidas están marcadas con `repeated: true`
 - [ ] Si añadiste una asignatura, sus exports están registrados en `src/subjects/_visibility.ts`

@@ -6,6 +6,7 @@ export const meta: SubjectMeta = {
   university: "Template University",
   courseCode: "TMP101",
   icon: "📝",
+  contentPolicy: "community-practice",
   acknowledgments:
     "Questions provided by the Template Department. Answers by Prof. Example.",
   topics: [
@@ -43,6 +44,17 @@ export const meta: SubjectMeta = {
       totalPoints: 90,
       durationMinutes: 150,
       hasPdf: false,
+    },
+    {
+      year: "2023",
+      title: "2023 Exam",
+      date: "2023",
+      description: "Removed for copyright reasons",
+      passPoints: 0,
+      totalPoints: 0,
+      durationMinutes: 0,
+      hasPdf: false,
+      deleteRights: true,
     },
   ],
 };

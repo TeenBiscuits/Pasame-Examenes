@@ -6,13 +6,14 @@ export const meta: SubjectMeta = {
   university: "Universidade da Coruña",
   courseCode: "202321",
   icon: "🗓️",
+  contentPolicy: "community-practice",
   acknowledgments:
-    "Examen original proporcionado por el alumnado de la asignatura de forma anónima.",
+    "Las preguntas y respuestas incluidas en esta plataforma son ejercicios originales creados por estudiantes anónimos a partir del temario oficial. No se reproducen exámenes oficiales, enunciados originales ni materiales docentes protegidos del profesorado o de la universidad. Si se detecta alguna coincidencia sustancial no autorizada, puede notificarse para su revisión y retirada.",
   topics: [{ key: "teoria", label: "Teoría", icon: "📖", color: "blue" }],
   exams: [
     {
       year: "2026-05",
-      title: "Mayo 2026",
+      title: "Posibles preguntas Mayo 2026",
       date: "Mayo 2026",
       description: "8.5 ptos · 17 preguntas",
       passPoints: 4.25,

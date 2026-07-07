@@ -2,7 +2,7 @@ export const en = {
   home: {
     title: "Pásame Exámenes",
     subtitle:
-      "Open-source platform for practicing university exams. Choose a subject below to start drilling questions from past exams.",
+      "Open-source platform for practicing university questions. Choose a subject below to study by topic or timed practice set.",
     addSubject: "Add Subject?",
     recentlyVisited: "Recently visited",
     clearRecent: "Clear recent subjects",
@@ -12,18 +12,26 @@ export const en = {
     returnHome: "Return to Home",
     description:
       "Practice {count} questions{repeated} from {exams} exams with model answers and self-grading.",
+    communityDescription:
+      "Practice {count} questions{repeated} from {exams} compilations with model answers and self-grading.",
     practiceByTopic: "Practice by Topic",
-    examSimulations: "Full Exam Simulations",
+    examSimulations: "Exams",
+    practiceSimulations: "Compilations",
     originalExams: "Original Exam Documents",
     examDocsDescription:
       "Download or view the original PDF exams that these practice questions and simulations are based on.",
+    sourceMaterials: "Source Materials",
+    sourceMaterialsDescription:
+      "Open the authorized or public source materials used for these practice questions.",
     originalDaypos: "Original Daypo Tests",
     daypoDocsDescription:
       "Open the original Daypo tests used as the source for these practice questions.",
     daypo: "Daypo",
     pdf: "PDF",
-    acknowledgments: "Acknowledgments",
-    addExam: "Add Exam?",
+    acknowledgments: "Acknowledgments and Disclaimer",
+    addExam: "Add?",
+    reportCopyright: "Report copyright",
+    copyrightRemoved: "Removed for copyright reasons",
     repeatedSuffix: "{count} repeated questions across years",
   },
   practiceHome: {
@@ -70,6 +78,8 @@ export const en = {
     startExam: "Start Exam",
     simulationNote:
       "This simulation mirrors the real exam format. For open-ended questions, self-grade your answers against the model solutions shown after submission. MC and matching questions are auto-graded.",
+    practiceNote:
+      "This timed practice uses an indicative structure for studying. For open-ended questions, self-grade your answers against the model solutions shown after submission. MC and matching questions are auto-graded.",
     submitted: "Exam Submitted.",
     passThreshold: "Pass threshold",
     reviewNote:
@@ -102,13 +112,17 @@ export const en = {
     questions: "questions",
     points: "points",
     exams: "exams",
+    practiceSets: "compilations",
+  },
+  contentPolicy: {
+    authorized: "Verified exam materials",
+    community: "Community practice materials",
   },
   addSubject: {
     title: "Add a Subject",
     close: "Close",
     openIssue: "Open an Issue",
-    openIssueDesc:
-      "Request a new subject via a pre-filled GitHub issue template",
+    openIssueDesc: "Request a new subject via a pre-filled GitHub issue template",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml",
     contribute: "Contribute!",
@@ -117,17 +131,31 @@ export const en = {
     email: "Send an email",
   },
   addExam: {
-    title: "Add an Exam",
+    title: "Add Practice Material",
     close: "Close",
     openIssue: "Open an Issue",
     openIssueDesc:
-      "Request a new exam for this subject via a pre-filled GitHub issue template",
+      "Propose an authorized exam, practice set, or original exercises via a GitHub issue template",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=add-exam.yml",
     contribute: "Contribute!",
     contributeDesc:
-      "Follow the contribution guide to add it yourself via pull request",
+      "Follow the contribution guide to add authorized or original content via pull request",
     email: "Send an email",
+    legalNotice:
+      "Only submit original content, authorized materials, or public sources with permission to share.",
+  },
+  copyrightReport: {
+    title: "Report copyright",
+    close: "Close",
+    description:
+      "If an exam, test, compilation, or question should be removed for copyright reasons, send an email to pablo.portas@udc.es.",
+    includeDetails:
+      "Please include the subject, exam/year or affected question, and the reason for the removal request.",
+    email: "Send removal request",
+    emailSubject: "Copyright removal request - {subjectName}",
+    emailBody:
+      "Subject: {subjectName}\nSubject ID: {subjectId}\n\nAffected exam/year or question:\n\nReason for removal request:\n",
   },
   tour: {
     next: "Next",
@@ -157,6 +185,8 @@ export const en = {
       step1Title: "Exam Simulation",
       step1Desc:
         "This simulates the real exam format. The timer is counting down, so manage your time wisely! The pass threshold is shown here.",
+      practiceStep1Desc:
+        "This is a timed practice set with an indicative structure. The timer is counting down, so manage your time wisely! The pass threshold is shown here.",
       step2Title: "Question Navigator",
       step2Desc:
         "Click numbered buttons to jump between questions. Answered questions are highlighted so you can track your progress.",
@@ -184,9 +214,9 @@ export const en = {
     siteName: "Pásame Exámenes",
     locale: "en_US",
     homeDescription:
-      "Open-source platform for practicing university exams by topic or simulating the full exam.",
+      "Open-source platform for practicing university questions by topic or timed practice set.",
     defaultDescription:
-      "Practice university exams with model answers and self-grading. Multiple-choice, text, and matching questions from past exams.",
+      "Practice university questions with model answers and self-grading. Multiple-choice, text, and matching questions.",
   },
 };
 
