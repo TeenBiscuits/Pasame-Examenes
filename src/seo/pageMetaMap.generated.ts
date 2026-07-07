@@ -1030,8 +1030,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/deese/exam/2020-01",
-    "title": "Posibles preguntas Enero 2020 Deseño de Software: timed practice",
-    "description": "Practice the Posibles preguntas Enero 2020 Deseño de Software timed set with 30 questions. 30 points, 150 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Enero 2020 Deseño de Software: timed practice",
+    "description": "Practice the Recopilatorio Enero 2020 Deseño de Software timed set with 30 questions. 30 points, 150 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/deese/exam/2020-01",
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
@@ -1055,15 +1055,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/deese/exam/2020-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Enero 2020 Deseño de Software: timed practice\",\"url\":\"https://pe.pablopl.dev/en/deese/exam/2020-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Enero 2020 Deseño de Software timed set with 30 questions. 30 points, 150 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/en/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Enero 2020\",\"item\":\"https://pe.pablopl.dev/en/deese/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/en/deese/exam/2020-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2020 Deseño de Software: timed practice\",\"url\":\"https://pe.pablopl.dev/en/deese/exam/2020-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Enero 2020 Deseño de Software timed set with 30 questions. 30 points, 150 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/en/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2020\",\"item\":\"https://pe.pablopl.dev/en/deese/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/en/deese/exam/2020-01\"}]}"
   },
   {
     "url": "seo/en/deese/exam/2022-01.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/deese/exam/2022-01",
-    "title": "Posibles preguntas Enero 2022 Deseño de Software: timed practice",
-    "description": "Practice the Posibles preguntas Enero 2022 Deseño de Software timed set with 25 questions. 25 points, 150 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Enero 2022 Deseño de Software: timed practice",
+    "description": "Practice the Recopilatorio Enero 2022 Deseño de Software timed set with 25 questions. 25 points, 150 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/deese/exam/2022-01",
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
@@ -1087,7 +1087,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/deese/exam/2022-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Enero 2022 Deseño de Software: timed practice\",\"url\":\"https://pe.pablopl.dev/en/deese/exam/2022-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Enero 2022 Deseño de Software timed set with 25 questions. 25 points, 150 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/en/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Enero 2022\",\"item\":\"https://pe.pablopl.dev/en/deese/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/en/deese/exam/2022-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2022 Deseño de Software: timed practice\",\"url\":\"https://pe.pablopl.dev/en/deese/exam/2022-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Enero 2022 Deseño de Software timed set with 25 questions. 25 points, 150 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/en/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2022\",\"item\":\"https://pe.pablopl.dev/en/deese/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/en/deese/exam/2022-01\"}]}"
   },
   {
     "url": "seo/en/ece.html",
@@ -2150,8 +2150,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/equisi/exam/2024-07",
-    "title": "Posibles preguntas Xullo 2024 Xestión de Infraestruturas: timed practice",
-    "description": "Practice the Posibles preguntas Xullo 2024 Xestión de Infraestruturas timed set with 20 questions. 10 points, 45 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Xullo 2024 Xestión de Infraestruturas: timed practice",
+    "description": "Practice the Recopilatorio Xullo 2024 Xestión de Infraestruturas timed set with 20 questions. 10 points, 45 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/equisi/exam/2024-07",
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
@@ -2175,7 +2175,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equisi/exam/2024-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xullo 2024 Xestión de Infraestruturas: timed practice\",\"url\":\"https://pe.pablopl.dev/en/equisi/exam/2024-07\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Xullo 2024 Xestión de Infraestruturas timed set with 20 questions. 10 points, 45 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Infraestruturas\",\"courseCode\":\"200190\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Infraestruturas\",\"item\":\"https://pe.pablopl.dev/en/equisi\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xullo 2024\",\"item\":\"https://pe.pablopl.dev/en/equisi/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/en/equisi/exam/2024-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xullo 2024 Xestión de Infraestruturas: timed practice\",\"url\":\"https://pe.pablopl.dev/en/equisi/exam/2024-07\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Xullo 2024 Xestión de Infraestruturas timed set with 20 questions. 10 points, 45 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Infraestruturas\",\"courseCode\":\"200190\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Infraestruturas\",\"item\":\"https://pe.pablopl.dev/en/equisi\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xullo 2024\",\"item\":\"https://pe.pablopl.dev/en/equisi/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/en/equisi/exam/2024-07\"}]}"
   },
   {
     "url": "seo/en/equisi/exam/daypo-modulo-i.html",
@@ -2374,8 +2374,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/equispe/exam/2024-01",
-    "title": "Posibles preguntas Xaneiro 2024 Xestión de Proxectos: timed practice",
-    "description": "Practice the Posibles preguntas Xaneiro 2024 Xestión de Proxectos timed set with 7 questions. 10 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Xaneiro 2024 Xestión de Proxectos: timed practice",
+    "description": "Practice the Recopilatorio Xaneiro 2024 Xestión de Proxectos timed set with 7 questions. 10 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/equispe/exam/2024-01",
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
@@ -2399,15 +2399,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equispe/exam/2024-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xaneiro 2024 Xestión de Proxectos: timed practice\",\"url\":\"https://pe.pablopl.dev/en/equispe/exam/2024-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Xaneiro 2024 Xestión de Proxectos timed set with 7 questions. 10 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/en/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xaneiro 2024\",\"item\":\"https://pe.pablopl.dev/en/equispe/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/en/equispe/exam/2024-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xaneiro 2024 Xestión de Proxectos: timed practice\",\"url\":\"https://pe.pablopl.dev/en/equispe/exam/2024-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Xaneiro 2024 Xestión de Proxectos timed set with 7 questions. 10 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/en/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xaneiro 2024\",\"item\":\"https://pe.pablopl.dev/en/equispe/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/en/equispe/exam/2024-01\"}]}"
   },
   {
     "url": "seo/en/equispe/exam/2026-01.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/equispe/exam/2026-01",
-    "title": "Posibles preguntas Xaneiro 2026 Xestión de Proxectos: timed practice",
-    "description": "Practice the Posibles preguntas Xaneiro 2026 Xestión de Proxectos timed set with 13 questions. 25 points, 180 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Xaneiro 2026 Xestión de Proxectos: timed practice",
+    "description": "Practice the Recopilatorio Xaneiro 2026 Xestión de Proxectos timed set with 13 questions. 25 points, 180 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/equispe/exam/2026-01",
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
@@ -2431,7 +2431,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equispe/exam/2026-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xaneiro 2026 Xestión de Proxectos: timed practice\",\"url\":\"https://pe.pablopl.dev/en/equispe/exam/2026-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Xaneiro 2026 Xestión de Proxectos timed set with 13 questions. 25 points, 180 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/en/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xaneiro 2026\",\"item\":\"https://pe.pablopl.dev/en/equispe/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/en/equispe/exam/2026-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xaneiro 2026 Xestión de Proxectos: timed practice\",\"url\":\"https://pe.pablopl.dev/en/equispe/exam/2026-01\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Xaneiro 2026 Xestión de Proxectos timed set with 13 questions. 25 points, 180 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/en/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xaneiro 2026\",\"item\":\"https://pe.pablopl.dev/en/equispe/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/en/equispe/exam/2026-01\"}]}"
   },
   {
     "url": "seo/en/equispe/exam/daypo-tipo-udc.html",
@@ -2886,8 +2886,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/esei/exam/2023",
-    "title": "Posibles preguntas 2023 Sistemas Intelixentes: timed practice",
-    "description": "Practice the Posibles preguntas 2023 Sistemas Intelixentes timed set with 45 questions. 45 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio 2023 Sistemas Intelixentes: timed practice",
+    "description": "Practice the Recopilatorio 2023 Sistemas Intelixentes timed set with 45 questions. 45 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/esei/exam/2023",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -2911,15 +2911,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2023"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas 2023 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2023\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas 2023 Sistemas Intelixentes timed set with 45 questions. 45 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas 2023\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2023\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2023\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio 2023 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2023\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio 2023 Sistemas Intelixentes timed set with 45 questions. 45 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio 2023\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2023\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2023\"}]}"
   },
   {
     "url": "seo/en/esei/exam/2024.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/esei/exam/2024",
-    "title": "Posibles preguntas 2024 Sistemas Intelixentes: timed practice",
-    "description": "Practice the Posibles preguntas 2024 Sistemas Intelixentes timed set with 44 questions. 44 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio 2024 Sistemas Intelixentes: timed practice",
+    "description": "Practice the Recopilatorio 2024 Sistemas Intelixentes timed set with 44 questions. 44 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/esei/exam/2024",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -2943,15 +2943,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2024"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas 2024 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2024\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas 2024 Sistemas Intelixentes timed set with 44 questions. 44 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas 2024\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2024\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2024\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio 2024 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2024\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio 2024 Sistemas Intelixentes timed set with 44 questions. 44 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio 2024\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2024\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2024\"}]}"
   },
   {
     "url": "seo/en/esei/exam/2025-05.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/esei/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 Sistemas Intelixentes: timed practice",
-    "description": "Practice the Posibles preguntas Mayo 2025 Sistemas Intelixentes timed set with 42 questions. 42 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Mayo 2025 Sistemas Intelixentes: timed practice",
+    "description": "Practice the Recopilatorio Mayo 2025 Sistemas Intelixentes timed set with 42 questions. 42 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/esei/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -2975,15 +2975,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2025-05\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Mayo 2025 Sistemas Intelixentes timed set with 42 questions. 42 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2025-05\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Mayo 2025 Sistemas Intelixentes timed set with 42 questions. 42 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2025-05\"}]}"
   },
   {
     "url": "seo/en/esei/exam/2025-07.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/esei/exam/2025-07",
-    "title": "Posibles preguntas Julio 2025 Sistemas Intelixentes: timed practice",
-    "description": "Practice the Posibles preguntas Julio 2025 Sistemas Intelixentes timed set with 47 questions. 47 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Julio 2025 Sistemas Intelixentes: timed practice",
+    "description": "Practice the Recopilatorio Julio 2025 Sistemas Intelixentes timed set with 47 questions. 47 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/esei/exam/2025-07",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -3007,15 +3007,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2025-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Julio 2025 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2025-07\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Julio 2025 Sistemas Intelixentes timed set with 47 questions. 47 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Julio 2025\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2025-07\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2025-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Julio 2025 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2025-07\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Julio 2025 Sistemas Intelixentes timed set with 47 questions. 47 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Julio 2025\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2025-07\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2025-07\"}]}"
   },
   {
     "url": "seo/en/esei/exam/2026-06.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/esei/exam/2026-06",
-    "title": "Posibles preguntas Junio 2026 Sistemas Intelixentes: timed practice",
-    "description": "Practice the Posibles preguntas Junio 2026 Sistemas Intelixentes timed set with 56 questions. 56 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Junio 2026 Sistemas Intelixentes: timed practice",
+    "description": "Practice the Recopilatorio Junio 2026 Sistemas Intelixentes timed set with 56 questions. 56 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/esei/exam/2026-06",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -3039,7 +3039,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2026-06"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Junio 2026 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2026-06\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Junio 2026 Sistemas Intelixentes timed set with 56 questions. 56 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Junio 2026\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2026-06\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2026-06\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Junio 2026 Sistemas Intelixentes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/esei/exam/2026-06\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Junio 2026 Sistemas Intelixentes timed set with 56 questions. 56 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/en/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Junio 2026\",\"item\":\"https://pe.pablopl.dev/en/esei/exam/2026-06\"}],\"url\":\"https://pe.pablopl.dev/en/esei/exam/2026-06\"}]}"
   },
   {
     "url": "seo/en/eseo.html",
@@ -3654,8 +3654,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/peese/exam/2026-05",
-    "title": "Posibles preguntas Mayo 2026 Proceso Software: timed practice",
-    "description": "Practice the Posibles preguntas Mayo 2026 Proceso Software timed set with 17 questions. 8.5 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Mayo 2026 Proceso Software: timed practice",
+    "description": "Practice the Recopilatorio Mayo 2026 Proceso Software timed set with 17 questions. 8.5 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/peese/exam/2026-05",
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
@@ -3679,7 +3679,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/peese/exam/2026-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2026 Proceso Software: timed practice\",\"url\":\"https://pe.pablopl.dev/en/peese/exam/2026-05\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Mayo 2026 Proceso Software timed set with 17 questions. 8.5 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Proceso Software\",\"courseCode\":\"202321\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Proceso Software\",\"item\":\"https://pe.pablopl.dev/en/peese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2026\",\"item\":\"https://pe.pablopl.dev/en/peese/exam/2026-05\"}],\"url\":\"https://pe.pablopl.dev/en/peese/exam/2026-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2026 Proceso Software: timed practice\",\"url\":\"https://pe.pablopl.dev/en/peese/exam/2026-05\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Mayo 2026 Proceso Software timed set with 17 questions. 8.5 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Proceso Software\",\"courseCode\":\"202321\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Proceso Software\",\"item\":\"https://pe.pablopl.dev/en/peese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2026\",\"item\":\"https://pe.pablopl.dev/en/peese/exam/2026-05\"}],\"url\":\"https://pe.pablopl.dev/en/peese/exam/2026-05\"}]}"
   },
   {
     "url": "seo/en/pei.html",
@@ -4358,8 +4358,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "en",
     "pathWithoutLang": "/redes/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 Redes: timed practice",
-    "description": "Practice the Posibles preguntas Mayo 2025 Redes timed set with 37 questions. 37 points, 120 minutes, model answers and self-grading.",
+    "title": "Recopilatorio Mayo 2025 Redes: timed practice",
+    "description": "Practice the Recopilatorio Mayo 2025 Redes timed set with 37 questions. 37 points, 120 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/redes/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -4383,7 +4383,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 Redes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\",\"inLanguage\":\"en\",\"description\":\"Practice the Posibles preguntas Mayo 2025 Redes timed set with 37 questions. 37 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 Redes: timed practice\",\"url\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\",\"inLanguage\":\"en\",\"description\":\"Practice the Recopilatorio Mayo 2025 Redes timed set with 37 questions. 37 points, 120 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/en/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/en/redes/exam/2025-05\"}]}"
   },
   {
     "url": "seo/es.html",
@@ -5414,8 +5414,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/deese/exam/2020-01",
-    "title": "Posibles preguntas Enero 2020 de Deseño de Software: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Enero 2020 de Deseño de Software con 30 preguntas. 30 puntos, 150 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Enero 2020 de Deseño de Software: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Enero 2020 de Deseño de Software con 30 preguntas. 30 puntos, 150 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/deese/exam/2020-01",
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
@@ -5439,15 +5439,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/deese/exam/2020-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Enero 2020 de Deseño de Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/deese/exam/2020-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Enero 2020 de Deseño de Software con 30 preguntas. 30 puntos, 150 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/es/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Enero 2020\",\"item\":\"https://pe.pablopl.dev/es/deese/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/es/deese/exam/2020-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2020 de Deseño de Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/deese/exam/2020-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Enero 2020 de Deseño de Software con 30 preguntas. 30 puntos, 150 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/es/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2020\",\"item\":\"https://pe.pablopl.dev/es/deese/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/es/deese/exam/2020-01\"}]}"
   },
   {
     "url": "seo/es/deese/exam/2022-01.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/deese/exam/2022-01",
-    "title": "Posibles preguntas Enero 2022 de Deseño de Software: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Enero 2022 de Deseño de Software con 25 preguntas. 25 puntos, 150 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Enero 2022 de Deseño de Software: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Enero 2022 de Deseño de Software con 25 preguntas. 25 puntos, 150 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/deese/exam/2022-01",
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
@@ -5471,7 +5471,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/deese/exam/2022-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Enero 2022 de Deseño de Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/deese/exam/2022-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Enero 2022 de Deseño de Software con 25 preguntas. 25 puntos, 150 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/es/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Enero 2022\",\"item\":\"https://pe.pablopl.dev/es/deese/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/es/deese/exam/2022-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2022 de Deseño de Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/deese/exam/2022-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Enero 2022 de Deseño de Software con 25 preguntas. 25 puntos, 150 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/es/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2022\",\"item\":\"https://pe.pablopl.dev/es/deese/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/es/deese/exam/2022-01\"}]}"
   },
   {
     "url": "seo/es/ece.html",
@@ -6534,8 +6534,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/equisi/exam/2024-07",
-    "title": "Posibles preguntas Xullo 2024 de Xestión de Infraestruturas: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Xullo 2024 de Xestión de Infraestruturas con 20 preguntas. 10 puntos, 45 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Xullo 2024 de Xestión de Infraestruturas: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Xullo 2024 de Xestión de Infraestruturas con 20 preguntas. 10 puntos, 45 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/equisi/exam/2024-07",
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
@@ -6559,7 +6559,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equisi/exam/2024-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xullo 2024 de Xestión de Infraestruturas: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/equisi/exam/2024-07\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Xullo 2024 de Xestión de Infraestruturas con 20 preguntas. 10 puntos, 45 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Infraestruturas\",\"courseCode\":\"200190\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Infraestruturas\",\"item\":\"https://pe.pablopl.dev/es/equisi\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xullo 2024\",\"item\":\"https://pe.pablopl.dev/es/equisi/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/es/equisi/exam/2024-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xullo 2024 de Xestión de Infraestruturas: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/equisi/exam/2024-07\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Xullo 2024 de Xestión de Infraestruturas con 20 preguntas. 10 puntos, 45 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Infraestruturas\",\"courseCode\":\"200190\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Infraestruturas\",\"item\":\"https://pe.pablopl.dev/es/equisi\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xullo 2024\",\"item\":\"https://pe.pablopl.dev/es/equisi/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/es/equisi/exam/2024-07\"}]}"
   },
   {
     "url": "seo/es/equisi/exam/daypo-modulo-i.html",
@@ -6758,8 +6758,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/equispe/exam/2024-01",
-    "title": "Posibles preguntas Xaneiro 2024 de Xestión de Proxectos: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Xaneiro 2024 de Xestión de Proxectos con 7 preguntas. 10 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Xaneiro 2024 de Xestión de Proxectos: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Xaneiro 2024 de Xestión de Proxectos con 7 preguntas. 10 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/equispe/exam/2024-01",
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
@@ -6783,15 +6783,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equispe/exam/2024-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xaneiro 2024 de Xestión de Proxectos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/equispe/exam/2024-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Xaneiro 2024 de Xestión de Proxectos con 7 preguntas. 10 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/es/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xaneiro 2024\",\"item\":\"https://pe.pablopl.dev/es/equispe/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/es/equispe/exam/2024-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xaneiro 2024 de Xestión de Proxectos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/equispe/exam/2024-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Xaneiro 2024 de Xestión de Proxectos con 7 preguntas. 10 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/es/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xaneiro 2024\",\"item\":\"https://pe.pablopl.dev/es/equispe/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/es/equispe/exam/2024-01\"}]}"
   },
   {
     "url": "seo/es/equispe/exam/2026-01.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/equispe/exam/2026-01",
-    "title": "Posibles preguntas Xaneiro 2026 de Xestión de Proxectos: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Xaneiro 2026 de Xestión de Proxectos con 13 preguntas. 25 puntos, 180 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Xaneiro 2026 de Xestión de Proxectos: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Xaneiro 2026 de Xestión de Proxectos con 13 preguntas. 25 puntos, 180 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/equispe/exam/2026-01",
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
@@ -6815,7 +6815,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equispe/exam/2026-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xaneiro 2026 de Xestión de Proxectos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/equispe/exam/2026-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Xaneiro 2026 de Xestión de Proxectos con 13 preguntas. 25 puntos, 180 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/es/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xaneiro 2026\",\"item\":\"https://pe.pablopl.dev/es/equispe/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/es/equispe/exam/2026-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xaneiro 2026 de Xestión de Proxectos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/equispe/exam/2026-01\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Xaneiro 2026 de Xestión de Proxectos con 13 preguntas. 25 puntos, 180 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/es/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xaneiro 2026\",\"item\":\"https://pe.pablopl.dev/es/equispe/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/es/equispe/exam/2026-01\"}]}"
   },
   {
     "url": "seo/es/equispe/exam/daypo-tipo-udc.html",
@@ -7270,8 +7270,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/esei/exam/2023",
-    "title": "Posibles preguntas 2023 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas 2023 de Sistemas Intelixentes con 45 preguntas. 45 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio 2023 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio 2023 de Sistemas Intelixentes con 45 preguntas. 45 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/esei/exam/2023",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -7295,15 +7295,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2023"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas 2023 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2023\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas 2023 de Sistemas Intelixentes con 45 preguntas. 45 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas 2023\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2023\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2023\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio 2023 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2023\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio 2023 de Sistemas Intelixentes con 45 preguntas. 45 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio 2023\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2023\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2023\"}]}"
   },
   {
     "url": "seo/es/esei/exam/2024.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/esei/exam/2024",
-    "title": "Posibles preguntas 2024 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas 2024 de Sistemas Intelixentes con 44 preguntas. 44 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio 2024 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio 2024 de Sistemas Intelixentes con 44 preguntas. 44 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/esei/exam/2024",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -7327,15 +7327,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2024"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas 2024 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2024\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas 2024 de Sistemas Intelixentes con 44 preguntas. 44 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas 2024\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2024\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2024\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio 2024 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2024\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio 2024 de Sistemas Intelixentes con 44 preguntas. 44 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio 2024\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2024\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2024\"}]}"
   },
   {
     "url": "seo/es/esei/exam/2025-05.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/esei/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Mayo 2025 de Sistemas Intelixentes con 42 preguntas. 42 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Mayo 2025 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Mayo 2025 de Sistemas Intelixentes con 42 preguntas. 42 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/esei/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -7359,15 +7359,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2025-05\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Mayo 2025 de Sistemas Intelixentes con 42 preguntas. 42 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2025-05\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Mayo 2025 de Sistemas Intelixentes con 42 preguntas. 42 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2025-05\"}]}"
   },
   {
     "url": "seo/es/esei/exam/2025-07.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/esei/exam/2025-07",
-    "title": "Posibles preguntas Julio 2025 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Julio 2025 de Sistemas Intelixentes con 47 preguntas. 47 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Julio 2025 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Julio 2025 de Sistemas Intelixentes con 47 preguntas. 47 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/esei/exam/2025-07",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -7391,15 +7391,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2025-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Julio 2025 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2025-07\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Julio 2025 de Sistemas Intelixentes con 47 preguntas. 47 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Julio 2025\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2025-07\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2025-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Julio 2025 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2025-07\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Julio 2025 de Sistemas Intelixentes con 47 preguntas. 47 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Julio 2025\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2025-07\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2025-07\"}]}"
   },
   {
     "url": "seo/es/esei/exam/2026-06.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/esei/exam/2026-06",
-    "title": "Posibles preguntas Junio 2026 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Junio 2026 de Sistemas Intelixentes con 56 preguntas. 56 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Junio 2026 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Junio 2026 de Sistemas Intelixentes con 56 preguntas. 56 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/esei/exam/2026-06",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -7423,7 +7423,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2026-06"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Junio 2026 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2026-06\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Junio 2026 de Sistemas Intelixentes con 56 preguntas. 56 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Junio 2026\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2026-06\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2026-06\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Junio 2026 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/esei/exam/2026-06\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Junio 2026 de Sistemas Intelixentes con 56 preguntas. 56 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/es/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Junio 2026\",\"item\":\"https://pe.pablopl.dev/es/esei/exam/2026-06\"}],\"url\":\"https://pe.pablopl.dev/es/esei/exam/2026-06\"}]}"
   },
   {
     "url": "seo/es/eseo.html",
@@ -8038,8 +8038,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/peese/exam/2026-05",
-    "title": "Posibles preguntas Mayo 2026 de Proceso Software: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Mayo 2026 de Proceso Software con 17 preguntas. 8.5 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Mayo 2026 de Proceso Software: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Mayo 2026 de Proceso Software con 17 preguntas. 8.5 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/peese/exam/2026-05",
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
@@ -8063,7 +8063,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/peese/exam/2026-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2026 de Proceso Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/peese/exam/2026-05\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Mayo 2026 de Proceso Software con 17 preguntas. 8.5 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Proceso Software\",\"courseCode\":\"202321\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Proceso Software\",\"item\":\"https://pe.pablopl.dev/es/peese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2026\",\"item\":\"https://pe.pablopl.dev/es/peese/exam/2026-05\"}],\"url\":\"https://pe.pablopl.dev/es/peese/exam/2026-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2026 de Proceso Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/peese/exam/2026-05\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Mayo 2026 de Proceso Software con 17 preguntas. 8.5 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Proceso Software\",\"courseCode\":\"202321\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Proceso Software\",\"item\":\"https://pe.pablopl.dev/es/peese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2026\",\"item\":\"https://pe.pablopl.dev/es/peese/exam/2026-05\"}],\"url\":\"https://pe.pablopl.dev/es/peese/exam/2026-05\"}]}"
   },
   {
     "url": "seo/es/pei.html",
@@ -8742,8 +8742,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "es",
     "pathWithoutLang": "/redes/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 de Redes: práctica cronometrada",
-    "description": "Practica el recopilatorio cronometrado Posibles preguntas Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respuestas modelo y autocorrección.",
+    "title": "Recopilatorio Mayo 2025 de Redes: práctica cronometrada",
+    "description": "Practica el recopilatorio cronometrado Recopilatorio Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/redes/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -8767,7 +8767,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Posibles preguntas Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\",\"inLanguage\":\"es\",\"description\":\"Practica el recopilatorio cronometrado Recopilatorio Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/es/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/es/redes/exam/2025-05\"}]}"
   },
   {
     "url": "seo/gl.html",
@@ -9798,8 +9798,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/deese/exam/2020-01",
-    "title": "Posibles preguntas Enero 2020 de Deseño de Software: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Enero 2020 de Deseño de Software con 30 preguntas. 30 puntos, 150 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Enero 2020 de Deseño de Software: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Enero 2020 de Deseño de Software con 30 preguntas. 30 puntos, 150 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/deese/exam/2020-01",
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
@@ -9823,15 +9823,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/deese/exam/2020-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Enero 2020 de Deseño de Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/deese/exam/2020-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Enero 2020 de Deseño de Software con 30 preguntas. 30 puntos, 150 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/gl/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Enero 2020\",\"item\":\"https://pe.pablopl.dev/gl/deese/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/gl/deese/exam/2020-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2020 de Deseño de Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/deese/exam/2020-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Enero 2020 de Deseño de Software con 30 preguntas. 30 puntos, 150 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/gl/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2020\",\"item\":\"https://pe.pablopl.dev/gl/deese/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/gl/deese/exam/2020-01\"}]}"
   },
   {
     "url": "seo/gl/deese/exam/2022-01.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/deese/exam/2022-01",
-    "title": "Posibles preguntas Enero 2022 de Deseño de Software: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Enero 2022 de Deseño de Software con 25 preguntas. 25 puntos, 150 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Enero 2022 de Deseño de Software: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Enero 2022 de Deseño de Software con 25 preguntas. 25 puntos, 150 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/deese/exam/2022-01",
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
@@ -9855,7 +9855,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/deese/exam/2022-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Enero 2022 de Deseño de Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/deese/exam/2022-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Enero 2022 de Deseño de Software con 25 preguntas. 25 puntos, 150 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/gl/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Enero 2022\",\"item\":\"https://pe.pablopl.dev/gl/deese/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/gl/deese/exam/2022-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Enero 2022 de Deseño de Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/deese/exam/2022-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Enero 2022 de Deseño de Software con 25 preguntas. 25 puntos, 150 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Deseño de Software\",\"courseCode\":\"202317\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deseño de Software\",\"item\":\"https://pe.pablopl.dev/gl/deese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Enero 2022\",\"item\":\"https://pe.pablopl.dev/gl/deese/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/gl/deese/exam/2022-01\"}]}"
   },
   {
     "url": "seo/gl/ece.html",
@@ -10918,8 +10918,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/equisi/exam/2024-07",
-    "title": "Posibles preguntas Xullo 2024 de Xestión de Infraestruturas: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Xullo 2024 de Xestión de Infraestruturas con 20 preguntas. 10 puntos, 45 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Xullo 2024 de Xestión de Infraestruturas: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Xullo 2024 de Xestión de Infraestruturas con 20 preguntas. 10 puntos, 45 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/equisi/exam/2024-07",
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
@@ -10943,7 +10943,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equisi/exam/2024-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xullo 2024 de Xestión de Infraestruturas: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/equisi/exam/2024-07\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Xullo 2024 de Xestión de Infraestruturas con 20 preguntas. 10 puntos, 45 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Infraestruturas\",\"courseCode\":\"200190\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Infraestruturas\",\"item\":\"https://pe.pablopl.dev/gl/equisi\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xullo 2024\",\"item\":\"https://pe.pablopl.dev/gl/equisi/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/gl/equisi/exam/2024-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xullo 2024 de Xestión de Infraestruturas: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/equisi/exam/2024-07\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Xullo 2024 de Xestión de Infraestruturas con 20 preguntas. 10 puntos, 45 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Infraestruturas\",\"courseCode\":\"200190\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Infraestruturas\",\"item\":\"https://pe.pablopl.dev/gl/equisi\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xullo 2024\",\"item\":\"https://pe.pablopl.dev/gl/equisi/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/gl/equisi/exam/2024-07\"}]}"
   },
   {
     "url": "seo/gl/equisi/exam/daypo-modulo-i.html",
@@ -11142,8 +11142,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/equispe/exam/2024-01",
-    "title": "Posibles preguntas Xaneiro 2024 de Xestión de Proxectos: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Xaneiro 2024 de Xestión de Proxectos con 7 preguntas. 10 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Xaneiro 2024 de Xestión de Proxectos: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Xaneiro 2024 de Xestión de Proxectos con 7 preguntas. 10 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/equispe/exam/2024-01",
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
@@ -11167,15 +11167,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equispe/exam/2024-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xaneiro 2024 de Xestión de Proxectos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/equispe/exam/2024-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Xaneiro 2024 de Xestión de Proxectos con 7 preguntas. 10 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/gl/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xaneiro 2024\",\"item\":\"https://pe.pablopl.dev/gl/equispe/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/gl/equispe/exam/2024-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xaneiro 2024 de Xestión de Proxectos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/equispe/exam/2024-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Xaneiro 2024 de Xestión de Proxectos con 7 preguntas. 10 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/gl/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xaneiro 2024\",\"item\":\"https://pe.pablopl.dev/gl/equispe/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/gl/equispe/exam/2024-01\"}]}"
   },
   {
     "url": "seo/gl/equispe/exam/2026-01.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/equispe/exam/2026-01",
-    "title": "Posibles preguntas Xaneiro 2026 de Xestión de Proxectos: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Xaneiro 2026 de Xestión de Proxectos con 13 preguntas. 25 puntos, 180 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Xaneiro 2026 de Xestión de Proxectos: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Xaneiro 2026 de Xestión de Proxectos con 13 preguntas. 25 puntos, 180 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/equispe/exam/2026-01",
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
@@ -11199,7 +11199,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/equispe/exam/2026-01"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Xaneiro 2026 de Xestión de Proxectos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/equispe/exam/2026-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Xaneiro 2026 de Xestión de Proxectos con 13 preguntas. 25 puntos, 180 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/gl/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Xaneiro 2026\",\"item\":\"https://pe.pablopl.dev/gl/equispe/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/gl/equispe/exam/2026-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Xaneiro 2026 de Xestión de Proxectos: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/equispe/exam/2026-01\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Xaneiro 2026 de Xestión de Proxectos con 13 preguntas. 25 puntos, 180 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Xestión de Proxectos\",\"courseCode\":\"202323\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Xestión de Proxectos\",\"item\":\"https://pe.pablopl.dev/gl/equispe\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Xaneiro 2026\",\"item\":\"https://pe.pablopl.dev/gl/equispe/exam/2026-01\"}],\"url\":\"https://pe.pablopl.dev/gl/equispe/exam/2026-01\"}]}"
   },
   {
     "url": "seo/gl/equispe/exam/daypo-tipo-udc.html",
@@ -11654,8 +11654,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/esei/exam/2023",
-    "title": "Posibles preguntas 2023 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas 2023 de Sistemas Intelixentes con 45 preguntas. 45 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio 2023 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio 2023 de Sistemas Intelixentes con 45 preguntas. 45 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/esei/exam/2023",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -11679,15 +11679,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2023"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas 2023 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2023\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas 2023 de Sistemas Intelixentes con 45 preguntas. 45 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas 2023\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2023\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2023\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio 2023 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2023\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio 2023 de Sistemas Intelixentes con 45 preguntas. 45 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio 2023\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2023\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2023\"}]}"
   },
   {
     "url": "seo/gl/esei/exam/2024.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/esei/exam/2024",
-    "title": "Posibles preguntas 2024 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas 2024 de Sistemas Intelixentes con 44 preguntas. 44 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio 2024 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio 2024 de Sistemas Intelixentes con 44 preguntas. 44 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/esei/exam/2024",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -11711,15 +11711,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2024"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas 2024 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2024\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas 2024 de Sistemas Intelixentes con 44 preguntas. 44 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas 2024\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2024\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2024\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio 2024 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2024\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio 2024 de Sistemas Intelixentes con 44 preguntas. 44 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio 2024\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2024\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2024\"}]}"
   },
   {
     "url": "seo/gl/esei/exam/2025-05.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/esei/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Mayo 2025 de Sistemas Intelixentes con 42 preguntas. 42 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Mayo 2025 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Mayo 2025 de Sistemas Intelixentes con 42 preguntas. 42 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/esei/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -11743,15 +11743,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2025-05\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Mayo 2025 de Sistemas Intelixentes con 42 preguntas. 42 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2025-05\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Mayo 2025 de Sistemas Intelixentes con 42 preguntas. 42 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2025-05\"}]}"
   },
   {
     "url": "seo/gl/esei/exam/2025-07.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/esei/exam/2025-07",
-    "title": "Posibles preguntas Julio 2025 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Julio 2025 de Sistemas Intelixentes con 47 preguntas. 47 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Julio 2025 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Julio 2025 de Sistemas Intelixentes con 47 preguntas. 47 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/esei/exam/2025-07",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -11775,15 +11775,15 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2025-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Julio 2025 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2025-07\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Julio 2025 de Sistemas Intelixentes con 47 preguntas. 47 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Julio 2025\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2025-07\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2025-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Julio 2025 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2025-07\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Julio 2025 de Sistemas Intelixentes con 47 preguntas. 47 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Julio 2025\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2025-07\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2025-07\"}]}"
   },
   {
     "url": "seo/gl/esei/exam/2026-06.html",
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/esei/exam/2026-06",
-    "title": "Posibles preguntas Junio 2026 de Sistemas Intelixentes: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Junio 2026 de Sistemas Intelixentes con 56 preguntas. 56 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Junio 2026 de Sistemas Intelixentes: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Junio 2026 de Sistemas Intelixentes con 56 preguntas. 56 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/esei/exam/2026-06",
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
@@ -11807,7 +11807,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/esei/exam/2026-06"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Junio 2026 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2026-06\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Junio 2026 de Sistemas Intelixentes con 56 preguntas. 56 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Junio 2026\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2026-06\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2026-06\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Junio 2026 de Sistemas Intelixentes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2026-06\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Junio 2026 de Sistemas Intelixentes con 56 preguntas. 56 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Intelixentes\",\"courseCode\":\"202322\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Intelixentes\",\"item\":\"https://pe.pablopl.dev/gl/esei\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Junio 2026\",\"item\":\"https://pe.pablopl.dev/gl/esei/exam/2026-06\"}],\"url\":\"https://pe.pablopl.dev/gl/esei/exam/2026-06\"}]}"
   },
   {
     "url": "seo/gl/eseo.html",
@@ -12422,8 +12422,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/peese/exam/2026-05",
-    "title": "Posibles preguntas Mayo 2026 de Proceso Software: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Mayo 2026 de Proceso Software con 17 preguntas. 8.5 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Mayo 2026 de Proceso Software: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Mayo 2026 de Proceso Software con 17 preguntas. 8.5 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/peese/exam/2026-05",
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
@@ -12447,7 +12447,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/peese/exam/2026-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2026 de Proceso Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/peese/exam/2026-05\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Mayo 2026 de Proceso Software con 17 preguntas. 8.5 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Proceso Software\",\"courseCode\":\"202321\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Proceso Software\",\"item\":\"https://pe.pablopl.dev/gl/peese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2026\",\"item\":\"https://pe.pablopl.dev/gl/peese/exam/2026-05\"}],\"url\":\"https://pe.pablopl.dev/gl/peese/exam/2026-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2026 de Proceso Software: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/peese/exam/2026-05\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Mayo 2026 de Proceso Software con 17 preguntas. 8.5 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Proceso Software\",\"courseCode\":\"202321\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Proceso Software\",\"item\":\"https://pe.pablopl.dev/gl/peese\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2026\",\"item\":\"https://pe.pablopl.dev/gl/peese/exam/2026-05\"}],\"url\":\"https://pe.pablopl.dev/gl/peese/exam/2026-05\"}]}"
   },
   {
     "url": "seo/gl/pei.html",
@@ -13126,8 +13126,8 @@ export const pages = [
     "bundleEntryPoint": "/src/main.tsx",
     "lang": "gl",
     "pathWithoutLang": "/redes/exam/2025-05",
-    "title": "Posibles preguntas Mayo 2025 de Redes: práctica cronometrada",
-    "description": "Practica a recompilación cronometrada Posibles preguntas Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respostas modelo e autocorrección.",
+    "title": "Recopilatorio Mayo 2025 de Redes: práctica cronometrada",
+    "description": "Practica a recompilación cronometrada Recopilatorio Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/redes/exam/2025-05",
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
@@ -13151,6 +13151,6 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/redes/exam/2025-05"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Posibles preguntas Mayo 2025 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Posibles preguntas Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Posibles preguntas Mayo 2025\",\"item\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Recopilatorio Mayo 2025 de Redes: práctica cronometrada\",\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\",\"inLanguage\":\"gl\",\"description\":\"Practica a recompilación cronometrada Recopilatorio Mayo 2025 de Redes con 37 preguntas. 37 puntos, 120 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Redes\",\"courseCode\":\"202319\",\"provider\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Universidade da Coruña\"}}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Redes\",\"item\":\"https://pe.pablopl.dev/gl/redes\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Recopilatorio Mayo 2025\",\"item\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\"}],\"url\":\"https://pe.pablopl.dev/gl/redes/exam/2025-05\"}]}"
   }
 ] as const satisfies readonly PageMetaData[];
