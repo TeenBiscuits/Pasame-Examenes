@@ -56,7 +56,6 @@ export default function ContentPolicyIcon({
           ? "border-accent-border bg-accent-light text-accent-fg"
           : "border-contribute-border bg-contribute-bg text-contribute-fg"
       } ${className}`}
-      role="img"
       aria-label={label}
       title={label}
     >

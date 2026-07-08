@@ -8,7 +8,7 @@ import {
   langMeta,
 } from "../seo/meta";
 
-function setMeta(
+function updateMeta(
   id: string,
   content: string,
   attr: "content" | "property" | "name" = "content",
@@ -26,7 +26,7 @@ function setMeta(
   }
 }
 
-function setLink(
+function updateLink(
   id: string,
   rel: string,
   href: string,
@@ -54,7 +54,7 @@ function setLink(
   }
 }
 
-function setJsonLd(jsonLd?: string) {
+function updateJsonLd(jsonLd?: string) {
   if (!jsonLd) return;
   let el = document.getElementById("schema-jsonld") as HTMLScriptElement | null;
   if (!el) {
@@ -156,12 +156,12 @@ export function useSeoHead({
     ];
 
     for (const op of metaOps) {
-      setMeta(op.id, op.content, op.attr);
+      updateMeta(op.id, op.content, op.attr);
     }
     for (const op of linkOps) {
-      setLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
+      updateLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
     }
-    setJsonLd(jsonLd);
+    updateJsonLd(jsonLd);
   }, [
     title,
     description,

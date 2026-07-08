@@ -58,9 +58,7 @@ function SessionTracker() {
     if (id) identify({ id });
   }, []);
 
-  useEffect(() => {
-    setSessionData({ lang, theme });
-  }, [lang, theme]);
+  setSessionData({ lang, theme });
 
   return null;
 }
