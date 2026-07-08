@@ -11,6 +11,7 @@ import CopyrightReportModal, {
   type CopyrightReportModalHandle,
 } from "../components/CopyrightReportModal";
 import ContentPolicyIcon from "../components/ContentPolicyIcon";
+import Hero from "../components/Hero";
 import type { Question, SubjectMeta, Topic } from "../data/types";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -87,39 +88,44 @@ export default function SubjectHome() {
     .replace("{exams}", String(availableExams.length));
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
+    <div className="animate-fade-in animate-duration-fast">
       <SubjectHeader subject={subject} description={description} />
-      <TopicsSection
-        subject={subject}
-        questions={allQuestions}
-        progress={progress}
-      />
-      <ExamSimulationsSection
-        subject={subject}
-        hasAuthorizedExams={hasAuthorizedExams}
-        onAddExam={() => examModalRef.current?.open()}
-        onReportCopyright={() => copyrightModalRef.current?.open()}
-      />
+      <div className="mx-auto max-w-6xl px-4 pb-8">
+        <TopicsSection
+          subject={subject}
+          questions={allQuestions}
+          progress={progress}
+        />
+        <ExamSimulationsSection
+          subject={subject}
+          hasAuthorizedExams={hasAuthorizedExams}
+          onAddExam={() => examModalRef.current?.open()}
+          onReportCopyright={() => copyrightModalRef.current?.open()}
+        />
 
-      <AddExamModal
-        ref={examModalRef}
-        onClose={() => {}}
-        subjectId={subject.id}
-        subjectName={subject.name}
-      />
-      <CopyrightReportModal
-        ref={copyrightModalRef}
-        onClose={() => {}}
-        subjectId={subject.id}
-        subjectName={subject.name}
-      />
+        <AddExamModal
+          ref={examModalRef}
+          onClose={() => {}}
+          subjectId={subject.id}
+          subjectName={subject.name}
+        />
+        <CopyrightReportModal
+          ref={copyrightModalRef}
+          onClose={() => {}}
+          subjectId={subject.id}
+          subjectName={subject.name}
+        />
 
-      <PdfLinksSection subject={subject} hasAuthorizedExams={hasAuthorizedExams} />
-      <DaypoLinksSection
-        subject={subject}
-        hasAuthorizedExams={hasAuthorizedExams}
-      />
-      <ContentNotes subject={subject} />
+        <PdfLinksSection
+          subject={subject}
+          hasAuthorizedExams={hasAuthorizedExams}
+        />
+        <DaypoLinksSection
+          subject={subject}
+          hasAuthorizedExams={hasAuthorizedExams}
+        />
+        <ContentNotes subject={subject} />
+      </div>
     </div>
   );
 }
@@ -154,16 +160,20 @@ function SubjectHeader({
   description: string;
 }) {
   return (
-    <div className="text-center mb-10">
+    <Hero emojis={subject.topics.map((tp) => tp.icon)} compact>
       <p className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
         <ContentPolicyIcon subject={subject} className="size-4" svgOnly />
         <span>
           {subject.courseCode} &middot; {subject.university}
         </span>
       </p>
-      <h1 className="text-3xl font-semibold text-fg mb-3">{subject.name}</h1>
-      <p className="text-fg-secondary max-w-xl mx-auto">{description}</p>
-    </div>
+      <h1 className="text-4xl font-semibold text-fg mb-3 sm:text-5xl lg:text-6xl">
+        {subject.name}
+      </h1>
+      <p className="mx-auto max-w-2xl text-base text-fg-secondary sm:text-lg lg:text-xl">
+        {description}
+      </p>
+    </Hero>
   );
 }
 

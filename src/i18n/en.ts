@@ -6,6 +6,7 @@ export const en = {
     addSubject: "Add Subject?",
     recentlyVisited: "Recently visited",
     clearRecent: "Clear recent subjects",
+    quote: "Exams don't repeat, but they rhyme.",
   },
   subjectHome: {
     notFound: "Subject Not Found",

@@ -239,6 +239,33 @@ html[data-theme="catppuccin"] {
   }
 }
 
+/* ── Floating hero emojis ── */
+@keyframes floatDrift {
+  0%,
+  to {
+    translate: 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+.floating-emoji-mark {
+  position: absolute;
+  display: block;
+  line-height: 1;
+  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.18));
+  animation: 9s ease-in-out infinite floatDrift;
+  will-change: translate;
+  user-select: none;
+}
+
+.floating-emoji-interactive {
+  pointer-events: auto;
+  touch-action: none;
+  -webkit-user-select: none;
+}
+
 /* ── View transition animation ── */
 ::view-transition-old(root),
 ::view-transition-new(root) {

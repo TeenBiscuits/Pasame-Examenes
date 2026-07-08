@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
+import Hero from "../components/Hero";
 import AddSubjectModal, {
   type AddSubjectModalHandle,
 } from "../components/AddSubjectModal";
@@ -95,13 +96,20 @@ export default function Home() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
-      <h1 className="text-3xl font-semibold text-fg mb-3">{t.home.title}</h1>
-      <p className="text-fg-secondary max-w-xl mx-auto mb-10">
-        {t.home.subtitle}
-      </p>
-
-      {recentSubjects.length > 0 && (
+    <>
+      <Hero
+        emojis={subjects.map((s) => s.icon)}
+        className="animate-fade-in animate-duration-fast"
+      >
+        <h1 className="text-4xl font-semibold text-fg mb-3 sm:text-5xl lg:text-6xl">
+          {t.home.title}
+        </h1>
+        <p className="mx-auto max-w-2xl text-base text-fg-secondary sm:text-lg lg:text-xl">
+          {t.home.subtitle}
+        </p>
+      </Hero>
+      <div className="max-w-6xl mx-auto px-4 pb-8 text-center animate-fade-in animate-duration-fast">
+        {recentSubjects.length > 0 && (
         <div className="mb-10 text-left" key={recentKey}>
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-semibold text-fg-muted uppercase tracking-wide">
@@ -182,7 +190,12 @@ export default function Home() {
         </div>
       </div>
 
+      <blockquote className="mx-auto mt-14 max-w-2xl border-y border-border py-8 text-center text-xl font-medium italic text-fg-secondary sm:text-2xl">
+        “{t.home.quote}”
+      </blockquote>
+
       <AddSubjectModal ref={modalRef} onClose={() => {}} />
-    </div>
+      </div>
+    </>
   );
 }
