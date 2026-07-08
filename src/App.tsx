@@ -472,7 +472,9 @@ function Footer() {
               className={footerTextLinkClass}
               onClick={() => {
                 track("modal_open", { modal: "licenses" });
-                licensesDialogRef.current?.showModal();
+                if (!licensesDialogRef.current?.open) {
+                  licensesDialogRef.current?.showModal();
+                }
               }}
             >
               <LicenseIcon />
@@ -483,7 +485,9 @@ function Footer() {
               className={footerTextLinkClass}
               onClick={() => {
                 track("modal_open", { modal: "privacy" });
-                privacyDialogRef.current?.showModal();
+                if (!privacyDialogRef.current?.open) {
+                  privacyDialogRef.current?.showModal();
+                }
               }}
             >
               <PrivacyIcon />
