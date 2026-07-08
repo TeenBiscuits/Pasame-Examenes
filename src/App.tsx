@@ -232,16 +232,24 @@ function ModalShell({
 }) {
   const t = useT();
 
+  useEffect(() => {
+    const el = dialogRef.current;
+    if (!el) return;
+
+    const handleClick = (event: MouseEvent) => {
+      if (event.target === el) {
+        el.close();
+      }
+    };
+    el.addEventListener("click", handleClick);
+    return () => el.removeEventListener("click", handleClick);
+  }, [dialogRef]);
+
   return (
     <dialog
       ref={dialogRef}
       className="animate-dialog m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby={titleId}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) {
-          event.currentTarget.close();
-        }
-      }}
     >
       <div className="mb-5 flex items-center justify-between gap-4 border-b border-border pb-4">
         <h2 id={titleId} className="text-lg font-semibold text-fg">

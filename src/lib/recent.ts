@@ -1,4 +1,4 @@
-const STORAGE_KEY = "recent-subjects";
+const STORAGE_KEY = "recent-subjects:v1";
 const MAX_RECENT = 3;
 
 export function getRecentSubjects(): string[] {
