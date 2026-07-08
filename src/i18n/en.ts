@@ -60,6 +60,7 @@ export const en = {
     softwareLicenseTitle: "Software: Apache 2.0",
     softwareLicenseDescription:
       "The platform source code is licensed under the Apache License, Version 2.0.",
+    license: "License",
     licensePage: "License page",
     legalText: "Legal text",
     linksLabel: "Legal and project links",

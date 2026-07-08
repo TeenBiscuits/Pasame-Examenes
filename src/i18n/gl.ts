@@ -62,6 +62,7 @@ export const gl: Translations = {
     softwareLicenseTitle: "Software: Apache 2.0",
     softwareLicenseDescription:
       "O código fonte da plataforma está licenciado baixo Apache License, Version 2.0.",
+    license: "Licenza",
     licensePage: "Páxina da licenza",
     legalText: "Texto legal",
     linksLabel: "Ligazóns legais e do proxecto",

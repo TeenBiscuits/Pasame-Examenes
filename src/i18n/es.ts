@@ -62,6 +62,7 @@ export const es: Translations = {
     softwareLicenseTitle: "Software: Apache 2.0",
     softwareLicenseDescription:
       "El código fuente de la plataforma está licenciado bajo Apache License, Version 2.0.",
+    license: "Licencia",
     licensePage: "Página de la licencia",
     legalText: "Texto legal",
     linksLabel: "Enlaces legales y del proyecto",

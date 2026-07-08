@@ -279,8 +279,7 @@ function LicensesModal({
           {t.footer.licenseIntro}
         </p>
         <div className="grid gap-3 md:grid-cols-[1.08fr_0.92fr]">
-          <article className="relative overflow-hidden rounded-2xl border border-accent-border bg-accent-light/70 p-4">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent/0 via-accent to-accent/0" />
+          <article className="flex rounded-2xl border-2 border-accent-border bg-accent-light/50 p-4 flex-col">
             <div className="mb-3 flex items-start justify-between gap-3">
               <div>
                 <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-accent">
@@ -295,30 +294,20 @@ function LicensesModal({
             <p className="mb-4 text-xs leading-relaxed text-fg-secondary">
               {t.footer.contentLicenseDescription}
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="mt-auto">
               <a
                 href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={modalLinkClass}
+                className={`${modalLinkClass} w-full`}
                 onClick={() => track("external_link_click", { target: "cc_by_nc_sa" })}
               >
-                {t.footer.licensePage}
-                <ExternalLinkIcon />
-              </a>
-              <a
-                href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/LICENSE-CONTENT.md"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={modalLinkClass}
-                onClick={() => track("external_link_click", { target: "content_license_text" })}
-              >
-                {t.footer.legalText}
+                {t.footer.license}
                 <ExternalLinkIcon />
               </a>
             </div>
           </article>
-          <article className="rounded-2xl border border-border bg-surface/60 p-4">
+          <article className="flex rounded-2xl border-2 border-border bg-surface/50 p-4 flex-col">
             <div className="mb-3 flex items-start justify-between gap-3">
               <div>
                 <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-fg-muted">
@@ -333,25 +322,15 @@ function LicensesModal({
             <p className="mb-4 text-xs leading-relaxed text-fg-muted">
               {t.footer.softwareLicenseDescription}
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="mt-auto">
               <a
                 href="https://www.apache.org/licenses/LICENSE-2.0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={modalLinkClass}
+                className={`${modalLinkClass} w-full`}
                 onClick={() => track("external_link_click", { target: "apache_2" })}
               >
-                {t.footer.licensePage}
-                <ExternalLinkIcon />
-              </a>
-              <a
-                href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/LICENSE.md"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={modalLinkClass}
-                onClick={() => track("external_link_click", { target: "software_license_text" })}
-              >
-                {t.footer.legalText}
+                {t.footer.license}
                 <ExternalLinkIcon />
               </a>
             </div>
@@ -375,7 +354,7 @@ function PrivacyModal({
       title={t.footer.privacyTitle}
       titleId="privacy-modal-title"
     >
-      <div className="max-h-[65svh] space-y-5 overflow-y-auto pr-1 text-sm text-fg-secondary">
+      <div className="max-h-[65svh] space-y-5 overflow-y-auto pr-4 text-sm text-fg-secondary [scrollbar-gutter:stable]">
         <div className="space-y-2">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-fg-muted">
             {t.footer.privacyLastUpdated}
@@ -386,7 +365,10 @@ function PrivacyModal({
         </div>
 
         {t.footer.privacySections.map((section) => (
-          <section key={section.title} className="space-y-2">
+          <section
+            key={section.title}
+            className="space-y-2 border-t border-border pt-4 first:border-t-0 first:pt-0"
+          >
             <h3 className="text-base font-semibold text-fg">{section.title}</h3>
             {section.paragraphs.map((paragraph) => (
               <p key={paragraph} className="text-pretty leading-relaxed">
@@ -452,87 +434,85 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-surface-alt pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] text-sm text-fg-muted">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-surface/55 px-4 py-4 shadow-sm sm:px-5">
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/70 to-transparent" />
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-3xl text-pretty leading-relaxed">
-              <a
-                href="https://pe.pablopl.dev"
-                className="rounded font-semibold text-fg underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
-                onClick={() => track("external_link_click", { target: "site" })}
-              >
-                Pásame Exámenes
-              </a>{" "}
-              <span className="text-fg-muted">© {currentYear}</span>{" "}
-              {t.footer.by}{" "}
-              <a
-                href="https://pablopl.dev"
-                className="rounded text-fg-secondary underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
-                onClick={() => track("external_link_click", { target: "author" })}
-              >
-                Pablo Portas López
-              </a>{" "}
-              {t.footer.isLicensedUnder}{" "}
-              <a
-                href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-                className="rounded text-fg-secondary underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
-                onClick={() => track("external_link_click", { target: "cc_by_nc_sa" })}
-              >
-                CC BY-NC-SA 4.0
-              </a>{" "}
-              <CreativeCommonsIcons />
-            </p>
-            <nav
-              aria-label={t.footer.linksLabel}
-              className="flex flex-wrap items-center gap-x-2 gap-y-1 md:justify-end"
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <p className="max-w-3xl text-pretty leading-relaxed">
+            <a
+              href="https://pe.pablopl.dev"
+              className="rounded font-semibold text-fg underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
+              onClick={() => track("external_link_click", { target: "site" })}
             >
-              <button
-                type="button"
-                className={footerTextLinkClass}
-                onClick={() => {
-                  track("modal_open", { modal: "licenses" });
-                  licensesDialogRef.current?.showModal();
-                }}
+              Pásame Exámenes
+            </a>{" "}
+            <span className="text-fg-muted">© {currentYear}</span> {t.footer.by}{" "}
+            <a
+              href="https://pablopl.dev"
+              className="rounded text-fg-secondary underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
+              onClick={() => track("external_link_click", { target: "author" })}
+            >
+              Pablo Portas López
+            </a>{" "}
+            {t.footer.isLicensedUnder}{" "}
+            <a
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+              className="rounded text-fg-secondary underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
+              onClick={() =>
+                track("external_link_click", { target: "cc_by_nc_sa" })
+              }
+            >
+              CC BY-NC-SA 4.0
+            </a>{" "}
+            <CreativeCommonsIcons />
+          </p>
+          <nav
+            aria-label={t.footer.linksLabel}
+            className="flex flex-wrap items-center gap-x-2 gap-y-1 md:justify-end"
+          >
+            <button
+              type="button"
+              className={footerTextLinkClass}
+              onClick={() => {
+                track("modal_open", { modal: "licenses" });
+                licensesDialogRef.current?.showModal();
+              }}
+            >
+              <LicenseIcon />
+              {t.footer.licenses}
+            </button>
+            <button
+              type="button"
+              className={footerTextLinkClass}
+              onClick={() => {
+                track("modal_open", { modal: "privacy" });
+                privacyDialogRef.current?.showModal();
+              }}
+            >
+              <PrivacyIcon />
+              {t.footer.privacy}
+            </button>
+            <a
+              href="https://github.com/TeenBiscuits/Pasame-Examenes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={footerTextLinkClass}
+              onClick={() => track("external_link_click", { target: "github" })}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-4"
+                aria-hidden="true"
               >
-                <LicenseIcon />
-                {t.footer.licenses}
-              </button>
-              <button
-                type="button"
-                className={footerTextLinkClass}
-                onClick={() => {
-                  track("modal_open", { modal: "privacy" });
-                  privacyDialogRef.current?.showModal();
-                }}
-              >
-                <PrivacyIcon />
-                {t.footer.privacy}
-              </button>
-              <a
-                href="https://github.com/TeenBiscuits/Pasame-Examenes"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={footerTextLinkClass}
-                onClick={() => track("external_link_click", { target: "github" })}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="size-4"
-                  aria-hidden="true"
-                >
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                  <path d="M9 18c-4.51 2-5-2-7-2" />
-                </svg>
-                <span>{t.footer.github}</span>
-              </a>
-            </nav>
-          </div>
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+              </svg>
+              <span>{t.footer.github}</span>
+            </a>
+          </nav>
         </div>
         <LicensesModal dialogRef={licensesDialogRef} />
         <PrivacyModal dialogRef={privacyDialogRef} />
