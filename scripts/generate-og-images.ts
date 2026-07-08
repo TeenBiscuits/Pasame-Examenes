@@ -35,9 +35,7 @@ const BADGE_COMMUNITY_BORDER = "#93C5FD";
 
 type ContentPolicy = "authorized-exams" | "community-practice";
 
-GlobalFonts.registerFromPath(resolve(fontsDir, "inter-regular.ttf"), "Inter");
-GlobalFonts.registerFromPath(resolve(fontsDir, "inter-bold.ttf"), "Inter");
-GlobalFonts.registerFromPath(resolve(fontsDir, "inter-extrabold.ttf"), "Inter");
+GlobalFonts.registerFromPath(resolve(fontsDir, "Onest[wght].ttf"), "Onest");
 GlobalFonts.registerFromPath(
   resolve(fontsDir, "NotoColorEmoji-Regular.ttf"),
   "Noto Color Emoji",
@@ -133,9 +131,7 @@ function drawPolicyBadgeIcon(
   ctx.lineWidth = 2;
   ctx.stroke();
 
-  ctx.fillStyle = isAuthorized
-    ? BADGE_AUTHORIZED_TEXT
-    : BADGE_COMMUNITY_TEXT;
+  ctx.fillStyle = isAuthorized ? BADGE_AUTHORIZED_TEXT : BADGE_COMMUNITY_TEXT;
   if (isAuthorized) {
     drawMortarboardIcon(ctx, x + 5, y + 7);
   } else {
@@ -182,10 +178,10 @@ async function generateOgImage(
 
   let titleFontSize = 109;
   const maxTitleWidth = 1057;
-  ctx.font = `800 ${titleFontSize}px Inter`;
+  ctx.font = `800 ${titleFontSize}px Onest`;
   while (ctx.measureText(title).width > maxTitleWidth && titleFontSize > 36) {
     titleFontSize -= 4;
-    ctx.font = `800 ${titleFontSize}px Inter`;
+    ctx.font = `800 ${titleFontSize}px Onest`;
   }
   ctx.textBaseline = "middle";
   ctx.fillStyle = TEXT_PRIMARY;
@@ -193,7 +189,7 @@ async function generateOgImage(
   ctx.fillText(title, 71, H / 2);
 
   ctx.textBaseline = "top";
-  ctx.font = `400 37px Inter`;
+  ctx.font = `400 37px Onest`;
   ctx.fillStyle = TEXT_SECONDARY;
   ctx.textAlign = "left";
   const hasAuthorizedExams = contentPolicy === "authorized-exams";
@@ -208,7 +204,7 @@ async function generateOgImage(
   const badgeX = 71;
   const badgeY = 476;
   const badgeH = 45;
-  ctx.font = `600 24px Inter`;
+  ctx.font = `600 24px Onest`;
   const badgeW = Math.ceil(ctx.measureText(policyLabel).width) + 91;
   roundedRectPath(ctx, badgeX, badgeY, badgeW, badgeH, 12);
   ctx.fillStyle = BADGE_BG;
@@ -226,17 +222,18 @@ async function generateOgImage(
 
   ctx.textAlign = "center";
   const btnX = 827;
-  const btnY = statsY;
   const btnW = 299;
   const btnH = badgeY + badgeH - statsY;
+  const btnTextY = (statsY + 37 + badgeY) / 2;
+  const btnY = btnTextY - btnH / 2;
   roundedRectPath(ctx, btnX, btnY, btnW, btnH, 12);
   ctx.fillStyle = BUTTON_BG;
   ctx.fill();
 
-  ctx.font = `600 27px Inter`;
+  ctx.font = `600 27px Onest`;
   ctx.fillStyle = BUTTON_TEXT;
   ctx.textBaseline = "middle";
-  ctx.fillText("Empezar a practicar", btnX + btnW / 2, btnY + btnH / 2);
+  ctx.fillText("Empezar a practicar", btnX + btnW / 2, btnTextY);
 
   return canvas.encode("png");
 }
