@@ -64,7 +64,7 @@ function CopyrightReportModal({
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog m-auto max-w-sm rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="copyright-report-title"
       onClose={() => {
         track("modal_close", {
@@ -76,10 +76,10 @@ function CopyrightReportModal({
       }}
     >
       <div>
-        <div className="flex items-center justify-between mb-5">
+        <div className="mb-5 flex items-center justify-between">
           <h2
             id="copyright-report-title"
-            className="text-lg font-semibold text-fg"
+            className="text-fg text-lg font-semibold"
           >
             {t.copyrightReport.title}
           </h2>
@@ -89,7 +89,7 @@ function CopyrightReportModal({
               closeMethodRef.current = "x";
               dialogRef.current?.close();
             }}
-            className="text-fg-muted hover:text-fg-secondary transition-colors cursor-pointer"
+            className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
             aria-label={t.copyrightReport.close}
           >
             <svg
@@ -108,26 +108,26 @@ function CopyrightReportModal({
         </div>
 
         <div className="space-y-4">
-          <p className="text-sm text-fg-secondary">
+          <p className="text-fg-secondary text-sm">
             {t.copyrightReport.description}
           </p>
-          <p className="text-sm text-fg-muted">
+          <p className="text-fg-muted text-sm">
             {t.copyrightReport.includeDetails}
           </p>
 
           <a
             href={mailtoUrl}
             onClick={() => track("copyright_report_email", { subjectId })}
-            className="flex items-center gap-3 p-3 rounded-xl border-2 border-t-red-border bg-t-red-bg/70 hover:bg-t-red-bg hover:border-t-red-hover transition-colors cursor-pointer text-left no-underline text-fg"
+            className="border-t-red-border bg-t-red-bg/70 hover:bg-t-red-bg hover:border-t-red-hover text-fg flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left no-underline transition-colors"
           >
-            <span className="text-xl text-t-red-hover" aria-hidden="true">
+            <span className="text-t-red-hover text-xl" aria-hidden="true">
               !
             </span>
             <div>
-              <div className="font-medium text-sm">
+              <div className="text-sm font-medium">
                 {t.copyrightReport.email}
               </div>
-              <div className="text-xs text-fg-muted">{CONTACT_EMAIL}</div>
+              <div className="text-fg-muted text-xs">{CONTACT_EMAIL}</div>
             </div>
           </a>
         </div>

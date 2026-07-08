@@ -42,12 +42,12 @@ function TrashIcon() {
 function PlaceholderCard() {
   return (
     <div
-      className="block w-full p-5 rounded-xl border-2 border-dashed border-border"
+      className="border-border block w-full rounded-xl border-2 border-dashed p-5"
       aria-hidden="true"
     >
-      <div className="flex items-center gap-3 invisible">
+      <div className="invisible flex items-center gap-3">
         <span className="text-2xl">&nbsp;</span>
-        <span className="font-semibold text-base">&nbsp;</span>
+        <span className="text-base font-semibold">&nbsp;</span>
       </div>
     </div>
   );
@@ -95,29 +95,29 @@ export default function Home() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 text-center animate-fade-in animate-duration-fast">
-      <h1 className="text-3xl font-semibold text-fg mb-3">{t.home.title}</h1>
-      <p className="text-fg-secondary max-w-xl mx-auto mb-10">
+    <div className="animate-fade-in animate-duration-fast mx-auto max-w-6xl px-4 py-8 text-center">
+      <h1 className="text-fg mb-3 text-3xl font-semibold">{t.home.title}</h1>
+      <p className="text-fg-secondary mx-auto mb-10 max-w-xl">
         {t.home.subtitle}
       </p>
 
       {recentSubjects.length > 0 && (
         <div className="mb-10 text-left" key={recentKey}>
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-semibold text-fg-muted uppercase tracking-wide">
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-fg-muted text-sm font-semibold tracking-wide uppercase">
               {t.home.recentlyVisited}
             </h2>
             <button
               type="button"
               onClick={handleClearRecent}
-              className="text-fg-muted hover:text-red-500 transition-colors p-1 rounded"
+              className="text-fg-muted rounded p-1 transition-colors hover:text-red-500"
               aria-label={t.home.clearRecent}
               title={t.home.clearRecent}
             >
               <TrashIcon />
             </button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {slots.map((slot, i) => (
               <div
                 key={
@@ -135,13 +135,13 @@ export default function Home() {
                         location: "recent",
                       });
                     }}
-                    className="block w-full p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
+                    className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 block w-full rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-2xl" aria-hidden="true">
                         {slot.subject.icon}
                       </span>
-                      <span className="font-semibold text-fg text-base">
+                      <span className="text-fg text-base font-semibold">
                         {slot.subject.name}
                       </span>
                     </div>
@@ -152,11 +152,11 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <hr className="mt-10 border-border" />
+          <hr className="border-border mt-10" />
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+      <div className="grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
         {subjects.map((subject) => (
           <div
             key={subject.id}
@@ -172,10 +172,10 @@ export default function Home() {
               modalRef.current?.open();
               track("add_subject_modal_open");
             }}
-            className="block w-full p-5 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
+            className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full cursor-pointer rounded-xl border-2 border-dashed p-5 transition-colors transition-transform duration-200 hover:scale-[1.02]"
           >
-            <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">
-              <span className="text-4xl font-light leading-none">+</span>
+            <div className="flex h-full min-h-[120px] flex-col items-center justify-center gap-2">
+              <span className="text-4xl leading-none font-light">+</span>
               <span className="text-sm font-medium">{t.home.addSubject}</span>
             </div>
           </button>

@@ -41,11 +41,11 @@ export default function Header() {
   }`;
 
   return (
-    <header className="bg-surface-alt border-b border-border sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <header className="bg-surface-alt border-border sticky top-0 z-50 border-b">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link
           to="/"
-          className="font-bold text-lg text-fg hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md transition-colors flex items-center gap-2.5"
+          className="text-fg hover:text-accent focus-visible:ring-accent flex items-center gap-2.5 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home" });
@@ -56,12 +56,12 @@ export default function Header() {
             alt=""
             width={28}
             height={32}
-            className="w-7 h-8"
+            className="h-8 w-7"
             aria-hidden="true"
           />
           {t.home.title}
         </Link>
-        <div className="flex items-center gap-2 sm:gap-3 text-sm">
+        <div className="flex items-center gap-2 text-sm sm:gap-3">
           {subject && (
             <>
               <Link
@@ -80,7 +80,7 @@ export default function Header() {
               </Link>
               <Link
                 to={`/${subjectId}`}
-                className={`hidden sm:block max-w-56 truncate ${subjectLinkClasses}`}
+                className={`hidden max-w-56 truncate sm:block ${subjectLinkClasses}`}
                 onClick={() => {
                   triggerLight();
                   track("nav_click", {
@@ -98,7 +98,7 @@ export default function Header() {
           <ThemeToggle />
           <button
             type="button"
-            className="px-2 py-1 text-xs font-medium rounded border border-border hover:bg-surface active:scale-95 transition"
+            className="border-border hover:bg-surface rounded border px-2 py-1 text-xs font-medium transition active:scale-95"
             onClick={() => {
               triggerLight();
               const idx = langCycle.indexOf(lang);

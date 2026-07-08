@@ -41,27 +41,27 @@ export default function TopicCard({
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
-      className={`block p-5 rounded-xl border-2 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200 ${colorMap[topic.color] || colorMap.blue}`}
+      className={`focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none ${colorMap[topic.color] || colorMap.blue}`}
       onClick={() => {
         triggerLight();
         track("topic_card_click", { subjectId, topic: topic.key });
       }}
     >
-      <div className="flex items-start justify-between mb-3">
+      <div className="mb-3 flex items-start justify-between">
         <span className="text-2xl" aria-hidden="true">
           {topic.icon}
         </span>
-        <span className="text-xs text-fg-muted font-medium">
+        <span className="text-fg-muted text-xs font-medium">
           {questionCount} {t.subjectCard.questions} &middot;{" "}
           {formatPoints(pointsCount)} {t.subjectCard.points}
         </span>
       </div>
-      <h2 className="font-semibold text-fg text-sm mb-2">{topic.label}</h2>
+      <h2 className="text-fg mb-2 text-sm font-semibold">{topic.label}</h2>
       {progress !== undefined && (
         <div className="mt-2">
-          <div className="h-1.5 bg-border rounded-full overflow-hidden">
+          <div className="bg-border h-1.5 overflow-hidden rounded-full">
             <div
-              className="h-full bg-accent rounded-full transition-all duration-500"
+              className="bg-accent h-full rounded-full transition-all duration-500"
               style={{ width: `${Math.min(progress, 100)}%` }}
             />
           </div>

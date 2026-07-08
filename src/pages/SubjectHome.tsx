@@ -87,7 +87,7 @@ export default function SubjectHome() {
     .replace("{exams}", String(availableExams.length));
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
+    <div className="animate-fade-in animate-duration-fast mx-auto max-w-6xl px-4 py-8">
       <SubjectHeader subject={subject} description={description} />
       <TopicsSection
         subject={subject}
@@ -131,8 +131,8 @@ function SubjectNotFound() {
   const t = useT();
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-16 text-center">
-      <h1 className="text-2xl font-semibold text-fg mb-4">
+    <div className="mx-auto max-w-6xl px-4 py-16 text-center">
+      <h1 className="text-fg mb-4 text-2xl font-semibold">
         {t.subjectHome.notFound}
       </h1>
       <Link
@@ -157,15 +157,15 @@ function SubjectHeader({
   description: string;
 }) {
   return (
-    <div className="text-center mb-10">
-      <p className="flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-widest text-fg-muted mb-3">
+    <div className="mb-10 text-center">
+      <p className="text-fg-muted mb-3 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
         <ContentPolicyIcon subject={subject} className="size-4" svgOnly />
         <span>
           {subject.courseCode} &middot; {subject.university}
         </span>
       </p>
-      <h1 className="text-3xl font-semibold text-fg mb-3">{subject.name}</h1>
-      <p className="text-fg-secondary max-w-xl mx-auto">{description}</p>
+      <h1 className="text-fg mb-3 text-3xl font-semibold">{subject.name}</h1>
+      <p className="text-fg-secondary mx-auto max-w-xl">{description}</p>
     </div>
   );
 }
@@ -202,7 +202,7 @@ function TopicsSection({
 
   return (
     <>
-      <h2 className="text-lg font-semibold text-fg mb-4">
+      <h2 className="text-fg mb-4 text-lg font-semibold">
         {t.subjectHome.practiceByTopic}
       </h2>
       {subject.megatopics ? (
@@ -214,10 +214,10 @@ function TopicsSection({
             if (megatopicTopics.length === 0) return null;
             return (
               <div key={megatopic.key} className="mb-8">
-                <h2 className="text-md font-medium text-fg-secondary mt-2 mb-3">
+                <h2 className="text-md text-fg-secondary mt-2 mb-3 font-medium">
                   {megatopic.label}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {megatopicTopics.map(renderTopicCard)}
                 </div>
               </div>
@@ -230,7 +230,7 @@ function TopicsSection({
         </>
       ) : (
         <div
-          className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
+          className={`mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
         >
           {subject.topics.map(renderTopicCard)}
         </div>
@@ -255,7 +255,7 @@ function UngroupedTopics({
 
   return (
     <div className="mb-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {ungroupedTopics.map(renderTopicCard)}
       </div>
     </div>
@@ -277,13 +277,13 @@ function ExamSimulationsSection({
 
   return (
     <>
-      <h2 className="text-lg font-semibold text-fg mb-4">
+      <h2 className="text-fg mb-4 text-lg font-semibold">
         {hasAuthorizedExams
           ? t.subjectHome.examSimulations
           : t.subjectHome.practiceSimulations}
       </h2>
       <div
-        className={`grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 ${subject.exams.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
+        className={`mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 ${subject.exams.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
       >
         {subject.exams.map((exam) =>
           exam.deleteRights ? (
@@ -306,12 +306,12 @@ function RemovedExamCard({ title }: { title: string }) {
   const t = useT();
 
   return (
-    <div className="block p-6 rounded-xl border-2 border-dashed border-t-red-border bg-t-red-bg/70">
-      <div className="text-2xl text-t-red-hover mb-2" aria-hidden="true">
+    <div className="border-t-red-border bg-t-red-bg/70 block rounded-xl border-2 border-dashed p-6">
+      <div className="text-t-red-hover mb-2 text-2xl" aria-hidden="true">
         !
       </div>
-      <h2 className="font-semibold text-fg">{title}</h2>
-      <p className="text-sm font-medium text-fg-secondary mt-2">
+      <h2 className="text-fg font-semibold">{title}</h2>
+      <p className="text-fg-secondary mt-2 text-sm font-medium">
         {t.subjectHome.copyrightRemoved}
       </p>
     </div>
@@ -328,7 +328,7 @@ function ExamCard({
   return (
     <Link
       to={`/${subject.id}/exam/${exam.year}`}
-      className="block p-6 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
+      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-6 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();
         track("exam_card_click", {
@@ -337,11 +337,11 @@ function ExamCard({
         });
       }}
     >
-      <div className="text-2xl mb-2" aria-hidden="true">
+      <div className="mb-2 text-2xl" aria-hidden="true">
         📝
       </div>
-      <h2 className="font-semibold text-fg">{exam.title}</h2>
-      <p className="text-sm text-fg-muted mt-1">{exam.description}</p>
+      <h2 className="text-fg font-semibold">{exam.title}</h2>
+      <p className="text-fg-muted mt-1 text-sm">{exam.description}</p>
     </Link>
   );
 }
@@ -366,10 +366,10 @@ function ExamActionButtons({
           onAddExam();
           track("add_exam_modal_open", { subjectId });
         }}
-        className="block w-full p-4 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
+        className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full rounded-xl border-2 border-dashed p-4 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
       >
         <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
-          <span className="text-4xl font-light leading-none">+</span>
+          <span className="text-4xl leading-none font-light">+</span>
           <span className="text-sm font-medium">{t.subjectHome.addExam}</span>
         </div>
       </button>
@@ -380,10 +380,10 @@ function ExamActionButtons({
           onReportCopyright();
           track("copyright_report_modal_open", { subjectId });
         }}
-        className="block w-full p-4 rounded-xl border-2 border-dashed border-t-red-border text-fg-secondary bg-t-red-bg/40 hover:text-fg hover:border-t-red-hover hover:bg-t-red-bg hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
+        className="border-t-red-border text-fg-secondary bg-t-red-bg/40 hover:text-fg hover:border-t-red-hover hover:bg-t-red-bg block w-full rounded-xl border-2 border-dashed p-4 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
       >
         <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
-          <span className="text-4xl font-light leading-none text-t-red-hover">
+          <span className="text-t-red-hover text-4xl leading-none font-light">
             !
           </span>
           <span className="text-sm font-medium">
@@ -428,7 +428,7 @@ function PdfLinksSection({
           href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
+          className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
             triggerLight();
             track("file_download", {
@@ -478,7 +478,7 @@ function DaypoLinksSection({
           href={exam.daypoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent-fg bg-accent-light border border-accent-border rounded-lg hover:bg-accent-light active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150"
+          className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
             triggerLight();
             track("daypo_open", {
@@ -504,9 +504,9 @@ function ResourceLinksShell({
   children: ReactNode;
 }) {
   return (
-    <div className="bg-surface rounded-xl p-6 border border-border mb-10">
-      <h3 className="font-semibold text-fg mb-2">{title}</h3>
-      <p className="text-sm text-fg-secondary mb-4">{description}</p>
+    <div className="bg-surface border-border mb-10 rounded-xl border p-6">
+      <h3 className="text-fg mb-2 font-semibold">{title}</h3>
+      <p className="text-fg-secondary mb-4 text-sm">{description}</p>
       <div className="flex flex-wrap gap-4">{children}</div>
     </div>
   );
@@ -518,10 +518,10 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
   if (!subject.acknowledgments && !subject.contentLicense) return null;
 
   return (
-    <div className="mt-10 space-y-4 text-right text-sm text-fg-muted">
+    <div className="text-fg-muted mt-10 space-y-4 text-right text-sm">
       {subject.acknowledgments ? (
         <div>
-          <p className="font-semibold text-fg-muted mb-1">
+          <p className="text-fg-muted mb-1 font-semibold">
             {t.subjectHome.acknowledgments}
           </p>
           <p>{subject.acknowledgments}</p>
@@ -529,7 +529,7 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
       ) : null}
       {subject.contentLicense ? (
         <div>
-          <p className="font-semibold text-fg-muted mb-1">
+          <p className="text-fg-muted mb-1 font-semibold">
             {t.subjectHome.contentLicense}
           </p>
           <p>{subject.contentLicense}</p>
