@@ -310,8 +310,7 @@ export const gl: Translations = {
     includeDetails:
       "Inclúe a materia, o exame/ano ou pregunta afectada e o motivo da solicitude de retirada.",
     email: "Enviar solicitude de retirada",
-    emailSubject:
-      "Solicitude de retirada por dereitos de autor - {subjectName}",
+    emailSubject: "Solicitude de retirada por dereitos de autor - {subjectName}",
     emailBody:
       "Materia: {subjectName}\nID da materia: {subjectId}\n\nExame/ano ou pregunta afectada:\n\nMotivo da solicitude de retirada:\n",
   },

@@ -10,15 +10,15 @@ interface QuestionsModule {
 
 // Auto-discover subjects using Vite's import.meta.glob.
 // _template is always loaded but hidden from the homepage in production.
-const metaModules = import.meta.glob<MetaModule>(["./*/meta.ts"], {
-  eager: true,
-});
+const metaModules = import.meta.glob<MetaModule>(
+  ["./*/meta.ts"],
+  { eager: true },
+);
 const questionsModules = import.meta.glob<QuestionsModule>([
   "./*/questions.ts",
 ]);
 
-const isProduction =
-  typeof __VERCEL_PRODUCTION__ !== "undefined" && __VERCEL_PRODUCTION__;
+const isProduction = typeof __VERCEL_PRODUCTION__ !== "undefined" && __VERCEL_PRODUCTION__;
 
 export const subjects: SubjectMeta[] = [];
 for (const m of Object.values(metaModules)) {

@@ -179,8 +179,7 @@ export const en = {
       },
       {
         name: "Umami Docs",
-        description:
-          "Documentation for tracker functions and collected analytics payloads.",
+        description: "Documentation for tracker functions and collected analytics payloads.",
         href: "https://umami.is/docs/tracker-functions",
         linkLabel: "Tracker docs",
         target: "umami_docs",
@@ -277,8 +276,7 @@ export const en = {
     title: "Add a Subject",
     close: "Close",
     openIssue: "Open an Issue",
-    openIssueDesc:
-      "Request a new subject via a pre-filled GitHub issue template",
+    openIssueDesc: "Request a new subject via a pre-filled GitHub issue template",
     openIssueUrl:
       "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml",
     contribute: "Contribute!",
