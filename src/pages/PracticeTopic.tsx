@@ -137,8 +137,8 @@ function PracticePlayer({
         <div className="mb-6 p-4 rounded-lg bg-accent-light border border-accent-border animate-fade-in-up">
           <p className="font-semibold text-fg">
             {submitted ? t.practice.score : t.practice.runningScore}:{" "}
-            {formatPoints(getScore())} {t.exam.outOf} {formatPoints(totalPoints)}{" "}
-            {t.practice.points}
+            {formatPoints(getScore())} {t.exam.outOf}{" "}
+            {formatPoints(totalPoints)} {t.practice.points}
           </p>
           <p className="text-sm text-accent-fg mt-1">
             {submitted

@@ -230,7 +230,10 @@ function TopicsSection({
               </div>
             );
           })}
-          <UngroupedTopics subject={subject} renderTopicCard={renderTopicCard} />
+          <UngroupedTopics
+            subject={subject}
+            renderTopicCard={renderTopicCard}
+          />
         </>
       ) : (
         <div

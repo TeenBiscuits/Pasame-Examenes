@@ -306,7 +306,9 @@ function LicensesModal({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${modalLinkClass} w-full`}
-                onClick={() => track("external_link_click", { target: "cc_by_nc_sa" })}
+                onClick={() =>
+                  track("external_link_click", { target: "cc_by_nc_sa" })
+                }
               >
                 {t.footer.license}
                 <ExternalLinkIcon />
@@ -334,7 +336,9 @@ function LicensesModal({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${modalLinkClass} w-full`}
-                onClick={() => track("external_link_click", { target: "apache_2" })}
+                onClick={() =>
+                  track("external_link_click", { target: "apache_2" })
+                }
               >
                 {t.footer.license}
                 <ExternalLinkIcon />

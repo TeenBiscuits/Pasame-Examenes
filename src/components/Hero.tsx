@@ -37,9 +37,7 @@ function buildDesktopStyle(
     top = 24 + progress * 40 + (pseudo(i, 2, seed) - 0.5) * 3;
   } else {
     left = 8 + progress * 84 + (pseudo(i, 1, seed) - 0.5) * 3;
-    top = compact
-      ? 54 + pseudo(i, 2, seed) * 8
-      : 66 + pseudo(i, 2, seed) * 12;
+    top = compact ? 54 + pseudo(i, 2, seed) * 8 : 66 + pseudo(i, 2, seed) * 12;
   }
 
   const rotation = (pseudo(i, 3, seed) - 0.5) * 44;

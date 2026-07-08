@@ -110,91 +110,93 @@ export default function Home() {
       </Hero>
       <div className="max-w-6xl mx-auto px-4 pb-8 text-center animate-fade-in animate-duration-fast">
         {recentSubjects.length > 0 && (
-        <div className="mb-10 text-left" key={recentKey}>
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-semibold text-fg-muted uppercase tracking-wide">
-              {t.home.recentlyVisited}
-            </h2>
+          <div className="mb-10 text-left" key={recentKey}>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-sm font-semibold text-fg-muted uppercase tracking-wide">
+                {t.home.recentlyVisited}
+              </h2>
+              <button
+                type="button"
+                onClick={handleClearRecent}
+                className="text-fg-muted hover:text-red-500 transition-colors p-1 rounded"
+                aria-label={t.home.clearRecent}
+                title={t.home.clearRecent}
+              >
+                <TrashIcon />
+              </button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {slots.map((slot, i) => (
+                <div
+                  key={
+                    slot.type === "subject"
+                      ? slot.subject.id
+                      : `placeholder-${i}`
+                  }
+                  className={slotClassName(i, slot.type === "placeholder")}
+                >
+                  {slot.type === "subject" ? (
+                    <LangLink
+                      to={`/${slot.subject.id}`}
+                      onClick={() => {
+                        recordSubjectClick(slot.subject.id);
+                        track("subject_card_click", {
+                          subjectId: slot.subject.id,
+                          location: "recent",
+                        });
+                      }}
+                      className="block w-full p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl" aria-hidden="true">
+                          {slot.subject.icon}
+                        </span>
+                        <span className="font-semibold text-fg text-base">
+                          {slot.subject.name}
+                        </span>
+                      </div>
+                    </LangLink>
+                  ) : (
+                    <PlaceholderCard />
+                  )}
+                </div>
+              ))}
+            </div>
+            <hr className="mt-10 border-border" />
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+          {subjects.map((subject) => (
+            <div
+              key={subject.id}
+              className="animate-fade-in-up timeline-view animate-range-entry"
+            >
+              <SubjectCard subject={subject} />
+            </div>
+          ))}
+          <div className="animate-fade-in-up timeline-view animate-range-entry">
             <button
               type="button"
-              onClick={handleClearRecent}
-              className="text-fg-muted hover:text-red-500 transition-colors p-1 rounded"
-              aria-label={t.home.clearRecent}
-              title={t.home.clearRecent}
+              onClick={() => {
+                modalRef.current?.open();
+                track("add_subject_modal_open");
+              }}
+              className="block w-full p-5 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
             >
-              <TrashIcon />
+              <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">
+                <span className="text-4xl font-light leading-none">+</span>
+                <span className="text-sm font-medium">{t.home.addSubject}</span>
+              </div>
             </button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {slots.map((slot, i) => (
-              <div
-                key={
-                  slot.type === "subject" ? slot.subject.id : `placeholder-${i}`
-                }
-                className={slotClassName(i, slot.type === "placeholder")}
-              >
-                {slot.type === "subject" ? (
-                  <LangLink
-                    to={`/${slot.subject.id}`}
-                    onClick={() => {
-                      recordSubjectClick(slot.subject.id);
-                      track("subject_card_click", {
-                        subjectId: slot.subject.id,
-                        location: "recent",
-                      });
-                    }}
-                    className="block w-full p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md transition-colors transition-transform duration-200"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl" aria-hidden="true">
-                        {slot.subject.icon}
-                      </span>
-                      <span className="font-semibold text-fg text-base">
-                        {slot.subject.name}
-                      </span>
-                    </div>
-                  </LangLink>
-                ) : (
-                  <PlaceholderCard />
-                )}
-              </div>
-            ))}
-          </div>
-          <hr className="mt-10 border-border" />
         </div>
-      )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-        {subjects.map((subject) => (
-          <div
-            key={subject.id}
-            className="animate-fade-in-up timeline-view animate-range-entry"
-          >
-            <SubjectCard subject={subject} />
-          </div>
-        ))}
-        <div className="animate-fade-in-up timeline-view animate-range-entry">
-          <button
-            type="button"
-            onClick={() => {
-              modalRef.current?.open();
-              track("add_subject_modal_open");
-            }}
-            className="block w-full p-5 rounded-xl border-2 border-dashed border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 hover:scale-[1.02] transition-colors transition-transform duration-200 cursor-pointer"
-          >
-            <div className="flex flex-col items-center justify-center h-full min-h-[120px] gap-2">
-              <span className="text-4xl font-light leading-none">+</span>
-              <span className="text-sm font-medium">{t.home.addSubject}</span>
-            </div>
-          </button>
-        </div>
-      </div>
+        <blockquote className="mx-auto mt-14 max-w-2xl border-y border-border py-8 text-center text-xl font-medium italic text-fg-secondary sm:text-2xl">
+          “{t.home.quote}”
+        </blockquote>
 
-      <blockquote className="mx-auto mt-14 max-w-2xl border-y border-border py-8 text-center text-xl font-medium italic text-fg-secondary sm:text-2xl">
-        “{t.home.quote}”
-      </blockquote>
-
-      <AddSubjectModal ref={modalRef} onClose={() => {}} />
+        <AddSubjectModal ref={modalRef} onClose={() => {}} />
       </div>
     </>
   );

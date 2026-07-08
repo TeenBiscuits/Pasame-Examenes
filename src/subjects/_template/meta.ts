@@ -9,7 +9,8 @@ export const meta: SubjectMeta = {
   contentPolicy: "community-practice",
   acknowledgments:
     "Questions provided by the Template Department. Answers by Prof. Example.",
-  contentLicense: "Exams licensed by Example Author under the CC BY 4.0 license.",
+  contentLicense:
+    "Exams licensed by Example Author under the CC BY 4.0 license.",
   topics: [
     { key: "topic-1", label: "Topic 1", icon: "📌", color: "blue" },
     { key: "topic-2", label: "Topic 2", icon: "🔍", color: "green" },
