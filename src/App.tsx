@@ -34,7 +34,7 @@ function PageLoader() {
       className="flex items-center justify-center py-16"
       style={{ minHeight: "60svh" }}
     >
-      <div className="size-8 animate-spin rounded-full border-2 border-accent border-t-transparent" />
+      <div className="border-accent size-8 animate-spin rounded-full border-2 border-t-transparent" />
     </div>
   );
 }
@@ -121,7 +121,7 @@ const footerTextLinkClass =
 function CreativeCommonsIcons() {
   return (
     <span
-      className="inline-flex items-center gap-1 align-[-0.15em] text-fg-muted"
+      className="text-fg-muted inline-flex items-center gap-1 align-[-0.15em]"
       aria-hidden="true"
     >
       <svg viewBox="0 0 30 30" className="size-[1.15em] shrink-0 fill-current">
@@ -246,17 +246,17 @@ function ModalShell({
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog bg-surface-alt m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby={titleId}
     >
-      <div className="mb-5 flex items-center justify-between gap-4 border-b border-border pb-4">
-        <h2 id={titleId} className="text-lg font-semibold text-fg">
+      <div className="border-border mb-5 flex items-center justify-between gap-4 border-b pb-4">
+        <h2 id={titleId} className="text-fg text-lg font-semibold">
           {title}
         </h2>
         <button
           type="button"
           onClick={() => dialogRef.current?.close()}
-          className="text-fg-muted hover:text-fg-secondary focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded transition-colors cursor-pointer"
+          className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent cursor-pointer rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.footer.close}
         >
           <CloseIcon />
@@ -280,24 +280,24 @@ function LicensesModal({
       title={t.footer.licenseTitle}
       titleId="licenses-modal-title"
     >
-      <div className="space-y-4 text-sm text-fg-secondary">
-        <p className="max-w-prose text-pretty leading-relaxed">
+      <div className="text-fg-secondary space-y-4 text-sm">
+        <p className="max-w-prose leading-relaxed text-pretty">
           {t.footer.licenseIntro}
         </p>
         <div className="grid gap-3 md:grid-cols-[1.08fr_0.92fr]">
-          <article className="flex rounded-2xl border-2 border-accent-border bg-accent-light/50 p-4 flex-col">
+          <article className="border-accent-border bg-accent-light/50 flex flex-col rounded-2xl border-2 p-4">
             <div className="mb-3 flex items-start justify-between gap-3">
               <div>
-                <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-accent">
+                <p className="text-accent mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
                   {t.footer.contentLicenseTitle.split(":")[0]}
                 </p>
-                <h3 className="text-base font-semibold text-fg">
+                <h3 className="text-fg text-base font-semibold">
                   CC BY-NC-SA 4.0
                 </h3>
               </div>
               <CreativeCommonsIcons />
             </div>
-            <p className="mb-4 text-xs leading-relaxed text-fg-secondary">
+            <p className="text-fg-secondary mb-4 text-xs leading-relaxed">
               {t.footer.contentLicenseDescription}
             </p>
             <div className="mt-auto">
@@ -315,19 +315,19 @@ function LicensesModal({
               </a>
             </div>
           </article>
-          <article className="flex rounded-2xl border-2 border-border bg-surface/50 p-4 flex-col">
+          <article className="border-border bg-surface/50 flex flex-col rounded-2xl border-2 p-4">
             <div className="mb-3 flex items-start justify-between gap-3">
               <div>
-                <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-fg-muted">
+                <p className="text-fg-muted mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
                   {t.footer.softwareLicenseTitle.split(":")[0]}
                 </p>
-                <h3 className="text-base font-semibold text-fg">Apache 2.0</h3>
+                <h3 className="text-fg text-base font-semibold">Apache 2.0</h3>
               </div>
-              <span className="rounded-full border border-border bg-surface-alt p-2 text-fg-muted">
+              <span className="border-border bg-surface-alt text-fg-muted rounded-full border p-2">
                 <LicenseIcon />
               </span>
             </div>
-            <p className="mb-4 text-xs leading-relaxed text-fg-muted">
+            <p className="text-fg-muted mb-4 text-xs leading-relaxed">
               {t.footer.softwareLicenseDescription}
             </p>
             <div className="mt-auto">
@@ -364,12 +364,12 @@ function PrivacyModal({
       title={t.footer.privacyTitle}
       titleId="privacy-modal-title"
     >
-      <div className="max-h-[65svh] space-y-5 overflow-y-auto pr-4 text-sm text-fg-secondary [scrollbar-gutter:stable]">
+      <div className="text-fg-secondary max-h-[65svh] [scrollbar-gutter:stable] space-y-5 overflow-y-auto pr-4 text-sm">
         <div className="space-y-2">
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-fg-muted">
+          <p className="text-fg-muted text-xs font-medium tracking-[0.18em] uppercase">
             {t.footer.privacyLastUpdated}
           </p>
-          <p className="max-w-prose text-pretty leading-relaxed">
+          <p className="max-w-prose leading-relaxed text-pretty">
             {t.footer.privacySummary}
           </p>
         </div>
@@ -377,16 +377,16 @@ function PrivacyModal({
         {t.footer.privacySections.map((section) => (
           <section
             key={section.title}
-            className="space-y-2 border-t border-border pt-4 first:border-t-0 first:pt-0"
+            className="border-border space-y-2 border-t pt-4 first:border-t-0 first:pt-0"
           >
-            <h3 className="text-base font-semibold text-fg">{section.title}</h3>
+            <h3 className="text-fg text-base font-semibold">{section.title}</h3>
             {section.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-pretty leading-relaxed">
+              <p key={paragraph} className="leading-relaxed text-pretty">
                 {paragraph}
               </p>
             ))}
             {section.items && (
-              <ul className="list-disc space-y-1 pl-5 leading-relaxed marker:text-accent">
+              <ul className="marker:text-accent list-disc space-y-1 pl-5 leading-relaxed">
                 {section.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -395,12 +395,12 @@ function PrivacyModal({
           </section>
         ))}
 
-        <section className="space-y-3 border-t border-border pt-4">
+        <section className="border-border space-y-3 border-t pt-4">
           <div className="space-y-2">
-            <h3 className="text-base font-semibold text-fg">
+            <h3 className="text-fg text-base font-semibold">
               {t.footer.privacyProvidersTitle}
             </h3>
-            <p className="text-pretty leading-relaxed">
+            <p className="leading-relaxed text-pretty">
               {t.footer.privacyProvidersIntro}
             </p>
           </div>
@@ -408,17 +408,17 @@ function PrivacyModal({
             {t.footer.privacyProviders.map((provider) => (
               <article
                 key={provider.name}
-                className="rounded-xl border border-border bg-surface/60 p-3"
+                className="border-border bg-surface/60 rounded-xl border p-3"
               >
-                <h4 className="font-semibold text-fg">{provider.name}</h4>
-                <p className="mt-1 text-xs leading-relaxed text-fg-muted">
+                <h4 className="text-fg font-semibold">{provider.name}</h4>
+                <p className="text-fg-muted mt-1 text-xs leading-relaxed">
                   {provider.description}
                 </p>
                 <a
                   href={provider.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium text-accent underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+                  className="text-accent focus-visible:ring-accent mt-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:outline-none"
                   onClick={() =>
                     track("external_link_click", { target: provider.target })
                   }
@@ -442,13 +442,13 @@ function Footer() {
   const privacyDialogRef = useRef<HTMLDialogElement>(null);
 
   return (
-    <footer className="border-t border-border bg-surface-alt pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] text-sm text-fg-muted">
-      <div className="max-w-6xl mx-auto px-4">
+    <footer className="border-border bg-surface-alt text-fg-muted border-t pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] text-sm">
+      <div className="mx-auto max-w-6xl px-4">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <p className="max-w-3xl text-pretty leading-relaxed">
+          <p className="max-w-3xl leading-relaxed text-pretty">
             <a
               href="https://pe.pablopl.dev"
-              className="rounded font-semibold text-fg underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
+              className="text-fg hover:text-accent focus-visible:ring-accent rounded font-semibold underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
               onClick={() => track("external_link_click", { target: "site" })}
             >
               Pásame Exámenes
@@ -456,7 +456,7 @@ function Footer() {
             <span className="text-fg-muted">© {currentYear}</span> {t.footer.by}{" "}
             <a
               href="https://pablopl.dev"
-              className="rounded text-fg-secondary underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
+              className="text-fg-secondary hover:text-accent focus-visible:ring-accent rounded underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
               onClick={() => track("external_link_click", { target: "author" })}
             >
               Pablo Portas López
@@ -464,7 +464,7 @@ function Footer() {
             {t.footer.isLicensedUnder}{" "}
             <a
               href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-              className="rounded text-fg-secondary underline-offset-4 hover:text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors"
+              className="text-fg-secondary hover:text-accent focus-visible:ring-accent rounded underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
               onClick={() =>
                 track("external_link_click", { target: "cc_by_nc_sa" })
               }
@@ -538,7 +538,7 @@ function Footer() {
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen min-h-svh flex flex-col bg-surface text-fg font-sans">
+      <div className="bg-surface text-fg flex min-h-screen min-h-svh flex-col font-sans">
         <SessionTracker />
         <ScrollToTop />
         <Header />

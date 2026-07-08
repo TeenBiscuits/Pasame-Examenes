@@ -38,14 +38,14 @@ export default function Disclaimer({
 }) {
   const t = useT();
   return (
-    <div className="mt-8 pt-6 border-t border-border">
-      <p className="text-xs text-fg-muted leading-relaxed">
+    <div className="border-border mt-8 border-t pt-6">
+      <p className="text-fg-muted text-xs leading-relaxed">
         {t.disclaimer.text}{" "}
         <a
           href={buildDisclaimerReportUrl(subjectId, questionId, questionType)}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-xs text-fg-muted hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded"
+          className="text-fg-muted inline-flex items-center gap-1 rounded text-xs transition-colors hover:text-red-500 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("report_issue", {
