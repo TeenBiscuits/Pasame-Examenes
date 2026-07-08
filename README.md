@@ -103,7 +103,27 @@ El build genera automáticamente imágenes Open Graph por asignatura y página p
 
 ## Licencia
 
-El código de la plataforma se distribuye bajo la licencia **Apache 2.0**. Consulta [LICENSE.md](./LICENSE.md) para más detalles.
+El código de la plataforma se distribuye bajo la licencia **Apache 2.0**. Consulta [LICENSE.md](./LICENSE.md) para el texto completo.
+
+El contenido subido a la web, incluyendo preguntas y soluciones, se considera licenciado bajo **CC BY-NC-SA 4.0** salvo que se indique otra licencia específica en la página de la asignatura correspondiente. Consulta [LICENSE-CONTENT.md](./LICENSE-CONTENT.md) para el texto completo.
+
+<p><a href="https://pe.pablopl.dev">Pásame Exámenes</a> © 2026 by <a href="https://pablopl.dev">Pablo Portas López</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"></p>
+
+```text
+Copyright 2026 Pablo Portas López
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+```
 
 Las preguntas y soluciones son contribuciones de la comunidad, pueden cometer errores de los que no nos hacemos responsables, nuestro objetivo es corregir todos los errores posibles, si ves un error [repórtalo](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=report-question.yml).
 

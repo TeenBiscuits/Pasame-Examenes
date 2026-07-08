@@ -119,7 +119,7 @@ export default function SubjectHome() {
         subject={subject}
         hasAuthorizedExams={hasAuthorizedExams}
       />
-      <Acknowledgments subject={subject} />
+      <ContentNotes subject={subject} />
     </div>
   );
 }
@@ -506,17 +506,29 @@ function ResourceLinksShell({
   );
 }
 
-function Acknowledgments({ subject }: { subject: SubjectMeta }) {
+function ContentNotes({ subject }: { subject: SubjectMeta }) {
   const t = useT();
 
-  if (!subject.acknowledgments) return null;
+  if (!subject.acknowledgments && !subject.contentLicense) return null;
 
   return (
-    <div className="text-right text-sm text-fg-muted mt-10">
-      <p className="font-semibold text-fg-muted mb-1">
-        {t.subjectHome.acknowledgments}
-      </p>
-      <p>{subject.acknowledgments}</p>
+    <div className="mt-10 space-y-4 text-right text-sm text-fg-muted">
+      {subject.acknowledgments ? (
+        <div>
+          <p className="font-semibold text-fg-muted mb-1">
+            {t.subjectHome.acknowledgments}
+          </p>
+          <p>{subject.acknowledgments}</p>
+        </div>
+      ) : null}
+      {subject.contentLicense ? (
+        <div>
+          <p className="font-semibold text-fg-muted mb-1">
+            {t.subjectHome.contentLicense}
+          </p>
+          <p>{subject.contentLicense}</p>
+        </div>
+      ) : null}
     </div>
   );
 }

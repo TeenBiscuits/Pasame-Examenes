@@ -66,6 +66,7 @@ export interface SubjectMeta {
   icon: string;
   contentPolicy?: ContentPolicy;
   acknowledgments?: string;
+  contentLicense?: string;
   topics: Topic[];
   megatopics?: MegaTopic[];
   exams: Exam[];

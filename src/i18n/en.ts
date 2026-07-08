@@ -29,6 +29,7 @@ export const en = {
     daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Acknowledgments and Disclaimer",
+    contentLicense: "Specific Content License",
     addExam: "Add?",
     reportCopyright: "Report copyright",
     copyrightRemoved: "Removed for copyright reasons",
@@ -44,8 +45,161 @@ export const en = {
     practice: "Practice",
   },
   footer: {
-    byline: "Pásame Exámenes - Open Source Study Platform",
-    github: "TeenBiscuits/Pasame-Examenes",
+    github: "GitHub",
+    by: "by",
+    isLicensedUnder: "is licensed under",
+    licenses: "Licenses",
+    privacy: "Privacy Policy",
+    close: "Close",
+    licenseTitle: "Licenses",
+    licenseIntro:
+      "Pásame Exámenes separates the license for the website software from the license for the content published on it.",
+    contentLicenseTitle: "Content: CC BY-NC-SA 4.0",
+    contentLicenseDescription:
+      "Unless a subject page states otherwise, content uploaded to this website is licensed under CC BY-NC-SA 4.0.",
+    softwareLicenseTitle: "Software: Apache 2.0",
+    softwareLicenseDescription:
+      "The platform source code is licensed under the Apache License, Version 2.0.",
+    license: "License",
+    licensePage: "License page",
+    legalText: "Legal text",
+    linksLabel: "Legal and project links",
+    privacyTitle: "Privacy Policy",
+    privacyLastUpdated: "Last updated: 8 July 2026",
+    privacySummary:
+      "Pásame Exámenes is an educational, open-source website with no user accounts and no own backend. It uses local browser storage for preferences and study progress, and analytics to understand usage, performance, and errors.",
+    privacySections: [
+      {
+        title: "Controller",
+        paragraphs: [
+          "The controller for this website is Pablo Portas López. You can contact the controller about privacy matters at pablo.portas@udc.es.",
+        ],
+      },
+      {
+        title: "Data We Process",
+        paragraphs: [
+          "The website may process technical access data, local preference data, local study progress, and analytics data.",
+        ],
+        items: [
+          "Technical data: IP address, browser, device, requested URL, referrer, language, date and time, and similar server or CDN logs.",
+          "Local preferences: selected language, selected theme, viewed tours, GitHub star popup state, and recently visited subjects.",
+          "Study progress stored locally: attempts, scores, topics, and subject progress saved in your browser.",
+          "Analytics data: page views, interaction events, performance data, approximate device/browser information, and an anonymous local identifier for Umami.",
+          "Session replays and heatmaps in the self-hosted Umami instance, enabled with a random 30% sample rate.",
+          "Temporary GitHub star-count cache stored in session storage after requesting public repository data from GitHub.",
+        ],
+      },
+      {
+        title: "Purposes",
+        paragraphs: [
+          "Data is processed only for purposes connected to operating, securing, measuring, and improving the website.",
+        ],
+        items: [
+          "Provide the website and route requests through hosting and CDN infrastructure.",
+          "Remember your language, theme, recent subjects, tours, and dismissed prompts.",
+          "Save study progress locally so you can continue practicing on the same device.",
+          "Measure usage, performance, errors, navigation patterns, and feature interactions.",
+          "Improve content, usability, accessibility, and reliability.",
+          "Prevent abuse, diagnose technical issues, and maintain security.",
+        ],
+      },
+      {
+        title: "Legal Basis",
+        paragraphs: [
+          "Under the GDPR, the main legal basis is legitimate interest: keeping the website available, secure, understandable, and useful for students. This includes analytics, performance measurement, heatmaps, and session replays, which are limited by data minimization and a 30% random sample rate for replays and heatmaps.",
+          "Local preferences and progress are processed to provide the functionality requested by the user. Legal obligations may also apply where necessary.",
+        ],
+      },
+      {
+        title: "Local Storage",
+        paragraphs: [
+          "Most study-related data is stored only in your browser through localStorage or sessionStorage. It is not part of a user account and may be deleted by clearing this website's data in your browser settings.",
+          "The anonymous Umami identifier is also stored locally as umami_uid. Deleting this site's local data resets that identifier and removes locally stored preferences and progress.",
+        ],
+      },
+      {
+        title: "Analytics, Replays, and Heatmaps",
+        paragraphs: [
+          "Analytics are collected with a self-hosted Umami instance at analytics.pablopl.dev. Umami is operated by the controller for this website; data is not sent to Umami Software as a cloud analytics provider.",
+          "Umami is configured to respect Do Not Track for the standard analytics script. Session replays and heatmaps are used to understand usability problems and are sampled randomly at 30% of visits.",
+          "Ahrefs Analytics is also used to understand traffic and website performance. Ahrefs processes data according to its own privacy policy.",
+        ],
+      },
+      {
+        title: "Retention",
+        paragraphs: [
+          "Local browser data is kept until you delete it or your browser removes it. Analytics and technical data are kept for the time necessary to produce statistics, improve the service, diagnose incidents, and maintain security. Aggregated or anonymized data may be kept longer where it no longer identifies a user.",
+        ],
+      },
+      {
+        title: "International Transfers",
+        paragraphs: [
+          "Some external providers may process data outside the European Economic Area. Where this happens, it is handled under the safeguards described in each provider's privacy policy or data processing terms. The self-hosted Umami setup does not imply a transfer of analytics data to Umami Software.",
+        ],
+      },
+      {
+        title: "Your GDPR Rights",
+        paragraphs: [
+          "You may request access, rectification, erasure, restriction, portability, or object to processing where applicable. You may also lodge a complaint with a data protection authority.",
+          "To exercise your rights, email pablo.portas@udc.es. Because there are no accounts, some data may only exist in your browser and can be deleted directly by clearing this site's local data.",
+        ],
+      },
+      {
+        title: "Changes",
+        paragraphs: [
+          "This policy may be updated when the website changes its data practices, analytics configuration, or providers. The latest version is available from the footer of the website.",
+        ],
+      },
+    ],
+    privacyProvidersTitle: "External Providers and References",
+    privacyProvidersIntro:
+      "These providers or references are relevant to the operation and measurement of the website:",
+    privacyProviders: [
+      {
+        name: "Vercel",
+        description: "Hosting and deployment infrastructure.",
+        href: "https://vercel.com/legal/privacy-policy",
+        linkLabel: "Privacy policy",
+        target: "vercel_privacy",
+      },
+      {
+        name: "Cloudflare",
+        description: "CDN, security, caching, and traffic delivery.",
+        href: "https://www.cloudflare.com/privacypolicy/",
+        linkLabel: "Privacy policy",
+        target: "cloudflare_privacy",
+      },
+      {
+        name: "Umami",
+        description:
+          "Self-hosted analytics software used at analytics.pablopl.dev; linked as software documentation/reference, not as a cloud processor for this site.",
+        href: "https://umami.is/privacy",
+        linkLabel: "Umami privacy",
+        target: "umami_privacy",
+      },
+      {
+        name: "Umami Docs",
+        description: "Documentation for tracker functions and collected analytics payloads.",
+        href: "https://umami.is/docs/tracker-functions",
+        linkLabel: "Tracker docs",
+        target: "umami_docs",
+      },
+      {
+        name: "Ahrefs",
+        description: "External analytics for traffic and website performance.",
+        href: "https://ahrefs.com/legal/privacy-policy",
+        linkLabel: "Privacy policy",
+        target: "ahrefs_privacy",
+      },
+      {
+        name: "GitHub",
+        description:
+          "Repository hosting and public API used to display the repository star count.",
+        href: "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+        linkLabel: "Privacy statement",
+        target: "github_privacy",
+      },
+    ],
   },
   practice: {
     backToTopics: "← Back to Topics",
