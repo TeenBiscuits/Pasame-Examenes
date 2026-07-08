@@ -44,8 +44,7 @@ export const meta: SubjectMeta = {
   icon: "📚",
   acknowledgments:
     "Preguntas proporcionadas por el departamento de... Respuestas por...", // opcional, se muestra al final de la página
-  contentLicense:
-    "Exámenes licenciados por XXX bajo la licencia CC BY 4.0.", // opcional, para licencias específicas de esta asignatura
+  contentLicense: "Exámenes licenciados por XXX bajo la licencia CC BY 4.0.", // opcional, para licencias específicas de esta asignatura
   contentPolicy: "community-practice", // "authorized-exams" solo si los exámenes pueden compartirse
   topics: [
     {

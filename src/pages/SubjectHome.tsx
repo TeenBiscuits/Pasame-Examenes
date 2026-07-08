@@ -114,7 +114,10 @@ export default function SubjectHome() {
         subjectName={subject.name}
       />
 
-      <PdfLinksSection subject={subject} hasAuthorizedExams={hasAuthorizedExams} />
+      <PdfLinksSection
+        subject={subject}
+        hasAuthorizedExams={hasAuthorizedExams}
+      />
       <DaypoLinksSection
         subject={subject}
         hasAuthorizedExams={hasAuthorizedExams}
@@ -220,7 +223,10 @@ function TopicsSection({
               </div>
             );
           })}
-          <UngroupedTopics subject={subject} renderTopicCard={renderTopicCard} />
+          <UngroupedTopics
+            subject={subject}
+            renderTopicCard={renderTopicCard}
+          />
         </>
       ) : (
         <div

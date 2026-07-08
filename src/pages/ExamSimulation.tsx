@@ -86,7 +86,9 @@ function ExamStartScreen({
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.pass}</span>
-            <p className="font-semibold">{formatPoints(examInfo.passPoints)}p</p>
+            <p className="font-semibold">
+              {formatPoints(examInfo.passPoints)}p
+            </p>
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.timeLimit}</span>
@@ -250,10 +252,12 @@ function ExamPlayer({
           <p className="font-semibold text-fg mb-1">
             {t.exam.submitted} {t.exam.score}: {formatPoints(score)}
             {t.exam.outOf}
-            {formatPoints(totalPoints)} ({Math.round((score / totalPoints) * 100)}%)
+            {formatPoints(totalPoints)} (
+            {Math.round((score / totalPoints) * 100)}%)
           </p>
           <p className="text-accent-fg">
-            {t.exam.passThreshold}: {formatPoints(examInfo.passPoints)}p. {t.exam.reviewNote}
+            {t.exam.passThreshold}: {formatPoints(examInfo.passPoints)}p.{" "}
+            {t.exam.reviewNote}
           </p>
         </div>
       )}
