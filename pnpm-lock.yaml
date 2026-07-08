@@ -11,9 +11,9 @@ importers:
       '@fontsource-variable/cascadia-code':
         specifier: ^5.2.2
         version: 5.2.2
-      '@fontsource-variable/roboto':
-        specifier: ^5.2.10
-        version: 5.2.10
+      '@fontsource-variable/onest':
+        specifier: ^5.2.11
+        version: 5.2.11
       driver.js:
         specifier: ^1.6.0
         version: 1.6.0
@@ -401,8 +401,8 @@ packages:
   '@fontsource-variable/cascadia-code@5.2.2':
     resolution: {integrity: sha512-5Sn7CySADZaPggdZ9wXnC0CKdLfca+7G7ipaSWSOXFQvAxnH+zKnflktVAVj5A3loP8ZAs72w7+v/RCwOnPpaQ==}
 
-  '@fontsource-variable/roboto@5.2.10':
-    resolution: {integrity: sha512-LJ0iLg6aHbLzN515gyHzmdTqJzd9NlI95cCg1DW0F5G7KkFqRLBBKBbqEJx4nSu4aby3IKmw3ZH6Fe928IfaSQ==}
+  '@fontsource-variable/onest@5.2.11':
+    resolution: {integrity: sha512-knJww1KxK4g66+qu90q3CPBvl4zhL5oDRi3/JMkYMmlhW3OgyRgT4MMfgd6jg2lvho7bLPAXfsYPh59h0yzwUA==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -2385,7 +2385,7 @@ snapshots:
 
   '@fontsource-variable/cascadia-code@5.2.2': {}
 
-  '@fontsource-variable/roboto@5.2.10': {}
+  '@fontsource-variable/onest@5.2.11': {}
 
   '@humanfs/core@0.19.2':
     dependencies:

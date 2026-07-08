@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@fontsource-variable/cascadia-code": "^5.2.2",
-    "@fontsource-variable/roboto": "^5.2.10",
+    "@fontsource-variable/onest": "^5.2.11",
     "driver.js": "^1.6.0",
     "katex": "^0.16.47",
     "react": "^19.2.6",
