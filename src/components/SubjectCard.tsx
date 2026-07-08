@@ -46,8 +46,8 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         recordSubjectClick(subject.id);
       }}
     >
-      <div className="flex items-start justify-between mb-3">
-        <span className="text-2xl" aria-hidden="true">
+      <div className="flex items-start justify-between mb-2">
+        <span className="text-4xl leading-none" aria-hidden="true">
           {subject.icon}
         </span>
         <div className="flex items-center gap-2">
@@ -57,8 +57,8 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
           </span>
         </div>
       </div>
-      <h2 className="font-semibold text-fg text-base mb-1">{subject.name}</h2>
-      <p className="text-sm text-fg-muted mb-4">{subject.university}</p>
+      <h2 className="font-semibold text-fg text-base mb-0.5">{subject.name}</h2>
+      <p className="text-sm text-fg-muted mb-2">{subject.university}</p>
       <div className="text-xs text-fg-muted flex items-center gap-2">
         <span>
           {questionCount !== null ? questionCount : "..."}{" "}
