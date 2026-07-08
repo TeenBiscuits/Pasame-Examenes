@@ -190,6 +190,10 @@ export default function Home() {
         </div>
       </div>
 
+      <blockquote className="mx-auto mt-14 max-w-2xl border-y border-border py-8 text-center text-xl font-medium italic text-fg-secondary sm:text-2xl">
+        “{t.home.quote}”
+      </blockquote>
+
       <AddSubjectModal ref={modalRef} onClose={() => {}} />
       </div>
     </>

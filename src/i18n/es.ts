@@ -8,6 +8,7 @@ export const es: Translations = {
     addSubject: "¿Añadir asignatura?",
     recentlyVisited: "Visitadas recientemente",
     clearRecent: "Limpiar asignaturas recientes",
+    quote: "Los exámenes no se repiten, pero riman",
   },
   subjectHome: {
     notFound: "Asignatura no encontrada",

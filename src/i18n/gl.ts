@@ -8,6 +8,7 @@ export const gl: Translations = {
     addSubject: "Engadir materia?",
     recentlyVisited: "Visitadas recentemente",
     clearRecent: "Limpar materias recentes",
+    quote: "Os exames non se repiten, pero riman.",
   },
   subjectHome: {
     notFound: "Materia non atopada",
