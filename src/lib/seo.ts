@@ -72,7 +72,6 @@ interface SeoUpdateBatch {
   canonicalUrl: string;
   imageUrl: string;
   imageType: string;
-  lang: string;
   pathWithoutLang: string;
   locale: string;
   siteName: string;
@@ -197,7 +196,6 @@ export function useSeoHead({
       canonicalUrl,
       imageUrl,
       imageType,
-      lang,
       pathWithoutLang,
       locale: meta.locale,
       siteName: t.seo.siteName,
