@@ -8,7 +8,7 @@
     "build": "tsx scripts/generate-page-meta-map.ts && tsc -b && tsx scripts/generate-vercel-rewrites.ts && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier . --write",
+    "format": "prettier . --write --plugin=prettier-plugin-tailwindcss",
     "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
@@ -42,6 +42,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
     "prettier": "3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "react-grab": "^0.1.47",
     "tailwindcss": "^4.3.0",
     "tsx": "^4.22.4",
