@@ -103,7 +103,7 @@ export default function FloatingEmoji({ emoji, style }: FloatingEmojiProps) {
             ? "transform 0.15s ease-out"
             : undefined,
         animationPlayState: dragging || flying ? "paused" : undefined,
-        willChange: "transform, translate",
+        willChange: pressed || dragging || flying ? "transform" : undefined,
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
