@@ -17,6 +17,12 @@ const langLabel: Record<Lang, string> = {
   gl: "🧜🏻‍♀️ GL",
 };
 
+const langFlag: Record<Lang, string> = {
+  en: "🇬🇧",
+  es: "🇪🇸",
+  gl: "🧜🏻‍♀️ GL",
+};
+
 function acronym(name: string): string {
   const letters = name.replace(/[^A-Z]/g, "");
   return letters || name.charAt(0).toUpperCase();
@@ -33,19 +39,21 @@ export default function Header() {
 
   const abbr = subject ? acronym(subject.name) : "";
 
-  const subjectLinkClasses = `px-3 py-1.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
+  const subjectLinkBase = `rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
     location.pathname === `/${subjectId}` ||
     location.pathname.startsWith(`/${subjectId}/`)
       ? "bg-accent-light text-accent-fg"
       : "text-fg-secondary hover:text-fg"
   }`;
+  const acronymLinkClasses = `px-1.5 py-1 sm:px-3 sm:py-1.5 ${subjectLinkBase}`;
+  const subjectLinkClasses = `px-3 py-1.5 ${subjectLinkBase}`;
 
   return (
     <header className="bg-surface-alt border-b border-border sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <Link
           to="/"
-          className="font-bold text-lg text-fg hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md transition-colors flex items-center gap-2.5"
+          className="font-bold text-lg text-fg hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md transition-colors flex items-center gap-2"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home" });
@@ -61,12 +69,12 @@ export default function Header() {
           />
           {t.home.title}
         </Link>
-        <div className="flex items-center gap-2 sm:gap-3 text-sm">
+        <div className="flex items-center gap-1 sm:gap-3 text-sm">
           {subject && (
             <>
               <Link
                 to={`/${subjectId}`}
-                className={`sm:hidden ${subjectLinkClasses}`}
+                className={`sm:hidden ${acronymLinkClasses}`}
                 onClick={() => {
                   triggerLight();
                   track("nav_click", {
@@ -111,7 +119,8 @@ export default function Header() {
             }}
             aria-label={langLabel[lang]}
           >
-            {langLabel[lang]}
+            <span className="sm:hidden">{langFlag[lang]}</span>
+            <span className="hidden sm:inline">{langLabel[lang]}</span>
           </button>
         </div>
       </div>
