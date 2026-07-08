@@ -76,6 +76,8 @@ export default function FloatingEmoji({ emoji, style }: FloatingEmojiProps) {
       setFlying(true);
       setOffset({ x: 0, y: 0 });
       window.setTimeout(() => setFlying(false), SPRING_MS);
+    } else if (offset.x !== 0 || offset.y !== 0) {
+      setOffset({ x: 0, y: 0 });
     }
   }
 
