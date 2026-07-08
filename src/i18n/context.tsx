@@ -9,12 +9,15 @@ export type { Lang } from "./context-value";
 const translations: Record<Lang, Translations> = { en, es, gl };
 
 function getLangFromPathname(): Lang | null {
+  if (typeof window === "undefined") return null;
   const match = window.location.pathname.match(/^\/(en|es|gl)(\/|$)/);
   if (match) return match[1] as Lang;
   return null;
 }
 
-function getInitialLang(): Lang {
+function getInitialLang(initialLang?: Lang): Lang {
+  if (initialLang) return initialLang;
+  if (typeof window === "undefined") return "es";
   const urlLang = getLangFromPathname();
   if (urlLang) return urlLang;
   try {
@@ -28,8 +31,14 @@ function getInitialLang(): Lang {
   return "en";
 }
 
-export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(getInitialLang);
+export function I18nProvider({
+  initialLang,
+  children,
+}: {
+  initialLang?: Lang;
+  children: ReactNode;
+}) {
+  const [lang, setLangState] = useState<Lang>(() => getInitialLang(initialLang));
 
   const setLang = useCallback((l: Lang) => {
     setLangState(l);

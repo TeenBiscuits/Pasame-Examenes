@@ -17,8 +17,8 @@ import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
-import { buildSubjectMeta } from "../seo/meta";
-import { hasAuthorizedExamContent } from "../lib/content-policy";
+import { usePrerenderedQuestions } from "../lib/prerender-data";
+import { buildSubjectMeta } from "../seo/meta";import { hasAuthorizedExamContent } from "../lib/content-policy";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
@@ -27,9 +27,12 @@ export default function SubjectHome() {
   const examModalRef = useRef<AddExamModalHandle>(null);
   const copyrightModalRef = useRef<CopyrightReportModalHandle>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const [allQuestions, setAllQuestions] = useState<Question[]>([]);
+  const seededQuestions = usePrerenderedQuestions(subject?.id);
+  const [allQuestions, setAllQuestions] = useState<Question[]>(
+    () => seededQuestions ?? [],
+  );
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    null,
+    () => (subject && seededQuestions ? subject.id : null),
   );
   const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
   const seoMeta = useMemo(

@@ -16,6 +16,7 @@ import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { usePrerenderedQuestions } from "../lib/prerender-data";
 import { buildTopicMeta } from "../seo/meta";
 import { usePracticeSession } from "../hooks/usePracticeSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
@@ -342,9 +343,18 @@ export default function PracticeTopic() {
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const seededQuestions = usePrerenderedQuestions(subject?.id);
+  const [questions, setQuestions] = useState<Question[]>(
+    () =>
+      seededQuestions && topic
+        ? seededQuestions.filter((q) => q.topic === topic)
+        : [],
+  );
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    null,
+    () =>
+      subject && topic && seededQuestions
+        ? `${subject.id}/${topic}`
+        : null,
   );
   const [megatopicLabel, setMegatopicLabel] = useState<string | undefined>();
   const topicInfo = useMemo(

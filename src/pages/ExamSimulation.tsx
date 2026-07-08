@@ -16,6 +16,7 @@ import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
+import { usePrerenderedQuestions } from "../lib/prerender-data";
 import { buildExamMeta } from "../seo/meta";
 import { useExamSession } from "../hooks/useExamSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
@@ -413,9 +414,18 @@ export default function ExamSimulation() {
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const seededQuestions = usePrerenderedQuestions(subject?.id);
+  const [questions, setQuestions] = useState<Question[]>(
+    () =>
+      seededQuestions && year
+        ? seededQuestions.filter(
+            (q) => q.exam === year || q.exam === "both",
+          )
+        : [],
+  );
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    null,
+    () =>
+      subject && year && seededQuestions ? `${subject.id}/${year}` : null,
   );
   const [megatopicLabels, setMegatopicLabels] = useState<
     Record<string, string>

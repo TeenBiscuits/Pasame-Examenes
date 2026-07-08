@@ -4,7 +4,7 @@
 
 ```bash
 pnpm dev       # Vite dev server; src/main.tsx loads react-grab only in DEV
-pnpm build     # tsc -b, generate sitemap, optional IndexNow key, then vite build
+pnpm build     # generate page-meta-map, tsc -b, vite build (client), vite build --ssr, prerender pages, then sitemap/og/indexnow
 pnpm lint      # ESLint flat config for TS/TSX; scripts/ is ignored
 pnpm format    # Prettier write
 pnpm preview   # Preview production build
@@ -20,7 +20,7 @@ pnpm doctor    # React Doctor via npx
 - TypeScript 6 uses `verbatimModuleSyntax`, `erasableSyntaxOnly`, `noUnusedLocals`, and `noUnusedParameters`; use `import type` for type-only imports and avoid enums/namespaces/non-erasable TS syntax.
 - Tailwind CSS v4 is configured in CSS, not `tailwind.config.js`: `src/index.css` imports `tailwindcss` and `tailwind-animations`, defines theme tokens in `@theme`, and uses `html[data-theme=...]` overrides.
 - Vite plugins are React, Tailwind, and `vite-imagetools`; image glob queries should request `w=400;800;1200` and `format=avif;webp;png` unless there is a reason to differ.
-- Vercel serves this as an SPA: `vercel.json` rewrites `/en/*`, `/es/*`, `/gl/*`, and all other paths to `/index.html`.
+- SSG: `pnpm build` prerenders every route listed in `src/seo/pageMetaMap.generated.ts` to `dist/seo/{lang}/{path}.html` with full body content (not just meta shells) via `src/entry-server.tsx` (`react-dom/server` + react-router `StaticRouter`) and `scripts/prerender-pages.ts`. Per-route question data is embedded as `<script id="__PRERENDER_DATA__">` and read by `src/main.tsx` so the first client render matches the prerendered HTML. Vercel rewrites each prerendered route to its `dist/seo/*.html`; everything else falls back to `/index.html` (SPA).
 
 ## Architecture
 
