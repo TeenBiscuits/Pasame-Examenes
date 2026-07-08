@@ -66,6 +66,98 @@ function setJsonLd(jsonLd?: string) {
   el.textContent = jsonLd;
 }
 
+interface SeoUpdateBatch {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  imageUrl: string;
+  imageType: string;
+  pathWithoutLang: string;
+  locale: string;
+  siteName: string;
+  jsonLd?: string;
+}
+
+function applySeoUpdates(batch: SeoUpdateBatch) {
+  const ogImageOps = [
+    {
+      id: "og:image",
+      content: `${BASE_URL}${batch.imageUrl}`,
+      attr: "property" as const,
+    },
+    {
+      id: "og:image:type",
+      content: batch.imageType,
+      attr: "property" as const,
+    },
+    { id: "og:image:width", content: "1200", attr: "property" as const },
+    { id: "og:image:height", content: "630", attr: "property" as const },
+    {
+      id: "twitter:image",
+      content: `${BASE_URL}${batch.imageUrl}`,
+      attr: "name" as const,
+    },
+  ];
+
+  const metaOps = [
+    ...ogImageOps,
+    {
+      id: "meta-description",
+      content: batch.description,
+      attr: "name" as const,
+    },
+    { id: "og:title", content: batch.title, attr: "property" as const },
+    {
+      id: "og:description",
+      content: batch.description,
+      attr: "property" as const,
+    },
+    { id: "og:locale", content: batch.locale, attr: "property" as const },
+    { id: "og:url", content: batch.canonicalUrl, attr: "property" as const },
+    {
+      id: "og:site_name",
+      content: batch.siteName,
+      attr: "property" as const,
+    },
+    { id: "og:type", content: "website", attr: "property" as const },
+    { id: "twitter:title", content: batch.title, attr: "name" as const },
+    {
+      id: "twitter:description",
+      content: batch.description,
+      attr: "name" as const,
+    },
+    {
+      id: "twitter:card",
+      content: "summary_large_image",
+      attr: "name" as const,
+    },
+  ];
+
+  const linkOps = [
+    { id: "link-canonical", rel: "canonical", href: batch.canonicalUrl },
+    ...LANGS.map((altLang) => ({
+      id: `link-hreflang-${altLang}`,
+      rel: "alternate" as const,
+      href: `${BASE_URL}${buildCanonicalPath(altLang, batch.pathWithoutLang)}`,
+      extra: { hreflang: langMeta[altLang].hreflang },
+    })),
+    {
+      id: "link-hreflang-x-default",
+      rel: "alternate" as const,
+      href: `${BASE_URL}${buildCanonicalPath(DEFAULT_LANG, batch.pathWithoutLang)}`,
+      extra: { hreflang: "x-default" },
+    },
+  ];
+
+  for (const op of metaOps) {
+    setMeta(op.id, op.content, op.attr);
+  }
+  for (const op of linkOps) {
+    setLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
+  }
+  setJsonLd(batch.jsonLd);
+}
+
 export interface SeoPageMeta {
   title: string;
   description: string;
@@ -97,71 +189,18 @@ export function useSeoHead({
 
     const imageUrl = ogImage || "/og.jpg";
     const imageType = imageUrl.endsWith(".png") ? "image/png" : "image/jpeg";
-    const ogImageOps = [
-      {
-        id: "og:image",
-        content: `${BASE_URL}${imageUrl}`,
-        attr: "property" as const,
-      },
-      { id: "og:image:type", content: imageType, attr: "property" as const },
-      { id: "og:image:width", content: "1200", attr: "property" as const },
-      { id: "og:image:height", content: "630", attr: "property" as const },
-      {
-        id: "twitter:image",
-        content: `${BASE_URL}${imageUrl}`,
-        attr: "name" as const,
-      },
-    ];
 
-    const metaOps = [
-      ...ogImageOps,
-      { id: "meta-description", content: description, attr: "name" as const },
-      { id: "og:title", content: title, attr: "property" as const },
-      { id: "og:description", content: description, attr: "property" as const },
-      { id: "og:locale", content: meta.locale, attr: "property" as const },
-      { id: "og:url", content: canonicalUrl, attr: "property" as const },
-      {
-        id: "og:site_name",
-        content: t.seo.siteName,
-        attr: "property" as const,
-      },
-      { id: "og:type", content: "website", attr: "property" as const },
-      { id: "twitter:title", content: title, attr: "name" as const },
-      {
-        id: "twitter:description",
-        content: description,
-        attr: "name" as const,
-      },
-      {
-        id: "twitter:card",
-        content: "summary_large_image",
-        attr: "name" as const,
-      },
-    ];
-
-    const linkOps = [
-      { id: "link-canonical", rel: "canonical", href: canonicalUrl },
-      ...LANGS.map((altLang) => ({
-        id: `link-hreflang-${altLang}`,
-        rel: "alternate" as const,
-        href: `${BASE_URL}${buildCanonicalPath(altLang, pathWithoutLang)}`,
-        extra: { hreflang: langMeta[altLang].hreflang },
-      })),
-      {
-        id: "link-hreflang-x-default",
-        rel: "alternate" as const,
-        href: `${BASE_URL}${buildCanonicalPath(DEFAULT_LANG, pathWithoutLang)}`,
-        extra: { hreflang: "x-default" },
-      },
-    ];
-
-    for (const op of metaOps) {
-      setMeta(op.id, op.content, op.attr);
-    }
-    for (const op of linkOps) {
-      setLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
-    }
-    setJsonLd(jsonLd);
+    applySeoUpdates({
+      title,
+      description,
+      canonicalUrl,
+      imageUrl,
+      imageType,
+      pathWithoutLang,
+      locale: meta.locale,
+      siteName: t.seo.siteName,
+      jsonLd,
+    });
   }, [
     title,
     description,

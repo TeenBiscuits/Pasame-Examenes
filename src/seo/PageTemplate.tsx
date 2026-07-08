@@ -47,7 +47,7 @@ export default function PageTemplate(page: PageMetaData) {
         />
         <meta id="theme-color" name="theme-color" content="#f9fafb" />
         <meta name="color-scheme" content="light dark" />
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script>{themeScript}</script>
         <title>{page.title}</title>
         <meta
           id="meta-description"
@@ -98,11 +98,9 @@ export default function PageTemplate(page: PageMetaData) {
           content="summary_large_image"
         />
         <meta id="twitter:image" name="twitter:image" content={page.ogImage} />
-        <script
-          type="application/ld+json"
-          id="schema-jsonld"
-          dangerouslySetInnerHTML={{ __html: page.jsonLd }}
-        />
+        <script type="application/ld+json" id="schema-jsonld">
+          {page.jsonLd}
+        </script>
         <script
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="41AHUOkOrsmT26f+Ow8zaQ"
