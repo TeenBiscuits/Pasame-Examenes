@@ -1,4 +1,5 @@
 import { type CSSProperties, type ReactNode } from "react";
+import FloatingEmoji from "./FloatingEmoji";
 
 function pseudo(i: number, salt: number, seed: number): number {
   const x = Math.sin(i * 9301 + salt * 49297 + seed * 8347) * 233280;
@@ -136,19 +137,17 @@ export default function Hero({
   return (
     <section className={`relative w-full overflow-hidden ${className}`}>
       <div
-        className="pointer-events-none absolute inset-y-0 left-1/2 z-0 hidden w-full max-w-6xl -translate-x-1/2 md:block"
+        className="absolute inset-y-0 left-1/2 z-0 hidden w-full max-w-6xl -translate-x-1/2 md:block"
         aria-hidden="true"
       >
         {emojis.map((emoji, i) => {
           const slot = (i + placementOffset) % emojis.length;
           return (
-            <span
+            <FloatingEmoji
               key={`${emoji}-${i}`}
-              className="floating-emoji-mark select-none"
+              emoji={emoji}
               style={buildDesktopStyle(slot, emojis.length, compact, seed)}
-            >
-              {emoji}
-            </span>
+            />
           );
         })}
       </div>
@@ -169,7 +168,9 @@ export default function Hero({
           );
         })}
       </div>
-      <div className={`relative z-10 mx-auto max-w-6xl px-4 text-center ${spacing}`}>
+      <div
+        className={`pointer-events-none relative z-10 mx-auto max-w-6xl px-4 text-center ${spacing}`}
+      >
         {children}
       </div>
     </section>
