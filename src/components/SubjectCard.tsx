@@ -36,7 +36,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   return (
     <Link
       to={`/${subject.id}`}
-      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+      className="block p-5 rounded-xl border-2 border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors transition-transform duration-200"
       onClick={() => {
         triggerLight();
         track("subject_card_click", {
@@ -46,20 +46,20 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         recordSubjectClick(subject.id);
       }}
     >
-      <div className="mb-3 flex items-start justify-between">
+      <div className="flex items-start justify-between mb-3">
         <span className="text-2xl" aria-hidden="true">
           {subject.icon}
         </span>
         <div className="flex items-center gap-2">
           <ContentPolicyIcon subject={subject} />
-          <span className="bg-code text-fg-secondary inline-flex h-6 items-center rounded px-2 font-mono text-xs font-semibold">
+          <span className="inline-flex h-6 items-center rounded bg-code px-2 font-mono text-xs font-semibold text-fg-secondary">
             {subject.courseCode}
           </span>
         </div>
       </div>
-      <h2 className="text-fg mb-1 text-base font-semibold">{subject.name}</h2>
-      <p className="text-fg-muted mb-4 text-sm">{subject.university}</p>
-      <div className="text-fg-muted flex items-center gap-2 text-xs">
+      <h2 className="font-semibold text-fg text-base mb-1">{subject.name}</h2>
+      <p className="text-sm text-fg-muted mb-4">{subject.university}</p>
+      <div className="text-xs text-fg-muted flex items-center gap-2">
         <span>
           {questionCount !== null ? questionCount : "..."}{" "}
           {t.subjectCard.questions}

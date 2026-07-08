@@ -67,7 +67,7 @@ function CodeRenderer({
   if (!match) {
     return (
       <code
-        className="bg-code rounded px-1.5 py-0.5 font-mono text-[0.85em] text-pink-600"
+        className="font-mono text-[0.85em] bg-code text-pink-600 px-1.5 py-0.5 rounded"
         {...rest}
       >
         {children}
@@ -77,10 +77,10 @@ function CodeRenderer({
 
   return (
     <div
-      className={`not-prose border-border my-3 overflow-hidden rounded-lg border ${isDark ? "bg-code-block" : "bg-code"}`}
+      className={`not-prose my-3 rounded-lg border border-border overflow-hidden ${isDark ? "bg-code-block" : "bg-code"}`}
     >
-      <div className="border-border/50 flex items-center border-b px-4 py-1.5">
-        <span className="text-fg-muted font-mono text-[11px] font-semibold tracking-wider uppercase">
+      <div className="flex items-center px-4 py-1.5 border-b border-border/50">
+        <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-fg-muted">
           {match[1]}
         </span>
       </div>

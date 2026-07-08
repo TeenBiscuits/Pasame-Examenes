@@ -105,7 +105,7 @@ export default function GitHubStarButton() {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="border-border hover:bg-surface text-fg-secondary hidden cursor-pointer items-center gap-1.5 rounded border px-2 py-1 text-xs font-medium no-underline transition active:scale-95 sm:inline-flex"
+        className="hidden sm:inline-flex items-center gap-1.5 px-2 py-1 rounded border border-border hover:bg-surface active:scale-95 transition cursor-pointer no-underline text-fg-secondary text-xs font-medium"
         onClick={() => track("github_star_click", { location: "header" })}
         aria-label="Star on GitHub"
       >
@@ -120,7 +120,7 @@ export default function GitHubStarButton() {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="border-border hover:bg-surface inline-flex cursor-pointer items-center rounded border px-2 py-1 text-amber-500 transition active:scale-95 sm:hidden"
+        className="sm:hidden inline-flex items-center px-2 py-1 rounded border border-border hover:bg-surface active:scale-95 transition cursor-pointer text-amber-500"
         onClick={() => track("github_star_click", { location: "header" })}
         aria-label="Star on GitHub"
       >

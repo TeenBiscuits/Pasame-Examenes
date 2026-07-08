@@ -37,7 +37,7 @@ export default function QuestionNavChips({
   return (
     <div
       ref={navRef}
-      className="mb-6 flex gap-1 overflow-x-auto pb-6"
+      className="flex gap-1 mb-6 overflow-x-auto pb-6"
       data-tour={dataTour}
       style={{
         maskImage:

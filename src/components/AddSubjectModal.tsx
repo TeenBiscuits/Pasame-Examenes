@@ -46,7 +46,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog m-auto max-w-sm rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="add-subject-title"
       onClose={() => {
         track("modal_close", {
@@ -57,8 +57,8 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
       }}
     >
       <div>
-        <div className="mb-5 flex items-center justify-between">
-          <h2 id="add-subject-title" className="text-fg text-lg font-semibold">
+        <div className="flex items-center justify-between mb-5">
+          <h2 id="add-subject-title" className="text-lg font-semibold text-fg">
             {t.addSubject.title}
           </h2>
           <button
@@ -67,7 +67,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
               closeMethodRef.current = "x";
               dialogRef.current?.close();
             }}
-            className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
+            className="text-fg-muted hover:text-fg-secondary transition-colors cursor-pointer"
             aria-label={t.addSubject.close}
           >
             <svg
@@ -91,14 +91,14 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("add_subject_open_issue")}
-            className="border-accent-border bg-accent-light hover:bg-accent-light hover:border-accent flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-colors"
+            className="flex items-center gap-3 p-3 rounded-xl border-2 border-accent-border bg-accent-light hover:bg-accent-light hover:border-accent transition-colors cursor-pointer text-left no-underline text-inherit"
           >
             <span className="text-xl">📝</span>
             <div>
-              <div className="text-fg text-sm font-medium">
+              <div className="font-medium text-fg text-sm">
                 {t.addSubject.openIssue}
               </div>
-              <div className="text-fg-muted text-xs">
+              <div className="text-xs text-fg-muted">
                 {t.addSubject.openIssueDesc}
               </div>
             </div>
@@ -109,31 +109,31 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("add_subject_contribute")}
-            className="border-contribute-border bg-contribute-bg hover:bg-contribute-hover-bg hover:border-contribute-hover-border flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-colors"
+            className="flex items-center gap-3 p-3 rounded-xl border-2 border-contribute-border bg-contribute-bg hover:bg-contribute-hover-bg hover:border-contribute-hover-border transition-colors cursor-pointer text-left no-underline text-inherit"
           >
             <span className="text-xl">🚀</span>
             <div>
-              <div className="text-fg text-sm font-medium">
+              <div className="font-medium text-fg text-sm">
                 {t.addSubject.contribute}
               </div>
-              <div className="text-fg-muted text-xs">
+              <div className="text-xs text-fg-muted">
                 {t.addSubject.contributeDesc}
               </div>
             </div>
           </a>
 
-          <div className="border-border border-t pt-2">
+          <div className="pt-2 border-t border-border">
             <a
               href="mailto:pablo.portas@udc.es"
               onClick={() => track("add_subject_email")}
-              className="border-border bg-surface/50 hover:bg-surface hover:border-border flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-colors"
+              className="flex items-center gap-3 p-3 rounded-xl border-2 border-border bg-surface/50 hover:bg-surface hover:border-border transition-colors cursor-pointer text-left no-underline text-inherit"
             >
               <span className="text-xl">✉️</span>
               <div>
-                <div className="text-fg-secondary text-sm font-medium">
+                <div className="font-medium text-fg-secondary text-sm">
                   {t.addSubject.email}
                 </div>
-                <div className="text-fg-muted text-xs">pablo.portas@udc.es</div>
+                <div className="text-xs text-fg-muted">pablo.portas@udc.es</div>
               </div>
             </a>
           </div>

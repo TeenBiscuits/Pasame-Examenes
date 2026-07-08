@@ -50,11 +50,11 @@ function ExamStartScreen({
     ? t.exam.simulationNote
     : t.exam.practiceNote;
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-2xl px-4 py-16">
+    <div className="max-w-2xl mx-auto px-4 py-16 animate-fade-in animate-duration-fast">
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
-          className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
           onClick={() =>
             track("nav_click", {
               target: "subject_home",
@@ -67,14 +67,14 @@ function ExamStartScreen({
         </Link>
       </div>
       <div className="text-center">
-        <h1 className="text-fg mb-2 text-3xl font-semibold">
+        <h1 className="text-3xl font-semibold text-fg mb-2">
           {examInfo.title}
         </h1>
         <p className="text-fg-muted mb-8">
           {subject.name} ({subject.courseCode})
         </p>
       </div>
-      <div className="bg-surface-alt border-border space-y-4 rounded-xl border p-8 shadow-sm">
+      <div className="bg-surface-alt rounded-xl border border-border p-8 shadow-sm space-y-4">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <span className="text-fg-muted">{t.exam.questions}</span>
@@ -97,12 +97,12 @@ function ExamStartScreen({
             </p>
           </div>
         </div>
-        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
           {simulationNote}
         </div>
         <button
           type="button"
-          className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full animate-pulse rounded-lg py-3 font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
+          className="w-full py-3 bg-accent text-white rounded-lg hover:bg-accent-hover active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition font-medium animate-pulse"
           onClick={onStart}
         >
           {t.exam.startExam}
@@ -192,7 +192,7 @@ function ExamPlayer({
   const score = getScore();
 
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
+    <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
@@ -213,32 +213,32 @@ function ExamPlayer({
               }
             }
           }}
-          className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
         >
           {t.exam.backToSubject}
         </Link>
       </div>
       <div
-        className="bg-surface border-border sticky top-14 z-40 -mx-4 mb-6 flex items-center justify-between border-b px-4 py-3"
+        className="flex items-center justify-between mb-6 sticky top-14 bg-surface py-3 -mx-4 px-4 z-40 border-b border-border"
         data-tour="exam-header"
       >
         <div>
-          <span className="text-fg text-lg font-bold">{examInfo.title}</span>
-          <span className="text-fg-muted ml-3 text-sm">
+          <span className="text-lg font-bold text-fg">{examInfo.title}</span>
+          <span className="text-sm text-fg-muted ml-3">
             {formatPoints(totalPoints)}p {t.exam.total}
           </span>
         </div>
         <div className="flex items-center gap-4">
           {!submitted && (
             <span
-              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "animate-pulse text-red-600" : "text-fg-secondary"}`}
+              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "text-red-600 animate-pulse" : "text-fg-secondary"}`}
             >
               {formatTime(timeLeft)}
             </span>
           )}
           {submitted && (
             <span
-              className={`animate-fade-in rounded px-3 py-1 text-sm font-bold ${score >= examInfo.passPoints ? "bg-accent-light text-accent-fg" : "bg-red-50 text-red-700"}`}
+              className={`text-sm font-bold px-3 py-1 rounded animate-fade-in ${score >= examInfo.passPoints ? "bg-accent-light text-accent-fg" : "bg-red-50 text-red-700"}`}
             >
               {formatPoints(score)}/{formatPoints(totalPoints)}p{" "}
               {score >= examInfo.passPoints ? t.exam.pass_ : t.exam.fail}
@@ -248,8 +248,8 @@ function ExamPlayer({
       </div>
 
       {submitted && (
-        <div className="bg-accent-light border-accent-border animate-fade-in-up mb-6 rounded-lg border p-4 text-sm">
-          <p className="text-fg mb-1 font-semibold">
+        <div className="mb-6 p-4 rounded-lg bg-accent-light border border-accent-border text-sm animate-fade-in-up">
+          <p className="font-semibold text-fg mb-1">
             {t.exam.submitted} {t.exam.score}: {formatPoints(score)}
             {t.exam.outOf}
             {formatPoints(totalPoints)} (
@@ -301,10 +301,10 @@ function ExamPlayer({
         />
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center gap-3 sm:flex-nowrap sm:justify-between">
+      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 mt-6 sm:justify-between">
         <button
           type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30"
+          className="order-1 px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -344,13 +344,13 @@ function ExamPlayer({
           </span>
         </button>
         <div
-          className="order-3 flex w-full justify-center gap-2 sm:order-2 sm:w-auto"
+          className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto"
           data-tour="exam-submit"
         >
           {!submitted && (
             <button
               type="button"
-              className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95"
+              className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition font-medium"
               onClick={onSubmit}
             >
               {t.exam.submitExam}
@@ -359,7 +359,7 @@ function ExamPlayer({
         </div>
         <button
           type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-2 ms-auto rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:order-3 sm:ms-0"
+          className="order-2 sm:order-3 ms-auto sm:ms-0 px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
@@ -641,11 +641,11 @@ export default function ExamSimulation() {
 
   if (questions.length === 0 || !subject || !examInfo) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
         <p className="text-fg-muted">{t.exam.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
-          className="text-accent mt-4 inline-block hover:underline"
+          className="text-accent hover:underline mt-4 inline-block"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home", from: "exam_empty" });

@@ -113,34 +113,34 @@ function PracticePlayer({
   };
 
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
+    <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in animate-duration-fast">
       <div className="mb-6" data-tour="practice-back">
         <Link
           to={`/${subject.id}`}
-          className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-sm text-accent hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1"
           onClick={() =>
             track("nav_click", { target: "subject_home", from: "practice" })
           }
         >
           {t.practice.backToTopics}
         </Link>
-        <h1 className="text-fg mt-2 text-2xl font-semibold">
+        <h1 className="text-2xl font-semibold text-fg mt-2">
           {topicInfo?.icon} {topicInfo?.label || topic}
         </h1>
-        <p className="text-fg-muted mt-1 text-sm">
+        <p className="text-sm text-fg-muted mt-1">
           {questions.length} {t.subjectCard.questions} &middot;{" "}
           {formatPoints(totalPoints)} {t.practice.pointsTotal}
         </p>
       </div>
 
       {(submitted || Object.keys(checkedQuestions).length > 0) && (
-        <div className="bg-accent-light border-accent-border animate-fade-in-up mb-6 rounded-lg border p-4">
-          <p className="text-fg font-semibold">
+        <div className="mb-6 p-4 rounded-lg bg-accent-light border border-accent-border animate-fade-in-up">
+          <p className="font-semibold text-fg">
             {submitted ? t.practice.score : t.practice.runningScore}:{" "}
             {formatPoints(getScore())} {t.exam.outOf}{" "}
             {formatPoints(totalPoints)} {t.practice.points}
           </p>
-          <p className="text-accent-fg mt-1 text-sm">
+          <p className="text-sm text-accent-fg mt-1">
             {submitted
               ? textQuestionCount > 0
                 ? `${Object.values(selfGrades).filter(Boolean).length} ${t.exam.outOf} ${textQuestionCount} ${t.practice.openEnded}`
@@ -193,12 +193,12 @@ function PracticePlayer({
       </div>
 
       <div
-        className="mt-6 flex flex-wrap items-center gap-3 sm:flex-nowrap sm:justify-between"
+        className="flex flex-wrap sm:flex-nowrap items-center gap-3 mt-6 sm:justify-between"
         data-tour="practice-nav-btns"
       >
         <button
           type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30"
+          className="order-1 px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -238,7 +238,7 @@ function PracticePlayer({
           </span>
         </button>
         <div
-          className="order-3 flex w-full justify-center gap-2 sm:order-2 sm:w-auto"
+          className="flex justify-center gap-2 order-3 sm:order-2 w-full sm:w-auto"
           data-tour="practice-actions"
         >
           {answers[currentQuestion.id] &&
@@ -247,7 +247,7 @@ function PracticePlayer({
               <>
                 <button
                   type="button"
-                  className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+                  className="px-4 py-2 text-sm rounded-lg border border-border text-fg-muted hover:text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition"
                   onClick={() => {
                     triggerLight();
                     track("practice_clear_answer", {
@@ -262,7 +262,7 @@ function PracticePlayer({
                 </button>
                 <button
                   type="button"
-                  className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95"
+                  className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none transition"
                   onClick={() => onCheckQuestion(currentQuestion.id)}
                 >
                   {t.practice.check}
@@ -272,7 +272,7 @@ function PracticePlayer({
           {!submitted && (
             <button
               type="button"
-              className="bg-accent hover:bg-accent-hover focus-visible:ring-accent rounded-lg px-4 py-2 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              className="px-4 py-2 text-sm rounded-lg bg-accent text-white hover:bg-accent-hover active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition"
               onClick={onSubmit}
             >
               {t.practice.submit}
@@ -281,7 +281,7 @@ function PracticePlayer({
         </div>
         <button
           type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-2 ms-auto rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:order-3 sm:ms-0"
+          className="order-2 sm:order-3 ms-auto sm:ms-0 px-4 py-2 text-sm rounded-lg border border-border text-fg-secondary hover:bg-surface active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none disabled:opacity-30 transition"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
@@ -557,11 +557,11 @@ export default function PracticeTopic() {
 
   if (questions.length === 0 || !subject) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
         <p className="text-fg-muted">{t.practice.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
-          className="text-accent mt-4 inline-block hover:underline"
+          className="text-accent hover:underline mt-4 inline-block"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home", from: "practice_empty" });

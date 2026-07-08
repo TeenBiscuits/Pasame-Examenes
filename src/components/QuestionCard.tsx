@@ -24,7 +24,7 @@ function QuestionImage({
   const heightClass = maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
   if (typeof image === "object") {
     return (
-      <div className="border-border bg-surface flex max-w-full justify-center overflow-hidden rounded-lg border p-2">
+      <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
         <picture>
           {Object.entries(image.sources).map(([format, srcset]) => (
             <source key={format} srcSet={srcset} type={`image/${format}`} />
@@ -45,7 +45,7 @@ function QuestionImage({
     );
   }
   return (
-    <div className="border-border bg-surface flex max-w-full justify-center overflow-hidden rounded-lg border p-2">
+    <div className="rounded-lg overflow-hidden border border-border max-w-full flex justify-center bg-surface p-2">
       <img
         src={image}
         alt={alt}
@@ -199,7 +199,7 @@ function MCQuestion({
             disabled={!!showResult}
           >
             <span
-              className={`bg-code mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full font-mono text-xs font-bold ${isSelected ? "animate-pop" : ""}`}
+              className={`font-mono font-bold text-xs w-5 h-5 rounded-full bg-code flex items-center justify-center shrink-0 mt-0.5 ${isSelected ? "animate-pop" : ""}`}
             >
               {letter}
             </span>
@@ -216,7 +216,7 @@ function MCQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
-              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
@@ -236,9 +236,9 @@ function MCQuestion({
                 : t.questionCard.openSolution}
             </button>
             {isOpen && (
-              <div className="bg-surface border-border space-y-3 rounded-lg border p-4">
+              <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
                 {question.explanation != null && (
-                  <Markdown className="text-fg-muted text-xs italic">
+                  <Markdown className="text-xs text-fg-muted italic">
                     {question.explanation}
                   </Markdown>
                 )}
@@ -285,7 +285,7 @@ function TextQuestion({
       <textarea
         id={`answer-${question.id}`}
         aria-label="Your answer"
-        className="border-border focus:border-accent focus-visible:ring-accent min-h-[120px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
+        className="w-full p-3 border-2 border-border rounded-lg focus:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none resize-y min-h-[120px] text-sm"
         placeholder="Type your answer…"
         autoComplete="off"
         spellCheck={false}
@@ -311,7 +311,7 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
-            className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+            className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
             onClick={() => {
               triggerLight();
               const next = !isOpen;
@@ -328,17 +328,17 @@ function TextQuestion({
           </button>
 
           {isOpen && (
-            <div className="bg-surface border-border space-y-3 rounded-lg border p-4">
-              <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
+            <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-fg-muted">
                 {t.questionCard.modelSolution}
               </h4>
-              <Markdown className="text-fg-secondary font-sans text-xs whitespace-pre-wrap">
+              <Markdown className="text-xs whitespace-pre-wrap font-sans text-fg-secondary">
                 {typeof question.correctAnswer === "string"
                   ? question.correctAnswer
                   : JSON.stringify(question.correctAnswer, null, 2)}
               </Markdown>
               {question.explanation != null && (
-                <Markdown className="text-fg-muted text-xs italic">
+                <Markdown className="text-xs text-fg-muted italic">
                   {question.explanation}
                 </Markdown>
               )}
@@ -351,8 +351,8 @@ function TextQuestion({
               )}
 
               {onSelfGrade && (
-                <div className="border-border border-t pt-2">
-                  <p className="text-fg-secondary mb-2 text-xs font-semibold">
+                <div className="pt-2 border-t border-border">
+                  <p className="text-xs font-semibold text-fg-secondary mb-2">
                     {t.questionCard.gradeAnswer}
                   </p>
                   <div className="flex gap-2">
@@ -362,7 +362,7 @@ function TextQuestion({
                         triggerSuccess();
                         onSelfGrade(question.id, "correct");
                       }}
-                      className={`focus-visible:ring-accent rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                      className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
                         selfGrade === "correct"
                           ? "bg-accent-light border-accent text-accent-fg"
                           : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
@@ -376,10 +376,10 @@ function TextQuestion({
                         triggerError();
                         onSelfGrade(question.id, "incorrect");
                       }}
-                      className={`rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 ${
+                      className={`px-3 py-1.5 text-xs font-medium rounded-md border-2 active:scale-95 transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none ${
                         selfGrade === "incorrect"
-                          ? "border-red-500 bg-red-50 text-red-700"
-                          : "bg-surface-alt border-border text-fg-secondary hover:border-red-300 hover:bg-red-50/50"
+                          ? "bg-red-50 border-red-500 text-red-700"
+                          : "bg-surface-alt border-border text-fg-secondary hover:bg-red-50/50 hover:border-red-300"
                       }`}
                     >
                       {t.questionCard.incorrect}
@@ -441,10 +441,10 @@ function MatchingQuestion({
 
         return (
           <div key={item} className="flex items-center gap-3 text-sm">
-            <span className="text-fg-muted w-6 text-center font-mono text-xs">
+            <span className="w-6 text-center font-mono text-xs text-fg-muted">
               {i + 1}.
             </span>
-            <span className="text-fg-secondary flex-1">
+            <span className="flex-1 text-fg-secondary">
               <InlineMarkdown>{item}</InlineMarkdown>
             </span>
             <div className="flex gap-1">
@@ -498,7 +498,7 @@ function MatchingQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
-              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              className="text-sm text-accent hover:text-accent-fg font-medium active:scale-95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none rounded-md px-1.5 py-0.5 border border-transparent hover:border-accent-border transition"
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
@@ -518,9 +518,9 @@ function MatchingQuestion({
                 : t.questionCard.openSolution}
             </button>
             {isOpen && (
-              <div className="bg-surface border-border space-y-3 rounded-lg border p-4">
+              <div className="p-4 bg-surface rounded-lg border border-border space-y-3">
                 {question.explanation != null && (
-                  <Markdown className="text-fg-muted text-xs italic">
+                  <Markdown className="text-xs text-fg-muted italic">
                     {question.explanation}
                   </Markdown>
                 )}
@@ -552,38 +552,38 @@ export default function QuestionCard(props: QuestionCardProps) {
 
   return (
     <div
-      className={`bg-surface-alt border-border rounded-xl border p-6 shadow-sm ${slideClass}`}
+      className={`bg-surface-alt rounded-xl border border-border p-6 shadow-sm ${slideClass}`}
     >
-      <div className="mb-4 flex items-center gap-2">
-        <span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">
+      <div className="flex items-center gap-2 mb-4">
+        <span className="text-xs font-mono bg-code text-fg-secondary px-2 py-0.5 rounded">
           Q{props.index + 1}/{props.total}
         </span>
-        <span className="bg-accent-light text-accent-fg rounded px-2 py-0.5 font-mono text-xs">
+        <span className="text-xs font-mono bg-accent-light text-accent-fg px-2 py-0.5 rounded">
           {formatPoints(question.points)}p
         </span>
-        <span className="text-fg-muted text-xs">
+        <span className="text-xs text-fg-muted">
           {props.megatopicLabel
             ? `${props.megatopicLabel} › ${props.topicLabel}`
             : props.topicLabel}
         </span>
         {question.repeated && (
-          <span className="ml-auto rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
+          <span className="text-[10px] font-semibold bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded border border-amber-200 ml-auto">
             {t.questionCard.repeated}
           </span>
         )}
         {props.examDate && (
           <span
-            className={`text-fg-muted text-xs ${!question.repeated ? "ml-auto" : ""}`}
+            className={`text-xs text-fg-muted ${!question.repeated ? "ml-auto" : ""}`}
           >
             {props.examDate}
           </span>
         )}
       </div>
-      <Markdown className="text-fg mb-4 text-sm font-medium">
+      <Markdown className="text-sm text-fg font-medium mb-4">
         {question.question}
       </Markdown>
       {question.subquestions && (
-        <ul className="text-fg-secondary mb-4 list-inside list-disc space-y-1 text-sm">
+        <ul className="list-disc list-inside text-sm text-fg-secondary mb-4 space-y-1">
           {question.subquestions.map((sq) => (
             <li key={sq}>
               <InlineMarkdown>{sq}</InlineMarkdown>
@@ -601,22 +601,22 @@ export default function QuestionCard(props: QuestionCardProps) {
         </div>
       )}
       {question.table && (
-        <div className="border-border mb-4 overflow-x-auto rounded-lg border">
-          <table className="divide-border min-w-full divide-y text-sm">
+        <div className="mb-4 overflow-x-auto rounded-lg border border-border">
+          <table className="min-w-full divide-y divide-border text-sm">
             <thead className="bg-surface">
               <tr>
                 {question.table.headers.map((h) => (
                   <th
                     key={h}
                     scope="col"
-                    className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
+                    className="px-4 py-2 text-left font-semibold text-fg whitespace-nowrap"
                   >
                     <InlineMarkdown>{h}</InlineMarkdown>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-border bg-surface-alt divide-y">
+            <tbody className="divide-y divide-border bg-surface-alt">
               {question.table.rows.map((row, ri) => (
                 <tr
                   key={`${question.id}-row-${ri}`}
@@ -625,7 +625,7 @@ export default function QuestionCard(props: QuestionCardProps) {
                   {row.map((cell, ci) => (
                     <td
                       key={`${question.id}-cell-${ri}-${ci}`}
-                      className="text-fg-secondary px-4 py-2 whitespace-nowrap"
+                      className="px-4 py-2 text-fg-secondary whitespace-nowrap"
                     >
                       <InlineMarkdown>{cell}</InlineMarkdown>
                     </td>
@@ -639,8 +639,8 @@ export default function QuestionCard(props: QuestionCardProps) {
       {question.type === "mc" && <MCQuestion {...props} />}
       {question.type === "text" && <TextQuestion {...props} />}
       {question.type === "matching" && <MatchingQuestion {...props} />}
-      <div className="border-border mt-4 flex items-center justify-end gap-2 border-t pt-4">
-        <span className="text-fg-muted font-mono text-[10px] select-all">
+      <div className="mt-4 pt-4 border-t border-border flex items-center justify-end gap-2">
+        <span className="text-[10px] font-mono text-fg-muted select-all">
           {question.id}
         </span>
         <a
@@ -648,7 +648,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           href={buildReportUrl(question, props.subjectId)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-fg-muted -mr-2 inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:text-red-500 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
+          className="inline-flex items-center gap-1 text-xs text-fg-muted hover:text-red-500 transition-colors focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none rounded px-2 py-1 -mr-2"
           onClick={() => {
             triggerLight();
             track("report_issue", {

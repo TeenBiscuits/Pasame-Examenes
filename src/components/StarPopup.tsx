@@ -95,7 +95,7 @@ export default function StarPopup() {
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog m-auto max-w-sm rounded-2xl bg-surface-alt p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="star-popup-title"
     >
       <div className="text-center">
@@ -107,11 +107,11 @@ export default function StarPopup() {
 
         <h2
           id="star-popup-title"
-          className="text-fg mb-2 text-lg font-semibold"
+          className="text-lg font-semibold text-fg mb-2"
         >
           {t.starPopup.title}
         </h2>
-        <p className="text-fg-secondary mb-6 text-sm">{t.starPopup.subtitle}</p>
+        <p className="text-sm text-fg-secondary mb-6">{t.starPopup.subtitle}</p>
 
         <div className="flex flex-col gap-2">
           <a
@@ -119,7 +119,7 @@ export default function StarPopup() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleStar}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-amber-600 active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-amber-500 text-white font-semibold text-sm hover:bg-amber-600 active:scale-[0.98] transition no-underline"
           >
             <StarIcon />
             {t.starPopup.starButton}
@@ -127,7 +127,7 @@ export default function StarPopup() {
           <button
             type="button"
             onClick={dismiss}
-            className="text-fg-muted hover:text-fg-secondary hover:bg-surface cursor-pointer rounded-lg px-4 py-2 text-sm transition"
+            className="px-4 py-2 rounded-lg text-sm text-fg-muted hover:text-fg-secondary hover:bg-surface transition cursor-pointer"
           >
             {t.starPopup.dismiss}
           </button>
