@@ -22,6 +22,9 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
+import { ArrowSquareLeft2, ArrowSquareRight2 } from "reicon-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { CheckmarkBadge02Icon } from "@hugeicons/core-free-icons";
 
 function formatTime(seconds: number) {
   const h = Math.floor(seconds / 3600);
@@ -49,6 +52,7 @@ function ExamStartScreen({
   const simulationNote = hasAuthorizedExamContent(subject)
     ? t.exam.simulationNote
     : t.exam.practiceNote;
+  const isAuthorized = hasAuthorizedExamContent(subject);
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-2xl px-4 py-16">
       <div className="mb-6">
@@ -67,8 +71,21 @@ function ExamStartScreen({
         </Link>
       </div>
       <div className="text-center">
-        <h1 className="text-fg mb-2 text-3xl font-semibold">
+        <h1 className="text-fg mb-2 inline-flex items-center justify-center gap-2 text-3xl font-semibold">
           {examInfo.title}
+          {isAuthorized && (
+            <span
+              className="border-t-amber-border bg-t-amber-bg text-t-amber-hover inline-flex size-6 shrink-0 items-center justify-center rounded border"
+              title={t.contentPolicy.authorized}
+            >
+              <HugeiconsIcon
+                icon={CheckmarkBadge02Icon}
+                className="size-4"
+                role="img"
+                aria-label={t.contentPolicy.authorized}
+              />
+            </span>
+          )}
         </h1>
         <p className="text-fg-muted mb-8">
           {subject.name} ({subject.courseCode})
@@ -162,6 +179,7 @@ function ExamPlayer({
   const currentTopic = subject.topics.find(
     (tp) => tp.key === currentQuestion.topic,
   );
+  const isAuthorized = hasAuthorizedExamContent(subject);
 
   const getScore = () => {
     let score = 0;
@@ -222,9 +240,24 @@ function ExamPlayer({
         className="bg-surface border-border sticky top-14 z-40 -mx-4 mb-6 flex items-center justify-between border-b px-4 py-3"
         data-tour="exam-header"
       >
-        <div>
-          <span className="text-fg text-lg font-bold">{examInfo.title}</span>
-          <span className="text-fg-muted ml-3 text-sm">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span className="inline-flex items-center gap-2">
+            <span className="text-fg text-lg font-bold">{examInfo.title}</span>
+            {isAuthorized && (
+              <span
+                className="border-t-amber-border bg-t-amber-bg text-t-amber-hover inline-flex size-5 shrink-0 items-center justify-center rounded border"
+                title={t.contentPolicy.authorized}
+              >
+                <HugeiconsIcon
+                  icon={CheckmarkBadge02Icon}
+                  className="size-3.5"
+                  role="img"
+                  aria-label={t.contentPolicy.authorized}
+                />
+              </span>
+            )}
+          </span>
+          <span className="text-fg-muted text-sm">
             {formatPoints(totalPoints)}p {t.exam.total}
           </span>
         </div>
@@ -323,23 +356,7 @@ function ExamPlayer({
           disabled={currentIndex === 0}
         >
           <span className="flex items-center gap-1.5">
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              aria-hidden="true"
-            >
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
-              <path
-                d="M14 8l-4 4 4 4"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ArrowSquareLeft2 size={18} aria-hidden="true" />
             {t.exam.previous}
           </span>
         </button>
@@ -379,23 +396,7 @@ function ExamPlayer({
         >
           <span className="flex items-center gap-1.5">
             {t.exam.next}
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              aria-hidden="true"
-            >
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
-              <path
-                d="M10 8l4 4-4 4"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ArrowSquareRight2 size={18} aria-hidden="true" />
           </span>
         </button>
       </div>

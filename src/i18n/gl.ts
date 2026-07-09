@@ -17,7 +17,7 @@ export const gl: Translations = {
       "Practica {count} preguntas{repeated} de {exams} exames con respostas modelo e autocorrección.",
     communityDescription:
       "Practica {count} preguntas{repeated} de {exams} recompilacións con respostas modelo e autocorrección.",
-    practiceByTopic: "Practicar por tema",
+    practiceByTopic: "Temas",
     examSimulations: "Exames",
     practiceSimulations: "Recompilacións",
     originalExams: "Documentos orixinais de exame",

@@ -16,28 +16,14 @@ import {
   recordSubjectClick,
   clearRecentSubjects,
 } from "../lib/recent";
+import { Trash5 } from "reicon-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons";
 
 const MAX_SLOTS = 3;
 
 function TrashIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="size-4"
-    >
-      <path d="M3 6h18" />
-      <path d="M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-      <path d="M10 11v6" />
-      <path d="M14 11v6" />
-      <path d="M5 6l1 14a2 2 0 002 2h8a2 2 0 002-2l1-14" />
-    </svg>
-  );
+  return <Trash5 className="size-4" weight="Filled" />;
 }
 
 function PlaceholderCard() {
@@ -185,7 +171,9 @@ export default function Home() {
               className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full cursor-pointer rounded-xl border-2 border-dashed p-5 transition-colors transition-transform duration-200 hover:scale-[1.02]"
             >
               <div className="flex h-full min-h-[120px] flex-col items-center justify-center gap-2">
-                <span className="text-4xl leading-none font-light">+</span>
+                <span className="text-4xl leading-none font-light">
+                  <HugeiconsIcon icon={DashboardSquareAddIcon} size={35} />
+                </span>
                 <span className="text-sm font-medium">{t.home.addSubject}</span>
               </div>
             </button>

@@ -21,6 +21,7 @@ import { usePracticeSession } from "../hooks/usePracticeSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
+import { ArrowSquareLeft2, ArrowSquareRight2 } from "reicon-react";
 
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
@@ -217,23 +218,7 @@ function PracticePlayer({
           disabled={currentIndex === 0}
         >
           <span className="flex items-center gap-1.5">
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              aria-hidden="true"
-            >
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
-              <path
-                d="M14 8l-4 4 4 4"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ArrowSquareLeft2 size={18} aria-hidden="true" />
             {t.practice.previous}
           </span>
         </button>
@@ -301,23 +286,7 @@ function PracticePlayer({
         >
           <span className="flex items-center gap-1.5">
             {t.practice.next}
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              aria-hidden="true"
-            >
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
-              <path
-                d="M10 8l4 4-4 4"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ArrowSquareRight2 size={18} aria-hidden="true" />
           </span>
         </button>
       </div>

@@ -15,7 +15,7 @@ export const en = {
       "Practice {count} questions{repeated} from {exams} exams with model answers and self-grading.",
     communityDescription:
       "Practice {count} questions{repeated} from {exams} compilations with model answers and self-grading.",
-    practiceByTopic: "Practice by Topic",
+    practiceByTopic: "Topics",
     examSimulations: "Exams",
     practiceSimulations: "Compilations",
     originalExams: "Original Exam Documents",

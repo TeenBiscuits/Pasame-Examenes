@@ -17,7 +17,7 @@ export const es: Translations = {
       "Practica {count} preguntas{repeated} de {exams} exámenes con respuestas modelo y autocorrección.",
     communityDescription:
       "Practica {count} preguntas{repeated} de {exams} recopilatorios con respuestas modelo y autocorrección.",
-    practiceByTopic: "Practicar por tema",
+    practiceByTopic: "Temas",
     examSimulations: "Exámenes",
     practiceSimulations: "Recopilatorios",
     originalExams: "Documentos originales de examen",

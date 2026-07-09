@@ -20,7 +20,7 @@ const langLabel: Record<Lang, string> = {
 const langFlag: Record<Lang, string> = {
   en: "🇬🇧",
   es: "🇪🇸",
-  gl: "🧜🏻‍♀️ GL",
+  gl: "🧜🏻‍♀️",
 };
 
 function acronym(name: string): string {
@@ -67,7 +67,7 @@ export default function Header() {
             className="h-8 w-7"
             aria-hidden="true"
           />
-          {t.home.title}
+          <p className="text-sm sm:text-lg">{t.home.title}</p>
         </Link>
         <div className="flex items-center gap-1 text-sm sm:gap-3">
           {subject && (
