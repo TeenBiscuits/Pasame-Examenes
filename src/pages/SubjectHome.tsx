@@ -20,6 +20,14 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
+import { ArrowRightUp } from "reicon-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  CheckmarkBadge02Icon,
+  LegalHammerIcon,
+  Legal01Icon,
+  DashboardSquareAddIcon,
+} from "@hugeicons/core-free-icons";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
@@ -315,7 +323,7 @@ function RemovedExamCard({ title }: { title: string }) {
   return (
     <div className="border-t-red-border bg-t-red-bg/70 block rounded-xl border-2 border-dashed p-6">
       <div className="text-t-red-hover mb-2 text-2xl" aria-hidden="true">
-        !
+        <HugeiconsIcon icon={Legal01Icon} />
       </div>
       <h2 className="text-fg font-semibold">{title}</h2>
       <p className="text-fg-secondary mt-2 text-sm font-medium">
@@ -332,6 +340,9 @@ function ExamCard({
   subject: SubjectMeta;
   exam: SubjectMeta["exams"][number];
 }) {
+  const t = useT();
+  const isAuthorized = hasAuthorizedExamContent(subject);
+
   return (
     <Link
       to={`/${subject.id}/exam/${exam.year}`}
@@ -344,8 +355,23 @@ function ExamCard({
         });
       }}
     >
-      <div className="mb-2 text-2xl" aria-hidden="true">
-        📝
+      <div className="mb-2 flex items-start justify-between">
+        <div className="text-2xl" aria-hidden="true">
+          📝
+        </div>
+        {isAuthorized && (
+          <span
+            className="border-t-amber-border bg-t-amber-bg text-t-amber-hover inline-flex size-6 shrink-0 items-center justify-center rounded border"
+            title={t.contentPolicy.authorized}
+          >
+            <HugeiconsIcon
+              icon={CheckmarkBadge02Icon}
+              className="size-4"
+              role="img"
+              aria-label={t.contentPolicy.authorized}
+            />
+          </span>
+        )}
       </div>
       <h2 className="text-fg font-semibold">{exam.title}</h2>
       <p className="text-fg-muted mt-1 text-sm">{exam.description}</p>
@@ -376,7 +402,9 @@ function ExamActionButtons({
         className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full rounded-xl border-2 border-dashed p-4 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
       >
         <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
-          <span className="text-4xl leading-none font-light">+</span>
+          <span className="text-4xl leading-none font-light">
+            <HugeiconsIcon icon={DashboardSquareAddIcon} size={35} />
+          </span>
           <span className="text-sm font-medium">{t.subjectHome.addExam}</span>
         </div>
       </button>
@@ -391,7 +419,7 @@ function ExamActionButtons({
       >
         <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
           <span className="text-t-red-hover text-4xl leading-none font-light">
-            !
+            <HugeiconsIcon icon={LegalHammerIcon} size={35} />
           </span>
           <span className="text-sm font-medium">
             {t.subjectHome.reportCopyright}
@@ -445,7 +473,8 @@ function PdfLinksSection({
             });
           }}
         >
-          <span aria-hidden="true">📄</span> {exam.title} {t.subjectHome.pdf}
+          <span aria-hidden="true">📄</span> {exam.title} {t.subjectHome.pdf}{" "}
+          <ArrowRightUp weight="Filled" className="size-3.5" />
         </a>
       ))}
     </ResourceLinksShell>
@@ -494,7 +523,8 @@ function DaypoLinksSection({
             });
           }}
         >
-          <span aria-hidden="true">🌐</span> {exam.title} {t.subjectHome.daypo}
+          <span aria-hidden="true">🌐</span> {exam.title} {t.subjectHome.daypo}{" "}
+          <ArrowRightUp weight="Filled" className="size-3.5" />
         </a>
       ))}
     </ResourceLinksShell>

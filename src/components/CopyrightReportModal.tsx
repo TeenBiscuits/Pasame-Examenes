@@ -1,6 +1,9 @@
 import { useEffect, useImperativeHandle, useRef, type Ref } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
+import { CloseSquare2 } from "reicon-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { LegalHammerIcon } from "@hugeicons/core-free-icons";
 
 const CONTACT_EMAIL = "pablo.portas@udc.es";
 
@@ -81,7 +84,10 @@ function CopyrightReportModal({
             id="copyright-report-title"
             className="text-fg text-lg font-semibold"
           >
-            {t.copyrightReport.title}
+            <span className="inline-flex items-center gap-2">
+              <HugeiconsIcon icon={LegalHammerIcon} size={24} strokeWidth={2} />
+              {t.copyrightReport.title}{" "}
+            </span>
           </h2>
           <button
             type="button"
@@ -92,18 +98,7 @@ function CopyrightReportModal({
             className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
             aria-label={t.copyrightReport.close}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <CloseSquare2 className="size-5" />
           </button>
         </div>
 

@@ -22,6 +22,14 @@ import type { Lang } from "./i18n/context";
 import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link-utils";
 import { useTheme } from "./theme/hooks";
+import {
+  CloseSquare2,
+  MemoCheck,
+  ShieldCheck,
+  ArrowRightUp,
+} from "reicon-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Github01Icon } from "@hugeicons/core-free-icons";
 
 const Home = lazy(() => import("./pages/Home"));
 const SubjectHome = lazy(() => import("./pages/SubjectHome"));
@@ -141,80 +149,19 @@ function CreativeCommonsIcons() {
 }
 
 function CloseIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="size-5"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        fillRule="evenodd"
-        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
+  return <CloseSquare2 className="size-5" />;
 }
 
 function LicenseIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="size-4"
-      aria-hidden="true"
-    >
-      <path d="M6 3h9l3 3v15H6z" />
-      <path d="M14 3v4h4" />
-      <path d="M9 12h6" />
-      <path d="M9 16h4" />
-    </svg>
-  );
+  return <MemoCheck className="size-4" />;
 }
 
 function PrivacyIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="size-4"
-      aria-hidden="true"
-    >
-      <path d="M12 3 5 6v5c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6z" />
-      <path d="M9.5 12.5 11 14l3.5-4" />
-    </svg>
-  );
+  return <ShieldCheck className="size-4" />;
 }
 
 function ExternalLinkIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="size-3.5"
-      aria-hidden="true"
-    >
-      <path d="M7 17 17 7" />
-      <path d="M9 7h8v8" />
-    </svg>
-  );
+  return <ArrowRightUp weight="Filled" className="size-3.5" />;
 }
 
 function ModalShell({
@@ -475,7 +422,7 @@ function Footer() {
           </p>
           <nav
             aria-label={t.footer.linksLabel}
-            className="flex flex-wrap items-center gap-x-2 gap-y-1 md:justify-end"
+            className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 md:justify-end"
           >
             <button
               type="button"
@@ -510,20 +457,7 @@ function Footer() {
               className={footerTextLinkClass}
               onClick={() => track("external_link_click", { target: "github" })}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-4"
-                aria-hidden="true"
-              >
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                <path d="M9 18c-4.51 2-5-2-7-2" />
-              </svg>
+              <HugeiconsIcon icon={Github01Icon} className="size-4" />
               <span>{t.footer.github}</span>
             </a>
           </nav>
