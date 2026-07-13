@@ -97,6 +97,7 @@ export default function SubjectHome() {
 
   return (
     <div className="animate-fade-in animate-duration-fast">
+      {questionsLoaded && null}
       <SubjectHeader subject={subject} description={description} />
       <div className="mx-auto max-w-6xl px-4 pb-8">
         <TopicsSection

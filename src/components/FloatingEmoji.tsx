@@ -91,9 +91,13 @@ export default function FloatingEmoji({ emoji, style }: FloatingEmojiProps) {
     transform += " scale(1.18)";
   }
 
+  const isAnimating = pressed || dragging || flying;
+
   return (
     <span
-      className="floating-emoji-mark floating-emoji-interactive cursor-grab touch-none select-none active:cursor-grabbing"
+      className={`floating-emoji-mark floating-emoji-interactive cursor-grab touch-none select-none active:cursor-grabbing ${
+        isAnimating ? "will-change-transform" : ""
+      }`}
       style={{
         ...style,
         transform,
@@ -103,7 +107,6 @@ export default function FloatingEmoji({ emoji, style }: FloatingEmojiProps) {
             ? "transform 0.15s ease-out"
             : undefined,
         animationPlayState: dragging || flying ? "paused" : undefined,
-        willChange: pressed || dragging || flying ? "transform" : undefined,
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
