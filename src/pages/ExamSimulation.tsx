@@ -643,6 +643,7 @@ export default function ExamSimulation() {
   if (questions.length === 0 || !subject || !examInfo) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+        {questionsLoaded && null}
         <p className="text-fg-muted">{t.exam.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
@@ -660,38 +661,44 @@ export default function ExamSimulation() {
 
   if (!started) {
     return (
-      <ExamStartScreen
-        subject={subject}
-        examInfo={examInfo}
-        questions={questions}
-        totalPoints={totalPoints}
-        onStart={handleStart}
-      />
+      <>
+        {questionsLoaded && null}
+        <ExamStartScreen
+          subject={subject}
+          examInfo={examInfo}
+          questions={questions}
+          totalPoints={totalPoints}
+          onStart={handleStart}
+        />
+      </>
     );
   }
 
   return (
-    <ExamPlayer
-      subject={subject}
-      examInfo={examInfo}
-      questions={questions}
-      megatopicLabels={megatopicLabels}
-      currentIndex={currentIndex}
-      setCurrentIndex={setCurrentIndex}
-      answers={answers}
-      selfGrades={selfGrades}
-      submitted={submitted}
-      timeLeft={timeLeft}
-      totalPoints={totalPoints}
-      direction={direction}
-      setDirection={setDirection}
-      showLeftFade={showLeftFade}
-      showRightFade={showRightFade}
-      navRef={navRef}
-      scrollToNav={scrollToNav}
-      onAnswer={handleAnswer}
-      onSelfGrade={handleSelfGrade}
-      onSubmit={handleSubmit}
-    />
+    <>
+      {questionsLoaded && null}
+      <ExamPlayer
+        subject={subject}
+        examInfo={examInfo}
+        questions={questions}
+        megatopicLabels={megatopicLabels}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        answers={answers}
+        selfGrades={selfGrades}
+        submitted={submitted}
+        timeLeft={timeLeft}
+        totalPoints={totalPoints}
+        direction={direction}
+        setDirection={setDirection}
+        showLeftFade={showLeftFade}
+        showRightFade={showRightFade}
+        navRef={navRef}
+        scrollToNav={scrollToNav}
+        onAnswer={handleAnswer}
+        onSelfGrade={handleSelfGrade}
+        onSubmit={handleSubmit}
+      />
+    </>
   );
 }

@@ -527,6 +527,7 @@ export default function PracticeTopic() {
   if (questions.length === 0 || !subject) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+        {questionsLoaded && null}
         <p className="text-fg-muted">{t.practice.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
@@ -543,31 +544,34 @@ export default function PracticeTopic() {
   }
 
   return (
-    <PracticePlayer
-      subject={subject}
-      topic={topic || ""}
-      questions={questions}
-      megatopicLabel={megatopicLabel}
-      topicInfo={topicInfo}
-      currentIndex={currentIndex}
-      setCurrentIndex={setCurrentIndex}
-      answers={answers}
-      selfGrades={selfGrades}
-      submitted={submitted}
-      checkedQuestions={checkedQuestions}
-      totalPoints={totalPoints}
-      textQuestionCount={textQuestionCount}
-      direction={direction}
-      setDirection={setDirection}
-      showLeftFade={showLeftFade}
-      showRightFade={showRightFade}
-      navRef={navRef}
-      scrollToNav={scrollToNav}
-      onAnswer={handleAnswer}
-      onSelfGrade={handleSelfGrade}
-      onSubmit={handleSubmit}
-      onCheckQuestion={handleCheckQuestion}
-      onClearAnswer={handleClearAnswer}
-    />
+    <>
+      {questionsLoaded && null}
+      <PracticePlayer
+        subject={subject}
+        topic={topic || ""}
+        questions={questions}
+        megatopicLabel={megatopicLabel}
+        topicInfo={topicInfo}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        answers={answers}
+        selfGrades={selfGrades}
+        submitted={submitted}
+        checkedQuestions={checkedQuestions}
+        totalPoints={totalPoints}
+        textQuestionCount={textQuestionCount}
+        direction={direction}
+        setDirection={setDirection}
+        showLeftFade={showLeftFade}
+        showRightFade={showRightFade}
+        navRef={navRef}
+        scrollToNav={scrollToNav}
+        onAnswer={handleAnswer}
+        onSelfGrade={handleSelfGrade}
+        onSubmit={handleSubmit}
+        onCheckQuestion={handleCheckQuestion}
+        onClearAnswer={handleClearAnswer}
+      />
+    </>
   );
 }
