@@ -24,8 +24,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
       katex:
-        specifier: ^0.16.47
-        version: 0.16.47
+        specifier: ^0.17.0
+        version: 0.17.0
       react:
         specifier: ^19.2.6
         version: 19.2.7
@@ -45,8 +45,8 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       reicon-react:
-        specifier: ^1.1.2
-        version: 1.1.2(react@19.2.7)
+        specifier: ^1.1.3
+        version: 1.1.3(react@19.2.7)
       remark-gfm:
         specifier: ^4.0.1
         version: 4.0.1
@@ -1469,6 +1469,10 @@ packages:
     resolution: {integrity: sha512-Eeo8Ys1doU1z+x8AZsPpQu+p/QcZBI5PeOo7QGQdy2x2m0MU/hYagBbGOmXwr5KVbEfVuWv9LpnQWeehogurjg==}
     hasBin: true
 
+  katex@0.17.0:
+    resolution: {integrity: sha512-Vdw0ATsQ9V+LuegM/BTwQqV/6cTl5lbGcIrU+BCgLxyf6bo38ybOr372tuSIxir3CN720flu1meYR6XzNMwQnw==}
+    hasBin: true
+
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
@@ -1919,8 +1923,8 @@ packages:
   rehype-katex@7.0.1:
     resolution: {integrity: sha512-OiM2wrZ/wuhKkigASodFoo8wimG3H12LWQaH8qSPVJn9apWKFSH3YOCtbKpBorTVw/eI7cuT21XBbvwEswbIOA==}
 
-  reicon-react@1.1.2:
-    resolution: {integrity: sha512-dbp1CPEPKFjWfG41lGRMWi74YKfKJlb2JcB/TRBAUQF6jalZYW1dRZisRPCpze5TfQwRBD30p40qnoY+oYi7MQ==}
+  reicon-react@1.1.3:
+    resolution: {integrity: sha512-vpcWUcY3FK7baj2UvbX3+AdWfY2wy+alPjp7s+X6joAkxmzRU7E1Q08JTBUtESENuN9P8oa7GMTd4e69aP83sA==}
     peerDependencies:
       react: '>=16.8.0'
 
@@ -3395,6 +3399,10 @@ snapshots:
     dependencies:
       commander: 8.3.0
 
+  katex@0.17.0:
+    dependencies:
+      commander: 8.3.0
+
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
@@ -4020,7 +4028,7 @@ snapshots:
       unist-util-visit-parents: 6.0.2
       vfile: 6.0.3
 
-  reicon-react@1.1.2(react@19.2.7):
+  reicon-react@1.1.3(react@19.2.7):
     dependencies:
       react: 19.2.7
 
