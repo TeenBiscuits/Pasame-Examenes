@@ -1,7 +1,2 @@
-packages: []
 allowBuilds:
   esbuild: true
-minimumReleaseAge: 10080
-trustPolicy: no-downgrade
-trustPolicyExclude:
-  - semver
