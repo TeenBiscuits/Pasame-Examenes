@@ -35,7 +35,7 @@
     "@napi-rs/canvas": "^1.0.1",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.0",
-    "@types/node": "^24",
+    "@types/node": "^26",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
