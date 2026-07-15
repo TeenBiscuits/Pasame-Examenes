@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LangLink as Link } from "../lib/lang-link";
 import { useLangTo } from "../lib/useLangTo";
+import { play } from "cuelume";
 import {
   getSubject,
   getQuestionsByExam,
@@ -58,6 +59,9 @@ function ExamStartScreen({
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release
           className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
           onClick={() =>
             track("nav_click", {
@@ -119,6 +123,9 @@ function ExamStartScreen({
         </div>
         <button
           type="button"
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release="bloom"
           className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full animate-pulse rounded-lg py-3 font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
           onClick={onStart}
         >
@@ -214,6 +221,9 @@ function ExamPlayer({
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release
           onClick={(e) => {
             if (!submitted) {
               if (!window.confirm(t.exam.exitConfirm)) {
@@ -337,6 +347,9 @@ function ExamPlayer({
       <div className="mt-6 flex flex-wrap items-center gap-3 sm:flex-nowrap sm:justify-between">
         <button
           type="button"
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release="page"
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30"
           onClick={() => {
             triggerLight();
@@ -367,6 +380,9 @@ function ExamPlayer({
           {!submitted && (
             <button
               type="button"
+              data-cuelume-hover="tick"
+              data-cuelume-press
+              data-cuelume-release="loading"
               className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95"
               onClick={onSubmit}
             >
@@ -376,6 +392,9 @@ function ExamPlayer({
         </div>
         <button
           type="button"
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release="page"
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-2 ms-auto rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:order-3 sm:ms-0"
           onClick={() => {
             triggerLight();
@@ -495,6 +514,45 @@ export default function ExamSimulation() {
     (examInfo?.durationMinutes || 120) * 60,
     t,
   );
+
+  useEffect(() => {
+    if (started) {
+      play("bloom");
+    }
+  }, [started]);
+
+  useEffect(() => {
+    if (submitted && examInfo) {
+      let scoreVal = 0;
+      for (const q of questions) {
+        if (!answers[q.id] || answers[q.id].trim() === "") continue;
+        if (q.type === "mc") {
+          if (answers[q.id] === q.correctAnswer) scoreVal += q.points;
+        } else if (q.type === "matching") {
+          try {
+            const user = JSON.parse(answers[q.id]) as Record<string, string>;
+            const correct = q.correctAnswer as Record<string, string>;
+            const items = Object.keys(correct);
+            let correctCount = 0;
+            for (const item of items) {
+              if (user[item] === correct[item]) correctCount++;
+            }
+            scoreVal += Math.round((correctCount / items.length) * q.points);
+          } catch {
+            /* skip */
+          }
+        } else if (q.type === "text") {
+          if (selfGrades[q.id] === "correct") scoreVal += q.points;
+        }
+      }
+      scoreVal = roundPoints(scoreVal);
+      if (scoreVal >= examInfo.passPoints) {
+        play("success");
+      } else {
+        play("droplet");
+      }
+    }
+  }, [submitted, questions, answers, selfGrades, examInfo]);
 
   const [navState, setNavState] = useState({
     direction: undefined as "next" | "prev" | undefined,

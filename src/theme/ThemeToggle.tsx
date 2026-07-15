@@ -74,6 +74,9 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
+      data-cuelume-hover="tick"
+      data-cuelume-press
+      data-cuelume-release="toggle"
       className="border-border hover:bg-surface cursor-pointer rounded border px-2 py-1 transition active:scale-95"
       onClick={handleToggle}
       aria-label={`Theme: ${themeLabels[theme]}`}

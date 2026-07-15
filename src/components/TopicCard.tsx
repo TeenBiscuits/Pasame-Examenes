@@ -4,6 +4,7 @@ import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { formatPoints } from "../lib/points";
+import { motion } from "motion/react";
 
 interface TopicCardProps {
   subjectId: string;
@@ -41,6 +42,9 @@ export default function TopicCard({
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
+      data-cuelume-hover="whisper"
+      data-cuelume-press
+      data-cuelume-release
       className={`focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none ${colorMap[topic.color] || colorMap.blue}`}
       onClick={() => {
         triggerLight();
@@ -60,9 +64,11 @@ export default function TopicCard({
       {progress !== undefined && (
         <div className="mt-2">
           <div className="bg-border h-1.5 overflow-hidden rounded-full">
-            <div
-              className="bg-accent h-full rounded-full transition-all duration-500"
-              style={{ width: `${Math.min(progress, 100)}%` }}
+            <motion.div
+              className="bg-accent h-full rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${Math.min(progress, 100)}%` }}
+              transition={{ type: "spring", stiffness: 80, damping: 15 }}
             />
           </div>
         </div>

@@ -12,6 +12,7 @@ import CopyrightReportModal, {
 } from "../components/CopyrightReportModal";
 import ContentPolicyIcon from "../components/ContentPolicyIcon";
 import Hero from "../components/Hero";
+import { motion } from "motion/react";
 import type { Question, SubjectMeta, Topic } from "../data/types";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -170,18 +171,38 @@ function SubjectHeader({
 }) {
   return (
     <Hero emojis={subject.topics.map((tp) => tp.icon)} compact>
-      <p className="text-fg-muted mb-3 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="text-fg-muted mb-3 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase"
+      >
         <ContentPolicyIcon subject={subject} className="size-4" svgOnly />
         <span>
           {subject.courseCode} &middot; {subject.university}
         </span>
-      </p>
-      <h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+      </motion.p>
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
+        className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl"
+      >
         {subject.name}
-      </h1>
-      <p className="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl">
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          delay: 0.25,
+        }}
+        className="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl"
+      >
         {description}
-      </p>
+      </motion.p>
     </Hero>
   );
 }
@@ -347,6 +368,9 @@ function ExamCard({
   return (
     <Link
       to={`/${subject.id}/exam/${exam.year}`}
+      data-cuelume-hover="whisper"
+      data-cuelume-press
+      data-cuelume-release="ready"
       className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-6 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();
@@ -395,6 +419,9 @@ function ExamActionButtons({
     <div className="grid grid-cols-2 gap-4">
       <button
         type="button"
+        data-cuelume-hover="whisper"
+        data-cuelume-press
+        data-cuelume-release="bloom"
         onClick={() => {
           triggerLight();
           onAddExam();
@@ -411,6 +438,9 @@ function ExamActionButtons({
       </button>
       <button
         type="button"
+        data-cuelume-hover="whisper"
+        data-cuelume-press
+        data-cuelume-release="bloom"
         onClick={() => {
           triggerLight();
           onReportCopyright();
@@ -464,6 +494,9 @@ function PdfLinksSection({
           href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
           target="_blank"
           rel="noopener noreferrer"
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release
           className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
             triggerLight();
@@ -515,6 +548,9 @@ function DaypoLinksSection({
           href={exam.daypoUrl}
           target="_blank"
           rel="noopener noreferrer"
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release
           className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
             triggerLight();

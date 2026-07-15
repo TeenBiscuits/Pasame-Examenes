@@ -10,13 +10,16 @@ import "./index.css";
 import App from "./App.tsx";
 import { I18nProvider } from "./i18n/context";
 import { ThemeProvider } from "./theme/context";
+import { SoundProvider } from "./sound/context";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
-      <I18nProvider>
-        <App />
-      </I18nProvider>
+      <SoundProvider>
+        <I18nProvider>
+          <App />
+        </I18nProvider>
+      </SoundProvider>
     </ThemeProvider>
   </StrictMode>,
 );

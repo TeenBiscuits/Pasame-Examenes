@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LangLink as Link } from "../lib/lang-link";
 import { useLangTo } from "../lib/useLangTo";
+import { play } from "cuelume";
 import {
   getSubject,
   getQuestionsByTopic,
@@ -118,6 +119,9 @@ function PracticePlayer({
       <div className="mb-6" data-tour="practice-back">
         <Link
           to={`/${subject.id}`}
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release
           className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
           onClick={() =>
             track("nav_click", { target: "subject_home", from: "practice" })
@@ -199,6 +203,9 @@ function PracticePlayer({
       >
         <button
           type="button"
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release="page"
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30"
           onClick={() => {
             triggerLight();
@@ -232,6 +239,9 @@ function PracticePlayer({
               <>
                 <button
                   type="button"
+                  data-cuelume-hover="tick"
+                  data-cuelume-press
+                  data-cuelume-release="droplet"
                   className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
                   onClick={() => {
                     triggerLight();
@@ -247,6 +257,9 @@ function PracticePlayer({
                 </button>
                 <button
                   type="button"
+                  data-cuelume-hover="tick"
+                  data-cuelume-press
+                  data-cuelume-release="loading"
                   className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95"
                   onClick={() => onCheckQuestion(currentQuestion.id)}
                 >
@@ -257,6 +270,9 @@ function PracticePlayer({
           {!submitted && (
             <button
               type="button"
+              data-cuelume-hover="tick"
+              data-cuelume-press
+              data-cuelume-release="loading"
               className="bg-accent hover:bg-accent-hover focus-visible:ring-accent rounded-lg px-4 py-2 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={onSubmit}
             >
@@ -266,6 +282,9 @@ function PracticePlayer({
         </div>
         <button
           type="button"
+          data-cuelume-hover="tick"
+          data-cuelume-press
+          data-cuelume-release="page"
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-2 ms-auto rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:order-3 sm:ms-0"
           onClick={() => {
             triggerLight();
@@ -367,6 +386,12 @@ export default function PracticeTopic() {
     handleSelfGrade,
     handleCheckQuestion,
   } = usePracticeSession(questions, subject?.id || "", topic || "");
+
+  useEffect(() => {
+    if (submitted) {
+      play("sparkle");
+    }
+  }, [submitted]);
 
   const [navState, setNavState] = useState({
     direction: undefined as "next" | "prev" | undefined,

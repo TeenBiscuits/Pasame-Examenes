@@ -46,6 +46,8 @@ export const es: Translations = {
   header: {
     home: "Inicio",
     practice: "Practicar",
+    soundEnabled: "Sonidos: activados",
+    soundDisabled: "Sonidos: desactivados",
   },
   footer: {
     github: "GitHub",

@@ -46,6 +46,8 @@ export const gl: Translations = {
   header: {
     home: "Inicio",
     practice: "Practicar",
+    soundEnabled: "Sons: activados",
+    soundDisabled: "Sons: desactivados",
   },
   footer: {
     github: "GitHub",

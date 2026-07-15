@@ -3,6 +3,7 @@ import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
+import { play } from "cuelume";
 
 const getNow = () => Date.now();
 
@@ -163,9 +164,22 @@ export function usePracticeSession(
   const handleCheckQuestion = useCallback(
     (questionId: string) => {
       track("practice_check_question", { subjectId, topic, questionId });
+      const q = questions.find((x) => x.id === questionId);
+      if (q) {
+        const score = gradeQuestion(
+          q,
+          state.answers[questionId] || "",
+          state.selfGrades[questionId],
+        );
+        if (score === q.points) {
+          play("success");
+        } else {
+          play("droplet");
+        }
+      }
       dispatch({ type: "CHECK_QUESTION", questionId });
     },
-    [subjectId, topic],
+    [subjectId, topic, questions, state.answers, state.selfGrades],
   );
 
   return {

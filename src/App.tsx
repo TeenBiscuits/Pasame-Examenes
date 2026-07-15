@@ -30,6 +30,7 @@ import {
 } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Github01Icon } from "@hugeicons/core-free-icons";
+import { bind } from "cuelume";
 
 const Home = lazy(() => import("./pages/Home"));
 const SubjectHome = lazy(() => import("./pages/SubjectHome"));
@@ -470,6 +471,10 @@ function Footer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    bind();
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="bg-surface text-fg flex min-h-screen min-h-svh flex-col font-sans">

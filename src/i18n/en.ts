@@ -44,6 +44,8 @@ export const en = {
   header: {
     home: "Home",
     practice: "Practice",
+    soundEnabled: "Sounds: enabled",
+    soundDisabled: "Sounds: disabled",
   },
   footer: {
     github: "GitHub",

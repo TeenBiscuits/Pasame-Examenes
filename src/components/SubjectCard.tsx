@@ -36,6 +36,9 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   return (
     <Link
       to={`/${subject.id}`}
+      data-cuelume-hover="whisper"
+      data-cuelume-press
+      data-cuelume-release
       className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();

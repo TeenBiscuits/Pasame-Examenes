@@ -12,6 +12,7 @@ import {
   triggerSelection,
 } from "../lib/haptics";
 import { TriangleWarning } from "reicon-react";
+import { play } from "cuelume";
 
 function QuestionImage({
   image,
@@ -130,6 +131,7 @@ function MCQuestion({
         if (optionIndex < question.options!.length) {
           e.preventDefault();
           triggerSelection();
+          play("tick");
           track("question_answer", {
             questionId: question.id,
             type: "mc",
@@ -186,6 +188,7 @@ function MCQuestion({
             onClick={() => {
               if (showResult) return;
               triggerSelection();
+              play("tick");
               track("question_answer", {
                 questionId: question.id,
                 type: "mc",
@@ -221,6 +224,7 @@ function MCQuestion({
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
+                play(next ? "bloom" : "droplet");
                 track("solution_toggle", {
                   questionId: question.id,
                   action: next ? "open" : "close",
@@ -316,6 +320,7 @@ function TextQuestion({
             onClick={() => {
               triggerLight();
               const next = !isOpen;
+              play(next ? "bloom" : "droplet");
               track("solution_toggle", {
                 questionId: question.id,
                 action: next ? "open" : "close",
@@ -361,6 +366,7 @@ function TextQuestion({
                       type="button"
                       onClick={() => {
                         triggerSuccess();
+                        play("success");
                         onSelfGrade(question.id, "correct");
                       }}
                       className={`focus-visible:ring-accent rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
@@ -375,6 +381,7 @@ function TextQuestion({
                       type="button"
                       onClick={() => {
                         triggerError();
+                        play("droplet");
                         onSelfGrade(question.id, "incorrect");
                       }}
                       className={`rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 ${
@@ -471,6 +478,7 @@ function MatchingQuestion({
                     className={cls}
                     onClick={() => {
                       triggerSelection();
+                      play("tick");
                       track("question_answer", {
                         questionId: question.id,
                         type: "matching",
@@ -503,6 +511,7 @@ function MatchingQuestion({
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
+                play(next ? "bloom" : "droplet");
                 track("solution_toggle", {
                   questionId: question.id,
                   action: next ? "open" : "close",
@@ -652,6 +661,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           className="text-fg-muted -mr-2 inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:text-red-500 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
+            play("bloom");
             track("report_issue", {
               questionId: question.id,
               subjectId: props.subjectId,
