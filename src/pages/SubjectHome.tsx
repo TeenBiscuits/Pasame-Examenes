@@ -2,7 +2,8 @@ import { useRef, useState, useEffect, useMemo, type ReactNode } from "react";
 import { useParams } from "react-router-dom";
 import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
-import { getTopicProgress } from "../data/store";
+import { getTopicProgress, getAttempts } from "../data/store";
+import type { Lang } from "../i18n/context";
 import TopicCard from "../components/TopicCard";
 import AddExamModal, {
   type AddExamModalHandle,
@@ -70,6 +71,23 @@ export default function SubjectHome() {
     enabled: !subject || questionsLoaded,
   });
 
+  const progress = useMemo(() => {
+    if (!subject) return {};
+    return getTopicProgress(
+      subject.id,
+      allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
+    );
+  }, [subject, allQuestions]);
+
+  const totalPoints = useMemo(() => allQuestions.reduce((sum, q) => sum + q.points, 0), [allQuestions]);
+  const attemptedPoints = useMemo(() => Object.values(progress).reduce((sum, p) => sum + p.attempted, 0), [progress]);
+  const overallProgressPct = totalPoints > 0 ? Math.round((attemptedPoints / totalPoints) * 100) : 0;
+
+  const attempts = useMemo(() => (subject ? getAttempts(subject.id) : []), [subject]);
+  const examAttempts = useMemo(() => attempts.filter((a) => a.mode === "exam"), [attempts]);
+  const uniqueExamsSimulated = useMemo(() => new Set(examAttempts.map((a) => a.exam)).size, [examAttempts]);
+  const bestExamScore = useMemo(() => (examAttempts.length > 0 ? Math.max(...examAttempts.map((a) => a.score)) : 0), [examAttempts]);
+
   if (!subject) {
     return <SubjectNotFound />;
   }
@@ -77,10 +95,6 @@ export default function SubjectHome() {
   const repeatedCount = allQuestions.filter((q) => q.repeated).length;
   const availableExams = subject.exams.filter((exam) => !exam.deleteRights);
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
-  const progress = getTopicProgress(
-    subject.id,
-    allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
-  );
 
   const repeatedText =
     repeatedCount >= 20
@@ -100,6 +114,20 @@ export default function SubjectHome() {
       {questionsLoaded && null}
       <SubjectHeader subject={subject} description={description} />
       <div className="mx-auto max-w-6xl px-4 pb-8">
+        {questionsLoaded && (
+          <StatsSection
+            lang={lang}
+            totalQuestions={allQuestions.length}
+            repeatedCount={repeatedCount}
+            availableExamsCount={availableExams.length}
+            totalPoints={totalPoints}
+            attemptedPoints={attemptedPoints}
+            overallProgressPct={overallProgressPct}
+            uniqueExamsSimulated={uniqueExamsSimulated}
+            bestExamScore={bestExamScore}
+            subject={subject}
+          />
+        )}
         <TopicsSection
           subject={subject}
           questions={allQuestions}
@@ -573,6 +601,153 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
           <p>{subject.contentLicense}</p>
         </div>
       ) : null}
+    </div>
+  );
+}
+
+const statsTranslations: Record<Lang, {
+  overallProgress: string;
+  points: string;
+  examsSimulated: string;
+  bestScore: string;
+  totalQuestions: string;
+  repeated: string;
+  topics: string;
+}> = {
+  en: {
+    overallProgress: "Overall Progress",
+    points: "points",
+    examsSimulated: "Simulations Completed",
+    bestScore: "Best Score",
+    totalQuestions: "Total Questions",
+    repeated: "repeated",
+    topics: "Topics",
+  },
+  es: {
+    overallProgress: "Progreso General",
+    points: "puntos",
+    examsSimulated: "Simulaciones Completadas",
+    bestScore: "Mejor Puntuación",
+    totalQuestions: "Preguntas Totales",
+    repeated: "repetidas",
+    topics: "Temas",
+  },
+  gl: {
+    overallProgress: "Progreso Xeral",
+    points: "puntos",
+    examsSimulated: "Simulacións Completadas",
+    bestScore: "Mellor Puntuación",
+    totalQuestions: "Preguntas Totais",
+    repeated: "repetidas",
+    topics: "Temas",
+  }
+};
+
+function StatsSection({
+  lang,
+  totalQuestions,
+  repeatedCount,
+  availableExamsCount,
+  totalPoints,
+  attemptedPoints,
+  overallProgressPct,
+  uniqueExamsSimulated,
+  bestExamScore,
+  subject,
+}: {
+  lang: Lang;
+  totalQuestions: number;
+  repeatedCount: number;
+  availableExamsCount: number;
+  totalPoints: number;
+  attemptedPoints: number;
+  overallProgressPct: number;
+  uniqueExamsSimulated: number;
+  bestExamScore: number;
+  subject: SubjectMeta;
+}) {
+  const trans = statsTranslations[lang] || statsTranslations.es;
+  
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 mt-2">
+      {/* Overall Progress Bento Card */}
+      <div className="bg-surface-alt border-border rounded-xl border-2 p-5 flex flex-col justify-between transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:border-accent/40 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 p-4 opacity-5 text-fg pointer-events-none text-7xl font-bold font-mono group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+          %
+        </div>
+        <div>
+          <span className="text-fg-secondary font-mono text-xs tracking-wider uppercase font-semibold block mb-2">
+            {trans.overallProgress}
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-fg text-3xl font-extrabold font-mono tracking-tight">
+              {overallProgressPct}%
+            </span>
+          </div>
+        </div>
+        <div className="mt-4">
+          <div className="bg-border h-2.5 overflow-hidden rounded-full relative mb-1.5">
+            <div
+              className="bg-accent h-full rounded-full transition-all duration-750 ease-out"
+              style={{ width: `${overallProgressPct}%` }}
+            />
+          </div>
+          <span className="text-fg-muted text-xs">
+            {attemptedPoints.toFixed(1)} / {totalPoints.toFixed(1)} {trans.points}
+          </span>
+        </div>
+      </div>
+
+      {/* Exam Simulations Bento Card */}
+      <div className="bg-surface-alt border-border rounded-xl border-2 p-5 flex flex-col justify-between transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:border-accent/40 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 p-4 opacity-5 text-fg pointer-events-none text-7xl font-bold font-mono group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+          📝
+        </div>
+        <div>
+          <span className="text-fg-secondary font-mono text-xs tracking-wider uppercase font-semibold block mb-2">
+            {trans.examsSimulated}
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-fg text-3xl font-extrabold font-mono tracking-tight">
+              {uniqueExamsSimulated} / {availableExamsCount}
+            </span>
+          </div>
+        </div>
+        <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
+          <span className="text-fg-muted text-xs">{trans.bestScore}</span>
+          <span className="text-accent-fg bg-accent-light font-mono text-xs font-bold px-2.5 py-0.5 rounded-full">
+            {bestExamScore.toFixed(1)}p
+          </span>
+        </div>
+      </div>
+
+      {/* Topics & Questions Bento Card */}
+      <div className="bg-surface-alt border-border rounded-xl border-2 p-5 flex flex-col justify-between transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:border-accent/40 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 p-4 opacity-5 text-fg pointer-events-none text-7xl font-bold font-mono group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+          📚
+        </div>
+        <div>
+          <span className="text-fg-secondary font-mono text-xs tracking-wider uppercase font-semibold block mb-2">
+            {trans.totalQuestions}
+          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-fg text-3xl font-extrabold font-mono tracking-tight">
+              {totalQuestions}
+            </span>
+            {repeatedCount > 0 && (
+              <span className="text-[10px] bg-amber-50 text-amber-700 border border-amber-200 px-1.5 py-0.5 rounded font-semibold">
+                {repeatedCount} {trans.repeated}
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
+          <span className="text-fg-muted text-xs">{trans.topics}</span>
+          <span className="text-fg font-mono text-xs font-semibold">
+            {subject.topics.length}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

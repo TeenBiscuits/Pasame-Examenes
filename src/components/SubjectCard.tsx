@@ -36,7 +36,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
   return (
     <Link
       to={`/${subject.id}`}
-      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none group"
       onClick={() => {
         triggerLight();
         track("subject_card_click", {
@@ -47,7 +47,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       }}
     >
       <div className="mb-2 flex items-start justify-between">
-        <span className="text-4xl leading-none" aria-hidden="true">
+        <span className="text-4xl leading-none transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 inline-block" aria-hidden="true">
           {subject.icon}
         </span>
         <div className="flex items-center gap-2">

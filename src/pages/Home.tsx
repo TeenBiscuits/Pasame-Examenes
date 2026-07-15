@@ -131,10 +131,10 @@ export default function Home() {
                           location: "recent",
                         });
                       }}
-                      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 block w-full rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
+                      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 block w-full rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md group"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-2xl" aria-hidden="true">
+                        <span className="text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 inline-block" aria-hidden="true">
                           {slot.subject.icon}
                         </span>
                         <span className="text-fg text-base font-semibold">
@@ -163,25 +163,30 @@ export default function Home() {
           ))}
           <div className="animate-fade-in-up timeline-view animate-range-entry">
             <button
-              type="button"
-              onClick={() => {
-                modalRef.current?.open();
-                track("add_subject_modal_open");
-              }}
-              className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full cursor-pointer rounded-xl border-2 border-dashed p-5 transition-colors transition-transform duration-200 hover:scale-[1.02]"
-            >
-              <div className="flex h-full min-h-[120px] flex-col items-center justify-center gap-2">
-                <span className="text-4xl leading-none font-light">
-                  <HugeiconsIcon icon={DashboardSquareAddIcon} size={35} />
-                </span>
-                <span className="text-sm font-medium">{t.home.addSubject}</span>
-              </div>
-            </button>
+               type="button"
+               onClick={() => {
+                 modalRef.current?.open();
+                 track("add_subject_modal_open");
+               }}
+               className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full cursor-pointer rounded-xl border-2 border-dashed p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-md group"
+             >
+               <div className="flex h-full min-h-[120px] flex-col items-center justify-center gap-2">
+                 <span className="text-4xl leading-none font-light transition-transform duration-300 group-hover:scale-115 group-hover:rotate-12">
+                   <HugeiconsIcon icon={DashboardSquareAddIcon} size={35} />
+                 </span>
+                 <span className="text-sm font-medium transition-colors duration-300 group-hover:text-accent">{t.home.addSubject}</span>
+               </div>
+             </button>
           </div>
         </div>
 
-        <blockquote className="border-border text-fg-secondary mx-auto mt-14 max-w-2xl border-y py-8 text-center text-xl font-medium italic sm:text-2xl">
-          “{t.home.quote}”
+        <blockquote className="border-border text-fg-secondary bg-surface-alt/40 backdrop-blur-md max-w-2xl mx-auto mt-16 p-8 relative overflow-hidden text-center rounded-2xl border shadow-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:border-accent/30 group">
+          <div className="absolute -top-6 -left-2 opacity-5 text-fg pointer-events-none select-none text-9xl font-serif font-bold group-hover:scale-110 transition-transform duration-500">
+            “
+          </div>
+          <p className="relative z-10 text-lg font-medium italic sm:text-xl md:text-2xl leading-relaxed text-balance">
+            “{t.home.quote}”
+          </p>
         </blockquote>
 
         <AddSubjectModal ref={modalRef} onClose={() => {}} />

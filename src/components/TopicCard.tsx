@@ -41,14 +41,14 @@ export default function TopicCard({
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
-      className={`focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none ${colorMap[topic.color] || colorMap.blue}`}
+      className={`focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none group ${colorMap[topic.color] || colorMap.blue}`}
       onClick={() => {
         triggerLight();
         track("topic_card_click", { subjectId, topic: topic.key });
       }}
     >
       <div className="mb-3 flex items-start justify-between">
-        <span className="text-2xl" aria-hidden="true">
+        <span className="text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 inline-block" aria-hidden="true">
           {topic.icon}
         </span>
         <span className="text-fg-muted text-xs font-medium">

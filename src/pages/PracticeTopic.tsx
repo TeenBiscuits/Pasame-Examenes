@@ -22,6 +22,7 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
 import { ArrowSquareLeft2, ArrowSquareRight2 } from "reicon-react";
+import { triggerConfetti } from "../lib/confetti";
 
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
@@ -112,6 +113,16 @@ function PracticePlayer({
     }
     return roundPoints(score);
   };
+
+  useEffect(() => {
+    if (submitted) {
+      const score = getScore();
+      if (score >= totalPoints * 0.5) {
+        triggerConfetti("large");
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitted]);
 
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
@@ -248,7 +259,28 @@ function PracticePlayer({
                 <button
                   type="button"
                   className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95"
-                  onClick={() => onCheckQuestion(currentQuestion.id)}
+                  onClick={() => {
+                    onCheckQuestion(currentQuestion.id);
+                    const q = currentQuestion;
+                    const ans = answers[q.id];
+                    if (ans) {
+                      let correct = false;
+                      if (q.type === "mc") {
+                        correct = ans === q.correctAnswer;
+                      } else if (q.type === "matching") {
+                        try {
+                          const user = JSON.parse(ans);
+                          const corr = q.correctAnswer as Record<string, string>;
+                          correct = Object.keys(corr).every((k) => user[k] === corr[k]);
+                        } catch {
+                          correct = false;
+                        }
+                      }
+                      if (correct) {
+                        triggerConfetti("small");
+                      }
+                    }
+                  }}
                 >
                   {t.practice.check}
                 </button>

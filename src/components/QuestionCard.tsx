@@ -11,6 +11,7 @@ import {
   triggerError,
   triggerSelection,
 } from "../lib/haptics";
+import { triggerConfetti } from "../lib/confetti";
 import { TriangleWarning } from "reicon-react";
 
 function QuestionImage({
@@ -167,7 +168,7 @@ function MCQuestion({
         const isSelected = savedAnswer === letter;
         const isCorrect = question.correctAnswer === letter;
         let className =
-          "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
+          "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3 group";
         if (showResult && isCorrect) {
           className += " bg-accent-light border-accent";
         } else if (showResult && isSelected && !isCorrect) {
@@ -175,7 +176,7 @@ function MCQuestion({
         } else if (isSelected) {
           className += " bg-accent-light border-accent";
         } else {
-          className += " border-border hover:border-border bg-surface-alt";
+          className += " border-border hover:border-accent/40 bg-surface-alt hover:bg-surface transition-all duration-200 hover:scale-[1.01] hover:shadow-sm";
         }
 
         return (
@@ -200,7 +201,7 @@ function MCQuestion({
             disabled={!!showResult}
           >
             <span
-              className={`bg-code mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full font-mono text-xs font-bold ${isSelected ? "animate-pop" : ""}`}
+              className={`bg-code mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full font-mono text-xs font-bold transition-colors group-hover:bg-accent/10 group-hover:text-accent-fg ${isSelected ? "animate-pop" : ""}`}
             >
               {letter}
             </span>
@@ -362,6 +363,7 @@ function TextQuestion({
                       onClick={() => {
                         triggerSuccess();
                         onSelfGrade(question.id, "correct");
+                        triggerConfetti("small");
                       }}
                       className={`focus-visible:ring-accent rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
                         selfGrade === "correct"

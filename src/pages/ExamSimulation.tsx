@@ -24,6 +24,7 @@ import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
 import { ArrowSquareLeft2, ArrowSquareRight2 } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { triggerConfetti } from "../lib/confetti";
 import { CheckmarkBadge02Icon } from "@hugeicons/core-free-icons";
 
 function formatTime(seconds: number) {
@@ -208,6 +209,16 @@ function ExamPlayer({
   };
 
   const score = getScore();
+
+  useEffect(() => {
+    if (submitted) {
+      if (score >= examInfo.passPoints) {
+        triggerConfetti("large");
+      } else {
+        triggerConfetti("small");
+      }
+    }
+  }, [submitted, score, examInfo.passPoints]);
 
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
