@@ -14,7 +14,7 @@ import ContentPolicyIcon from "../components/ContentPolicyIcon";
 import Hero from "../components/Hero";
 import type { Question, SubjectMeta, Topic } from "../data/types";
 import { useLang, useT } from "../i18n/hooks";
-import { track } from "../lib/rybbit";
+import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";

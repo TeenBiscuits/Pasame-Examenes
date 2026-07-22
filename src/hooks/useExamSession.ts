@@ -1,7 +1,7 @@
 import { useReducer, useCallback, useRef, useEffect } from "react";
 import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
-import { track } from "../lib/rybbit";
+import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
 
 const getNow = () => Date.now();

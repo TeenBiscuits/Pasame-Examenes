@@ -1,7 +1,7 @@
 import { useTheme } from "./hooks";
 import { themeLabels, themeOrder } from "./types";
 import type { Theme } from "./types";
-import { track } from "../lib/rybbit";
+import { track } from "../lib/umami";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Sun03Icon,

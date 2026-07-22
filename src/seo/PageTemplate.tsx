@@ -102,9 +102,22 @@ export default function PageTemplate(page: PageMetaData) {
           {page.jsonLd}
         </script>
         <script
-          src="https://analytics.pablopl.dev/api/script.js"
-          data-site-id="03e3d493c4de"
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="41AHUOkOrsmT26f+Ow8zaQ"
+          async
+        />
+        <script
           defer
+          src="https://analytics.pablopl.dev/script.js"
+          data-website-id="63168f0e-a1cf-4ec6-a0c4-58fc7d57a0f4"
+          data-performance="true"
+          data-domains="pe.pablopl.dev"
+          data-do-not-track="true"
+        />
+        <script
+          defer
+          src="https://analytics.pablopl.dev/recorder.js"
+          data-website-id="63168f0e-a1cf-4ec6-a0c4-58fc7d57a0f4"
         />
         <link rel="preconnect" href="https://analytics.pablopl.dev" />
       </head>

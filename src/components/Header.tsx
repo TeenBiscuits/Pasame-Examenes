@@ -2,7 +2,7 @@ import { useLocation, useMatch, useNavigate } from "react-router-dom";
 import { getSubject } from "../subjects";
 import { useT, useLang } from "../i18n/hooks";
 import type { Lang } from "../i18n/context";
-import { track } from "../lib/rybbit";
+import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import ThemeToggle from "../theme/ThemeToggle";
 import { LangLink as Link } from "../lib/lang-link";

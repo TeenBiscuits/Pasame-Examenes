@@ -313,7 +313,7 @@ src/
 ├── lib/
 │   ├── markdown.tsx          # Renderizado de código inline y bloques
 │   ├── haptics.ts            # Feedback háptico
-│   └── rybbit.ts             # Analytics wrapper
+│   └── umami.ts              # Analytics wrapper
 └── App.tsx                   # Componente raíz con rutas
 
 public/

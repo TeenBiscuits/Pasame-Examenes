@@ -1,6 +1,6 @@
 import { useEffect, useImperativeHandle, useRef, type Ref } from "react";
 import { useT } from "../i18n/hooks";
-import { track } from "../lib/rybbit";
+import { track } from "../lib/umami";
 import { CloseSquare2 } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { LegalHammerIcon } from "@hugeicons/core-free-icons";

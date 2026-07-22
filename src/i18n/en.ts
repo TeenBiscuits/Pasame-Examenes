@@ -85,7 +85,8 @@ export const en = {
           "Technical data: IP address, browser, device, requested URL, referrer, language, date and time, and similar server or CDN logs.",
           "Local preferences: selected language, selected theme, viewed tours, GitHub star popup state, and recently visited subjects.",
           "Study progress stored locally: attempts, scores, topics, and subject progress saved in your browser.",
-          "Analytics data: page views, interaction events, performance data, approximate device/browser information, and an anonymous local identifier for Rybbit.",
+          "Analytics data: page views, interaction events, performance data, approximate device/browser information, and an anonymous local identifier for Umami.",
+          "Session replays and heatmaps in the self-hosted Umami instance, enabled with a random 30% sample rate.",
           "Temporary GitHub star-count cache stored in session storage after requesting public repository data from GitHub.",
         ],
       },
@@ -106,7 +107,7 @@ export const en = {
       {
         title: "Legal Basis",
         paragraphs: [
-          "Under the GDPR, the main legal basis is legitimate interest: keeping the website available, secure, understandable, and useful for students. This includes analytics and performance measurement, limited by data minimization.",
+          "Under the GDPR, the main legal basis is legitimate interest: keeping the website available, secure, understandable, and useful for students. This includes analytics, performance measurement, heatmaps, and session replays, which are limited by data minimization and a 30% random sample rate for replays and heatmaps.",
           "Local preferences and progress are processed to provide the functionality requested by the user. Legal obligations may also apply where necessary.",
         ],
       },
@@ -114,13 +115,15 @@ export const en = {
         title: "Local Storage",
         paragraphs: [
           "Most study-related data is stored only in your browser through localStorage or sessionStorage. It is not part of a user account and may be deleted by clearing this website's data in your browser settings.",
-          "The anonymous Rybbit identifier is also stored locally as rybbit_uid. Deleting this site's local data resets that identifier and removes locally stored preferences and progress.",
+          "The anonymous Umami identifier is also stored locally as umami_uid. Deleting this site's local data resets that identifier and removes locally stored preferences and progress.",
         ],
       },
       {
-        title: "Analytics",
+        title: "Analytics, Replays, and Heatmaps",
         paragraphs: [
-          "Analytics are collected with a self-hosted Rybbit instance at analytics.pablopl.dev. Rybbit is operated by the controller for this website; data is not sent to Rybbit as a cloud analytics provider.",
+          "Analytics are collected with a self-hosted Umami instance at analytics.pablopl.dev. Umami is operated by the controller for this website; data is not sent to Umami Software as a cloud analytics provider.",
+          "Umami is configured to respect Do Not Track for the standard analytics script. Session replays and heatmaps are used to understand usability problems and are sampled randomly at 30% of visits.",
+          "Ahrefs Analytics is also used to understand traffic and website performance. Ahrefs processes data according to its own privacy policy.",
         ],
       },
       {
@@ -132,7 +135,7 @@ export const en = {
       {
         title: "International Transfers",
         paragraphs: [
-          "Some external providers may process data outside the European Economic Area. Where this happens, it is handled under the safeguards described in each provider's privacy policy or data processing terms. The self-hosted Rybbit setup does not imply a transfer of analytics data to a cloud provider.",
+          "Some external providers may process data outside the European Economic Area. Where this happens, it is handled under the safeguards described in each provider's privacy policy or data processing terms. The self-hosted Umami setup does not imply a transfer of analytics data to Umami Software.",
         ],
       },
       {
@@ -168,12 +171,27 @@ export const en = {
         target: "cloudflare_privacy",
       },
       {
-        name: "Rybbit",
+        name: "Umami",
         description:
           "Self-hosted analytics software used at analytics.pablopl.dev; linked as software documentation/reference, not as a cloud processor for this site.",
-        href: "https://rybbit.com/es/docs",
-        linkLabel: "Rybbit docs",
-        target: "rybbit_docs",
+        href: "https://umami.is/privacy",
+        linkLabel: "Umami privacy",
+        target: "umami_privacy",
+      },
+      {
+        name: "Umami Docs",
+        description:
+          "Documentation for tracker functions and collected analytics payloads.",
+        href: "https://umami.is/docs/tracker-functions",
+        linkLabel: "Tracker docs",
+        target: "umami_docs",
+      },
+      {
+        name: "Ahrefs",
+        description: "External analytics for traffic and website performance.",
+        href: "https://ahrefs.com/legal/privacy-policy",
+        linkLabel: "Privacy policy",
+        target: "ahrefs_privacy",
       },
       {
         name: "GitHub",

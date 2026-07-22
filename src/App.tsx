@@ -19,7 +19,7 @@ import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
-import { track, identify, setSessionData, getDistinctId } from "./lib/rybbit";
+import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link-utils";
 import { useTheme } from "./theme/hooks";
 import {

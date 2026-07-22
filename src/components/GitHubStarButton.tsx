@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Star } from "reicon-react";
-import { track } from "../lib/rybbit";
+import { track } from "../lib/umami";
 
 const REPO = "TeenBiscuits/Pasame-Examenes";
 const CACHE_KEY = "gh_star_count";

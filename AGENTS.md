@@ -30,7 +30,7 @@ pnpm doctor    # React Doctor via npx
 - Routes live in `src/App.tsx` under `/:lang` for `en`, `es`, and `gl`: `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:year`. `/:lang/:subjectId/practice` redirects back to the subject page.
 - i18n is a custom context in `src/i18n/`; adding a string means updating the `Translations` shape in `en.ts` and adding matching values in `es.ts` and `gl.ts`.
 - Theme state is in `src/theme/`; valid themes come from `themeOrder` in `src/theme/types.ts` and are applied with `data-theme` on `<html>`.
-- Analytics scripts are in `index.html`; app code should use `src/lib/rybbit.ts`, which no-ops when analytics is unavailable.
+- Analytics scripts are in `index.html`; app code should use `src/lib/umami.ts`, which no-ops when analytics is unavailable.
 
 ## Subject Data
 

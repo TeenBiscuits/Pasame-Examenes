@@ -1,5 +1,5 @@
 import { useEffect, type RefObject } from "react";
-import { track } from "../lib/rybbit";
+import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 
 type EventData = Record<string, string | number | boolean | undefined | null>;
