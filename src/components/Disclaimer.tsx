@@ -1,5 +1,5 @@
 import { useT } from "../i18n/hooks";
-import { track } from "../lib/umami";
+import { track } from "../lib/rybbit";
 import { triggerLight } from "../lib/haptics";
 import { TriangleWarning } from "reicon-react";
 

@@ -6,7 +6,7 @@ import AddSubjectModal, {
   type AddSubjectModalHandle,
 } from "../components/AddSubjectModal";
 import { useLang, useT } from "../i18n/hooks";
-import { track } from "../lib/umami";
+import { track } from "../lib/rybbit";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { LangLink } from "../lib/lang-link";

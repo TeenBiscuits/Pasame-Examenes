@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useT } from "../i18n/hooks";
-import { track } from "../lib/umami";
+import { track } from "../lib/rybbit";
 import { StarSparkle } from "reicon-react";
 
 const STORAGE_KEY_DISMISSED = "star_popup_dismissed";

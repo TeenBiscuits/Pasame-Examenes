@@ -12,7 +12,7 @@ import QuestionCard from "../components/QuestionCard";
 import QuestionNavChips from "../components/QuestionNavChips";
 import Disclaimer from "../components/Disclaimer";
 import { useLang, useT } from "../i18n/hooks";
-import { track } from "../lib/umami";
+import { track } from "../lib/rybbit";
 import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";

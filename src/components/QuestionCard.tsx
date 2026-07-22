@@ -3,7 +3,7 @@ import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { Markdown, InlineMarkdown } from "../lib/markdown";
-import { track } from "../lib/umami";
+import { track } from "../lib/rybbit";
 import { formatPoints } from "../lib/points";
 import {
   triggerLight,

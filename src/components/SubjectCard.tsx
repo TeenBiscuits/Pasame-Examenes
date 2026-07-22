@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { LangLink as Link } from "../lib/lang-link";
 import type { SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
-import { track } from "../lib/umami";
+import { track } from "../lib/rybbit";
 import { triggerLight } from "../lib/haptics";
 import { recordSubjectClick } from "../lib/recent";
 import { getAllQuestions } from "../subjects";

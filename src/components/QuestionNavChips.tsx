@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
 import type { Question } from "../data/types";
-import { track } from "../lib/umami";
+import { track } from "../lib/rybbit";
 import { triggerLight } from "../lib/haptics";
 
 type NavEventName = "practice_navigate" | "exam_navigate";

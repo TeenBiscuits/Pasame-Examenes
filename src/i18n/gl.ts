@@ -87,8 +87,7 @@ export const gl: Translations = {
           "Datos técnicos: enderezo IP, navegador, dispositivo, URL solicitada, referrer, idioma, data e hora, e rexistros similares de servidor ou CDN.",
           "Preferencias locais: idioma seleccionado, tema seleccionado, tours vistos, estado do popup de GitHub e materias visitadas recentemente.",
           "Progreso de estudo almacenado localmente: intentos, puntuacións, temas e progreso por materia gardados no teu navegador.",
-          "Datos de analítica: páxinas vistas, eventos de interacción, rendemento, información aproximada de dispositivo/navegador e un identificador anónimo local para Umami.",
-          "Replays de sesión e heatmaps na instancia self-hosted de Umami, activados cunha mostraxe aleatoria do 30%.",
+          "Datos de analítica: páxinas vistas, eventos de interacción, rendemento, información aproximada de dispositivo/navegador e un identificador anónimo local para Rybbit.",
           "Caché temporal do contador de estrelas de GitHub en sessionStorage tras solicitar datos públicos do repositorio a GitHub.",
         ],
       },
@@ -109,7 +108,7 @@ export const gl: Translations = {
       {
         title: "Base xurídica",
         paragraphs: [
-          "Baixo o RGPD, a base xurídica principal é o interese lexítimo: manter a web dispoñible, segura, comprensible e útil para estudantes. Isto inclúe analítica, medición de rendemento, heatmaps e replays de sesión, limitados mediante minimización de datos e unha mostraxe aleatoria do 30% para replays e heatmaps.",
+          "Baixo o RGPD, a base xurídica principal é o interese lexítimo: manter a web dispoñible, segura, comprensible e útil para estudantes. Isto inclúe analítica e medición de rendemento, limitados mediante minimización de datos.",
           "As preferencias e o progreso local trátanse para proporcionar a funcionalidade solicitada pola persoa usuaria. Tamén poden aplicarse obrigas legais cando sexa necesario.",
         ],
       },
@@ -117,15 +116,13 @@ export const gl: Translations = {
         title: "Almacenamento local",
         paragraphs: [
           "A maioría de datos relacionados co estudo almacénanse só no teu navegador mediante localStorage ou sessionStorage. Non forman parte dunha conta de usuario e poden eliminarse borrando os datos deste sitio na configuración do navegador.",
-          "O identificador anónimo de Umami tamén se garda localmente como umami_uid. Ao borrar os datos locais deste sitio reiníciase ese identificador e elimínanse preferencias e progreso gardados localmente.",
+          "O identificador anónimo de Rybbit tamén se garda localmente como rybbit_uid. Ao borrar os datos locais deste sitio reiníciase ese identificador e elimínanse preferencias e progreso gardados localmente.",
         ],
       },
       {
-        title: "Analítica, replays e heatmaps",
+        title: "Analítica",
         paragraphs: [
-          "A analítica recóllese cunha instancia self-hosted de Umami en analytics.pablopl.dev. Umami é operado polo responsable desta web; os datos non se envían a Umami Software como provedor cloud de analítica.",
-          "Umami está configurado para respectar Do Not Track no script estándar de analítica. Os replays de sesión e heatmaps úsanse para entender problemas de usabilidade e móstranse aleatoriamente no 30% das visitas.",
-          "Tamén se usa Ahrefs Analytics para entender tráfico e rendemento da web. Ahrefs trata datos conforme á súa propia política de privacidade.",
+          "A analítica recóllese cunha instancia self-hosted de Rybbit en analytics.pablopl.dev. Rybbit é operado polo responsable desta web; os datos non se envían a Rybbit como provedor cloud de analítica.",
         ],
       },
       {
@@ -137,7 +134,7 @@ export const gl: Translations = {
       {
         title: "Transferencias internacionais",
         paragraphs: [
-          "Algúns provedores externos poden tratar datos fóra do Espazo Económico Europeo. Cando ocorra, farase conforme ás garantías descritas na política de privacidade ou condicións de tratamento de cada provedor. A configuración self-hosted de Umami non implica transferencia de datos de analítica a Umami Software.",
+          "Algúns provedores externos poden tratar datos fóra do Espazo Económico Europeo. Cando ocorra, farase conforme ás garantías descritas na política de privacidade ou condicións de tratamento de cada provedor. A configuración self-hosted de Rybbit non implica transferencia de datos de analítica a un provedor cloud.",
         ],
       },
       {
@@ -173,27 +170,12 @@ export const gl: Translations = {
         target: "cloudflare_privacy",
       },
       {
-        name: "Umami",
+        name: "Rybbit",
         description:
           "Software de analítica self-hosted usado en analytics.pablopl.dev; enlázase como documentación/referencia do software, non como encargado cloud desta web.",
-        href: "https://umami.is/privacy",
-        linkLabel: "Privacidade de Umami",
-        target: "umami_privacy",
-      },
-      {
-        name: "Documentación de Umami",
-        description:
-          "Documentación sobre funcións de tracking e payloads de analítica recollidos.",
-        href: "https://umami.is/docs/tracker-functions",
-        linkLabel: "Docs de tracking",
-        target: "umami_docs",
-      },
-      {
-        name: "Ahrefs",
-        description: "Analítica externa de tráfico e rendemento da web.",
-        href: "https://ahrefs.com/legal/privacy-policy",
-        linkLabel: "Política de privacidade",
-        target: "ahrefs_privacy",
+        href: "https://rybbit.com/es/docs",
+        linkLabel: "Docs de Rybbit",
+        target: "rybbit_docs",
       },
       {
         name: "GitHub",
