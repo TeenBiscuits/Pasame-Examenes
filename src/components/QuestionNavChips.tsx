@@ -37,7 +37,7 @@ export default function QuestionNavChips({
   return (
     <div
       ref={navRef}
-      className="mb-6 flex gap-1 overflow-x-auto pb-6"
+      className="mb-4 flex gap-2 overflow-x-auto pb-2"
       data-tour={dataTour}
       style={{
         maskImage:
@@ -55,7 +55,7 @@ export default function QuestionNavChips({
         const isChecked = !!checkedQuestions?.[q.id];
         const isCurrent = i === currentIndex;
         let cls =
-          "w-8 h-8 rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
+          "size-[42px] rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
         if (isCurrent) cls += " bg-accent text-white border-accent";
         else if (isChecked) cls += " bg-blue-50 border-blue-300 text-blue-700";
         else if (isAnswered)

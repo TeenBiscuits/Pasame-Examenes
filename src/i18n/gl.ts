@@ -256,8 +256,8 @@ export const gl: Translations = {
   questionCard: {
     modelSolution: "Solución modelo",
     gradeAnswer: "Avalía a túa resposta:",
-    correct: "✓ Correcto",
-    incorrect: "✗ Incorrecto",
+    correct: "Correcta",
+    incorrect: "Incorrecta",
     openSolution: "Abrir solucións",
     closeSolution: "Pechar solución",
     yourAnswer: "A túa resposta",

@@ -22,15 +22,20 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
-import { ArrowSquareLeft2, ArrowSquareRight2 } from "reicon-react";
+import {
+  Alarm,
+  ArrowSquareLeft2,
+  ArrowSquareRight2,
+  Send,
+  Trophy,
+} from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckmarkBadge02Icon } from "@hugeicons/core-free-icons";
 
 function formatTime(seconds: number) {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
+  const m = Math.floor(seconds / 60);
   const s = seconds % 60;
-  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
 }
 
 interface ExamStartScreenProps {
@@ -114,7 +119,8 @@ function ExamStartScreen({
             </p>
           </div>
         </div>
-        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+        <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+          <Alarm size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
           {simulationNote}
         </div>
         <button
@@ -264,8 +270,9 @@ function ExamPlayer({
         <div className="flex items-center gap-4">
           {!submitted && (
             <span
-              className={`font-mono text-sm font-bold ${timeLeft < 600 ? "animate-pulse text-red-600" : "text-fg-secondary"}`}
+              className={`flex items-center gap-1.5 font-mono text-sm font-bold ${timeLeft < 600 ? "animate-pulse text-red-600" : "text-fg-secondary"}`}
             >
+              <Alarm size={16} aria-hidden="true" className="shrink-0" />
               {formatTime(timeLeft)}
             </span>
           )}
@@ -282,7 +289,13 @@ function ExamPlayer({
 
       {submitted && (
         <div className="bg-accent-light border-accent-border animate-fade-in-up mb-6 rounded-lg border p-4 text-sm">
-          <p className="text-fg mb-1 font-semibold">
+          <p className="text-fg mb-1 flex items-center gap-1.5 font-semibold">
+            <Trophy
+              size={18}
+              weight="Filled"
+              aria-hidden="true"
+              className="shrink-0"
+            />
             {t.exam.submitted} {t.exam.score}: {formatPoints(score)}
             {t.exam.outOf}
             {formatPoints(totalPoints)} (
@@ -334,10 +347,10 @@ function ExamPlayer({
         />
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center gap-3 sm:flex-nowrap sm:justify-between">
+      <div className="mt-6 flex items-center gap-2 sm:justify-between sm:gap-3">
         <button
           type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30"
+          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -355,28 +368,29 @@ function ExamPlayer({
           }}
           disabled={currentIndex === 0}
         >
-          <span className="flex items-center gap-1.5">
-            <ArrowSquareLeft2 size={18} aria-hidden="true" />
+          <ArrowSquareLeft2 size={18} aria-hidden="true" className="shrink-0" />
+          <span className="hidden sm:inline sm:min-w-0 sm:truncate">
             {t.exam.previous}
           </span>
         </button>
         <div
-          className="order-3 flex w-full justify-center gap-2 sm:order-2 sm:w-auto"
+          className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
           data-tour="exam-submit"
         >
           {!submitted && (
             <button
               type="button"
-              className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95"
+              className="flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 sm:py-2"
               onClick={onSubmit}
             >
-              {t.exam.submitExam}
+              <Send size={18} aria-hidden="true" className="shrink-0" />
+              <span className="min-w-0 truncate">{t.exam.submitExam}</span>
             </button>
           )}
         </div>
         <button
           type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-2 ms-auto rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:order-3 sm:ms-0"
+          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
@@ -394,10 +408,14 @@ function ExamPlayer({
           }}
           disabled={currentIndex === questions.length - 1}
         >
-          <span className="flex items-center gap-1.5">
+          <span className="hidden sm:inline sm:min-w-0 sm:truncate">
             {t.exam.next}
-            <ArrowSquareRight2 size={18} aria-hidden="true" />
           </span>
+          <ArrowSquareRight2
+            size={18}
+            aria-hidden="true"
+            className="shrink-0"
+          />
         </button>
       </div>
 

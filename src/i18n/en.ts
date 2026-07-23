@@ -254,8 +254,8 @@ export const en = {
   questionCard: {
     modelSolution: "Model Solution",
     gradeAnswer: "Grade your answer:",
-    correct: "✓ Correct",
-    incorrect: "✗ Incorrect",
+    correct: "Correct",
+    incorrect: "Incorrect",
     openSolution: "Open Solutions",
     closeSolution: "Close Solution",
     yourAnswer: "Your answer",

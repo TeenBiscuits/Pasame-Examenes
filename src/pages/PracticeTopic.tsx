@@ -21,7 +21,14 @@ import { usePracticeSession } from "../hooks/usePracticeSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
-import { ArrowSquareLeft2, ArrowSquareRight2 } from "reicon-react";
+import {
+  ArrowSquareLeft2,
+  ArrowSquareRight2,
+  Trash5,
+  Eye,
+  Send,
+  Trophy,
+} from "reicon-react";
 
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
@@ -136,7 +143,13 @@ function PracticePlayer({
 
       {(submitted || Object.keys(checkedQuestions).length > 0) && (
         <div className="bg-accent-light border-accent-border animate-fade-in-up mb-6 rounded-lg border p-4">
-          <p className="text-fg font-semibold">
+          <p className="text-fg flex items-center gap-1.5 font-semibold">
+            <Trophy
+              size={18}
+              weight={submitted ? "Filled" : "Outline"}
+              aria-hidden="true"
+              className="shrink-0"
+            />
             {submitted ? t.practice.score : t.practice.runningScore}:{" "}
             {formatPoints(getScore())} {t.exam.outOf}{" "}
             {formatPoints(totalPoints)} {t.practice.points}
@@ -194,12 +207,12 @@ function PracticePlayer({
       </div>
 
       <div
-        className="mt-6 flex flex-wrap items-center gap-3 sm:flex-nowrap sm:justify-between"
+        className="mt-6 flex items-center gap-2 sm:justify-between sm:gap-3"
         data-tour="practice-nav-btns"
       >
         <button
           type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30"
+          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -217,13 +230,13 @@ function PracticePlayer({
           }}
           disabled={currentIndex === 0}
         >
-          <span className="flex items-center gap-1.5">
-            <ArrowSquareLeft2 size={18} aria-hidden="true" />
+          <ArrowSquareLeft2 size={18} aria-hidden="true" className="shrink-0" />
+          <span className="hidden sm:inline sm:min-w-0 sm:truncate">
             {t.practice.previous}
           </span>
         </button>
         <div
-          className="order-3 flex w-full justify-center gap-2 sm:order-2 sm:w-auto"
+          className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
           data-tour="practice-actions"
         >
           {answers[currentQuestion.id] &&
@@ -232,7 +245,7 @@ function PracticePlayer({
               <>
                 <button
                   type="button"
-                  className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+                  className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
                   onClick={() => {
                     triggerLight();
                     track("practice_clear_answer", {
@@ -243,30 +256,39 @@ function PracticePlayer({
                     onClearAnswer(currentQuestion.id);
                   }}
                 >
-                  {t.practice.clear}
+                  <Trash5 size={18} aria-hidden="true" className="shrink-0" />
+                  <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+                    {t.practice.clear}
+                  </span>
                 </button>
                 <button
                   type="button"
-                  className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95"
+                  className="flex min-w-0 items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-3 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95 sm:py-2"
                   onClick={() => onCheckQuestion(currentQuestion.id)}
                 >
-                  {t.practice.check}
+                  <Eye size={18} aria-hidden="true" className="shrink-0" />
+                  <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+                    {t.practice.check}
+                  </span>
                 </button>
               </>
             )}
           {!submitted && (
             <button
               type="button"
-              className="bg-accent hover:bg-accent-hover focus-visible:ring-accent rounded-lg px-4 py-2 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              className="bg-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
               onClick={onSubmit}
             >
-              {t.practice.submit}
+              <Send size={18} aria-hidden="true" className="shrink-0" />
+              <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+                {t.practice.submit}
+              </span>
             </button>
           )}
         </div>
         <button
           type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-2 ms-auto rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:order-3 sm:ms-0"
+          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
@@ -284,10 +306,14 @@ function PracticePlayer({
           }}
           disabled={currentIndex === questions.length - 1}
         >
-          <span className="flex items-center gap-1.5">
+          <span className="hidden sm:inline sm:min-w-0 sm:truncate">
             {t.practice.next}
-            <ArrowSquareRight2 size={18} aria-hidden="true" />
           </span>
+          <ArrowSquareRight2
+            size={18}
+            aria-hidden="true"
+            className="shrink-0"
+          />
         </button>
       </div>
 

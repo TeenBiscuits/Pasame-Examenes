@@ -256,8 +256,8 @@ export const es: Translations = {
   questionCard: {
     modelSolution: "Solución modelo",
     gradeAnswer: "Evalúa tu respuesta:",
-    correct: "✓ Correcto",
-    incorrect: "✗ Incorrecto",
+    correct: "Correcta",
+    incorrect: "Incorrecta",
     openSolution: "Abrir soluciones",
     closeSolution: "Cerrar solución",
     yourAnswer: "Tu respuesta",

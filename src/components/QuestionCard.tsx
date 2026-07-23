@@ -11,7 +11,14 @@ import {
   triggerError,
   triggerSelection,
 } from "../lib/haptics";
-import { TriangleWarning } from "reicon-react";
+import {
+  CaretRight,
+  CheckSquare,
+  Notebook,
+  Restart,
+  TriangleWarning,
+  XSquare,
+} from "reicon-react";
 
 function QuestionImage({
   image,
@@ -356,19 +363,24 @@ function TextQuestion({
                   <p className="text-fg-secondary mb-2 text-xs font-semibold">
                     {t.questionCard.gradeAnswer}
                   </p>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 *:flex-1">
                     <button
                       type="button"
                       onClick={() => {
                         triggerSuccess();
                         onSelfGrade(question.id, "correct");
                       }}
-                      className={`focus-visible:ring-accent rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                      className={`focus-visible:ring-accent flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
                         selfGrade === "correct"
                           ? "bg-accent-light border-accent text-accent-fg"
                           : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
                       }`}
                     >
+                      <CheckSquare
+                        size={14}
+                        weight={selfGrade === "correct" ? "Filled" : "Outline"}
+                        aria-hidden="true"
+                      />
                       {t.questionCard.correct}
                     </button>
                     <button
@@ -377,12 +389,19 @@ function TextQuestion({
                         triggerError();
                         onSelfGrade(question.id, "incorrect");
                       }}
-                      className={`rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 ${
+                      className={`flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 ${
                         selfGrade === "incorrect"
                           ? "border-red-500 bg-red-50 text-red-700"
                           : "bg-surface-alt border-border text-fg-secondary hover:border-red-300 hover:bg-red-50/50"
                       }`}
                     >
+                      <XSquare
+                        size={14}
+                        weight={
+                          selfGrade === "incorrect" ? "Filled" : "Outline"
+                        }
+                        aria-hidden="true"
+                      />
                       {t.questionCard.incorrect}
                     </button>
                   </div>
@@ -553,31 +572,44 @@ export default function QuestionCard(props: QuestionCardProps) {
 
   return (
     <div
-      className={`bg-surface-alt border-border rounded-xl border p-6 shadow-sm ${slideClass}`}
+      className={`bg-surface-alt border-border rounded-xl border p-4 shadow-sm sm:p-6 ${slideClass}`}
     >
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
         <span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">
           Q{props.index + 1}/{props.total}
         </span>
         <span className="bg-accent-light text-accent-fg rounded px-2 py-0.5 font-mono text-xs">
           {formatPoints(question.points)}p
         </span>
-        <span className="text-fg-muted text-xs">
-          {props.megatopicLabel
-            ? `${props.megatopicLabel} › ${props.topicLabel}`
-            : props.topicLabel}
+        <span className="text-fg-muted order-last flex w-full min-w-0 items-center gap-0.5 text-xs sm:order-none sm:w-auto sm:flex-1">
+          {props.megatopicLabel && (
+            <>
+              <span className="truncate">{props.megatopicLabel}</span>
+              <CaretRight
+                size={12}
+                weight="Filled"
+                aria-hidden="true"
+                className="shrink-0"
+              />
+            </>
+          )}
+          <span className="truncate">{props.topicLabel}</span>
         </span>
-        {question.repeated && (
-          <span className="ml-auto rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
-            {t.questionCard.repeated}
-          </span>
-        )}
-        {props.examDate && (
-          <span
-            className={`text-fg-muted text-xs ${!question.repeated ? "ml-auto" : ""}`}
-          >
-            {props.examDate}
-          </span>
+        {(question.repeated || props.examDate) && (
+          <div className="ml-auto flex items-center gap-2 sm:ml-0">
+            {question.repeated && (
+              <span className="flex items-center gap-0.5 rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
+                <Restart size={10} aria-hidden="true" />
+                {t.questionCard.repeated}
+              </span>
+            )}
+            {props.examDate && (
+              <span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
+                <Notebook size={14} aria-hidden="true" />
+                {props.examDate}
+              </span>
+            )}
+          </div>
         )}
       </div>
       <Markdown className="text-fg mb-4 text-sm font-medium">
