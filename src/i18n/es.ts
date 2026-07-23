@@ -245,6 +245,15 @@ export const es: Translations = {
     submitExam: "Entregar examen",
     submitConfirm:
       "¿Estás seguro de que quieres entregar el examen? No podrás modificar tus respuestas.",
+    submitModalTitle: "Entregar examen",
+    submitModalBody:
+      "¿Estás seguro de que quieres entregar el examen? No podrás modificar tus respuestas.",
+    submitModalCancel: "Cancelar",
+    submitModalConfirm: "Entregar",
+    timeUpModalTitle: "Tiempo agotado",
+    timeUpModalBody:
+      "Se ha agotado el tiempo. El examen se entregará automáticamente.",
+    timeUpModalAcknowledge: "Entendido",
     score: "Puntuación",
     outOf: "/",
     pass_: "(APROBADO)",

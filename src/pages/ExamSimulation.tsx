@@ -26,6 +26,7 @@ import {
   Alarm,
   ArrowSquareLeft2,
   ArrowSquareRight2,
+  CloseSquare2,
   Send,
   Trophy,
 } from "reicon-react";
@@ -146,6 +147,7 @@ interface ExamPlayerProps {
   selfGrades: Record<string, "correct" | "incorrect">;
   submitted: boolean;
   timeLeft: number;
+  timeUp: boolean;
   totalPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
@@ -169,6 +171,7 @@ function ExamPlayer({
   selfGrades,
   submitted,
   timeLeft,
+  timeUp,
   totalPoints,
   direction,
   setDirection,
@@ -186,6 +189,14 @@ function ExamPlayer({
     (tp) => tp.key === currentQuestion.topic,
   );
   const isAuthorized = hasAuthorizedExamContent(subject);
+  const submitDialogRef = useRef<HTMLDialogElement>(null);
+  const timeUpDialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (timeUp && !submitted) {
+      timeUpDialogRef.current?.showModal();
+    }
+  }, [timeUp, submitted]);
 
   const getScore = () => {
     let score = 0;
@@ -381,7 +392,9 @@ function ExamPlayer({
             <button
               type="button"
               className="flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 sm:py-2"
-              onClick={onSubmit}
+              onClick={() => {
+                submitDialogRef.current?.showModal();
+              }}
             >
               <Send size={18} aria-hidden="true" className="shrink-0" />
               <span className="min-w-0 truncate">{t.exam.submitExam}</span>
@@ -424,6 +437,95 @@ function ExamPlayer({
         questionId={currentQuestion.id}
         questionType={currentQuestion.type}
       />
+
+      <dialog
+        ref={submitDialogRef}
+        className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+        aria-labelledby="exam-submit-modal-title"
+        onClose={() => {}}
+      >
+        <div>
+          <div className="mb-5 flex items-center justify-between">
+            <h2
+              id="exam-submit-modal-title"
+              className="text-fg text-lg font-semibold"
+            >
+              {t.exam.submitModalTitle}
+            </h2>
+            <button
+              type="button"
+              onClick={() => submitDialogRef.current?.close()}
+              className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
+              aria-label="Close"
+            >
+              <CloseSquare2 className="size-5" />
+            </button>
+          </div>
+          <p className="text-fg-secondary mb-6 text-sm">
+            {t.exam.submitModalBody}
+          </p>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => submitDialogRef.current?.close()}
+              className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+            >
+              {t.exam.submitModalCancel}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                submitDialogRef.current?.close();
+                onSubmit();
+              }}
+              className="flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95"
+            >
+              {t.exam.submitModalConfirm}
+            </button>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog
+        ref={timeUpDialogRef}
+        className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+        aria-labelledby="exam-timeup-modal-title"
+        onClose={() => {
+          if (!submitted) onSubmit();
+        }}
+      >
+        <div>
+          <div className="mb-5 flex items-center justify-between">
+            <h2
+              id="exam-timeup-modal-title"
+              className="text-fg text-lg font-semibold"
+            >
+              <span className="inline-flex items-center gap-2">
+                <Alarm size={24} aria-hidden="true" />
+                {t.exam.timeUpModalTitle}
+              </span>
+            </h2>
+            <button
+              type="button"
+              onClick={() => timeUpDialogRef.current?.close()}
+              className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
+              aria-label="Close"
+            >
+              <CloseSquare2 className="size-5" />
+            </button>
+          </div>
+          <p className="text-fg-secondary mb-6 text-sm">
+            {t.exam.timeUpModalBody}
+          </p>
+          <button
+            type="button"
+            onClick={() => timeUpDialogRef.current?.close()}
+            className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+          >
+            {t.exam.timeUpModalAcknowledge}
+          </button>
+        </div>
+      </dialog>
     </div>
   );
 }
@@ -501,6 +603,7 @@ export default function ExamSimulation() {
     selfGrades,
     submitted,
     timeLeft,
+    timeUp,
     started,
     handleAnswer,
     handleStart,
@@ -512,6 +615,11 @@ export default function ExamSimulation() {
     year || "",
     (examInfo?.durationMinutes || 120) * 60,
     t,
+  );
+
+  const handleSubmitConfirm = useCallback(
+    () => handleSubmit(true),
+    [handleSubmit],
   );
 
   const [navState, setNavState] = useState({
@@ -706,6 +814,7 @@ export default function ExamSimulation() {
         selfGrades={selfGrades}
         submitted={submitted}
         timeLeft={timeLeft}
+        timeUp={timeUp}
         totalPoints={totalPoints}
         direction={direction}
         setDirection={setDirection}
@@ -715,7 +824,7 @@ export default function ExamSimulation() {
         scrollToNav={scrollToNav}
         onAnswer={handleAnswer}
         onSelfGrade={handleSelfGrade}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmitConfirm}
       />
     </>
   );

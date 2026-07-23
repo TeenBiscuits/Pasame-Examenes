@@ -243,6 +243,15 @@ export const en = {
     submitExam: "Submit Exam",
     submitConfirm:
       "Are you sure you want to submit your exam? You won't be able to change your answers.",
+    submitModalTitle: "Submit Exam",
+    submitModalBody:
+      "Are you sure you want to submit? You won't be able to change your answers.",
+    submitModalCancel: "Cancel",
+    submitModalConfirm: "Submit",
+    timeUpModalTitle: "Time's Up",
+    timeUpModalBody:
+      "Time has run out. Your exam will be submitted automatically.",
+    timeUpModalAcknowledge: "Understood",
     score: "Score",
     outOf: "/",
     pass_: "(PASS)",

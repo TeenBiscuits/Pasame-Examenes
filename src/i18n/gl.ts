@@ -245,6 +245,14 @@ export const gl: Translations = {
     submitExam: "Entregar exame",
     submitConfirm:
       "Estás seguro de que queres entregar o exame? Non poderás modificar as túas respostas.",
+    submitModalTitle: "Entregar exame",
+    submitModalBody:
+      "Estás seguro de que queres entregar o exame? Non poderás modificar as túas respostas.",
+    submitModalCancel: "Cancelar",
+    submitModalConfirm: "Entregar",
+    timeUpModalTitle: "Tempo esgotado",
+    timeUpModalBody: "Esgotouse o tempo. O exame entregarase automaticamente.",
+    timeUpModalAcknowledge: "Entendido",
     score: "Puntuación",
     outOf: "/",
     pass_: "(APROBADO)",
