@@ -22,6 +22,7 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
+import { computeQuestionResults } from "../lib/grading";
 import {
   Alarm,
   ArrowSquareLeft2,
@@ -226,6 +227,19 @@ function ExamPlayer({
 
   const score = getScore();
 
+  const questionResults = useMemo(
+    () => computeQuestionResults(questions, answers, {}, selfGrades, submitted),
+    [questions, answers, selfGrades, submitted],
+  );
+
+  const pendingTextCount = useMemo(
+    () =>
+      questions.filter(
+        (q) => q.type === "text" && submitted && !selfGrades[q.id],
+      ).length,
+    [questions, selfGrades, submitted],
+  );
+
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
       <div className="mb-6">
@@ -281,7 +295,7 @@ function ExamPlayer({
         <div className="flex items-center gap-4">
           {!submitted && (
             <span
-              className={`flex items-center gap-1.5 font-mono text-sm font-bold ${timeLeft < 600 ? "animate-pulse text-red-600" : "text-fg-secondary"}`}
+              className={`flex items-center gap-1.5 font-mono text-sm font-bold ${timeLeft < 600 ? "text-incorrect-fg animate-pulse" : "text-fg-secondary"}`}
             >
               <Alarm size={16} aria-hidden="true" className="shrink-0" />
               {formatTime(timeLeft)}
@@ -289,7 +303,7 @@ function ExamPlayer({
           )}
           {submitted && (
             <span
-              className={`animate-fade-in rounded px-3 py-1 text-sm font-bold ${score >= examInfo.passPoints ? "bg-accent-light text-accent-fg" : "bg-red-50 text-red-700"}`}
+              className={`animate-fade-in rounded px-3 py-1 text-sm font-bold ${score >= examInfo.passPoints ? "bg-correct-bg text-correct-fg" : "bg-incorrect-bg text-incorrect-fg"}`}
             >
               {formatPoints(score)}/{formatPoints(totalPoints)}p{" "}
               {score >= examInfo.passPoints ? t.exam.pass_ : t.exam.fail}
@@ -299,7 +313,15 @@ function ExamPlayer({
       </div>
 
       {submitted && (
-        <div className="bg-accent-light border-accent-border animate-fade-in-up mb-6 rounded-lg border p-4 text-sm">
+        <div
+          className={`animate-fade-in-up mb-6 rounded-lg border p-4 text-sm ${
+            pendingTextCount > 0
+              ? "bg-accent-light border-accent-border"
+              : score >= examInfo.passPoints
+                ? "border-correct-border bg-correct-bg"
+                : "border-incorrect-border bg-incorrect-bg"
+          }`}
+        >
           <p className="text-fg mb-1 flex items-center gap-1.5 font-semibold">
             <Trophy
               size={18}
@@ -312,9 +334,18 @@ function ExamPlayer({
             {formatPoints(totalPoints)} (
             {Math.round((score / totalPoints) * 100)}%)
           </p>
-          <p className="text-accent-fg">
-            {t.exam.passThreshold}: {formatPoints(examInfo.passPoints)}p.{" "}
-            {t.exam.reviewNote}
+          <p
+            className={`${
+              pendingTextCount > 0
+                ? "text-accent-fg"
+                : score >= examInfo.passPoints
+                  ? "text-correct-fg"
+                  : "text-incorrect-fg"
+            }`}
+          >
+            {pendingTextCount > 0
+              ? t.exam.selfGradeHint
+              : `${t.exam.passThreshold}: ${formatPoints(examInfo.passPoints)}p. ${t.exam.reviewNote}`}
           </p>
         </div>
       )}
@@ -326,6 +357,7 @@ function ExamPlayer({
         navRef={navRef}
         showLeftFade={showLeftFade}
         showRightFade={showRightFade}
+        questionResults={questionResults}
         dataTour="exam-nav"
         eventName="exam_navigate"
         eventData={{ subjectId: subject.id, year: examInfo.year }}
@@ -391,7 +423,7 @@ function ExamPlayer({
           {!submitted && (
             <button
               type="button"
-              className="flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 sm:py-2"
+              className="focus-visible:ring-incorrect-fg flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
               onClick={() => {
                 submitDialogRef.current?.showModal();
               }}
@@ -478,7 +510,7 @@ function ExamPlayer({
                 submitDialogRef.current?.close();
                 onSubmit();
               }}
-              className="flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95"
+              className="focus-visible:ring-incorrect-fg flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             >
               {t.exam.submitModalConfirm}
             </button>

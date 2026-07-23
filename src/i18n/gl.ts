@@ -222,6 +222,9 @@ export const gl: Translations = {
     runningScore: "Puntuación parcial",
     checked: "corrixidas",
     openEnded: "preguntas abertas",
+    selfGradeHint:
+      "Autoavalia as túas respostas de texto para ver a túa puntuación final.",
+    allSelfGraded: "Todas as respostas autoavaliadas",
   },
   exam: {
     backToSubject: "← Volver á materia",
@@ -242,6 +245,8 @@ export const gl: Translations = {
     passThreshold: "Limiar de aprobado",
     reviewNote:
       "Revisa as túas respostas. As preguntas abertas mostran as solucións modelo para autoavaliación.",
+    selfGradeHint:
+      "Autoavalia as túas respostas de texto para ver a túa puntuación final.",
     submitExam: "Entregar exame",
     submitConfirm:
       "Estás seguro de que queres entregar o exame? Non poderás modificar as túas respostas.",
@@ -267,6 +272,7 @@ export const gl: Translations = {
     correct: "Correcta",
     incorrect: "Incorrecta",
     openSolution: "Abrir solucións",
+    openAndSelfGrade: "Abrir solución e autoavaliarse",
     closeSolution: "Pechar solución",
     yourAnswer: "A túa resposta",
     correct_: "Correcto",

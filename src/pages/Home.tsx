@@ -104,7 +104,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={handleClearRecent}
-                className="text-fg-muted rounded p-1 transition-colors hover:text-red-500"
+                className="text-fg-muted hover:text-incorrect-fg rounded p-1 transition-colors"
                 aria-label={t.home.clearRecent}
                 title={t.home.clearRecent}
               >

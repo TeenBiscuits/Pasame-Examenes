@@ -2,6 +2,7 @@ import type { RefObject } from "react";
 import type { Question } from "../data/types";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
+import type { QuestionResult } from "../lib/grading";
 
 type NavEventName = "practice_navigate" | "exam_navigate";
 
@@ -18,6 +19,7 @@ interface QuestionNavChipsProps {
     | (() => Record<string, string | number | boolean | undefined | null>);
   eventName: NavEventName;
   checkedQuestions?: Record<string, boolean>;
+  questionResults?: Record<string, QuestionResult>;
   dataTour?: string;
 }
 
@@ -32,6 +34,7 @@ export default function QuestionNavChips({
   eventData,
   eventName,
   checkedQuestions,
+  questionResults,
   dataTour,
 }: QuestionNavChipsProps) {
   return (
@@ -51,13 +54,19 @@ export default function QuestionNavChips({
       }}
     >
       {questions.map((q, i) => {
+        const result = questionResults?.[q.id];
         const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
         const isChecked = !!checkedQuestions?.[q.id];
         const isCurrent = i === currentIndex;
         let cls =
           "size-[42px] rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
         if (isCurrent) cls += " bg-accent text-white border-accent";
-        else if (isChecked) cls += " bg-blue-50 border-blue-300 text-blue-700";
+        else if (result === "correct")
+          cls += " bg-correct-bg border-correct-border text-correct-fg";
+        else if (result === "incorrect")
+          cls += " bg-incorrect-bg border-incorrect-border text-incorrect-fg";
+        else if (result === "pending" || isChecked)
+          cls += " bg-pending-bg border-pending-border text-pending-fg";
         else if (isAnswered)
           cls += " bg-accent-light border-accent-border text-accent-fg";
         else cls += " border-border text-fg-muted hover:border-fg-muted";
@@ -84,7 +93,7 @@ export default function QuestionNavChips({
               onSelectIndex(i, direction);
             }}
           >
-            {isChecked && !isCurrent ? "\u2713" : i + 1}
+            {i + 1}
           </button>
         );
       })}

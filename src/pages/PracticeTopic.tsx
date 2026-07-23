@@ -21,6 +21,7 @@ import { usePracticeSession } from "../hooks/usePracticeSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
+import { computeQuestionResults } from "../lib/grading";
 import {
   ArrowSquareLeft2,
   ArrowSquareRight2,
@@ -94,6 +95,33 @@ function PracticePlayer({
     return exam?.date || exam?.title;
   }, [subject, currentQuestion]);
 
+  const questionResults = useMemo(
+    () =>
+      computeQuestionResults(
+        questions,
+        answers,
+        checkedQuestions,
+        selfGrades,
+        submitted,
+      ),
+    [questions, answers, checkedQuestions, selfGrades, submitted],
+  );
+
+  const pendingTextCount = useMemo(
+    () =>
+      questions.filter(
+        (q) =>
+          q.type === "text" &&
+          (checkedQuestions[q.id] || submitted) &&
+          !selfGrades[q.id],
+      ).length,
+    [questions, checkedQuestions, selfGrades, submitted],
+  );
+
+  const allTextGraded =
+    questions.filter((q) => q.type === "text").length === 0 ||
+    pendingTextCount === 0;
+
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
@@ -142,7 +170,13 @@ function PracticePlayer({
       </div>
 
       {(submitted || Object.keys(checkedQuestions).length > 0) && (
-        <div className="bg-accent-light border-accent-border animate-fade-in-up mb-6 rounded-lg border p-4">
+        <div
+          className={`animate-fade-in-up mb-6 rounded-lg border p-4 ${
+            submitted && allTextGraded
+              ? "border-correct-border bg-correct-bg"
+              : "bg-accent-light border-accent-border"
+          }`}
+        >
           <p className="text-fg flex items-center gap-1.5 font-semibold">
             <Trophy
               size={18}
@@ -154,12 +188,18 @@ function PracticePlayer({
             {formatPoints(getScore())} {t.exam.outOf}{" "}
             {formatPoints(totalPoints)} {t.practice.points}
           </p>
-          <p className="text-accent-fg mt-1 text-sm">
-            {submitted
-              ? textQuestionCount > 0
+          <p
+            className={`mt-1 text-sm ${
+              submitted && allTextGraded ? "text-correct-fg" : "text-accent-fg"
+            }`}
+          >
+            {submitted && pendingTextCount > 0
+              ? t.practice.selfGradeHint
+              : submitted && textQuestionCount > 0
                 ? `${Object.values(selfGrades).filter(Boolean).length} ${t.exam.outOf} ${textQuestionCount} ${t.practice.openEnded}`
-                : t.practice.allCorrect
-              : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`}
+                : submitted
+                  ? t.practice.allSelfGraded
+                  : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`}
           </p>
         </div>
       )}
@@ -172,6 +212,7 @@ function PracticePlayer({
         showLeftFade={showLeftFade}
         showRightFade={showRightFade}
         checkedQuestions={checkedQuestions}
+        questionResults={questionResults}
         dataTour="practice-nav"
         eventName="practice_navigate"
         eventData={{ subjectId: subject.id, topic: topic || "" }}

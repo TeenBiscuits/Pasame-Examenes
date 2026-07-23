@@ -46,7 +46,7 @@ export default function Disclaimer({
           href={buildDisclaimerReportUrl(subjectId, questionId, questionType)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-fg-muted inline-flex items-center gap-1 rounded text-xs transition-colors hover:text-red-500 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
+          className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg inline-flex items-center gap-1 rounded text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("report_issue", {

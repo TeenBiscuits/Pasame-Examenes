@@ -12,6 +12,7 @@ import {
   triggerSelection,
 } from "../lib/haptics";
 import {
+  BookOpen,
   CaretRight,
   CheckSquare,
   Notebook,
@@ -176,10 +177,10 @@ function MCQuestion({
         let className =
           "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
         if (showResult && isCorrect) {
-          className += " bg-accent-light border-accent";
-        } else if (showResult && isSelected && !isCorrect) {
-          className += " bg-red-50 border-red-400";
-        } else if (isSelected) {
+          className += " bg-correct-bg border-correct-border";
+        } else if (isSelected && showResult && !isCorrect) {
+          className += " bg-incorrect-bg border-incorrect-border";
+        } else if (isSelected && !showResult) {
           className += " bg-accent-light border-accent";
         } else {
           className += " border-border hover:border-border bg-surface-alt";
@@ -319,7 +320,7 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
-            className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+            className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             onClick={() => {
               triggerLight();
               const next = !isOpen;
@@ -330,9 +331,10 @@ function TextQuestion({
               setIsOpen(next);
             }}
           >
+            <BookOpen size={16} aria-hidden="true" />
             {isOpen
               ? t.questionCard.closeSolution
-              : t.questionCard.openSolution}
+              : t.questionCard.openAndSelfGrade}
           </button>
 
           {isOpen && (
@@ -372,7 +374,7 @@ function TextQuestion({
                       }}
                       className={`focus-visible:ring-accent flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
                         selfGrade === "correct"
-                          ? "bg-accent-light border-accent text-accent-fg"
+                          ? "bg-correct-bg border-correct-border text-correct-fg"
                           : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
                       }`}
                     >
@@ -389,10 +391,10 @@ function TextQuestion({
                         triggerError();
                         onSelfGrade(question.id, "incorrect");
                       }}
-                      className={`flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 ${
+                      className={`focus-visible:ring-incorrect-fg flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
                         selfGrade === "incorrect"
-                          ? "border-red-500 bg-red-50 text-red-700"
-                          : "bg-surface-alt border-border text-fg-secondary hover:border-red-300 hover:bg-red-50/50"
+                          ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
+                          : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
                       }`}
                     >
                       <XSquare
@@ -474,9 +476,10 @@ function MatchingQuestion({
                 let cls =
                   "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
                 if (showResult && real) {
-                  cls += " bg-accent-light border-accent text-accent-fg";
+                  cls += " bg-correct-bg border-correct-border text-correct-fg";
                 } else if (showResult && chosen && !real) {
-                  cls += " bg-red-50 border-red-400 text-red-700";
+                  cls +=
+                    " bg-incorrect-bg border-incorrect-border text-incorrect-fg";
                 } else if (chosen) {
                   cls += " bg-accent-light border-accent text-accent-fg";
                 } else {
@@ -681,7 +684,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           href={buildReportUrl(question, props.subjectId)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-fg-muted -mr-2 inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:text-red-500 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
+          className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg -mr-2 inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("report_issue", {

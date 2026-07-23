@@ -222,6 +222,9 @@ export const es: Translations = {
     runningScore: "Puntuación parcial",
     checked: "corregidas",
     openEnded: "preguntas abiertas",
+    selfGradeHint:
+      "Autoevalúa tus respuestas de texto para ver tu puntuación final.",
+    allSelfGraded: "Todas las respuestas autoevaluadas",
   },
   exam: {
     backToSubject: "← Volver a la asignatura",
@@ -242,6 +245,8 @@ export const es: Translations = {
     passThreshold: "Umbral de aprobado",
     reviewNote:
       "Revisa tus respuestas. Las preguntas abiertas muestran las soluciones modelo para autoevaluación.",
+    selfGradeHint:
+      "Autoevalúa tus respuestas de texto para ver tu puntuación final.",
     submitExam: "Entregar examen",
     submitConfirm:
       "¿Estás seguro de que quieres entregar el examen? No podrás modificar tus respuestas.",
@@ -268,6 +273,7 @@ export const es: Translations = {
     correct: "Correcta",
     incorrect: "Incorrecta",
     openSolution: "Abrir soluciones",
+    openAndSelfGrade: "Abrir solución y autoevaluarse",
     closeSolution: "Cerrar solución",
     yourAnswer: "Tu respuesta",
     correct_: "Correcto",

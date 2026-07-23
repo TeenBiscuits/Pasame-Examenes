@@ -220,6 +220,8 @@ export const en = {
     runningScore: "Running score",
     checked: "checked",
     openEnded: "open-ended questions",
+    selfGradeHint: "Self-grade your text answers to see your final score.",
+    allSelfGraded: "All answers self-graded",
   },
   exam: {
     backToSubject: "← Back to Subject",
@@ -240,6 +242,7 @@ export const en = {
     passThreshold: "Pass threshold",
     reviewNote:
       "Review your answers below. Open-ended questions show model answers for self-grading.",
+    selfGradeHint: "Self-grade your text answers to see your final score.",
     submitExam: "Submit Exam",
     submitConfirm:
       "Are you sure you want to submit your exam? You won't be able to change your answers.",
@@ -266,6 +269,7 @@ export const en = {
     correct: "Correct",
     incorrect: "Incorrect",
     openSolution: "Open Solutions",
+    openAndSelfGrade: "Open solution and self-evaluate",
     closeSolution: "Close Solution",
     yourAnswer: "Your answer",
     correct_: "Correct",
