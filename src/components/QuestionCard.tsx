@@ -228,7 +228,7 @@ function MCQuestion({
             <button
               type="button"
               data-cuelume-press
-              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
@@ -243,6 +243,7 @@ function MCQuestion({
                 setIsOpen(next);
               }}
             >
+              <BookOpen size={16} aria-hidden="true" />
               {isOpen
                 ? t.questionCard.closeSolution
                 : t.questionCard.openSolution}
@@ -515,7 +516,7 @@ function MatchingQuestion({
                       handleSelect(item, letter);
                     }}
                     disabled={!!showResult}
-                     aria-label={`Match ${item} to ${letter}`}
+                    aria-label={`Match ${item} to ${letter}`}
                   >
                     {letter}
                   </button>
@@ -531,7 +532,7 @@ function MatchingQuestion({
             <button
               type="button"
               data-cuelume-press
-              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
@@ -546,6 +547,7 @@ function MatchingQuestion({
                 setIsOpen(next);
               }}
             >
+              <BookOpen size={16} aria-hidden="true" />
               {isOpen
                 ? t.questionCard.closeSolution
                 : t.questionCard.openSolution}
