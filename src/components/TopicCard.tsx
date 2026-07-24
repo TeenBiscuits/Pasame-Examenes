@@ -41,6 +41,8 @@ export default function TopicCard({
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
+      data-cuelume-hover="tick"
+      data-cuelume-press
       className={`focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none ${colorMap[topic.color] || colorMap.blue}`}
       onClick={() => {
         triggerLight();

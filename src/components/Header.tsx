@@ -53,6 +53,8 @@ export default function Header() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link
           to="/"
+          data-cuelume-hover="tick"
+          data-cuelume-press
           className="text-fg hover:text-accent focus-visible:ring-accent flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
@@ -74,6 +76,8 @@ export default function Header() {
             <>
               <Link
                 to={`/${subjectId}`}
+                data-cuelume-hover="tick"
+                data-cuelume-press
                 className={`sm:hidden ${acronymLinkClasses}`}
                 onClick={() => {
                   triggerLight();
@@ -88,6 +92,8 @@ export default function Header() {
               </Link>
               <Link
                 to={`/${subjectId}`}
+                data-cuelume-hover="tick"
+                data-cuelume-press
                 className={`hidden max-w-56 truncate sm:block ${subjectLinkClasses}`}
                 onClick={() => {
                   triggerLight();
@@ -106,6 +112,7 @@ export default function Header() {
           <ThemeToggle />
           <button
             type="button"
+            data-cuelume-toggle
             className="border-border hover:bg-surface rounded border px-2 py-1 text-xs font-medium transition active:scale-95"
             onClick={() => {
               triggerLight();

@@ -103,6 +103,7 @@ export default function GitHubStarButton() {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
+        data-cuelume-hover="tick"
         className="border-border hover:bg-surface text-fg-secondary hidden cursor-pointer items-center gap-1.5 rounded border px-2 py-1 text-xs font-medium no-underline transition active:scale-95 sm:inline-flex"
         onClick={() => track("github_star_click", { location: "header" })}
         aria-label="Star on GitHub"
@@ -118,6 +119,7 @@ export default function GitHubStarButton() {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
+        data-cuelume-hover="tick"
         className="border-border hover:bg-surface inline-flex cursor-pointer items-center rounded border px-2 py-1 text-amber-500 transition active:scale-95 sm:hidden"
         onClick={() => track("github_star_click", { location: "header" })}
         aria-label="Star on GitHub"

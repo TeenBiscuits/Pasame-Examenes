@@ -11,6 +11,7 @@ import {
   triggerError,
   triggerSelection,
 } from "../lib/haptics";
+import { playSuccess, playError } from "../lib/sound";
 import {
   BookOpen,
   CaretRight,
@@ -190,6 +191,7 @@ function MCQuestion({
           <button
             type="button"
             key={key}
+            data-cuelume-press
             className={className}
             onClick={() => {
               if (showResult) return;
@@ -225,6 +227,7 @@ function MCQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
+              data-cuelume-press
               className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
@@ -320,6 +323,7 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
+            data-cuelume-press
             className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             onClick={() => {
               triggerLight();
@@ -368,8 +372,10 @@ function TextQuestion({
                   <div className="flex gap-2 *:flex-1">
                     <button
                       type="button"
+                      data-cuelume-press
                       onClick={() => {
                         triggerSuccess();
+                        playSuccess();
                         onSelfGrade(question.id, "correct");
                       }}
                       className={`focus-visible:ring-accent flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
@@ -387,8 +393,10 @@ function TextQuestion({
                     </button>
                     <button
                       type="button"
+                      data-cuelume-press
                       onClick={() => {
                         triggerError();
+                        playError();
                         onSelfGrade(question.id, "incorrect");
                       }}
                       className={`focus-visible:ring-incorrect-fg flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
@@ -490,6 +498,7 @@ function MatchingQuestion({
                   <button
                     type="button"
                     key={letter}
+                    data-cuelume-press
                     className={cls}
                     onClick={() => {
                       triggerSelection();
@@ -506,7 +515,7 @@ function MatchingQuestion({
                       handleSelect(item, letter);
                     }}
                     disabled={!!showResult}
-                    aria-label={`Match ${item} to ${letter}`}
+                     aria-label={`Match ${item} to ${letter}`}
                   >
                     {letter}
                   </button>
@@ -521,6 +530,7 @@ function MatchingQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
+              data-cuelume-press
               className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
@@ -681,6 +691,7 @@ export default function QuestionCard(props: QuestionCardProps) {
         </span>
         <a
           data-tour="report-issue"
+          data-cuelume-hover="whisper"
           href={buildReportUrl(question, props.subjectId)}
           target="_blank"
           rel="noopener noreferrer"

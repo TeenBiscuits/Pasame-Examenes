@@ -109,6 +109,7 @@ export default function StarPopup() {
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-cuelume-press
             onClick={handleStar}
             className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-amber-600 active:scale-[0.98]"
           >
@@ -117,6 +118,7 @@ export default function StarPopup() {
           </a>
           <button
             type="button"
+            data-cuelume-press
             onClick={dismiss}
             className="text-fg-muted hover:text-fg-secondary hover:bg-surface cursor-pointer rounded-lg px-4 py-2 text-sm transition"
           >

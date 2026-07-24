@@ -149,6 +149,8 @@ function SubjectNotFound() {
       </h1>
       <Link
         to="/"
+        data-cuelume-hover
+        data-cuelume-press
         className="text-accent hover:underline"
         onClick={() => {
           triggerLight();
@@ -347,6 +349,8 @@ function ExamCard({
   return (
     <Link
       to={`/${subject.id}/exam/${exam.year}`}
+      data-cuelume-hover="tick"
+      data-cuelume-press
       className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-6 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();
@@ -395,6 +399,7 @@ function ExamActionButtons({
     <div className="grid grid-cols-2 gap-4">
       <button
         type="button"
+        data-cuelume-press
         onClick={() => {
           triggerLight();
           onAddExam();
@@ -411,6 +416,7 @@ function ExamActionButtons({
       </button>
       <button
         type="button"
+        data-cuelume-press
         onClick={() => {
           triggerLight();
           onReportCopyright();
@@ -461,6 +467,7 @@ function PdfLinksSection({
       {pdfExams.map((exam) => (
         <a
           key={exam.year}
+          data-cuelume-press
           href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
           target="_blank"
           rel="noopener noreferrer"
@@ -512,6 +519,7 @@ function DaypoLinksSection({
       {daypoExams.map((exam) => (
         <a
           key={exam.year}
+          data-cuelume-press
           href={exam.daypoUrl}
           target="_blank"
           rel="noopener noreferrer"

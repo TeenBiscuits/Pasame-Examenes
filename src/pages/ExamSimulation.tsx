@@ -65,6 +65,8 @@ function ExamStartScreen({
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
+          data-cuelume-hover
+          data-cuelume-press
           className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
           onClick={() =>
             track("nav_click", {
@@ -127,6 +129,7 @@ function ExamStartScreen({
         </div>
         <button
           type="button"
+          data-cuelume-press
           className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full animate-pulse rounded-lg py-3 font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
           onClick={onStart}
         >
@@ -270,6 +273,8 @@ function ExamPlayer({
       <div className="mb-6">
         <Link
           to={`/${subject.id}`}
+          data-cuelume-hover
+          data-cuelume-press
           onClick={(e) => {
             if (!submitted) {
               if (!window.confirm(t.exam.exitConfirm)) {
@@ -419,6 +424,7 @@ function ExamPlayer({
         <button
           type="button"
           ref={prevBtnRef}
+          data-cuelume-press
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
           onMouseEnter={() => setHoverPrev(true)}
           onMouseLeave={() => setHoverPrev(false)}
@@ -456,6 +462,7 @@ function ExamPlayer({
           {!submitted && (
             <button
               type="button"
+              data-cuelume-press
               className="focus-visible:ring-incorrect-fg flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
               onClick={() => {
                 submitDialogRef.current?.showModal();
@@ -469,6 +476,7 @@ function ExamPlayer({
         <button
           type="button"
           ref={nextBtnRef}
+          data-cuelume-press
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
           onMouseEnter={() => setHoverNext(true)}
           onMouseLeave={() => setHoverNext(false)}
@@ -536,6 +544,7 @@ function ExamPlayer({
           <div className="flex gap-3">
             <button
               type="button"
+              data-cuelume-press
               onClick={() => submitDialogRef.current?.close()}
               className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             >
@@ -543,6 +552,7 @@ function ExamPlayer({
             </button>
             <button
               type="button"
+              data-cuelume-press
               onClick={() => {
                 submitDialogRef.current?.close();
                 onSubmit();
@@ -576,6 +586,7 @@ function ExamPlayer({
             </h2>
             <button
               type="button"
+              data-cuelume-press
               onClick={() => timeUpDialogRef.current?.close()}
               className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
               aria-label="Close"
@@ -588,6 +599,7 @@ function ExamPlayer({
           </p>
           <button
             type="button"
+            data-cuelume-press
             onClick={() => timeUpDialogRef.current?.close()}
             className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           >
@@ -844,6 +856,8 @@ export default function ExamSimulation() {
         <p className="text-fg-muted">{t.exam.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
+          data-cuelume-hover
+          data-cuelume-press
           className="text-accent mt-4 inline-block hover:underline"
           onClick={() => {
             triggerLight();

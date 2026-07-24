@@ -76,6 +76,7 @@ export default function QuestionNavChips({
           <button
             type="button"
             key={q.id}
+            data-cuelume-press
             className={cls}
             onClick={() => {
               triggerLight();
