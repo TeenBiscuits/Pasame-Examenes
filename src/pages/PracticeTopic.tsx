@@ -43,6 +43,7 @@ interface PracticePlayerProps {
   selfGrades: Record<string, "correct" | "incorrect">;
   submitted: boolean;
   checkedQuestions: Record<string, boolean>;
+  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
   totalPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
@@ -81,8 +82,33 @@ function PracticePlayer({
   onSubmit,
   onCheckQuestion,
   onClearAnswer,
+  arrowAnimateRef,
 }: PracticePlayerProps) {
   const t = useT();
+  const [hoverPrev, setHoverPrev] = useState(false);
+  const [hoverNext, setHoverNext] = useState(false);
+  const [hoverClear, setHoverClear] = useState(false);
+  const [hoverCheck, setHoverCheck] = useState(false);
+  const [hoverSubmit, setHoverSubmit] = useState(false);
+  const prevBtnRef = useRef<HTMLButtonElement>(null);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+
+  const animateArrowPress = useCallback(
+    (ref: React.RefObject<HTMLButtonElement | null>) => {
+      ref.current?.animate(
+        [{ transform: "scale(0.92)" }, { transform: "scale(1)" }],
+        { duration: 150, easing: "ease-out" },
+      );
+    },
+    [],
+  );
+
+  useEffect(() => {
+    arrowAnimateRef.current = (dir) => {
+      animateArrowPress(dir === "prev" ? prevBtnRef : nextBtnRef);
+    };
+  }, [arrowAnimateRef, animateArrowPress]);
+
   const currentQuestion = questions[currentIndex];
 
   const examDate = useMemo(() => {
@@ -251,7 +277,10 @@ function PracticePlayer({
       >
         <button
           type="button"
+          ref={prevBtnRef}
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
+          onMouseEnter={() => setHoverPrev(true)}
+          onMouseLeave={() => setHoverPrev(false)}
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -269,7 +298,12 @@ function PracticePlayer({
           }}
           disabled={currentIndex === 0}
         >
-          <ArrowSquareLeft2 size={18} aria-hidden="true" className="shrink-0" />
+          <ArrowSquareLeft2
+            size={18}
+            weight={hoverPrev ? "Filled" : "Outline"}
+            aria-hidden="true"
+            className="shrink-0"
+          />
           <span className="hidden sm:inline sm:min-w-0 sm:truncate">
             {t.practice.previous}
           </span>
@@ -287,6 +321,8 @@ function PracticePlayer({
                     <button
                       type="button"
                       className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+                      onMouseEnter={() => setHoverClear(true)}
+                      onMouseLeave={() => setHoverClear(false)}
                       onClick={() => {
                         triggerLight();
                         track("practice_clear_answer", {
@@ -299,6 +335,7 @@ function PracticePlayer({
                     >
                       <Trash5
                         size={18}
+                        weight={hoverClear ? "Filled" : "Outline"}
                         aria-hidden="true"
                         className="shrink-0"
                       />
@@ -310,9 +347,16 @@ function PracticePlayer({
                 <button
                   type="button"
                   className="flex min-w-0 items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-3 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95 sm:py-2"
+                  onMouseEnter={() => setHoverCheck(true)}
+                  onMouseLeave={() => setHoverCheck(false)}
                   onClick={() => onCheckQuestion(currentQuestion.id)}
                 >
-                  <Eye size={18} aria-hidden="true" className="shrink-0" />
+                  <Eye
+                    size={18}
+                    weight={hoverCheck ? "Filled" : "Outline"}
+                    aria-hidden="true"
+                    className="shrink-0"
+                  />
                   <span className="hidden sm:inline sm:min-w-0 sm:truncate">
                     {t.practice.check}
                   </span>
@@ -323,9 +367,16 @@ function PracticePlayer({
             <button
               type="button"
               className="bg-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+              onMouseEnter={() => setHoverSubmit(true)}
+              onMouseLeave={() => setHoverSubmit(false)}
               onClick={onSubmit}
             >
-              <Send size={18} aria-hidden="true" className="shrink-0" />
+              <Send
+                size={18}
+                weight={hoverSubmit ? "Filled" : "Outline"}
+                aria-hidden="true"
+                className="shrink-0"
+              />
               <span className="hidden sm:inline sm:min-w-0 sm:truncate">
                 {t.practice.submit}
               </span>
@@ -334,7 +385,10 @@ function PracticePlayer({
         </div>
         <button
           type="button"
+          ref={nextBtnRef}
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
+          onMouseEnter={() => setHoverNext(true)}
+          onMouseLeave={() => setHoverNext(false)}
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
@@ -357,6 +411,7 @@ function PracticePlayer({
           </span>
           <ArrowSquareRight2
             size={18}
+            weight={hoverNext ? "Filled" : "Outline"}
             aria-hidden="true"
             className="shrink-0"
           />
@@ -473,6 +528,7 @@ export default function PracticeTopic() {
   });
 
   const subjectReadyRef = useRef(false);
+  const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
   useEffect(() => {
     subjectReadyRef.current = !!subject;
   }, [subject]);
@@ -491,6 +547,7 @@ export default function PracticeTopic() {
     setDirection,
     eventName: "practice_navigate",
     eventData: navEventData,
+    onKeyPress: (dir) => arrowAnimateRef.current(dir),
   });
 
   useEffect(() => {
@@ -638,6 +695,7 @@ export default function PracticeTopic() {
         onSubmit={handleSubmit}
         onCheckQuestion={handleCheckQuestion}
         onClearAnswer={handleClearAnswer}
+        arrowAnimateRef={arrowAnimateRef}
       />
     </>
   );

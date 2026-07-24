@@ -159,6 +159,7 @@ interface ExamPlayerProps {
   onAnswer: (questionId: string, answer: string) => void;
   onSelfGrade: (questionId: string, grade: "correct" | "incorrect") => void;
   onSubmit: () => void;
+  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
 }
 
 function ExamPlayer({
@@ -183,8 +184,30 @@ function ExamPlayer({
   onAnswer,
   onSelfGrade,
   onSubmit,
+  arrowAnimateRef,
 }: ExamPlayerProps) {
   const t = useT();
+  const [hoverPrev, setHoverPrev] = useState(false);
+  const [hoverNext, setHoverNext] = useState(false);
+  const prevBtnRef = useRef<HTMLButtonElement>(null);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+
+  const animateArrowPress = useCallback(
+    (ref: React.RefObject<HTMLButtonElement | null>) => {
+      ref.current?.animate(
+        [{ transform: "scale(0.92)" }, { transform: "scale(1)" }],
+        { duration: 150, easing: "ease-out" },
+      );
+    },
+    [],
+  );
+
+  useEffect(() => {
+    arrowAnimateRef.current = (dir) => {
+      animateArrowPress(dir === "prev" ? prevBtnRef : nextBtnRef);
+    };
+  }, [arrowAnimateRef, animateArrowPress]);
+
   const currentQuestion = questions[currentIndex];
   const currentTopic = subject.topics.find(
     (tp) => tp.key === currentQuestion.topic,
@@ -395,7 +418,10 @@ function ExamPlayer({
       <div className="mt-6 flex items-center gap-2 sm:justify-between sm:gap-3">
         <button
           type="button"
+          ref={prevBtnRef}
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
+          onMouseEnter={() => setHoverPrev(true)}
+          onMouseLeave={() => setHoverPrev(false)}
           onClick={() => {
             triggerLight();
             const nextIndex = Math.max(0, currentIndex - 1);
@@ -413,7 +439,12 @@ function ExamPlayer({
           }}
           disabled={currentIndex === 0}
         >
-          <ArrowSquareLeft2 size={18} aria-hidden="true" className="shrink-0" />
+          <ArrowSquareLeft2
+            size={18}
+            weight={hoverPrev ? "Filled" : "Outline"}
+            aria-hidden="true"
+            className="shrink-0"
+          />
           <span className="hidden sm:inline sm:min-w-0 sm:truncate">
             {t.exam.previous}
           </span>
@@ -437,7 +468,10 @@ function ExamPlayer({
         </div>
         <button
           type="button"
+          ref={nextBtnRef}
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
+          onMouseEnter={() => setHoverNext(true)}
+          onMouseLeave={() => setHoverNext(false)}
           onClick={() => {
             triggerLight();
             const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
@@ -460,6 +494,7 @@ function ExamPlayer({
           </span>
           <ArrowSquareRight2
             size={18}
+            weight={hoverNext ? "Filled" : "Outline"}
             aria-hidden="true"
             className="shrink-0"
           />
@@ -672,6 +707,7 @@ export default function ExamSimulation() {
   const navRef = useRef<HTMLDivElement>(null);
   const currentIndexRef = useRef(currentIndex);
   const startedRef = useRef(started);
+  const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
 
   const scrollToNav = useCallback((index: number) => {
     const container = navRef.current;
@@ -708,6 +744,7 @@ export default function ExamSimulation() {
     setDirection,
     eventName: "exam_navigate",
     eventData: navEventData,
+    onKeyPress: (dir) => arrowAnimateRef.current(dir),
   });
 
   useEffect(() => {
@@ -859,6 +896,7 @@ export default function ExamSimulation() {
         onAnswer={handleAnswer}
         onSelfGrade={handleSelfGrade}
         onSubmit={handleSubmitConfirm}
+        arrowAnimateRef={arrowAnimateRef}
       />
     </>
   );
