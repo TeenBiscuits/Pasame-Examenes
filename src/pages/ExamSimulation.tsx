@@ -19,6 +19,7 @@ import { useSeoHead } from "../lib/seo";
 import { buildExamMeta } from "../seo/meta";
 import { useExamSession } from "../hooks/useExamSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
+import { useBrowserNavigationGuard } from "../hooks/useBrowserNavigationGuard";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
@@ -991,6 +992,8 @@ export default function ExamSimulation() {
     (examInfo?.durationMinutes || 120) * 60,
     t,
   );
+
+  useBrowserNavigationGuard(questions.length > 0 && !!subject && !!examInfo);
 
   const handleSubmitConfirm = useCallback(
     () => handleSubmit(true),
