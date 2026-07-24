@@ -53,7 +53,7 @@ export default function Header() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link
           to="/"
-          data-cuelume-hover="tick"
+          data-cuelume-hover="sparkle"
           data-cuelume-press
           className="text-fg hover:text-accent focus-visible:ring-accent flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {

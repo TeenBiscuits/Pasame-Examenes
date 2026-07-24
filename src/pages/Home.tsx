@@ -103,7 +103,7 @@ export default function Home() {
               </h2>
               <button
                 type="button"
-                data-cuelume-press
+                data-cuelume-press="whisper"
                 onClick={handleClearRecent}
                 className="text-fg-muted hover:text-incorrect-fg rounded p-1 transition-colors"
                 aria-label={t.home.clearRecent}

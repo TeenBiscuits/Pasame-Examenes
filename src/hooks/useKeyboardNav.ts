@@ -1,6 +1,7 @@
 import { useEffect, type RefObject } from "react";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
+import { playPress } from "../lib/sound";
 
 type EventData = Record<string, string | number | boolean | undefined | null>;
 
@@ -38,6 +39,7 @@ export function useKeyboardNav(opts: KeyboardNavOpts): void {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
         triggerLight();
+        playPress();
         onKeyPress?.("prev");
         if (idx > 0) {
           const nextIndex = idx - 1;
@@ -55,6 +57,7 @@ export function useKeyboardNav(opts: KeyboardNavOpts): void {
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
         triggerLight();
+        playPress();
         onKeyPress?.("next");
         if (idx < questionsLength - 1) {
           const nextIndex = idx + 1;

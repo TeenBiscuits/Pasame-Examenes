@@ -91,6 +91,7 @@ function CopyrightReportModal({
           </h2>
           <button
             type="button"
+            data-cuelume-press
             onClick={() => {
               closeMethodRef.current = "x";
               dialogRef.current?.close();
