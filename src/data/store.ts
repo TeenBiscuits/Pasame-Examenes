@@ -25,23 +25,8 @@ export function saveAttempt(subjectId: string, attempt: ExamAttempt) {
 export function clearTopicProgress(subjectId: string): number {
   try {
     const attempts = getAttempts(subjectId);
-    const retainedAttempts = attempts.filter(
-      (attempt) => attempt.mode !== "practice",
-    );
-    const clearedCount = attempts.length - retainedAttempts.length;
-
-    if (clearedCount === 0) return 0;
-
-    if (retainedAttempts.length === 0) {
-      localStorage.removeItem(`exam-attempts:${subjectId}`);
-    } else {
-      localStorage.setItem(
-        `exam-attempts:${subjectId}`,
-        JSON.stringify(retainedAttempts),
-      );
-    }
-
-    return clearedCount;
+    localStorage.removeItem(`exam-attempts:${subjectId}`);
+    return attempts.length;
   } catch (e) {
     console.error("Failed to clear topic progress", e);
     return 0;

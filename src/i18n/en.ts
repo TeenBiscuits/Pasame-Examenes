@@ -18,7 +18,9 @@ export const en = {
     practiceByTopic: "Topics",
     resetTopicProgress: "Reset topic progress",
     resetTopicProgressConfirm:
-      "Reset all topic progress for this subject? Your exam attempts will be kept.",
+      "Reset all topic progress for this subject? This cannot be undone.",
+    resetTopicProgressCancel: "Cancel",
+    resetTopicProgressAction: "Reset progress",
     examSimulations: "Exams",
     practiceSimulations: "Compilations",
     originalExams: "Original Exam Documents",

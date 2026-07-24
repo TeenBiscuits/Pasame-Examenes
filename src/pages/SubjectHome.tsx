@@ -1,4 +1,11 @@
-import { useRef, useState, useEffect, useMemo, type ReactNode } from "react";
+import {
+  useRef,
+  useState,
+  useEffect,
+  useMemo,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import { useParams } from "react-router-dom";
 import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
@@ -20,7 +27,7 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
-import { ArrowRightUp, Restart } from "reicon-react";
+import { ArrowRightUp, CloseSquare2, Restart } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   CheckmarkBadge02Icon,
@@ -35,6 +42,7 @@ export default function SubjectHome() {
   const { lang } = useLang();
   const examModalRef = useRef<AddExamModalHandle>(null);
   const copyrightModalRef = useRef<CopyrightReportModalHandle>(null);
+  const resetProgressDialogRef = useRef<HTMLDialogElement>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
@@ -101,8 +109,6 @@ export default function SubjectHome() {
     .replace("{exams}", String(availableExams.length));
 
   function handleResetTopicProgress() {
-    if (!window.confirm(t.subjectHome.resetTopicProgressConfirm)) return;
-
     const clearedCount = clearTopicProgress(currentSubjectId);
     track("reset_topic_progress", {
       subjectId: currentSubjectId,
@@ -116,6 +122,7 @@ export default function SubjectHome() {
         ),
       );
     }
+    resetProgressDialogRef.current?.close();
   }
 
   return (
@@ -127,7 +134,12 @@ export default function SubjectHome() {
           subject={subject}
           questions={allQuestions}
           progress={progress}
-          onResetProgress={handleResetTopicProgress}
+          onResetProgress={() => {
+            track("reset_topic_progress_modal_open", {
+              subjectId: currentSubjectId,
+            });
+            resetProgressDialogRef.current?.showModal();
+          }}
         />
         <ExamSimulationsSection
           subject={subject}
@@ -148,6 +160,10 @@ export default function SubjectHome() {
           subjectId={subject.id}
           subjectName={subject.name}
         />
+        <ResetTopicProgressDialog
+          dialogRef={resetProgressDialogRef}
+          onConfirm={handleResetTopicProgress}
+        />
 
         <PdfLinksSection
           subject={subject}
@@ -160,6 +176,75 @@ export default function SubjectHome() {
         <ContentNotes subject={subject} />
       </div>
     </div>
+  );
+}
+
+function ResetTopicProgressDialog({
+  dialogRef,
+  onConfirm,
+}: {
+  dialogRef: RefObject<HTMLDialogElement | null>;
+  onConfirm: () => void;
+}) {
+  const t = useT();
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleBackdropClick = (event: MouseEvent) => {
+      if (event.target === dialog) dialog.close();
+    };
+    dialog.addEventListener("click", handleBackdropClick);
+    return () => dialog.removeEventListener("click", handleBackdropClick);
+  }, [dialogRef]);
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="animate-dialog bg-surface-alt m-auto w-[min(92vw,24rem)] rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      aria-labelledby="reset-topic-progress-title"
+    >
+      <div className="mb-5 flex items-center justify-between gap-4">
+        <h2
+          id="reset-topic-progress-title"
+          className="text-fg inline-flex items-center gap-2 text-lg font-semibold"
+        >
+          <Restart className="size-5 shrink-0" weight="Filled" />
+          {t.subjectHome.resetTopicProgress}
+        </h2>
+        <button
+          type="button"
+          data-cuelume-press
+          onClick={() => dialogRef.current?.close()}
+          className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          aria-label={t.subjectHome.resetTopicProgressCancel}
+        >
+          <CloseSquare2 className="size-5" />
+        </button>
+      </div>
+      <p className="text-fg-secondary mb-6 text-sm">
+        {t.subjectHome.resetTopicProgressConfirm}
+      </p>
+      <div className="flex gap-3">
+        <button
+          type="button"
+          data-cuelume-press
+          onClick={() => dialogRef.current?.close()}
+          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+        >
+          {t.subjectHome.resetTopicProgressCancel}
+        </button>
+        <button
+          type="button"
+          data-cuelume-press
+          onClick={onConfirm}
+          className="focus-visible:ring-incorrect-fg flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+        >
+          {t.subjectHome.resetTopicProgressAction}
+        </button>
+      </div>
+    </dialog>
   );
 }
 

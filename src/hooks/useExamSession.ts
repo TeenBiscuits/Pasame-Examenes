@@ -1,6 +1,5 @@
 import { useReducer, useCallback, useRef, useEffect } from "react";
 import type { Question } from "../data/types";
-import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
 
@@ -97,7 +96,6 @@ export function useExamSession(
   const timeUp = state.timeLeft <= 0 && state.started && !state.submitted;
 
   const startTimeRef = useRef(0);
-  const attemptIdRef = useRef("");
   const timeUpTrackedRef = useRef(false);
 
   const setCurrentIndex = useCallback(
@@ -127,8 +125,6 @@ export function useExamSession(
 
       triggerMedium();
       const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
-      const id = getNow().toString();
-      attemptIdRef.current = id;
       let score = 0;
       for (const q of questions) {
         score += gradeQuestion(
@@ -149,16 +145,6 @@ export function useExamSession(
         questionsCount: questions.length,
         answered: answeredCount,
       });
-      saveAttempt(subjectId, {
-        id,
-        exam: year,
-        mode: "exam",
-        date: new Date().toISOString(),
-        score,
-        maxScore: questions.reduce((s, q) => s + q.points, 0),
-        answers: state.answers,
-        timeSpent: elapsed,
-      });
       dispatch({ type: "SUBMIT", elapsed });
     },
     [subjectId, year, questions, state.answers, state.selfGrades, t],
@@ -168,24 +154,8 @@ export function useExamSession(
     (questionId: string, grade: "correct" | "incorrect") => {
       track("exam_self_grade", { subjectId, year, questionId, grade });
       dispatch({ type: "SELF_GRADE", questionId, grade });
-      const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
-      let score = 0;
-      const nextGrades = { ...state.selfGrades, [questionId]: grade };
-      for (const q of questions) {
-        score += gradeQuestion(q, state.answers[q.id] || "", nextGrades[q.id]);
-      }
-      saveAttempt(subjectId, {
-        id: attemptIdRef.current || getNow().toString(),
-        exam: year,
-        mode: "exam",
-        date: new Date().toISOString(),
-        score,
-        maxScore: questions.reduce((s, q) => s + q.points, 0),
-        answers: state.answers,
-        timeSpent: elapsed,
-      });
     },
-    [subjectId, year, questions, state.answers, state.selfGrades],
+    [subjectId, year],
   );
 
   // Timer

@@ -20,7 +20,9 @@ export const es: Translations = {
     practiceByTopic: "Temas",
     resetTopicProgress: "Restablecer progreso de los temas",
     resetTopicProgressConfirm:
-      "¿Restablecer todo el progreso de los temas de esta asignatura? Se conservarán tus intentos de examen.",
+      "¿Restablecer todo el progreso de los temas de esta asignatura? Esta acción no se puede deshacer.",
+    resetTopicProgressCancel: "Cancelar",
+    resetTopicProgressAction: "Restablecer progreso",
     examSimulations: "Exámenes",
     practiceSimulations: "Recopilatorios",
     originalExams: "Documentos originales de examen",
