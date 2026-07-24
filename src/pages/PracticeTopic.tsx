@@ -22,6 +22,7 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
 import { computeQuestionResults } from "../lib/grading";
+import ScoreProgress from "../components/ScoreProgress";
 import {
   ArrowSquareLeft2,
   ArrowSquareRight2,
@@ -142,17 +143,31 @@ function PracticePlayer({
     [questions, checkedQuestions, selfGrades, submitted],
   );
 
+  const pendingTextPoints = useMemo(
+    () =>
+      questions
+        .filter(
+          (q) =>
+            q.type === "text" &&
+            (checkedQuestions[q.id] || submitted) &&
+            !selfGrades[q.id],
+        )
+        .reduce((sum, q) => sum + q.points, 0),
+    [questions, checkedQuestions, selfGrades, submitted],
+  );
+
   const allTextGraded =
     questions.filter((q) => q.type === "text").length === 0 ||
     pendingTextCount === 0;
 
-  const getScore = () => {
+  const getScore = (onlyGraded = false) => {
     let score = 0;
     for (const q of questions) {
       if (q.type === "text") {
         if (selfGrades[q.id] === "correct") score += q.points;
         continue;
       }
+      if (onlyGraded && !submitted && !checkedQuestions[q.id]) continue;
       if (!answers[q.id] || answers[q.id].trim() === "") continue;
       if (q.type === "mc") {
         if (answers[q.id] === q.correctAnswer) score += q.points;
@@ -173,6 +188,8 @@ function PracticePlayer({
     }
     return roundPoints(score);
   };
+
+  const gradedScore = getScore(true);
 
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
@@ -198,36 +215,58 @@ function PracticePlayer({
       </div>
 
       {(submitted || Object.keys(checkedQuestions).length > 0) && (
-        <div
-          className={`animate-fade-in-up mb-6 rounded-lg border p-4 ${
-            submitted && allTextGraded
-              ? "border-correct-border bg-correct-bg"
-              : "border-pending-border bg-pending-bg"
-          }`}
+        <ScoreProgress
+          score={gradedScore}
+          totalPoints={totalPoints}
+          pendingPoints={pendingTextPoints}
+          colorClassName={
+            submitted && allTextGraded ? "text-correct-fg" : "text-pending-fg"
+          }
+          className="animate-fade-in-up mb-6"
         >
-          <p className="text-fg flex items-center gap-1.5 font-semibold">
-            <Trophy
-              size={18}
-              weight={submitted ? "Filled" : "Outline"}
-              aria-hidden="true"
-              className="shrink-0"
-            />
-            {submitted ? t.practice.score : t.practice.runningScore}:{" "}
-            {formatPoints(getScore())} {t.exam.outOf}{" "}
-            {formatPoints(totalPoints)} {t.practice.points}
-          </p>
-          <p
-            className={`mt-1 text-sm ${
-              submitted && allTextGraded ? "text-correct-fg" : "text-pending-fg"
+          <div
+            className={`rounded-lg border p-4 pb-8 ${
+              submitted && allTextGraded
+                ? "border-correct-border bg-correct-bg"
+                : "border-pending-border bg-pending-bg"
             }`}
           >
-            {submitted && pendingTextCount > 0
-              ? t.practice.selfGradeHint
-              : submitted
-                ? t.practice.allSelfGraded
-                : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`}
-          </p>
-        </div>
+            <div className="text-fg flex items-center gap-2">
+              <Trophy
+                size={18}
+                weight={submitted ? "Filled" : "Outline"}
+                aria-hidden="true"
+                className="shrink-0"
+              />
+              <p className="font-semibold">
+                {submitted ? t.practice.score : t.practice.runningScore}
+              </p>
+              <p className="ml-auto text-lg font-bold whitespace-nowrap tabular-nums">
+                {formatPoints(gradedScore)}
+                <span className="text-fg-muted mx-1 text-sm font-medium">
+                  /
+                </span>
+                {formatPoints(totalPoints)}
+                <span className="text-fg-muted ml-1 text-sm font-medium">
+                  {t.practice.points}
+                </span>
+              </p>
+            </div>
+            <p
+              className={`mt-1 text-sm ${
+                submitted && allTextGraded
+                  ? "text-correct-fg"
+                  : "text-pending-fg"
+              }`}
+            >
+              {submitted && pendingTextCount > 0
+                ? t.practice.selfGradeHint
+                : submitted
+                  ? t.practice.allSelfGraded
+                  : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`}
+            </p>
+          </div>
+        </ScoreProgress>
       )}
 
       <QuestionNavChips

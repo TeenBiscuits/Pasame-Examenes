@@ -23,6 +23,7 @@ import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
 import { computeQuestionResults } from "../lib/grading";
+import ScoreProgress from "../components/ScoreProgress";
 import {
   Alarm,
   ArrowSquareLeft2,
@@ -268,6 +269,14 @@ function ExamPlayer({
     [questions, selfGrades, submitted],
   );
 
+  const pendingTextPoints = useMemo(
+    () =>
+      questions
+        .filter((q) => q.type === "text" && submitted && !selfGrades[q.id])
+        .reduce((sum, q) => sum + q.points, 0),
+    [questions, selfGrades, submitted],
+  );
+
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
       <div className="mb-6">
@@ -343,41 +352,64 @@ function ExamPlayer({
       </div>
 
       {submitted && (
-        <div
-          className={`animate-fade-in-up mb-6 rounded-lg border p-4 text-sm ${
+        <ScoreProgress
+          score={score}
+          totalPoints={totalPoints}
+          pendingPoints={pendingTextPoints}
+          colorClassName={
             pendingTextCount > 0
-              ? "border-pending-border bg-pending-bg"
+              ? "text-pending-fg"
               : score >= examInfo.passPoints
-                ? "border-correct-border bg-correct-bg"
-                : "border-incorrect-border bg-incorrect-bg"
-          }`}
+                ? "text-correct-fg"
+                : "text-incorrect-fg"
+          }
+          className="animate-fade-in-up mb-6"
         >
-          <p className="text-fg mb-1 flex items-center gap-1.5 font-semibold">
-            <Trophy
-              size={18}
-              weight="Filled"
-              aria-hidden="true"
-              className="shrink-0"
-            />
-            {t.exam.submitted} {t.exam.score}: {formatPoints(score)}
-            {t.exam.outOf}
-            {formatPoints(totalPoints)} (
-            {Math.round((score / totalPoints) * 100)}%)
-          </p>
-          <p
-            className={`${
+          <div
+            className={`rounded-lg border p-4 pb-8 text-sm ${
               pendingTextCount > 0
-                ? "text-pending-fg"
+                ? "border-pending-border bg-pending-bg"
                 : score >= examInfo.passPoints
-                  ? "text-correct-fg"
-                  : "text-incorrect-fg"
+                  ? "border-correct-border bg-correct-bg"
+                  : "border-incorrect-border bg-incorrect-bg"
             }`}
           >
-            {pendingTextCount > 0
-              ? t.exam.selfGradeHint
-              : `${t.exam.passThreshold}: ${formatPoints(examInfo.passPoints)}p. ${t.exam.reviewNote}`}
-          </p>
-        </div>
+            <div className="text-fg mb-1 flex items-center gap-2">
+              <Trophy
+                size={18}
+                weight="Filled"
+                aria-hidden="true"
+                className="shrink-0"
+              />
+              <p className="font-semibold">
+                {t.exam.submitted} {t.exam.score}
+              </p>
+              <p className="ml-auto text-lg font-bold whitespace-nowrap tabular-nums">
+                {formatPoints(score)}
+                <span className="text-fg-muted mx-1 text-sm font-medium">
+                  /
+                </span>
+                {formatPoints(totalPoints)}
+                <span className="text-fg-muted ml-1 text-sm font-medium">
+                  ({Math.round((score / totalPoints) * 100)}%)
+                </span>
+              </p>
+            </div>
+            <p
+              className={`${
+                pendingTextCount > 0
+                  ? "text-pending-fg"
+                  : score >= examInfo.passPoints
+                    ? "text-correct-fg"
+                    : "text-incorrect-fg"
+              }`}
+            >
+              {pendingTextCount > 0
+                ? t.exam.selfGradeHint
+                : `${t.exam.passThreshold}: ${formatPoints(examInfo.passPoints)}p. ${t.exam.reviewNote}`}
+            </p>
+          </div>
+        </ScoreProgress>
       )}
 
       <QuestionNavChips
