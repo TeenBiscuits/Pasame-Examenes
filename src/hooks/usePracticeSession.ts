@@ -53,6 +53,9 @@ function gradeQuestion(
   answer: string,
   selfGrade?: "correct" | "incorrect",
 ): number {
+  if (question.type === "text") {
+    return selfGrade === "correct" ? question.points : 0;
+  }
   if (!answer || answer.trim() === "") return 0;
   if (question.type === "mc") {
     return answer === question.correctAnswer ? question.points : 0;
@@ -70,9 +73,6 @@ function gradeQuestion(
     } catch {
       return 0;
     }
-  }
-  if (question.type === "text") {
-    return selfGrade === "correct" ? question.points : 0;
   }
   return 0;
 }

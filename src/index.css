@@ -153,6 +153,10 @@ html[data-theme="pink"] {
   --color-accent-border: #fbcfe8;
   --color-code: #f3f4f6;
   --color-code-block: #111827;
+  /* Feedback colors */
+  --color-correct-bg: #fce7f3;
+  --color-correct-border: #fbcfe8;
+  --color-correct-fg: #be185d;
 }
 
 /* ── Catppuccin Mocha theme ── */

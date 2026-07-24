@@ -202,6 +202,10 @@ function ExamPlayer({
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
+      if (q.type === "text") {
+        if (selfGrades[q.id] === "correct") score += q.points;
+        continue;
+      }
       if (!answers[q.id] || answers[q.id].trim() === "") continue;
       if (q.type === "mc") {
         if (answers[q.id] === q.correctAnswer) score += q.points;
@@ -218,8 +222,6 @@ function ExamPlayer({
         } catch {
           /* skip */
         }
-      } else if (q.type === "text") {
-        if (selfGrades[q.id] === "correct") score += q.points;
       }
     }
     return roundPoints(score);
@@ -316,7 +318,7 @@ function ExamPlayer({
         <div
           className={`animate-fade-in-up mb-6 rounded-lg border p-4 text-sm ${
             pendingTextCount > 0
-              ? "bg-accent-light border-accent-border"
+              ? "border-pending-border bg-pending-bg"
               : score >= examInfo.passPoints
                 ? "border-correct-border bg-correct-bg"
                 : "border-incorrect-border bg-incorrect-bg"
@@ -337,7 +339,7 @@ function ExamPlayer({
           <p
             className={`${
               pendingTextCount > 0
-                ? "text-accent-fg"
+                ? "text-pending-fg"
                 : score >= examInfo.passPoints
                   ? "text-correct-fg"
                   : "text-incorrect-fg"

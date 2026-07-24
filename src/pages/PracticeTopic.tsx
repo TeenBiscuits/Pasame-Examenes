@@ -44,7 +44,6 @@ interface PracticePlayerProps {
   submitted: boolean;
   checkedQuestions: Record<string, boolean>;
   totalPoints: number;
-  textQuestionCount: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
   showLeftFade: boolean;
@@ -71,7 +70,6 @@ function PracticePlayer({
   submitted,
   checkedQuestions,
   totalPoints,
-  textQuestionCount,
   direction,
   setDirection,
   showLeftFade,
@@ -125,6 +123,10 @@ function PracticePlayer({
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
+      if (q.type === "text") {
+        if (selfGrades[q.id] === "correct") score += q.points;
+        continue;
+      }
       if (!answers[q.id] || answers[q.id].trim() === "") continue;
       if (q.type === "mc") {
         if (answers[q.id] === q.correctAnswer) score += q.points;
@@ -141,8 +143,6 @@ function PracticePlayer({
         } catch {
           /* skip */
         }
-      } else if (q.type === "text") {
-        if (selfGrades[q.id] === "correct") score += q.points;
       }
     }
     return roundPoints(score);
@@ -174,7 +174,7 @@ function PracticePlayer({
           className={`animate-fade-in-up mb-6 rounded-lg border p-4 ${
             submitted && allTextGraded
               ? "border-correct-border bg-correct-bg"
-              : "bg-accent-light border-accent-border"
+              : "border-pending-border bg-pending-bg"
           }`}
         >
           <p className="text-fg flex items-center gap-1.5 font-semibold">
@@ -190,16 +190,14 @@ function PracticePlayer({
           </p>
           <p
             className={`mt-1 text-sm ${
-              submitted && allTextGraded ? "text-correct-fg" : "text-accent-fg"
+              submitted && allTextGraded ? "text-correct-fg" : "text-pending-fg"
             }`}
           >
             {submitted && pendingTextCount > 0
               ? t.practice.selfGradeHint
-              : submitted && textQuestionCount > 0
-                ? `${Object.values(selfGrades).filter(Boolean).length} ${t.exam.outOf} ${textQuestionCount} ${t.practice.openEnded}`
-                : submitted
-                  ? t.practice.allSelfGraded
-                  : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`}
+              : submitted
+                ? t.practice.allSelfGraded
+                : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`}
           </p>
         </div>
       )}
@@ -280,28 +278,35 @@ function PracticePlayer({
           className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
           data-tour="practice-actions"
         >
-          {answers[currentQuestion.id] &&
+          {(answers[currentQuestion.id] || currentQuestion?.type === "text") &&
             !submitted &&
             !checkedQuestions[currentQuestion.id] && (
               <>
-                <button
-                  type="button"
-                  className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-                  onClick={() => {
-                    triggerLight();
-                    track("practice_clear_answer", {
-                      questionId: currentQuestion.id,
-                      subjectId: subject.id,
-                      topic: topic || "",
-                    });
-                    onClearAnswer(currentQuestion.id);
-                  }}
-                >
-                  <Trash5 size={18} aria-hidden="true" className="shrink-0" />
-                  <span className="hidden sm:inline sm:min-w-0 sm:truncate">
-                    {t.practice.clear}
-                  </span>
-                </button>
+                {answers[currentQuestion.id] &&
+                  answers[currentQuestion.id].trim() !== "" && (
+                    <button
+                      type="button"
+                      className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+                      onClick={() => {
+                        triggerLight();
+                        track("practice_clear_answer", {
+                          questionId: currentQuestion.id,
+                          subjectId: subject.id,
+                          topic: topic || "",
+                        });
+                        onClearAnswer(currentQuestion.id);
+                      }}
+                    >
+                      <Trash5
+                        size={18}
+                        aria-hidden="true"
+                        className="shrink-0"
+                      />
+                      <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+                        {t.practice.clear}
+                      </span>
+                    </button>
+                  )}
                 <button
                   type="button"
                   className="flex min-w-0 items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-3 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95 sm:py-2"
@@ -398,10 +403,6 @@ export default function PracticeTopic() {
   }, [subject, topic]);
   const questionsLoaded =
     !!subject && !!topic && questionsLoadedFor === `${subject.id}/${topic}`;
-  const textQuestionCount = useMemo(
-    () => questions.filter((q) => q.type === "text").length,
-    [questions],
-  );
   const seoMeta = useMemo(
     () =>
       subject && topicInfo
@@ -626,7 +627,6 @@ export default function PracticeTopic() {
         submitted={submitted}
         checkedQuestions={checkedQuestions}
         totalPoints={totalPoints}
-        textQuestionCount={textQuestionCount}
         direction={direction}
         setDirection={setDirection}
         showLeftFade={showLeftFade}
