@@ -53,7 +53,9 @@ export default function Header() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link
           to="/"
-          className="text-fg hover:text-accent focus-visible:ring-accent flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          data-cuelume-hover="sparkle"
+          data-cuelume-press
+          className="text-fg hover:text-accent focus-visible:ring-accent group flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home" });
@@ -64,7 +66,7 @@ export default function Header() {
             alt=""
             width={28}
             height={32}
-            className="h-8 w-7"
+            className="h-8 w-7 transition-transform duration-300 group-hover:rotate-12"
             aria-hidden="true"
           />
           <p className="text-sm sm:text-lg">{t.home.title}</p>
@@ -74,6 +76,8 @@ export default function Header() {
             <>
               <Link
                 to={`/${subjectId}`}
+                data-cuelume-hover="tick"
+                data-cuelume-press
                 className={`sm:hidden ${acronymLinkClasses}`}
                 onClick={() => {
                   triggerLight();
@@ -88,6 +92,8 @@ export default function Header() {
               </Link>
               <Link
                 to={`/${subjectId}`}
+                data-cuelume-hover="tick"
+                data-cuelume-press
                 className={`hidden max-w-56 truncate sm:block ${subjectLinkClasses}`}
                 onClick={() => {
                   triggerLight();
@@ -106,6 +112,7 @@ export default function Header() {
           <ThemeToggle />
           <button
             type="button"
+            data-cuelume-toggle
             className="border-border hover:bg-surface rounded border px-2 py-1 text-xs font-medium transition active:scale-95"
             onClick={() => {
               triggerLight();

@@ -1,6 +1,5 @@
 import { useReducer, useCallback, useRef, useEffect } from "react";
 import type { Question } from "../data/types";
-import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
 
@@ -54,6 +53,9 @@ function gradeQuestion(
   answer: string,
   selfGrade?: "correct" | "incorrect",
 ): number {
+  if (question.type === "text") {
+    return selfGrade === "correct" ? question.points : 0;
+  }
   if (!answer || answer.trim() === "") return 0;
   if (question.type === "mc") {
     return answer === question.correctAnswer ? question.points : 0;
@@ -71,9 +73,6 @@ function gradeQuestion(
     } catch {
       return 0;
     }
-  }
-  if (question.type === "text") {
-    return selfGrade === "correct" ? question.points : 0;
   }
   return 0;
 }
@@ -94,8 +93,9 @@ export function useExamSession(
     started: false,
   });
 
+  const timeUp = state.timeLeft <= 0 && state.started && !state.submitted;
+
   const startTimeRef = useRef(0);
-  const attemptIdRef = useRef("");
   const timeUpTrackedRef = useRef(false);
 
   const setCurrentIndex = useCallback(
@@ -119,76 +119,51 @@ export function useExamSession(
     startTimeRef.current = getNow();
   }, [subjectId, year, questions]);
 
-  const handleSubmit = useCallback(() => {
-    if (!window.confirm(t.exam.submitConfirm)) return;
+  const handleSubmit = useCallback(
+    (skipConfirm = false) => {
+      if (!skipConfirm && !window.confirm(t.exam.submitConfirm)) return;
 
-    triggerMedium();
-    const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
-    const id = getNow().toString();
-    attemptIdRef.current = id;
-    let score = 0;
-    for (const q of questions) {
-      score += gradeQuestion(
-        q,
-        state.answers[q.id] || "",
-        state.selfGrades[q.id],
-      );
-    }
-    const answeredCount = Object.values(state.answers).filter(
-      (a) => a && a.trim() !== "",
-    ).length;
-    track("exam_submit", {
-      subjectId,
-      year,
-      score,
-      maxScore: questions.reduce((s, q) => s + q.points, 0),
-      timeSpent: elapsed,
-      questionsCount: questions.length,
-      answered: answeredCount,
-    });
-    saveAttempt(subjectId, {
-      id,
-      exam: year,
-      mode: "exam",
-      date: new Date().toISOString(),
-      score,
-      maxScore: questions.reduce((s, q) => s + q.points, 0),
-      answers: state.answers,
-      timeSpent: elapsed,
-    });
-    dispatch({ type: "SUBMIT", elapsed });
-  }, [subjectId, year, questions, state.answers, state.selfGrades, t]);
+      triggerMedium();
+      const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
+      let score = 0;
+      for (const q of questions) {
+        score += gradeQuestion(
+          q,
+          state.answers[q.id] || "",
+          state.selfGrades[q.id],
+        );
+      }
+      const answeredCount = Object.values(state.answers).filter(
+        (a) => a && a.trim() !== "",
+      ).length;
+      track("exam_submit", {
+        subjectId,
+        year,
+        score,
+        maxScore: questions.reduce((s, q) => s + q.points, 0),
+        timeSpent: elapsed,
+        questionsCount: questions.length,
+        answered: answeredCount,
+      });
+      dispatch({ type: "SUBMIT", elapsed });
+    },
+    [subjectId, year, questions, state.answers, state.selfGrades, t],
+  );
 
   const handleSelfGrade = useCallback(
     (questionId: string, grade: "correct" | "incorrect") => {
       track("exam_self_grade", { subjectId, year, questionId, grade });
       dispatch({ type: "SELF_GRADE", questionId, grade });
-      const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
-      let score = 0;
-      const nextGrades = { ...state.selfGrades, [questionId]: grade };
-      for (const q of questions) {
-        score += gradeQuestion(q, state.answers[q.id] || "", nextGrades[q.id]);
-      }
-      saveAttempt(subjectId, {
-        id: attemptIdRef.current || getNow().toString(),
-        exam: year,
-        mode: "exam",
-        date: new Date().toISOString(),
-        score,
-        maxScore: questions.reduce((s, q) => s + q.points, 0),
-        answers: state.answers,
-        timeSpent: elapsed,
-      });
     },
-    [subjectId, year, questions, state.answers, state.selfGrades],
+    [subjectId, year],
   );
 
   // Timer
   useEffect(() => {
-    if (!state.started || state.submitted) return;
+    if (!state.started || state.submitted || timeUp) return;
     const timer = setInterval(() => dispatch({ type: "TICK" }), 1000);
     return () => clearInterval(timer);
-  }, [state.started, state.submitted]);
+  }, [state.started, state.submitted, timeUp]);
 
   // Time up tracking
   useEffect(() => {
@@ -216,6 +191,7 @@ export function useExamSession(
 
   return {
     ...state,
+    timeUp,
     setCurrentIndex,
     handleAnswer,
     handleStart,

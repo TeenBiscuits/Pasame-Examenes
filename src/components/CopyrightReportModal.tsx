@@ -91,6 +91,7 @@ function CopyrightReportModal({
           </h2>
           <button
             type="button"
+            data-cuelume-press
             onClick={() => {
               closeMethodRef.current = "x";
               dialogRef.current?.close();
@@ -111,6 +112,7 @@ function CopyrightReportModal({
           </p>
 
           <a
+            data-cuelume-press
             href={mailtoUrl}
             onClick={() => track("copyright_report_email", { subjectId })}
             className="border-t-red-border bg-t-red-bg/70 hover:bg-t-red-bg hover:border-t-red-hover text-fg flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left no-underline transition-colors"

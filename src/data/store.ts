@@ -22,6 +22,17 @@ export function saveAttempt(subjectId: string, attempt: ExamAttempt) {
   }
 }
 
+export function clearTopicProgress(subjectId: string): number {
+  try {
+    const attempts = getAttempts(subjectId);
+    localStorage.removeItem(`exam-attempts:${subjectId}`);
+    return attempts.length;
+  } catch (e) {
+    console.error("Failed to clear topic progress", e);
+    return 0;
+  }
+}
+
 export function getTopicProgress(
   subjectId: string,
   questions: { topic: string; points: number }[],

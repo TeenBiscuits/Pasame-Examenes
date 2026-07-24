@@ -6,6 +6,7 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
+import { bind as bindCuelume } from "cuelume";
 import {
   BrowserRouter,
   Routes,
@@ -202,6 +203,7 @@ function ModalShell({
         </h2>
         <button
           type="button"
+          data-cuelume-press
           onClick={() => dialogRef.current?.close()}
           className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent cursor-pointer rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.footer.close}
@@ -427,6 +429,7 @@ function Footer() {
             <button
               type="button"
               className={footerTextLinkClass}
+              data-cuelume-hover="whisper"
               onClick={() => {
                 track("modal_open", { modal: "licenses" });
                 if (!licensesDialogRef.current?.open) {
@@ -440,6 +443,7 @@ function Footer() {
             <button
               type="button"
               className={footerTextLinkClass}
+              data-cuelume-hover="whisper"
               onClick={() => {
                 track("modal_open", { modal: "privacy" });
                 if (!privacyDialogRef.current?.open) {
@@ -455,6 +459,8 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className={footerTextLinkClass}
+              data-cuelume-hover="sparkle"
+              data-cuelume-press="sparkle"
               onClick={() => track("external_link_click", { target: "github" })}
             >
               <HugeiconsIcon icon={Github01Icon} className="size-4" />
@@ -470,6 +476,10 @@ function Footer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    bindCuelume();
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="bg-surface text-fg flex min-h-screen min-h-svh flex-col font-sans">

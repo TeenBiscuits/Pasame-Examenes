@@ -35,7 +35,7 @@ export const meta: SubjectMeta = {
       description: "70 points · 5 questions",
       passPoints: 35,
       totalPoints: 70,
-      durationMinutes: 120,
+      durationMinutes: 5,
     },
     {
       year: "2025-01",
@@ -44,7 +44,7 @@ export const meta: SubjectMeta = {
       description: "90 points · 7 questions",
       passPoints: 45,
       totalPoints: 90,
-      durationMinutes: 150,
+      durationMinutes: 15,
       hasPdf: false,
     },
     {

@@ -4,10 +4,13 @@ import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import { playSound } from "../lib/sound";
+import type { SoundName } from "cuelume";
 
 interface FloatingEmojiProps {
   emoji: string;
   style: CSSProperties;
+  sound?: SoundName;
 }
 
 interface DragState {
@@ -22,7 +25,7 @@ interface DragState {
 const SPRING_MS = 800;
 const SPRING_EASING = "cubic-bezier(0.18, 0.89, 0.32, 1.28)";
 
-export default function FloatingEmoji({ emoji, style }: FloatingEmojiProps) {
+export default function FloatingEmoji({ emoji, style, sound }: FloatingEmojiProps) {
   const drag = useRef<DragState>({
     active: false,
     moved: false,
@@ -47,6 +50,7 @@ export default function FloatingEmoji({ emoji, style }: FloatingEmojiProps) {
     };
     setFlying(false);
     setPressed(true);
+    if (sound) playSound(sound);
     try {
       e.currentTarget.setPointerCapture(e.pointerId);
     } catch {

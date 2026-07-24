@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useT } from "../i18n/hooks";
+import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
 import { StarSparkle } from "reicon-react";
 
@@ -39,6 +40,10 @@ function StarIcon() {
   return <StarSparkle size={20} weight="Filled" aria-hidden="true" />;
 }
 
+function handleSparkle() {
+  playSound("sparkle");
+}
+
 export default function StarPopup() {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -52,6 +57,7 @@ export default function StarPopup() {
     openRef.current = false;
     writeDismissed();
     dialogRef.current?.close();
+    playSound(clickedStar ? "sparkle" : "droplet");
     track(clickedStar ? "star_popup_click" : "star_popup_dismiss");
   }, []);
 
@@ -90,11 +96,14 @@ export default function StarPopup() {
       aria-labelledby="star-popup-title"
     >
       <div className="text-center">
-        <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-amber-500/10">
-          <span className="text-amber-500">
-            <StarIcon />
-          </span>
-        </div>
+        <button
+          type="button"
+          aria-label={t.starPopup.sparkleButton}
+          onClick={handleSparkle}
+          className="mx-auto mb-4 flex size-12 cursor-pointer items-center justify-center rounded-full bg-amber-500/10 text-amber-500 transition hover:bg-amber-500/15 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+        >
+          <StarIcon />
+        </button>
 
         <h2
           id="star-popup-title"
@@ -109,6 +118,7 @@ export default function StarPopup() {
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-cuelume-hover="sparkle"
             onClick={handleStar}
             className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-amber-600 active:scale-[0.98]"
           >

@@ -103,8 +103,9 @@ export default function Home() {
               </h2>
               <button
                 type="button"
+                data-cuelume-press="whisper"
                 onClick={handleClearRecent}
-                className="text-fg-muted rounded p-1 transition-colors hover:text-red-500"
+                className="text-fg-muted hover:text-incorrect-fg rounded p-1 transition-colors"
                 aria-label={t.home.clearRecent}
                 title={t.home.clearRecent}
               >
@@ -124,6 +125,8 @@ export default function Home() {
                   {slot.type === "subject" ? (
                     <LangLink
                       to={`/${slot.subject.id}`}
+                      data-cuelume-hover="tick"
+                      data-cuelume-press
                       onClick={() => {
                         recordSubjectClick(slot.subject.id);
                         track("subject_card_click", {
@@ -164,6 +167,7 @@ export default function Home() {
           <div className="animate-fade-in-up timeline-view animate-range-entry">
             <button
               type="button"
+              data-cuelume-press
               onClick={() => {
                 modalRef.current?.open();
                 track("add_subject_modal_open");
