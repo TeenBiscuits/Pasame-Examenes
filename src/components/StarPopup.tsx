@@ -1,4 +1,9 @@
-import { useCallback, useEffect, useRef } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  type MouseEvent as ReactMouseEvent,
+} from "react";
 import { useT } from "../i18n/hooks";
 import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
@@ -43,6 +48,7 @@ function StarIcon() {
 export default function StarPopup() {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const sparkleAnimationRef = useRef<Animation | null>(null);
   const openRef = useRef<boolean | null>(null);
   if (openRef.current === null) {
     openRef.current = shouldShow();
@@ -83,6 +89,30 @@ export default function StarPopup() {
     finish(true);
   }
 
+  function handleSparkle(event: ReactMouseEvent<HTMLButtonElement>) {
+    playSound("sparkle");
+    if (
+      event.detail === 0 ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    sparkleAnimationRef.current?.cancel();
+    sparkleAnimationRef.current = event.currentTarget.animate(
+      [
+        { transform: "scale(1) rotate(0deg)" },
+        { transform: "scale(1.18) rotate(-8deg)", offset: 0.35 },
+        { transform: "scale(0.96) rotate(6deg)", offset: 0.7 },
+        { transform: "scale(1) rotate(0deg)" },
+      ],
+      {
+        duration: 260,
+        easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+      },
+    );
+  }
+
   const repoUrl = "https://github.com/TeenBiscuits/Pasame-Examenes";
 
   return (
@@ -92,11 +122,14 @@ export default function StarPopup() {
       aria-labelledby="star-popup-title"
     >
       <div className="text-center">
-        <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-amber-500/10">
-          <span className="text-amber-500">
-            <StarIcon />
-          </span>
-        </div>
+        <button
+          type="button"
+          aria-label={t.starPopup.sparkleButton}
+          onClick={handleSparkle}
+          className="mx-auto mb-4 flex size-12 cursor-pointer items-center justify-center rounded-full bg-amber-500/10 text-amber-500 transition-[background-color,transform] duration-150 hover:bg-amber-500/15 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+        >
+          <StarIcon />
+        </button>
 
         <h2
           id="star-popup-title"

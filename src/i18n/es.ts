@@ -383,6 +383,7 @@ export const es: Translations = {
   starPopup: {
     title: "¿Nos darías una estrella?",
     subtitle: "No queremos tu dinero, solo una estrella en GitHub.",
+    sparkleButton: "Haz brillar la estrella",
     starButton: "¡Dame una estrella!",
     dismiss: "Ahora no",
   },

@@ -382,6 +382,7 @@ export const gl: Translations = {
   starPopup: {
     title: "Daríasnos unha estrela?",
     subtitle: "Non queremos o teu diñeiro, só unha estrela en GitHub.",
+    sparkleButton: "Fai brillar a estrela",
     starButton: "Dame unha estrela!",
     dismiss: "Agora non",
   },

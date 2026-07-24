@@ -379,6 +379,7 @@ export const en = {
   starPopup: {
     title: "Would you give us a star?",
     subtitle: "We don't want your money, just a star on GitHub.",
+    sparkleButton: "Make the star sparkle",
     starButton: "Give us a star!",
     dismiss: "Not now",
   },
