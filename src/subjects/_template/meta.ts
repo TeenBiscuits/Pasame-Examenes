@@ -14,6 +14,12 @@ export const meta: SubjectMeta = {
   topics: [
     { key: "topic-1", label: "Topic 1", icon: "📌", color: "blue" },
     { key: "topic-2", label: "Topic 2", icon: "🔍", color: "green" },
+    {
+      key: "syntax-highlighting",
+      label: "Syntax Highlighting",
+      icon: "💻",
+      color: "purple",
+    },
   ],
   megatopics: [
     {
@@ -25,6 +31,11 @@ export const meta: SubjectMeta = {
       key: "group-b",
       label: "Group B",
       topics: ["topic-2"],
+    },
+    {
+      key: "rendering-tests",
+      label: "Rendering Tests",
+      topics: ["syntax-highlighting"],
     },
   ],
   exams: [

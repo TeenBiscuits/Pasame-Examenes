@@ -259,6 +259,240 @@ The profit margin improved from $16.7\\%$ to $20.8\\%$, indicating operational e
   },
 
   // ================================================================
+  // Syntax highlighting fixtures (practice only)
+  // ================================================================
+
+  {
+    id: "syntax_javascript",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `What value does this JavaScript expression return?
+
+\`\`\`javascript
+const scores = [8, 9, 10];
+const average = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+
+console.log(average);
+\`\`\``,
+    correctAnswer: "It prints `9`.",
+  },
+  {
+    id: "syntax_typescript",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `Which TypeScript feature makes the function parameter type-safe?
+
+\`\`\`typescript
+interface User {
+  id: number;
+  name: string;
+}
+
+function label(user: User): string {
+  return user.id + ": " + user.name;
+}
+\`\`\``,
+    correctAnswer:
+      "The `User` interface defines the required shape, and the parameter annotation applies it to `user`.",
+  },
+  {
+    id: "syntax_python",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `What list does this Python comprehension create?
+
+\`\`\`python
+even_squares = [number ** 2 for number in range(6) if number % 2 == 0]
+print(even_squares)
+\`\`\``,
+    correctAnswer: "It creates `[0, 4, 16]`.",
+  },
+  {
+    id: "syntax_java",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `What modern Java construct stores the two values?
+
+\`\`\`java
+record Point(int x, int y) {}
+
+var point = new Point(3, 4);
+System.out.println(point.x() + point.y());
+\`\`\``,
+    correctAnswer:
+      "A `record` stores the values and generates accessors; the code prints `7`.",
+  },
+  {
+    id: "syntax_c",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `What does the pointer change in this C program?
+
+\`\`\`c
+#include <stdio.h>
+
+int main(void) {
+    int value = 5;
+    int *pointer = &value;
+    *pointer += 2;
+    printf("%d\\n", value);
+    return 0;
+}
+\`\`\``,
+    correctAnswer: "It changes `value` through its address, so the program prints `7`.",
+  },
+  {
+    id: "syntax_cpp",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `How many elements does this C++ vector contain?
+
+\`\`\`cpp
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> values{2, 4, 6};
+    values.push_back(8);
+    std::cout << values.size() << '\\n';
+}
+\`\`\``,
+    correctAnswer: "It contains four elements, so the program prints `4`.",
+  },
+  {
+    id: "syntax_go",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `Which Go feature transfers the computed value?
+
+\`\`\`go
+package main
+
+import "fmt"
+
+func main() {
+    results := make(chan int)
+    go func() { results <- 6 * 7 }()
+    fmt.Println(<-results)
+}
+\`\`\``,
+    correctAnswer:
+      "A channel transfers the value from the goroutine; the program prints `42`.",
+  },
+  {
+    id: "syntax_rust",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `What does the question-mark operator do in this Rust function?
+
+\`\`\`rust
+fn parse_port(value: &str) -> Result<u16, std::num::ParseIntError> {
+    let port = value.parse::<u16>()?;
+    Ok(port)
+}
+\`\`\``,
+    correctAnswer:
+      "The `?` returns the parsing error early or unwraps the successful `u16` value.",
+  },
+  {
+    id: "syntax_sql",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `Which rows does this SQL query return?
+
+\`\`\`sql
+SELECT department, AVG(salary) AS average_salary
+FROM employees
+WHERE active = TRUE
+GROUP BY department
+HAVING COUNT(*) >= 5
+ORDER BY average_salary DESC;
+\`\`\``,
+    correctAnswer:
+      "It returns departments with at least five active employees, ordered by descending average salary.",
+  },
+  {
+    id: "syntax_bash",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `What fallback does this Bash script use?
+
+\`\`\`bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+name="\${1:-world}"
+printf 'Hello, %s!\\n' "$name"
+\`\`\``,
+    correctAnswer:
+      "The parameter expansion uses `world` when the first positional argument is missing or empty.",
+  },
+  {
+    id: "syntax_html_css",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `How do the HTML and CSS work together in this card?
+
+\`\`\`html
+<article class="card">
+  <h2>Build status</h2>
+  <p>All checks passed.</p>
+</article>
+\`\`\`
+
+\`\`\`css
+.card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid currentColor;
+}
+\`\`\``,
+    correctAnswer:
+      "The semantic `article` receives a grid layout, spacing, padding, and a color-aware border through the `card` class.",
+  },
+  {
+    id: "syntax_json",
+    exam: "syntax-highlighting",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 1,
+    question: `Which JSON property contains an array?
+
+\`\`\`json
+{
+  "name": "Template Subject",
+  "published": true,
+  "languages": ["en", "es", "gl"],
+  "questionCount": 12
+}
+\`\`\``,
+    correctAnswer: "The `languages` property contains an array of three strings.",
+  },
+
+  // ================================================================
   // Image + explanationImage examples
   // To use: add images to src/subjects/_template/assets/ and uncomment.
   // ================================================================

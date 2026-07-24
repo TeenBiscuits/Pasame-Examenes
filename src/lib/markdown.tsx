@@ -2,10 +2,23 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import bash from "react-syntax-highlighter/dist/esm/languages/prism/bash";
+import c from "react-syntax-highlighter/dist/esm/languages/prism/c";
+import cpp from "react-syntax-highlighter/dist/esm/languages/prism/cpp";
+import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
+import go from "react-syntax-highlighter/dist/esm/languages/prism/go";
+import java from "react-syntax-highlighter/dist/esm/languages/prism/java";
+import javascript from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
+import json from "react-syntax-highlighter/dist/esm/languages/prism/json";
+import markup from "react-syntax-highlighter/dist/esm/languages/prism/markup";
+import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
+import rust from "react-syntax-highlighter/dist/esm/languages/prism/rust";
+import sql from "react-syntax-highlighter/dist/esm/languages/prism/sql";
+import typescript from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
 import {
-  oneLight,
   oneDark,
+  oneLight,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useIsDark } from "../theme/hooks";
 import type { ComponentProps } from "react";
@@ -20,6 +33,24 @@ const inlineRehypePlugins: [typeof rehypeKatex, { output: "html" }][] = [
 
 const codeFont =
   '"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace';
+
+for (const [name, grammar] of Object.entries({
+  bash,
+  c,
+  cpp,
+  css,
+  go,
+  java,
+  javascript,
+  json,
+  markup,
+  python,
+  rust,
+  sql,
+  typescript,
+})) {
+  SyntaxHighlighter.registerLanguage(name, grammar);
+}
 
 const codeStyleLight = {
   ...oneLight,
