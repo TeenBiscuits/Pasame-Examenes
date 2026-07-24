@@ -68,7 +68,7 @@ export default function QuestionNavChips({
         else if (result === "pending" || isChecked)
           cls += " bg-pending-bg border-pending-border text-pending-fg";
         else if (isAnswered)
-          cls += " bg-accent-light border-accent-border text-accent-fg";
+          cls += " bg-pending-bg border-pending-border text-pending-fg";
         else cls += " border-border text-fg-muted hover:border-fg-muted";
         const direction =
           i > currentIndex ? "next" : i < currentIndex ? "prev" : undefined;
