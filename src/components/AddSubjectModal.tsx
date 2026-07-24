@@ -87,6 +87,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
 
         <div className="space-y-3">
           <a
+            data-cuelume-press
             href={t.addSubject.openIssueUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -105,6 +106,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
           </a>
 
           <a
+            data-cuelume-press
             href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/CONTRIBUTING.md"
             target="_blank"
             rel="noopener noreferrer"
@@ -124,6 +126,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
 
           <div className="border-border border-t pt-2">
             <a
+              data-cuelume-press
               href="mailto:pablo.portas@udc.es"
               onClick={() => track("add_subject_email")}
               className="border-border bg-surface/50 hover:bg-surface hover:border-border flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-colors"

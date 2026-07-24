@@ -101,6 +101,7 @@ function AddExamModal({
           </p>
 
           <a
+            data-cuelume-press
             href={issueUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -119,6 +120,7 @@ function AddExamModal({
           </a>
 
           <a
+            data-cuelume-press
             href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/CONTRIBUTING.md"
             target="_blank"
             rel="noopener noreferrer"
@@ -138,6 +140,7 @@ function AddExamModal({
 
           <div className="border-border border-t pt-2">
             <a
+              data-cuelume-press
               href="mailto:pablo.portas@udc.es"
               onClick={() => track("add_exam_email", { subjectId })}
               className="border-border bg-surface/50 hover:bg-surface hover:border-border flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-colors"
