@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useT } from "../i18n/hooks";
+import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
 import { StarSparkle } from "reicon-react";
 
@@ -52,6 +53,7 @@ export default function StarPopup() {
     openRef.current = false;
     writeDismissed();
     dialogRef.current?.close();
+    playSound(clickedStar ? "sparkle" : "droplet");
     track(clickedStar ? "star_popup_click" : "star_popup_dismiss");
   }, []);
 
@@ -69,6 +71,7 @@ export default function StarPopup() {
     };
 
     dialog.showModal();
+    playSound("bloom");
     dialog.addEventListener("close", handleClose);
     dialog.addEventListener("click", handleBackdropClick);
     return () => {
@@ -109,7 +112,6 @@ export default function StarPopup() {
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            data-cuelume-press="sparkle"
             onClick={handleStar}
             className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-amber-600 active:scale-[0.98]"
           >
@@ -118,7 +120,6 @@ export default function StarPopup() {
           </a>
           <button
             type="button"
-            data-cuelume-press
             onClick={dismiss}
             className="text-fg-muted hover:text-fg-secondary hover:bg-surface cursor-pointer rounded-lg px-4 py-2 text-sm transition"
           >
