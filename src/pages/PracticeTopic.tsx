@@ -19,7 +19,6 @@ import { useSeoHead } from "../lib/seo";
 import { buildTopicMeta } from "../seo/meta";
 import { usePracticeSession } from "../hooks/usePracticeSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
-import { useBrowserNavigationGuard } from "../hooks/useBrowserNavigationGuard";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
 import { computeQuestionResults } from "../lib/grading";
@@ -683,8 +682,6 @@ export default function PracticeTopic() {
     handleSelfGrade,
     handleCheckQuestion,
   } = usePracticeSession(questions, subject?.id || "", topic || "");
-
-  useBrowserNavigationGuard(questions.length > 0 && !!subject);
 
   const [navState, setNavState] = useState({
     direction: undefined as "next" | "prev" | undefined,
