@@ -38,10 +38,10 @@ export function useKeyboardNav(opts: KeyboardNavOpts): void {
       const idx = currentIndexRef.current;
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        triggerLight();
-        playPress();
-        onKeyPress?.("prev");
         if (idx > 0) {
+          triggerLight();
+          playPress();
+          onKeyPress?.("prev");
           const nextIndex = idx - 1;
           setDirection("prev");
           track(eventName, {
@@ -56,10 +56,10 @@ export function useKeyboardNav(opts: KeyboardNavOpts): void {
         }
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        triggerLight();
-        playPress();
-        onKeyPress?.("next");
         if (idx < questionsLength - 1) {
+          triggerLight();
+          playPress();
+          onKeyPress?.("next");
           const nextIndex = idx + 1;
           setDirection("next");
           track(eventName, {
