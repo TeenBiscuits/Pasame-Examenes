@@ -25,7 +25,11 @@ interface DragState {
 const SPRING_MS = 800;
 const SPRING_EASING = "cubic-bezier(0.18, 0.89, 0.32, 1.28)";
 
-export default function FloatingEmoji({ emoji, style, sound }: FloatingEmojiProps) {
+export default function FloatingEmoji({
+  emoji,
+  style,
+  sound,
+}: FloatingEmojiProps) {
   const drag = useRef<DragState>({
     active: false,
     moved: false,

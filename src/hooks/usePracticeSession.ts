@@ -170,7 +170,8 @@ export function usePracticeSession(
         state.answers[questionId]?.trim()
       ) {
         const isCorrect =
-          gradeQuestion(question, state.answers[questionId]) === question.points;
+          gradeQuestion(question, state.answers[questionId]) ===
+          question.points;
         if (isCorrect) {
           playSuccess();
         } else {

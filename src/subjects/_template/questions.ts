@@ -349,7 +349,8 @@ int main(void) {
     return 0;
 }
 \`\`\``,
-    correctAnswer: "It changes `value` through its address, so the program prints `7`.",
+    correctAnswer:
+      "It changes `value` through its address, so the program prints `7`.",
   },
   {
     id: "syntax_cpp",
@@ -489,7 +490,8 @@ printf 'Hello, %s!\\n' "$name"
   "questionCount": 12
 }
 \`\`\``,
-    correctAnswer: "The `languages` property contains an array of three strings.",
+    correctAnswer:
+      "The `languages` property contains an array of three strings.",
   },
 
   // ================================================================

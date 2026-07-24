@@ -100,7 +100,7 @@ export default function StarPopup() {
           type="button"
           aria-label={t.starPopup.sparkleButton}
           onClick={handleSparkle}
-          className="mx-auto mb-4 flex size-12 cursor-pointer items-center justify-center rounded-full bg-amber-500/10 text-amber-500 transition hover:bg-amber-500/15 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+          className="mx-auto mb-4 flex size-12 cursor-pointer items-center justify-center rounded-full bg-amber-500/10 text-amber-500 transition hover:bg-amber-500/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 active:scale-[0.98]"
         >
           <StarIcon />
         </button>
