@@ -18,6 +18,9 @@ export const es: Translations = {
     communityDescription:
       "Practica {count} preguntas{repeated} de {exams} recopilatorios con respuestas modelo y autocorrección.",
     practiceByTopic: "Temas",
+    resetTopicProgress: "Restablecer progreso de los temas",
+    resetTopicProgressConfirm:
+      "¿Restablecer todo el progreso de los temas de esta asignatura? Se conservarán tus intentos de examen.",
     examSimulations: "Exámenes",
     practiceSimulations: "Recopilatorios",
     originalExams: "Documentos originales de examen",

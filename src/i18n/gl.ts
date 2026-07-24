@@ -18,6 +18,9 @@ export const gl: Translations = {
     communityDescription:
       "Practica {count} preguntas{repeated} de {exams} recompilacións con respostas modelo e autocorrección.",
     practiceByTopic: "Temas",
+    resetTopicProgress: "Restablecer o progreso dos temas",
+    resetTopicProgressConfirm:
+      "Restablecer todo o progreso dos temas desta materia? Conservaranse os teus intentos de exame.",
     examSimulations: "Exames",
     practiceSimulations: "Recompilacións",
     originalExams: "Documentos orixinais de exame",

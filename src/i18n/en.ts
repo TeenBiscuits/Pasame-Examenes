@@ -16,6 +16,9 @@ export const en = {
     communityDescription:
       "Practice {count} questions{repeated} from {exams} compilations with model answers and self-grading.",
     practiceByTopic: "Topics",
+    resetTopicProgress: "Reset topic progress",
+    resetTopicProgressConfirm:
+      "Reset all topic progress for this subject? Your exam attempts will be kept.",
     examSimulations: "Exams",
     practiceSimulations: "Compilations",
     originalExams: "Original Exam Documents",

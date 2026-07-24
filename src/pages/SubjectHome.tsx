@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useMemo, type ReactNode } from "react";
 import { useParams } from "react-router-dom";
 import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
-import { getTopicProgress } from "../data/store";
+import { clearTopicProgress, getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
 import AddExamModal, {
   type AddExamModalHandle,
@@ -20,7 +20,7 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
-import { ArrowRightUp } from "reicon-react";
+import { ArrowRightUp, Restart } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   CheckmarkBadge02Icon,
@@ -40,6 +40,9 @@ export default function SubjectHome() {
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
     null,
   );
+  const [progress, setProgress] = useState<ReturnType<typeof getTopicProgress>>(
+    {},
+  );
   const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
   const seoMeta = useMemo(
     () =>
@@ -56,6 +59,12 @@ export default function SubjectHome() {
     if (subject) {
       getAllQuestions(subject.id).then((questions) => {
         setAllQuestions(questions);
+        setProgress(
+          getTopicProgress(
+            subject.id,
+            questions.map((q) => ({ topic: q.topic, points: q.points })),
+          ),
+        );
         setQuestionsLoadedFor(subject.id);
       });
     }
@@ -77,11 +86,7 @@ export default function SubjectHome() {
   const repeatedCount = allQuestions.filter((q) => q.repeated).length;
   const availableExams = subject.exams.filter((exam) => !exam.deleteRights);
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
-  const progress = getTopicProgress(
-    subject.id,
-    allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
-  );
-
+  const currentSubjectId = subject.id;
   const repeatedText =
     repeatedCount >= 20
       ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
@@ -95,6 +100,24 @@ export default function SubjectHome() {
     .replace("{repeated}", repeatedText)
     .replace("{exams}", String(availableExams.length));
 
+  function handleResetTopicProgress() {
+    if (!window.confirm(t.subjectHome.resetTopicProgressConfirm)) return;
+
+    const clearedCount = clearTopicProgress(currentSubjectId);
+    track("reset_topic_progress", {
+      subjectId: currentSubjectId,
+      clearedCount,
+    });
+    if (clearedCount > 0) {
+      setProgress(
+        getTopicProgress(
+          currentSubjectId,
+          allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
+        ),
+      );
+    }
+  }
+
   return (
     <div className="animate-fade-in animate-duration-fast">
       {questionsLoaded && null}
@@ -104,6 +127,7 @@ export default function SubjectHome() {
           subject={subject}
           questions={allQuestions}
           progress={progress}
+          onResetProgress={handleResetTopicProgress}
         />
         <ExamSimulationsSection
           subject={subject}
@@ -192,10 +216,12 @@ function TopicsSection({
   subject,
   questions,
   progress,
+  onResetProgress,
 }: {
   subject: SubjectMeta;
   questions: Question[];
   progress: ReturnType<typeof getTopicProgress>;
+  onResetProgress: () => void;
 }) {
   const t = useT();
   const renderTopicCard = (topic: Topic) => {
@@ -220,9 +246,21 @@ function TopicsSection({
 
   return (
     <>
-      <h2 className="text-fg mb-4 text-lg font-semibold">
-        {t.subjectHome.practiceByTopic}
-      </h2>
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-fg text-lg font-semibold">
+          {t.subjectHome.practiceByTopic}
+        </h2>
+        <button
+          type="button"
+          data-cuelume-press="whisper"
+          onClick={onResetProgress}
+          className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-accent rounded p-1 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          aria-label={t.subjectHome.resetTopicProgress}
+          title={t.subjectHome.resetTopicProgress}
+        >
+          <Restart className="size-4" weight="Filled" aria-hidden="true" />
+        </button>
+      </div>
       {subject.megatopics ? (
         <>
           {subject.megatopics.map((megatopic) => {
