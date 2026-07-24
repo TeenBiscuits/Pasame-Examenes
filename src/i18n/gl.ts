@@ -234,6 +234,9 @@ export const gl: Translations = {
   exam: {
     backToSubject: "Volver á materia",
     exitConfirm: "Estás seguro de que queres saír? O teu progreso perderase.",
+    exitModalTitle: "Saír do exame?",
+    exitModalCancel: "Continuar o exame",
+    exitModalConfirm: "Saír do exame",
     noQuestions: "Non se atoparon preguntas para este exame.",
     backToHome: "Volver ao inicio",
     questions: "Preguntas",

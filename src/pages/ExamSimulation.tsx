@@ -188,6 +188,7 @@ interface ExamPlayerHeaderProps {
   showRightFade: boolean;
   navRef: React.RefObject<HTMLDivElement | null>;
   scrollToNav: (index: number) => void;
+  exitDialogRef: React.RefObject<HTMLDialogElement | null>;
 }
 
 function ExamPlayerHeader({
@@ -208,6 +209,7 @@ function ExamPlayerHeader({
   showRightFade,
   navRef,
   scrollToNav,
+  exitDialogRef,
 }: ExamPlayerHeaderProps) {
   const t = useT();
   const isAuthorized = hasAuthorizedExamContent(subject);
@@ -221,19 +223,8 @@ function ExamPlayerHeader({
           data-cuelume-press
           onClick={(e) => {
             if (!submitted) {
-              if (!window.confirm(t.exam.exitConfirm)) {
-                e.preventDefault();
-              } else {
-                const answeredCount = Object.values(answers).filter(
-                  (a) => a && a.trim() !== "",
-                ).length;
-                track("exam_abandon", {
-                  subjectId: subject.id,
-                  year: examInfo.year,
-                  answeredCount,
-                  timeLeft,
-                });
-              }
+              e.preventDefault();
+              exitDialogRef.current?.showModal();
             }
           }}
           className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
@@ -318,6 +309,81 @@ function ExamPlayerHeader({
         />
       </div>
     </>
+  );
+}
+
+interface ExamExitDialogProps {
+  subject: ExamSubject;
+  examInfo: Exam;
+  answers: Record<string, string>;
+  timeLeft: number;
+  dialogRef: React.RefObject<HTMLDialogElement | null>;
+}
+
+function ExamExitDialog({
+  subject,
+  examInfo,
+  answers,
+  timeLeft,
+  dialogRef,
+}: ExamExitDialogProps) {
+  const t = useT();
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      aria-labelledby="exam-exit-modal-title"
+    >
+      <div className="mb-5 flex items-center justify-between gap-4">
+        <h2
+          id="exam-exit-modal-title"
+          className="text-fg inline-flex items-center gap-2 text-lg font-semibold"
+        >
+          <Exit size={24} aria-hidden="true" className="shrink-0" />
+          {t.exam.exitModalTitle}
+        </h2>
+        <button
+          type="button"
+          data-cuelume-press
+          onClick={() => dialogRef.current?.close()}
+          className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          aria-label={t.exam.exitModalCancel}
+        >
+          <CloseSquare2 className="size-5" />
+        </button>
+      </div>
+      <p className="text-fg-secondary mb-6 text-sm">{t.exam.exitConfirm}</p>
+      <div className="flex gap-3">
+        <button
+          type="button"
+          data-cuelume-press
+          onClick={() => dialogRef.current?.close()}
+          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+        >
+          {t.exam.exitModalCancel}
+        </button>
+        <Link
+          to={`/${subject.id}`}
+          data-cuelume-press
+          className="focus-visible:ring-incorrect-fg inline-flex flex-1 items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-center text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+          onClick={() => {
+            dialogRef.current?.close();
+            const answeredCount = Object.values(answers).filter(
+              (answer) => answer && answer.trim() !== "",
+            ).length;
+            track("exam_abandon", {
+              subjectId: subject.id,
+              year: examInfo.year,
+              answeredCount,
+              timeLeft,
+            });
+          }}
+        >
+          {t.exam.exitModalConfirm}
+        </Link>
+      </div>
+    </dialog>
   );
 }
 
@@ -660,6 +726,7 @@ function ExamPlayer({
   );
   const submitDialogRef = useRef<HTMLDialogElement>(null);
   const timeUpDialogRef = useRef<HTMLDialogElement>(null);
+  const exitDialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     if (timeUp && !submitted) {
@@ -738,6 +805,7 @@ function ExamPlayer({
         showRightFade={showRightFade}
         navRef={navRef}
         scrollToNav={scrollToNav}
+        exitDialogRef={exitDialogRef}
       />
 
       {submitted && (
@@ -796,6 +864,13 @@ function ExamPlayer({
         submitDialogRef={submitDialogRef}
         timeUpDialogRef={timeUpDialogRef}
         onSubmit={onSubmit}
+      />
+      <ExamExitDialog
+        subject={subject}
+        examInfo={examInfo}
+        answers={answers}
+        timeLeft={timeLeft}
+        dialogRef={exitDialogRef}
       />
     </div>
   );

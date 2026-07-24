@@ -231,6 +231,9 @@ export const en = {
   exam: {
     backToSubject: "Back to Subject",
     exitConfirm: "Are you sure you want to exit? Your progress will be lost.",
+    exitModalTitle: "Leave exam?",
+    exitModalCancel: "Continue exam",
+    exitModalConfirm: "Leave exam",
     noQuestions: "No questions found for this exam.",
     backToHome: "Back to Home",
     questions: "Questions",
