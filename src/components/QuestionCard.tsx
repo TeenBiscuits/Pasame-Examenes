@@ -11,7 +11,16 @@ import {
   triggerError,
   triggerSelection,
 } from "../lib/haptics";
-import { TriangleWarning } from "reicon-react";
+import { playSuccess, playError } from "../lib/sound";
+import {
+  BookOpen,
+  CaretRight,
+  CheckSquare,
+  Notebook,
+  Restart,
+  TriangleWarning,
+  XSquare,
+} from "reicon-react";
 
 function QuestionImage({
   image,
@@ -169,10 +178,10 @@ function MCQuestion({
         let className =
           "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
         if (showResult && isCorrect) {
-          className += " bg-accent-light border-accent";
-        } else if (showResult && isSelected && !isCorrect) {
-          className += " bg-red-50 border-red-400";
-        } else if (isSelected) {
+          className += " bg-correct-bg border-correct-border";
+        } else if (isSelected && showResult && !isCorrect) {
+          className += " bg-incorrect-bg border-incorrect-border";
+        } else if (isSelected && !showResult) {
           className += " bg-accent-light border-accent";
         } else {
           className += " border-border hover:border-border bg-surface-alt";
@@ -182,6 +191,7 @@ function MCQuestion({
           <button
             type="button"
             key={key}
+            data-cuelume-press
             className={className}
             onClick={() => {
               if (showResult) return;
@@ -217,7 +227,8 @@ function MCQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
-              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              data-cuelume-press
+              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
@@ -232,6 +243,7 @@ function MCQuestion({
                 setIsOpen(next);
               }}
             >
+              <BookOpen size={16} aria-hidden="true" />
               {isOpen
                 ? t.questionCard.closeSolution
                 : t.questionCard.openSolution}
@@ -312,7 +324,8 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
-            className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+            data-cuelume-press
+            className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             onClick={() => {
               triggerLight();
               const next = !isOpen;
@@ -323,9 +336,10 @@ function TextQuestion({
               setIsOpen(next);
             }}
           >
+            <BookOpen size={16} aria-hidden="true" />
             {isOpen
               ? t.questionCard.closeSolution
-              : t.questionCard.openSolution}
+              : t.questionCard.openAndSelfGrade}
           </button>
 
           {isOpen && (
@@ -356,33 +370,49 @@ function TextQuestion({
                   <p className="text-fg-secondary mb-2 text-xs font-semibold">
                     {t.questionCard.gradeAnswer}
                   </p>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 *:flex-1">
                     <button
                       type="button"
+                      data-cuelume-press
                       onClick={() => {
                         triggerSuccess();
+                        playSuccess();
                         onSelfGrade(question.id, "correct");
                       }}
-                      className={`focus-visible:ring-accent rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                      className={`focus-visible:ring-accent flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
                         selfGrade === "correct"
-                          ? "bg-accent-light border-accent text-accent-fg"
+                          ? "bg-correct-bg border-correct-border text-correct-fg"
                           : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
                       }`}
                     >
+                      <CheckSquare
+                        size={14}
+                        weight={selfGrade === "correct" ? "Filled" : "Outline"}
+                        aria-hidden="true"
+                      />
                       {t.questionCard.correct}
                     </button>
                     <button
                       type="button"
+                      data-cuelume-press
                       onClick={() => {
                         triggerError();
+                        playError();
                         onSelfGrade(question.id, "incorrect");
                       }}
-                      className={`rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none active:scale-95 ${
+                      className={`focus-visible:ring-incorrect-fg flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
                         selfGrade === "incorrect"
-                          ? "border-red-500 bg-red-50 text-red-700"
-                          : "bg-surface-alt border-border text-fg-secondary hover:border-red-300 hover:bg-red-50/50"
+                          ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
+                          : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
                       }`}
                     >
+                      <XSquare
+                        size={14}
+                        weight={
+                          selfGrade === "incorrect" ? "Filled" : "Outline"
+                        }
+                        aria-hidden="true"
+                      />
                       {t.questionCard.incorrect}
                     </button>
                   </div>
@@ -455,9 +485,10 @@ function MatchingQuestion({
                 let cls =
                   "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
                 if (showResult && real) {
-                  cls += " bg-accent-light border-accent text-accent-fg";
+                  cls += " bg-correct-bg border-correct-border text-correct-fg";
                 } else if (showResult && chosen && !real) {
-                  cls += " bg-red-50 border-red-400 text-red-700";
+                  cls +=
+                    " bg-incorrect-bg border-incorrect-border text-incorrect-fg";
                 } else if (chosen) {
                   cls += " bg-accent-light border-accent text-accent-fg";
                 } else {
@@ -468,6 +499,7 @@ function MatchingQuestion({
                   <button
                     type="button"
                     key={letter}
+                    data-cuelume-press
                     className={cls}
                     onClick={() => {
                       triggerSelection();
@@ -499,7 +531,8 @@ function MatchingQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
-              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              data-cuelume-press
+              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
@@ -514,6 +547,7 @@ function MatchingQuestion({
                 setIsOpen(next);
               }}
             >
+              <BookOpen size={16} aria-hidden="true" />
               {isOpen
                 ? t.questionCard.closeSolution
                 : t.questionCard.openSolution}
@@ -553,31 +587,44 @@ export default function QuestionCard(props: QuestionCardProps) {
 
   return (
     <div
-      className={`bg-surface-alt border-border rounded-xl border p-6 shadow-sm ${slideClass}`}
+      className={`bg-surface-alt border-border rounded-xl border p-4 shadow-sm sm:p-6 ${slideClass}`}
     >
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
         <span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">
           Q{props.index + 1}/{props.total}
         </span>
         <span className="bg-accent-light text-accent-fg rounded px-2 py-0.5 font-mono text-xs">
           {formatPoints(question.points)}p
         </span>
-        <span className="text-fg-muted text-xs">
-          {props.megatopicLabel
-            ? `${props.megatopicLabel} › ${props.topicLabel}`
-            : props.topicLabel}
+        <span className="text-fg-muted order-last flex w-full min-w-0 items-center gap-0.5 text-xs sm:order-none sm:w-auto sm:flex-1">
+          {props.megatopicLabel && (
+            <>
+              <span className="truncate">{props.megatopicLabel}</span>
+              <CaretRight
+                size={12}
+                weight="Filled"
+                aria-hidden="true"
+                className="shrink-0"
+              />
+            </>
+          )}
+          <span className="truncate">{props.topicLabel}</span>
         </span>
-        {question.repeated && (
-          <span className="ml-auto rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
-            {t.questionCard.repeated}
-          </span>
-        )}
-        {props.examDate && (
-          <span
-            className={`text-fg-muted text-xs ${!question.repeated ? "ml-auto" : ""}`}
-          >
-            {props.examDate}
-          </span>
+        {(question.repeated || props.examDate) && (
+          <div className="ml-auto flex items-center gap-2 sm:ml-0">
+            {question.repeated && (
+              <span className="flex items-center gap-0.5 rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
+                <Restart size={10} aria-hidden="true" />
+                {t.questionCard.repeated}
+              </span>
+            )}
+            {props.examDate && (
+              <span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
+                <Notebook size={14} aria-hidden="true" />
+                {props.examDate}
+              </span>
+            )}
+          </div>
         )}
       </div>
       <Markdown className="text-fg mb-4 text-sm font-medium">
@@ -637,19 +684,30 @@ export default function QuestionCard(props: QuestionCardProps) {
           </table>
         </div>
       )}
-      {question.type === "mc" && <MCQuestion {...props} />}
+      {question.type === "mc" && (
+        <MCQuestion
+          key={`mc-${question.id}-${props.savedAnswer || ""}`}
+          {...props}
+        />
+      )}
       {question.type === "text" && <TextQuestion {...props} />}
-      {question.type === "matching" && <MatchingQuestion {...props} />}
+      {question.type === "matching" && (
+        <MatchingQuestion
+          key={`match-${question.id}-${props.savedAnswer || ""}`}
+          {...props}
+        />
+      )}
       <div className="border-border mt-4 flex items-center justify-end gap-2 border-t pt-4">
         <span className="text-fg-muted font-mono text-[10px] select-all">
           {question.id}
         </span>
         <a
           data-tour="report-issue"
+          data-cuelume-hover="whisper"
           href={buildReportUrl(question, props.subjectId)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-fg-muted -mr-2 inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:text-red-500 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
+          className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg -mr-2 inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("report_issue", {

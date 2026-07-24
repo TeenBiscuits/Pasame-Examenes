@@ -21,7 +21,17 @@ import { usePracticeSession } from "../hooks/usePracticeSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
-import { ArrowSquareLeft2, ArrowSquareRight2 } from "reicon-react";
+import { computeQuestionResults } from "../lib/grading";
+import ScoreProgress from "../components/ScoreProgress";
+import {
+  ArrowSquareLeft2,
+  ArrowSquareRight2,
+  Exit,
+  Trash5,
+  Eye,
+  Send,
+  Trophy,
+} from "reicon-react";
 
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
@@ -35,8 +45,8 @@ interface PracticePlayerProps {
   selfGrades: Record<string, "correct" | "incorrect">;
   submitted: boolean;
   checkedQuestions: Record<string, boolean>;
+  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
   totalPoints: number;
-  textQuestionCount: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
   showLeftFade: boolean;
@@ -48,6 +58,374 @@ interface PracticePlayerProps {
   onSubmit: () => void;
   onCheckQuestion: (questionId: string) => void;
   onClearAnswer: (questionId: string) => void;
+}
+
+type PracticeSubject = PracticePlayerProps["subject"];
+
+interface PracticePlayerHeaderProps {
+  subject: PracticeSubject;
+  topic: string;
+  topicInfo: PracticePlayerProps["topicInfo"];
+  questions: Question[];
+  answers: Record<string, string>;
+  checkedQuestions: Record<string, boolean>;
+  currentIndex: number;
+  setCurrentIndex: (i: number) => void;
+  totalPoints: number;
+  questionResults: ReturnType<typeof computeQuestionResults>;
+  setDirection: (d: "next" | "prev" | undefined) => void;
+  showLeftFade: boolean;
+  showRightFade: boolean;
+  navRef: React.RefObject<HTMLDivElement | null>;
+  scrollToNav: (index: number) => void;
+}
+
+function PracticePlayerHeader({
+  subject,
+  topic,
+  topicInfo,
+  questions,
+  answers,
+  checkedQuestions,
+  currentIndex,
+  setCurrentIndex,
+  totalPoints,
+  questionResults,
+  setDirection,
+  showLeftFade,
+  showRightFade,
+  navRef,
+  scrollToNav,
+}: PracticePlayerHeaderProps) {
+  const t = useT();
+
+  return (
+    <>
+      <div data-tour="practice-back">
+        <Link
+          to={`/${subject.id}`}
+          data-cuelume-hover
+          data-cuelume-press
+          className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          onClick={() =>
+            track("nav_click", { target: "subject_home", from: "practice" })
+          }
+        >
+          <Exit size={16} aria-hidden="true" className="shrink-0" />
+          {t.practice.backToTopics}
+        </Link>
+      </div>
+      <div className="bg-surface border-border sticky top-14 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6">
+        <div className="flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <h1 className="text-fg truncate text-xl font-semibold sm:text-2xl">
+              {topicInfo?.icon} {topicInfo?.label || topic}
+            </h1>
+            <p className="text-fg-muted mt-1 text-sm">
+              {questions.length} {t.subjectCard.questions} &middot;{" "}
+              {formatPoints(totalPoints)} {t.practice.pointsTotal}
+            </p>
+          </div>
+        </div>
+        <QuestionNavChips
+          questions={questions}
+          answers={answers}
+          currentIndex={currentIndex}
+          navRef={navRef}
+          showLeftFade={showLeftFade}
+          showRightFade={showRightFade}
+          checkedQuestions={checkedQuestions}
+          questionResults={questionResults}
+          dataTour="practice-nav"
+          eventName="practice_navigate"
+          eventData={{ subjectId: subject.id, topic: topic || "" }}
+          className="mt-4 mb-0"
+          onSelectIndex={(i, dir) => {
+            setDirection(dir);
+            setCurrentIndex(i);
+            scrollToNav(i);
+          }}
+        />
+      </div>
+    </>
+  );
+}
+
+interface PracticeScoreSummaryProps {
+  submitted: boolean;
+  allTextGraded: boolean;
+  pendingTextCount: number;
+  pendingTextPoints: number;
+  checkedCount: number;
+  questionsLength: number;
+  gradedScore: number;
+  totalPoints: number;
+}
+
+function PracticeScoreSummary({
+  submitted,
+  allTextGraded,
+  pendingTextCount,
+  pendingTextPoints,
+  checkedCount,
+  questionsLength,
+  gradedScore,
+  totalPoints,
+}: PracticeScoreSummaryProps) {
+  const t = useT();
+  const completed = submitted && allTextGraded;
+
+  return (
+    <ScoreProgress
+      score={gradedScore}
+      totalPoints={totalPoints}
+      pendingPoints={pendingTextPoints}
+      colorClassName={completed ? "text-correct-fg" : "text-pending-fg"}
+      className="animate-fade-in-up mb-4 sm:mb-6"
+    >
+      <div
+        className={`rounded-lg border p-3 pb-7 sm:p-4 sm:pb-8 ${
+          completed
+            ? "border-correct-border bg-correct-bg"
+            : "border-pending-border bg-pending-bg"
+        }`}
+      >
+        <div className="text-fg flex items-center gap-2">
+          <Trophy
+            size={18}
+            weight={submitted ? "Filled" : "Outline"}
+            aria-hidden="true"
+            className="shrink-0"
+          />
+          <p className="font-semibold">
+            {submitted ? t.practice.score : t.practice.runningScore}
+          </p>
+          <p className="ml-auto text-lg font-bold whitespace-nowrap tabular-nums">
+            {formatPoints(gradedScore)}
+            <span className="text-fg-muted mx-1 text-sm font-medium">/</span>
+            {formatPoints(totalPoints)}
+            <span className="text-fg-muted ml-1 text-sm font-medium">
+              {t.practice.points}
+            </span>
+          </p>
+        </div>
+        <p
+          className={`mt-1 text-sm ${completed ? "text-correct-fg" : "text-pending-fg"}`}
+        >
+          {submitted && pendingTextCount > 0
+            ? t.practice.selfGradeHint
+            : submitted
+              ? t.practice.allSelfGraded
+              : `${checkedCount} ${t.exam.outOf} ${questionsLength} ${t.practice.checked}`}
+        </p>
+      </div>
+    </ScoreProgress>
+  );
+}
+
+interface PracticeControlsProps {
+  subject: PracticeSubject;
+  topic: string;
+  questions: Question[];
+  currentQuestion: Question;
+  currentIndex: number;
+  setCurrentIndex: (i: number) => void;
+  answers: Record<string, string>;
+  checkedQuestions: Record<string, boolean>;
+  submitted: boolean;
+  setDirection: (d: "next" | "prev" | undefined) => void;
+  scrollToNav: (index: number) => void;
+  onSubmit: () => void;
+  onCheckQuestion: (questionId: string) => void;
+  onClearAnswer: (questionId: string) => void;
+  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
+}
+
+function PracticeControls({
+  subject,
+  topic,
+  questions,
+  currentQuestion,
+  currentIndex,
+  setCurrentIndex,
+  answers,
+  checkedQuestions,
+  submitted,
+  setDirection,
+  scrollToNav,
+  onSubmit,
+  onCheckQuestion,
+  onClearAnswer,
+  arrowAnimateRef,
+}: PracticeControlsProps) {
+  const t = useT();
+  const [hoverPrev, setHoverPrev] = useState(false);
+  const [hoverNext, setHoverNext] = useState(false);
+  const [hoverClear, setHoverClear] = useState(false);
+  const [hoverCheck, setHoverCheck] = useState(false);
+  const [hoverSubmit, setHoverSubmit] = useState(false);
+  const prevBtnRef = useRef<HTMLButtonElement>(null);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+
+  const animateArrowPress = useCallback(
+    (ref: React.RefObject<HTMLButtonElement | null>) => {
+      ref.current?.animate(
+        [{ transform: "scale(0.92)" }, { transform: "scale(1)" }],
+        { duration: 150, easing: "ease-out" },
+      );
+    },
+    [],
+  );
+
+  useEffect(() => {
+    arrowAnimateRef.current = (dir) => {
+      animateArrowPress(dir === "prev" ? prevBtnRef : nextBtnRef);
+    };
+  }, [arrowAnimateRef, animateArrowPress]);
+
+  const navigateQuestion = (dir: "prev" | "next") => {
+    triggerLight();
+    const nextIndex =
+      dir === "prev"
+        ? Math.max(0, currentIndex - 1)
+        : Math.min(questions.length - 1, currentIndex + 1);
+    setDirection(dir);
+    track("practice_navigate", {
+      subjectId: subject.id,
+      topic: topic || "",
+      direction: dir,
+      fromIndex: currentIndex,
+      toIndex: nextIndex,
+      source: "arrow",
+    });
+    setCurrentIndex(nextIndex);
+    scrollToNav(nextIndex);
+  };
+
+  return (
+    <div
+      className="mt-4 flex items-center gap-2 sm:mt-6 sm:justify-between sm:gap-3"
+      data-tour="practice-nav-btns"
+    >
+      <button
+        type="button"
+        ref={prevBtnRef}
+        data-cuelume-press
+        className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
+        onMouseEnter={() => setHoverPrev(true)}
+        onMouseLeave={() => setHoverPrev(false)}
+        onClick={() => navigateQuestion("prev")}
+        disabled={currentIndex === 0}
+      >
+        <ArrowSquareLeft2
+          size={18}
+          weight={hoverPrev ? "Filled" : "Outline"}
+          aria-hidden="true"
+          className="shrink-0"
+        />
+        <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+          {t.practice.previous}
+        </span>
+      </button>
+      <div
+        className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
+        data-tour="practice-actions"
+      >
+        {(answers[currentQuestion.id] || currentQuestion.type === "text") &&
+          !submitted &&
+          !checkedQuestions[currentQuestion.id] && (
+            <>
+              {answers[currentQuestion.id] &&
+                answers[currentQuestion.id].trim() !== "" && (
+                  <button
+                    type="button"
+                    className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+                    onMouseEnter={() => setHoverClear(true)}
+                    onMouseLeave={() => setHoverClear(false)}
+                    onClick={() => {
+                      triggerLight();
+                      track("practice_clear_answer", {
+                        questionId: currentQuestion.id,
+                        subjectId: subject.id,
+                        topic: topic || "",
+                      });
+                      onClearAnswer(currentQuestion.id);
+                    }}
+                  >
+                    <Trash5
+                      size={18}
+                      weight={hoverClear ? "Filled" : "Outline"}
+                      aria-hidden="true"
+                      className="shrink-0"
+                    />
+                    <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+                      {t.practice.clear}
+                    </span>
+                  </button>
+                )}
+              <button
+                type="button"
+                data-cuelume-press
+                className="flex min-w-0 items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-3 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95 sm:py-2"
+                onMouseEnter={() => setHoverCheck(true)}
+                onMouseLeave={() => setHoverCheck(false)}
+                onClick={() => onCheckQuestion(currentQuestion.id)}
+              >
+                <Eye
+                  size={18}
+                  weight={hoverCheck ? "Filled" : "Outline"}
+                  aria-hidden="true"
+                  className="shrink-0"
+                />
+                <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+                  {t.practice.check}
+                </span>
+              </button>
+            </>
+          )}
+        {!submitted && (
+          <button
+            type="button"
+            data-cuelume-press
+            className="bg-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+            onMouseEnter={() => setHoverSubmit(true)}
+            onMouseLeave={() => setHoverSubmit(false)}
+            onClick={onSubmit}
+          >
+            <Send
+              size={18}
+              weight={hoverSubmit ? "Filled" : "Outline"}
+              aria-hidden="true"
+              className="shrink-0"
+            />
+            <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+              {t.practice.submit}
+            </span>
+          </button>
+        )}
+      </div>
+      <button
+        type="button"
+        ref={nextBtnRef}
+        data-cuelume-press
+        className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
+        onMouseEnter={() => setHoverNext(true)}
+        onMouseLeave={() => setHoverNext(false)}
+        onClick={() => navigateQuestion("next")}
+        disabled={currentIndex === questions.length - 1}
+      >
+        <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+          {t.practice.next}
+        </span>
+        <ArrowSquareRight2
+          size={18}
+          weight={hoverNext ? "Filled" : "Outline"}
+          aria-hidden="true"
+          className="shrink-0"
+        />
+      </button>
+    </div>
+  );
 }
 
 function PracticePlayer({
@@ -63,7 +441,6 @@ function PracticePlayer({
   submitted,
   checkedQuestions,
   totalPoints,
-  textQuestionCount,
   direction,
   setDirection,
   showLeftFade,
@@ -75,8 +452,8 @@ function PracticePlayer({
   onSubmit,
   onCheckQuestion,
   onClearAnswer,
+  arrowAnimateRef,
 }: PracticePlayerProps) {
-  const t = useT();
   const currentQuestion = questions[currentIndex];
 
   const examDate = useMemo(() => {
@@ -87,9 +464,54 @@ function PracticePlayer({
     return exam?.date || exam?.title;
   }, [subject, currentQuestion]);
 
-  const getScore = () => {
+  const questionResults = useMemo(
+    () =>
+      computeQuestionResults(
+        questions,
+        answers,
+        checkedQuestions,
+        selfGrades,
+        submitted,
+      ),
+    [questions, answers, checkedQuestions, selfGrades, submitted],
+  );
+
+  const pendingTextCount = useMemo(
+    () =>
+      questions.filter(
+        (q) =>
+          q.type === "text" &&
+          (checkedQuestions[q.id] || submitted) &&
+          !selfGrades[q.id],
+      ).length,
+    [questions, checkedQuestions, selfGrades, submitted],
+  );
+
+  const pendingTextPoints = useMemo(
+    () =>
+      questions
+        .filter(
+          (q) =>
+            q.type === "text" &&
+            (checkedQuestions[q.id] || submitted) &&
+            !selfGrades[q.id],
+        )
+        .reduce((sum, q) => sum + q.points, 0),
+    [questions, checkedQuestions, selfGrades, submitted],
+  );
+
+  const allTextGraded =
+    questions.filter((q) => q.type === "text").length === 0 ||
+    pendingTextCount === 0;
+
+  const getScore = (onlyGraded = false) => {
     let score = 0;
     for (const q of questions) {
+      if (q.type === "text") {
+        if (selfGrades[q.id] === "correct") score += q.points;
+        continue;
+      }
+      if (onlyGraded && !submitted && !checkedQuestions[q.id]) continue;
       if (!answers[q.id] || answers[q.id].trim() === "") continue;
       if (q.type === "mc") {
         if (answers[q.id] === q.correctAnswer) score += q.points;
@@ -106,68 +528,45 @@ function PracticePlayer({
         } catch {
           /* skip */
         }
-      } else if (q.type === "text") {
-        if (selfGrades[q.id] === "correct") score += q.points;
       }
     }
     return roundPoints(score);
   };
 
+  const gradedScore = getScore(true);
+
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
-      <div className="mb-6" data-tour="practice-back">
-        <Link
-          to={`/${subject.id}`}
-          className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
-          onClick={() =>
-            track("nav_click", { target: "subject_home", from: "practice" })
-          }
-        >
-          {t.practice.backToTopics}
-        </Link>
-        <h1 className="text-fg mt-2 text-2xl font-semibold">
-          {topicInfo?.icon} {topicInfo?.label || topic}
-        </h1>
-        <p className="text-fg-muted mt-1 text-sm">
-          {questions.length} {t.subjectCard.questions} &middot;{" "}
-          {formatPoints(totalPoints)} {t.practice.pointsTotal}
-        </p>
-      </div>
-
-      {(submitted || Object.keys(checkedQuestions).length > 0) && (
-        <div className="bg-accent-light border-accent-border animate-fade-in-up mb-6 rounded-lg border p-4">
-          <p className="text-fg font-semibold">
-            {submitted ? t.practice.score : t.practice.runningScore}:{" "}
-            {formatPoints(getScore())} {t.exam.outOf}{" "}
-            {formatPoints(totalPoints)} {t.practice.points}
-          </p>
-          <p className="text-accent-fg mt-1 text-sm">
-            {submitted
-              ? textQuestionCount > 0
-                ? `${Object.values(selfGrades).filter(Boolean).length} ${t.exam.outOf} ${textQuestionCount} ${t.practice.openEnded}`
-                : t.practice.allCorrect
-              : `${Object.keys(checkedQuestions).length} ${t.exam.outOf} ${questions.length} ${t.practice.checked}`}
-          </p>
-        </div>
-      )}
-
-      <QuestionNavChips
+    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
+      <PracticePlayerHeader
+        subject={subject}
+        topic={topic}
+        topicInfo={topicInfo}
         questions={questions}
         answers={answers}
+        checkedQuestions={checkedQuestions}
         currentIndex={currentIndex}
-        navRef={navRef}
+        setCurrentIndex={setCurrentIndex}
+        totalPoints={totalPoints}
+        questionResults={questionResults}
+        setDirection={setDirection}
         showLeftFade={showLeftFade}
         showRightFade={showRightFade}
-        checkedQuestions={checkedQuestions}
-        dataTour="practice-nav"
-        eventName="practice_navigate"
-        eventData={{ subjectId: subject.id, topic: topic || "" }}
-        onSelectIndex={(i, dir) => {
-          setDirection(dir);
-          setCurrentIndex(i);
-          scrollToNav(i);
-        }}
+        navRef={navRef}
+        scrollToNav={scrollToNav}
       />
+
+      {(submitted || Object.keys(checkedQuestions).length > 0) && (
+        <PracticeScoreSummary
+          submitted={submitted}
+          allTextGraded={allTextGraded}
+          pendingTextCount={pendingTextCount}
+          pendingTextPoints={pendingTextPoints}
+          checkedCount={Object.keys(checkedQuestions).length}
+          questionsLength={questions.length}
+          gradedScore={gradedScore}
+          totalPoints={totalPoints}
+        />
+      )}
 
       <div data-tour="practice-card">
         <QuestionCard
@@ -193,103 +592,23 @@ function PracticePlayer({
         />
       </div>
 
-      <div
-        className="mt-6 flex flex-wrap items-center gap-3 sm:flex-nowrap sm:justify-between"
-        data-tour="practice-nav-btns"
-      >
-        <button
-          type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30"
-          onClick={() => {
-            triggerLight();
-            const nextIndex = Math.max(0, currentIndex - 1);
-            setDirection("prev");
-            track("practice_navigate", {
-              subjectId: subject.id,
-              topic: topic || "",
-              direction: "prev",
-              fromIndex: currentIndex,
-              toIndex: nextIndex,
-              source: "arrow",
-            });
-            setCurrentIndex(nextIndex);
-            scrollToNav(nextIndex);
-          }}
-          disabled={currentIndex === 0}
-        >
-          <span className="flex items-center gap-1.5">
-            <ArrowSquareLeft2 size={18} aria-hidden="true" />
-            {t.practice.previous}
-          </span>
-        </button>
-        <div
-          className="order-3 flex w-full justify-center gap-2 sm:order-2 sm:w-auto"
-          data-tour="practice-actions"
-        >
-          {answers[currentQuestion.id] &&
-            !submitted &&
-            !checkedQuestions[currentQuestion.id] && (
-              <>
-                <button
-                  type="button"
-                  className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
-                  onClick={() => {
-                    triggerLight();
-                    track("practice_clear_answer", {
-                      questionId: currentQuestion.id,
-                      subjectId: subject.id,
-                      topic: topic || "",
-                    });
-                    onClearAnswer(currentQuestion.id);
-                  }}
-                >
-                  {t.practice.clear}
-                </button>
-                <button
-                  type="button"
-                  className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95"
-                  onClick={() => onCheckQuestion(currentQuestion.id)}
-                >
-                  {t.practice.check}
-                </button>
-              </>
-            )}
-          {!submitted && (
-            <button
-              type="button"
-              className="bg-accent hover:bg-accent-hover focus-visible:ring-accent rounded-lg px-4 py-2 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
-              onClick={onSubmit}
-            >
-              {t.practice.submit}
-            </button>
-          )}
-        </div>
-        <button
-          type="button"
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-2 ms-auto rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:order-3 sm:ms-0"
-          onClick={() => {
-            triggerLight();
-            const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
-            setDirection("next");
-            track("practice_navigate", {
-              subjectId: subject.id,
-              topic: topic || "",
-              direction: "next",
-              fromIndex: currentIndex,
-              toIndex: nextIndex,
-              source: "arrow",
-            });
-            setCurrentIndex(nextIndex);
-            scrollToNav(nextIndex);
-          }}
-          disabled={currentIndex === questions.length - 1}
-        >
-          <span className="flex items-center gap-1.5">
-            {t.practice.next}
-            <ArrowSquareRight2 size={18} aria-hidden="true" />
-          </span>
-        </button>
-      </div>
+      <PracticeControls
+        subject={subject}
+        topic={topic}
+        questions={questions}
+        currentQuestion={currentQuestion}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        answers={answers}
+        checkedQuestions={checkedQuestions}
+        submitted={submitted}
+        setDirection={setDirection}
+        scrollToNav={scrollToNav}
+        onSubmit={onSubmit}
+        onCheckQuestion={onCheckQuestion}
+        onClearAnswer={onClearAnswer}
+        arrowAnimateRef={arrowAnimateRef}
+      />
 
       <Disclaimer
         subjectId={subject.id}
@@ -331,10 +650,6 @@ export default function PracticeTopic() {
   }, [subject, topic]);
   const questionsLoaded =
     !!subject && !!topic && questionsLoadedFor === `${subject.id}/${topic}`;
-  const textQuestionCount = useMemo(
-    () => questions.filter((q) => q.type === "text").length,
-    [questions],
-  );
   const seoMeta = useMemo(
     () =>
       subject && topicInfo
@@ -405,6 +720,7 @@ export default function PracticeTopic() {
   });
 
   const subjectReadyRef = useRef(false);
+  const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
   useEffect(() => {
     subjectReadyRef.current = !!subject;
   }, [subject]);
@@ -423,6 +739,7 @@ export default function PracticeTopic() {
     setDirection,
     eventName: "practice_navigate",
     eventData: navEventData,
+    onKeyPress: (dir) => arrowAnimateRef.current(dir),
   });
 
   useEffect(() => {
@@ -526,11 +843,13 @@ export default function PracticeTopic() {
 
   if (questions.length === 0 || !subject) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
         {questionsLoaded && null}
         <p className="text-fg-muted">{t.practice.noQuestions}</p>
         <Link
           to={subject ? `/${subject.id}` : "/"}
+          data-cuelume-hover
+          data-cuelume-press
           className="text-accent mt-4 inline-block hover:underline"
           onClick={() => {
             triggerLight();
@@ -559,7 +878,6 @@ export default function PracticeTopic() {
         submitted={submitted}
         checkedQuestions={checkedQuestions}
         totalPoints={totalPoints}
-        textQuestionCount={textQuestionCount}
         direction={direction}
         setDirection={setDirection}
         showLeftFade={showLeftFade}
@@ -571,6 +889,7 @@ export default function PracticeTopic() {
         onSubmit={handleSubmit}
         onCheckQuestion={handleCheckQuestion}
         onClearAnswer={handleClearAnswer}
+        arrowAnimateRef={arrowAnimateRef}
       />
     </>
   );

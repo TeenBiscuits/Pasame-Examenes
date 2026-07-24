@@ -18,6 +18,11 @@ export const gl: Translations = {
     communityDescription:
       "Practica {count} preguntas{repeated} de {exams} recompilacións con respostas modelo e autocorrección.",
     practiceByTopic: "Temas",
+    resetTopicProgress: "Restablecer o progreso dos temas",
+    resetTopicProgressConfirm:
+      "Restablecer todo o progreso dos temas desta materia? Esta acción non se pode desfacer.",
+    resetTopicProgressCancel: "Cancelar",
+    resetTopicProgressAction: "Restablecer o progreso",
     examSimulations: "Exames",
     practiceSimulations: "Recompilacións",
     originalExams: "Documentos orixinais de exame",
@@ -206,7 +211,7 @@ export const gl: Translations = {
     ],
   },
   practice: {
-    backToTopics: "← Volver a temas",
+    backToTopics: "Volver a temas",
     noQuestions: "Non se atoparon preguntas para este tema.",
     backToHome: "Volver ao inicio",
     score: "Puntuación",
@@ -222,10 +227,16 @@ export const gl: Translations = {
     runningScore: "Puntuación parcial",
     checked: "corrixidas",
     openEnded: "preguntas abertas",
+    selfGradeHint:
+      "Autoavalia as túas respostas de texto para ver a túa puntuación final.",
+    allSelfGraded: "Todas as respostas autoavaliadas",
   },
   exam: {
-    backToSubject: "← Volver á materia",
+    backToSubject: "Volver á materia",
     exitConfirm: "Estás seguro de que queres saír? O teu progreso perderase.",
+    exitModalTitle: "Saír do exame?",
+    exitModalCancel: "Continuar o exame",
+    exitModalConfirm: "Saír do exame",
     noQuestions: "Non se atoparon preguntas para este exame.",
     backToHome: "Volver ao inicio",
     questions: "Preguntas",
@@ -242,9 +253,19 @@ export const gl: Translations = {
     passThreshold: "Limiar de aprobado",
     reviewNote:
       "Revisa as túas respostas. As preguntas abertas mostran as solucións modelo para autoavaliación.",
+    selfGradeHint:
+      "Autoavalia as túas respostas de texto para ver a túa puntuación final.",
     submitExam: "Entregar exame",
     submitConfirm:
       "Estás seguro de que queres entregar o exame? Non poderás modificar as túas respostas.",
+    submitModalTitle: "Entregar exame",
+    submitModalBody:
+      "Estás seguro de que queres entregar o exame? Non poderás modificar as túas respostas.",
+    submitModalCancel: "Cancelar",
+    submitModalConfirm: "Entregar",
+    timeUpModalTitle: "Tempo esgotado",
+    timeUpModalBody: "Esgotouse o tempo. O exame entregarase automaticamente.",
+    timeUpModalAcknowledge: "Entendido",
     score: "Puntuación",
     outOf: "/",
     pass_: "(APROBADO)",
@@ -256,10 +277,11 @@ export const gl: Translations = {
   questionCard: {
     modelSolution: "Solución modelo",
     gradeAnswer: "Avalía a túa resposta:",
-    correct: "✓ Correcto",
-    incorrect: "✗ Incorrecto",
-    openSolution: "Abrir solucións",
-    closeSolution: "Pechar solución",
+    correct: "Correcta",
+    incorrect: "Incorrecta",
+    openSolution: "Mostrar solución",
+    openAndSelfGrade: "Mostrar solución e autoavaliarse",
+    closeSolution: "Ocultar solución",
     yourAnswer: "A túa resposta",
     correct_: "Correcto",
     reportIssue: "Reportar erro",
@@ -360,6 +382,7 @@ export const gl: Translations = {
   starPopup: {
     title: "Daríasnos unha estrela?",
     subtitle: "Non queremos o teu diñeiro, só unha estrela en GitHub.",
+    sparkleButton: "Fai brillar a estrela",
     starButton: "Dame unha estrela!",
     dismiss: "Agora non",
   },

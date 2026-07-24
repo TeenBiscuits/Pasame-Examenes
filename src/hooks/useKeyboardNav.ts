@@ -1,6 +1,7 @@
 import { useEffect, type RefObject } from "react";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
+import { playPress } from "../lib/sound";
 
 type EventData = Record<string, string | number | boolean | undefined | null>;
 
@@ -13,6 +14,7 @@ interface KeyboardNavOpts {
   setDirection: (d: "next" | "prev" | undefined) => void;
   eventName: "practice_navigate" | "exam_navigate";
   eventData: () => EventData;
+  onKeyPress?: (direction: "prev" | "next") => void;
 }
 
 export function useKeyboardNav(opts: KeyboardNavOpts): void {
@@ -25,6 +27,7 @@ export function useKeyboardNav(opts: KeyboardNavOpts): void {
     setDirection,
     eventName,
     eventData,
+    onKeyPress,
   } = opts;
 
   useEffect(() => {
@@ -33,34 +36,42 @@ export function useKeyboardNav(opts: KeyboardNavOpts): void {
       if (tag === "input" || tag === "textarea" || tag === "select") return;
       if (!enabledRef.current) return;
       const idx = currentIndexRef.current;
-      if (e.key === "ArrowLeft" && idx > 0) {
+      if (e.key === "ArrowLeft") {
         e.preventDefault();
-        const nextIndex = idx - 1;
-        triggerLight();
-        setDirection("prev");
-        track(eventName, {
-          ...eventData(),
-          direction: "prev",
-          fromIndex: idx,
-          toIndex: nextIndex,
-          source: "keyboard",
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
-      } else if (e.key === "ArrowRight" && idx < questionsLength - 1) {
+        if (idx > 0) {
+          triggerLight();
+          playPress();
+          onKeyPress?.("prev");
+          const nextIndex = idx - 1;
+          setDirection("prev");
+          track(eventName, {
+            ...eventData(),
+            direction: "prev",
+            fromIndex: idx,
+            toIndex: nextIndex,
+            source: "keyboard",
+          });
+          setCurrentIndex(nextIndex);
+          scrollToNav(nextIndex);
+        }
+      } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        const nextIndex = idx + 1;
-        triggerLight();
-        setDirection("next");
-        track(eventName, {
-          ...eventData(),
-          direction: "next",
-          fromIndex: idx,
-          toIndex: nextIndex,
-          source: "keyboard",
-        });
-        setCurrentIndex(nextIndex);
-        scrollToNav(nextIndex);
+        if (idx < questionsLength - 1) {
+          triggerLight();
+          playPress();
+          onKeyPress?.("next");
+          const nextIndex = idx + 1;
+          setDirection("next");
+          track(eventName, {
+            ...eventData(),
+            direction: "next",
+            fromIndex: idx,
+            toIndex: nextIndex,
+            source: "keyboard",
+          });
+          setCurrentIndex(nextIndex);
+          scrollToNav(nextIndex);
+        }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -74,5 +85,6 @@ export function useKeyboardNav(opts: KeyboardNavOpts): void {
     setDirection,
     eventName,
     eventData,
+    onKeyPress,
   ]);
 }

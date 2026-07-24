@@ -18,6 +18,11 @@ export const es: Translations = {
     communityDescription:
       "Practica {count} preguntas{repeated} de {exams} recopilatorios con respuestas modelo y autocorrección.",
     practiceByTopic: "Temas",
+    resetTopicProgress: "Restablecer progreso de los temas",
+    resetTopicProgressConfirm:
+      "¿Restablecer todo el progreso de los temas de esta asignatura? Esta acción no se puede deshacer.",
+    resetTopicProgressCancel: "Cancelar",
+    resetTopicProgressAction: "Restablecer progreso",
     examSimulations: "Exámenes",
     practiceSimulations: "Recopilatorios",
     originalExams: "Documentos originales de examen",
@@ -206,7 +211,7 @@ export const es: Translations = {
     ],
   },
   practice: {
-    backToTopics: "← Volver a temas",
+    backToTopics: "Volver a temas",
     noQuestions: "No se encontraron preguntas para este tema.",
     backToHome: "Volver al inicio",
     score: "Puntuación",
@@ -222,10 +227,16 @@ export const es: Translations = {
     runningScore: "Puntuación parcial",
     checked: "corregidas",
     openEnded: "preguntas abiertas",
+    selfGradeHint:
+      "Autoevalúa tus respuestas de texto para ver tu puntuación final.",
+    allSelfGraded: "Todas las respuestas autoevaluadas",
   },
   exam: {
-    backToSubject: "← Volver a la asignatura",
+    backToSubject: "Volver a la asignatura",
     exitConfirm: "¿Estás seguro de que quieres salir? Tu progreso se perderá.",
+    exitModalTitle: "¿Salir del examen?",
+    exitModalCancel: "Continuar examen",
+    exitModalConfirm: "Salir del examen",
     noQuestions: "No se encontraron preguntas para este examen.",
     backToHome: "Volver al inicio",
     questions: "Preguntas",
@@ -242,9 +253,20 @@ export const es: Translations = {
     passThreshold: "Umbral de aprobado",
     reviewNote:
       "Revisa tus respuestas. Las preguntas abiertas muestran las soluciones modelo para autoevaluación.",
+    selfGradeHint:
+      "Autoevalúa tus respuestas de texto para ver tu puntuación final.",
     submitExam: "Entregar examen",
     submitConfirm:
       "¿Estás seguro de que quieres entregar el examen? No podrás modificar tus respuestas.",
+    submitModalTitle: "Entregar examen",
+    submitModalBody:
+      "¿Estás seguro de que quieres entregar el examen? No podrás modificar tus respuestas.",
+    submitModalCancel: "Cancelar",
+    submitModalConfirm: "Entregar",
+    timeUpModalTitle: "Tiempo agotado",
+    timeUpModalBody:
+      "Se ha agotado el tiempo. El examen se entregará automáticamente.",
+    timeUpModalAcknowledge: "Entendido",
     score: "Puntuación",
     outOf: "/",
     pass_: "(APROBADO)",
@@ -256,10 +278,11 @@ export const es: Translations = {
   questionCard: {
     modelSolution: "Solución modelo",
     gradeAnswer: "Evalúa tu respuesta:",
-    correct: "✓ Correcto",
-    incorrect: "✗ Incorrecto",
-    openSolution: "Abrir soluciones",
-    closeSolution: "Cerrar solución",
+    correct: "Correcta",
+    incorrect: "Incorrecta",
+    openSolution: "Mostrar solución",
+    openAndSelfGrade: "Mostrar solución y autoevaluarse",
+    closeSolution: "Ocultar solución",
     yourAnswer: "Tu respuesta",
     correct_: "Correcto",
     reportIssue: "Reportar error",
@@ -360,6 +383,7 @@ export const es: Translations = {
   starPopup: {
     title: "¿Nos darías una estrella?",
     subtitle: "No queremos tu dinero, solo una estrella en GitHub.",
+    sparkleButton: "Haz brillar la estrella",
     starButton: "¡Dame una estrella!",
     dismiss: "Ahora no",
   },

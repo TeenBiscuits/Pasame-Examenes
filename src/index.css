@@ -65,6 +65,16 @@ body {
   --color-t-orange-bg: #fff7ed;
   --color-t-orange-border: #fed7aa;
   --color-t-orange-hover: #fb923c;
+  /* Correct / incorrect / pending feedback */
+  --color-correct-bg: #f0fdf4;
+  --color-correct-border: #bbf7d0;
+  --color-correct-fg: #15803d;
+  --color-incorrect-bg: #fef2f2;
+  --color-incorrect-border: #fecaca;
+  --color-incorrect-fg: #b91c1c;
+  --color-pending-bg: #eff6ff;
+  --color-pending-border: #bfdbfe;
+  --color-pending-fg: #1d4ed8;
 }
 
 /* ── Dark theme ── */
@@ -116,6 +126,16 @@ html[data-theme="dark"] {
   --color-t-orange-bg: #431407;
   --color-t-orange-border: #7c2d12;
   --color-t-orange-hover: #f97316;
+  /* Feedback colors */
+  --color-correct-bg: #052e16;
+  --color-correct-border: #166534;
+  --color-correct-fg: #86efac;
+  --color-incorrect-bg: #450a0a;
+  --color-incorrect-border: #7f1d1d;
+  --color-incorrect-fg: #fca5a5;
+  --color-pending-bg: #172554;
+  --color-pending-border: #1e3a8a;
+  --color-pending-fg: #93c5fd;
 }
 
 /* ── Pink theme ── */
@@ -133,6 +153,10 @@ html[data-theme="pink"] {
   --color-accent-border: #fbcfe8;
   --color-code: #f3f4f6;
   --color-code-block: #111827;
+  /* Feedback colors */
+  --color-correct-bg: #fce7f3;
+  --color-correct-border: #fbcfe8;
+  --color-correct-fg: #be185d;
 }
 
 /* ── Catppuccin Mocha theme ── */
@@ -184,6 +208,16 @@ html[data-theme="catppuccin"] {
   --color-t-orange-bg: #313244;
   --color-t-orange-border: #45475a;
   --color-t-orange-hover: #fab387;
+  /* Feedback colors */
+  --color-correct-bg: #1a2e1c;
+  --color-correct-border: #2d4a30;
+  --color-correct-fg: #a6e3a1;
+  --color-incorrect-bg: #27191c;
+  --color-incorrect-border: #44262b;
+  --color-incorrect-fg: #f38ba8;
+  --color-pending-bg: #191c27;
+  --color-pending-border: #262b44;
+  --color-pending-fg: #89b4fa;
 }
 
 /* ── System: follow OS preference ── */
@@ -236,6 +270,16 @@ html[data-theme="catppuccin"] {
     --color-t-orange-bg: #431407;
     --color-t-orange-border: #7c2d12;
     --color-t-orange-hover: #f97316;
+    /* Feedback colors */
+    --color-correct-bg: #052e16;
+    --color-correct-border: #166534;
+    --color-correct-fg: #86efac;
+    --color-incorrect-bg: #450a0a;
+    --color-incorrect-border: #7f1d1d;
+    --color-incorrect-fg: #fca5a5;
+    --color-pending-bg: #172554;
+    --color-pending-border: #1e3a8a;
+    --color-pending-fg: #93c5fd;
   }
 }
 

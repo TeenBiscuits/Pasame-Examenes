@@ -41,6 +41,8 @@ export default function TopicCard({
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
+      data-cuelume-hover="tick"
+      data-cuelume-press
       className={`focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none ${colorMap[topic.color] || colorMap.blue}`}
       onClick={() => {
         triggerLight();
@@ -61,7 +63,7 @@ export default function TopicCard({
         <div className="mt-2">
           <div className="bg-border h-1.5 overflow-hidden rounded-full">
             <div
-              className="bg-accent h-full rounded-full transition-all duration-500"
+              className="bg-accent h-full rounded-full transition-[width] duration-500"
               style={{ width: `${Math.min(progress, 100)}%` }}
             />
           </div>

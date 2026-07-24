@@ -3,6 +3,7 @@ import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
+import { playSuccess, playError } from "../lib/sound";
 
 const getNow = () => Date.now();
 
@@ -53,6 +54,9 @@ function gradeQuestion(
   answer: string,
   selfGrade?: "correct" | "incorrect",
 ): number {
+  if (question.type === "text") {
+    return selfGrade === "correct" ? question.points : 0;
+  }
   if (!answer || answer.trim() === "") return 0;
   if (question.type === "mc") {
     return answer === question.correctAnswer ? question.points : 0;
@@ -70,9 +74,6 @@ function gradeQuestion(
     } catch {
       return 0;
     }
-  }
-  if (question.type === "text") {
-    return selfGrade === "correct" ? question.points : 0;
   }
   return 0;
 }
@@ -162,10 +163,24 @@ export function usePracticeSession(
 
   const handleCheckQuestion = useCallback(
     (questionId: string) => {
+      const question = questions.find((q) => q.id === questionId);
+      if (
+        question &&
+        question.type !== "text" &&
+        state.answers[questionId]?.trim()
+      ) {
+        const isCorrect =
+          gradeQuestion(question, state.answers[questionId]) === question.points;
+        if (isCorrect) {
+          playSuccess();
+        } else {
+          playError();
+        }
+      }
       track("practice_check_question", { subjectId, topic, questionId });
       dispatch({ type: "CHECK_QUESTION", questionId });
     },
-    [subjectId, topic],
+    [subjectId, topic, questions, state.answers],
   );
 
   return {

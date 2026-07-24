@@ -16,6 +16,11 @@ export const en = {
     communityDescription:
       "Practice {count} questions{repeated} from {exams} compilations with model answers and self-grading.",
     practiceByTopic: "Topics",
+    resetTopicProgress: "Reset topic progress",
+    resetTopicProgressConfirm:
+      "Reset all topic progress for this subject? This cannot be undone.",
+    resetTopicProgressCancel: "Cancel",
+    resetTopicProgressAction: "Reset progress",
     examSimulations: "Exams",
     practiceSimulations: "Compilations",
     originalExams: "Original Exam Documents",
@@ -204,7 +209,7 @@ export const en = {
     ],
   },
   practice: {
-    backToTopics: "← Back to Topics",
+    backToTopics: "Back to Topics",
     noQuestions: "No questions found for this topic.",
     backToHome: "Back to Home",
     score: "Score",
@@ -220,10 +225,15 @@ export const en = {
     runningScore: "Running score",
     checked: "checked",
     openEnded: "open-ended questions",
+    selfGradeHint: "Self-grade your text answers to see your final score.",
+    allSelfGraded: "All answers self-graded",
   },
   exam: {
-    backToSubject: "← Back to Subject",
+    backToSubject: "Back to Subject",
     exitConfirm: "Are you sure you want to exit? Your progress will be lost.",
+    exitModalTitle: "Leave exam?",
+    exitModalCancel: "Continue exam",
+    exitModalConfirm: "Leave exam",
     noQuestions: "No questions found for this exam.",
     backToHome: "Back to Home",
     questions: "Questions",
@@ -240,9 +250,19 @@ export const en = {
     passThreshold: "Pass threshold",
     reviewNote:
       "Review your answers below. Open-ended questions show model answers for self-grading.",
+    selfGradeHint: "Self-grade your text answers to see your final score.",
     submitExam: "Submit Exam",
     submitConfirm:
       "Are you sure you want to submit your exam? You won't be able to change your answers.",
+    submitModalTitle: "Submit Exam",
+    submitModalBody:
+      "Are you sure you want to submit? You won't be able to change your answers.",
+    submitModalCancel: "Cancel",
+    submitModalConfirm: "Submit",
+    timeUpModalTitle: "Time's Up",
+    timeUpModalBody:
+      "Time has run out. Your exam will be submitted automatically.",
+    timeUpModalAcknowledge: "Understood",
     score: "Score",
     outOf: "/",
     pass_: "(PASS)",
@@ -254,10 +274,11 @@ export const en = {
   questionCard: {
     modelSolution: "Model Solution",
     gradeAnswer: "Grade your answer:",
-    correct: "✓ Correct",
-    incorrect: "✗ Incorrect",
-    openSolution: "Open Solutions",
-    closeSolution: "Close Solution",
+    correct: "Correct",
+    incorrect: "Incorrect",
+    openSolution: "Show solution",
+    openAndSelfGrade: "Show solution and self-evaluate",
+    closeSolution: "Hide solution",
     yourAnswer: "Your answer",
     correct_: "Correct",
     reportIssue: "Report Issue",
@@ -358,6 +379,7 @@ export const en = {
   starPopup: {
     title: "Would you give us a star?",
     subtitle: "We don't want your money, just a star on GitHub.",
+    sparkleButton: "Make the star sparkle",
     starButton: "Give us a star!",
     dismiss: "Not now",
   },
