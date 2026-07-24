@@ -3,6 +3,7 @@ import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
+import { playSuccess, playError } from "../lib/sound";
 
 const getNow = () => Date.now();
 
@@ -162,10 +163,24 @@ export function usePracticeSession(
 
   const handleCheckQuestion = useCallback(
     (questionId: string) => {
+      const question = questions.find((q) => q.id === questionId);
+      if (
+        question &&
+        question.type !== "text" &&
+        state.answers[questionId]?.trim()
+      ) {
+        const isCorrect =
+          gradeQuestion(question, state.answers[questionId]) === question.points;
+        if (isCorrect) {
+          playSuccess();
+        } else {
+          playError();
+        }
+      }
       track("practice_check_question", { subjectId, topic, questionId });
       dispatch({ type: "CHECK_QUESTION", questionId });
     },
-    [subjectId, topic],
+    [subjectId, topic, questions, state.answers],
   );
 
   return {
