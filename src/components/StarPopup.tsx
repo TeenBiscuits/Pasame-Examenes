@@ -40,6 +40,10 @@ function StarIcon() {
   return <StarSparkle size={20} weight="Filled" aria-hidden="true" />;
 }
 
+function handleSparkle() {
+  playSound("sparkle");
+}
+
 export default function StarPopup() {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -81,10 +85,6 @@ export default function StarPopup() {
 
   function handleStar() {
     finish(true);
-  }
-
-  function handleSparkle() {
-    playSound("sparkle");
   }
 
   const repoUrl = "https://github.com/TeenBiscuits/Pasame-Examenes";
