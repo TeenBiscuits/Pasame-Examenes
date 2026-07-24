@@ -684,9 +684,19 @@ export default function QuestionCard(props: QuestionCardProps) {
           </table>
         </div>
       )}
-      {question.type === "mc" && <MCQuestion {...props} />}
+      {question.type === "mc" && (
+        <MCQuestion
+          key={`mc-${question.id}-${props.savedAnswer || ""}`}
+          {...props}
+        />
+      )}
       {question.type === "text" && <TextQuestion {...props} />}
-      {question.type === "matching" && <MatchingQuestion {...props} />}
+      {question.type === "matching" && (
+        <MatchingQuestion
+          key={`match-${question.id}-${props.savedAnswer || ""}`}
+          {...props}
+        />
+      )}
       <div className="border-border mt-4 flex items-center justify-end gap-2 border-t pt-4">
         <span className="text-fg-muted font-mono text-[10px] select-all">
           {question.id}

@@ -323,7 +323,6 @@ function PracticePlayer({
                   answers[currentQuestion.id].trim() !== "" && (
                     <button
                       type="button"
-                      data-cuelume-press="whisper"
                       className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
                       onMouseEnter={() => setHoverClear(true)}
                       onMouseLeave={() => setHoverClear(false)}
