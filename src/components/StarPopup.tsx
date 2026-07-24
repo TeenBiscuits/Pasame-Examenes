@@ -71,7 +71,6 @@ export default function StarPopup() {
     };
 
     dialog.showModal();
-    playSound("bloom");
     dialog.addEventListener("close", handleClose);
     dialog.addEventListener("click", handleBackdropClick);
     return () => {
@@ -112,6 +111,7 @@ export default function StarPopup() {
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-cuelume-hover="sparkle"
             onClick={handleStar}
             className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-amber-600 active:scale-[0.98]"
           >
