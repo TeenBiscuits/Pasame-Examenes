@@ -46,7 +46,7 @@ export default function Disclaimer({
           href={buildDisclaimerReportUrl(subjectId, questionId, questionType)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg inline-flex items-center gap-1 rounded text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg rounded text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("report_issue", {
@@ -55,7 +55,11 @@ export default function Disclaimer({
             });
           }}
         >
-          <TriangleWarning size={12} aria-hidden="true" />
+          <TriangleWarning
+            size={12}
+            aria-hidden="true"
+            className="mr-1 inline-block align-[-0.15em]"
+          />
           {t.disclaimer.reportLink}
         </a>
         {t.disclaimer.postLinkText}
