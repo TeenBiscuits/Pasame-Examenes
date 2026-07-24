@@ -21,6 +21,7 @@ interface QuestionNavChipsProps {
   checkedQuestions?: Record<string, boolean>;
   questionResults?: Record<string, QuestionResult>;
   dataTour?: string;
+  className?: string;
 }
 
 export default function QuestionNavChips({
@@ -36,11 +37,12 @@ export default function QuestionNavChips({
   checkedQuestions,
   questionResults,
   dataTour,
+  className = "mb-4",
 }: QuestionNavChipsProps) {
   return (
     <div
       ref={navRef}
-      className="mb-4 flex gap-2 overflow-x-auto overflow-y-hidden pb-2"
+      className={`flex gap-2 overflow-x-auto overflow-y-hidden pb-0 sm:pb-2 ${className}`}
       data-tour={dataTour}
       style={{
         maskImage:

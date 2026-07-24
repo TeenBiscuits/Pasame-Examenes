@@ -204,7 +204,7 @@ export const en = {
     ],
   },
   practice: {
-    backToTopics: "← Back to Topics",
+    backToTopics: "Back to Topics",
     noQuestions: "No questions found for this topic.",
     backToHome: "Back to Home",
     score: "Score",
@@ -224,7 +224,7 @@ export const en = {
     allSelfGraded: "All answers self-graded",
   },
   exam: {
-    backToSubject: "← Back to Subject",
+    backToSubject: "Back to Subject",
     exitConfirm: "Are you sure you want to exit? Your progress will be lost.",
     noQuestions: "No questions found for this exam.",
     backToHome: "Back to Home",

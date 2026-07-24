@@ -206,7 +206,7 @@ export const es: Translations = {
     ],
   },
   practice: {
-    backToTopics: "← Volver a temas",
+    backToTopics: "Volver a temas",
     noQuestions: "No se encontraron preguntas para este tema.",
     backToHome: "Volver al inicio",
     score: "Puntuación",
@@ -227,7 +227,7 @@ export const es: Translations = {
     allSelfGraded: "Todas las respuestas autoevaluadas",
   },
   exam: {
-    backToSubject: "← Volver a la asignatura",
+    backToSubject: "Volver a la asignatura",
     exitConfirm: "¿Estás seguro de que quieres salir? Tu progreso se perderá.",
     noQuestions: "No se encontraron preguntas para este examen.",
     backToHome: "Volver al inicio",

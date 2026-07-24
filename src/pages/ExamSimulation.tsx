@@ -29,6 +29,7 @@ import {
   ArrowSquareLeft2,
   ArrowSquareRight2,
   CloseSquare2,
+  Exit,
   Send,
   Trophy,
 } from "reicon-react";
@@ -62,13 +63,13 @@ function ExamStartScreen({
     : t.exam.practiceNote;
   const isAuthorized = hasAuthorizedExamContent(subject);
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-2xl px-4 py-16">
-      <div className="mb-6">
+    <div className="animate-fade-in animate-duration-fast mx-auto max-w-2xl px-4 py-6 sm:py-16">
+      <div className="mb-3 sm:mb-4">
         <Link
           to={`/${subject.id}`}
           data-cuelume-hover
           data-cuelume-press
-          className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
           onClick={() =>
             track("nav_click", {
               target: "subject_home",
@@ -77,11 +78,12 @@ function ExamStartScreen({
             })
           }
         >
+          <Exit size={16} aria-hidden="true" className="shrink-0" />
           {t.exam.backToSubject}
         </Link>
       </div>
       <div className="text-center">
-        <h1 className="text-fg mb-2 inline-flex items-center justify-center gap-2 text-3xl font-semibold">
+        <h1 className="text-fg mb-2 inline-flex items-center justify-center gap-2 text-2xl font-semibold sm:text-3xl">
           {examInfo.title}
           {isAuthorized && (
             <span
@@ -97,11 +99,11 @@ function ExamStartScreen({
             </span>
           )}
         </h1>
-        <p className="text-fg-muted mb-8">
+        <p className="text-fg-muted mb-5 sm:mb-8">
           {subject.name} ({subject.courseCode})
         </p>
       </div>
-      <div className="bg-surface-alt border-border space-y-4 rounded-xl border p-8 shadow-sm">
+      <div className="bg-surface-alt border-border space-y-3 rounded-xl border p-5 shadow-sm sm:space-y-4 sm:p-8">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <span className="text-fg-muted">{t.exam.questions}</span>
@@ -124,7 +126,7 @@ function ExamStartScreen({
             </p>
           </div>
         </div>
-        <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+        <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800 sm:p-4">
           <Alarm size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
           {simulationNote}
         </div>
@@ -278,8 +280,8 @@ function ExamPlayer({
   );
 
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
-      <div className="mb-6">
+    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
+      <div>
         <Link
           to={`/${subject.id}`}
           data-cuelume-hover
@@ -301,54 +303,87 @@ function ExamPlayer({
               }
             }
           }}
-          className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
         >
+          <Exit size={16} aria-hidden="true" className="shrink-0" />
           {t.exam.backToSubject}
         </Link>
       </div>
       <div
-        className="bg-surface border-border sticky top-14 z-40 -mx-4 mb-6 flex items-center justify-between border-b px-4 py-3"
+        className="bg-surface border-border sticky top-14 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6"
         data-tour="exam-header"
       >
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <span className="inline-flex items-center gap-2">
-            <span className="text-fg text-lg font-bold">{examInfo.title}</span>
-            {isAuthorized && (
+        <div className="flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <span className="inline-flex max-w-full items-center gap-2">
+              <span className="text-fg truncate text-xl font-semibold sm:text-2xl">
+                {examInfo.title}
+              </span>
+              {isAuthorized && (
+                <span
+                  className="border-t-amber-border bg-t-amber-bg text-t-amber-hover inline-flex size-5 shrink-0 items-center justify-center rounded border"
+                  title={t.contentPolicy.authorized}
+                >
+                  <HugeiconsIcon
+                    icon={CheckmarkBadge02Icon}
+                    className="size-3.5"
+                    role="img"
+                    aria-label={t.contentPolicy.authorized}
+                  />
+                </span>
+              )}
+            </span>
+            <p className="text-fg-muted mt-1 text-sm">
+              {formatPoints(totalPoints)}p {t.exam.total}
+            </p>
+          </div>
+          <div className="shrink-0">
+            {!submitted && (
               <span
-                className="border-t-amber-border bg-t-amber-bg text-t-amber-hover inline-flex size-5 shrink-0 items-center justify-center rounded border"
-                title={t.contentPolicy.authorized}
+                className={`flex items-center gap-1.5 font-mono text-sm font-bold ${timeLeft < 600 ? "text-incorrect-fg animate-pulse" : "text-fg-secondary"}`}
               >
-                <HugeiconsIcon
-                  icon={CheckmarkBadge02Icon}
-                  className="size-3.5"
-                  role="img"
-                  aria-label={t.contentPolicy.authorized}
-                />
+                <Alarm size={16} aria-hidden="true" className="shrink-0" />
+                {formatTime(timeLeft)}
               </span>
             )}
-          </span>
-          <span className="text-fg-muted text-sm">
-            {formatPoints(totalPoints)}p {t.exam.total}
-          </span>
+            {submitted && (
+              <span
+                className={`animate-fade-in rounded-md px-2.5 py-1 text-xs font-bold ${
+                  pendingTextCount > 0
+                    ? "bg-pending-bg text-pending-fg"
+                    : score >= examInfo.passPoints
+                      ? "bg-correct-bg text-correct-fg"
+                      : "bg-incorrect-bg text-incorrect-fg"
+                }`}
+              >
+                {pendingTextCount > 0
+                  ? t.exam.submitted
+                  : score >= examInfo.passPoints
+                    ? t.exam.pass_
+                    : t.exam.fail}
+              </span>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          {!submitted && (
-            <span
-              className={`flex items-center gap-1.5 font-mono text-sm font-bold ${timeLeft < 600 ? "text-incorrect-fg animate-pulse" : "text-fg-secondary"}`}
-            >
-              <Alarm size={16} aria-hidden="true" className="shrink-0" />
-              {formatTime(timeLeft)}
-            </span>
-          )}
-          {submitted && (
-            <span
-              className={`animate-fade-in rounded px-3 py-1 text-sm font-bold ${score >= examInfo.passPoints ? "bg-correct-bg text-correct-fg" : "bg-incorrect-bg text-incorrect-fg"}`}
-            >
-              {formatPoints(score)}/{formatPoints(totalPoints)}p{" "}
-              {score >= examInfo.passPoints ? t.exam.pass_ : t.exam.fail}
-            </span>
-          )}
-        </div>
+
+        <QuestionNavChips
+          questions={questions}
+          answers={answers}
+          currentIndex={currentIndex}
+          navRef={navRef}
+          showLeftFade={showLeftFade}
+          showRightFade={showRightFade}
+          questionResults={questionResults}
+          dataTour="exam-nav"
+          eventName="exam_navigate"
+          eventData={{ subjectId: subject.id, year: examInfo.year }}
+          className="mt-4 mb-0"
+          onSelectIndex={(i, dir) => {
+            setDirection(dir);
+            setCurrentIndex(i);
+            scrollToNav(i);
+          }}
+        />
       </div>
 
       {submitted && (
@@ -363,10 +398,10 @@ function ExamPlayer({
                 ? "text-correct-fg"
                 : "text-incorrect-fg"
           }
-          className="animate-fade-in-up mb-6"
+          className="animate-fade-in-up mb-4 sm:mb-6"
         >
           <div
-            className={`rounded-lg border p-4 pb-8 text-sm ${
+            className={`rounded-lg border p-3 pb-7 text-sm sm:p-4 sm:pb-8 ${
               pendingTextCount > 0
                 ? "border-pending-border bg-pending-bg"
                 : score >= examInfo.passPoints
@@ -412,24 +447,6 @@ function ExamPlayer({
         </ScoreProgress>
       )}
 
-      <QuestionNavChips
-        questions={questions}
-        answers={answers}
-        currentIndex={currentIndex}
-        navRef={navRef}
-        showLeftFade={showLeftFade}
-        showRightFade={showRightFade}
-        questionResults={questionResults}
-        dataTour="exam-nav"
-        eventName="exam_navigate"
-        eventData={{ subjectId: subject.id, year: examInfo.year }}
-        onSelectIndex={(i, dir) => {
-          setDirection(dir);
-          setCurrentIndex(i);
-          scrollToNav(i);
-        }}
-      />
-
       <div data-tour="exam-card">
         <QuestionCard
           key={currentQuestion.id}
@@ -452,7 +469,7 @@ function ExamPlayer({
         />
       </div>
 
-      <div className="mt-6 flex items-center gap-2 sm:justify-between sm:gap-3">
+      <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:justify-between sm:gap-3">
         <button
           type="button"
           ref={prevBtnRef}
@@ -883,7 +900,7 @@ export default function ExamSimulation() {
 
   if (questions.length === 0 || !subject || !examInfo) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
         {questionsLoaded && null}
         <p className="text-fg-muted">{t.exam.noQuestions}</p>
         <Link

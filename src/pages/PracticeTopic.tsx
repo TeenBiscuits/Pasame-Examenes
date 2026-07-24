@@ -26,6 +26,7 @@ import ScoreProgress from "../components/ScoreProgress";
 import {
   ArrowSquareLeft2,
   ArrowSquareRight2,
+  Exit,
   Trash5,
   Eye,
   Send,
@@ -192,26 +193,54 @@ function PracticePlayer({
   const gradedScore = getScore(true);
 
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-8">
-      <div className="mb-6" data-tour="practice-back">
+    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
+      <div data-tour="practice-back">
         <Link
           to={`/${subject.id}`}
           data-cuelume-hover
           data-cuelume-press
-          className="text-accent focus-visible:ring-accent rounded-md px-1 text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
           onClick={() =>
             track("nav_click", { target: "subject_home", from: "practice" })
           }
         >
+          <Exit size={16} aria-hidden="true" className="shrink-0" />
           {t.practice.backToTopics}
         </Link>
-        <h1 className="text-fg mt-2 text-2xl font-semibold">
-          {topicInfo?.icon} {topicInfo?.label || topic}
-        </h1>
-        <p className="text-fg-muted mt-1 text-sm">
-          {questions.length} {t.subjectCard.questions} &middot;{" "}
-          {formatPoints(totalPoints)} {t.practice.pointsTotal}
-        </p>
+      </div>
+
+      <div className="bg-surface border-border sticky top-14 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6">
+        <div className="flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <h1 className="text-fg truncate text-xl font-semibold sm:text-2xl">
+              {topicInfo?.icon} {topicInfo?.label || topic}
+            </h1>
+            <p className="text-fg-muted mt-1 text-sm">
+              {questions.length} {t.subjectCard.questions} &middot;{" "}
+              {formatPoints(totalPoints)} {t.practice.pointsTotal}
+            </p>
+          </div>
+        </div>
+
+        <QuestionNavChips
+          questions={questions}
+          answers={answers}
+          currentIndex={currentIndex}
+          navRef={navRef}
+          showLeftFade={showLeftFade}
+          showRightFade={showRightFade}
+          checkedQuestions={checkedQuestions}
+          questionResults={questionResults}
+          dataTour="practice-nav"
+          eventName="practice_navigate"
+          eventData={{ subjectId: subject.id, topic: topic || "" }}
+          className="mt-4 mb-0"
+          onSelectIndex={(i, dir) => {
+            setDirection(dir);
+            setCurrentIndex(i);
+            scrollToNav(i);
+          }}
+        />
       </div>
 
       {(submitted || Object.keys(checkedQuestions).length > 0) && (
@@ -222,10 +251,10 @@ function PracticePlayer({
           colorClassName={
             submitted && allTextGraded ? "text-correct-fg" : "text-pending-fg"
           }
-          className="animate-fade-in-up mb-6"
+          className="animate-fade-in-up mb-4 sm:mb-6"
         >
           <div
-            className={`rounded-lg border p-4 pb-8 ${
+            className={`rounded-lg border p-3 pb-7 sm:p-4 sm:pb-8 ${
               submitted && allTextGraded
                 ? "border-correct-border bg-correct-bg"
                 : "border-pending-border bg-pending-bg"
@@ -269,25 +298,6 @@ function PracticePlayer({
         </ScoreProgress>
       )}
 
-      <QuestionNavChips
-        questions={questions}
-        answers={answers}
-        currentIndex={currentIndex}
-        navRef={navRef}
-        showLeftFade={showLeftFade}
-        showRightFade={showRightFade}
-        checkedQuestions={checkedQuestions}
-        questionResults={questionResults}
-        dataTour="practice-nav"
-        eventName="practice_navigate"
-        eventData={{ subjectId: subject.id, topic: topic || "" }}
-        onSelectIndex={(i, dir) => {
-          setDirection(dir);
-          setCurrentIndex(i);
-          scrollToNav(i);
-        }}
-      />
-
       <div data-tour="practice-card">
         <QuestionCard
           key={currentQuestion.id}
@@ -313,7 +323,7 @@ function PracticePlayer({
       </div>
 
       <div
-        className="mt-6 flex items-center gap-2 sm:justify-between sm:gap-3"
+        className="mt-4 flex items-center gap-2 sm:mt-6 sm:justify-between sm:gap-3"
         data-tour="practice-nav-btns"
       >
         <button
@@ -696,7 +706,7 @@ export default function PracticeTopic() {
 
   if (questions.length === 0 || !subject) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+      <div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
         {questionsLoaded && null}
         <p className="text-fg-muted">{t.practice.noQuestions}</p>
         <Link

@@ -206,7 +206,7 @@ export const gl: Translations = {
     ],
   },
   practice: {
-    backToTopics: "← Volver a temas",
+    backToTopics: "Volver a temas",
     noQuestions: "Non se atoparon preguntas para este tema.",
     backToHome: "Volver ao inicio",
     score: "Puntuación",
@@ -227,7 +227,7 @@ export const gl: Translations = {
     allSelfGraded: "Todas as respostas autoavaliadas",
   },
   exam: {
-    backToSubject: "← Volver á materia",
+    backToSubject: "Volver á materia",
     exitConfirm: "Estás seguro de que queres saír? O teu progreso perderase.",
     noQuestions: "Non se atoparon preguntas para este exame.",
     backToHome: "Volver ao inicio",
