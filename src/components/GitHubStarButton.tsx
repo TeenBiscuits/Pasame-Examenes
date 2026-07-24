@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { Star } from "reicon-react";
 import { track } from "../lib/umami";
 
@@ -17,6 +17,7 @@ function notify() {
 
 function subscribe(fn: () => void) {
   subscribers.add(fn);
+  ensureCountLoaded();
   return () => {
     subscribers.delete(fn);
   };
@@ -69,6 +70,10 @@ function getStarCount(): number | null {
   return cachedCount;
 }
 
+function getServerStarCount(): null {
+  return null;
+}
+
 function formatCount(n: number): string {
   if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
   return String(n);
@@ -87,13 +92,11 @@ function StarIcon({ className }: { className?: string }) {
 }
 
 export default function GitHubStarButton() {
-  const [count, setCount] = useState(() => getStarCount());
-
-  useEffect(() => {
-    const unsubscribe = subscribe(() => setCount(getStarCount()));
-    ensureCountLoaded();
-    return unsubscribe;
-  }, []);
+  const count = useSyncExternalStore(
+    subscribe,
+    getStarCount,
+    getServerStarCount,
+  );
 
   const href = `https://github.com/${REPO}`;
 

@@ -63,7 +63,7 @@ export default function TopicCard({
         <div className="mt-2">
           <div className="bg-border h-1.5 overflow-hidden rounded-full">
             <div
-              className="bg-accent h-full rounded-full transition-all duration-500"
+              className="bg-accent h-full rounded-full transition-[width] duration-500"
               style={{ width: `${Math.min(progress, 100)}%` }}
             />
           </div>

@@ -168,119 +168,52 @@ interface ExamPlayerProps {
   arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
 }
 
-function ExamPlayer({
+type ExamSubject = ExamPlayerProps["subject"];
+
+interface ExamPlayerHeaderProps {
+  subject: ExamSubject;
+  examInfo: Exam;
+  questions: Question[];
+  answers: Record<string, string>;
+  currentIndex: number;
+  setCurrentIndex: (i: number) => void;
+  submitted: boolean;
+  timeLeft: number;
+  totalPoints: number;
+  score: number;
+  pendingTextCount: number;
+  questionResults: ReturnType<typeof computeQuestionResults>;
+  setDirection: (d: "next" | "prev" | undefined) => void;
+  showLeftFade: boolean;
+  showRightFade: boolean;
+  navRef: React.RefObject<HTMLDivElement | null>;
+  scrollToNav: (index: number) => void;
+}
+
+function ExamPlayerHeader({
   subject,
   examInfo,
   questions,
-  megatopicLabels,
+  answers,
   currentIndex,
   setCurrentIndex,
-  answers,
-  selfGrades,
   submitted,
   timeLeft,
-  timeUp,
   totalPoints,
-  direction,
+  score,
+  pendingTextCount,
+  questionResults,
   setDirection,
   showLeftFade,
   showRightFade,
   navRef,
   scrollToNav,
-  onAnswer,
-  onSelfGrade,
-  onSubmit,
-  arrowAnimateRef,
-}: ExamPlayerProps) {
+}: ExamPlayerHeaderProps) {
   const t = useT();
-  const [hoverPrev, setHoverPrev] = useState(false);
-  const [hoverNext, setHoverNext] = useState(false);
-  const prevBtnRef = useRef<HTMLButtonElement>(null);
-  const nextBtnRef = useRef<HTMLButtonElement>(null);
-
-  const animateArrowPress = useCallback(
-    (ref: React.RefObject<HTMLButtonElement | null>) => {
-      ref.current?.animate(
-        [{ transform: "scale(0.92)" }, { transform: "scale(1)" }],
-        { duration: 150, easing: "ease-out" },
-      );
-    },
-    [],
-  );
-
-  useEffect(() => {
-    arrowAnimateRef.current = (dir) => {
-      animateArrowPress(dir === "prev" ? prevBtnRef : nextBtnRef);
-    };
-  }, [arrowAnimateRef, animateArrowPress]);
-
-  const currentQuestion = questions[currentIndex];
-  const currentTopic = subject.topics.find(
-    (tp) => tp.key === currentQuestion.topic,
-  );
   const isAuthorized = hasAuthorizedExamContent(subject);
-  const submitDialogRef = useRef<HTMLDialogElement>(null);
-  const timeUpDialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    if (timeUp && !submitted) {
-      timeUpDialogRef.current?.showModal();
-    }
-  }, [timeUp, submitted]);
-
-  const getScore = () => {
-    let score = 0;
-    for (const q of questions) {
-      if (q.type === "text") {
-        if (selfGrades[q.id] === "correct") score += q.points;
-        continue;
-      }
-      if (!answers[q.id] || answers[q.id].trim() === "") continue;
-      if (q.type === "mc") {
-        if (answers[q.id] === q.correctAnswer) score += q.points;
-      } else if (q.type === "matching") {
-        try {
-          const user = JSON.parse(answers[q.id]) as Record<string, string>;
-          const correct = q.correctAnswer as Record<string, string>;
-          const items = Object.keys(correct);
-          let correctCount = 0;
-          for (const item of items) {
-            if (user[item] === correct[item]) correctCount++;
-          }
-          score += Math.round((correctCount / items.length) * q.points);
-        } catch {
-          /* skip */
-        }
-      }
-    }
-    return roundPoints(score);
-  };
-
-  const score = getScore();
-
-  const questionResults = useMemo(
-    () => computeQuestionResults(questions, answers, {}, selfGrades, submitted),
-    [questions, answers, selfGrades, submitted],
-  );
-
-  const pendingTextCount = useMemo(
-    () =>
-      questions.filter(
-        (q) => q.type === "text" && submitted && !selfGrades[q.id],
-      ).length,
-    [questions, selfGrades, submitted],
-  );
-
-  const pendingTextPoints = useMemo(
-    () =>
-      questions
-        .filter((q) => q.type === "text" && submitted && !selfGrades[q.id])
-        .reduce((sum, q) => sum + q.points, 0),
-    [questions, selfGrades, submitted],
-  );
 
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
+    <>
       <div>
         <Link
           to={`/${subject.id}`}
@@ -365,7 +298,6 @@ function ExamPlayer({
             )}
           </div>
         </div>
-
         <QuestionNavChips
           questions={questions}
           answers={answers}
@@ -385,185 +317,224 @@ function ExamPlayer({
           }}
         />
       </div>
+    </>
+  );
+}
 
-      {submitted && (
-        <ScoreProgress
-          score={score}
-          totalPoints={totalPoints}
-          pendingPoints={pendingTextPoints}
-          colorClassName={
-            pendingTextCount > 0
-              ? "text-pending-fg"
-              : score >= examInfo.passPoints
-                ? "text-correct-fg"
-                : "text-incorrect-fg"
-          }
-          className="animate-fade-in-up mb-4 sm:mb-6"
-        >
-          <div
-            className={`rounded-lg border p-3 pb-7 text-sm sm:p-4 sm:pb-8 ${
-              pendingTextCount > 0
-                ? "border-pending-border bg-pending-bg"
-                : score >= examInfo.passPoints
-                  ? "border-correct-border bg-correct-bg"
-                  : "border-incorrect-border bg-incorrect-bg"
-            }`}
-          >
-            <div className="text-fg mb-1 flex items-center gap-2">
-              <Trophy
-                size={18}
-                weight="Filled"
-                aria-hidden="true"
-                className="shrink-0"
-              />
-              <p className="font-semibold">
-                {t.exam.submitted} {t.exam.score}
-              </p>
-              <p className="ml-auto text-lg font-bold whitespace-nowrap tabular-nums">
-                {formatPoints(score)}
-                <span className="text-fg-muted mx-1 text-sm font-medium">
-                  /
-                </span>
-                {formatPoints(totalPoints)}
-                <span className="text-fg-muted ml-1 text-sm font-medium">
-                  ({Math.round((score / totalPoints) * 100)}%)
-                </span>
-              </p>
-            </div>
-            <p
-              className={`${
-                pendingTextCount > 0
-                  ? "text-pending-fg"
-                  : score >= examInfo.passPoints
-                    ? "text-correct-fg"
-                    : "text-incorrect-fg"
-              }`}
-            >
-              {pendingTextCount > 0
-                ? t.exam.selfGradeHint
-                : `${t.exam.passThreshold}: ${formatPoints(examInfo.passPoints)}p. ${t.exam.reviewNote}`}
-            </p>
-          </div>
-        </ScoreProgress>
-      )}
+interface ExamScoreSummaryProps {
+  score: number;
+  totalPoints: number;
+  pendingTextCount: number;
+  pendingTextPoints: number;
+  passPoints: number;
+}
 
-      <div data-tour="exam-card">
-        <QuestionCard
-          key={currentQuestion.id}
-          question={currentQuestion}
-          index={currentIndex}
-          total={questions.length}
-          topicLabel={currentTopic?.label || currentQuestion.topic}
-          megatopicLabel={megatopicLabels[currentQuestion.topic]}
-          examDate={examInfo?.date || examInfo?.title}
-          subjectId={subject.id}
-          topicKey={currentQuestion.topic}
-          examYear={examInfo.year}
-          mode="exam"
-          onAnswer={onAnswer}
-          savedAnswer={answers[currentQuestion.id]}
-          showResult={submitted}
-          selfGrade={selfGrades[currentQuestion.id]}
-          onSelfGrade={onSelfGrade}
-          direction={direction}
-        />
-      </div>
+function ExamScoreSummary({
+  score,
+  totalPoints,
+  pendingTextCount,
+  pendingTextPoints,
+  passPoints,
+}: ExamScoreSummaryProps) {
+  const t = useT();
+  const statusClass =
+    pendingTextCount > 0
+      ? "text-pending-fg"
+      : score >= passPoints
+        ? "text-correct-fg"
+        : "text-incorrect-fg";
+  const panelClass =
+    pendingTextCount > 0
+      ? "border-pending-border bg-pending-bg"
+      : score >= passPoints
+        ? "border-correct-border bg-correct-bg"
+        : "border-incorrect-border bg-incorrect-bg";
 
-      <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:justify-between sm:gap-3">
-        <button
-          type="button"
-          ref={prevBtnRef}
-          data-cuelume-press
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-          onMouseEnter={() => setHoverPrev(true)}
-          onMouseLeave={() => setHoverPrev(false)}
-          onClick={() => {
-            triggerLight();
-            const nextIndex = Math.max(0, currentIndex - 1);
-            setDirection("prev");
-            track("exam_navigate", {
-              subjectId: subject.id,
-              year: examInfo.year,
-              direction: "prev",
-              fromIndex: currentIndex,
-              toIndex: nextIndex,
-              source: "arrow",
-            });
-            setCurrentIndex(nextIndex);
-            scrollToNav(nextIndex);
-          }}
-          disabled={currentIndex === 0}
-        >
-          <ArrowSquareLeft2
+  return (
+    <ScoreProgress
+      score={score}
+      totalPoints={totalPoints}
+      pendingPoints={pendingTextPoints}
+      colorClassName={statusClass}
+      className="animate-fade-in-up mb-4 sm:mb-6"
+    >
+      <div
+        className={`rounded-lg border p-3 pb-7 text-sm sm:p-4 sm:pb-8 ${panelClass}`}
+      >
+        <div className="text-fg mb-1 flex items-center gap-2">
+          <Trophy
             size={18}
-            weight={hoverPrev ? "Filled" : "Outline"}
+            weight="Filled"
             aria-hidden="true"
             className="shrink-0"
           />
-          <span className="hidden sm:inline sm:min-w-0 sm:truncate">
-            {t.exam.previous}
-          </span>
-        </button>
-        <div
-          className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
-          data-tour="exam-submit"
-        >
-          {!submitted && (
-            <button
-              type="button"
-              data-cuelume-press
-              className="focus-visible:ring-incorrect-fg flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-              onClick={() => {
-                submitDialogRef.current?.showModal();
-              }}
-            >
-              <Send size={18} aria-hidden="true" className="shrink-0" />
-              <span className="min-w-0 truncate">{t.exam.submitExam}</span>
-            </button>
-          )}
+          <p className="font-semibold">
+            {t.exam.submitted} {t.exam.score}
+          </p>
+          <p className="ml-auto text-lg font-bold whitespace-nowrap tabular-nums">
+            {formatPoints(score)}
+            <span className="text-fg-muted mx-1 text-sm font-medium">/</span>
+            {formatPoints(totalPoints)}
+            <span className="text-fg-muted ml-1 text-sm font-medium">
+              ({Math.round((score / totalPoints) * 100)}%)
+            </span>
+          </p>
         </div>
-        <button
-          type="button"
-          ref={nextBtnRef}
-          data-cuelume-press
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-          onMouseEnter={() => setHoverNext(true)}
-          onMouseLeave={() => setHoverNext(false)}
-          onClick={() => {
-            triggerLight();
-            const nextIndex = Math.min(questions.length - 1, currentIndex + 1);
-            setDirection("next");
-            track("exam_navigate", {
-              subjectId: subject.id,
-              year: examInfo.year,
-              direction: "next",
-              fromIndex: currentIndex,
-              toIndex: nextIndex,
-              source: "arrow",
-            });
-            setCurrentIndex(nextIndex);
-            scrollToNav(nextIndex);
-          }}
-          disabled={currentIndex === questions.length - 1}
-        >
-          <span className="hidden sm:inline sm:min-w-0 sm:truncate">
-            {t.exam.next}
-          </span>
-          <ArrowSquareRight2
-            size={18}
-            weight={hoverNext ? "Filled" : "Outline"}
-            aria-hidden="true"
-            className="shrink-0"
-          />
-        </button>
+        <p className={statusClass}>
+          {pendingTextCount > 0
+            ? t.exam.selfGradeHint
+            : `${t.exam.passThreshold}: ${formatPoints(passPoints)}p. ${t.exam.reviewNote}`}
+        </p>
       </div>
+    </ScoreProgress>
+  );
+}
 
-      <Disclaimer
-        subjectId={subject.id}
-        questionId={currentQuestion.id}
-        questionType={currentQuestion.type}
-      />
+interface ExamControlsProps {
+  subject: ExamSubject;
+  examInfo: Exam;
+  questions: Question[];
+  currentIndex: number;
+  setCurrentIndex: (i: number) => void;
+  submitted: boolean;
+  setDirection: (d: "next" | "prev" | undefined) => void;
+  scrollToNav: (index: number) => void;
+  submitDialogRef: React.RefObject<HTMLDialogElement | null>;
+  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
+}
 
+function ExamControls({
+  subject,
+  examInfo,
+  questions,
+  currentIndex,
+  setCurrentIndex,
+  submitted,
+  setDirection,
+  scrollToNav,
+  submitDialogRef,
+  arrowAnimateRef,
+}: ExamControlsProps) {
+  const t = useT();
+  const [hoverPrev, setHoverPrev] = useState(false);
+  const [hoverNext, setHoverNext] = useState(false);
+  const prevBtnRef = useRef<HTMLButtonElement>(null);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+
+  const animateArrowPress = useCallback(
+    (ref: React.RefObject<HTMLButtonElement | null>) => {
+      ref.current?.animate(
+        [{ transform: "scale(0.92)" }, { transform: "scale(1)" }],
+        { duration: 150, easing: "ease-out" },
+      );
+    },
+    [],
+  );
+
+  useEffect(() => {
+    arrowAnimateRef.current = (dir) => {
+      animateArrowPress(dir === "prev" ? prevBtnRef : nextBtnRef);
+    };
+  }, [arrowAnimateRef, animateArrowPress]);
+
+  const navigateQuestion = (dir: "prev" | "next") => {
+    triggerLight();
+    const nextIndex =
+      dir === "prev"
+        ? Math.max(0, currentIndex - 1)
+        : Math.min(questions.length - 1, currentIndex + 1);
+    setDirection(dir);
+    track("exam_navigate", {
+      subjectId: subject.id,
+      year: examInfo.year,
+      direction: dir,
+      fromIndex: currentIndex,
+      toIndex: nextIndex,
+      source: "arrow",
+    });
+    setCurrentIndex(nextIndex);
+    scrollToNav(nextIndex);
+  };
+
+  return (
+    <div className="mt-4 flex items-center gap-2 sm:mt-6 sm:justify-between sm:gap-3">
+      <button
+        type="button"
+        ref={prevBtnRef}
+        data-cuelume-press
+        className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
+        onMouseEnter={() => setHoverPrev(true)}
+        onMouseLeave={() => setHoverPrev(false)}
+        onClick={() => navigateQuestion("prev")}
+        disabled={currentIndex === 0}
+      >
+        <ArrowSquareLeft2
+          size={18}
+          weight={hoverPrev ? "Filled" : "Outline"}
+          aria-hidden="true"
+          className="shrink-0"
+        />
+        <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+          {t.exam.previous}
+        </span>
+      </button>
+      <div
+        className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
+        data-tour="exam-submit"
+      >
+        {!submitted && (
+          <button
+            type="button"
+            data-cuelume-press
+            className="focus-visible:ring-incorrect-fg flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+            onClick={() => submitDialogRef.current?.showModal()}
+          >
+            <Send size={18} aria-hidden="true" className="shrink-0" />
+            <span className="min-w-0 truncate">{t.exam.submitExam}</span>
+          </button>
+        )}
+      </div>
+      <button
+        type="button"
+        ref={nextBtnRef}
+        data-cuelume-press
+        className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
+        onMouseEnter={() => setHoverNext(true)}
+        onMouseLeave={() => setHoverNext(false)}
+        onClick={() => navigateQuestion("next")}
+        disabled={currentIndex === questions.length - 1}
+      >
+        <span className="hidden sm:inline sm:min-w-0 sm:truncate">
+          {t.exam.next}
+        </span>
+        <ArrowSquareRight2
+          size={18}
+          weight={hoverNext ? "Filled" : "Outline"}
+          aria-hidden="true"
+          className="shrink-0"
+        />
+      </button>
+    </div>
+  );
+}
+
+interface ExamDialogsProps {
+  submitted: boolean;
+  submitDialogRef: React.RefObject<HTMLDialogElement | null>;
+  timeUpDialogRef: React.RefObject<HTMLDialogElement | null>;
+  onSubmit: () => void;
+}
+
+function ExamDialogs({
+  submitted,
+  submitDialogRef,
+  timeUpDialogRef,
+  onSubmit,
+}: ExamDialogsProps) {
+  const t = useT();
+
+  return (
+    <>
       <dialog
         ref={submitDialogRef}
         className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
@@ -613,7 +584,6 @@ function ExamPlayer({
           </div>
         </div>
       </dialog>
-
       <dialog
         ref={timeUpDialogRef}
         className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
@@ -656,6 +626,206 @@ function ExamPlayer({
           </button>
         </div>
       </dialog>
+    </>
+  );
+}
+
+function ExamPlayer({
+  subject,
+  examInfo,
+  questions,
+  megatopicLabels,
+  currentIndex,
+  setCurrentIndex,
+  answers,
+  selfGrades,
+  submitted,
+  timeLeft,
+  timeUp,
+  totalPoints,
+  direction,
+  setDirection,
+  showLeftFade,
+  showRightFade,
+  navRef,
+  scrollToNav,
+  onAnswer,
+  onSelfGrade,
+  onSubmit,
+  arrowAnimateRef,
+}: ExamPlayerProps) {
+  const currentQuestion = questions[currentIndex];
+  const currentTopic = subject.topics.find(
+    (tp) => tp.key === currentQuestion.topic,
+  );
+  const submitDialogRef = useRef<HTMLDialogElement>(null);
+  const timeUpDialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (timeUp && !submitted) {
+      timeUpDialogRef.current?.showModal();
+    }
+  }, [timeUp, submitted]);
+
+  const getScore = () => {
+    let score = 0;
+    for (const q of questions) {
+      if (q.type === "text") {
+        if (selfGrades[q.id] === "correct") score += q.points;
+        continue;
+      }
+      if (!answers[q.id] || answers[q.id].trim() === "") continue;
+      if (q.type === "mc") {
+        if (answers[q.id] === q.correctAnswer) score += q.points;
+      } else if (q.type === "matching") {
+        try {
+          const user = JSON.parse(answers[q.id]) as Record<string, string>;
+          const correct = q.correctAnswer as Record<string, string>;
+          const items = Object.keys(correct);
+          let correctCount = 0;
+          for (const item of items) {
+            if (user[item] === correct[item]) correctCount++;
+          }
+          score += Math.round((correctCount / items.length) * q.points);
+        } catch {
+          /* skip */
+        }
+      }
+    }
+    return roundPoints(score);
+  };
+
+  const score = getScore();
+
+  const questionResults = useMemo(
+    () => computeQuestionResults(questions, answers, {}, selfGrades, submitted),
+    [questions, answers, selfGrades, submitted],
+  );
+
+  const pendingTextCount = useMemo(
+    () =>
+      questions.filter(
+        (q) => q.type === "text" && submitted && !selfGrades[q.id],
+      ).length,
+    [questions, selfGrades, submitted],
+  );
+
+  const pendingTextPoints = useMemo(
+    () =>
+      questions
+        .filter((q) => q.type === "text" && submitted && !selfGrades[q.id])
+        .reduce((sum, q) => sum + q.points, 0),
+    [questions, selfGrades, submitted],
+  );
+
+  return (
+    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
+      <ExamPlayerHeader
+        subject={subject}
+        examInfo={examInfo}
+        questions={questions}
+        answers={answers}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        submitted={submitted}
+        timeLeft={timeLeft}
+        totalPoints={totalPoints}
+        score={score}
+        pendingTextCount={pendingTextCount}
+        questionResults={questionResults}
+        setDirection={setDirection}
+        showLeftFade={showLeftFade}
+        showRightFade={showRightFade}
+        navRef={navRef}
+        scrollToNav={scrollToNav}
+      />
+
+      {submitted && (
+        <ExamScoreSummary
+          score={score}
+          totalPoints={totalPoints}
+          pendingTextCount={pendingTextCount}
+          pendingTextPoints={pendingTextPoints}
+          passPoints={examInfo.passPoints}
+        />
+      )}
+
+      <div data-tour="exam-card">
+        <QuestionCard
+          key={currentQuestion.id}
+          question={currentQuestion}
+          index={currentIndex}
+          total={questions.length}
+          topicLabel={currentTopic?.label || currentQuestion.topic}
+          megatopicLabel={megatopicLabels[currentQuestion.topic]}
+          examDate={examInfo?.date || examInfo?.title}
+          subjectId={subject.id}
+          topicKey={currentQuestion.topic}
+          examYear={examInfo.year}
+          mode="exam"
+          onAnswer={onAnswer}
+          savedAnswer={answers[currentQuestion.id]}
+          showResult={submitted}
+          selfGrade={selfGrades[currentQuestion.id]}
+          onSelfGrade={onSelfGrade}
+          direction={direction}
+        />
+      </div>
+
+      <ExamControls
+        subject={subject}
+        examInfo={examInfo}
+        questions={questions}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        submitted={submitted}
+        setDirection={setDirection}
+        scrollToNav={scrollToNav}
+        submitDialogRef={submitDialogRef}
+        arrowAnimateRef={arrowAnimateRef}
+      />
+
+      <Disclaimer
+        subjectId={subject.id}
+        questionId={currentQuestion.id}
+        questionType={currentQuestion.type}
+      />
+
+      <ExamDialogs
+        submitted={submitted}
+        submitDialogRef={submitDialogRef}
+        timeUpDialogRef={timeUpDialogRef}
+        onSubmit={onSubmit}
+      />
+    </div>
+  );
+}
+
+function ExamEmptyState({
+  subject,
+  questionsLoaded,
+}: {
+  subject: ExamSubject | undefined;
+  questionsLoaded: boolean;
+}) {
+  const t = useT();
+
+  return (
+    <div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
+      {questionsLoaded && null}
+      <p className="text-fg-muted">{t.exam.noQuestions}</p>
+      <Link
+        to={subject ? `/${subject.id}` : "/"}
+        data-cuelume-hover
+        data-cuelume-press
+        className="text-accent mt-4 inline-block hover:underline"
+        onClick={() => {
+          triggerLight();
+          track("nav_click", { target: "home", from: "exam_empty" });
+        }}
+      >
+        {t.exam.backToHome}
+      </Link>
     </div>
   );
 }
@@ -900,22 +1070,7 @@ export default function ExamSimulation() {
 
   if (questions.length === 0 || !subject || !examInfo) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
-        {questionsLoaded && null}
-        <p className="text-fg-muted">{t.exam.noQuestions}</p>
-        <Link
-          to={subject ? `/${subject.id}` : "/"}
-          data-cuelume-hover
-          data-cuelume-press
-          className="text-accent mt-4 inline-block hover:underline"
-          onClick={() => {
-            triggerLight();
-            track("nav_click", { target: "home", from: "exam_empty" });
-          }}
-        >
-          {t.exam.backToHome}
-        </Link>
-      </div>
+      <ExamEmptyState subject={subject} questionsLoaded={questionsLoaded} />
     );
   }
 

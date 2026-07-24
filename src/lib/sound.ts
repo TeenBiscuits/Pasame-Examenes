@@ -1,14 +1,7 @@
-import { play, setEnabled } from "cuelume";
-
-let enabled = true;
+import { play } from "cuelume";
 
 export function playSound(name?: Parameters<typeof play>[0]) {
-  if (enabled) play(name);
-}
-
-export function setSoundEnabled(on: boolean) {
-  enabled = on;
-  setEnabled(on);
+  play(name);
 }
 
 export function playSuccess() {
