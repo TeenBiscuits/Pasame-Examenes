@@ -36,6 +36,8 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckmarkBadge02Icon } from "@hugeicons/core-free-icons";
 
+const minScrollRangeForCompactScore = 256;
+
 function formatTime(seconds: number) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -158,6 +160,7 @@ interface ExamPlayerProps {
   totalPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
+  scrollToHeaderRef: React.MutableRefObject<() => void>;
   showLeftFade: boolean;
   showRightFade: boolean;
   navRef: React.RefObject<HTMLDivElement | null>;
@@ -175,7 +178,6 @@ interface ExamPlayerHeaderProps {
   examInfo: Exam;
   questions: Question[];
   headerAnchorRef: React.RefObject<HTMLDivElement | null>;
-  scoreHeaderRef: React.RefObject<HTMLDivElement | null>;
   answers: Record<string, string>;
   currentIndex: number;
   setCurrentIndex: (i: number) => void;
@@ -199,7 +201,6 @@ function ExamPlayerHeader({
   examInfo,
   questions,
   headerAnchorRef,
-  scoreHeaderRef,
   answers,
   currentIndex,
   setCurrentIndex,
@@ -241,7 +242,6 @@ function ExamPlayerHeader({
       </div>
       <div ref={headerAnchorRef} className="h-0" aria-hidden="true" />
       <div
-        ref={scoreHeaderRef}
         className="bg-surface border-border sticky top-0 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:top-14 sm:mb-6"
         data-tour="exam-header"
       >
@@ -751,6 +751,7 @@ function ExamPlayer({
   onSelfGrade,
   onSubmit,
   arrowAnimateRef,
+  scrollToHeaderRef,
 }: ExamPlayerProps) {
   const currentQuestion = questions[currentIndex];
   const currentTopic = subject.topics.find(
@@ -760,8 +761,6 @@ function ExamPlayer({
   const timeUpDialogRef = useRef<HTMLDialogElement>(null);
   const exitDialogRef = useRef<HTMLDialogElement>(null);
   const headerAnchorRef = useRef<HTMLDivElement>(null);
-  const scoreHeaderRef = useRef<HTMLDivElement>(null);
-  const questionPromptRef = useRef<HTMLDivElement>(null);
   const [scoreCompact, setScoreCompact] = useState(false);
 
   const scrollToHeader = useCallback(() => {
@@ -769,23 +768,14 @@ function ExamPlayer({
     if (!anchor) return;
 
     setScoreCompact(false);
-    requestAnimationFrame(() => {
-      const desktopHeaderOffset = window.matchMedia("(min-width: 640px)")
-        .matches
-        ? 56
-        : 0;
-      const top = Math.max(
+    const desktopHeaderOffset = window.matchMedia("(min-width: 640px)").matches
+      ? 56
+      : 0;
+    window.scrollTo({
+      top: Math.max(
         0,
-        anchor.getBoundingClientRect().top +
-          window.scrollY -
-          desktopHeaderOffset,
-      );
-      window.scrollTo({
-        top,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "auto"
-          : "smooth",
-      });
+        anchor.getBoundingClientRect().top + window.scrollY - desktopHeaderOffset,
+      ),
     });
   }, []);
 
@@ -793,6 +783,13 @@ function ExamPlayer({
     onSubmit();
     scrollToHeader();
   }, [onSubmit, scrollToHeader]);
+
+  useEffect(() => {
+    scrollToHeaderRef.current = scrollToHeader;
+    return () => {
+      scrollToHeaderRef.current = () => {};
+    };
+  }, [scrollToHeaderRef, scrollToHeader]);
 
   useEffect(() => {
     if (timeUp && !submitted) {
@@ -856,44 +853,33 @@ function ExamPlayer({
     if (!hasScoreSummary) return;
 
     const updateScoreState = () => {
-      const titleAnchor = headerAnchorRef.current;
-      const scoreHeader = scoreHeaderRef.current;
-      const questionPrompt = questionPromptRef.current;
-      if (!titleAnchor || !scoreHeader || !questionPrompt) return;
+      const anchor = headerAnchorRef.current;
+      if (!anchor) return;
 
-      const titleTop = titleAnchor.getBoundingClientRect().top + window.scrollY;
-      const promptTop = questionPrompt.getBoundingClientRect().top;
-      const headerBottom = scoreHeader.getBoundingClientRect().bottom;
-
+      const titleTop = anchor.getBoundingClientRect().top + window.scrollY;
+      const canCompact =
+        document.documentElement.scrollHeight - window.innerHeight >=
+        minScrollRangeForCompactScore;
       setScoreCompact((current) => {
-        if (current) return window.scrollY > titleTop;
-        if (promptTop <= headerBottom + 32) return true;
-        return current;
+        if (window.scrollY <= titleTop) return false;
+        return current || canCompact;
       });
     };
 
-    updateScoreState();
     window.addEventListener("scroll", updateScoreState, { passive: true });
-    window.addEventListener("resize", updateScoreState);
-    const promptResizeObserver = new ResizeObserver(updateScoreState);
-    if (questionPromptRef.current) {
-      promptResizeObserver.observe(questionPromptRef.current);
-    }
-    return () => {
-      window.removeEventListener("scroll", updateScoreState);
-      window.removeEventListener("resize", updateScoreState);
-      promptResizeObserver.disconnect();
-    };
-  }, [currentQuestion.id, hasScoreSummary]);
+    return () => window.removeEventListener("scroll", updateScoreState);
+  }, [hasScoreSummary]);
 
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
+    <div
+      className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8"
+      style={{ overflowAnchor: "none" }}
+    >
       <ExamPlayerHeader
         subject={subject}
         examInfo={examInfo}
         questions={questions}
         headerAnchorRef={headerAnchorRef}
-        scoreHeaderRef={scoreHeaderRef}
         answers={answers}
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
@@ -926,7 +912,6 @@ function ExamPlayer({
       <div data-tour="exam-card">
         <QuestionCard
           key={currentQuestion.id}
-          questionPromptRef={questionPromptRef}
           question={currentQuestion}
           index={currentIndex}
           total={questions.length}
@@ -1121,6 +1106,7 @@ export default function ExamSimulation() {
   const currentIndexRef = useRef(currentIndex);
   const startedRef = useRef(started);
   const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
+  const scrollToHeaderRef = useRef<() => void>(() => {});
 
   const scrollToNav = useCallback((index: number) => {
     const container = navRef.current;
@@ -1157,7 +1143,10 @@ export default function ExamSimulation() {
     setDirection,
     eventName: "exam_navigate",
     eventData: navEventData,
-    onKeyPress: (dir) => arrowAnimateRef.current(dir),
+    onKeyPress: (dir) => {
+      arrowAnimateRef.current(dir);
+      scrollToHeaderRef.current();
+    },
   });
 
   useEffect(() => {
@@ -1297,6 +1286,7 @@ export default function ExamSimulation() {
         onSelfGrade={handleSelfGrade}
         onSubmit={handleSubmitConfirm}
         arrowAnimateRef={arrowAnimateRef}
+        scrollToHeaderRef={scrollToHeaderRef}
       />
     </>
   );

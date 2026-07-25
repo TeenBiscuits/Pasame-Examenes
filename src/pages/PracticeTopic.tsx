@@ -33,6 +33,8 @@ import {
   Trophy,
 } from "reicon-react";
 
+const minScrollRangeForCompactScore = 256;
+
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
   topic: string;
@@ -49,6 +51,7 @@ interface PracticePlayerProps {
   totalPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
+  scrollToHeaderRef: React.MutableRefObject<() => void>;
   showLeftFade: boolean;
   showRightFade: boolean;
   navRef: React.RefObject<HTMLDivElement | null>;
@@ -67,7 +70,6 @@ interface PracticePlayerHeaderProps {
   topic: string;
   topicInfo: PracticePlayerProps["topicInfo"];
   headerAnchorRef: React.RefObject<HTMLDivElement | null>;
-  scoreHeaderRef: React.RefObject<HTMLDivElement | null>;
   questions: Question[];
   answers: Record<string, string>;
   checkedQuestions: Record<string, boolean>;
@@ -88,7 +90,6 @@ function PracticePlayerHeader({
   topic,
   topicInfo,
   headerAnchorRef,
-  scoreHeaderRef,
   questions,
   answers,
   checkedQuestions,
@@ -122,10 +123,7 @@ function PracticePlayerHeader({
         </Link>
       </div>
       <div ref={headerAnchorRef} className="h-0" aria-hidden="true" />
-      <div
-        ref={scoreHeaderRef}
-        className="bg-surface border-border sticky top-0 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:top-14 sm:mb-6"
-      >
+      <div className="bg-surface border-border sticky top-0 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:top-14 sm:mb-6">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
             <h1 className="text-fg truncate text-xl font-semibold sm:text-2xl">
@@ -488,11 +486,10 @@ function PracticePlayer({
   onCheckQuestion,
   onClearAnswer,
   arrowAnimateRef,
+  scrollToHeaderRef,
 }: PracticePlayerProps) {
   const currentQuestion = questions[currentIndex];
   const headerAnchorRef = useRef<HTMLDivElement>(null);
-  const scoreHeaderRef = useRef<HTMLDivElement>(null);
-  const questionPromptRef = useRef<HTMLDivElement>(null);
   const [scoreCompact, setScoreCompact] = useState(false);
 
   const scrollToHeader = useCallback(() => {
@@ -500,25 +497,23 @@ function PracticePlayer({
     if (!anchor) return;
 
     setScoreCompact(false);
-    requestAnimationFrame(() => {
-      const desktopHeaderOffset = window.matchMedia("(min-width: 640px)")
-        .matches
-        ? 56
-        : 0;
-      const top = Math.max(
+    const desktopHeaderOffset = window.matchMedia("(min-width: 640px)").matches
+      ? 56
+      : 0;
+    window.scrollTo({
+      top: Math.max(
         0,
-        anchor.getBoundingClientRect().top +
-          window.scrollY -
-          desktopHeaderOffset,
-      );
-      window.scrollTo({
-        top,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "auto"
-          : "smooth",
-      });
+        anchor.getBoundingClientRect().top + window.scrollY - desktopHeaderOffset,
+      ),
     });
   }, []);
+
+  useEffect(() => {
+    scrollToHeaderRef.current = scrollToHeader;
+    return () => {
+      scrollToHeaderRef.current = () => {};
+    };
+  }, [scrollToHeaderRef, scrollToHeader]);
 
   const examDate = useMemo(() => {
     if (currentQuestion?.exam === "both") return undefined;
@@ -605,44 +600,33 @@ function PracticePlayer({
     if (!hasScoreSummary) return;
 
     const updateScoreState = () => {
-      const titleAnchor = headerAnchorRef.current;
-      const scoreHeader = scoreHeaderRef.current;
-      const questionPrompt = questionPromptRef.current;
-      if (!titleAnchor || !scoreHeader || !questionPrompt) return;
+      const anchor = headerAnchorRef.current;
+      if (!anchor) return;
 
-      const titleTop = titleAnchor.getBoundingClientRect().top + window.scrollY;
-      const promptTop = questionPrompt.getBoundingClientRect().top;
-      const headerBottom = scoreHeader.getBoundingClientRect().bottom;
-
+      const titleTop = anchor.getBoundingClientRect().top + window.scrollY;
+      const canCompact =
+        document.documentElement.scrollHeight - window.innerHeight >=
+        minScrollRangeForCompactScore;
       setScoreCompact((current) => {
-        if (current) return window.scrollY > titleTop;
-        if (promptTop <= headerBottom + 32) return true;
-        return current;
+        if (window.scrollY <= titleTop) return false;
+        return current || canCompact;
       });
     };
 
-    updateScoreState();
     window.addEventListener("scroll", updateScoreState, { passive: true });
-    window.addEventListener("resize", updateScoreState);
-    const promptResizeObserver = new ResizeObserver(updateScoreState);
-    if (questionPromptRef.current) {
-      promptResizeObserver.observe(questionPromptRef.current);
-    }
-    return () => {
-      window.removeEventListener("scroll", updateScoreState);
-      window.removeEventListener("resize", updateScoreState);
-      promptResizeObserver.disconnect();
-    };
-  }, [currentQuestion.id, hasScoreSummary]);
+    return () => window.removeEventListener("scroll", updateScoreState);
+  }, [hasScoreSummary]);
 
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
+    <div
+      className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8"
+      style={{ overflowAnchor: "none" }}
+    >
       <PracticePlayerHeader
         subject={subject}
         topic={topic}
         topicInfo={topicInfo}
         headerAnchorRef={headerAnchorRef}
-        scoreHeaderRef={scoreHeaderRef}
         questions={questions}
         answers={answers}
         checkedQuestions={checkedQuestions}
@@ -675,7 +659,6 @@ function PracticePlayer({
       <div data-tour="practice-card">
         <QuestionCard
           key={currentQuestion.id}
-          questionPromptRef={questionPromptRef}
           question={currentQuestion}
           index={currentIndex}
           total={questions.length}
@@ -827,6 +810,7 @@ export default function PracticeTopic() {
 
   const subjectReadyRef = useRef(false);
   const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
+  const scrollToHeaderRef = useRef<() => void>(() => {});
   useEffect(() => {
     subjectReadyRef.current = !!subject;
   }, [subject]);
@@ -845,7 +829,10 @@ export default function PracticeTopic() {
     setDirection,
     eventName: "practice_navigate",
     eventData: navEventData,
-    onKeyPress: (dir) => arrowAnimateRef.current(dir),
+    onKeyPress: (dir) => {
+      arrowAnimateRef.current(dir);
+      scrollToHeaderRef.current();
+    },
   });
 
   useEffect(() => {
@@ -996,6 +983,7 @@ export default function PracticeTopic() {
         onCheckQuestion={handleCheckQuestion}
         onClearAnswer={handleClearAnswer}
         arrowAnimateRef={arrowAnimateRef}
+        scrollToHeaderRef={scrollToHeaderRef}
       />
     </>
   );

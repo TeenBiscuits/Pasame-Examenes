@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, type RefObject } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
@@ -83,7 +83,6 @@ interface QuestionCardProps {
   selfGrade?: "correct" | "incorrect";
   onSelfGrade?: (questionId: string, grade: "correct" | "incorrect") => void;
   direction?: "next" | "prev";
-  questionPromptRef?: RefObject<HTMLDivElement | null>;
 }
 
 function getQuestionTypeLabel(type: QuestionType): string {
@@ -579,7 +578,7 @@ function MatchingQuestion({
 }
 
 export default function QuestionCard(props: QuestionCardProps) {
-  const { questionPromptRef, ...questionProps } = props;
+  const questionProps = props;
   const { question } = questionProps;
   const t = useT();
 
@@ -632,7 +631,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           </div>
         )}
       </div>
-      <div ref={questionPromptRef} data-question-prompt>
+      <div>
         <Markdown className="text-fg mb-4 text-sm font-medium">
           {question.question}
         </Markdown>
