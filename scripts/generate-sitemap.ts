@@ -39,7 +39,11 @@ function changefreqForPath(pathWithoutLang: string) {
 }
 
 async function main() {
-  const sitemapPages = pages;
+  const sitemapPages = pages.filter(
+    (page) =>
+      !page.pathWithoutLang.includes("/practice/") &&
+      !page.pathWithoutLang.includes("/exam/"),
+  );
 
   const xmlEntries = sitemapPages.map((page) => {
     const alternates = page.alternates
