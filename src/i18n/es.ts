@@ -17,6 +17,11 @@ export const es: Translations = {
       "Practica {count} preguntas{repeated} de {exams} exámenes con respuestas modelo y autocorrección.",
     communityDescription:
       "Practica {count} preguntas{repeated} de {exams} recopilatorios con respuestas modelo y autocorrección.",
+    questionSources: "Fuentes de las preguntas",
+    questionSourcesDescription:
+      "Elige de qué exámenes o recopilatorios salen las preguntas de tus temas. Puedes cambiarlo cuando quieras.",
+    selectedSources: "{selected} de {total} fuentes seleccionadas",
+    selectAllSources: "Seleccionar todas",
     practiceByTopic: "Temas",
     resetTopicProgress: "Restablecer progreso de los temas",
     resetTopicProgressConfirm:
@@ -90,7 +95,7 @@ export const es: Translations = {
         ],
         items: [
           "Datos técnicos: dirección IP, navegador, dispositivo, URL solicitada, referrer, idioma, fecha y hora, y registros similares de servidor o CDN.",
-          "Preferencias locales: idioma seleccionado, tema seleccionado, tours vistos, estado del popup de GitHub y asignaturas visitadas recientemente.",
+          "Preferencias locales: idioma seleccionado, tema seleccionado, fuentes de preguntas seleccionadas, tours vistos, estado del popup de GitHub y asignaturas visitadas recientemente.",
           "Progreso de estudio almacenado localmente: intentos, puntuaciones, temas y progreso por asignatura guardados en tu navegador.",
           "Datos de analítica: páginas vistas, eventos de interacción, rendimiento, información aproximada de dispositivo/navegador y un identificador anónimo local para Umami.",
           "Replays de sesión y heatmaps en la instancia self-hosted de Umami, activados con un muestreo aleatorio del 30%.",

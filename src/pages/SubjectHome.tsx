@@ -11,6 +11,7 @@ import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
 import { clearTopicProgress, getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
+import ExamSourceSelector from "../components/ExamSourceSelector";
 import AddExamModal, {
   type AddExamModalHandle,
 } from "../components/AddExamModal";
@@ -27,7 +28,11 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
-import { ArrowRightUp, CloseSquare2, Restart } from "reicon-react";
+import {
+  filterQuestionsByExamSelection,
+  useExamSelection,
+} from "../hooks/useExamSelection";
+import { ArrowRightUp, CloseSquare2, Filter, Restart } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   CheckmarkBadge02Icon,
@@ -43,23 +48,34 @@ export default function SubjectHome() {
   const examModalRef = useRef<AddExamModalHandle>(null);
   const copyrightModalRef = useRef<CopyrightReportModalHandle>(null);
   const resetProgressDialogRef = useRef<HTMLDialogElement>(null);
+  const examSourceDialogRef = useRef<HTMLDialogElement>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
+  const { selectedExamYears, setSelectedExamYears } = useExamSelection(subject);
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
     null,
   );
-  const [progress, setProgress] = useState<ReturnType<typeof getTopicProgress>>(
-    {},
-  );
   const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
+  const [, setProgressRevision] = useState(0);
+  const selectedQuestions = useMemo(
+    () => filterQuestionsByExamSelection(allQuestions, selectedExamYears),
+    [allQuestions, selectedExamYears],
+  );
+  const progress =
+    subject && questionsLoaded
+      ? getTopicProgress(
+          subject.id,
+          selectedQuestions.map((q) => ({ topic: q.topic, points: q.points })),
+        )
+      : {};
   const seoMeta = useMemo(
     () =>
       subject
         ? buildSubjectMeta(lang, subject, {
-            questionCount: allQuestions.length,
+            questionCount: selectedQuestions.length,
           })
         : undefined,
-    [subject, lang, allQuestions.length],
+    [subject, lang, selectedQuestions.length],
   );
   useDocumentTitle(seoMeta?.title ?? t.home.title);
 
@@ -67,12 +83,6 @@ export default function SubjectHome() {
     if (subject) {
       getAllQuestions(subject.id).then((questions) => {
         setAllQuestions(questions);
-        setProgress(
-          getTopicProgress(
-            subject.id,
-            questions.map((q) => ({ topic: q.topic, points: q.points })),
-          ),
-        );
         setQuestionsLoadedFor(subject.id);
       });
     }
@@ -91,10 +101,12 @@ export default function SubjectHome() {
     return <SubjectNotFound />;
   }
 
-  const repeatedCount = allQuestions.filter((q) => q.repeated).length;
-  const availableExams = subject.exams.filter((exam) => !exam.deleteRights);
+  const repeatedCount = selectedQuestions.filter((q) => q.repeated).length;
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
   const currentSubjectId = subject.id;
+  const allExamSourcesSelected =
+    selectedExamYears.length ===
+    subject.exams.filter((exam) => !exam.deleteRights).length;
   const repeatedText =
     repeatedCount >= 20
       ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
@@ -104,9 +116,9 @@ export default function SubjectHome() {
     ? t.subjectHome.description
     : t.subjectHome.communityDescription;
   const description = descriptionTemplate
-    .replace("{count}", String(allQuestions.length))
+    .replace("{count}", String(selectedQuestions.length))
     .replace("{repeated}", repeatedText)
-    .replace("{exams}", String(availableExams.length));
+    .replace("{exams}", String(selectedExamYears.length));
 
   function handleResetTopicProgress() {
     const clearedCount = clearTopicProgress(currentSubjectId);
@@ -115,12 +127,7 @@ export default function SubjectHome() {
       clearedCount,
     });
     if (clearedCount > 0) {
-      setProgress(
-        getTopicProgress(
-          currentSubjectId,
-          allQuestions.map((q) => ({ topic: q.topic, points: q.points })),
-        ),
-      );
+      setProgressRevision((revision) => revision + 1);
     }
     resetProgressDialogRef.current?.close();
   }
@@ -130,10 +137,18 @@ export default function SubjectHome() {
       {questionsLoaded && null}
       <SubjectHeader subject={subject} description={description} />
       <div className="mx-auto max-w-6xl px-4 pb-8">
+        <ExamSourceSelector
+          subject={subject}
+          selectedExamYears={selectedExamYears}
+          onChange={setSelectedExamYears}
+          dialogRef={examSourceDialogRef}
+        />
         <TopicsSection
           subject={subject}
-          questions={allQuestions}
+          questions={selectedQuestions}
           progress={progress}
+          allExamSourcesSelected={allExamSourcesSelected}
+          onOpenExamSources={() => examSourceDialogRef.current?.showModal()}
           onResetProgress={() => {
             track("reset_topic_progress_modal_open", {
               subjectId: currentSubjectId,
@@ -301,14 +316,24 @@ function TopicsSection({
   subject,
   questions,
   progress,
+  allExamSourcesSelected,
+  onOpenExamSources,
   onResetProgress,
 }: {
   subject: SubjectMeta;
   questions: Question[];
   progress: ReturnType<typeof getTopicProgress>;
+  allExamSourcesSelected: boolean;
+  onOpenExamSources: () => void;
   onResetProgress: () => void;
 }) {
   const t = useT();
+  const topicKeysWithQuestions = new Set(
+    questions.map((question) => question.topic),
+  );
+  const topicsWithQuestions = subject.topics.filter((topic) =>
+    topicKeysWithQuestions.has(topic.key),
+  );
   const renderTopicCard = (topic: Topic) => {
     const topicQuestions = questions.filter((q) => q.topic === topic.key);
     const topicProgress = progress[topic.key];
@@ -335,22 +360,41 @@ function TopicsSection({
         <h2 className="text-fg text-lg font-semibold">
           {t.subjectHome.practiceByTopic}
         </h2>
-        <button
-          type="button"
-          data-cuelume-press="whisper"
-          onClick={onResetProgress}
-          className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-accent rounded p-1 transition-colors focus-visible:ring-2 focus-visible:outline-none"
-          aria-label={t.subjectHome.resetTopicProgress}
-          title={t.subjectHome.resetTopicProgress}
-        >
-          <Restart className="size-4" weight="Filled" aria-hidden="true" />
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            data-cuelume-press="whisper"
+            onClick={onOpenExamSources}
+            className="text-fg-muted hover:text-accent focus-visible:ring-accent rounded p-1 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            aria-label={t.subjectHome.questionSources}
+            title={t.subjectHome.questionSources}
+          >
+            <Filter
+              className="size-4"
+              weight={allExamSourcesSelected ? "Outline" : "Filled"}
+              aria-hidden="true"
+            />
+          </button>
+          <button
+            type="button"
+            data-cuelume-press="whisper"
+            onClick={onResetProgress}
+            className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-accent rounded p-1 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            aria-label={t.subjectHome.resetTopicProgress}
+            title={t.subjectHome.resetTopicProgress}
+          >
+            <Restart className="size-4" weight="Filled" aria-hidden="true" />
+          </button>
+        </div>
       </div>
       {subject.megatopics ? (
         <>
           {subject.megatopics.map((megatopic) => {
-            const megatopicTopics = subject.topics.filter((topic) =>
-              megatopic.topics.includes(topic.key),
+            const megatopicKeys = new Set(megatopic.topics);
+            const megatopicTopics = subject.topics.filter(
+              (topic) =>
+                megatopicKeys.has(topic.key) &&
+                topicKeysWithQuestions.has(topic.key),
             );
             if (megatopicTopics.length === 0) return null;
             return (
@@ -366,6 +410,7 @@ function TopicsSection({
           })}
           <UngroupedTopics
             subject={subject}
+            topics={topicsWithQuestions}
             renderTopicCard={renderTopicCard}
           />
         </>
@@ -373,7 +418,7 @@ function TopicsSection({
         <div
           className={`mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
         >
-          {subject.topics.map(renderTopicCard)}
+          {topicsWithQuestions.map(renderTopicCard)}
         </div>
       )}
     </>
@@ -382,15 +427,15 @@ function TopicsSection({
 
 function UngroupedTopics({
   subject,
+  topics,
   renderTopicCard,
 }: {
   subject: SubjectMeta;
+  topics: Topic[];
   renderTopicCard: (topic: Topic) => ReactNode;
 }) {
   const groupedKeys = new Set(subject.megatopics?.flatMap((mt) => mt.topics));
-  const ungroupedTopics = subject.topics.filter(
-    (topic) => !groupedKeys.has(topic.key),
-  );
+  const ungroupedTopics = topics.filter((topic) => !groupedKeys.has(topic.key));
 
   if (ungroupedTopics.length === 0) return null;
 

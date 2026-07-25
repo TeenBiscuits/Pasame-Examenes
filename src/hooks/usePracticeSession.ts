@@ -1,4 +1,4 @@
-import { useReducer, useCallback, useRef } from "react";
+import { useReducer, useCallback, useEffect, useRef } from "react";
 import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
@@ -17,6 +17,7 @@ interface PracticeState {
 
 type PracticeAction =
   | { type: "SET_CURRENT_INDEX"; index: number }
+  | { type: "SYNC_CURRENT_INDEX"; maxIndex: number }
   | { type: "ANSWER"; questionId: string; answer: string }
   | { type: "SELF_GRADE"; questionId: string; grade: "correct" | "incorrect" }
   | { type: "SUBMIT" }
@@ -26,6 +27,12 @@ function reducer(state: PracticeState, action: PracticeAction): PracticeState {
   switch (action.type) {
     case "SET_CURRENT_INDEX":
       return { ...state, currentIndex: action.index };
+    case "SYNC_CURRENT_INDEX": {
+      const currentIndex = Math.min(state.currentIndex, action.maxIndex);
+      return currentIndex === state.currentIndex
+        ? state
+        : { ...state, currentIndex };
+    }
     case "ANSWER":
       return {
         ...state,
@@ -93,9 +100,20 @@ export function usePracticeSession(
 
   const attemptIdRef = useRef("");
 
+  useEffect(() => {
+    dispatch({
+      type: "SYNC_CURRENT_INDEX",
+      maxIndex: Math.max(0, questions.length - 1),
+    });
+  }, [questions.length]);
+
   const setCurrentIndex = useCallback(
-    (index: number) => dispatch({ type: "SET_CURRENT_INDEX", index }),
-    [],
+    (index: number) =>
+      dispatch({
+        type: "SET_CURRENT_INDEX",
+        index: Math.max(0, Math.min(index, Math.max(0, questions.length - 1))),
+      }),
+    [questions.length],
   );
 
   const handleAnswer = useCallback((questionId: string, answer: string) => {
@@ -184,8 +202,15 @@ export function usePracticeSession(
     [subjectId, topic, questions, state.answers],
   );
 
+  // A source change in another tab can shrink the list while the session is open.
+  const currentIndex = Math.max(
+    0,
+    Math.min(state.currentIndex, Math.max(0, questions.length - 1)),
+  );
+
   return {
     ...state,
+    currentIndex,
     setCurrentIndex,
     handleAnswer,
     handleSubmit,

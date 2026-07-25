@@ -17,6 +17,11 @@ export const gl: Translations = {
       "Practica {count} preguntas{repeated} de {exams} exames con respostas modelo e autocorrección.",
     communityDescription:
       "Practica {count} preguntas{repeated} de {exams} recompilacións con respostas modelo e autocorrección.",
+    questionSources: "Fontes das preguntas",
+    questionSourcesDescription:
+      "Elixe de que exames ou recompilacións saen as preguntas dos teus temas. Podes cambialo cando queiras.",
+    selectedSources: "{selected} de {total} fontes seleccionadas",
+    selectAllSources: "Seleccionar todas",
     practiceByTopic: "Temas",
     resetTopicProgress: "Restablecer o progreso dos temas",
     resetTopicProgressConfirm:
@@ -90,7 +95,7 @@ export const gl: Translations = {
         ],
         items: [
           "Datos técnicos: enderezo IP, navegador, dispositivo, URL solicitada, referrer, idioma, data e hora, e rexistros similares de servidor ou CDN.",
-          "Preferencias locais: idioma seleccionado, tema seleccionado, tours vistos, estado do popup de GitHub e materias visitadas recentemente.",
+          "Preferencias locais: idioma seleccionado, tema seleccionado, fontes de preguntas seleccionadas, tours vistos, estado do popup de GitHub e materias visitadas recentemente.",
           "Progreso de estudo almacenado localmente: intentos, puntuacións, temas e progreso por materia gardados no teu navegador.",
           "Datos de analítica: páxinas vistas, eventos de interacción, rendemento, información aproximada de dispositivo/navegador e un identificador anónimo local para Umami.",
           "Replays de sesión e heatmaps na instancia self-hosted de Umami, activados cunha mostraxe aleatoria do 30%.",

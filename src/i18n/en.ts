@@ -15,6 +15,11 @@ export const en = {
       "Practice {count} questions{repeated} from {exams} exams with model answers and self-grading.",
     communityDescription:
       "Practice {count} questions{repeated} from {exams} compilations with model answers and self-grading.",
+    questionSources: "Question sources",
+    questionSourcesDescription:
+      "Choose which exams or compilations provide questions for your topics. You can change this at any time.",
+    selectedSources: "{selected} of {total} sources selected",
+    selectAllSources: "Select all",
     practiceByTopic: "Topics",
     resetTopicProgress: "Reset topic progress",
     resetTopicProgressConfirm:
@@ -88,7 +93,7 @@ export const en = {
         ],
         items: [
           "Technical data: IP address, browser, device, requested URL, referrer, language, date and time, and similar server or CDN logs.",
-          "Local preferences: selected language, selected theme, viewed tours, GitHub star popup state, and recently visited subjects.",
+          "Local preferences: selected language, selected theme, selected question sources, viewed tours, GitHub star popup state, and recently visited subjects.",
           "Study progress stored locally: attempts, scores, topics, and subject progress saved in your browser.",
           "Analytics data: page views, interaction events, performance data, approximate device/browser information, and an anonymous local identifier for Umami.",
           "Session replays and heatmaps in the self-hosted Umami instance, enabled with a random 30% sample rate.",
