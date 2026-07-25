@@ -2706,9 +2706,9 @@ export const questions: Question[] = [
       "d) Todas las anteriores.",
       "e) Ninguna de las anteriores.",
     ],
-    correctAnswer: "a",
+    correctAnswer: "d",
     explanation:
-      "Estamos en la tercera primavera de la IA. El núcleo tecnológico actual (Deep Learning, ChatGPT, Visión por Computador) está impulsado única y exclusivamente por el paradigma conexionista o IA subsimbólica.",
+      "Tras la revisión del examen, todas las opciones anteriores son correctas.",
   },
   {
     id: "2025-07_q13",
