@@ -63,7 +63,8 @@ export interface SubjectMeta {
   /** ISO date used by the sitemap for this subject and its child pages. */
   lastmod: string;
   name: string;
-  university: string;
+  degree: string;
+  course: number;
   courseCode: string;
   icon: string;
   contentPolicy?: ContentPolicy;

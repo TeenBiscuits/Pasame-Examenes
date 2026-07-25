@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsx scripts/generate-page-meta-map.ts && tsc -b && tsx scripts/generate-vercel-rewrites.ts && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && vite build",
     "lint": "eslint .",
+    "readme": "tsx scripts/update-readme-subjects.ts",
     "preview": "vite preview",
     "format": "prettier . --write --plugin=prettier-plugin-tailwindcss",
     "doctor": "npx react-doctor@latest"

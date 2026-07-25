@@ -20,11 +20,20 @@ body:
       required: true
 
   - type: input
-    id: university
+    id: degree
     attributes:
-      label: Universidad
-      description: ¿A qué universidad pertenece?
-      placeholder: "ej: Universidade da Coruña"
+      label: Grao
+      description: Nombre legal del grao de la FIC
+      placeholder: "Grao en Enxeñaría informática"
+    validations:
+      required: true
+
+  - type: input
+    id: course
+    attributes:
+      label: Curso
+      description: ¿En qué curso del grao se imparte?
+      placeholder: "ej: 2"
     validations:
       required: true
 

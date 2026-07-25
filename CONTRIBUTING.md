@@ -1,6 +1,6 @@
 # Contribuir a Pásame Exámenes
 
-¡Gracias por ayudar a hacer crecer esta plataforma open source de práctica universitaria!
+¡Gracias por ayudar a hacer crecer esta plataforma open source de práctica de la FIC!
 
 ## Derechos de autor y fuentes
 
@@ -29,7 +29,7 @@ Cada pregunta tiene un enlace **"Report Issue"** en la vista de revisión. Úsal
 cp -r src/subjects/_template src/subjects/{subject-id}
 ```
 
-Usa kebab-case para el nombre de la carpeta: `calculus-1`, `operating-systems`, `machine-learning`.
+Usa kebab-case para el nombre de la carpeta: `calculo`, `sistemas-operativos`, `redes`.
 
 #### 2. Edita `meta.ts`
 
@@ -40,7 +40,8 @@ export const meta: SubjectMeta = {
   id: "subject-id", // debe coincidir con el nombre de la carpeta
   lastmod: "2026-07-25", // fecha ISO para el sitemap de esta asignatura y sus subpáginas
   name: "Nombre Asignatura",
-  university: "Universidad",
+  degree: "Grao en Enxeñaría informática",
+  course: 2,
   courseCode: "ABC123",
   icon: "📚",
   acknowledgments:
@@ -260,37 +261,33 @@ src/
 │   ├── _template/            # Plantilla para nuevas asignaturas
 │   │   ├── meta.ts
 │   │   └── questions.ts
-│   ├── eseo/                 # Sistemas Operativos (UDC)
+│   ├── eseo/                 # Sistemas Operativos (FIC)
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
-│   ├── esei/                 # Sistemas Intelixentes (UDC)
+│   ├── esei/                 # Sistemas Intelixentes (FIC)
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
-│   ├── cepe/                 # Concorrencia e Paralelismo (UDC)
+│   ├── cepe/                 # Concorrencia e Paralelismo (FIC)
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
-│   ├── ece/                  # Estrutura de Computadores (UDC)
+│   ├── ece/                  # Estrutura de Computadores (FIC)
 │   │   ├── meta.ts
 │   │   └── questions.ts
-│   ├── emeele/               # Machine Learning (LNU)
+│   ├── equisi/               # Xestión de Infraestruturas (FIC)
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
-│   ├── equisi/               # Xestión de Infraestruturas (UDC)
+│   ├── equispe/              # Xestión de Proxectos (FIC)
 │   │   ├── meta.ts
 │   │   ├── questions.ts
 │   │   └── assets/
-│   ├── equispe/              # Xestión de Proxectos (UDC)
-│   │   ├── meta.ts
-│   │   ├── questions.ts
-│   │   └── assets/
-│   ├── iesede/               # Internet y Sistemas Distribuidos (UDC)
+│   ├── iesede/               # Internet y Sistemas Distribuidos (FIC)
 │   │   ├── meta.ts
 │   │   └── questions.ts
-│   └── pei/                  # Programación Integrativa (UDC)
+│   └── pei/                  # Programación Integrativa (FIC)
 │       ├── meta.ts
 │       └── questions.ts
 ├── components/               # Componentes UI compartidos
@@ -324,7 +321,6 @@ public/
 └── exams/                    # PDFs autorizados; no todas las asignaturas tienen PDFs
     ├── cepe/
     ├── ece/
-    ├── emeele/
     ├── equisi/
     └── eseo/
 ```

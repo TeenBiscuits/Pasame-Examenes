@@ -38,7 +38,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       to={`/${subject.id}`}
       data-cuelume-hover="tick"
       data-cuelume-press
-      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent flex h-full min-h-[172px] flex-col rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();
         track("subject_card_click", {
@@ -60,8 +60,16 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         </div>
       </div>
       <h2 className="text-fg mb-0.5 text-base font-semibold">{subject.name}</h2>
-      <p className="text-fg-muted mb-2 text-sm">{subject.university}</p>
-      <div className="text-fg-muted flex items-center gap-2 text-xs">
+      <div className="text-fg-muted mb-2 flex min-w-0 items-center gap-2 text-sm">
+        <span className="min-w-0 truncate" title={subject.degree}>
+          {subject.degree}
+        </span>
+        <span aria-hidden="true">&middot;</span>
+        <span className="shrink-0">
+          {t.subjectCard.course.replace("{course}", String(subject.course))}
+        </span>
+      </div>
+      <div className="border-border/70 text-fg-muted mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 border-t pt-4 text-xs">
         <span>
           {questionCount !== null ? questionCount : "..."}{" "}
           {t.subjectCard.questions}

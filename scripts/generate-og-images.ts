@@ -261,7 +261,8 @@ async function main() {
       topicCount: number;
       examCount: number;
       contentPolicy: ContentPolicy;
-      university: string;
+      degree: string;
+      course: number;
       courseCode: string;
     }
   > = {};
@@ -282,7 +283,8 @@ async function main() {
           topics: unknown[];
           exams: unknown[];
           contentPolicy?: ContentPolicy;
-          university: string;
+          degree: string;
+          course: number;
           courseCode: string;
         };
       };
@@ -311,7 +313,8 @@ async function main() {
         topicCount: meta.topics.length,
         examCount: meta.exams.length,
         contentPolicy,
-        university: meta.university,
+        degree: meta.degree,
+        course: meta.course,
         courseCode: meta.courseCode,
       };
 
