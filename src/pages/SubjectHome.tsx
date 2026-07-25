@@ -328,8 +328,11 @@ function TopicsSection({
   onResetProgress: () => void;
 }) {
   const t = useT();
+  const topicKeysWithQuestions = new Set(
+    questions.map((question) => question.topic),
+  );
   const topicsWithQuestions = subject.topics.filter((topic) =>
-    questions.some((question) => question.topic === topic.key),
+    topicKeysWithQuestions.has(topic.key),
   );
   const renderTopicCard = (topic: Topic) => {
     const topicQuestions = questions.filter((q) => q.topic === topic.key);
@@ -387,9 +390,12 @@ function TopicsSection({
       {subject.megatopics ? (
         <>
           {subject.megatopics.map((megatopic) => {
-            const megatopicTopics = subject.topics
-              .filter((topic) => megatopic.topics.includes(topic.key))
-              .filter((topic) => topicsWithQuestions.includes(topic));
+            const megatopicKeys = new Set(megatopic.topics);
+            const megatopicTopics = subject.topics.filter(
+              (topic) =>
+                megatopicKeys.has(topic.key) &&
+                topicKeysWithQuestions.has(topic.key),
+            );
             if (megatopicTopics.length === 0) return null;
             return (
               <div key={megatopic.key} className="mb-8">

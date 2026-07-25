@@ -94,8 +94,12 @@ export function usePracticeSession(
   const attemptIdRef = useRef("");
 
   const setCurrentIndex = useCallback(
-    (index: number) => dispatch({ type: "SET_CURRENT_INDEX", index }),
-    [],
+    (index: number) =>
+      dispatch({
+        type: "SET_CURRENT_INDEX",
+        index: Math.max(0, Math.min(index, Math.max(0, questions.length - 1))),
+      }),
+    [questions.length],
   );
 
   const handleAnswer = useCallback((questionId: string, answer: string) => {
@@ -184,8 +188,15 @@ export function usePracticeSession(
     [subjectId, topic, questions, state.answers],
   );
 
+  // A source change in another tab can shrink the list while the session is open.
+  const currentIndex = Math.max(
+    0,
+    Math.min(state.currentIndex, Math.max(0, questions.length - 1)),
+  );
+
   return {
     ...state,
+    currentIndex,
     setCurrentIndex,
     handleAnswer,
     handleSubmit,

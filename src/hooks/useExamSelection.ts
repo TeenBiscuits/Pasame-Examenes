@@ -4,9 +4,11 @@ import type { Question, SubjectMeta } from "../data/types";
 const STORAGE_PREFIX = "exam-sources:v1:";
 
 function getAvailableExamYears(subject: SubjectMeta): string[] {
-  return subject.exams
-    .filter((exam) => !exam.deleteRights)
-    .map((exam) => exam.year);
+  const years: string[] = [];
+  for (const exam of subject.exams) {
+    if (!exam.deleteRights) years.push(exam.year);
+  }
+  return years;
 }
 
 function readSelectedExamYears(
