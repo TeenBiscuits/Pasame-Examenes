@@ -37,9 +37,7 @@ export function filterQuestionsByExamSelection(
   selectedExamYears: string[],
 ): Question[] {
   const selected = new Set(selectedExamYears);
-  return questions.filter(
-    (question) => question.exam === "both" || selected.has(question.exam),
-  );
+  return questions.filter((question) => selected.has(question.exam));
 }
 
 export function useExamSelection(subject: SubjectMeta | undefined) {
