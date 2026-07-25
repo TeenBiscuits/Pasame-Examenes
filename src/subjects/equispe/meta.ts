@@ -28,7 +28,6 @@ export const meta: SubjectMeta = {
       year: "2024-01",
       title: "Posibles preguntas Xaneiro 2024",
       date: "Xaneiro 2024",
-      description: "16 preguntas · 10 puntos",
       passPoints: 5,
       totalPoints: 10,
       durationMinutes: 120,
@@ -37,7 +36,6 @@ export const meta: SubjectMeta = {
       year: "2026-01",
       title: "Posibles preguntas Xaneiro 2026",
       date: "Xaneiro 2026",
-      description: "18 preguntas · 25 puntos",
       passPoints: 13,
       totalPoints: 25,
       durationMinutes: 180,
@@ -45,7 +43,6 @@ export const meta: SubjectMeta = {
     {
       year: "daypo-tipo-udc",
       title: "Daypo Tipo UDC",
-      description: "63 preguntas · 63 puntos",
       passPoints: 32,
       totalPoints: 63,
       durationMinutes: 90,
@@ -55,7 +52,6 @@ export const meta: SubjectMeta = {
     {
       year: "daypo-teoria",
       title: "Daypo Teoría",
-      description: "34 preguntas · 34 puntos",
       passPoints: 17,
       totalPoints: 34,
       durationMinutes: 60,
@@ -65,7 +61,6 @@ export const meta: SubjectMeta = {
     {
       year: "daypo-practica",
       title: "Daypo Práctica",
-      description: "58 preguntas · 58 puntos",
       passPoints: 29,
       totalPoints: 58,
       durationMinutes: 90,

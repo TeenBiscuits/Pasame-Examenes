@@ -21,7 +21,6 @@ export const meta: SubjectMeta = {
     {
       year: "examen_recopilatorio",
       title: "Recopilación",
-      description: "18 preguntas · 18 puntos",
       passPoints: 9,
       totalPoints: 18,
       durationMinutes: 120,

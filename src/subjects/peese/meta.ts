@@ -15,7 +15,6 @@ export const meta: SubjectMeta = {
       year: "2026-05",
       title: "Posibles preguntas Mayo 2026",
       date: "Mayo 2026",
-      description: "8.5 ptos · 17 preguntas",
       passPoints: 4.25,
       totalPoints: 8.5,
       durationMinutes: 120,

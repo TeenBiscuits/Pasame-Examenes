@@ -1,6 +1,8 @@
 import { useEffect, type RefObject } from "react";
 import type { Exam, SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
+import type { ExamQuestionStats } from "../lib/exam-stats";
+import { formatPoints } from "../lib/points";
 import { ChecklistAlt, CloseSquare2, Filter } from "reicon-react";
 
 interface ExamSourceSelectorProps {
@@ -8,6 +10,7 @@ interface ExamSourceSelectorProps {
   selectedExamYears: string[];
   onChange: (years: string[]) => void;
   dialogRef: RefObject<HTMLDialogElement | null>;
+  examStats: ReadonlyMap<string, ExamQuestionStats>;
 }
 
 export default function ExamSourceSelector({
@@ -15,6 +18,7 @@ export default function ExamSourceSelector({
   selectedExamYears,
   onChange,
   dialogRef,
+  examStats,
 }: ExamSourceSelectorProps) {
   const t = useT();
   const exams = subject.exams.filter((exam) => !exam.deleteRights);
@@ -127,7 +131,17 @@ export default function ExamSourceSelector({
                     {exam.title}
                   </span>
                   <span className="text-fg-muted mt-0.5 block text-xs">
-                    {exam.description}
+                    {examStats.has(exam.year)
+                      ? t.exam.questionSummary
+                          .replace(
+                            "{questions}",
+                            String(examStats.get(exam.year)?.questionCount),
+                          )
+                          .replace(
+                            "{points}",
+                            formatPoints(examStats.get(exam.year)?.points ?? 0),
+                          )
+                      : "..."}
                   </span>
                 </span>
               </label>

@@ -9,6 +9,7 @@ export interface QuestionTable {
 
 export interface Question {
   id: string;
+  /** The single exam this question belongs to. */
   exam: string;
   topic: string;
   type: QuestionType;
@@ -52,7 +53,6 @@ export interface Exam {
   passPoints: number;
   totalPoints: number;
   durationMinutes: number;
-  description: string;
   hasPdf?: boolean;
   daypoUrl?: string;
   deleteRights?: boolean;
