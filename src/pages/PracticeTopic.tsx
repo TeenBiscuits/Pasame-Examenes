@@ -70,6 +70,7 @@ interface PracticePlayerHeaderProps {
   topic: string;
   topicInfo: PracticePlayerProps["topicInfo"];
   headerAnchorRef: React.RefObject<HTMLDivElement | null>;
+  scrollToHeaderRef: React.MutableRefObject<() => void>;
   questions: Question[];
   answers: Record<string, string>;
   checkedQuestions: Record<string, boolean>;
@@ -90,6 +91,7 @@ function PracticePlayerHeader({
   topic,
   topicInfo,
   headerAnchorRef,
+  scrollToHeaderRef,
   questions,
   answers,
   checkedQuestions,
@@ -152,6 +154,7 @@ function PracticePlayerHeader({
           onSelectIndex={(i, dir) => {
             setDirection(dir);
             setCurrentIndex(i);
+            scrollToHeaderRef.current();
             scrollToNav(i);
           }}
         />
@@ -627,6 +630,7 @@ function PracticePlayer({
         topic={topic}
         topicInfo={topicInfo}
         headerAnchorRef={headerAnchorRef}
+        scrollToHeaderRef={scrollToHeaderRef}
         questions={questions}
         answers={answers}
         checkedQuestions={checkedQuestions}
