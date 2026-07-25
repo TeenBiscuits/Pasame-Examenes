@@ -174,6 +174,8 @@ interface ExamPlayerHeaderProps {
   subject: ExamSubject;
   examInfo: Exam;
   questions: Question[];
+  headerAnchorRef: React.RefObject<HTMLDivElement | null>;
+  scoreHeaderRef: React.RefObject<HTMLDivElement | null>;
   answers: Record<string, string>;
   currentIndex: number;
   setCurrentIndex: (i: number) => void;
@@ -189,12 +191,15 @@ interface ExamPlayerHeaderProps {
   navRef: React.RefObject<HTMLDivElement | null>;
   scrollToNav: (index: number) => void;
   exitDialogRef: React.RefObject<HTMLDialogElement | null>;
+  scoreSummary: React.ReactNode;
 }
 
 function ExamPlayerHeader({
   subject,
   examInfo,
   questions,
+  headerAnchorRef,
+  scoreHeaderRef,
   answers,
   currentIndex,
   setCurrentIndex,
@@ -210,6 +215,7 @@ function ExamPlayerHeader({
   navRef,
   scrollToNav,
   exitDialogRef,
+  scoreSummary,
 }: ExamPlayerHeaderProps) {
   const t = useT();
   const isAuthorized = hasAuthorizedExamContent(subject);
@@ -233,8 +239,10 @@ function ExamPlayerHeader({
           {t.exam.backToSubject}
         </Link>
       </div>
+      <div ref={headerAnchorRef} className="h-0" aria-hidden="true" />
       <div
-        className="bg-surface border-border sticky top-14 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6"
+        ref={scoreHeaderRef}
+        className="bg-surface border-border sticky top-0 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:top-14 sm:mb-6"
         data-tour="exam-header"
       >
         <div className="flex items-center justify-between gap-4">
@@ -289,6 +297,7 @@ function ExamPlayerHeader({
             )}
           </div>
         </div>
+        {scoreSummary && <div className="mt-3">{scoreSummary}</div>}
         <QuestionNavChips
           questions={questions}
           answers={answers}
@@ -300,7 +309,7 @@ function ExamPlayerHeader({
           dataTour="exam-nav"
           eventName="exam_navigate"
           eventData={{ subjectId: subject.id, year: examInfo.year }}
-          className="mt-4 mb-0"
+          className={scoreSummary ? "mt-2 mb-0" : "mt-4 mb-0"}
           onSelectIndex={(i, dir) => {
             setDirection(dir);
             setCurrentIndex(i);
@@ -393,6 +402,7 @@ interface ExamScoreSummaryProps {
   pendingTextCount: number;
   pendingTextPoints: number;
   passPoints: number;
+  compact: boolean;
 }
 
 function ExamScoreSummary({
@@ -401,6 +411,7 @@ function ExamScoreSummary({
   pendingTextCount,
   pendingTextPoints,
   passPoints,
+  compact,
 }: ExamScoreSummaryProps) {
   const t = useT();
   const statusClass =
@@ -422,12 +433,15 @@ function ExamScoreSummary({
       totalPoints={totalPoints}
       pendingPoints={pendingTextPoints}
       colorClassName={statusClass}
-      className="animate-fade-in-up mb-4 sm:mb-6"
+      progressClassName={`transition-[left,right,bottom] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "right-20 bottom-5 left-16" : "right-4 bottom-4 left-4"}`}
+      className={`relative animate-fade-in-up transition-[height] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-12 overflow-hidden" : "min-h-24"}`}
     >
       <div
-        className={`rounded-lg border p-3 pb-7 text-sm sm:p-4 sm:pb-8 ${panelClass}`}
+        className={`relative rounded-lg border text-sm transition-[background-color,border-color,padding] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-full overflow-hidden p-0" : "min-h-24 p-3 pb-7 sm:p-4 sm:pb-8"} ${panelClass}`}
       >
-        <div className="text-fg mb-1 flex items-center gap-2">
+        <div
+          className={`text-fg mb-1 flex items-center gap-2 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "pointer-events-none -translate-y-1 opacity-0" : "translate-y-0 opacity-100"}`}
+        >
           <Trophy
             size={18}
             weight="Filled"
@@ -446,11 +460,26 @@ function ExamScoreSummary({
             </span>
           </p>
         </div>
-        <p className={statusClass}>
+        <p
+          className={`transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "pointer-events-none translate-y-1 opacity-0" : "translate-y-0 opacity-100"} ${statusClass}`}
+        >
           {pendingTextCount > 0
             ? t.exam.selfGradeHint
             : `${t.exam.passThreshold}: ${formatPoints(passPoints)}p. ${t.exam.reviewNote}`}
         </p>
+        <div
+          className={`pointer-events-none absolute inset-0 z-10 flex items-center gap-2 px-3 transition-opacity duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "opacity-100" : "opacity-0"}`}
+          aria-hidden="true"
+        >
+          <Trophy
+            size={18}
+            weight="Filled"
+            className={`shrink-0 transition-transform duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "translate-y-0" : "-translate-y-2"}`}
+          />
+          <span className="text-fg ml-auto min-w-[3.5rem] text-right text-sm font-bold whitespace-nowrap tabular-nums">
+            {formatPoints(score)}/{formatPoints(totalPoints)}
+          </span>
+        </div>
       </div>
     </ScoreProgress>
   );
@@ -465,6 +494,7 @@ interface ExamControlsProps {
   submitted: boolean;
   setDirection: (d: "next" | "prev" | undefined) => void;
   scrollToNav: (index: number) => void;
+  scrollToHeader: () => void;
   submitDialogRef: React.RefObject<HTMLDialogElement | null>;
   arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
 }
@@ -478,6 +508,7 @@ function ExamControls({
   submitted,
   setDirection,
   scrollToNav,
+  scrollToHeader,
   submitDialogRef,
   arrowAnimateRef,
 }: ExamControlsProps) {
@@ -520,6 +551,7 @@ function ExamControls({
     });
     setCurrentIndex(nextIndex);
     scrollToNav(nextIndex);
+    scrollToHeader();
   };
 
   return (
@@ -727,6 +759,40 @@ function ExamPlayer({
   const submitDialogRef = useRef<HTMLDialogElement>(null);
   const timeUpDialogRef = useRef<HTMLDialogElement>(null);
   const exitDialogRef = useRef<HTMLDialogElement>(null);
+  const headerAnchorRef = useRef<HTMLDivElement>(null);
+  const scoreHeaderRef = useRef<HTMLDivElement>(null);
+  const questionPromptRef = useRef<HTMLDivElement>(null);
+  const [scoreCompact, setScoreCompact] = useState(false);
+
+  const scrollToHeader = useCallback(() => {
+    const anchor = headerAnchorRef.current;
+    if (!anchor) return;
+
+    setScoreCompact(false);
+    requestAnimationFrame(() => {
+      const desktopHeaderOffset = window.matchMedia("(min-width: 640px)")
+        .matches
+        ? 56
+        : 0;
+      const top = Math.max(
+        0,
+        anchor.getBoundingClientRect().top +
+          window.scrollY -
+          desktopHeaderOffset,
+      );
+      window.scrollTo({
+        top,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+      });
+    });
+  }, []);
+
+  const submitAndScroll = useCallback(() => {
+    onSubmit();
+    scrollToHeader();
+  }, [onSubmit, scrollToHeader]);
 
   useEffect(() => {
     if (timeUp && !submitted) {
@@ -784,6 +850,41 @@ function ExamPlayer({
         .reduce((sum, q) => sum + q.points, 0),
     [questions, selfGrades, submitted],
   );
+  const hasScoreSummary = submitted;
+
+  useEffect(() => {
+    if (!hasScoreSummary) return;
+
+    const updateScoreState = () => {
+      const titleAnchor = headerAnchorRef.current;
+      const scoreHeader = scoreHeaderRef.current;
+      const questionPrompt = questionPromptRef.current;
+      if (!titleAnchor || !scoreHeader || !questionPrompt) return;
+
+      const titleTop = titleAnchor.getBoundingClientRect().top + window.scrollY;
+      const promptTop = questionPrompt.getBoundingClientRect().top;
+      const headerBottom = scoreHeader.getBoundingClientRect().bottom;
+
+      setScoreCompact((current) => {
+        if (current) return window.scrollY > titleTop;
+        if (promptTop <= headerBottom + 32) return true;
+        return current;
+      });
+    };
+
+    updateScoreState();
+    window.addEventListener("scroll", updateScoreState, { passive: true });
+    window.addEventListener("resize", updateScoreState);
+    const promptResizeObserver = new ResizeObserver(updateScoreState);
+    if (questionPromptRef.current) {
+      promptResizeObserver.observe(questionPromptRef.current);
+    }
+    return () => {
+      window.removeEventListener("scroll", updateScoreState);
+      window.removeEventListener("resize", updateScoreState);
+      promptResizeObserver.disconnect();
+    };
+  }, [currentQuestion.id, hasScoreSummary]);
 
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
@@ -791,6 +892,8 @@ function ExamPlayer({
         subject={subject}
         examInfo={examInfo}
         questions={questions}
+        headerAnchorRef={headerAnchorRef}
+        scoreHeaderRef={scoreHeaderRef}
         answers={answers}
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
@@ -806,21 +909,24 @@ function ExamPlayer({
         navRef={navRef}
         scrollToNav={scrollToNav}
         exitDialogRef={exitDialogRef}
+        scoreSummary={
+          hasScoreSummary ? (
+            <ExamScoreSummary
+              score={score}
+              totalPoints={totalPoints}
+              pendingTextCount={pendingTextCount}
+              pendingTextPoints={pendingTextPoints}
+              passPoints={examInfo.passPoints}
+              compact={scoreCompact}
+            />
+          ) : null
+        }
       />
-
-      {submitted && (
-        <ExamScoreSummary
-          score={score}
-          totalPoints={totalPoints}
-          pendingTextCount={pendingTextCount}
-          pendingTextPoints={pendingTextPoints}
-          passPoints={examInfo.passPoints}
-        />
-      )}
 
       <div data-tour="exam-card">
         <QuestionCard
           key={currentQuestion.id}
+          questionPromptRef={questionPromptRef}
           question={currentQuestion}
           index={currentIndex}
           total={questions.length}
@@ -849,6 +955,7 @@ function ExamPlayer({
         submitted={submitted}
         setDirection={setDirection}
         scrollToNav={scrollToNav}
+        scrollToHeader={scrollToHeader}
         submitDialogRef={submitDialogRef}
         arrowAnimateRef={arrowAnimateRef}
       />
@@ -863,7 +970,7 @@ function ExamPlayer({
         submitted={submitted}
         submitDialogRef={submitDialogRef}
         timeUpDialogRef={timeUpDialogRef}
-        onSubmit={onSubmit}
+        onSubmit={submitAndScroll}
       />
       <ExamExitDialog
         subject={subject}
