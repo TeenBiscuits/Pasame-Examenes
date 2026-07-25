@@ -5,6 +5,7 @@ interface ScoreProgressProps {
   totalPoints: number;
   pendingPoints: number;
   colorClassName: string;
+  progressClassName?: string;
   className?: string;
   children: ReactNode;
 }
@@ -14,6 +15,7 @@ export default function ScoreProgress({
   totalPoints,
   pendingPoints,
   colorClassName,
+  progressClassName,
   className = "",
   children,
 }: ScoreProgressProps) {
@@ -28,7 +30,7 @@ export default function ScoreProgress({
     <div className={`relative ${className}`}>
       {children}
       <div
-        className={`pointer-events-none absolute right-4 bottom-4 left-4 h-2 overflow-hidden rounded-full bg-current/15 ${colorClassName}`}
+        className={`pointer-events-none absolute h-2 overflow-hidden rounded-full bg-current/15 ${colorClassName} ${progressClassName ?? "right-4 bottom-4 left-4"}`}
         aria-hidden="true"
       >
         <div

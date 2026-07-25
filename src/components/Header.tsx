@@ -49,7 +49,7 @@ export default function Header() {
   const subjectLinkClasses = `px-3 py-1.5 ${subjectLinkBase}`;
 
   return (
-    <header className="bg-surface-alt border-border sticky top-0 z-50 border-b">
+    <header className="bg-surface-alt border-border border-b sm:sticky sm:top-0 sm:z-50">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link
           to="/"

@@ -105,6 +105,9 @@ function buildReportUrl(question: Question, subjectId: string): string {
   return `${base}?${params.toString()}`;
 }
 
+const solutionPanelClass =
+  "bg-surface border-border -mx-4 space-y-3 border-y px-4 py-4 sm:-mx-6 sm:px-6";
+
 function MCQuestion({
   question,
   onAnswer,
@@ -249,7 +252,7 @@ function MCQuestion({
                 : t.questionCard.openSolution}
             </button>
             {isOpen && (
-              <div className="bg-surface border-border space-y-3 rounded-lg border p-4">
+              <div className={solutionPanelClass}>
                 {question.explanation != null && (
                   <Markdown className="text-fg-muted text-xs italic">
                     {question.explanation}
@@ -343,7 +346,7 @@ function TextQuestion({
           </button>
 
           {isOpen && (
-            <div className="bg-surface border-border space-y-3 rounded-lg border p-4">
+            <div className={solutionPanelClass}>
               <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                 {t.questionCard.modelSolution}
               </h4>
@@ -553,7 +556,7 @@ function MatchingQuestion({
                 : t.questionCard.openSolution}
             </button>
             {isOpen && (
-              <div className="bg-surface border-border space-y-3 rounded-lg border p-4">
+              <div className={solutionPanelClass}>
                 {question.explanation != null && (
                   <Markdown className="text-fg-muted text-xs italic">
                     {question.explanation}
@@ -575,13 +578,14 @@ function MatchingQuestion({
 }
 
 export default function QuestionCard(props: QuestionCardProps) {
-  const { question } = props;
+  const questionProps = props;
+  const { question } = questionProps;
   const t = useT();
 
   const slideClass =
-    props.direction === "next"
+    questionProps.direction === "next"
       ? "animate-slide-in-right animate-duration-fast"
-      : props.direction === "prev"
+      : questionProps.direction === "prev"
         ? "animate-slide-in-left animate-duration-fast"
         : "animate-fade-in animate-duration-fast";
 
@@ -591,15 +595,15 @@ export default function QuestionCard(props: QuestionCardProps) {
     >
       <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
         <span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">
-          Q{props.index + 1}/{props.total}
+          Q{questionProps.index + 1}/{questionProps.total}
         </span>
         <span className="bg-accent-light text-accent-fg rounded px-2 py-0.5 font-mono text-xs">
           {formatPoints(question.points)}p
         </span>
         <span className="text-fg-muted order-last flex w-full min-w-0 items-center gap-0.5 text-xs sm:order-none sm:w-auto sm:flex-1">
-          {props.megatopicLabel && (
+          {questionProps.megatopicLabel && (
             <>
-              <span className="truncate">{props.megatopicLabel}</span>
+              <span className="truncate">{questionProps.megatopicLabel}</span>
               <CaretRight
                 size={12}
                 weight="Filled"
@@ -608,9 +612,9 @@ export default function QuestionCard(props: QuestionCardProps) {
               />
             </>
           )}
-          <span className="truncate">{props.topicLabel}</span>
+          <span className="truncate">{questionProps.topicLabel}</span>
         </span>
-        {(question.repeated || props.examDate) && (
+        {(question.repeated || questionProps.examDate) && (
           <div className="ml-auto flex items-center gap-2 sm:ml-0">
             {question.repeated && (
               <span className="flex items-center gap-0.5 rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
@@ -618,110 +622,131 @@ export default function QuestionCard(props: QuestionCardProps) {
                 {t.questionCard.repeated}
               </span>
             )}
-            {props.examDate && (
+            {questionProps.examDate && (
               <span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
                 <Notebook size={14} aria-hidden="true" />
-                {props.examDate}
+                {questionProps.examDate}
               </span>
             )}
           </div>
         )}
       </div>
-      <Markdown className="text-fg mb-4 text-sm font-medium">
-        {question.question}
-      </Markdown>
-      {question.subquestions && (
-        <ul className="text-fg-secondary mb-4 list-inside list-disc space-y-1 text-sm">
-          {question.subquestions.map((sq) => (
-            <li key={sq}>
-              <InlineMarkdown>{sq}</InlineMarkdown>
-            </li>
-          ))}
-        </ul>
-      )}
-      {question.image && (
-        <div className="mb-4">
-          <QuestionImage
-            image={question.image}
-            alt={`Illustration for ${question.id}`}
-            maxHeight="400px"
-          />
-        </div>
-      )}
-      {question.table && (
-        <div className="border-border mb-4 overflow-x-auto rounded-lg border">
-          <table className="divide-border min-w-full divide-y text-sm">
-            <thead className="bg-surface">
-              <tr>
-                {question.table.headers.map((h) => (
-                  <th
-                    key={h}
-                    scope="col"
-                    className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
-                  >
-                    <InlineMarkdown>{h}</InlineMarkdown>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-border bg-surface-alt divide-y">
-              {question.table.rows.map((row, ri) => (
-                <tr
-                  key={`${question.id}-row-${ri}`}
-                  className="hover:bg-surface/50 transition-colors"
-                >
-                  {row.map((cell, ci) => (
-                    <td
-                      key={`${question.id}-cell-${ri}-${ci}`}
-                      className="text-fg-secondary px-4 py-2 whitespace-nowrap"
+      <div>
+        <Markdown className="text-fg mb-4 text-sm font-medium">
+          {question.question}
+        </Markdown>
+        {question.subquestions && (
+          <ul className="text-fg-secondary mb-4 list-inside list-disc space-y-1 text-sm">
+            {question.subquestions.map((sq) => (
+              <li key={sq}>
+                <InlineMarkdown>{sq}</InlineMarkdown>
+              </li>
+            ))}
+          </ul>
+        )}
+        {question.image && (
+          <div className="mb-4">
+            <QuestionImage
+              image={question.image}
+              alt={`Illustration for ${question.id}`}
+              maxHeight="400px"
+            />
+          </div>
+        )}
+        {question.table && (
+          <div className="border-border mb-4 overflow-x-auto rounded-lg border">
+            <table className="divide-border min-w-full divide-y text-sm">
+              <thead className="bg-surface">
+                <tr>
+                  {question.table.headers.map((h) => (
+                    <th
+                      key={h}
+                      scope="col"
+                      className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
                     >
-                      <InlineMarkdown>{cell}</InlineMarkdown>
-                    </td>
+                      <InlineMarkdown>{h}</InlineMarkdown>
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              </thead>
+              <tbody className="divide-border bg-surface-alt divide-y">
+                {question.table.rows.map((row, ri) => (
+                  <tr
+                    key={`${question.id}-row-${ri}`}
+                    className="hover:bg-surface/50 transition-colors"
+                  >
+                    {row.map((cell, ci) => (
+                      <td
+                        key={`${question.id}-cell-${ri}-${ci}`}
+                        className="text-fg-secondary px-4 py-2 whitespace-nowrap"
+                      >
+                        <InlineMarkdown>{cell}</InlineMarkdown>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
       {question.type === "mc" && (
         <MCQuestion
-          key={`mc-${question.id}-${props.savedAnswer || ""}`}
-          {...props}
+          key={`mc-${question.id}-${questionProps.savedAnswer || ""}`}
+          {...questionProps}
         />
       )}
-      {question.type === "text" && <TextQuestion {...props} />}
+      {question.type === "text" && <TextQuestion {...questionProps} />}
       {question.type === "matching" && (
         <MatchingQuestion
-          key={`match-${question.id}-${props.savedAnswer || ""}`}
-          {...props}
+          key={`match-${question.id}-${questionProps.savedAnswer || ""}`}
+          {...questionProps}
         />
       )}
-      <div className="border-border mt-4 flex items-center justify-end gap-2 border-t pt-4">
-        <span className="text-fg-muted font-mono text-[10px] select-all">
-          {question.id}
+      <div className="border-border mt-4 flex items-center justify-between gap-3 border-t pt-4">
+        <span className="text-fg-muted inline-flex min-w-0 items-center gap-1.5 text-xs font-semibold">
+          <span
+            className="bg-fg-muted size-[18px] shrink-0"
+            style={{
+              maskImage: "url('/mono-favicon.svg')",
+              maskPosition: "center",
+              maskRepeat: "no-repeat",
+              maskSize: "contain",
+              WebkitMaskImage: "url('/mono-favicon.svg')",
+              WebkitMaskPosition: "center",
+              WebkitMaskRepeat: "no-repeat",
+              WebkitMaskSize: "contain",
+            }}
+            aria-hidden="true"
+          />
+          <span className="hidden truncate sm:inline">Pásame Exámenes</span>
         </span>
-        <a
-          data-tour="report-issue"
-          data-cuelume-hover="whisper"
-          href={buildReportUrl(question, props.subjectId)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg -mr-2 inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
-          onClick={() => {
-            triggerLight();
-            track("report_issue", {
-              questionId: question.id,
-              subjectId: props.subjectId,
-              topic: props.topicKey,
-              exam: props.examYear,
-              mode: props.mode,
-            });
-          }}
-        >
-          <TriangleWarning size={16} aria-hidden="true" />
-          {t.questionCard.reportIssue}
-        </a>
+        <div className="flex min-w-0 items-center justify-end gap-2">
+          <span className="text-fg-muted min-w-0 truncate font-mono text-[10px] select-all">
+            {question.id}
+          </span>
+          <a
+            data-tour="report-issue"
+            data-cuelume-hover="whisper"
+            href={buildReportUrl(question, questionProps.subjectId)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg -mr-2 inline-flex shrink-0 items-center gap-1 rounded px-2 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            onClick={() => {
+              triggerLight();
+              track("report_issue", {
+                questionId: question.id,
+                subjectId: questionProps.subjectId,
+                topic: questionProps.topicKey,
+                exam: questionProps.examYear,
+                mode: questionProps.mode,
+              });
+            }}
+          >
+            <TriangleWarning size={16} aria-hidden="true" />
+            {t.questionCard.reportIssue}
+          </a>
+        </div>
       </div>
     </div>
   );

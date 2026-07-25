@@ -33,6 +33,8 @@ import {
   Trophy,
 } from "reicon-react";
 
+const minScrollRangeForCompactScore = 256;
+
 interface PracticePlayerProps {
   subject: NonNullable<ReturnType<typeof getSubject>>;
   topic: string;
@@ -49,6 +51,7 @@ interface PracticePlayerProps {
   totalPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
+  scrollToHeaderRef: React.MutableRefObject<() => void>;
   showLeftFade: boolean;
   showRightFade: boolean;
   navRef: React.RefObject<HTMLDivElement | null>;
@@ -66,6 +69,8 @@ interface PracticePlayerHeaderProps {
   subject: PracticeSubject;
   topic: string;
   topicInfo: PracticePlayerProps["topicInfo"];
+  headerAnchorRef: React.RefObject<HTMLDivElement | null>;
+  scrollToHeaderRef: React.MutableRefObject<() => void>;
   questions: Question[];
   answers: Record<string, string>;
   checkedQuestions: Record<string, boolean>;
@@ -78,12 +83,15 @@ interface PracticePlayerHeaderProps {
   showRightFade: boolean;
   navRef: React.RefObject<HTMLDivElement | null>;
   scrollToNav: (index: number) => void;
+  scoreSummary: React.ReactNode;
 }
 
 function PracticePlayerHeader({
   subject,
   topic,
   topicInfo,
+  headerAnchorRef,
+  scrollToHeaderRef,
   questions,
   answers,
   checkedQuestions,
@@ -96,6 +104,7 @@ function PracticePlayerHeader({
   showRightFade,
   navRef,
   scrollToNav,
+  scoreSummary,
 }: PracticePlayerHeaderProps) {
   const t = useT();
 
@@ -115,7 +124,8 @@ function PracticePlayerHeader({
           {t.practice.backToTopics}
         </Link>
       </div>
-      <div className="bg-surface border-border sticky top-14 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6">
+      <div ref={headerAnchorRef} className="h-0" aria-hidden="true" />
+      <div className="bg-surface border-border sticky top-0 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:top-14 sm:mb-6">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
             <h1 className="text-fg truncate text-xl font-semibold sm:text-2xl">
@@ -127,6 +137,7 @@ function PracticePlayerHeader({
             </p>
           </div>
         </div>
+        {scoreSummary && <div className="mt-3">{scoreSummary}</div>}
         <QuestionNavChips
           questions={questions}
           answers={answers}
@@ -139,10 +150,11 @@ function PracticePlayerHeader({
           dataTour="practice-nav"
           eventName="practice_navigate"
           eventData={{ subjectId: subject.id, topic: topic || "" }}
-          className="mt-4 mb-0"
+          className={scoreSummary ? "mt-2 mb-0" : "mt-4 mb-0"}
           onSelectIndex={(i, dir) => {
             setDirection(dir);
             setCurrentIndex(i);
+            scrollToHeaderRef.current();
             scrollToNav(i);
           }}
         />
@@ -160,6 +172,7 @@ interface PracticeScoreSummaryProps {
   questionsLength: number;
   gradedScore: number;
   totalPoints: number;
+  compact: boolean;
 }
 
 function PracticeScoreSummary({
@@ -171,6 +184,7 @@ function PracticeScoreSummary({
   questionsLength,
   gradedScore,
   totalPoints,
+  compact,
 }: PracticeScoreSummaryProps) {
   const t = useT();
   const completed = submitted && allTextGraded;
@@ -181,16 +195,19 @@ function PracticeScoreSummary({
       totalPoints={totalPoints}
       pendingPoints={pendingTextPoints}
       colorClassName={completed ? "text-correct-fg" : "text-pending-fg"}
-      className="animate-fade-in-up mb-4 sm:mb-6"
+      progressClassName={`transition-[left,right,bottom] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "right-20 bottom-5 left-16" : "right-4 bottom-4 left-4"}`}
+      className={`relative animate-fade-in-up transition-[height] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-12 overflow-hidden" : "min-h-24"}`}
     >
       <div
-        className={`rounded-lg border p-3 pb-7 sm:p-4 sm:pb-8 ${
+        className={`relative rounded-lg border transition-[background-color,border-color,padding] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-full overflow-hidden p-0" : "min-h-24 p-3 pb-7 sm:p-4 sm:pb-8"} ${
           completed
             ? "border-correct-border bg-correct-bg"
             : "border-pending-border bg-pending-bg"
         }`}
       >
-        <div className="text-fg flex items-center gap-2">
+        <div
+          className={`text-fg flex items-center gap-2 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "pointer-events-none -translate-y-1 opacity-0" : "translate-y-0 opacity-100"}`}
+        >
           <Trophy
             size={18}
             weight={submitted ? "Filled" : "Outline"}
@@ -210,7 +227,7 @@ function PracticeScoreSummary({
           </p>
         </div>
         <p
-          className={`mt-1 text-sm ${completed ? "text-correct-fg" : "text-pending-fg"}`}
+          className={`mt-1 text-sm transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "pointer-events-none translate-y-1 opacity-0" : "translate-y-0 opacity-100"} ${completed ? "text-correct-fg" : "text-pending-fg"}`}
         >
           {submitted && pendingTextCount > 0
             ? t.practice.selfGradeHint
@@ -218,6 +235,19 @@ function PracticeScoreSummary({
               ? t.practice.allSelfGraded
               : `${checkedCount} ${t.exam.outOf} ${questionsLength} ${t.practice.checked}`}
         </p>
+        <div
+          className={`pointer-events-none absolute inset-0 z-10 flex items-center gap-2 px-3 transition-opacity duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "opacity-100" : "opacity-0"}`}
+          aria-hidden="true"
+        >
+          <Trophy
+            size={18}
+            weight={submitted ? "Filled" : "Outline"}
+            className={`shrink-0 transition-transform duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "translate-y-0" : "-translate-y-2"}`}
+          />
+          <span className="text-fg ml-auto min-w-[3.5rem] text-right text-sm font-bold whitespace-nowrap tabular-nums">
+            {formatPoints(gradedScore)}/{formatPoints(totalPoints)}
+          </span>
+        </div>
       </div>
     </ScoreProgress>
   );
@@ -235,6 +265,7 @@ interface PracticeControlsProps {
   submitted: boolean;
   setDirection: (d: "next" | "prev" | undefined) => void;
   scrollToNav: (index: number) => void;
+  scrollToHeader: () => void;
   onSubmit: () => void;
   onCheckQuestion: (questionId: string) => void;
   onClearAnswer: (questionId: string) => void;
@@ -253,6 +284,7 @@ function PracticeControls({
   submitted,
   setDirection,
   scrollToNav,
+  scrollToHeader,
   onSubmit,
   onCheckQuestion,
   onClearAnswer,
@@ -300,6 +332,7 @@ function PracticeControls({
     });
     setCurrentIndex(nextIndex);
     scrollToNav(nextIndex);
+    scrollToHeader();
   };
 
   return (
@@ -390,7 +423,10 @@ function PracticeControls({
             className="bg-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
             onMouseEnter={() => setHoverSubmit(true)}
             onMouseLeave={() => setHoverSubmit(false)}
-            onClick={onSubmit}
+            onClick={() => {
+              onSubmit();
+              scrollToHeader();
+            }}
           >
             <Send
               size={18}
@@ -453,8 +489,34 @@ function PracticePlayer({
   onCheckQuestion,
   onClearAnswer,
   arrowAnimateRef,
+  scrollToHeaderRef,
 }: PracticePlayerProps) {
   const currentQuestion = questions[currentIndex];
+  const headerAnchorRef = useRef<HTMLDivElement>(null);
+  const [scoreCompact, setScoreCompact] = useState(false);
+
+  const scrollToHeader = useCallback(() => {
+    const anchor = headerAnchorRef.current;
+    if (!anchor) return;
+
+    setScoreCompact(false);
+    const desktopHeaderOffset = window.matchMedia("(min-width: 640px)").matches
+      ? 56
+      : 0;
+    window.scrollTo({
+      top: Math.max(
+        0,
+        anchor.getBoundingClientRect().top + window.scrollY - desktopHeaderOffset,
+      ),
+    });
+  }, []);
+
+  useEffect(() => {
+    scrollToHeaderRef.current = scrollToHeader;
+    return () => {
+      scrollToHeaderRef.current = () => {};
+    };
+  }, [scrollToHeaderRef, scrollToHeader]);
 
   const examDate = useMemo(() => {
     if (currentQuestion?.exam === "both") return undefined;
@@ -534,13 +596,41 @@ function PracticePlayer({
   };
 
   const gradedScore = getScore(true);
+  const checkedCount = Object.keys(checkedQuestions).length;
+  const hasScoreSummary = submitted || checkedCount > 0;
+
+  useEffect(() => {
+    if (!hasScoreSummary) return;
+
+    const updateScoreState = () => {
+      const anchor = headerAnchorRef.current;
+      if (!anchor) return;
+
+      const titleTop = anchor.getBoundingClientRect().top + window.scrollY;
+      const canCompact =
+        document.documentElement.scrollHeight - window.innerHeight >=
+        minScrollRangeForCompactScore;
+      setScoreCompact((current) => {
+        if (window.scrollY <= titleTop) return false;
+        return current || canCompact;
+      });
+    };
+
+    window.addEventListener("scroll", updateScoreState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScoreState);
+  }, [hasScoreSummary]);
 
   return (
-    <div className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8">
+    <div
+      className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8"
+      style={{ overflowAnchor: "none" }}
+    >
       <PracticePlayerHeader
         subject={subject}
         topic={topic}
         topicInfo={topicInfo}
+        headerAnchorRef={headerAnchorRef}
+        scrollToHeaderRef={scrollToHeaderRef}
         questions={questions}
         answers={answers}
         checkedQuestions={checkedQuestions}
@@ -553,20 +643,22 @@ function PracticePlayer({
         showRightFade={showRightFade}
         navRef={navRef}
         scrollToNav={scrollToNav}
+        scoreSummary={
+          hasScoreSummary ? (
+            <PracticeScoreSummary
+              submitted={submitted}
+              allTextGraded={allTextGraded}
+              pendingTextCount={pendingTextCount}
+              pendingTextPoints={pendingTextPoints}
+              checkedCount={checkedCount}
+              questionsLength={questions.length}
+              gradedScore={gradedScore}
+              totalPoints={totalPoints}
+              compact={scoreCompact}
+            />
+          ) : null
+        }
       />
-
-      {(submitted || Object.keys(checkedQuestions).length > 0) && (
-        <PracticeScoreSummary
-          submitted={submitted}
-          allTextGraded={allTextGraded}
-          pendingTextCount={pendingTextCount}
-          pendingTextPoints={pendingTextPoints}
-          checkedCount={Object.keys(checkedQuestions).length}
-          questionsLength={questions.length}
-          gradedScore={gradedScore}
-          totalPoints={totalPoints}
-        />
-      )}
 
       <div data-tour="practice-card">
         <QuestionCard
@@ -604,6 +696,7 @@ function PracticePlayer({
         submitted={submitted}
         setDirection={setDirection}
         scrollToNav={scrollToNav}
+        scrollToHeader={scrollToHeader}
         onSubmit={onSubmit}
         onCheckQuestion={onCheckQuestion}
         onClearAnswer={onClearAnswer}
@@ -721,6 +814,7 @@ export default function PracticeTopic() {
 
   const subjectReadyRef = useRef(false);
   const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
+  const scrollToHeaderRef = useRef<() => void>(() => {});
   useEffect(() => {
     subjectReadyRef.current = !!subject;
   }, [subject]);
@@ -739,7 +833,10 @@ export default function PracticeTopic() {
     setDirection,
     eventName: "practice_navigate",
     eventData: navEventData,
-    onKeyPress: (dir) => arrowAnimateRef.current(dir),
+    onKeyPress: (dir) => {
+      arrowAnimateRef.current(dir);
+      scrollToHeaderRef.current();
+    },
   });
 
   useEffect(() => {
@@ -890,6 +987,7 @@ export default function PracticeTopic() {
         onCheckQuestion={handleCheckQuestion}
         onClearAnswer={handleClearAnswer}
         arrowAnimateRef={arrowAnimateRef}
+        scrollToHeaderRef={scrollToHeaderRef}
       />
     </>
   );
