@@ -22,7 +22,7 @@
 
 <div align="center">
 <br/>
-<b>Pásame Exámenes</b> es una plataforma open source para practicar preguntas de exámenes de la FIC por tema o en modo cronometrado con temporizador y autocorrección.
+<b>Pásame Exámenes</b> es una plataforma de código abierto para practicar exámenes de la FIC por tema o en modo cronometrado, con respuestas modelo y autocorrección.
 <br/>
 </div>
 
