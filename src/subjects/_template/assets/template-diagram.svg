@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title description">
+  <title id="title">Template subject data flow</title>
+  <desc id="description">Three input cards feed a processing node and then two output cards.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#172554"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <marker id="arrow" markerHeight="10" markerWidth="10" orient="auto" refX="8" refY="4">
+      <path d="M0 0 8 4 0 8Z" fill="#fbbf24"/>
+    </marker>
+  </defs>
+  <rect width="960" height="540" rx="28" fill="url(#background)"/>
+  <text x="48" y="64" fill="#f8fafc" font-family="sans-serif" font-size="28" font-weight="700">Template data flow</text>
+  <text x="48" y="96" fill="#bfdbfe" font-family="sans-serif" font-size="16">An original fixture image for testing responsive question media.</text>
+  <g font-family="sans-serif">
+    <rect x="64" y="160" width="210" height="82" rx="16" fill="#dbeafe"/>
+    <text x="169" y="194" fill="#1e3a8a" font-size="18" text-anchor="middle" font-weight="700">Input A</text>
+    <text x="169" y="220" fill="#1e40af" font-size="14" text-anchor="middle">question text</text>
+    <rect x="64" y="286" width="210" height="82" rx="16" fill="#dbeafe"/>
+    <text x="169" y="320" fill="#1e3a8a" font-size="18" text-anchor="middle" font-weight="700">Input B</text>
+    <text x="169" y="346" fill="#1e40af" font-size="14" text-anchor="middle">question image</text>
+    <rect x="64" y="412" width="210" height="62" rx="16" fill="#dbeafe"/>
+    <text x="169" y="450" fill="#1e3a8a" font-size="18" text-anchor="middle" font-weight="700">Input C</text>
+    <rect x="376" y="236" width="208" height="126" rx="22" fill="#fef3c7"/>
+    <text x="480" y="286" fill="#78350f" font-size="20" text-anchor="middle" font-weight="700">Process</text>
+    <text x="480" y="314" fill="#92400e" font-size="14" text-anchor="middle">render + grade</text>
+    <rect x="686" y="174" width="210" height="82" rx="16" fill="#ccfbf1"/>
+    <text x="791" y="208" fill="#134e4a" font-size="18" text-anchor="middle" font-weight="700">Answer</text>
+    <text x="791" y="234" fill="#115e59" font-size="14" text-anchor="middle">solution panel</text>
+    <rect x="686" y="342" width="210" height="82" rx="16" fill="#ccfbf1"/>
+    <text x="791" y="376" fill="#134e4a" font-size="18" text-anchor="middle" font-weight="700">Feedback</text>
+    <text x="791" y="402" fill="#115e59" font-size="14" text-anchor="middle">practice result</text>
+  </g>
+  <g fill="none" stroke="#fbbf24" stroke-width="5" marker-end="url(#arrow)">
+    <path d="M274 201 368 270"/>
+    <path d="M274 327 368 318"/>
+    <path d="M274 443 368 346"/>
+    <path d="M584 278 678 224"/>
+    <path d="M584 322 678 374"/>
+  </g>
+</svg>

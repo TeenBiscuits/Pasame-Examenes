@@ -6,7 +6,7 @@ import type { ImageMap } from "../../lib/image";
 // Load and optimize all images in ./assets/ automatically.
 // Just drop image files into assets/ and reference them by filename.
 const imageMap = import.meta.glob<{ default: Picture }>(
-  "./assets/*.{png,jpeg,jpg}",
+  "./assets/*.{png,jpeg,jpg,svg}",
   {
     query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
     eager: true,
@@ -495,36 +495,575 @@ printf 'Hello, %s!\\n' "$name"
   },
 
   // ================================================================
-  // Image + explanationImage examples
-  // To use: add images to src/subjects/_template/assets/ and uncomment.
+  // Code rendering exam
+  // This exam intentionally exercises every grammar registered in
+  // src/lib/markdown.tsx, plus a plain fenced block and inline code.
   // ================================================================
-  //
-  // --- Question with an image ---
-  // {
-  //   id: "2025-01_image",
-  //   exam: "2025-01",
-  //   topic: "topic-1",
-  //   type: "text",
-  //   points: 10,
-  //   question: "Describe what the following diagram represents:",
-  //   image: getImage(imageMap, "figure.png"),
-  //   correctAnswer: "The diagram shows...",
-  // },
-  //
-  // --- MC with explanationImage ---
-  // {
-  //   id: "2025-01_expimg",
-  //   exam: "2025-01",
-  //   topic: "topic-2",
-  //   type: "mc",
-  //   points: 10,
-  //   question: "Which of these best describes the diagram below?",
-  //   image: getImage(imageMap, "diagram.png"),
-  //   options: ["A. Option one", "B. Option two", "C. Option three"],
-  //   correctAnswer: "b",
-  //   explanation: "Option two is correct because...",
-  //   explanationImage: getImage(imageMap, "solution.png"),
-  // },
+
+  {
+    id: "code-rendering_q1",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `What does this JavaScript program print?
+
+\`\`\`javascript
+const values = [2, 4, 6];
+const doubled = values.map((value) => value * 2);
+console.log(doubled.join(", "));
+\`\`\``,
+    correctAnswer:
+      "It prints `4, 8, 12`. The `map()` callback creates a new array.",
+  },
+  {
+    id: "code-rendering_q2",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `Which type does the function return?
+
+\`\`\`typescript
+function first<T>(items: T[]): T | undefined {
+  return items[0];
+}
+\`\`\``,
+    correctAnswer:
+      "It returns `T | undefined`: the first element has type `T`, but an empty array has no first element.",
+  },
+  {
+    id: "code-rendering_q3",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `What list is produced by this Python expression?
+
+\`\`\`python
+words = ["red", "blue", "green"]
+long_words = [word.upper() for word in words if len(word) > 3]
+print(long_words)
+\`\`\``,
+    correctAnswer:
+      "It produces `['BLUE', 'GREEN']`; `red` is filtered out because its length is not greater than 3.",
+  },
+  {
+    id: "code-rendering_q4",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `What value is printed by this Java stream?
+
+\`\`\`java
+var numbers = java.util.List.of(1, 2, 3, 4);
+var result = numbers.stream()
+    .filter(number -> number % 2 == 0)
+    .mapToInt(Integer::intValue)
+    .sum();
+System.out.println(result);
+\`\`\``,
+    correctAnswer:
+      "It prints `6`: the even values are 2 and 4, whose sum is 6.",
+  },
+  {
+    id: "code-rendering_q5",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `What does the pointer modify in this C program?
+
+\`\`\`c
+int value = 10;
+int *pointer = &value;
+*pointer = *pointer + 5;
+printf("%d\\n", value);
+\`\`\``,
+    correctAnswer:
+      "The pointer writes through the address of `value`, so the program prints `15`.",
+  },
+  {
+    id: "code-rendering_q6",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `How many elements remain in this C++ vector?
+
+\`\`\`cpp
+std::vector<int> values{1, 2, 3, 4};
+values.erase(values.begin() + 1);
+std::cout << values.size();
+\`\`\``,
+    correctAnswer:
+      "Three elements remain because `erase` removes the element at index 1, the value `2`.",
+  },
+  {
+    id: "code-rendering_q7",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `What does this Go program print?
+
+\`\`\`go
+package main
+
+import "fmt"
+
+func main() {
+  values := []int{3, 5, 7}
+  fmt.Println(values[len(values)-1])
+}
+\`\`\``,
+    correctAnswer: "It prints `7`, the element at the last valid slice index.",
+  },
+  {
+    id: "code-rendering_q8",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `What does the \`?\` operator do here?
+
+\`\`\`rust
+fn read_count(input: &str) -> Result<usize, std::num::ParseIntError> {
+    let count = input.parse::<usize>()?;
+    Ok(count)
+}
+\`\`\``,
+    correctAnswer:
+      "It propagates a parsing error immediately; otherwise it unwraps the successful `usize` value.",
+  },
+  {
+    id: "code-rendering_q9",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `Which departments can appear in the result?
+
+\`\`\`sql
+SELECT department, COUNT(*) AS total
+FROM employees
+WHERE active = TRUE
+GROUP BY department
+HAVING COUNT(*) >= 3
+ORDER BY total DESC;
+\`\`\``,
+    correctAnswer:
+      "Only departments with at least three active employees appear, ordered from the largest count to the smallest.",
+  },
+  {
+    id: "code-rendering_q10",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `What fallback value does this Bash script use?
+
+\`\`\`bash
+#!/usr/bin/env bash
+set -euo pipefail
+port="\${1:-8080}"
+printf 'Listening on %s\\n' "$port"
+\`\`\``,
+    correctAnswer:
+      "The parameter expansion uses `8080` when the first argument is missing or empty.",
+  },
+  {
+    id: "code-rendering_q11",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `What semantic element and layout are used here?
+
+\`\`\`markup
+<article class="card">
+  <h2>Build status</h2>
+  <p>All checks passed.</p>
+</article>
+\`\`\`
+
+\`\`\`css
+.card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+\`\`\``,
+    correctAnswer:
+      "The `article` is semantic, and the CSS gives the card a grid layout, gap, and padding.",
+  },
+  {
+    id: "code-rendering_q12",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `Which property contains an array?
+
+\`\`\`json
+{
+  "name": "Template Subject",
+  "published": true,
+  "languages": ["en", "es", "gl"],
+  "questionCount": 42
+}
+\`\`\``,
+    correctAnswer:
+      "The `languages` property contains an array of three strings.",
+  },
+  {
+    id: "code-rendering_q13",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "text",
+    points: 5,
+    question: `This fenced block has no language annotation. It should still render as readable code:
+
+\`\`\`
+const fallback = "plain text";
+console.log(fallback);
+\`\`\``,
+    correctAnswer:
+      "The block uses the inline-code fallback because no language was specified.",
+  },
+  {
+    id: "code-rendering_q14",
+    exam: "code-rendering",
+    topic: "syntax-highlighting",
+    type: "mc",
+    points: 5,
+    question:
+      "Which detail makes a fenced block use a registered syntax grammar?",
+    options: [
+      "A. Adding a language name after the opening fence",
+      "B. Wrapping the code in a table",
+      "C. Using only inline code",
+      "D. Adding a mathematical formula",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "A fence such as ` ```typescript ` supplies the `language-typescript` class used by the renderer.",
+  },
+
+  // ================================================================
+  // Markdown coverage exam
+  // ================================================================
+
+  {
+    id: "markdown-complete_q1",
+    exam: "markdown-complete",
+    topic: "markdown-complete",
+    type: "text",
+    points: 20,
+    question: `# Markdown field guide
+
+This paragraph contains **strong text**, *emphasis*, ~~deletion~~, \`inline code\`, and a [link to the project](https://github.com/).
+
+> Blockquotes should keep their visual hierarchy and can contain **inline formatting**.
+
+1. Ordered item
+2. Another ordered item
+   1. Nested item
+
+- Unordered item
+- [x] Completed task
+- [ ] Pending task
+
+---
+
+| Alignment | Example |
+| :--- | ---: |
+| Left | 10 |
+| Right | 20 |
+
+The formula is $f(x) = x^2 + 1$ and the display version is:
+
+$$
+\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}
+$$
+
+Here is a footnote reference.[^fixture]
+
+[^fixture]: Footnotes are part of the GFM fixture too.
+
+\`\`\`typescript
+const rendered = true;
+\`\`\``,
+    correctAnswer: `The renderer should preserve the heading, paragraph styles, emphasis, deletion, inline code, link, blockquote, both list types, task-list states, horizontal rule, aligned table, inline and block math, footnote, and the typed code block.
+
+The inline expression is $f(x) = x^2 + 1$; the sum formula uses $n(n+1)/2$.`,
+  },
+  {
+    id: "markdown-complete_q2",
+    exam: "markdown-complete",
+    topic: "markdown-complete",
+    type: "mc",
+    points: 10,
+    question: `Which option includes every inline style being tested?
+
+- Bold: **important**
+- Italic: *context*
+- Strike: ~~removed~~
+- Code: \`value\``,
+    options: [
+      "A. **bold**, *italic*, ~~strike~~, and `code`",
+      "B. Only a heading and a table",
+      "C. A code block without a language",
+      "D. A mathematical display only",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "The first option contains the four inline constructs listed in the prompt.",
+  },
+  {
+    id: "markdown-complete_q3",
+    exam: "markdown-complete",
+    topic: "markdown-complete",
+    type: "matching",
+    points: 10,
+    question: `Match each Markdown construct with the fixture that demonstrates it:
+
+> The answer panel should render this instruction as a blockquote.`,
+    correctAnswer: {
+      Heading: "A",
+      "Task list": "B",
+      Table: "C",
+      "Block math": "D",
+      "Fenced code": "E",
+    },
+    explanation: `| Construct | Fixture |
+| --- | --- |
+| Heading | A |
+| Task list | B |
+| Table | C |
+| Block math | D |
+| Fenced code | E |`,
+  },
+  {
+    id: "markdown-complete_q4",
+    exam: "markdown-complete",
+    topic: "markdown-complete",
+    type: "text",
+    points: 10,
+    question: `Read this table and calculate the total:
+
+| Sprint | Done | Blocked |
+| --- | ---: | ---: |
+| One | 8 | 2 |
+| Two | 11 | 1 |
+| Three | 9 | 0 |`,
+    correctAnswer: `The total completed work is **28**: $8 + 11 + 9 = 28$.
+
+The total blocked work is **3**: $2 + 1 + 0 = 3$.`,
+  },
+  {
+    id: "markdown-complete_q5",
+    exam: "markdown-complete",
+    topic: "markdown-complete",
+    type: "text",
+    points: 10,
+    question: `Write a short model answer using a heading, a quote, a list, inline \`code\`, and a link.
+
+The answer is intentionally self-referential so the solution panel can be inspected too.`,
+    correctAnswer: `## Model answer
+
+> A concise answer can still be structured.
+
+- Start with the conclusion.
+- Support it with \`evidence\`.
+
+Read more at [the Markdown guide](https://commonmark.org/help/).`,
+  },
+
+  // ================================================================
+  // Long-form Lorem ipsum exam
+  // ================================================================
+
+  {
+    id: "lorem-ipsum_q1",
+    exam: "lorem-ipsum",
+    topic: "lorem-ipsum",
+    type: "text",
+    points: 20,
+    question: `# De litteris et ordine
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at lacus vitae arcu facilisis tincidunt. Praesent finibus, sapien at posuere commodo, neque justo vestibulum nibh, vitae tempus massa eros sit amet erat. Curabitur consequat, justo non dignissim maximus, nisl arcu fermentum nibh, vitae feugiat massa nunc at libero.
+
+Suspendisse potenti. Donec vulputate, magna ac bibendum interdum, justo turpis consequat mauris, non efficitur lectus augue sed nibh. Aenean vel ligula id neque blandit consectetur. Nunc sed sem in lorem luctus porttitor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+
+## A second paragraph
+
+Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed id purus at erat bibendum faucibus. Mauris sit amet ligula at erat placerat elementum. Aliquam erat volutpat. Quisque finibus, velit non faucibus maximus, erat mi tincidunt lacus, a porta urna justo non mauris.
+
+The passage uses **bold emphasis**, *italic emphasis*, and a deliberately long line to test wrapping on narrow screens. It also includes a table:
+
+| Section | Words | Status |
+| --- | ---: | --- |
+| Opening | 54 | Ready |
+| Middle | 48 | Ready |
+| Closing | 42 | Review |
+
+Explain the organization and identify the section that still needs review.`,
+    correctAnswer: `The text has a title, two prose sections, inline emphasis, and a summary table. The opening and middle sections are marked **Ready**, while the closing section is marked **Review**.
+
+The exact word counts are less important than identifying the document hierarchy and reading the table correctly.`,
+  },
+  {
+    id: "lorem-ipsum_q2",
+    exam: "lorem-ipsum",
+    topic: "lorem-ipsum",
+    type: "mc",
+    points: 10,
+    question: `Which statement best describes the long passage above?
+
+It is intentionally verbose so the interface can be checked with **realistic line wrapping** and multiple paragraphs.`,
+    options: [
+      "A. It contains only a single short sentence",
+      "B. It combines headings, long paragraphs, emphasis, and a table",
+      "C. It is a fenced code block",
+      "D. It contains no Markdown structure",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "The passage is a long-form Markdown fixture containing several block-level elements.",
+  },
+  {
+    id: "lorem-ipsum_q3",
+    exam: "lorem-ipsum",
+    topic: "lorem-ipsum",
+    type: "matching",
+    points: 10,
+    question: "Match each section with the status shown in the table:",
+    correctAnswer: {
+      Opening: "A",
+      Middle: "B",
+      Closing: "C",
+    },
+    explanation: `| Section | Status |
+| --- | --- |
+| Opening | A. Ready |
+| Middle | B. Ready |
+| Closing | C. Review |`,
+  },
+
+  // ================================================================
+  // Image and solution rendering exam
+  // ================================================================
+
+  {
+    id: "visual-assets_q1",
+    exam: "visual-assets",
+    topic: "visual-assets",
+    type: "text",
+    points: 20,
+    question: `Describe the flow shown in the diagram. Mention the three inputs, the processing step, and both outputs.`,
+    image: getImage(imageMap, "template-diagram.svg"),
+    correctAnswer: `The diagram shows **Input A**, **Input B**, and **Input C** flowing into a central **Process** node labelled \`render + grade\`. That node produces an **Answer** solution panel and **Feedback** practice result.
+
+The arrows show a left-to-right data flow.`,
+    explanationImage: getImage(imageMap, "template-solution.svg"),
+  },
+  {
+    id: "visual-assets_q2",
+    exam: "visual-assets",
+    topic: "visual-assets",
+    type: "mc",
+    points: 15,
+    question: "Which stage is represented by the central yellow node?",
+    image: getImage(imageMap, "template-diagram.svg"),
+    options: [
+      "A. Input collection",
+      "B. Rendering and grading",
+      "C. PDF download",
+      "D. Language selection",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "The center node is labelled `Process` and its subtitle is `render + grade`.",
+    explanationImage: getImage(imageMap, "template-solution.svg"),
+  },
+  {
+    id: "visual-assets_q3",
+    exam: "visual-assets",
+    topic: "visual-assets",
+    type: "matching",
+    points: 15,
+    question: `Use the second image as a visual reference and match each checklist step with its letter:
+
+The solution image should appear after opening the explanation.`,
+    image: getImage(imageMap, "template-solution.svg"),
+    correctAnswer: {
+      "Identify the inputs": "A",
+      "Apply the transformation": "B",
+      "Check the intermediate result": "C",
+      "State the final answer": "D",
+    },
+    explanation: `| Step | Letter |
+| --- | --- |
+| Identify the inputs | A |
+| Apply the transformation | B |
+| Check the intermediate result | C |
+| State the final answer | D |`,
+    explanationImage: getImage(imageMap, "template-diagram.svg"),
+  },
+
+  // ================================================================
+  // Question type and solution-panel fixtures
+  // ================================================================
+
+  {
+    id: "question-types_q1",
+    exam: "question-types",
+    topic: "question-types",
+    type: "mc",
+    points: 10,
+    question:
+      "Which question type is automatically graded from a letter answer?",
+    options: [
+      "A. Multiple choice",
+      "B. Free text only",
+      "C. Image upload",
+      "D. Essay review",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Multiple-choice questions store a lowercase answer letter such as `a` or `b`.",
+  },
+  {
+    id: "question-types_q2",
+    exam: "question-types",
+    topic: "question-types",
+    type: "text",
+    points: 10,
+    question:
+      "Explain when a text question should use `correctAnswer` instead of `explanation`.",
+    correctAnswer:
+      "The `correctAnswer` field is the model solution shown for a text question. The `explanation` field is reserved for extra solution notes on multiple-choice and matching questions.",
+  },
+  {
+    id: "question-types_q3",
+    exam: "question-types",
+    topic: "question-types",
+    type: "matching",
+    points: 10,
+    question: "Match each question type with its answer representation:",
+    correctAnswer: {
+      mc: "A",
+      text: "B",
+      matching: "C",
+    },
+    explanation: `| Type | Representation |
+| --- | --- |
+| mc | A. Lowercase letter |
+| text | B. Model solution text |
+| matching | C. Record of pairs |`,
+  },
 ];
 
 void questions;
