@@ -67,7 +67,6 @@ export const meta: SubjectMeta = {
       year: "2024", // string, usado en la URL /exam/2024
       title: "Examen 2024",
       date: "2024", // opcional, fecha legible mostrada en las preguntas (ej. "Enero 2024", "June 2025", "2024")
-      description: "60 puntos · 15 preguntas",
       passPoints: 30,
       totalPoints: 60,
       durationMinutes: 180,
@@ -138,11 +137,15 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos opcionales: `explanation`, `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`), `repeated`.
+Campos obligatorios de cada pregunta: `id`, `exam`, `topic`, `type`, `points`, `question` y `correctAnswer`. `exam` debe ser un `string` que coincida exactamente con un único `Exam.year` de `meta.ts`; una pregunta no puede pertenecer a varios exámenes.
+
+Los recuentos de preguntas y puntos que muestra la interfaz se calculan desde `questions.ts`. No añadas un campo `description` al examen para repetir esos datos.
+
+Campos opcionales: `explanation`, `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`) y `repeated`.
 
 - `explanation` — nota explicativa mostrada al abrir soluciones. En `mc` y `matching`, si se omite y no hay `explanationImage`, no aparece el botón "Abrir soluciones". En `text`, la solución modelo sale de `correctAnswer` y `explanation` solo añade contexto extra.
 
-- `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la misma pregunta aparece en varios exámenes. Se muestra una etiqueta "Repetida" en la interfaz.
+- `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la pregunta ya apareció en un examen anterior de forma igual o similar. Solo es una etiqueta visual para avisar al usuario.
 
 **Bloques de código:** Los campos de texto (`question`, `explanation`, `correctAnswer`, `subquestions`, `options` y celdas de tabla) soportan formato markdown:
 
@@ -166,9 +169,7 @@ print(foo(5))
 Pista: recuerda que \`foo()\` se llama recursivamente.`,
 ```
 
-**Preguntas compartidas entre exámenes:** Usa `exam: "both"` para que una pregunta aparezca en todos los exámenes de la asignatura.
-
-**Preguntas repetidas:** Si una misma pregunta (o una variante casi idéntica) aparece en varios exámenes con distinto `exam`, marca `repeated: true` en cada ocurrencia. La interfaz mostrará un contador de repetidas en la página de la asignatura.
+**Preguntas repetidas:** Asigna cada pregunta a su examen real mediante `exam`. Si esa pregunta o una variante casi idéntica ya apareció en un examen de un año anterior, marca `repeated: true` como indicador visual. `repeated` no cambia la selección de exámenes ni hace que una pregunta aparezca en otros exámenes.
 
 #### 4. Añade PDFs autorizados, si los hay
 
@@ -344,6 +345,7 @@ No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación d
 
 - [ ] El ID de la asignatura es kebab-case y coincide con la carpeta
 - [ ] Todas las `topic` en `questions.ts` existen en `meta.ts`
+- [ ] Todas las preguntas tienen un `exam` que coincide con exactamente un `Exam.year`
 - [ ] Las preguntas MC tienen opciones y una letra válida (`"a"`–`"e"`)
 - [ ] Los bloques de código usan `\`\`\`` en template literals de TypeScript
 - [ ] El contenido es original, autorizado o procede de una fuente pública compatible
