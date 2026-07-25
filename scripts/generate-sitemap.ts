@@ -38,14 +38,8 @@ function changefreqForPath(pathWithoutLang: string) {
   return "weekly";
 }
 
-function shouldIncludeInSitemap(pathWithoutLang: string): boolean {
-  return pathWithoutLang === "/" || /^\/[^/]+$/.test(pathWithoutLang);
-}
-
 async function main() {
-  const sitemapPages = pages.filter((page) =>
-    shouldIncludeInSitemap(page.pathWithoutLang),
-  );
+  const sitemapPages = pages;
 
   const xmlEntries = sitemapPages.map((page) => {
     const alternates = page.alternates
