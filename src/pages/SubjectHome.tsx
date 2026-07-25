@@ -661,7 +661,7 @@ function PdfLinksSection({
         <a
           key={exam.year}
           data-cuelume-press
-          href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
+          href={`https://github.com/TeenBiscuits/Pasame-Examenes/raw/refs/heads/main/public/exams/${subject.id}/Exam-${exam.year}.pdf`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
