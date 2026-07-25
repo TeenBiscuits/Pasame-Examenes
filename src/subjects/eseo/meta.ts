@@ -2,6 +2,7 @@ import type { SubjectMeta } from "../../data/types";
 
 export const meta: SubjectMeta = {
   id: "eseo",
+  lastmod: "2026-07-25",
   name: "Sistemas Operativos",
   university: "Universidade da Coruña",
   courseCode: "202318",

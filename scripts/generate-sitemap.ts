@@ -43,7 +43,6 @@ function shouldIncludeInSitemap(pathWithoutLang: string): boolean {
 }
 
 async function main() {
-  const today = new Date().toISOString().split("T")[0];
   const sitemapPages = pages.filter((page) =>
     shouldIncludeInSitemap(page.pathWithoutLang),
   );
@@ -59,7 +58,7 @@ async function main() {
     return (
       `  <url>\n` +
       `    <loc>${escapeXml(withSitemapBase(page.canonicalUrl))}</loc>\n` +
-      `    <lastmod>${today}</lastmod>\n` +
+      `    <lastmod>${escapeXml(page.lastmod)}</lastmod>\n` +
       `    <changefreq>${changefreqForPath(page.pathWithoutLang)}</changefreq>\n` +
       `    <priority>${priorityForPath(page.pathWithoutLang)}</priority>\n` +
       `${alternates}\n` +

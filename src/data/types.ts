@@ -60,6 +60,8 @@ export interface Exam {
 
 export interface SubjectMeta {
   id: string;
+  /** ISO date used by the sitemap for this subject and its child pages. */
+  lastmod: string;
   name: string;
   university: string;
   courseCode: string;

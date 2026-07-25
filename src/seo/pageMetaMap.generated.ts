@@ -13,6 +13,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og.jpg",
     "ogImageType": "image/jpeg",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -45,6 +46,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -77,6 +79,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -109,6 +112,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -141,6 +145,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -173,6 +178,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -205,6 +211,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -237,6 +244,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -269,6 +277,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -301,6 +310,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -333,6 +343,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -365,6 +376,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -397,6 +409,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -429,6 +442,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -461,6 +475,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -493,6 +508,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -525,6 +541,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -557,6 +574,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -589,6 +607,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -621,6 +640,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -653,6 +673,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -685,6 +706,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -717,6 +739,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -749,6 +772,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -781,6 +805,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -813,6 +838,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -845,6 +871,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -877,6 +904,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -909,6 +937,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -941,6 +970,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -973,6 +1003,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1005,6 +1036,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1037,6 +1069,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1069,6 +1102,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1101,6 +1135,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1133,6 +1168,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1165,6 +1201,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1197,6 +1234,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1229,6 +1267,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1261,6 +1300,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1293,6 +1333,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1325,6 +1366,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1357,6 +1399,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1389,6 +1432,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1421,6 +1465,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1453,6 +1498,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1485,6 +1531,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1517,6 +1564,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1549,6 +1597,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1581,6 +1630,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1613,6 +1663,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1645,6 +1696,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1677,6 +1729,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1709,6 +1762,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1741,6 +1795,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1773,6 +1828,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1805,6 +1861,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1837,6 +1894,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1869,6 +1927,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1901,6 +1960,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1933,6 +1993,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1965,6 +2026,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -1997,6 +2059,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2029,6 +2092,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2061,6 +2125,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2093,6 +2158,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2125,6 +2191,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2157,6 +2224,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2189,6 +2257,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2221,6 +2290,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2253,6 +2323,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2285,6 +2356,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2317,6 +2389,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2349,6 +2422,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2381,6 +2455,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2413,6 +2488,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2445,6 +2521,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2477,6 +2554,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2509,6 +2587,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2541,6 +2620,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2573,6 +2653,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2605,6 +2686,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2637,6 +2719,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2669,6 +2752,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2701,6 +2785,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2733,6 +2818,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2765,6 +2851,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2797,6 +2884,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2829,6 +2917,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2861,6 +2950,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2893,6 +2983,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2925,6 +3016,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2957,6 +3049,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -2989,6 +3082,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3021,6 +3115,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3053,6 +3148,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3085,6 +3181,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3117,6 +3214,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3149,6 +3247,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3181,6 +3280,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3213,6 +3313,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3245,6 +3346,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3277,6 +3379,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3309,6 +3412,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3341,6 +3445,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3373,6 +3478,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3405,6 +3511,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3437,6 +3544,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3469,6 +3577,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3501,6 +3610,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3533,6 +3643,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3565,6 +3676,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3597,6 +3709,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3629,6 +3742,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3661,6 +3775,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3693,6 +3808,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3725,6 +3841,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3757,6 +3874,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3789,6 +3907,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3821,6 +3940,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3853,6 +3973,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3885,6 +4006,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3917,6 +4039,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3949,6 +4072,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -3981,6 +4105,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4013,6 +4138,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4045,6 +4171,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4077,6 +4204,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4109,6 +4237,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4141,6 +4270,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4173,6 +4303,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4205,6 +4336,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4237,6 +4369,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4269,6 +4402,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4301,6 +4435,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4333,6 +4468,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4365,6 +4501,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4397,6 +4534,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4429,6 +4567,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4461,6 +4600,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4493,6 +4633,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "en_US",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4525,6 +4666,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og.jpg",
     "ogImageType": "image/jpeg",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4557,6 +4699,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4589,6 +4732,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4621,6 +4765,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4653,6 +4798,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4685,6 +4831,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4717,6 +4864,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4749,6 +4897,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4781,6 +4930,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4813,6 +4963,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4845,6 +4996,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4877,6 +5029,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4909,6 +5062,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4941,6 +5095,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -4973,6 +5128,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5005,6 +5161,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5037,6 +5194,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5069,6 +5227,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5101,6 +5260,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5133,6 +5293,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5165,6 +5326,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5197,6 +5359,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5229,6 +5392,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5261,6 +5425,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5293,6 +5458,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5325,6 +5491,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5357,6 +5524,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5389,6 +5557,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5421,6 +5590,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5453,6 +5623,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5485,6 +5656,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5517,6 +5689,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5549,6 +5722,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5581,6 +5755,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5613,6 +5788,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5645,6 +5821,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5677,6 +5854,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5709,6 +5887,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5741,6 +5920,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5773,6 +5953,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5805,6 +5986,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5837,6 +6019,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5869,6 +6052,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5901,6 +6085,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5933,6 +6118,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5965,6 +6151,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -5997,6 +6184,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6029,6 +6217,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6061,6 +6250,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6093,6 +6283,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6125,6 +6316,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6157,6 +6349,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6189,6 +6382,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6221,6 +6415,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6253,6 +6448,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6285,6 +6481,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6317,6 +6514,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6349,6 +6547,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6381,6 +6580,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6413,6 +6613,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6445,6 +6646,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6477,6 +6679,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6509,6 +6712,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6541,6 +6745,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6573,6 +6778,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6605,6 +6811,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6637,6 +6844,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6669,6 +6877,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6701,6 +6910,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6733,6 +6943,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6765,6 +6976,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6797,6 +7009,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6829,6 +7042,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6861,6 +7075,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6893,6 +7108,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6925,6 +7141,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6957,6 +7174,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -6989,6 +7207,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7021,6 +7240,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7053,6 +7273,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7085,6 +7306,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7117,6 +7339,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7149,6 +7372,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7181,6 +7405,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7213,6 +7438,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7245,6 +7471,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7277,6 +7504,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7309,6 +7537,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7341,6 +7570,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7373,6 +7603,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7405,6 +7636,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7437,6 +7669,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7469,6 +7702,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7501,6 +7735,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7533,6 +7768,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7565,6 +7801,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7597,6 +7834,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7629,6 +7867,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7661,6 +7900,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7693,6 +7933,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7725,6 +7966,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7757,6 +7999,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7789,6 +8032,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7821,6 +8065,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7853,6 +8098,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7885,6 +8131,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7917,6 +8164,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7949,6 +8197,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -7981,6 +8230,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8013,6 +8263,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8045,6 +8296,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8077,6 +8329,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8109,6 +8362,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8141,6 +8395,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8173,6 +8428,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8205,6 +8461,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8237,6 +8494,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8269,6 +8527,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8301,6 +8560,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8333,6 +8593,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8365,6 +8626,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8397,6 +8659,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8429,6 +8692,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8461,6 +8725,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8493,6 +8758,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8525,6 +8791,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8557,6 +8824,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8589,6 +8857,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8621,6 +8890,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8653,6 +8923,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8685,6 +8956,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8717,6 +8989,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8749,6 +9022,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8781,6 +9055,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8813,6 +9088,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8845,6 +9121,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8877,6 +9154,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8909,6 +9187,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8941,6 +9220,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -8973,6 +9253,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9005,6 +9286,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9037,6 +9319,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og.jpg",
     "ogImageType": "image/jpeg",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9069,6 +9352,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9101,6 +9385,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9133,6 +9418,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9165,6 +9451,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9197,6 +9484,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9229,6 +9517,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9261,6 +9550,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/bede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9293,6 +9583,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9325,6 +9616,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9357,6 +9649,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9389,6 +9682,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9421,6 +9715,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9453,6 +9748,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9485,6 +9781,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9517,6 +9814,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9549,6 +9847,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9581,6 +9880,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9613,6 +9913,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9645,6 +9946,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9677,6 +9979,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9709,6 +10012,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9741,6 +10045,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9773,6 +10078,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9805,6 +10111,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9837,6 +10144,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9869,6 +10177,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9901,6 +10210,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9933,6 +10243,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/cepe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9965,6 +10276,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -9997,6 +10309,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10029,6 +10342,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10061,6 +10375,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10093,6 +10408,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10125,6 +10441,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10157,6 +10474,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10189,6 +10507,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/deese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10221,6 +10540,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10253,6 +10573,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10285,6 +10606,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10317,6 +10639,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10349,6 +10672,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10381,6 +10705,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10413,6 +10738,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10445,6 +10771,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10477,6 +10804,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10509,6 +10837,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10541,6 +10870,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10573,6 +10903,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10605,6 +10936,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10637,6 +10969,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10669,6 +11002,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10701,6 +11035,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10733,6 +11068,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10765,6 +11101,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/ece.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10797,6 +11134,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10829,6 +11167,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10861,6 +11200,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10893,6 +11233,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10925,6 +11266,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10957,6 +11299,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -10989,6 +11332,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11021,6 +11365,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11053,6 +11398,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11085,6 +11431,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11117,6 +11464,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11149,6 +11497,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/emeele.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11181,6 +11530,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11213,6 +11563,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11245,6 +11596,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11277,6 +11629,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11309,6 +11662,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11341,6 +11695,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11373,6 +11728,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equisi.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11405,6 +11761,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11437,6 +11794,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11469,6 +11827,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11501,6 +11860,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11533,6 +11893,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11565,6 +11926,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11597,6 +11959,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11629,6 +11992,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/equispe.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11661,6 +12025,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11693,6 +12058,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11725,6 +12091,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11757,6 +12124,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11789,6 +12157,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11821,6 +12190,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11853,6 +12223,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11885,6 +12256,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11917,6 +12289,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11949,6 +12322,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -11981,6 +12355,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12013,6 +12388,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12045,6 +12421,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12077,6 +12454,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12109,6 +12487,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12141,6 +12520,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/esei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12173,6 +12553,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12205,6 +12586,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12237,6 +12619,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12269,6 +12652,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12301,6 +12685,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12333,6 +12718,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12365,6 +12751,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12397,6 +12784,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12429,6 +12817,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12461,6 +12850,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12493,6 +12883,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12525,6 +12916,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12557,6 +12949,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12589,6 +12982,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12621,6 +13015,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12653,6 +13048,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12685,6 +13081,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/iesede.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12717,6 +13114,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12749,6 +13147,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12781,6 +13180,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/peese.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12813,6 +13213,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12845,6 +13246,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12877,6 +13279,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12909,6 +13312,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12941,6 +13345,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -12973,6 +13378,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13005,6 +13411,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/pei.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13037,6 +13444,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13069,6 +13477,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13101,6 +13510,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13133,6 +13543,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13165,6 +13576,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13197,6 +13609,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13229,6 +13642,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13261,6 +13675,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13293,6 +13708,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13325,6 +13741,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13357,6 +13774,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13389,6 +13807,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13421,6 +13840,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13453,6 +13873,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13485,6 +13906,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",
@@ -13517,6 +13939,7 @@ export const pages = [
     "ogImage": "https://pe.pablopl.dev/og/redes.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
+    "lastmod": "2026-07-25",
     "alternates": [
       {
         "lang": "en",

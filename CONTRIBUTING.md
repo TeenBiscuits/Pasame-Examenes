@@ -38,6 +38,7 @@ import type { SubjectMeta } from "../../data/types";
 
 export const meta: SubjectMeta = {
   id: "subject-id", // debe coincidir con el nombre de la carpeta
+  lastmod: "2026-07-25", // fecha ISO para el sitemap de esta asignatura y sus subpáginas
   name: "Nombre Asignatura",
   university: "Universidad",
   courseCode: "ABC123",

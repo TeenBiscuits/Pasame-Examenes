@@ -9,6 +9,10 @@ export const BASE_URL = "https://pe.pablopl.dev";
 export const LANGS = ["en", "es", "gl"] as const;
 export const DEFAULT_LANG: Lang = "es";
 export const BUNDLE_ENTRY_POINT = "/src/main.tsx";
+export const SITEMAP_LASTMOD = {
+  global: "2026-07-25",
+  home: "2026-07-25",
+} as const;
 
 export const langMeta: Record<
   Lang,
@@ -31,6 +35,7 @@ export interface PageMetaData {
   ogImage: string;
   ogImageType: string;
   locale: string;
+  lastmod: string;
   alternates: { lang: Lang | "x-default"; href: string }[];
   jsonLd: string;
 }
@@ -125,6 +130,7 @@ function makePageMeta(
   description: string,
   ogImage: string,
   graph: unknown[],
+  lastmod: string = SITEMAP_LASTMOD.global,
 ): PageMetaData {
   const meta = langMeta[lang];
   const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
@@ -140,6 +146,8 @@ function makePageMeta(
     ogImage: fullUrl(ogImage),
     ogImageType: imageType(ogImage),
     locale: meta.locale,
+    lastmod:
+      lastmod > SITEMAP_LASTMOD.global ? lastmod : SITEMAP_LASTMOD.global,
     alternates: alternates(pathWithoutLang),
     jsonLd: JSON.stringify({
       "@context": "https://schema.org",
@@ -154,22 +162,30 @@ export function buildHomeMeta(lang: Lang): PageMetaData {
   const description = tr.seo.homeMetaDescription;
   const canonicalUrl = fullUrl(buildCanonicalPath(lang, "/"));
 
-  return makePageMeta(lang, "/", title, description, "/og.jpg", [
-    {
-      "@type": "WebSite",
-      name: tr.seo.siteName,
-      url: canonicalUrl,
-      inLanguage: langMeta[lang].hreflang,
-      description,
-    },
-    {
-      "@type": "WebPage",
-      name: title,
-      url: canonicalUrl,
-      inLanguage: langMeta[lang].hreflang,
-      description,
-    },
-  ]);
+  return makePageMeta(
+    lang,
+    "/",
+    title,
+    description,
+    "/og.jpg",
+    [
+      {
+        "@type": "WebSite",
+        name: tr.seo.siteName,
+        url: canonicalUrl,
+        inLanguage: langMeta[lang].hreflang,
+        description,
+      },
+      {
+        "@type": "WebPage",
+        name: title,
+        url: canonicalUrl,
+        inLanguage: langMeta[lang].hreflang,
+        description,
+      },
+    ],
+    SITEMAP_LASTMOD.home,
+  );
 }
 
 export function buildSubjectMeta(
@@ -233,6 +249,7 @@ export function buildSubjectMeta(
         { name: subject.name, pathWithoutLang },
       ]),
     ],
+    subject.lastmod,
   );
 }
 
@@ -295,6 +312,7 @@ export function buildTopicMeta(
         { name: topic.label, pathWithoutLang },
       ]),
     ],
+    subject.lastmod,
   );
 }
 
@@ -358,5 +376,6 @@ export function buildExamMeta(
         { name: exam.title, pathWithoutLang },
       ]),
     ],
+    subject.lastmod,
   );
 }
