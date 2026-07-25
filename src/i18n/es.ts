@@ -56,6 +56,16 @@ export const es: Translations = {
   header: {
     home: "Inicio",
     practice: "Practicar",
+    star: "Estrella",
+    starOnGithub: "Dar una estrella en GitHub",
+    theme: "Tema",
+  },
+  theme: {
+    system: "Sistema",
+    light: "Claro",
+    dark: "Oscuro",
+    pink: "Rosa",
+    catppuccin: "Catppuccin",
   },
   footer: {
     github: "GitHub",
@@ -279,9 +289,11 @@ export const es: Translations = {
     total: "total",
     previous: "Anterior",
     next: "Siguiente",
+    questionSummary: "{questions} preguntas · {points} puntos",
   },
   questionCard: {
     modelSolution: "Solución modelo",
+    solutionIllustration: "Ilustración de la solución",
     gradeAnswer: "Evalúa tu respuesta:",
     correct: "Correcta",
     incorrect: "Incorrecta",
@@ -289,8 +301,18 @@ export const es: Translations = {
     openAndSelfGrade: "Mostrar solución y autoevaluarse",
     closeSolution: "Ocultar solución",
     yourAnswer: "Tu respuesta",
+    typeAnswer: "Escribe tu respuesta…",
+    matchItemTo: "Relacionar {item} con {letter}",
+    questionPrefix: "P",
+    pointsShort: "p",
     correct_: "Correcto",
     reportIssue: "Reportar error",
+    reportIssueTitle: "Corregir pregunta",
+    questionTypes: {
+      mc: "Tipo test (mc)",
+      text: "Texto abierto (text)",
+      matching: "Emparejar (matching)",
+    },
     repeated: "Repetida",
   },
   subjectCard: {
@@ -401,9 +423,32 @@ export const es: Translations = {
   seo: {
     siteName: "Pásame Exámenes",
     locale: "es_ES",
+    homeTitle: "Practica preguntas universitarias",
     homeDescription:
       "Plataforma de código abierto para practicar preguntas universitarias por tema o en modo cronometrado.",
+    homeMetaDescription:
+      "Practica preguntas universitarias por tema o en modo cronometrado con respuestas modelo, autocorrección y preguntas tipo test o desarrollo.",
     defaultDescription:
       "Practica preguntas universitarias con respuestas modelo y autocorrección. Preguntas tipo test, de desarrollo y de emparejar.",
+    subjectAuthorizedTitle: "{subjectName}: exámenes y preguntas resueltas",
+    subjectCommunityTitle:
+      "{subjectName}: recopilatorios y preguntas resueltas",
+    subjectAuthorizedDescription:
+      "Practica {count}preguntas de {subjectName} de {examCount} exámenes con respuestas modelo y autocorrección. {courseCode}, {university}.",
+    subjectCommunityDescription:
+      "Practica {count}preguntas de {subjectName} de {examCount} recopilatorios de práctica con respuestas modelo y autocorrección. {courseCode}, {university}.",
+    topicAuthorizedTitle: "{topicName}: preguntas de {subjectName}",
+    topicCommunityTitle: "{topicName}: preguntas de {subjectName}",
+    topicAuthorizedDescription:
+      "Practica {count}preguntas de {topicName} de exámenes de {subjectName}, con respuestas modelo y autocorrección. {courseCode}, {university}.",
+    topicCommunityDescription:
+      "Practica {count}preguntas de {topicName} de recopilatorios de {subjectName}, con respuestas modelo y autocorrección. {courseCode}, {university}.",
+    examAuthorizedTitle: "{examName} de {subjectName}: simulador",
+    examPracticeTitle: "{examName} de {subjectName}: práctica cronometrada",
+    examAuthorizedDescription:
+      "Simula el examen {examName} de {subjectName}{questionCount}. {totalPoints} puntos, {durationMinutes} minutos, respuestas modelo y autocorrección.",
+    examPracticeDescription:
+      "Practica el recopilatorio cronometrado {examName} de {subjectName}{questionCount}. {totalPoints} puntos, {durationMinutes} minutos, respuestas modelo y autocorrección.",
+    questionCountSuffix: " con {count} preguntas",
   },
 };

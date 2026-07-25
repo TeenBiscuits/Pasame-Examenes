@@ -56,6 +56,16 @@ export const gl: Translations = {
   header: {
     home: "Inicio",
     practice: "Practicar",
+    star: "Estrela",
+    starOnGithub: "Dar unha estrela en GitHub",
+    theme: "Tema",
+  },
+  theme: {
+    system: "Sistema",
+    light: "Claro",
+    dark: "Escuro",
+    pink: "Rosa",
+    catppuccin: "Catppuccin",
   },
   footer: {
     github: "GitHub",
@@ -278,9 +288,11 @@ export const gl: Translations = {
     total: "total",
     previous: "Anterior",
     next: "Seguinte",
+    questionSummary: "{questions} preguntas · {points} puntos",
   },
   questionCard: {
     modelSolution: "Solución modelo",
+    solutionIllustration: "Ilustración da solución",
     gradeAnswer: "Avalía a túa resposta:",
     correct: "Correcta",
     incorrect: "Incorrecta",
@@ -288,8 +300,18 @@ export const gl: Translations = {
     openAndSelfGrade: "Mostrar solución e autoavaliarse",
     closeSolution: "Ocultar solución",
     yourAnswer: "A túa resposta",
+    typeAnswer: "Escribe a túa resposta…",
+    matchItemTo: "Relacionar {item} con {letter}",
+    questionPrefix: "P",
+    pointsShort: "p",
     correct_: "Correcto",
     reportIssue: "Reportar erro",
+    reportIssueTitle: "Corrixir pregunta",
+    questionTypes: {
+      mc: "Tipo test (mc)",
+      text: "Texto aberto (text)",
+      matching: "Emparellar (matching)",
+    },
     repeated: "Repetida",
   },
   subjectCard: {
@@ -400,9 +422,31 @@ export const gl: Translations = {
   seo: {
     siteName: "Pásame Exámenes",
     locale: "gl_ES",
+    homeTitle: "Practica preguntas universitarias",
     homeDescription:
       "Plataforma de código aberto para practicar preguntas universitarias por tema ou en modo cronometrado.",
+    homeMetaDescription:
+      "Practica preguntas universitarias por tema ou en modo cronometrado con respostas modelo, autocorrección e preguntas tipo test ou desenvolvemento.",
     defaultDescription:
       "Practica preguntas universitarias con respostas modelo e autocorrección. Preguntas tipo test, de desenvolvemento e de emparellar.",
+    subjectAuthorizedTitle: "{subjectName}: exames e preguntas resoltas",
+    subjectCommunityTitle: "{subjectName}: recompilacións e preguntas resoltas",
+    subjectAuthorizedDescription:
+      "Practica {count}preguntas de {subjectName} de {examCount} exames con respostas modelo e autocorrección. {courseCode}, {university}.",
+    subjectCommunityDescription:
+      "Practica {count}preguntas de {subjectName} de {examCount} recompilacións de práctica con respostas modelo e autocorrección. {courseCode}, {university}.",
+    topicAuthorizedTitle: "{topicName}: preguntas de {subjectName}",
+    topicCommunityTitle: "{topicName}: preguntas de {subjectName}",
+    topicAuthorizedDescription:
+      "Practica {count}preguntas de {topicName} de exames de {subjectName}, con respostas modelo e autocorrección. {courseCode}, {university}.",
+    topicCommunityDescription:
+      "Practica {count}preguntas de {topicName} de recompilacións de {subjectName}, con respostas modelo e autocorrección. {courseCode}, {university}.",
+    examAuthorizedTitle: "{examName} de {subjectName}: simulador",
+    examPracticeTitle: "{examName} de {subjectName}: práctica cronometrada",
+    examAuthorizedDescription:
+      "Simula o exame {examName} de {subjectName}{questionCount}. {totalPoints} puntos, {durationMinutes} minutos, respostas modelo e autocorrección.",
+    examPracticeDescription:
+      "Practica a recompilación cronometrada {examName} de {subjectName}{questionCount}. {totalPoints} puntos, {durationMinutes} minutos, respostas modelo e autocorrección.",
+    questionCountSuffix: " con {count} preguntas",
   },
 };

@@ -54,6 +54,16 @@ export const en = {
   header: {
     home: "Home",
     practice: "Practice",
+    star: "Star",
+    starOnGithub: "Star on GitHub",
+    theme: "Theme",
+  },
+  theme: {
+    system: "System",
+    light: "Light",
+    dark: "Dark",
+    pink: "Pink",
+    catppuccin: "Catppuccin",
   },
   footer: {
     github: "GitHub",
@@ -275,9 +285,11 @@ export const en = {
     total: "total",
     previous: "Previous",
     next: "Next",
+    questionSummary: "{questions} questions · {points} points",
   },
   questionCard: {
     modelSolution: "Model Solution",
+    solutionIllustration: "Solution illustration",
     gradeAnswer: "Grade your answer:",
     correct: "Correct",
     incorrect: "Incorrect",
@@ -285,8 +297,18 @@ export const en = {
     openAndSelfGrade: "Show solution and self-evaluate",
     closeSolution: "Hide solution",
     yourAnswer: "Your answer",
+    typeAnswer: "Type your answer…",
+    matchItemTo: "Match {item} to {letter}",
+    questionPrefix: "Q",
+    pointsShort: "p",
     correct_: "Correct",
     reportIssue: "Report Issue",
+    reportIssueTitle: "Correct Question",
+    questionTypes: {
+      mc: "Multiple Choice (mc)",
+      text: "Open Text (text)",
+      matching: "Matching (matching)",
+    },
     repeated: "Repeated",
   },
   subjectCard: {
@@ -397,10 +419,32 @@ export const en = {
   seo: {
     siteName: "Pásame Exámenes",
     locale: "en_US",
+    homeTitle: "Practice University Questions",
     homeDescription:
       "Open-source platform for practicing university questions by topic or timed practice set.",
+    homeMetaDescription:
+      "Practice university questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.",
     defaultDescription:
       "Practice university questions with model answers and self-grading. Multiple-choice, text, and matching questions.",
+    subjectAuthorizedTitle: "{subjectName}: exams and solved questions",
+    subjectCommunityTitle: "{subjectName}: compilations and solved questions",
+    subjectAuthorizedDescription:
+      "Practice {count}{subjectName} questions from {examCount} exams with model answers and self-grading. {courseCode}, {university}.",
+    subjectCommunityDescription:
+      "Practice {count}{subjectName} questions from {examCount} compilations with model answers and self-grading. {courseCode}, {university}.",
+    topicAuthorizedTitle: "{topicName}: {subjectName} exam questions",
+    topicCommunityTitle: "{topicName}: {subjectName} practice questions",
+    topicAuthorizedDescription:
+      "Practice {count}{topicName} questions from {subjectName} exams with model answers and self-grading. {courseCode}, {university}.",
+    topicCommunityDescription:
+      "Practice {count}{topicName} questions from {subjectName} compilations with model answers and self-grading. {courseCode}, {university}.",
+    examAuthorizedTitle: "{examName} {subjectName}: exam simulator",
+    examPracticeTitle: "{examName} {subjectName}: timed practice",
+    examAuthorizedDescription:
+      "Simulate the {examName} {subjectName} exam{questionCount}. {totalPoints} points, {durationMinutes} minutes, model answers and self-grading.",
+    examPracticeDescription:
+      "Practice the {examName} {subjectName} timed set{questionCount}. {totalPoints} points, {durationMinutes} minutes, model answers and self-grading.",
+    questionCountSuffix: " with {count} questions",
   },
 };
 

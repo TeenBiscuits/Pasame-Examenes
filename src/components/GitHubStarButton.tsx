@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from "react";
 import { Star } from "reicon-react";
 import { track } from "../lib/umami";
+import { useT } from "../i18n/hooks";
 
 const REPO = "TeenBiscuits/Pasame-Examenes";
 const CACHE_KEY = "gh_star_count";
@@ -92,6 +93,7 @@ function StarIcon({ className }: { className?: string }) {
 }
 
 export default function GitHubStarButton() {
+  const t = useT();
   const count = useSyncExternalStore(
     subscribe,
     getStarCount,
@@ -110,10 +112,10 @@ export default function GitHubStarButton() {
         data-cuelume-press="sparkle"
         className="border-border hover:bg-surface text-fg-secondary hidden cursor-pointer items-center gap-1.5 rounded border px-2 py-1 text-xs font-medium no-underline transition active:scale-95 sm:inline-flex"
         onClick={() => track("github_star_click", { location: "header" })}
-        aria-label="Star on GitHub"
+        aria-label={t.header.starOnGithub}
       >
         <StarIcon className="text-amber-500" />
-        <span>Star</span>
+        <span>{t.header.star}</span>
         {count !== null && (
           <span className="tabular-nums">{formatCount(count)}</span>
         )}
@@ -127,7 +129,7 @@ export default function GitHubStarButton() {
         data-cuelume-press="sparkle"
         className="border-border hover:bg-surface inline-flex cursor-pointer items-center rounded border px-2 py-1 text-amber-500 transition active:scale-95 sm:hidden"
         onClick={() => track("github_star_click", { location: "header" })}
-        aria-label="Star on GitHub"
+        aria-label={t.header.starOnGithub}
       >
         <StarIcon />
       </a>
