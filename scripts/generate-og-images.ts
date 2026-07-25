@@ -1,4 +1,7 @@
 import { createCanvas, GlobalFonts, loadImage } from "@napi-rs/canvas";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { GraduationCap, Users3 } from "reicon-react";
 import {
   readFileSync,
   writeFileSync,
@@ -72,71 +75,14 @@ function roundedRectPath(
   ctx.closePath();
 }
 
-function drawMortarboardIcon(
-  ctx: ReturnType<ReturnType<typeof createCanvas>["getContext"]>,
-  x: number,
-  y: number,
-) {
-  ctx.beginPath();
-  ctx.moveTo(x + 14, y + 2);
-  ctx.bezierCurveTo(x + 13.4, y + 1.7, x + 12.6, y + 1.7, x + 12, y + 2);
-  ctx.lineTo(x + 2.2, y + 6.9);
-  ctx.bezierCurveTo(x + 1.4, y + 7.3, x + 1.4, y + 8.7, x + 2.2, y + 9.1);
-  ctx.lineTo(x + 12, y + 14);
-  ctx.bezierCurveTo(x + 12.6, y + 14.3, x + 13.4, y + 14.3, x + 14, y + 14);
-  ctx.lineTo(x + 21.8, y + 10.1);
-  ctx.lineTo(x + 21.8, y + 16);
-  ctx.bezierCurveTo(x + 21.8, y + 17.1, x + 22.7, y + 18, x + 23.8, y + 18);
-  ctx.bezierCurveTo(x + 24.9, y + 18, x + 25.8, y + 17.1, x + 25.8, y + 16);
-  ctx.lineTo(x + 25.8, y + 8);
-  ctx.bezierCurveTo(x + 25.8, y + 7.4, x + 25.4, y + 6.9, x + 24.8, y + 6.7);
-  ctx.lineTo(x + 14, y + 2);
-  ctx.closePath();
-  ctx.fill();
+function renderPolicyIconSvg(isAuthorized: boolean): Buffer {
+  const color = isAuthorized ? BADGE_AUTHORIZED_TEXT : BADGE_COMMUNITY_TEXT;
+  const Icon = isAuthorized ? GraduationCap : Users3;
+  const svg = renderToStaticMarkup(
+    createElement(Icon, { color, size: 28, weight: "Filled" }),
+  );
 
-  ctx.beginPath();
-  ctx.roundRect(x + 5.5, y + 12.7, 15, 8.3, 3);
-  ctx.fill();
-}
-
-function drawCommunityIcon(
-  ctx: ReturnType<ReturnType<typeof createCanvas>["getContext"]>,
-  x: number,
-  y: number,
-) {
-  ctx.beginPath();
-  ctx.arc(x + 9.5, y + 7.5, 5.4, 0, Math.PI * 2);
-  ctx.moveTo(x + 20.5 + 4.8, y + 8);
-  ctx.arc(x + 20.5, y + 8, 4.8, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.roundRect(x + 1, y + 16, 18, 10.5, 4.5);
-  ctx.roundRect(x + 16.5, y + 17, 13.5, 9.5, 4.5);
-  ctx.fill();
-}
-
-function drawPolicyBadgeIcon(
-  ctx: ReturnType<ReturnType<typeof createCanvas>["getContext"]>,
-  x: number,
-  y: number,
-  isAuthorized: boolean,
-) {
-  roundedRectPath(ctx, x, y, 36, 36, 7);
-  ctx.fillStyle = isAuthorized ? BADGE_AUTHORIZED_BG : BADGE_COMMUNITY_BG;
-  ctx.fill();
-  ctx.strokeStyle = isAuthorized
-    ? BADGE_AUTHORIZED_BORDER
-    : BADGE_COMMUNITY_BORDER;
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  ctx.fillStyle = isAuthorized ? BADGE_AUTHORIZED_TEXT : BADGE_COMMUNITY_TEXT;
-  if (isAuthorized) {
-    drawMortarboardIcon(ctx, x + 5, y + 7);
-  } else {
-    drawCommunityIcon(ctx, x + 3, y + 5);
-  }
+  return Buffer.from(svg.replaceAll("currentColor", color));
 }
 
 async function generateOgImage(
@@ -147,6 +93,8 @@ async function generateOgImage(
   examCount: number,
   contentPolicy: ContentPolicy,
   faviconSvg: Buffer,
+  authorizedIconSvg: Buffer,
+  communityIconSvg: Buffer,
 ): Promise<Buffer> {
   const canvas = createCanvas(W, H);
   const ctx = canvas.getContext("2d")!;
@@ -213,7 +161,23 @@ async function generateOgImage(
   ctx.lineWidth = 2;
   ctx.stroke();
 
-  drawPolicyBadgeIcon(ctx, badgeX + 5, badgeY + 4.5, hasAuthorizedExams);
+  const iconBadgeX = badgeX + 5;
+  const iconBadgeY = badgeY + 4.5;
+  roundedRectPath(ctx, iconBadgeX, iconBadgeY, 36, 36, 7);
+  ctx.fillStyle = hasAuthorizedExams
+    ? BADGE_AUTHORIZED_BG
+    : BADGE_COMMUNITY_BG;
+  ctx.fill();
+  ctx.strokeStyle = hasAuthorizedExams
+    ? BADGE_AUTHORIZED_BORDER
+    : BADGE_COMMUNITY_BORDER;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  const policyIcon = await loadImage(
+    hasAuthorizedExams ? authorizedIconSvg : communityIconSvg,
+  );
+  ctx.drawImage(policyIcon, iconBadgeX + 4, iconBadgeY + 4, 28, 28);
   ctx.fillStyle = hasAuthorizedExams
     ? BADGE_AUTHORIZED_TEXT
     : BADGE_COMMUNITY_TEXT;
@@ -242,6 +206,8 @@ async function main() {
   mkdirSync(ogOutputDir, { recursive: true });
 
   const faviconSvg = readFileSync(faviconPath);
+  const authorizedIconSvg = renderPolicyIconSvg(true);
+  const communityIconSvg = renderPolicyIconSvg(false);
 
   const entries = readdirSync(subjectsDir, { withFileTypes: true });
   const subjectDirs = entries.filter(
@@ -300,6 +266,8 @@ async function main() {
         meta.exams.length,
         contentPolicy,
         faviconSvg,
+        authorizedIconSvg,
+        communityIconSvg,
       );
 
       const outPath = resolve(ogOutputDir, `${subjectId}.png`);
