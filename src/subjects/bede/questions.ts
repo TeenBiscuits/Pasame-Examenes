@@ -632,7 +632,7 @@ export const questions: Question[] = [
       "B. Problema de lectura sucia",
       "C. Problema de lectura no repetible",
     ],
-    correctAnswer: "c",
+    correctAnswer: "a",
   },
   {
     id: "daypo-preguntas_45",
