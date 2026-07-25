@@ -18,6 +18,10 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildTopicMeta } from "../seo/meta";
 import { usePracticeSession } from "../hooks/usePracticeSession";
+import {
+  filterQuestionsByExamSelection,
+  useExamSelection,
+} from "../hooks/useExamSelection";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
@@ -506,7 +510,9 @@ function PracticePlayer({
     window.scrollTo({
       top: Math.max(
         0,
-        anchor.getBoundingClientRect().top + window.scrollY - desktopHeaderOffset,
+        anchor.getBoundingClientRect().top +
+          window.scrollY -
+          desktopHeaderOffset,
       ),
     });
   }, []);
@@ -723,7 +729,8 @@ export default function PracticeTopic() {
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const { selectedExamYears } = useExamSelection(subject);
+  const [allTopicQuestions, setAllTopicQuestions] = useState<Question[]>([]);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
     null,
   );
@@ -732,10 +739,14 @@ export default function PracticeTopic() {
     () => subject?.topics.find((tp) => tp.key === topic),
     [subject, topic],
   );
+  const questions = useMemo(
+    () => filterQuestionsByExamSelection(allTopicQuestions, selectedExamYears),
+    [allTopicQuestions, selectedExamYears],
+  );
   useEffect(() => {
     if (subject && topic) {
       getQuestionsByTopic(subject.id, topic).then((topicQuestions) => {
-        setQuestions(topicQuestions);
+        setAllTopicQuestions(topicQuestions);
         setQuestionsLoadedFor(`${subject.id}/${topic}`);
       });
       getTopicMegaTopicLabel(subject.id, topic).then(setMegatopicLabel);
