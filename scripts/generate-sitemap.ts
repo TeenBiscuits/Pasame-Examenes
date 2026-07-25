@@ -1,7 +1,6 @@
 import { writeFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { DEFAULT_LANG } from "../src/seo/meta";
 import { pages } from "../src/seo/pageMetaMap.generated";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -40,10 +39,9 @@ function changefreqForPath(pathWithoutLang: string) {
 }
 
 async function main() {
-  const today = new Date().toISOString().split("T")[0];
-  const defaultPages = pages.filter((page) => page.lang === DEFAULT_LANG);
+  const sitemapPages = pages;
 
-  const xmlEntries = defaultPages.map((page) => {
+  const xmlEntries = sitemapPages.map((page) => {
     const alternates = page.alternates
       .map(
         (alternate) =>
@@ -54,7 +52,7 @@ async function main() {
     return (
       `  <url>\n` +
       `    <loc>${escapeXml(withSitemapBase(page.canonicalUrl))}</loc>\n` +
-      `    <lastmod>${today}</lastmod>\n` +
+      `    <lastmod>${escapeXml(page.lastmod)}</lastmod>\n` +
       `    <changefreq>${changefreqForPath(page.pathWithoutLang)}</changefreq>\n` +
       `    <priority>${priorityForPath(page.pathWithoutLang)}</priority>\n` +
       `${alternates}\n` +
@@ -74,7 +72,7 @@ async function main() {
   const outPath = resolve(root, "public", "sitemap.xml");
   writeFileSync(outPath, xml, "utf-8");
   console.log(
-    `Generated sitemap with ${defaultPages.length} URLs → ${outPath}`,
+    `Generated sitemap with ${sitemapPages.length} URLs → ${outPath}`,
   );
 }
 

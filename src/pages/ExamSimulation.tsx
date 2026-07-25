@@ -651,7 +651,7 @@ function ExamDialogs({
               type="button"
               onClick={() => submitDialogRef.current?.close()}
               className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
-              aria-label="Close"
+              aria-label={t.footer.close}
             >
               <CloseSquare2 className="size-5" />
             </button>
@@ -706,7 +706,7 @@ function ExamDialogs({
               data-cuelume-press
               onClick={() => timeUpDialogRef.current?.close()}
               className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
-              aria-label="Close"
+              aria-label={t.footer.close}
             >
               <CloseSquare2 className="size-5" />
             </button>
@@ -774,7 +774,9 @@ function ExamPlayer({
     window.scrollTo({
       top: Math.max(
         0,
-        anchor.getBoundingClientRect().top + window.scrollY - desktopHeaderOffset,
+        anchor.getBoundingClientRect().top +
+          window.scrollY -
+          desktopHeaderOffset,
       ),
     });
   }, []);

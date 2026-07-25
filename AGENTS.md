@@ -38,7 +38,8 @@ pnpm doctor    # React Doctor via npx
 - Subject folder names and `meta.id` must match. Use lowercase kebab-case unless preserving the existing short-code convention (`eseo`, `cepe`, etc.).
 - Topic keys referenced by `questions.ts` must exist in `meta.topics`; topic colors must have matching CSS variables in `src/index.css` (`blue`, `indigo`, `green`, `purple`, `pink`, `amber`, `red`, `cyan`, `orange`).
 - `Exam.year` is a string and is used directly in URLs and PDF filenames. PDFs are linked as `public/exams/{subject-id}/Exam-{year}.pdf`; set `hasPdf: false` for exams without a PDF.
-- Questions can use `exam: "both"` to appear in every exam for that subject. Mark repeated or near-duplicate questions with `repeated: true` so the UI labels/counts them.
+- Every question must have an `exam` string matching exactly one `Exam.year`; there is no shared-exam sentinel. Mark repeated or near-duplicate questions with `repeated: true` only to show the visual repeated marker.
+- Question counts and point totals shown for an exam are derived from the questions assigned to that exam in `src/lib/exam-stats.ts`; do not hardcode an exam description summary.
 - `mc` answers are stored as lowercase letters (`"a"`-`"e"`); `text` questions show `correctAnswer` as the model solution for self-grading; `matching` uses `Record<string, string>`.
 - Optional `explanation` only controls the extra solution panel for `mc`/`matching`; `text` always opens a model solution and can also show `explanation`.
 - Markdown-style inline code and fenced code blocks are rendered in question text, explanations, model answers, options, subquestions, and table cells via `src/lib/markdown.tsx`.

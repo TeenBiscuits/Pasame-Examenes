@@ -85,23 +85,29 @@ interface QuestionCardProps {
   direction?: "next" | "prev";
 }
 
-function getQuestionTypeLabel(type: QuestionType): string {
-  const map: Record<QuestionType, string> = {
-    mc: "Multiple Choice (mc)",
-    text: "Open Text (text)",
-    matching: "Matching (matching)",
-  };
-  return map[type];
+function getQuestionTypeLabel(
+  type: QuestionType,
+  labels: Record<QuestionType, string>,
+): string {
+  return labels[type];
 }
 
-function buildReportUrl(question: Question, subjectId: string): string {
+function buildReportUrl(
+  question: Question,
+  subjectId: string,
+  reportTitle: string,
+  questionTypes: Record<QuestionType, string>,
+): string {
   const base = "https://github.com/TeenBiscuits/Pasame-Examenes/issues/new";
   const params = new URLSearchParams();
   params.set("template", "report-question.yml");
-  params.set("title", `[Corregir Pregunta] ${question.id}`);
+  params.set("title", `[${reportTitle}] ${question.id}`);
   params.set("subject", subjectId);
   params.set("question-id", question.id);
-  params.set("question-type", getQuestionTypeLabel(question.type));
+  params.set(
+    "question-type",
+    getQuestionTypeLabel(question.type, questionTypes),
+  );
   return `${base}?${params.toString()}`;
 }
 
@@ -261,7 +267,7 @@ function MCQuestion({
                 {question.explanationImage && (
                   <QuestionImage
                     image={question.explanationImage}
-                    alt="Solution illustration"
+                    alt={t.questionCard.solutionIllustration}
                     maxHeight="300px"
                   />
                 )}
@@ -296,13 +302,13 @@ function TextQuestion({
   return (
     <div>
       <label htmlFor={`answer-${question.id}`} className="sr-only">
-        Your answer
+        {t.questionCard.yourAnswer}
       </label>
       <textarea
         id={`answer-${question.id}`}
-        aria-label="Your answer"
+        aria-label={t.questionCard.yourAnswer}
         className="border-border focus:border-accent focus-visible:ring-accent min-h-[120px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
-        placeholder="Type your answer…"
+        placeholder={t.questionCard.typeAnswer}
         autoComplete="off"
         spellCheck={false}
         value={savedAnswer || ""}
@@ -363,7 +369,7 @@ function TextQuestion({
               {question.explanationImage && (
                 <QuestionImage
                   image={question.explanationImage}
-                  alt="Solution illustration"
+                  alt={t.questionCard.solutionIllustration}
                   maxHeight="300px"
                 />
               )}
@@ -519,7 +525,9 @@ function MatchingQuestion({
                       handleSelect(item, letter);
                     }}
                     disabled={!!showResult}
-                    aria-label={`Match ${item} to ${letter}`}
+                    aria-label={t.questionCard.matchItemTo
+                      .replace("{item}", item)
+                      .replace("{letter}", letter)}
                   >
                     {letter}
                   </button>
@@ -565,7 +573,7 @@ function MatchingQuestion({
                 {question.explanationImage && (
                   <QuestionImage
                     image={question.explanationImage}
-                    alt="Solution illustration"
+                    alt={t.questionCard.solutionIllustration}
                     maxHeight="300px"
                   />
                 )}
@@ -595,10 +603,12 @@ export default function QuestionCard(props: QuestionCardProps) {
     >
       <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
         <span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">
-          Q{questionProps.index + 1}/{questionProps.total}
+          {t.questionCard.questionPrefix}
+          {questionProps.index + 1}/{questionProps.total}
         </span>
         <span className="bg-accent-light text-accent-fg rounded px-2 py-0.5 font-mono text-xs">
-          {formatPoints(question.points)}p
+          {formatPoints(question.points)}
+          {t.questionCard.pointsShort}
         </span>
         <span className="text-fg-muted order-last flex w-full min-w-0 items-center gap-0.5 text-xs sm:order-none sm:w-auto sm:flex-1">
           {questionProps.megatopicLabel && (
@@ -728,7 +738,12 @@ export default function QuestionCard(props: QuestionCardProps) {
           <a
             data-tour="report-issue"
             data-cuelume-hover="whisper"
-            href={buildReportUrl(question, questionProps.subjectId)}
+            href={buildReportUrl(
+              question,
+              questionProps.subjectId,
+              t.questionCard.reportIssueTitle,
+              t.questionCard.questionTypes,
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg -mr-2 inline-flex shrink-0 items-center gap-1 rounded px-2 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"

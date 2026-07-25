@@ -2,6 +2,7 @@ import type { SubjectMeta } from "../../data/types";
 
 export const meta: SubjectMeta = {
   id: "equisi",
+  lastmod: "2026-07-25",
   name: "Xestión de Infraestruturas",
   university: "Universidade da Coruña",
   courseCode: "200190",
@@ -28,7 +29,6 @@ export const meta: SubjectMeta = {
       year: "2024-07",
       title: "Posibles preguntas Xullo 2024",
       date: "Xullo 2024",
-      description: "20 preguntas · 10 puntos",
       passPoints: 5,
       totalPoints: 10,
       durationMinutes: 45,
@@ -36,7 +36,6 @@ export const meta: SubjectMeta = {
     {
       year: "daypo-modulo-i",
       title: "Daypo Módulo I",
-      description: "130 preguntas · 130 puntos",
       passPoints: 65,
       totalPoints: 130,
       durationMinutes: 120,
@@ -46,7 +45,6 @@ export const meta: SubjectMeta = {
     {
       year: "daypo-modulo-ii",
       title: "Daypo Módulo II",
-      description: "109 preguntas · 109 puntos",
       passPoints: 55,
       totalPoints: 109,
       durationMinutes: 120,
@@ -56,7 +54,6 @@ export const meta: SubjectMeta = {
     {
       year: "megarecopilacion",
       title: "Megarecopilación Test XI",
-      description: "122 preguntas · 122 puntos",
       passPoints: 61,
       totalPoints: 122,
       durationMinutes: 90,

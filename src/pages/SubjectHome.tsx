@@ -28,6 +28,9 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
+import { getExamQuestionStats } from "../lib/exam-stats";
+import type { ExamQuestionStats } from "../lib/exam-stats";
+import { formatPoints } from "../lib/points";
 import {
   filterQuestionsByExamSelection,
   useExamSelection,
@@ -60,6 +63,11 @@ export default function SubjectHome() {
   const selectedQuestions = useMemo(
     () => filterQuestionsByExamSelection(allQuestions, selectedExamYears),
     [allQuestions, selectedExamYears],
+  );
+  const examStats = useMemo(
+    () =>
+      subject ? getExamQuestionStats(subject.exams, allQuestions) : new Map(),
+    [subject, allQuestions],
   );
   const progress =
     subject && questionsLoaded
@@ -142,6 +150,7 @@ export default function SubjectHome() {
           selectedExamYears={selectedExamYears}
           onChange={setSelectedExamYears}
           dialogRef={examSourceDialogRef}
+          examStats={examStats}
         />
         <TopicsSection
           subject={subject}
@@ -159,6 +168,7 @@ export default function SubjectHome() {
         <ExamSimulationsSection
           subject={subject}
           hasAuthorizedExams={hasAuthorizedExams}
+          examStats={examStats}
           onAddExam={() => examModalRef.current?.open()}
           onReportCopyright={() => copyrightModalRef.current?.open()}
         />
@@ -451,11 +461,13 @@ function UngroupedTopics({
 function ExamSimulationsSection({
   subject,
   hasAuthorizedExams,
+  examStats,
   onAddExam,
   onReportCopyright,
 }: {
   subject: SubjectMeta;
   hasAuthorizedExams: boolean;
+  examStats: ReadonlyMap<string, ExamQuestionStats>;
   onAddExam: () => void;
   onReportCopyright: () => void;
 }) {
@@ -475,7 +487,12 @@ function ExamSimulationsSection({
           exam.deleteRights ? (
             <RemovedExamCard key={exam.year} title={exam.title} />
           ) : (
-            <ExamCard key={exam.year} subject={subject} exam={exam} />
+            <ExamCard
+              key={exam.year}
+              subject={subject}
+              exam={exam}
+              stats={examStats.get(exam.year)}
+            />
           ),
         )}
         <ExamActionButtons
@@ -507,9 +524,11 @@ function RemovedExamCard({ title }: { title: string }) {
 function ExamCard({
   subject,
   exam,
+  stats,
 }: {
   subject: SubjectMeta;
   exam: SubjectMeta["exams"][number];
+  stats: ExamQuestionStats | undefined;
 }) {
   const t = useT();
   const isAuthorized = hasAuthorizedExamContent(subject);
@@ -547,7 +566,13 @@ function ExamCard({
         )}
       </div>
       <h2 className="text-fg font-semibold">{exam.title}</h2>
-      <p className="text-fg-muted mt-1 text-sm">{exam.description}</p>
+      <p className="text-fg-muted mt-1 text-sm">
+        {stats
+          ? t.exam.questionSummary
+              .replace("{questions}", String(stats.questionCount))
+              .replace("{points}", formatPoints(stats.points))
+          : "..."}
+      </p>
     </Link>
   );
 }
@@ -636,7 +661,7 @@ function PdfLinksSection({
         <a
           key={exam.year}
           data-cuelume-press
-          href={`/exams/${subject.id}/Exam-${exam.year}.pdf`}
+          href={`https://github.com/TeenBiscuits/Pasame-Examenes/raw/refs/heads/main/public/exams/${subject.id}/Exam-${exam.year}.pdf`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"

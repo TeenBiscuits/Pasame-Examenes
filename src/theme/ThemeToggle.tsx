@@ -1,7 +1,8 @@
 import { useTheme } from "./hooks";
-import { themeLabels, themeOrder } from "./types";
+import { themeOrder } from "./types";
 import type { Theme } from "./types";
 import { track } from "../lib/umami";
+import { useT } from "../i18n/hooks";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Sun03Icon,
@@ -63,6 +64,8 @@ function ThemeIcon({ theme }: { theme: Theme }) {
 
 export default function ThemeToggle() {
   const { theme, cycleTheme } = useTheme();
+  const t = useT();
+  const themeLabel = t.theme[theme];
 
   function handleToggle() {
     const idx = themeOrder.indexOf(theme);
@@ -77,8 +80,8 @@ export default function ThemeToggle() {
       data-cuelume-toggle
       className="border-border hover:bg-surface cursor-pointer rounded border px-2 py-1 transition active:scale-95"
       onClick={handleToggle}
-      aria-label={`Theme: ${themeLabels[theme]}`}
-      title={themeLabels[theme]}
+      aria-label={`${t.header.theme}: ${themeLabel}`}
+      title={themeLabel}
     >
       <span className="theme-icon block" key={theme}>
         <ThemeIcon theme={theme} />

@@ -234,14 +234,15 @@ The profit margin improved from $16.7\\%$ to $20.8\\%$, indicating operational e
   },
 
   // ================================================================
-  // Shared question (appears in both exams)
+  // Repeated question example
   // ================================================================
 
   // === Shared MC with `repeated: true` ===
-  // Set `exam: "both"` and `repeated: true` to tag repeated questions.
+  // Assign the question to its actual exam and use `repeated: true` only as
+  // the visual marker that it also appeared in an earlier exam.
   {
     id: "shared_q1",
-    exam: "both",
+    exam: "2024",
     topic: "topic-1",
     type: "mc",
     points: 5,

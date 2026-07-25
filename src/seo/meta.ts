@@ -9,6 +9,10 @@ export const BASE_URL = "https://pe.pablopl.dev";
 export const LANGS = ["en", "es", "gl"] as const;
 export const DEFAULT_LANG: Lang = "es";
 export const BUNDLE_ENTRY_POINT = "/src/main.tsx";
+export const SITEMAP_LASTMOD = {
+  global: "2026-07-25",
+  home: "2026-07-25",
+} as const;
 
 export const langMeta: Record<
   Lang,
@@ -31,6 +35,7 @@ export interface PageMetaData {
   ogImage: string;
   ogImageType: string;
   locale: string;
+  lastmod: string;
   alternates: { lang: Lang | "x-default"; href: string }[];
   jsonLd: string;
 }
@@ -64,6 +69,15 @@ export function buildCanonicalPath(
 function appendBrand(title: string, siteName: string): string {
   const branded = `${title} | ${siteName}`;
   return branded.length <= 62 ? branded : title;
+}
+
+function interpolate(
+  template: string,
+  values: Record<string, string | number>,
+): string {
+  return template.replace(/\{(\w+)\}/g, (_, key: string) =>
+    String(values[key] ?? ""),
+  );
 }
 
 function ogImageForSubject(subject?: SubjectMeta): string {
@@ -116,6 +130,7 @@ function makePageMeta(
   description: string,
   ogImage: string,
   graph: unknown[],
+  lastmod: string = SITEMAP_LASTMOD.global,
 ): PageMetaData {
   const meta = langMeta[lang];
   const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
@@ -131,6 +146,8 @@ function makePageMeta(
     ogImage: fullUrl(ogImage),
     ogImageType: imageType(ogImage),
     locale: meta.locale,
+    lastmod:
+      lastmod > SITEMAP_LASTMOD.global ? lastmod : SITEMAP_LASTMOD.global,
     alternates: alternates(pathWithoutLang),
     jsonLd: JSON.stringify({
       "@context": "https://schema.org",
@@ -141,36 +158,34 @@ function makePageMeta(
 
 export function buildHomeMeta(lang: Lang): PageMetaData {
   const tr = t(lang);
-  const titleByLang: Record<Lang, string> = {
-    en: "Practice University Questions",
-    es: "Practica preguntas universitarias",
-    gl: "Practica preguntas universitarias",
-  };
-  const descriptionByLang: Record<Lang, string> = {
-    en: "Practice university questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.",
-    es: "Practica preguntas universitarias por tema o en modo cronometrado con respuestas modelo, autocorrección y preguntas tipo test o desarrollo.",
-    gl: "Practica preguntas universitarias por tema ou en modo cronometrado con respostas modelo, autocorrección e preguntas tipo test ou desenvolvemento.",
-  };
-  const title = appendBrand(titleByLang[lang], tr.seo.siteName);
-  const description = descriptionByLang[lang];
+  const title = appendBrand(tr.seo.homeTitle, tr.seo.siteName);
+  const description = tr.seo.homeMetaDescription;
   const canonicalUrl = fullUrl(buildCanonicalPath(lang, "/"));
 
-  return makePageMeta(lang, "/", title, description, "/og.jpg", [
-    {
-      "@type": "WebSite",
-      name: tr.seo.siteName,
-      url: canonicalUrl,
-      inLanguage: langMeta[lang].hreflang,
-      description,
-    },
-    {
-      "@type": "WebPage",
-      name: title,
-      url: canonicalUrl,
-      inLanguage: langMeta[lang].hreflang,
-      description,
-    },
-  ]);
+  return makePageMeta(
+    lang,
+    "/",
+    title,
+    description,
+    "/og.jpg",
+    [
+      {
+        "@type": "WebSite",
+        name: tr.seo.siteName,
+        url: canonicalUrl,
+        inLanguage: langMeta[lang].hreflang,
+        description,
+      },
+      {
+        "@type": "WebPage",
+        name: title,
+        url: canonicalUrl,
+        inLanguage: langMeta[lang].hreflang,
+        description,
+      },
+    ],
+    SITEMAP_LASTMOD.home,
+  );
 }
 
 export function buildSubjectMeta(
@@ -184,31 +199,26 @@ export function buildSubjectMeta(
     (exam) => !exam.deleteRights,
   ).length;
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
-  const titleStem: Record<Lang, string> = {
-    en: hasAuthorizedExams
-      ? `${subject.name}: exams and solved questions`
-      : `${subject.name}: compilations and solved questions`,
-    es: hasAuthorizedExams
-      ? `${subject.name}: exámenes y preguntas resueltas`
-      : `${subject.name}: recopilatorios y preguntas resueltas`,
-    gl: hasAuthorizedExams
-      ? `${subject.name}: exames e preguntas resoltas`
-      : `${subject.name}: recompilacións e preguntas resoltas`,
-  };
+  const titleStem = interpolate(
+    hasAuthorizedExams
+      ? tr.seo.subjectAuthorizedTitle
+      : tr.seo.subjectCommunityTitle,
+    { subjectName: subject.name },
+  );
   const count = stats.questionCount;
-  const descriptionByLang: Record<Lang, string> = {
-    en: hasAuthorizedExams
-      ? `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${availableExamCount} exams with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`
-      : `Practice ${count ? `${count} ` : ""}${subject.name} questions from ${availableExamCount} compilations with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
-    es: hasAuthorizedExams
-      ? `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} exámenes con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`
-      : `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} recopilatorios de práctica con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
-    gl: hasAuthorizedExams
-      ? `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} exames con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`
-      : `Practica ${count ? `${count} ` : ""}preguntas de ${subject.name} de ${availableExamCount} recompilacións de práctica con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
-  };
-  const title = appendBrand(titleStem[lang], tr.seo.siteName);
-  const description = descriptionByLang[lang];
+  const description = interpolate(
+    hasAuthorizedExams
+      ? tr.seo.subjectAuthorizedDescription
+      : tr.seo.subjectCommunityDescription,
+    {
+      count: count ? `${count} ` : "",
+      subjectName: subject.name,
+      examCount: availableExamCount,
+      courseCode: subject.courseCode,
+      university: subject.university,
+    },
+  );
+  const title = appendBrand(titleStem, tr.seo.siteName);
   const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
 
   return makePageMeta(
@@ -239,6 +249,7 @@ export function buildSubjectMeta(
         { name: subject.name, pathWithoutLang },
       ]),
     ],
+    subject.lastmod,
   );
 }
 
@@ -252,24 +263,25 @@ export function buildTopicMeta(
   const pathWithoutLang = `/${subject.id}/practice/${topic.key}`;
   const count = stats.topicQuestionCounts?.[topic.key];
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
-  const titleStem: Record<Lang, string> = {
-    en: `${topic.label}: ${subject.name} ${hasAuthorizedExams ? "exam" : "practice"} questions`,
-    es: `${topic.label}: preguntas de ${subject.name}`,
-    gl: `${topic.label}: preguntas de ${subject.name}`,
-  };
-  const descriptionByLang: Record<Lang, string> = {
-    en: hasAuthorizedExams
-      ? `Practice ${count ? `${count} ` : ""}${topic.label} questions from ${subject.name} exams with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`
-      : `Practice ${count ? `${count} ` : ""}${topic.label} questions from ${subject.name} compilations with model answers and self-grading. ${subject.courseCode}, ${subject.university}.`,
-    es: hasAuthorizedExams
-      ? `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de exámenes de ${subject.name}, con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`
-      : `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de recopilatorios de ${subject.name}, con respuestas modelo y autocorrección. ${subject.courseCode}, ${subject.university}.`,
-    gl: hasAuthorizedExams
-      ? `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de exames de ${subject.name}, con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`
-      : `Practica ${count ? `${count} ` : ""}preguntas de ${topic.label} de recompilacións de ${subject.name}, con respostas modelo e autocorrección. ${subject.courseCode}, ${subject.university}.`,
-  };
-  const title = appendBrand(titleStem[lang], tr.seo.siteName);
-  const description = descriptionByLang[lang];
+  const titleStem = interpolate(
+    hasAuthorizedExams
+      ? tr.seo.topicAuthorizedTitle
+      : tr.seo.topicCommunityTitle,
+    { topicName: topic.label, subjectName: subject.name },
+  );
+  const description = interpolate(
+    hasAuthorizedExams
+      ? tr.seo.topicAuthorizedDescription
+      : tr.seo.topicCommunityDescription,
+    {
+      count: count ? `${count} ` : "",
+      topicName: topic.label,
+      subjectName: subject.name,
+      courseCode: subject.courseCode,
+      university: subject.university,
+    },
+  );
+  const title = appendBrand(titleStem, tr.seo.siteName);
   const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
 
   return makePageMeta(
@@ -300,6 +312,7 @@ export function buildTopicMeta(
         { name: topic.label, pathWithoutLang },
       ]),
     ],
+    subject.lastmod,
   );
 }
 
@@ -313,24 +326,25 @@ export function buildExamMeta(
   const pathWithoutLang = `/${subject.id}/exam/${exam.year}`;
   const count = stats.examQuestionCounts?.[exam.year];
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
-  const titleStem: Record<Lang, string> = {
-    en: `${exam.title} ${subject.name}: ${hasAuthorizedExams ? "exam simulator" : "timed practice"}`,
-    es: `${exam.title} de ${subject.name}: ${hasAuthorizedExams ? "simulador" : "práctica cronometrada"}`,
-    gl: `${exam.title} de ${subject.name}: ${hasAuthorizedExams ? "simulador" : "práctica cronometrada"}`,
-  };
-  const descriptionByLang: Record<Lang, string> = {
-    en: hasAuthorizedExams
-      ? `Simulate the ${exam.title} ${subject.name} exam${count ? ` with ${count} questions` : ""}. ${exam.totalPoints} points, ${exam.durationMinutes} minutes, model answers and self-grading.`
-      : `Practice the ${exam.title} ${subject.name} timed set${count ? ` with ${count} questions` : ""}. ${exam.totalPoints} points, ${exam.durationMinutes} minutes, model answers and self-grading.`,
-    es: hasAuthorizedExams
-      ? `Simula el examen ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respuestas modelo y autocorrección.`
-      : `Practica el recopilatorio cronometrado ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respuestas modelo y autocorrección.`,
-    gl: hasAuthorizedExams
-      ? `Simula o exame ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respostas modelo e autocorrección.`
-      : `Practica a recompilación cronometrada ${exam.title} de ${subject.name}${count ? ` con ${count} preguntas` : ""}. ${exam.totalPoints} puntos, ${exam.durationMinutes} minutos, respostas modelo e autocorrección.`,
-  };
-  const title = appendBrand(titleStem[lang], tr.seo.siteName);
-  const description = descriptionByLang[lang];
+  const titleStem = interpolate(
+    hasAuthorizedExams ? tr.seo.examAuthorizedTitle : tr.seo.examPracticeTitle,
+    { examName: exam.title, subjectName: subject.name },
+  );
+  const description = interpolate(
+    hasAuthorizedExams
+      ? tr.seo.examAuthorizedDescription
+      : tr.seo.examPracticeDescription,
+    {
+      examName: exam.title,
+      subjectName: subject.name,
+      questionCount: count
+        ? interpolate(tr.seo.questionCountSuffix, { count })
+        : "",
+      totalPoints: exam.totalPoints,
+      durationMinutes: exam.durationMinutes,
+    },
+  );
+  const title = appendBrand(titleStem, tr.seo.siteName);
   const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
 
   return makePageMeta(
@@ -362,5 +376,6 @@ export function buildExamMeta(
         { name: exam.title, pathWithoutLang },
       ]),
     ],
+    subject.lastmod,
   );
 }

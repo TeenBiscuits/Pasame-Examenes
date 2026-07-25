@@ -2,6 +2,7 @@ import type { SubjectMeta } from "../../data/types";
 
 export const meta: SubjectMeta = {
   id: "redes",
+  lastmod: "2026-07-25",
   name: "Redes",
   university: "Universidade da Coruña",
   courseCode: "202319",
@@ -81,7 +82,6 @@ export const meta: SubjectMeta = {
     {
       year: "daypo-recopilatorio-lara",
       title: "Daypo Recopilatorio (des. 2008)",
-      description: "125 preguntas · 125 puntos",
       passPoints: 63,
       totalPoints: 125,
       durationMinutes: 120,
@@ -91,7 +91,6 @@ export const meta: SubjectMeta = {
     {
       year: "daypo-recopilatorio-udc",
       title: "Daypo Recopilatorio (UDC)",
-      description: "298 preguntas · 298 puntos",
       passPoints: 149,
       totalPoints: 298,
       durationMinutes: 240,
@@ -102,7 +101,6 @@ export const meta: SubjectMeta = {
       year: "2025-05",
       title: "Recopilatorio Mayo 2025",
       date: "Mayo 2025",
-      description: "37 preguntas · 37 puntos",
       passPoints: 19,
       totalPoints: 37,
       durationMinutes: 120,
@@ -112,7 +110,6 @@ export const meta: SubjectMeta = {
       year: "2026-01",
       title: "Recopilatorio Enero 2026",
       date: "Enero 2026",
-      description: "41 preguntas · 41 puntos",
       passPoints: 21,
       totalPoints: 41,
       durationMinutes: 120,

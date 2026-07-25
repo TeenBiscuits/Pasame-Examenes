@@ -99,7 +99,7 @@ export const questions: Question[] = [
       "B. Es posible que una transacción que intenta escribir un dato tenga que abordar, debido a que una transacción más reciente ya leyó ese dato.",
       "C. Las  dos anteriores son correctas",
     ],
-    correctAnswer: "a",
+    correctAnswer: "c",
   },
   {
     id: "daypo-preguntas_07",
@@ -632,7 +632,7 @@ export const questions: Question[] = [
       "B. Problema de lectura sucia",
       "C. Problema de lectura no repetible",
     ],
-    correctAnswer: "c",
+    correctAnswer: "a",
   },
   {
     id: "daypo-preguntas_45",

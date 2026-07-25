@@ -6,11 +6,3 @@ export const themeOrder = [
   "catppuccin",
 ] as const;
 export type Theme = (typeof themeOrder)[number];
-
-export const themeLabels: Record<Theme, string> = {
-  system: "System",
-  light: "Light",
-  dark: "Dark",
-  pink: "Pink",
-  catppuccin: "Catppuccin",
-};

@@ -2,6 +2,7 @@ import type { SubjectMeta } from "../../data/types";
 
 export const meta: SubjectMeta = {
   id: "pei",
+  lastmod: "2026-07-25",
   name: "Programación Integrativa",
   university: "Universidade da Coruña",
   courseCode: "200214",
@@ -45,7 +46,6 @@ export const meta: SubjectMeta = {
     {
       year: "recopilacion",
       title: "Recopilación",
-      description: "54 preguntas",
       passPoints: 15,
       totalPoints: 30,
       durationMinutes: 120,

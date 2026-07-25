@@ -525,7 +525,6 @@ function PracticePlayer({
   }, [scrollToHeaderRef, scrollToHeader]);
 
   const examDate = useMemo(() => {
-    if (currentQuestion?.exam === "both") return undefined;
     const exam = currentQuestion
       ? subject.exams.find((e) => e.year === currentQuestion.exam)
       : undefined;
@@ -677,9 +676,7 @@ function PracticePlayer({
           examDate={examDate}
           subjectId={subject.id}
           topicKey={topic || undefined}
-          examYear={
-            currentQuestion?.exam === "both" ? undefined : currentQuestion?.exam
-          }
+          examYear={currentQuestion?.exam}
           mode="practice"
           onAnswer={onAnswer}
           savedAnswer={answers[currentQuestion.id]}

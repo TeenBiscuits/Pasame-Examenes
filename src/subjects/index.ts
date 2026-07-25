@@ -50,7 +50,7 @@ export async function getQuestionsByExam(
   exam: string,
 ): Promise<Question[]> {
   const qs = await getAllQuestions(subjectId);
-  return qs.filter((q) => q.exam === exam || q.exam === "both");
+  return qs.filter((q) => q.exam === exam);
 }
 
 export async function getTopicMegaTopicLabel(
