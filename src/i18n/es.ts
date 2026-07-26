@@ -4,7 +4,7 @@ export const es: Translations = {
   home: {
     title: "Pásame Exámenes",
     subtitle:
-      "Plataforma de código abierto para practicar preguntas universitarias. Elige una asignatura para estudiar por tema o en modo cronometrado.",
+      "Plataforma de código abierto para practicar preguntas de exámenes de la FIC. Elige una asignatura para estudiar por tema o en modo cronometrado.",
     addSubject: "¿Añadir asignatura?",
     recentlyVisited: "Visitadas recientemente",
     clearRecent: "Limpiar asignaturas recientes",
@@ -321,6 +321,7 @@ export const es: Translations = {
     points: "puntos",
     exams: "exámenes",
     practiceSets: "recopilatorios",
+    course: "{course}º curso",
   },
   contentPolicy: {
     authorized: "Materiales de examen verificados",
@@ -423,26 +424,26 @@ export const es: Translations = {
   seo: {
     siteName: "Pásame Exámenes",
     locale: "es_ES",
-    homeTitle: "Practica preguntas universitarias",
+    homeTitle: "Practica exámenes de la FIC",
     homeDescription:
-      "Plataforma de código abierto para practicar preguntas universitarias por tema o en modo cronometrado.",
+      "Plataforma de código abierto para practicar exámenes de la FIC por tema o en modo cronometrado.",
     homeMetaDescription:
-      "Practica preguntas universitarias por tema o en modo cronometrado con respuestas modelo, autocorrección y preguntas tipo test o desarrollo.",
+      "Practica preguntas de exámenes de la FIC por tema o en modo cronometrado con respuestas modelo, autocorrección y preguntas tipo test o desarrollo.",
     defaultDescription:
-      "Practica preguntas universitarias con respuestas modelo y autocorrección. Preguntas tipo test, de desarrollo y de emparejar.",
+      "Practica preguntas de exámenes de la FIC con respuestas modelo y autocorrección. Preguntas tipo test, de desarrollo y de emparejar.",
     subjectAuthorizedTitle: "{subjectName}: exámenes y preguntas resueltas",
     subjectCommunityTitle:
       "{subjectName}: recopilatorios y preguntas resueltas",
     subjectAuthorizedDescription:
-      "Practica {count}preguntas de {subjectName} de {examCount} exámenes con respuestas modelo y autocorrección. {courseCode}, {university}.",
+      "Practica {count}preguntas de {subjectName} de {examCount} exámenes con respuestas modelo y autocorrección. {courseCode}, {degree}, {course}º curso.",
     subjectCommunityDescription:
-      "Practica {count}preguntas de {subjectName} de {examCount} recopilatorios de práctica con respuestas modelo y autocorrección. {courseCode}, {university}.",
+      "Practica {count}preguntas de {subjectName} de {examCount} recopilatorios de práctica con respuestas modelo y autocorrección. {courseCode}, {degree}, {course}º curso.",
     topicAuthorizedTitle: "{topicName}: preguntas de {subjectName}",
     topicCommunityTitle: "{topicName}: preguntas de {subjectName}",
     topicAuthorizedDescription:
-      "Practica {count}preguntas de {topicName} de exámenes de {subjectName}, con respuestas modelo y autocorrección. {courseCode}, {university}.",
+      "Practica {count}preguntas de {topicName} de exámenes de {subjectName}, con respuestas modelo y autocorrección. {courseCode}, {degree}, {course}º curso.",
     topicCommunityDescription:
-      "Practica {count}preguntas de {topicName} de recopilatorios de {subjectName}, con respuestas modelo y autocorrección. {courseCode}, {university}.",
+      "Practica {count}preguntas de {topicName} de recopilatorios de {subjectName}, con respuestas modelo y autocorrección. {courseCode}, {degree}, {course}º curso.",
     examAuthorizedTitle: "{examName} de {subjectName}: simulador",
     examPracticeTitle: "{examName} de {subjectName}: práctica cronometrada",
     examAuthorizedDescription:

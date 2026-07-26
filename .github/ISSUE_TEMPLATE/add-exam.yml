@@ -23,7 +23,7 @@ body:
     id: subject
     attributes:
       label: Asignatura
-      description: ¿A qué asignatura pertenece este material? (ej. "eseo", "emeele")
+      description: ¿A qué asignatura pertenece este material? (ej. "eseo", "bede")
       placeholder: "ej: eseo"
     validations:
       required: true

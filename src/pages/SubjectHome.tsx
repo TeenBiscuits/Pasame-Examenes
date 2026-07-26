@@ -304,12 +304,15 @@ function SubjectHeader({
   subject: SubjectMeta;
   description: string;
 }) {
+  const t = useT();
+
   return (
     <Hero emojis={subject.topics.map((tp) => tp.icon)} compact>
       <p className="text-fg-muted mb-3 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
         <ContentPolicyIcon subject={subject} className="size-4" svgOnly />
         <span>
-          {subject.courseCode} &middot; {subject.university}
+          {subject.courseCode} &middot; {subject.degree} &middot;{" "}
+          {t.subjectCard.course.replace("{course}", String(subject.course))}
         </span>
       </p>
       <h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">

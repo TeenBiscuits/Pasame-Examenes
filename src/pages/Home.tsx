@@ -172,9 +172,9 @@ export default function Home() {
                 modalRef.current?.open();
                 track("add_subject_modal_open");
               }}
-              className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full cursor-pointer rounded-xl border-2 border-dashed p-5 transition-colors transition-transform duration-200 hover:scale-[1.02]"
+              className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block h-full min-h-[172px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 transition-colors transition-transform duration-200 hover:scale-[1.02]"
             >
-              <div className="flex h-full min-h-[120px] flex-col items-center justify-center gap-2">
+              <div className="flex h-full flex-col items-center justify-center gap-2">
                 <span className="text-4xl leading-none font-light">
                   <HugeiconsIcon icon={DashboardSquareAddIcon} size={35} />
                 </span>

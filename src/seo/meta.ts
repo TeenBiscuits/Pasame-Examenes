@@ -215,7 +215,8 @@ export function buildSubjectMeta(
       subjectName: subject.name,
       examCount: availableExamCount,
       courseCode: subject.courseCode,
-      university: subject.university,
+      degree: subject.degree,
+      course: subject.course,
     },
   );
   const title = appendBrand(titleStem, tr.seo.siteName);
@@ -238,10 +239,6 @@ export function buildSubjectMeta(
           "@type": "Course",
           name: subject.name,
           courseCode: subject.courseCode,
-          provider: {
-            "@type": "CollegeOrUniversity",
-            name: subject.university,
-          },
         },
       },
       breadcrumbJsonLd(lang, pathWithoutLang, [
@@ -278,7 +275,8 @@ export function buildTopicMeta(
       topicName: topic.label,
       subjectName: subject.name,
       courseCode: subject.courseCode,
-      university: subject.university,
+      degree: subject.degree,
+      course: subject.course,
     },
   );
   const title = appendBrand(titleStem, tr.seo.siteName);
@@ -364,10 +362,6 @@ export function buildExamMeta(
           "@type": "Course",
           name: subject.name,
           courseCode: subject.courseCode,
-          provider: {
-            "@type": "CollegeOrUniversity",
-            name: subject.university,
-          },
         },
       },
       breadcrumbJsonLd(lang, pathWithoutLang, [

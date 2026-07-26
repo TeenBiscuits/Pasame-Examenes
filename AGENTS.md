@@ -6,6 +6,7 @@
 pnpm dev       # Vite dev server; src/main.tsx loads react-grab only in DEV
 pnpm build     # tsc -b, generate sitemap, optional IndexNow key, then vite build
 pnpm lint      # ESLint flat config for TS/TSX; scripts/ is ignored
+pnpm readme    # Update the subject table in README.md
 pnpm format    # Prettier write
 pnpm preview   # Preview production build
 pnpm doctor    # React Doctor via npx

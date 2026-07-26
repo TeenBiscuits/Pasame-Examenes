@@ -4,7 +4,7 @@ export const gl: Translations = {
   home: {
     title: "Pásame Exámenes",
     subtitle:
-      "Plataforma de código aberto para practicar preguntas universitarias. Elixe unha materia para estudar por tema ou en modo cronometrado.",
+      "Plataforma de código aberto para practicar preguntas de exames da FIC. Elixe unha materia para estudar por tema ou en modo cronometrado.",
     addSubject: "Engadir materia?",
     recentlyVisited: "Visitadas recentemente",
     clearRecent: "Limpar materias recentes",
@@ -320,6 +320,7 @@ export const gl: Translations = {
     points: "puntos",
     exams: "exames",
     practiceSets: "recompilacións",
+    course: "{course}º curso",
   },
   contentPolicy: {
     authorized: "Materiais de exame verificados",
@@ -422,25 +423,25 @@ export const gl: Translations = {
   seo: {
     siteName: "Pásame Exámenes",
     locale: "gl_ES",
-    homeTitle: "Practica preguntas universitarias",
+    homeTitle: "Practica exames da FIC",
     homeDescription:
-      "Plataforma de código aberto para practicar preguntas universitarias por tema ou en modo cronometrado.",
+      "Plataforma de código aberto para practicar exames da FIC por tema ou en modo cronometrado.",
     homeMetaDescription:
-      "Practica preguntas universitarias por tema ou en modo cronometrado con respostas modelo, autocorrección e preguntas tipo test ou desenvolvemento.",
+      "Practica preguntas de exames da FIC por tema ou en modo cronometrado con respostas modelo, autocorrección e preguntas tipo test ou desenvolvemento.",
     defaultDescription:
-      "Practica preguntas universitarias con respostas modelo e autocorrección. Preguntas tipo test, de desenvolvemento e de emparellar.",
+      "Practica preguntas de exames da FIC con respostas modelo e autocorrección. Preguntas tipo test, de desenvolvemento e de emparellar.",
     subjectAuthorizedTitle: "{subjectName}: exames e preguntas resoltas",
     subjectCommunityTitle: "{subjectName}: recompilacións e preguntas resoltas",
     subjectAuthorizedDescription:
-      "Practica {count}preguntas de {subjectName} de {examCount} exames con respostas modelo e autocorrección. {courseCode}, {university}.",
+      "Practica {count}preguntas de {subjectName} de {examCount} exames con respostas modelo e autocorrección. {courseCode}, {degree}, {course}º curso.",
     subjectCommunityDescription:
-      "Practica {count}preguntas de {subjectName} de {examCount} recompilacións de práctica con respostas modelo e autocorrección. {courseCode}, {university}.",
+      "Practica {count}preguntas de {subjectName} de {examCount} recompilacións de práctica con respostas modelo e autocorrección. {courseCode}, {degree}, {course}º curso.",
     topicAuthorizedTitle: "{topicName}: preguntas de {subjectName}",
     topicCommunityTitle: "{topicName}: preguntas de {subjectName}",
     topicAuthorizedDescription:
-      "Practica {count}preguntas de {topicName} de exames de {subjectName}, con respostas modelo e autocorrección. {courseCode}, {university}.",
+      "Practica {count}preguntas de {topicName} de exames de {subjectName}, con respostas modelo e autocorrección. {courseCode}, {degree}, {course}º curso.",
     topicCommunityDescription:
-      "Practica {count}preguntas de {topicName} de recompilacións de {subjectName}, con respostas modelo e autocorrección. {courseCode}, {university}.",
+      "Practica {count}preguntas de {topicName} de recompilacións de {subjectName}, con respostas modelo e autocorrección. {courseCode}, {degree}, {course}º curso.",
     examAuthorizedTitle: "{examName} de {subjectName}: simulador",
     examPracticeTitle: "{examName} de {subjectName}: práctica cronometrada",
     examAuthorizedDescription:

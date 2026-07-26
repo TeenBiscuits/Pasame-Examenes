@@ -20,7 +20,8 @@ interface SubjectMeta {
   questionCount: number;
   topicCount: number;
   examCount: number;
-  university: string;
+  degree: string;
+  course: number;
   courseCode: string;
 }
 
@@ -63,7 +64,7 @@ function buildSubjectDescription(t: Translations, meta: SubjectMeta): string {
     .replace("{repeated}", "")
     .replace("{exams}", String(meta.examCount))
     .replace(/`/g, "");
-  return `${meta.name} (${meta.courseCode}) \u2014 ${desc} \u2014 ${meta.university}`;
+  return `${meta.name} (${meta.courseCode}) \u2014 ${desc} \u2014 ${meta.degree}, curso ${meta.course}`;
 }
 
 async function main() {

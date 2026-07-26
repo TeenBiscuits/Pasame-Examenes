@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { SubjectMeta } from "../src/data/types";
@@ -67,7 +67,12 @@ function collectStats(
 async function loadSubjects() {
   const entries = readdirSync(subjectsDir, { withFileTypes: true });
   const subjectDirs = entries
-    .filter((entry) => entry.isDirectory() && entry.name !== "_template")
+    .filter(
+      (entry) =>
+        entry.isDirectory() &&
+        entry.name !== "_template" &&
+        existsSync(resolve(subjectsDir, entry.name, "meta.ts")),
+    )
     .map((entry) => entry.name)
     .sort();
 

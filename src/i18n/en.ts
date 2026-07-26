@@ -2,7 +2,7 @@ export const en = {
   home: {
     title: "Pásame Exámenes",
     subtitle:
-      "Open-source platform for practicing university questions. Choose a subject below to study by topic or timed practice set.",
+      "Open-source platform for practicing FIC exam questions. Choose a subject below to study by topic or timed practice set.",
     addSubject: "Add Subject?",
     recentlyVisited: "Recently visited",
     clearRecent: "Clear recent subjects",
@@ -317,6 +317,7 @@ export const en = {
     points: "points",
     exams: "exams",
     practiceSets: "compilations",
+    course: "Year {course}",
   },
   contentPolicy: {
     authorized: "Verified exam materials",
@@ -419,25 +420,25 @@ export const en = {
   seo: {
     siteName: "Pásame Exámenes",
     locale: "en_US",
-    homeTitle: "Practice University Questions",
+    homeTitle: "Practice FIC Exam Questions",
     homeDescription:
-      "Open-source platform for practicing university questions by topic or timed practice set.",
+      "Open-source platform for practicing FIC exam questions by topic or timed practice set.",
     homeMetaDescription:
-      "Practice university questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.",
+      "Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.",
     defaultDescription:
-      "Practice university questions with model answers and self-grading. Multiple-choice, text, and matching questions.",
+      "Practice FIC exam questions with model answers and self-grading. Multiple-choice, text, and matching questions.",
     subjectAuthorizedTitle: "{subjectName}: exams and solved questions",
     subjectCommunityTitle: "{subjectName}: compilations and solved questions",
     subjectAuthorizedDescription:
-      "Practice {count}{subjectName} questions from {examCount} exams with model answers and self-grading. {courseCode}, {university}.",
+      "Practice {count}{subjectName} questions from {examCount} exams with model answers and self-grading. {courseCode}, {degree}, Year {course}.",
     subjectCommunityDescription:
-      "Practice {count}{subjectName} questions from {examCount} compilations with model answers and self-grading. {courseCode}, {university}.",
+      "Practice {count}{subjectName} questions from {examCount} compilations with model answers and self-grading. {courseCode}, {degree}, Year {course}.",
     topicAuthorizedTitle: "{topicName}: {subjectName} exam questions",
     topicCommunityTitle: "{topicName}: {subjectName} practice questions",
     topicAuthorizedDescription:
-      "Practice {count}{topicName} questions from {subjectName} exams with model answers and self-grading. {courseCode}, {university}.",
+      "Practice {count}{topicName} questions from {subjectName} exams with model answers and self-grading. {courseCode}, {degree}, Year {course}.",
     topicCommunityDescription:
-      "Practice {count}{topicName} questions from {subjectName} compilations with model answers and self-grading. {courseCode}, {university}.",
+      "Practice {count}{topicName} questions from {subjectName} compilations with model answers and self-grading. {courseCode}, {degree}, Year {course}.",
     examAuthorizedTitle: "{examName} {subjectName}: exam simulator",
     examPracticeTitle: "{examName} {subjectName}: timed practice",
     examAuthorizedDescription:

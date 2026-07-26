@@ -22,7 +22,7 @@
 
 <div align="center">
 <br/>
-<b>Pásame Exámenes</b> es una plataforma open source para practicar preguntas universitarias por tema o en modo cronometrado con temporizador y autocorrección.
+<b>Pásame Exámenes</b> es una plataforma de código abierto para practicar exámenes de la FIC por tema o en modo cronometrado, con respuestas modelo y autocorrección.
 <br/>
 </div>
 
@@ -50,20 +50,24 @@ Practica con temporizador, puntuación en directo y auto-entrega opcional. En as
 
 ## Asignaturas
 
-| Asignatura                          | Universidad            | Exámenes/etc   |
-| ----------------------------------- | ---------------------- | -------------- |
-| 💽 Sistemas Operativos              | Universidade da Coruña | 9 (2020–2024)  |
-| 🧠 Sistemas Intelixentes            | Universidade da Coruña | 5 (2023–2026)  |
-| ⚡ Concorrencia e Paralelismo       | Universidade da Coruña | 16 (2018–2025) |
-| 🎨 Deseño de Software               | Universidade da Coruña | 2 (2020-2022)  |
-| 💻 Estrutura de Computadores        | Universidade da Coruña | 11 (2021–2026) |
-| 🏗️ Xestión de Infraestruturas       | Universidade da Coruña | 4              |
-| 📋 Xestión de Proxectos             | Universidade da Coruña | 5 (2024-2026)  |
-| 🤖 Introduction to Machine Learning | Linnaeus University    | 2 (2024–2025)  |
-| 🕸️ Redes                            | Universidade da Coruña | 3 (2008-2025)  |
-| 🔗 Programación Integrativa         | Universidade da Coruña | 1              |
-| 🗓️ Proceso Software                 | Universidade da Coruña | 1 (2026)       |
-| 🌐 Internet y Sistemas Distribuidos | Universidade da Coruña | 1              |
+<!-- SUBJECTS_TABLE:START -->
+
+| Asignatura                          | Grao                          | Curso |   Exámenes/etc |
+| ----------------------------------- | ----------------------------- | ----: | -------------: |
+| 🗃️ Bases de Datos                   | Grao en Enxeñaría informática |    2º |  3 (2022–2026) |
+| ⚡ Concorrencia e Paralelismo       | Grao en Enxeñaría informática |    2º | 16 (2018–2025) |
+| 🎨 Deseño de Software               | Grao en Enxeñaría informática |    2º |  2 (2020–2022) |
+| 💻 Estrutura de Computadores        | Grao en Enxeñaría informática |    2º | 11 (2021–2026) |
+| 🗓️ Proceso Software                 | Grao en Enxeñaría informática |    2º |       1 (2026) |
+| 🕸️ Redes                            | Grao en Enxeñaría informática |    2º |  4 (2008–2026) |
+| 🧠 Sistemas Intelixentes            | Grao en Enxeñaría informática |    2º |  5 (2023–2026) |
+| 💽 Sistemas Operativos              | Grao en Enxeñaría informática |    2º |  9 (2020–2024) |
+| 🌐 Internet y Sistemas Distribuidos | Grao en Enxeñaría informática |    3º |              1 |
+| 🔗 Programación Integrativa         | Grao en Enxeñaría informática |    3º |              1 |
+| 🏗️ Xestión de Infraestruturas       | Grao en Enxeñaría informática |    3º |       4 (2024) |
+| 📋 Xestión de Proxectos             | Grao en Enxeñaría informática |    3º |  5 (2024–2026) |
+
+<!-- SUBJECTS_TABLE:END -->
 
 ## Desarrollo
 
@@ -71,6 +75,7 @@ Practica con temporizador, puntuación en directo y auto-entrega opcional. En as
 pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
 pnpm build     # tsc -b + sitemap + IndexNow + OG images + build producción + páginas estáticas
 pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
+pnpm readme    # Actualiza la tabla de asignaturas del README
 pnpm format    # Prettier --write
 pnpm preview   # Preview del build de producción
 pnpm doctor    # React Doctor
