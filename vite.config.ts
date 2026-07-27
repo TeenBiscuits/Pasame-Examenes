@@ -29,7 +29,6 @@ export default defineConfig({
         manualChunks(id: string) {
           if (id.includes("node_modules/react-dom")) return "vendor";
           if (id.includes("node_modules/react/")) return "vendor";
-          if (id.includes("node_modules/react-router-dom")) return "router";
           if (id.includes("node_modules/react-router/")) return "router";
           if (id.includes("node_modules/katex/")) return "katex";
           if (

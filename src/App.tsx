@@ -15,7 +15,7 @@ import {
   useParams,
   Navigate,
   Outlet,
-} from "react-router-dom";
+} from "react-router";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
