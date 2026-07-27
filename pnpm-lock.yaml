@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@fontsource-variable/cascadia-code':
-        specifier: ^5.2.2
-        version: 5.2.2
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource-variable/onest':
-        specifier: ^5.2.11
-        version: 5.2.11
+        specifier: ^5.3.0
+        version: 5.3.0
       '@hugeicons/core-free-icons':
-        specifier: ^4.2.2
-        version: 4.2.2
+        specifier: ^4.2.3
+        version: 4.2.3
       '@hugeicons/react':
         specifier: ^1.1.9
         version: 1.1.9(react@19.2.7)
@@ -413,14 +413,14 @@ packages:
     resolution: {integrity: sha512-+CNAzxglkrpNf/kKywqQfk74QjtceuOE7Qm+AF8miRvPF/wmmK5+OJOgVh3AVTT3RP2mH3+FOaxlE5v72owk0A==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@fontsource-variable/cascadia-code@5.2.2':
-    resolution: {integrity: sha512-5Sn7CySADZaPggdZ9wXnC0CKdLfca+7G7ipaSWSOXFQvAxnH+zKnflktVAVj5A3loP8ZAs72w7+v/RCwOnPpaQ==}
+  '@fontsource-variable/cascadia-code@5.3.0':
+    resolution: {integrity: sha512-6I6M029Lum62MGmP0o+rXRrIBiIiptNDC4slPKLPUJiSB7NHZTLb+Ihk9G7jLvUfWziGXHJLjJPJLBzlEPjS1g==}
 
-  '@fontsource-variable/onest@5.2.11':
-    resolution: {integrity: sha512-knJww1KxK4g66+qu90q3CPBvl4zhL5oDRi3/JMkYMmlhW3OgyRgT4MMfgd6jg2lvho7bLPAXfsYPh59h0yzwUA==}
+  '@fontsource-variable/onest@5.3.0':
+    resolution: {integrity: sha512-K4Es0F3M+iFnVY5mfunimhPSk1Uvl3eyovQVWjtf8oS00a7WSrSg2BD5Bh/pAcAZUe4ocV4M08dg5tvCULBJ7Q==}
 
-  '@hugeicons/core-free-icons@4.2.2':
-    resolution: {integrity: sha512-fjQW3p6cwoJmwK3oCnV8Z3PC5sHihDvr2jkAHax8cxqp62GaV/D7B/Rnao+JwicW8fmLZUQ6QrzWfoyMFOEQlQ==}
+  '@hugeicons/core-free-icons@4.2.3':
+    resolution: {integrity: sha512-fpiU0qFZkv4ABi23xJ2m4qNr0BBfuIaYjPboN8WDA6aj9D+OzXa7eykxKOpACZRuGbDz1U9S5DsNx1d5KNnsgA==}
 
   '@hugeicons/react@1.1.9':
     resolution: {integrity: sha512-O+lWSWjbijoAvMCxn4K2bQWCGN5+mP1y5j+X99j23mXMj+s0X25fs71T6t9YJLaBodwmZdaewD27dzS/PiboQw==}
@@ -2478,11 +2478,11 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@fontsource-variable/cascadia-code@5.2.2': {}
+  '@fontsource-variable/cascadia-code@5.3.0': {}
 
-  '@fontsource-variable/onest@5.2.11': {}
+  '@fontsource-variable/onest@5.3.0': {}
 
-  '@hugeicons/core-free-icons@4.2.2': {}
+  '@hugeicons/core-free-icons@4.2.3': {}
 
   '@hugeicons/react@1.1.9(react@19.2.7)':
     dependencies:
