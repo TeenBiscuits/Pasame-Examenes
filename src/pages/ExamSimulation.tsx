@@ -26,9 +26,9 @@ import { computeQuestionResults } from "../lib/grading";
 import ScoreProgress from "../components/ScoreProgress";
 import {
   Alarm,
-  ArrowSquareLeft2,
-  ArrowSquareRight2,
-  CloseSquare2,
+  AngleLeftSquare,
+  AngleRightSquare,
+  XSquare,
   Exit,
   Send,
   Trophy,
@@ -359,7 +359,7 @@ function ExamExitDialog({
           className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.exam.exitModalCancel}
         >
-          <CloseSquare2 className="size-5" />
+          <XSquare className="size-5" />
         </button>
       </div>
       <p className="text-fg-secondary mb-6 text-sm">{t.exam.exitConfirm}</p>
@@ -566,7 +566,7 @@ function ExamControls({
         onClick={() => navigateQuestion("prev")}
         disabled={currentIndex === 0}
       >
-        <ArrowSquareLeft2
+        <AngleLeftSquare
           size={18}
           weight={hoverPrev ? "Filled" : "Outline"}
           aria-hidden="true"
@@ -605,7 +605,7 @@ function ExamControls({
         <span className="hidden sm:inline sm:min-w-0 sm:truncate">
           {t.exam.next}
         </span>
-        <ArrowSquareRight2
+        <AngleRightSquare
           size={18}
           weight={hoverNext ? "Filled" : "Outline"}
           aria-hidden="true"
@@ -653,7 +653,7 @@ function ExamDialogs({
               className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
               aria-label={t.footer.close}
             >
-              <CloseSquare2 className="size-5" />
+              <XSquare className="size-5" />
             </button>
           </div>
           <p className="text-fg-secondary mb-6 text-sm">
@@ -708,7 +708,7 @@ function ExamDialogs({
               className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
               aria-label={t.footer.close}
             >
-              <CloseSquare2 className="size-5" />
+              <XSquare className="size-5" />
             </button>
           </div>
           <p className="text-fg-secondary mb-6 text-sm">

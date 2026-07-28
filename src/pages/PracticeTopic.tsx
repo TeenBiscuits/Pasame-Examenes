@@ -28,8 +28,8 @@ import { formatPoints, roundPoints } from "../lib/points";
 import { computeQuestionResults } from "../lib/grading";
 import ScoreProgress from "../components/ScoreProgress";
 import {
-  ArrowSquareLeft2,
-  ArrowSquareRight2,
+  AngleLeftSquare,
+  AngleRightSquare,
   Exit,
   Trash5,
   Eye,
@@ -354,7 +354,7 @@ function PracticeControls({
         onClick={() => navigateQuestion("prev")}
         disabled={currentIndex === 0}
       >
-        <ArrowSquareLeft2
+        <AngleLeftSquare
           size={18}
           weight={hoverPrev ? "Filled" : "Outline"}
           aria-hidden="true"
@@ -457,7 +457,7 @@ function PracticeControls({
         <span className="hidden sm:inline sm:min-w-0 sm:truncate">
           {t.practice.next}
         </span>
-        <ArrowSquareRight2
+        <AngleRightSquare
           size={18}
           weight={hoverNext ? "Filled" : "Outline"}
           aria-hidden="true"

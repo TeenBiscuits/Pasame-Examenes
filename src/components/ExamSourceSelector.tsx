@@ -3,7 +3,7 @@ import type { Exam, SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
 import type { ExamQuestionStats } from "../lib/exam-stats";
 import { formatPoints } from "../lib/points";
-import { ChecklistAlt, CloseSquare2, Filter } from "reicon-react";
+import { ChecklistAlt, XSquare, Filter } from "reicon-react";
 
 interface ExamSourceSelectorProps {
   subject: SubjectMeta;
@@ -81,7 +81,7 @@ export default function ExamSourceSelector({
           className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 cursor-pointer rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.footer.close}
         >
-          <CloseSquare2 className="size-5" />
+          <XSquare className="size-5" />
         </button>
       </div>
       <div className="max-h-[calc(86svh-7rem)] overflow-y-auto pr-1">
