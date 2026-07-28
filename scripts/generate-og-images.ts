@@ -164,9 +164,7 @@ async function generateOgImage(
   const iconBadgeX = badgeX + 5;
   const iconBadgeY = badgeY + 4.5;
   roundedRectPath(ctx, iconBadgeX, iconBadgeY, 36, 36, 7);
-  ctx.fillStyle = hasAuthorizedExams
-    ? BADGE_AUTHORIZED_BG
-    : BADGE_COMMUNITY_BG;
+  ctx.fillStyle = hasAuthorizedExams ? BADGE_AUTHORIZED_BG : BADGE_COMMUNITY_BG;
   ctx.fill();
   ctx.strokeStyle = hasAuthorizedExams
     ? BADGE_AUTHORIZED_BORDER

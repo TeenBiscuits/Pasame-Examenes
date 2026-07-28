@@ -15,7 +15,7 @@ import {
   useParams,
   Navigate,
   Outlet,
-} from "react-router-dom";
+} from "react-router";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
@@ -23,12 +23,7 @@ import type { Lang } from "./i18n/context";
 import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link-utils";
 import { useTheme } from "./theme/hooks";
-import {
-  CloseSquare2,
-  MemoCheck,
-  ShieldCheck,
-  ArrowRightUp,
-} from "reicon-react";
+import { XSquare, MemoCheck, ShieldCheck, ArrowRightUp } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Github01Icon } from "@hugeicons/core-free-icons";
 
@@ -150,7 +145,7 @@ function CreativeCommonsIcons() {
 }
 
 function CloseIcon() {
-  return <CloseSquare2 className="size-5" />;
+  return <XSquare className="size-5" />;
 }
 
 function LicenseIcon() {

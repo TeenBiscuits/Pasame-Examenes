@@ -6,7 +6,7 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
 import { clearTopicProgress, getTopicProgress } from "../data/store";
@@ -35,7 +35,7 @@ import {
   filterQuestionsByExamSelection,
   useExamSelection,
 } from "../hooks/useExamSelection";
-import { ArrowRightUp, CloseSquare2, Filter, Restart } from "reicon-react";
+import { ArrowRightUp, XSquare, Filter, Restart } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   CheckmarkBadge02Icon,
@@ -245,7 +245,7 @@ function ResetTopicProgressDialog({
           className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.subjectHome.resetTopicProgressCancel}
         >
-          <CloseSquare2 className="size-5" />
+          <XSquare className="size-5" />
         </button>
       </div>
       <p className="text-fg-secondary mb-6 text-sm">

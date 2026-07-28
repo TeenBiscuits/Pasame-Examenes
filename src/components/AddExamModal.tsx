@@ -1,7 +1,7 @@
 import { useImperativeHandle, useEffect, useRef, type Ref } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { CloseSquare2 } from "reicon-react";
+import { XSquare } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons";
 
@@ -91,7 +91,7 @@ function AddExamModal({
             className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
             aria-label={t.addExam.close}
           >
-            <CloseSquare2 className="size-5" />
+            <XSquare className="size-5" />
           </button>
         </div>
 
