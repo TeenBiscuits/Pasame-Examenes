@@ -42,7 +42,8 @@ export const gl: Translations = {
     daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Agradecementos e exención de responsabilidade",
-    contentLicense: "Licenza específica do contido",
+    legalInformation: "Información legal da materia",
+    contentLicense: "Licenza do contido",
     addExam: "Engadir?",
     reportCopyright: "Reportar dereitos de autor",
     copyrightRemoved: "Retirada por dereitos de autor",
@@ -70,19 +71,19 @@ export const gl: Translations = {
   footer: {
     github: "GitHub",
     by: "por",
-    isLicensedUnder: "está licenciado baixo",
+    contentIsLicensedUnder: "O contido está licenciado baixo",
     licenses: "Licenzas",
     privacy: "Política de privacidade",
     close: "Pechar",
     licenseTitle: "Licenzas",
     licenseIntro:
       "Pásame Exámenes separa a licenza do software da web da licenza do contido publicado nela.",
-    contentLicenseTitle: "Contido: CC BY-NC-SA 4.0",
+    contentLicenseTitle: "Contido: CC BY-SA 4.0 por defecto",
     contentLicenseDescription:
-      "Salvo que a páxina dunha materia indique outra cousa, o contido subido a esta web está licenciado baixo CC BY-NC-SA 4.0.",
+      "As preguntas, imaxes e documentos orixinais de exame usan CC BY-SA 4.0 salvo que a páxina da materia indique outra licenza.",
     softwareLicenseTitle: "Software: Apache 2.0",
     softwareLicenseDescription:
-      "O código fonte da plataforma está licenciado baixo Apache License, Version 2.0.",
+      "O código fonte, a configuración e a documentación da plataforma están licenciados baixo Apache License, Version 2.0.",
     license: "Licenza",
     licensePage: "Páxina da licenza",
     legalText: "Texto legal",

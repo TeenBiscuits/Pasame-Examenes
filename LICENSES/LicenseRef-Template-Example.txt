@@ -1,0 +1,16 @@
+Template Example Content License
+Version 1.0
+
+Copyright 2026 Template Department
+
+This is an intentionally simple example license used by the _template subject
+to demonstrate how a subject-specific content license is represented. It is
+not a recommended license for real educational material.
+
+Permission is granted to copy, adapt, and redistribute the template subject's
+questions and images for demonstration and testing purposes, provided that
+the Template Department is credited and that this license notice is retained.
+
+The material is provided "as is", without warranty of any kind. The Template
+Department is not liable for any claim, damages, or other responsibility
+arising from the use of the material.

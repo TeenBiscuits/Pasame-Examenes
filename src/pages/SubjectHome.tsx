@@ -756,27 +756,61 @@ function ResourceLinksShell({
 
 function ContentNotes({ subject }: { subject: SubjectMeta }) {
   const t = useT();
+  const specificLicense = subject.contentLicense;
+  const hasAcknowledgments = Boolean(subject.acknowledgments);
+  const hasSpecificLicense = Boolean(specificLicense);
+  const contentWidthClass =
+    hasAcknowledgments && hasSpecificLicense ? "max-w-prose" : "max-w-4xl";
 
-  if (!subject.acknowledgments && !subject.contentLicense) return null;
+  if (!hasAcknowledgments && !hasSpecificLicense) return null;
 
   return (
-    <div className="text-fg-muted mt-10 space-y-4 text-right text-sm">
-      {subject.acknowledgments ? (
-        <div>
-          <p className="text-fg-muted mb-1 font-semibold">
-            {t.subjectHome.acknowledgments}
-          </p>
-          <p>{subject.acknowledgments}</p>
-        </div>
-      ) : null}
-      {subject.contentLicense ? (
-        <div>
-          <p className="text-fg-muted mb-1 font-semibold">
-            {t.subjectHome.contentLicense}
-          </p>
-          <p>{subject.contentLicense}</p>
-        </div>
-      ) : null}
-    </div>
+    <aside
+      aria-labelledby="subject-legal-notes-title"
+      className="border-border text-fg-muted mt-10 border-t pt-5 text-sm"
+    >
+      <h2 id="subject-legal-notes-title" className="sr-only">
+        {t.subjectHome.legalInformation}
+      </h2>
+      <div
+        className={
+          hasAcknowledgments && hasSpecificLicense
+            ? "grid gap-5 sm:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] sm:gap-8"
+            : "block"
+        }
+      >
+        {hasAcknowledgments ? (
+          <div className={contentWidthClass}>
+            <h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
+              {t.subjectHome.acknowledgments}
+            </h3>
+            <p className="leading-relaxed">{subject.acknowledgments}</p>
+          </div>
+        ) : null}
+        {specificLicense ? (
+          <div className={contentWidthClass}>
+            <h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
+              {t.subjectHome.contentLicense}
+            </h3>
+            <p>
+              <a
+                href={specificLicense.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent rounded underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+              >
+                {specificLicense.name}
+              </a>{" "}
+              <code className="text-fg-muted text-xs">
+                ({specificLicense.spdxId})
+              </code>
+            </p>
+            {specificLicense.notice ? (
+              <p className="mt-2 leading-relaxed">{specificLicense.notice}</p>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+    </aside>
   );
 }

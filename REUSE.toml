@@ -1,0 +1,40 @@
+version = 1
+
+[[annotations]]
+path = "**"
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Pablo Portas López"
+SPDX-License-Identifier = "Apache-2.0"
+
+# Questions, images, and original exam PDFs are content, not software.
+[[annotations]]
+path = "src/subjects/*/questions.ts"
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Pásame Exámenes contributors and respective authors"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+[[annotations]]
+path = "src/subjects/*/assets/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Pásame Exámenes contributors and respective authors"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+[[annotations]]
+path = "public/exams/**"
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Pásame Exámenes contributors and respective authors"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+# Future subject-specific exceptions go below these defaults. Add one table
+# per affected path, using the same SPDX identifier as that subject's
+# `contentLicense.spdxId` in src/subjects/<id>/meta.ts.
+
+# The template intentionally demonstrates a subject-specific custom license.
+[[annotations]]
+path = [
+  "src/subjects/_template/questions.ts",
+  "src/subjects/_template/assets/**",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Template Department"
+SPDX-License-Identifier = "LicenseRef-Template-Example"
