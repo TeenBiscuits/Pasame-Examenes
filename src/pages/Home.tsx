@@ -19,6 +19,7 @@ import {
 import { Trash5 } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons";
+import SecretToro from "../components/SecretToro";
 
 const MAX_SLOTS = 3;
 
@@ -82,7 +83,7 @@ export default function Home() {
   });
 
   return (
-    <>
+    <div className="relative">
       <Hero
         emojis={subjects.map((s) => s.icon)}
         className="animate-fade-in animate-duration-fast"
@@ -94,7 +95,7 @@ export default function Home() {
           {t.home.subtitle}
         </p>
       </Hero>
-      <div className="animate-fade-in animate-duration-fast mx-auto max-w-6xl px-4 pb-8 text-center">
+      <div className="animate-fade-in animate-duration-fast mx-auto max-w-6xl px-4 pb-14 text-center">
         {recentSubjects.length > 0 && (
           <div className="mb-10 text-left" key={recentKey}>
             <div className="mb-3 flex items-center justify-between">
@@ -190,6 +191,7 @@ export default function Home() {
 
         <AddSubjectModal ref={modalRef} onClose={() => {}} />
       </div>
-    </>
+      <SecretToro />
+    </div>
   );
 }
