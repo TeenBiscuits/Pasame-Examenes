@@ -77,9 +77,9 @@ export const gl: Translations = {
     licenseTitle: "Licenzas",
     licenseIntro:
       "Pásame Exámenes separa a licenza do software da web da licenza do contido publicado nela.",
-    contentLicenseTitle: "Contido: CC BY-NC-SA 4.0",
+    contentLicenseTitle: "Contido: CC BY-SA 4.0",
     contentLicenseDescription:
-      "Salvo que a páxina dunha materia indique outra cousa, o contido subido a esta web está licenciado baixo CC BY-NC-SA 4.0.",
+      "Salvo que a páxina dunha materia indique outra cousa, o contido subido a esta web está licenciado baixo CC BY-SA 4.0.",
     softwareLicenseTitle: "Software: Apache 2.0",
     softwareLicenseDescription:
       "O código fonte da plataforma está licenciado baixo Apache License, Version 2.0.",

@@ -13,7 +13,7 @@ Solo se aceptan contenidos que cumplan al menos una de estas condiciones:
 
 No envíes enunciados, PDFs, soluciones o materiales docentes protegidos si no tienes autorización para compartirlos. Si una asignatura no comparte sus exámenes, aporta ejercicios originales basados en el temario en lugar de recreaciones exactas.
 
-Salvo indicación específica, el contenido aceptado para la web se publicará bajo **CC BY-NC-SA 4.0**. Si una asignatura tiene materiales con otra licencia compatible o una atribución concreta, indícalo en `contentLicense` dentro de su `meta.ts`.
+Salvo indicación específica, el contenido aceptado para la web se publicará bajo **CC BY-SA 4.0**. Si una asignatura tiene materiales con otra licencia compatible o una atribución concreta, indícalo en `contentLicense` dentro de su `meta.ts`.
 
 ## Cómo contribuir
 

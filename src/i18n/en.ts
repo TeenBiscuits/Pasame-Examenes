@@ -75,9 +75,9 @@ export const en = {
     licenseTitle: "Licenses",
     licenseIntro:
       "Pásame Exámenes separates the license for the website software from the license for the content published on it.",
-    contentLicenseTitle: "Content: CC BY-NC-SA 4.0",
+    contentLicenseTitle: "Content: CC BY-SA 4.0",
     contentLicenseDescription:
-      "Unless a subject page states otherwise, content uploaded to this website is licensed under CC BY-NC-SA 4.0.",
+      "Unless a subject page states otherwise, content uploaded to this website is licensed under CC BY-SA 4.0.",
     softwareLicenseTitle: "Software: Apache 2.0",
     softwareLicenseDescription:
       "The platform source code is licensed under the Apache License, Version 2.0.",
