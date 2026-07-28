@@ -759,6 +759,8 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
   const specificLicense = subject.contentLicense;
   const hasAcknowledgments = Boolean(subject.acknowledgments);
   const hasSpecificLicense = Boolean(specificLicense);
+  const contentWidthClass =
+    hasAcknowledgments && hasSpecificLicense ? "max-w-prose" : "max-w-4xl";
 
   if (!hasAcknowledgments && !hasSpecificLicense) return null;
 
@@ -778,7 +780,7 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
         }
       >
         {hasAcknowledgments ? (
-          <div className="max-w-prose">
+          <div className={contentWidthClass}>
             <h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
               {t.subjectHome.acknowledgments}
             </h3>
@@ -786,7 +788,7 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
           </div>
         ) : null}
         {specificLicense ? (
-          <div className="max-w-prose">
+          <div className={contentWidthClass}>
             <h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
               {t.subjectHome.contentLicense}
             </h3>
