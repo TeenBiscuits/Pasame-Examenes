@@ -14,6 +14,7 @@
 [![driver.js](https://img.shields.io/badge/driver.js-FF5722)](https://driverjs.com)
 [![web-haptics](https://img.shields.io/badge/web--haptics-yellow)](https://haptics.lochie.me)
 [![Vercel](https://img.shields.io/badge/Vercel-black?logo=vercel&logoColor=white)](https://vercel.com)
+[![Greptile: The War on Bugs](https://www.greptile.com/badge.svg)](https://www.greptile.com/?utm_source=oss_badge&utm_medium=readme&utm_campaign=greptile_for_open_source)
 [![Pull Request](https://img.shields.io/github/issues-pr-closed/TeenBiscuits/Pasame-Examenes.svg?label=Pull%20Request)](https://github.com/TeenBiscuits/Pasame-Examenes/pulls)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE.md)
 [![Stars](https://img.shields.io/github/stars/TeenBiscuits/Pasame-Examenes.svg)](https://github.com/TeenBiscuits/Pasame-Examenes)
