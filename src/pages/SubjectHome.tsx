@@ -756,8 +756,11 @@ function ResourceLinksShell({
 
 function ContentNotes({ subject }: { subject: SubjectMeta }) {
   const t = useT();
+  const specificLicense = subject.contentLicense;
+  const hasAcknowledgments = Boolean(subject.acknowledgments);
+  const hasSpecificLicense = Boolean(specificLicense);
 
-  if (!subject.acknowledgments && !subject.contentLicense) return null;
+  if (!hasAcknowledgments && !hasSpecificLicense) return null;
 
   return (
     <aside
@@ -767,8 +770,14 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
       <h2 id="subject-legal-notes-title" className="sr-only">
         {t.subjectHome.legalInformation}
       </h2>
-      <div className="grid gap-5 sm:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] sm:gap-8">
-        {subject.acknowledgments ? (
+      <div
+        className={
+          hasAcknowledgments && hasSpecificLicense
+            ? "grid gap-5 sm:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] sm:gap-8"
+            : "block"
+        }
+      >
+        {hasAcknowledgments ? (
           <div className="max-w-prose">
             <h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
               {t.subjectHome.acknowledgments}
@@ -776,28 +785,26 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
             <p className="leading-relaxed">{subject.acknowledgments}</p>
           </div>
         ) : null}
-        {subject.contentLicense ? (
+        {specificLicense ? (
           <div className="max-w-prose">
             <h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
               {t.subjectHome.contentLicense}
             </h3>
             <p>
               <a
-                href={subject.contentLicense.url}
+                href={specificLicense.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-accent rounded underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
               >
-                {subject.contentLicense.name}
+                {specificLicense.name}
               </a>{" "}
               <code className="text-fg-muted text-xs">
-                ({subject.contentLicense.spdxId})
+                ({specificLicense.spdxId})
               </code>
             </p>
-            {subject.contentLicense.notice ? (
-              <p className="mt-2 leading-relaxed">
-                {subject.contentLicense.notice}
-              </p>
+            {specificLicense.notice ? (
+              <p className="mt-2 leading-relaxed">{specificLicense.notice}</p>
             ) : null}
           </div>
         ) : null}
