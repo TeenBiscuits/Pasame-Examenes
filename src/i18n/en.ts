@@ -40,7 +40,8 @@ export const en = {
     daypo: "Daypo",
     pdf: "PDF",
     acknowledgments: "Acknowledgments and Disclaimer",
-    contentLicense: "Specific Content License",
+    legalInformation: "Subject legal information",
+    contentLicense: "Content license",
     addExam: "Add?",
     reportCopyright: "Report copyright",
     copyrightRemoved: "Removed for copyright reasons",
@@ -68,19 +69,19 @@ export const en = {
   footer: {
     github: "GitHub",
     by: "by",
-    isLicensedUnder: "is licensed under",
+    contentIsLicensedUnder: "Content is licensed under",
     licenses: "Licenses",
     privacy: "Privacy Policy",
     close: "Close",
     licenseTitle: "Licenses",
     licenseIntro:
       "Pásame Exámenes separates the license for the website software from the license for the content published on it.",
-    contentLicenseTitle: "Content: CC BY-SA 4.0",
+    contentLicenseTitle: "Content: CC BY-SA 4.0 by default",
     contentLicenseDescription:
-      "Unless a subject page states otherwise, content uploaded to this website is licensed under CC BY-SA 4.0.",
+      "Questions, images, and original exam documents use CC BY-SA 4.0 unless the subject page states a different license.",
     softwareLicenseTitle: "Software: Apache 2.0",
     softwareLicenseDescription:
-      "The platform source code is licensed under the Apache License, Version 2.0.",
+      "The platform source code, configuration, and documentation are licensed under the Apache License, Version 2.0.",
     license: "License",
     licensePage: "License page",
     legalText: "Legal text",

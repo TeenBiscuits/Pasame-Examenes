@@ -46,6 +46,14 @@ export interface MegaTopic {
 
 export type ContentPolicy = "authorized-exams" | "community-practice";
 
+export interface ContentLicense {
+  /** SPDX identifier, including LicenseRef-* for a custom license. */
+  spdxId: string;
+  name: string;
+  url: string;
+  notice?: string;
+}
+
 export interface Exam {
   year: string;
   title: string;
@@ -69,7 +77,8 @@ export interface SubjectMeta {
   icon: string;
   contentPolicy?: ContentPolicy;
   acknowledgments?: string;
-  contentLicense?: string;
+  /** Omit to use the repository's default content license. */
+  contentLicense?: ContentLicense;
   topics: Topic[];
   megatopics?: MegaTopic[];
   exams: Exam[];

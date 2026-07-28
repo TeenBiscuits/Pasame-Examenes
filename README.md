@@ -113,7 +113,7 @@ El código de la plataforma se distribuye bajo la licencia **Apache 2.0**. Consu
 
 El contenido subido a la web, incluyendo preguntas y soluciones, se considera licenciado bajo **CC BY-SA 4.0** salvo que se indique otra licencia específica en la página de la asignatura correspondiente. Consulta [LICENSE-CONTENT.md](./LICENSE-CONTENT.md) para el texto completo.
 
-<p><a href="https://pe.pablopl.dev">Pásame Exámenes</a> © 2026 by <a href="https://pablopl.dev">Pablo Portas López</a> is licensed under <a href="https://creativecommons.org/licenses/BY-SA/4.0/">CC BY-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"></p>
+<p>El contenido de <a href="https://pe.pablopl.dev">Pásame Exámenes</a> © 2026 por <a href="https://pablopl.dev">Pablo Portas López</a> está licenciado bajo <a href="https://creativecommons.org/licenses/BY-SA/4.0/">CC BY-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"></p>
 
 ```text
 Copyright 2026 Pablo Portas López
@@ -132,8 +132,6 @@ Copyright 2026 Pablo Portas López
 ```
 
 Las preguntas y soluciones son contribuciones de la comunidad, pueden cometer errores de los que no nos hacemos responsables, nuestro objetivo es corregir todos los errores posibles, si ves un error [repórtalo](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=report-question.yml).
-
-Consulta cada asignatura para más información.
 
 ```js
 // Made with love by Pablo Portas López

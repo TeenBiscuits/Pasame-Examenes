@@ -11,8 +11,13 @@ export const meta: SubjectMeta = {
   contentPolicy: "community-practice",
   acknowledgments:
     "Questions provided by the Template Department. Answers by Prof. Example.",
-  contentLicense:
-    "Exams licensed by Example Author under the CC BY 4.0 license.",
+  contentLicense: {
+    spdxId: "LicenseRef-Template-Example",
+    name: "Template Example Content License",
+    url: "https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/LICENSES/LicenseRef-Template-Example.txt",
+    notice:
+      "Example-only license for demonstrating subject-specific content licensing.",
+  },
   topics: [
     { key: "topic-1", label: "Foundations", icon: "📌", color: "blue" },
     { key: "topic-2", label: "Data and Reasoning", icon: "🔍", color: "green" },

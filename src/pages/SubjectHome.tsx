@@ -760,23 +760,48 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
   if (!subject.acknowledgments && !subject.contentLicense) return null;
 
   return (
-    <div className="text-fg-muted mt-10 space-y-4 text-right text-sm">
-      {subject.acknowledgments ? (
-        <div>
-          <p className="text-fg-muted mb-1 font-semibold">
-            {t.subjectHome.acknowledgments}
-          </p>
-          <p>{subject.acknowledgments}</p>
-        </div>
-      ) : null}
-      {subject.contentLicense ? (
-        <div>
-          <p className="text-fg-muted mb-1 font-semibold">
-            {t.subjectHome.contentLicense}
-          </p>
-          <p>{subject.contentLicense}</p>
-        </div>
-      ) : null}
-    </div>
+    <aside
+      aria-labelledby="subject-legal-notes-title"
+      className="border-border text-fg-muted mt-10 border-t pt-5 text-sm"
+    >
+      <h2 id="subject-legal-notes-title" className="sr-only">
+        {t.subjectHome.legalInformation}
+      </h2>
+      <div className="grid gap-5 sm:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] sm:gap-8">
+        {subject.acknowledgments ? (
+          <div className="max-w-prose">
+            <h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
+              {t.subjectHome.acknowledgments}
+            </h3>
+            <p className="leading-relaxed">{subject.acknowledgments}</p>
+          </div>
+        ) : null}
+        {subject.contentLicense ? (
+          <div className="max-w-prose">
+            <h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
+              {t.subjectHome.contentLicense}
+            </h3>
+            <p>
+              <a
+                href={subject.contentLicense.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent rounded underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+              >
+                {subject.contentLicense.name}
+              </a>{" "}
+              <code className="text-fg-muted text-xs">
+                ({subject.contentLicense.spdxId})
+              </code>
+            </p>
+            {subject.contentLicense.notice ? (
+              <p className="mt-2 leading-relaxed">
+                {subject.contentLicense.notice}
+              </p>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+    </aside>
   );
 }

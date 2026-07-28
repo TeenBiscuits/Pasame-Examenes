@@ -248,7 +248,7 @@ function LicensesModal({
                 rel="noopener noreferrer"
                 className={`${modalLinkClass} w-full`}
                 onClick={() =>
-                  track("external_link_click", { target: "cc_by_nc_sa" })
+                  track("external_link_click", { target: "cc_by_sa" })
                 }
               >
                 {t.footer.license}
@@ -402,12 +402,12 @@ function Footer() {
             >
               Pablo Portas López
             </a>{" "}
-            {t.footer.isLicensedUnder}{" "}
+            {t.footer.contentIsLicensedUnder}{" "}
             <a
               href="https://creativecommons.org/licenses/BY-SA/4.0/"
               className="text-fg-secondary hover:text-accent focus-visible:ring-accent rounded underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
               onClick={() =>
-                track("external_link_click", { target: "cc_by_nc_sa" })
+                track("external_link_click", { target: "cc_by_sa" })
               }
             >
               CC BY-SA 4.0

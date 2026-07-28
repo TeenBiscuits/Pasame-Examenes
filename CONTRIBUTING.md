@@ -13,7 +13,36 @@ Solo se aceptan contenidos que cumplan al menos una de estas condiciones:
 
 No envíes enunciados, PDFs, soluciones o materiales docentes protegidos si no tienes autorización para compartirlos. Si una asignatura no comparte sus exámenes, aporta ejercicios originales basados en el temario en lugar de recreaciones exactas.
 
-Salvo indicación específica, el contenido aceptado para la web se publicará bajo **CC BY-SA 4.0**. Si una asignatura tiene materiales con otra licencia compatible o una atribución concreta, indícalo en `contentLicense` dentro de su `meta.ts`.
+Salvo indicación específica, el contenido aceptado para la web se publicará bajo **CC BY-SA 4.0**. Esto incluye `questions.ts`, las imágenes de `assets/` y los PDFs originales de `public/exams/`. La licencia del código, la configuración y la documentación es **Apache 2.0**.
+
+La asignación de licencias se mantiene sin cabeceras en [`REUSE.toml`](./REUSE.toml). Si una asignatura necesita una licencia de contenido diferente:
+
+1. Añade el texto de la licencia en `LICENSES/`. Para una licencia SPDX existente, usa `REUSE download <SPDX-ID>`. Para una licencia propia, usa el identificador `LicenseRef-<id>` y guarda el texto en `LICENSES/LicenseRef-<id>.txt`.
+2. Añade al final de `REUSE.toml` una anotación `[[annotations]]` para `src/subjects/<id>/questions.ts`, `src/subjects/<id>/assets/**` y, si procede, `public/exams/<id>/**`. Usa el mismo identificador SPDX en todas ellas.
+3. Declara ese identificador y la información legible en `contentLicense` dentro de `meta.ts`. La página de la asignatura mostrará esta licencia en lugar de la predeterminada.
+
+Por ejemplo:
+
+```toml
+[[annotations]]
+path = [
+  "src/subjects/eseo/questions.ts",
+  "src/subjects/eseo/assets/**",
+  "public/exams/eseo/**",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Autores de ESEO"
+SPDX-License-Identifier = "LicenseRef-ESEO-Exams"
+```
+
+```ts
+contentLicense: {
+  spdxId: "LicenseRef-ESEO-Exams",
+  name: "Licencia de los exámenes de ESEO",
+  url: "https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/LICENSES/LicenseRef-ESEO-Exams.txt",
+  notice: "Contenido proporcionado por el profesorado de la asignatura.",
+},
+```
 
 ## Cómo contribuir
 
@@ -46,7 +75,7 @@ export const meta: SubjectMeta = {
   icon: "📚",
   acknowledgments:
     "Preguntas proporcionadas por el departamento de... Respuestas por...", // opcional, se muestra al final de la página
-  contentLicense: "Exámenes licenciados por XXX bajo la licencia CC BY 4.0.", // opcional, para licencias específicas de esta asignatura
+  // Omite contentLicense para usar CC BY-SA 4.0. Para una excepción, consulta la sección de licencias.
   contentPolicy: "community-practice", // "authorized-exams" solo si los exámenes pueden compartirse
   topics: [
     {
