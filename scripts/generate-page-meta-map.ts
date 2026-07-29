@@ -2,6 +2,7 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { SubjectMeta } from "../src/data/types";
+import { isPublicSubject } from "../src/subjects/visibility";
 import {
   buildExamMeta,
   buildHomeMeta,
@@ -71,6 +72,7 @@ async function loadSubjects() {
       (entry) =>
         entry.isDirectory() &&
         entry.name !== "_template" &&
+        isPublicSubject(entry.name) &&
         existsSync(resolve(subjectsDir, entry.name, "meta.ts")),
     )
     .map((entry) => entry.name)

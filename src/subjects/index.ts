@@ -1,4 +1,5 @@
 import type { SubjectMeta, Question } from "../data/types";
+import { isPublicSubject } from "./visibility";
 
 interface MetaModule {
   meta: SubjectMeta;
@@ -20,15 +21,19 @@ const questionsModules = import.meta.glob<QuestionsModule>([
 const isProduction =
   typeof __VERCEL_PRODUCTION__ !== "undefined" && __VERCEL_PRODUCTION__;
 
-export const subjects: SubjectMeta[] = [];
+const discoveredSubjects: SubjectMeta[] = [];
 for (const m of Object.values(metaModules)) {
   if (isProduction && m.meta.id === "_template") continue;
-  subjects.push(m.meta);
+  discoveredSubjects.push(m.meta);
 }
+
+export const subjects = discoveredSubjects.filter((subject) =>
+  isPublicSubject(subject.id),
+);
 
 export function getSubject(id: string): SubjectMeta | undefined {
   if (isProduction && id === "_template") return undefined;
-  return subjects.find((s) => s.id === id);
+  return discoveredSubjects.find((s) => s.id === id);
 }
 
 export async function getAllQuestions(subjectId: string): Promise<Question[]> {

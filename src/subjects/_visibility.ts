@@ -27,6 +27,8 @@ import { meta as deeseMeta } from "./deese/meta";
 import { questions as deeseQuestions } from "./deese/questions";
 import { meta as redesMeta } from "./redes/meta";
 import { questions as redesQuestions } from "./redes/questions";
+import { meta as espainMeta } from "./espain/meta";
+import { questions as espainQuestions } from "./espain/questions";
 import { meta as templateMeta } from "./_template/meta";
 import { questions as templateQuestions } from "./_template/questions";
 
@@ -54,5 +56,7 @@ void deeseMeta;
 void deeseQuestions;
 void redesMeta;
 void redesQuestions;
+void espainMeta;
+void espainQuestions;
 void templateMeta;
 void templateQuestions;

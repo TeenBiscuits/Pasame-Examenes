@@ -344,9 +344,10 @@ function TopicsSection({
   const topicKeysWithQuestions = new Set(
     questions.map((question) => question.topic),
   );
-  const topicsWithQuestions = subject.topics.filter((topic) =>
-    topicKeysWithQuestions.has(topic.key),
-  );
+  const topicsWithQuestions =
+    subject.id === "espain"
+      ? subject.topics
+      : subject.topics.filter((topic) => topicKeysWithQuestions.has(topic.key));
   const renderTopicCard = (topic: Topic) => {
     const topicQuestions = questions.filter((q) => q.topic === topic.key);
     const topicProgress = progress[topic.key];
@@ -797,7 +798,7 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
                 href={specificLicense.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent rounded underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+                className="text-accent focus-visible:ring-accent rounded underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:outline-none"
               >
                 {specificLicense.name}
               </a>{" "}

@@ -11,6 +11,7 @@ import {
 } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isPublicSubject } from "../src/subjects/visibility";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
@@ -211,6 +212,7 @@ async function main() {
   const subjectDirs = entries.filter(
     (e) =>
       e.isDirectory() &&
+      isPublicSubject(e.name) &&
       !(process.env.VERCEL_ENV === "production" && e.name === "_template"),
   );
 
