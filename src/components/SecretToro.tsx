@@ -109,9 +109,6 @@ export default function SecretToro() {
         onPointerEnter={handlePointerEnter}
         onClick={handleClick}
         className="pointer-events-auto absolute bottom-5 left-0 h-7 w-9 cursor-pointer touch-none select-none rounded-full p-0 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none motion-reduce:transition-none"
-        style={{
-          willChange: "transform",
-        }}
       >
         <span
           aria-hidden="true"
