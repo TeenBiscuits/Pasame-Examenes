@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -16,7 +16,8 @@ export default function SecretToro() {
   const xRef = useRef(0);
   const directionRef = useRef<-1 | 1>(-1);
   const clickCountRef = useRef(0);
-  const [running, setRunning] = useState(false);
+  const runningRef = useRef(false);
+  const animationFrameRef = useRef<number | null>(null);
   const navigate = useNavigate();
   const { lang } = useLang();
 
@@ -35,40 +36,47 @@ export default function SecretToro() {
     return () => window.removeEventListener("resize", placeAtRight);
   }, []);
 
+  function moveToro() {
+    const container = containerRef.current;
+    const toro = toroRef.current;
+    if (!container || !toro) return;
+
+    const width = toro.offsetWidth;
+    let nextX = xRef.current + directionRef.current * RUN_SPEED;
+
+    if (nextX + width < 0) {
+      nextX = container.clientWidth;
+      playSound("droplet");
+    }
+    if (nextX > container.clientWidth) {
+      nextX = -width;
+      playSound("droplet");
+    }
+
+    xRef.current = nextX;
+    toro.style.transform = toroTransform(nextX, directionRef.current);
+    animationFrameRef.current = requestAnimationFrame(moveToro);
+  }
+
   useEffect(() => {
-    if (!running) return;
-
-    let frame = 0;
-    const move = () => {
-      const container = containerRef.current;
-      const toro = toroRef.current;
-      if (!container || !toro) return;
-
-      const width = toro.offsetWidth;
-      let nextX = xRef.current + directionRef.current * RUN_SPEED;
-
-      if (nextX + width < 0) {
-        nextX = container.clientWidth;
-        playSound("droplet");
+    return () => {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
-      if (nextX > container.clientWidth) {
-        nextX = -width;
-        playSound("droplet");
-      }
-
-      xRef.current = nextX;
-      toro.style.transform = toroTransform(nextX, directionRef.current);
-      frame = requestAnimationFrame(move);
     };
+  }, []);
 
-    frame = requestAnimationFrame(move);
-    return () => cancelAnimationFrame(frame);
-  }, [running]);
+  function startToroRunning() {
+    if (runningRef.current) return;
+    runningRef.current = true;
+    animationFrameRef.current = requestAnimationFrame(moveToro);
+  }
 
-  function handleClick() {
+  function handleToroClick() {
     const nextClickCount = clickCountRef.current + 1;
     clickCountRef.current = nextClickCount;
-    directionRef.current = running
+    const wasRunning = runningRef.current;
+    directionRef.current = wasRunning
       ? directionRef.current === -1
         ? 1
         : -1
@@ -79,10 +87,10 @@ export default function SecretToro() {
         directionRef.current,
       );
     }
-    setRunning(true);
+    startToroRunning();
 
     playSound("press");
-    if (running) playSound("tick");
+    if (wasRunning) playSound("tick");
     track("secret_toro_click", { count: nextClickCount });
     if (nextClickCount >= 3) {
       navigate(`/${lang}/espain`);
@@ -90,8 +98,8 @@ export default function SecretToro() {
   }
 
   function handlePointerEnter() {
-    if (running) return;
-    setRunning(true);
+    if (runningRef.current) return;
+    startToroRunning();
     playSound("chime");
   }
 
@@ -107,7 +115,7 @@ export default function SecretToro() {
         aria-label="Toro de Osborne"
         title="Toro de Osborne"
         onPointerEnter={handlePointerEnter}
-        onClick={handleClick}
+        onClick={handleToroClick}
         className="pointer-events-auto absolute bottom-5 left-0 h-7 w-9 cursor-pointer touch-none select-none rounded-full p-0 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none motion-reduce:transition-none"
       >
         <span

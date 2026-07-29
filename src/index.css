@@ -6,6 +6,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.question-card-brand-mark {
+  mask: url("/mono-favicon.svg") center / contain no-repeat;
+  -webkit-mask: url("/mono-favicon.svg") center / contain no-repeat;
+}
+
 /* ── iOS safe-area / overscroll helpers ── */
 html,
 body {

@@ -122,6 +122,7 @@ export default function ExamSourceSelector({
                   type="checkbox"
                   className="accent-accent mt-0.5 size-4 shrink-0"
                   data-cuelume-toggle
+                  aria-label={exam.title}
                   checked={selected.has(exam.year)}
                   onChange={() => toggleExam(exam)}
                   disabled={selected.size === 1 && selected.has(exam.year)}

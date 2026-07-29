@@ -716,17 +716,7 @@ export default function QuestionCard(props: QuestionCardProps) {
       <div className="border-border mt-4 flex items-center justify-between gap-3 border-t pt-4">
         <span className="text-fg-muted inline-flex min-w-0 items-center gap-1.5 text-xs font-semibold">
           <span
-            className="bg-fg-muted size-[18px] shrink-0"
-            style={{
-              maskImage: "url('/mono-favicon.svg')",
-              maskPosition: "center",
-              maskRepeat: "no-repeat",
-              maskSize: "contain",
-              WebkitMaskImage: "url('/mono-favicon.svg')",
-              WebkitMaskPosition: "center",
-              WebkitMaskRepeat: "no-repeat",
-              WebkitMaskSize: "contain",
-            }}
+            className="question-card-brand-mark bg-fg-muted size-[18px] shrink-0"
             aria-hidden="true"
           />
           <span className="hidden truncate sm:inline">Pásame Exámenes</span>

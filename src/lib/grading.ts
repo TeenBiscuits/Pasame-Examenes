@@ -2,7 +2,7 @@ import type { Question } from "../data/types";
 
 export type QuestionResult = "correct" | "incorrect" | "pending" | undefined;
 
-export function getQuestionResult(
+function getQuestionResult(
   q: Question,
   answer: string | undefined,
 ): "correct" | "incorrect" | undefined {

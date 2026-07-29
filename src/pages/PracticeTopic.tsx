@@ -1,4 +1,11 @@
-import { useState, useCallback, useEffect, useMemo, useRef } from "react";
+import {
+  useState,
+  useReducer,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import { useParams, useNavigate } from "react-router";
 import { LangLink as Link } from "../lib/lang-link";
 import { useLangTo } from "../lib/useLangTo";
@@ -68,6 +75,21 @@ interface PracticePlayerProps {
 }
 
 type PracticeSubject = PracticePlayerProps["subject"];
+
+type HoveredPracticeControl =
+  "prev" | "next" | "clear" | "check" | "submit" | null;
+
+type PracticeHoverAction =
+  | { type: "enter"; control: Exclude<HoveredPracticeControl, null> }
+  | { type: "leave"; control: Exclude<HoveredPracticeControl, null> };
+
+function practiceHoverReducer(
+  state: HoveredPracticeControl,
+  action: PracticeHoverAction,
+): HoveredPracticeControl {
+  if (action.type === "enter") return action.control;
+  return state === action.control ? null : state;
+}
 
 interface PracticePlayerHeaderProps {
   subject: PracticeSubject;
@@ -295,11 +317,10 @@ function PracticeControls({
   arrowAnimateRef,
 }: PracticeControlsProps) {
   const t = useT();
-  const [hoverPrev, setHoverPrev] = useState(false);
-  const [hoverNext, setHoverNext] = useState(false);
-  const [hoverClear, setHoverClear] = useState(false);
-  const [hoverCheck, setHoverCheck] = useState(false);
-  const [hoverSubmit, setHoverSubmit] = useState(false);
+  const [hoveredControl, dispatchHover] = useReducer(
+    practiceHoverReducer,
+    null,
+  );
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
 
@@ -349,14 +370,14 @@ function PracticeControls({
         ref={prevBtnRef}
         data-cuelume-press
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-        onMouseEnter={() => setHoverPrev(true)}
-        onMouseLeave={() => setHoverPrev(false)}
+        onMouseEnter={() => dispatchHover({ type: "enter", control: "prev" })}
+        onMouseLeave={() => dispatchHover({ type: "leave", control: "prev" })}
         onClick={() => navigateQuestion("prev")}
         disabled={currentIndex === 0}
       >
         <AngleLeftSquare
           size={18}
-          weight={hoverPrev ? "Filled" : "Outline"}
+          weight={hoveredControl === "prev" ? "Filled" : "Outline"}
           aria-hidden="true"
           className="shrink-0"
         />
@@ -377,8 +398,12 @@ function PracticeControls({
                   <button
                     type="button"
                     className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-                    onMouseEnter={() => setHoverClear(true)}
-                    onMouseLeave={() => setHoverClear(false)}
+                    onMouseEnter={() =>
+                      dispatchHover({ type: "enter", control: "clear" })
+                    }
+                    onMouseLeave={() =>
+                      dispatchHover({ type: "leave", control: "clear" })
+                    }
                     onClick={() => {
                       triggerLight();
                       track("practice_clear_answer", {
@@ -391,7 +416,7 @@ function PracticeControls({
                   >
                     <Trash5
                       size={18}
-                      weight={hoverClear ? "Filled" : "Outline"}
+                      weight={hoveredControl === "clear" ? "Filled" : "Outline"}
                       aria-hidden="true"
                       className="shrink-0"
                     />
@@ -404,13 +429,17 @@ function PracticeControls({
                 type="button"
                 data-cuelume-press
                 className="flex min-w-0 items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-3 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95 sm:py-2"
-                onMouseEnter={() => setHoverCheck(true)}
-                onMouseLeave={() => setHoverCheck(false)}
+                onMouseEnter={() =>
+                  dispatchHover({ type: "enter", control: "check" })
+                }
+                onMouseLeave={() =>
+                  dispatchHover({ type: "leave", control: "check" })
+                }
                 onClick={() => onCheckQuestion(currentQuestion.id)}
               >
                 <Eye
                   size={18}
-                  weight={hoverCheck ? "Filled" : "Outline"}
+                  weight={hoveredControl === "check" ? "Filled" : "Outline"}
                   aria-hidden="true"
                   className="shrink-0"
                 />
@@ -425,8 +454,12 @@ function PracticeControls({
             type="button"
             data-cuelume-press
             className="bg-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-            onMouseEnter={() => setHoverSubmit(true)}
-            onMouseLeave={() => setHoverSubmit(false)}
+            onMouseEnter={() =>
+              dispatchHover({ type: "enter", control: "submit" })
+            }
+            onMouseLeave={() =>
+              dispatchHover({ type: "leave", control: "submit" })
+            }
             onClick={() => {
               onSubmit();
               scrollToHeader();
@@ -434,7 +467,7 @@ function PracticeControls({
           >
             <Send
               size={18}
-              weight={hoverSubmit ? "Filled" : "Outline"}
+              weight={hoveredControl === "submit" ? "Filled" : "Outline"}
               aria-hidden="true"
               className="shrink-0"
             />
@@ -449,8 +482,8 @@ function PracticeControls({
         ref={nextBtnRef}
         data-cuelume-press
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-        onMouseEnter={() => setHoverNext(true)}
-        onMouseLeave={() => setHoverNext(false)}
+        onMouseEnter={() => dispatchHover({ type: "enter", control: "next" })}
+        onMouseLeave={() => dispatchHover({ type: "leave", control: "next" })}
         onClick={() => navigateQuestion("next")}
         disabled={currentIndex === questions.length - 1}
       >
@@ -459,7 +492,7 @@ function PracticeControls({
         </span>
         <AngleRightSquare
           size={18}
-          weight={hoverNext ? "Filled" : "Outline"}
+          weight={hoveredControl === "next" ? "Filled" : "Outline"}
           aria-hidden="true"
           className="shrink-0"
         />

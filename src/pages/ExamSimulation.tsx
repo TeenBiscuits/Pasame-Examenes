@@ -156,7 +156,6 @@ interface ExamPlayerProps {
   selfGrades: Record<string, "correct" | "incorrect">;
   submitted: boolean;
   timeLeft: number;
-  timeUp: boolean;
   totalPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
@@ -164,6 +163,7 @@ interface ExamPlayerProps {
   showLeftFade: boolean;
   showRightFade: boolean;
   navRef: React.RefObject<HTMLDivElement | null>;
+  timeUpDialogRef: React.RefObject<HTMLDialogElement | null>;
   scrollToNav: (index: number) => void;
   onAnswer: (questionId: string, answer: string) => void;
   onSelfGrade: (questionId: string, grade: "correct" | "incorrect") => void;
@@ -739,13 +739,13 @@ function ExamPlayer({
   selfGrades,
   submitted,
   timeLeft,
-  timeUp,
   totalPoints,
   direction,
   setDirection,
   showLeftFade,
   showRightFade,
   navRef,
+  timeUpDialogRef,
   scrollToNav,
   onAnswer,
   onSelfGrade,
@@ -758,7 +758,6 @@ function ExamPlayer({
     (tp) => tp.key === currentQuestion.topic,
   );
   const submitDialogRef = useRef<HTMLDialogElement>(null);
-  const timeUpDialogRef = useRef<HTMLDialogElement>(null);
   const exitDialogRef = useRef<HTMLDialogElement>(null);
   const headerAnchorRef = useRef<HTMLDivElement>(null);
   const [scoreCompact, setScoreCompact] = useState(false);
@@ -792,12 +791,6 @@ function ExamPlayer({
       scrollToHeaderRef.current = () => {};
     };
   }, [scrollToHeaderRef, scrollToHeader]);
-
-  useEffect(() => {
-    if (timeUp && !submitted) {
-      timeUpDialogRef.current?.showModal();
-    }
-  }, [timeUp, submitted]);
 
   const getScore = () => {
     let score = 0;
@@ -1065,6 +1058,11 @@ export default function ExamSimulation() {
     enabled: !(subject && examInfo) || questionsLoaded,
   });
 
+  const timeUpDialogRef = useRef<HTMLDialogElement>(null);
+  const showTimeUpDialog = useCallback(() => {
+    timeUpDialogRef.current?.showModal();
+  }, []);
+
   const {
     currentIndex,
     setCurrentIndex,
@@ -1072,7 +1070,6 @@ export default function ExamSimulation() {
     selfGrades,
     submitted,
     timeLeft,
-    timeUp,
     started,
     handleAnswer,
     handleStart,
@@ -1084,6 +1081,7 @@ export default function ExamSimulation() {
     year || "",
     (examInfo?.durationMinutes || 120) * 60,
     t,
+    showTimeUpDialog,
   );
 
   const handleSubmitConfirm = useCallback(
@@ -1276,13 +1274,13 @@ export default function ExamSimulation() {
         selfGrades={selfGrades}
         submitted={submitted}
         timeLeft={timeLeft}
-        timeUp={timeUp}
         totalPoints={totalPoints}
         direction={direction}
         setDirection={setDirection}
         showLeftFade={showLeftFade}
         showRightFade={showRightFade}
         navRef={navRef}
+        timeUpDialogRef={timeUpDialogRef}
         scrollToNav={scrollToNav}
         onAnswer={handleAnswer}
         onSelfGrade={handleSelfGrade}

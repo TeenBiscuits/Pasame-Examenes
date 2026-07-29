@@ -83,6 +83,7 @@ export function useExamSession(
   year: string,
   initialTimeLeft: number,
   t: { exam: { submitConfirm: string } },
+  onTimeUp: () => void,
 ) {
   const [state, dispatch] = useReducer(reducer, {
     currentIndex: 0,
@@ -161,9 +162,12 @@ export function useExamSession(
   // Timer
   useEffect(() => {
     if (!state.started || state.submitted || timeUp) return;
-    const timer = setInterval(() => dispatch({ type: "TICK" }), 1000);
+    const timer = setInterval(() => {
+      if (state.timeLeft === 1) onTimeUp();
+      dispatch({ type: "TICK" });
+    }, 1000);
     return () => clearInterval(timer);
-  }, [state.started, state.submitted, timeUp]);
+  }, [state.started, state.submitted, state.timeLeft, timeUp, onTimeUp]);
 
   // Time up tracking
   useEffect(() => {
