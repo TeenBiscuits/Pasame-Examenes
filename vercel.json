@@ -54,66 +54,6 @@
         "destination": "/seo/en/cepe/practice/paralelismo-mpi.html"
     },
     {
-        "source": "/en/cepe/exam/2018-06",
-        "destination": "/seo/en/cepe/exam/2018-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2018-07",
-        "destination": "/seo/en/cepe/exam/2018-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2019-06",
-        "destination": "/seo/en/cepe/exam/2019-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2019-07",
-        "destination": "/seo/en/cepe/exam/2019-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2020-06",
-        "destination": "/seo/en/cepe/exam/2020-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2020-07",
-        "destination": "/seo/en/cepe/exam/2020-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2021-06",
-        "destination": "/seo/en/cepe/exam/2021-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2021-07",
-        "destination": "/seo/en/cepe/exam/2021-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2022-06",
-        "destination": "/seo/en/cepe/exam/2022-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2022-07",
-        "destination": "/seo/en/cepe/exam/2022-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2023-06",
-        "destination": "/seo/en/cepe/exam/2023-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2023-07",
-        "destination": "/seo/en/cepe/exam/2023-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2024-06",
-        "destination": "/seo/en/cepe/exam/2024-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2024-07",
-        "destination": "/seo/en/cepe/exam/2024-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2025-06",
-        "destination": "/seo/en/cepe/exam/2025-06.html"
-    },
-    {
         "source": "/en/cepe/exam/2025-07",
         "destination": "/seo/en/cepe/exam/2025-07.html"
     },
@@ -176,46 +116,6 @@
     {
         "source": "/en/ece/practice/raid",
         "destination": "/seo/en/ece/practice/raid.html"
-    },
-    {
-        "source": "/en/ece/exam/2021-01",
-        "destination": "/seo/en/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2021-07",
-        "destination": "/seo/en/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2022-01",
-        "destination": "/seo/en/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2022-07",
-        "destination": "/seo/en/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2023-01",
-        "destination": "/seo/en/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2023-07",
-        "destination": "/seo/en/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2024-01",
-        "destination": "/seo/en/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2024-07",
-        "destination": "/seo/en/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2025-01",
-        "destination": "/seo/en/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2025-07",
-        "destination": "/seo/en/ece/exam/2025-07.html"
     },
     {
         "source": "/en/ece/exam/2026-01",
@@ -538,66 +438,6 @@
         "destination": "/seo/es/cepe/practice/paralelismo-mpi.html"
     },
     {
-        "source": "/es/cepe/exam/2018-06",
-        "destination": "/seo/es/cepe/exam/2018-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2018-07",
-        "destination": "/seo/es/cepe/exam/2018-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2019-06",
-        "destination": "/seo/es/cepe/exam/2019-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2019-07",
-        "destination": "/seo/es/cepe/exam/2019-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2020-06",
-        "destination": "/seo/es/cepe/exam/2020-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2020-07",
-        "destination": "/seo/es/cepe/exam/2020-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2021-06",
-        "destination": "/seo/es/cepe/exam/2021-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2021-07",
-        "destination": "/seo/es/cepe/exam/2021-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2022-06",
-        "destination": "/seo/es/cepe/exam/2022-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2022-07",
-        "destination": "/seo/es/cepe/exam/2022-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2023-06",
-        "destination": "/seo/es/cepe/exam/2023-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2023-07",
-        "destination": "/seo/es/cepe/exam/2023-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2024-06",
-        "destination": "/seo/es/cepe/exam/2024-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2024-07",
-        "destination": "/seo/es/cepe/exam/2024-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2025-06",
-        "destination": "/seo/es/cepe/exam/2025-06.html"
-    },
-    {
         "source": "/es/cepe/exam/2025-07",
         "destination": "/seo/es/cepe/exam/2025-07.html"
     },
@@ -660,46 +500,6 @@
     {
         "source": "/es/ece/practice/raid",
         "destination": "/seo/es/ece/practice/raid.html"
-    },
-    {
-        "source": "/es/ece/exam/2021-01",
-        "destination": "/seo/es/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2021-07",
-        "destination": "/seo/es/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2022-01",
-        "destination": "/seo/es/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2022-07",
-        "destination": "/seo/es/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2023-01",
-        "destination": "/seo/es/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2023-07",
-        "destination": "/seo/es/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2024-01",
-        "destination": "/seo/es/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2024-07",
-        "destination": "/seo/es/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2025-01",
-        "destination": "/seo/es/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2025-07",
-        "destination": "/seo/es/ece/exam/2025-07.html"
     },
     {
         "source": "/es/ece/exam/2026-01",
@@ -1022,66 +822,6 @@
         "destination": "/seo/gl/cepe/practice/paralelismo-mpi.html"
     },
     {
-        "source": "/gl/cepe/exam/2018-06",
-        "destination": "/seo/gl/cepe/exam/2018-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2018-07",
-        "destination": "/seo/gl/cepe/exam/2018-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2019-06",
-        "destination": "/seo/gl/cepe/exam/2019-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2019-07",
-        "destination": "/seo/gl/cepe/exam/2019-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2020-06",
-        "destination": "/seo/gl/cepe/exam/2020-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2020-07",
-        "destination": "/seo/gl/cepe/exam/2020-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2021-06",
-        "destination": "/seo/gl/cepe/exam/2021-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2021-07",
-        "destination": "/seo/gl/cepe/exam/2021-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2022-06",
-        "destination": "/seo/gl/cepe/exam/2022-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2022-07",
-        "destination": "/seo/gl/cepe/exam/2022-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2023-06",
-        "destination": "/seo/gl/cepe/exam/2023-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2023-07",
-        "destination": "/seo/gl/cepe/exam/2023-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2024-06",
-        "destination": "/seo/gl/cepe/exam/2024-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2024-07",
-        "destination": "/seo/gl/cepe/exam/2024-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2025-06",
-        "destination": "/seo/gl/cepe/exam/2025-06.html"
-    },
-    {
         "source": "/gl/cepe/exam/2025-07",
         "destination": "/seo/gl/cepe/exam/2025-07.html"
     },
@@ -1144,46 +884,6 @@
     {
         "source": "/gl/ece/practice/raid",
         "destination": "/seo/gl/ece/practice/raid.html"
-    },
-    {
-        "source": "/gl/ece/exam/2021-01",
-        "destination": "/seo/gl/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2021-07",
-        "destination": "/seo/gl/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2022-01",
-        "destination": "/seo/gl/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2022-07",
-        "destination": "/seo/gl/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2023-01",
-        "destination": "/seo/gl/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2023-07",
-        "destination": "/seo/gl/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2024-01",
-        "destination": "/seo/gl/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2024-07",
-        "destination": "/seo/gl/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2025-01",
-        "destination": "/seo/gl/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2025-07",
-        "destination": "/seo/gl/ece/exam/2025-07.html"
     },
     {
         "source": "/gl/ece/exam/2026-01",
