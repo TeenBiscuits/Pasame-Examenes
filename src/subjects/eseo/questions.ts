@@ -616,19 +616,3 @@ Completar el siguiente cuadro indicando las credenciales reales y efectivas del 
 Hay dos aperturas, df1 en modo solo lectura, y df2 en modo lectura/escritura. Cuando la credencial efectiva es u2 se miran los permisos de propietario y cuando la credencial efectiva es u1 se miran los permisos de resto ya que no sabemos si u1 pertenece al grupo del fichero (no importaría los permisos de resto y de grupo son los mismos)`,
   },
 ];
-
-/* OCR 2024-07: dudas y compromisos
- *
- * - En P1 la respuesta visible es «65Kbloques+10»; se conserva literalmente,
- *   sin normalizarla al valor numérico 66570. También se conserva «1Kbyte».
- * - En P3 el OCR muestra código no compilable («struct stat buf, char c;»,
- *   literales con comillas simples y «rwxwxwxw»); se reproduce tal cual.
- * - En Q2 el OCR mantiene erratas del código («int df1; df2;» y «0_WRONLY»).
- *   Se conservan. Las filas 3 y 4 aparecen sin respuestas en el OCR; se
- *   representan como campos editables y se usa «---» para ausencia de salida,
- *   por analogía con la fila 1 y con la explicación impresa.
- * - En Q4 se conservan literalmente las respuestas visibles «no» y «si».
- * - En las tablas editables, las celdas fijas del OCR no contienen {{blank}};
- *   los correctAnswer de table-fill siguen el orden de cada fila y columna.
- * - No se han detectado otras dudas del OCR.
- */
