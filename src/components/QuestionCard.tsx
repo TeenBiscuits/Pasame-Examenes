@@ -28,41 +28,43 @@ function QuestionImage({
   alt,
   maxHeight,
 }: {
-  image: Picture | string;
+  image: Picture | string | (Picture | string)[];
   alt: string;
   maxHeight: "300px" | "400px";
 }) {
   const heightClass = maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
-  if (typeof image === "object") {
-    return (
-      <div className="border-border bg-surface flex max-w-full justify-center overflow-hidden rounded-lg border p-2">
-        <picture>
-          {Object.entries(image.sources).map(([format, srcset]) => (
-            <source key={format} srcSet={srcset} type={`image/${format}`} />
-          ))}
+  const images = Array.isArray(image) ? image : [image];
+
+  return (
+    <div className="border-border bg-surface flex max-w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-lg border p-2">
+      {images.map((source, index) =>
+        typeof source === "object" ? (
+          <picture key={index}>
+            {Object.entries(source.sources).map(([format, srcset]) => (
+              <source key={format} srcSet={srcset} type={`image/${format}`} />
+            ))}
+            <img
+              src={source.img.src}
+              alt={images.length > 1 ? `${alt} ${index + 1}` : alt}
+              width={source.img.w}
+              height={source.img.h}
+              style={{
+                aspectRatio: `${source.img.w} / ${source.img.h}`,
+              }}
+              className={`${heightClass} max-w-full object-contain`}
+              loading="lazy"
+            />
+          </picture>
+        ) : (
           <img
-            src={image.img.src}
-            alt={alt}
-            width={image.img.w}
-            height={image.img.h}
-            style={{
-              aspectRatio: `${image.img.w} / ${image.img.h}`,
-            }}
+            key={index}
+            src={source}
+            alt={images.length > 1 ? `${alt} ${index + 1}` : alt}
             className={`${heightClass} max-w-full object-contain`}
             loading="lazy"
           />
-        </picture>
-      </div>
-    );
-  }
-  return (
-    <div className="border-border bg-surface flex max-w-full justify-center overflow-hidden rounded-lg border p-2">
-      <img
-        src={image}
-        alt={alt}
-        className={`${heightClass} max-w-full object-contain`}
-        loading="lazy"
-      />
+        ),
+      )}
     </div>
   );
 }

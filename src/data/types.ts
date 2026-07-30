@@ -35,8 +35,8 @@ export interface Question {
    * @deprecated For text questions, use `correctAnswer` as the model solution instead.
    */
   explanation?: string;
-  image?: Picture | string;
-  explanationImage?: Picture | string;
+  image?: Picture | string | (Picture | string)[];
+  explanationImage?: Picture | string | (Picture | string)[];
   /** @deprecated Use markdown pipe tables inside `question` instead. */
   table?: QuestionTable;
   repeated?: boolean;
