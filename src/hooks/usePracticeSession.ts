@@ -4,6 +4,7 @@ import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
 import { playSuccess, playError } from "../lib/sound";
+import { getQuestionScore, isSelfGradedQuestion } from "../lib/grading";
 
 const getNow = () => Date.now();
 
@@ -56,35 +57,6 @@ function reducer(state: PracticeState, action: PracticeAction): PracticeState {
   }
 }
 
-function gradeQuestion(
-  question: Question,
-  answer: string,
-  selfGrade?: "correct" | "incorrect",
-): number {
-  if (question.type === "text") {
-    return selfGrade === "correct" ? question.points : 0;
-  }
-  if (!answer || answer.trim() === "") return 0;
-  if (question.type === "mc") {
-    return answer === question.correctAnswer ? question.points : 0;
-  }
-  if (question.type === "matching") {
-    try {
-      const user = JSON.parse(answer) as Record<string, string>;
-      const correct = question.correctAnswer as Record<string, string>;
-      const items = Object.keys(correct);
-      let correctCount = 0;
-      for (const item of items) {
-        if (user[item] === correct[item]) correctCount++;
-      }
-      return Math.round((correctCount / items.length) * question.points);
-    } catch {
-      return 0;
-    }
-  }
-  return 0;
-}
-
 export function usePracticeSession(
   questions: Question[],
   subjectId: string,
@@ -126,7 +98,7 @@ export function usePracticeSession(
     attemptIdRef.current = id;
     let score = 0;
     for (const q of questions) {
-      score += gradeQuestion(
+      score += getQuestionScore(
         q,
         state.answers[q.id] || "",
         state.selfGrades[q.id],
@@ -163,7 +135,11 @@ export function usePracticeSession(
       let score = 0;
       const nextGrades = { ...state.selfGrades, [questionId]: grade };
       for (const q of questions) {
-        score += gradeQuestion(q, state.answers[q.id] || "", nextGrades[q.id]);
+        score += getQuestionScore(
+          q,
+          state.answers[q.id] || "",
+          nextGrades[q.id],
+        );
       }
       saveAttempt(subjectId, {
         id: attemptIdRef.current || getNow().toString(),
@@ -184,11 +160,11 @@ export function usePracticeSession(
       const question = questions.find((q) => q.id === questionId);
       if (
         question &&
-        question.type !== "text" &&
+        !isSelfGradedQuestion(question) &&
         state.answers[questionId]?.trim()
       ) {
         const isCorrect =
-          gradeQuestion(question, state.answers[questionId]) ===
+          getQuestionScore(question, state.answers[questionId]) ===
           question.points;
         if (isCorrect) {
           playSuccess();

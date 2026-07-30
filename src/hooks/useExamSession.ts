@@ -2,6 +2,7 @@ import { useReducer, useCallback, useRef, useEffect } from "react";
 import type { Question } from "../data/types";
 import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
+import { getQuestionScore } from "../lib/grading";
 
 const getNow = () => Date.now();
 
@@ -46,35 +47,6 @@ function reducer(state: ExamState, action: ExamAction): ExamState {
     case "SET_TIME":
       return { ...state, timeLeft: action.timeLeft };
   }
-}
-
-function gradeQuestion(
-  question: Question,
-  answer: string,
-  selfGrade?: "correct" | "incorrect",
-): number {
-  if (question.type === "text") {
-    return selfGrade === "correct" ? question.points : 0;
-  }
-  if (!answer || answer.trim() === "") return 0;
-  if (question.type === "mc") {
-    return answer === question.correctAnswer ? question.points : 0;
-  }
-  if (question.type === "matching") {
-    try {
-      const user = JSON.parse(answer) as Record<string, string>;
-      const correct = question.correctAnswer as Record<string, string>;
-      const items = Object.keys(correct);
-      let correctCount = 0;
-      for (const item of items) {
-        if (user[item] === correct[item]) correctCount++;
-      }
-      return Math.round((correctCount / items.length) * question.points);
-    } catch {
-      return 0;
-    }
-  }
-  return 0;
 }
 
 export function useExamSession(
@@ -128,7 +100,7 @@ export function useExamSession(
       const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
       let score = 0;
       for (const q of questions) {
-        score += gradeQuestion(
+        score += getQuestionScore(
           q,
           state.answers[q.id] || "",
           state.selfGrades[q.id],

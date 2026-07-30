@@ -116,7 +116,7 @@ export default function SecretToro() {
         title="Toro de Osborne"
         onPointerEnter={handlePointerEnter}
         onClick={handleToroClick}
-        className="pointer-events-auto absolute bottom-5 left-0 h-7 w-9 cursor-pointer touch-none select-none rounded-full p-0 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none motion-reduce:transition-none"
+        className="focus-visible:ring-accent pointer-events-auto absolute bottom-5 left-0 h-7 w-9 cursor-pointer touch-none rounded-full p-0 select-none focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
       >
         <span
           aria-hidden="true"

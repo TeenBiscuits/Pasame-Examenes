@@ -7,7 +7,7 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/",
     "title": "Practice FIC Exam Questions | Pásame Exámenes",
-    "description": "Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.",
+    "description": "Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, matching, and fill-in-the-blank questions.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en",
     "ogImage": "https://pe.pablopl.dev/og.jpg",
@@ -32,7 +32,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"name\":\"Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/en\",\"inLanguage\":\"en\",\"description\":\"Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.\"},{\"@type\":\"WebPage\",\"name\":\"Practice FIC Exam Questions | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/en\",\"inLanguage\":\"en\",\"description\":\"Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"name\":\"Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/en\",\"inLanguage\":\"en\",\"description\":\"Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, matching, and fill-in-the-blank questions.\"},{\"@type\":\"WebPage\",\"name\":\"Practice FIC Exam Questions | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/en\",\"inLanguage\":\"en\",\"description\":\"Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, matching, and fill-in-the-blank questions.\"}]}"
   },
   {
     "url": "seo/en/bede.html",
@@ -2845,13 +2845,13 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/eseo",
     "title": "Sistemas Operativos: exams and solved questions",
-    "description": "Practice 119 Sistemas Operativos questions from 9 exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
+    "description": "Practice 10 Sistemas Operativos questions from 1 exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/eseo",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -2870,7 +2870,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistemas Operativos: exams and solved questions\",\"url\":\"https://pe.pablopl.dev/en/eseo\",\"inLanguage\":\"en\",\"description\":\"Practice 119 Sistemas Operativos questions from 9 exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"}],\"url\":\"https://pe.pablopl.dev/en/eseo\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistemas Operativos: exams and solved questions\",\"url\":\"https://pe.pablopl.dev/en/eseo\",\"inLanguage\":\"en\",\"description\":\"Practice 10 Sistemas Operativos questions from 1 exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"}],\"url\":\"https://pe.pablopl.dev/en/eseo\"}]}"
   },
   {
     "url": "seo/en/eseo/practice/sistema-ficheros.html",
@@ -2878,13 +2878,13 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/eseo/practice/sistema-ficheros",
     "title": "Sistema de Ficheros: Sistemas Operativos exam questions",
-    "description": "Practice 36 Sistema de Ficheros questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
+    "description": "Practice 4 Sistema de Ficheros questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/eseo/practice/sistema-ficheros",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -2903,7 +2903,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistema de Ficheros: Sistemas Operativos exam questions\",\"url\":\"https://pe.pablopl.dev/en/eseo/practice/sistema-ficheros\",\"inLanguage\":\"en\",\"description\":\"Practice 36 Sistema de Ficheros questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Sistema de Ficheros\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Sistema de Ficheros\",\"item\":\"https://pe.pablopl.dev/en/eseo/practice/sistema-ficheros\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/practice/sistema-ficheros\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistema de Ficheros: Sistemas Operativos exam questions\",\"url\":\"https://pe.pablopl.dev/en/eseo/practice/sistema-ficheros\",\"inLanguage\":\"en\",\"description\":\"Practice 4 Sistema de Ficheros questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Sistema de Ficheros\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Sistema de Ficheros\",\"item\":\"https://pe.pablopl.dev/en/eseo/practice/sistema-ficheros\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/practice/sistema-ficheros\"}]}"
   },
   {
     "url": "seo/en/eseo/practice/memoria.html",
@@ -2911,13 +2911,13 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/eseo/practice/memoria",
     "title": "Gestión de Memoria: Sistemas Operativos exam questions",
-    "description": "Practice 25 Gestión de Memoria questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
+    "description": "Practice 2 Gestión de Memoria questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/eseo/practice/memoria",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -2936,7 +2936,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/memoria"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Gestión de Memoria: Sistemas Operativos exam questions\",\"url\":\"https://pe.pablopl.dev/en/eseo/practice/memoria\",\"inLanguage\":\"en\",\"description\":\"Practice 25 Gestión de Memoria questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Gestión de Memoria\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Gestión de Memoria\",\"item\":\"https://pe.pablopl.dev/en/eseo/practice/memoria\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/practice/memoria\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Gestión de Memoria: Sistemas Operativos exam questions\",\"url\":\"https://pe.pablopl.dev/en/eseo/practice/memoria\",\"inLanguage\":\"en\",\"description\":\"Practice 2 Gestión de Memoria questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Gestión de Memoria\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Gestión de Memoria\",\"item\":\"https://pe.pablopl.dev/en/eseo/practice/memoria\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/practice/memoria\"}]}"
   },
   {
     "url": "seo/en/eseo/practice/procesos.html",
@@ -2944,13 +2944,13 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/eseo/practice/procesos",
     "title": "Procesos e Hilos: Sistemas Operativos exam questions",
-    "description": "Practice 30 Procesos e Hilos questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
+    "description": "Practice 3 Procesos e Hilos questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/eseo/practice/procesos",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -2969,7 +2969,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/procesos"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Procesos e Hilos: Sistemas Operativos exam questions\",\"url\":\"https://pe.pablopl.dev/en/eseo/practice/procesos\",\"inLanguage\":\"en\",\"description\":\"Practice 30 Procesos e Hilos questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Procesos e Hilos\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Procesos e Hilos\",\"item\":\"https://pe.pablopl.dev/en/eseo/practice/procesos\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/practice/procesos\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Procesos e Hilos: Sistemas Operativos exam questions\",\"url\":\"https://pe.pablopl.dev/en/eseo/practice/procesos\",\"inLanguage\":\"en\",\"description\":\"Practice 3 Procesos e Hilos questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Procesos e Hilos\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Procesos e Hilos\",\"item\":\"https://pe.pablopl.dev/en/eseo/practice/procesos\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/practice/procesos\"}]}"
   },
   {
     "url": "seo/en/eseo/practice/entrada-salida.html",
@@ -2977,13 +2977,13 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/eseo/practice/entrada-salida",
     "title": "Entrada/Salida: Sistemas Operativos exam questions",
-    "description": "Practice 28 Entrada/Salida questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
+    "description": "Practice 1 Entrada/Salida questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/eseo/practice/entrada-salida",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -3002,271 +3002,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/entrada-salida"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Entrada/Salida: Sistemas Operativos exam questions\",\"url\":\"https://pe.pablopl.dev/en/eseo/practice/entrada-salida\",\"inLanguage\":\"en\",\"description\":\"Practice 28 Entrada/Salida questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Entrada/Salida\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Entrada/Salida\",\"item\":\"https://pe.pablopl.dev/en/eseo/practice/entrada-salida\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/practice/entrada-salida\"}]}"
-  },
-  {
-    "url": "seo/en/eseo/exam/2020-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "en",
-    "pathWithoutLang": "/eseo/exam/2020-01",
-    "title": "Enero 2020 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Enero 2020 Sistemas Operativos exam with 12 questions. 100 points, 165 minutes, model answers and self-grading.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2020-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "en_US",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2020-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2020-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2020-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2020-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2020 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2020-01\",\"inLanguage\":\"en\",\"description\":\"Simulate the Enero 2020 Sistemas Operativos exam with 12 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2020\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2020-01\"}]}"
-  },
-  {
-    "url": "seo/en/eseo/exam/2021-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "en",
-    "pathWithoutLang": "/eseo/exam/2021-01",
-    "title": "Enero 2021 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Enero 2021 Sistemas Operativos exam with 14 questions. 100 points, 165 minutes, model answers and self-grading.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2021-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "en_US",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2021-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2021-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2021 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2021-01\",\"inLanguage\":\"en\",\"description\":\"Simulate the Enero 2021 Sistemas Operativos exam with 14 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2021\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2021-01\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2021-01\"}]}"
-  },
-  {
-    "url": "seo/en/eseo/exam/2021-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "en",
-    "pathWithoutLang": "/eseo/exam/2021-07",
-    "title": "Julio 2021 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Julio 2021 Sistemas Operativos exam with 16 questions. 100 points, 165 minutes, model answers and self-grading.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2021-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "en_US",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2021-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2021-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2021 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2021-07\",\"inLanguage\":\"en\",\"description\":\"Simulate the Julio 2021 Sistemas Operativos exam with 16 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2021\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2021-07\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2021-07\"}]}"
-  },
-  {
-    "url": "seo/en/eseo/exam/2022-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "en",
-    "pathWithoutLang": "/eseo/exam/2022-01",
-    "title": "Enero 2022 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Enero 2022 Sistemas Operativos exam with 13 questions. 100 points, 165 minutes, model answers and self-grading.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2022-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "en_US",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2022-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2022-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2022 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2022-01\",\"inLanguage\":\"en\",\"description\":\"Simulate the Enero 2022 Sistemas Operativos exam with 13 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2022\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2022-01\"}]}"
-  },
-  {
-    "url": "seo/en/eseo/exam/2022-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "en",
-    "pathWithoutLang": "/eseo/exam/2022-07",
-    "title": "Julio 2022 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Julio 2022 Sistemas Operativos exam with 16 questions. 100 points, 165 minutes, model answers and self-grading.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2022-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "en_US",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2022-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2022-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2022 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2022-07\",\"inLanguage\":\"en\",\"description\":\"Simulate the Julio 2022 Sistemas Operativos exam with 16 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2022\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2022-07\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2022-07\"}]}"
-  },
-  {
-    "url": "seo/en/eseo/exam/2023-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "en",
-    "pathWithoutLang": "/eseo/exam/2023-01",
-    "title": "Enero 2023 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Enero 2023 Sistemas Operativos exam with 14 questions. 100 points, 165 minutes, model answers and self-grading.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2023-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "en_US",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2023-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2023-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2023 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2023-01\",\"inLanguage\":\"en\",\"description\":\"Simulate the Enero 2023 Sistemas Operativos exam with 14 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2023\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2023-01\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2023-01\"}]}"
-  },
-  {
-    "url": "seo/en/eseo/exam/2023-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "en",
-    "pathWithoutLang": "/eseo/exam/2023-07",
-    "title": "Julio 2023 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Julio 2023 Sistemas Operativos exam with 13 questions. 100 points, 165 minutes, model answers and self-grading.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2023-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "en_US",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2023-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2023-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2023 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2023-07\",\"inLanguage\":\"en\",\"description\":\"Simulate the Julio 2023 Sistemas Operativos exam with 13 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2023\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2023-07\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2023-07\"}]}"
-  },
-  {
-    "url": "seo/en/eseo/exam/2024-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "en",
-    "pathWithoutLang": "/eseo/exam/2024-01",
-    "title": "Enero 2024 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Enero 2024 Sistemas Operativos exam with 11 questions. 100 points, 165 minutes, model answers and self-grading.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2024-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "en_US",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2024-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2024-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2024-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2024-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2024 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2024-01\",\"inLanguage\":\"en\",\"description\":\"Simulate the Enero 2024 Sistemas Operativos exam with 11 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2024\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2024-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Entrada/Salida: Sistemas Operativos exam questions\",\"url\":\"https://pe.pablopl.dev/en/eseo/practice/entrada-salida\",\"inLanguage\":\"en\",\"description\":\"Practice 1 Entrada/Salida questions from Sistemas Operativos exams with model answers and self-grading. 202318, Grao en Enxeñaría informática, Year 2.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Entrada/Salida\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Entrada/Salida\",\"item\":\"https://pe.pablopl.dev/en/eseo/practice/entrada-salida\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/practice/entrada-salida\"}]}"
   },
   {
     "url": "seo/en/eseo/exam/2024-07.html",
@@ -3274,13 +3010,13 @@ export const pages = [
     "lang": "en",
     "pathWithoutLang": "/eseo/exam/2024-07",
     "title": "Julio 2024 Sistemas Operativos: exam simulator",
-    "description": "Simulate the Julio 2024 Sistemas Operativos exam with 10 questions. 100 points, 165 minutes, model answers and self-grading.",
+    "description": "Simulate the Julio 2024 Sistemas Operativos exam with 10 questions. 7.25 points, 165 minutes, model answers and self-grading.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/en/eseo/exam/2024-07",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "en_US",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -3299,7 +3035,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/exam/2024-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2024 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2024-07\",\"inLanguage\":\"en\",\"description\":\"Simulate the Julio 2024 Sistemas Operativos exam with 10 questions. 100 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2024\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2024-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2024 Sistemas Operativos: exam simulator\",\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2024-07\",\"inLanguage\":\"en\",\"description\":\"Simulate the Julio 2024 Sistemas Operativos exam with 10 questions. 7.25 points, 165 minutes, model answers and self-grading.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/en\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/en/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2024\",\"item\":\"https://pe.pablopl.dev/en/eseo/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/en/eseo/exam/2024-07\"}]}"
   },
   {
     "url": "seo/en/iesede.html",
@@ -7102,13 +6838,13 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/eseo",
     "title": "Sistemas Operativos: exámenes y preguntas resueltas",
-    "description": "Practica 119 preguntas de Sistemas Operativos de 9 exámenes con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 10 preguntas de Sistemas Operativos de 1 exámenes con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/eseo",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -7127,7 +6863,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistemas Operativos: exámenes y preguntas resueltas\",\"url\":\"https://pe.pablopl.dev/es/eseo\",\"inLanguage\":\"es\",\"description\":\"Practica 119 preguntas de Sistemas Operativos de 9 exámenes con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"}],\"url\":\"https://pe.pablopl.dev/es/eseo\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistemas Operativos: exámenes y preguntas resueltas\",\"url\":\"https://pe.pablopl.dev/es/eseo\",\"inLanguage\":\"es\",\"description\":\"Practica 10 preguntas de Sistemas Operativos de 1 exámenes con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"}],\"url\":\"https://pe.pablopl.dev/es/eseo\"}]}"
   },
   {
     "url": "seo/es/eseo/practice/sistema-ficheros.html",
@@ -7135,13 +6871,13 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/eseo/practice/sistema-ficheros",
     "title": "Sistema de Ficheros: preguntas de Sistemas Operativos",
-    "description": "Practica 36 preguntas de Sistema de Ficheros de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 4 preguntas de Sistema de Ficheros de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -7160,7 +6896,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistema de Ficheros: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros\",\"inLanguage\":\"es\",\"description\":\"Practica 36 preguntas de Sistema de Ficheros de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Sistema de Ficheros\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Sistema de Ficheros\",\"item\":\"https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistema de Ficheros: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros\",\"inLanguage\":\"es\",\"description\":\"Practica 4 preguntas de Sistema de Ficheros de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Sistema de Ficheros\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Sistema de Ficheros\",\"item\":\"https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros\"}]}"
   },
   {
     "url": "seo/es/eseo/practice/memoria.html",
@@ -7168,13 +6904,13 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/eseo/practice/memoria",
     "title": "Gestión de Memoria: preguntas de Sistemas Operativos",
-    "description": "Practica 25 preguntas de Gestión de Memoria de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 2 preguntas de Gestión de Memoria de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/eseo/practice/memoria",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -7193,7 +6929,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/memoria"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Gestión de Memoria: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/es/eseo/practice/memoria\",\"inLanguage\":\"es\",\"description\":\"Practica 25 preguntas de Gestión de Memoria de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Gestión de Memoria\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Gestión de Memoria\",\"item\":\"https://pe.pablopl.dev/es/eseo/practice/memoria\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/practice/memoria\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Gestión de Memoria: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/es/eseo/practice/memoria\",\"inLanguage\":\"es\",\"description\":\"Practica 2 preguntas de Gestión de Memoria de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Gestión de Memoria\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Gestión de Memoria\",\"item\":\"https://pe.pablopl.dev/es/eseo/practice/memoria\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/practice/memoria\"}]}"
   },
   {
     "url": "seo/es/eseo/practice/procesos.html",
@@ -7201,13 +6937,13 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/eseo/practice/procesos",
     "title": "Procesos e Hilos: preguntas de Sistemas Operativos",
-    "description": "Practica 30 preguntas de Procesos e Hilos de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 3 preguntas de Procesos e Hilos de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/eseo/practice/procesos",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -7226,7 +6962,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/procesos"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Procesos e Hilos: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/es/eseo/practice/procesos\",\"inLanguage\":\"es\",\"description\":\"Practica 30 preguntas de Procesos e Hilos de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Procesos e Hilos\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Procesos e Hilos\",\"item\":\"https://pe.pablopl.dev/es/eseo/practice/procesos\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/practice/procesos\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Procesos e Hilos: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/es/eseo/practice/procesos\",\"inLanguage\":\"es\",\"description\":\"Practica 3 preguntas de Procesos e Hilos de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Procesos e Hilos\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Procesos e Hilos\",\"item\":\"https://pe.pablopl.dev/es/eseo/practice/procesos\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/practice/procesos\"}]}"
   },
   {
     "url": "seo/es/eseo/practice/entrada-salida.html",
@@ -7234,13 +6970,13 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/eseo/practice/entrada-salida",
     "title": "Entrada/Salida: preguntas de Sistemas Operativos",
-    "description": "Practica 28 preguntas de Entrada/Salida de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 1 preguntas de Entrada/Salida de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/eseo/practice/entrada-salida",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -7259,271 +6995,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/entrada-salida"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Entrada/Salida: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/es/eseo/practice/entrada-salida\",\"inLanguage\":\"es\",\"description\":\"Practica 28 preguntas de Entrada/Salida de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Entrada/Salida\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Entrada/Salida\",\"item\":\"https://pe.pablopl.dev/es/eseo/practice/entrada-salida\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/practice/entrada-salida\"}]}"
-  },
-  {
-    "url": "seo/es/eseo/exam/2020-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "es",
-    "pathWithoutLang": "/eseo/exam/2020-01",
-    "title": "Enero 2020 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Enero 2020 de Sistemas Operativos con 12 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2020-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "es_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2020-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2020-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2020-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2020-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2020 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2020-01\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Enero 2020 de Sistemas Operativos con 12 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2020\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2020-01\"}]}"
-  },
-  {
-    "url": "seo/es/eseo/exam/2021-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "es",
-    "pathWithoutLang": "/eseo/exam/2021-01",
-    "title": "Enero 2021 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Enero 2021 de Sistemas Operativos con 14 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2021-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "es_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2021-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2021-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2021 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2021-01\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Enero 2021 de Sistemas Operativos con 14 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2021\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2021-01\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2021-01\"}]}"
-  },
-  {
-    "url": "seo/es/eseo/exam/2021-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "es",
-    "pathWithoutLang": "/eseo/exam/2021-07",
-    "title": "Julio 2021 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Julio 2021 de Sistemas Operativos con 16 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2021-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "es_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2021-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2021-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2021 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2021-07\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Julio 2021 de Sistemas Operativos con 16 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2021\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2021-07\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2021-07\"}]}"
-  },
-  {
-    "url": "seo/es/eseo/exam/2022-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "es",
-    "pathWithoutLang": "/eseo/exam/2022-01",
-    "title": "Enero 2022 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Enero 2022 de Sistemas Operativos con 13 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2022-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "es_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2022-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2022-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2022 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2022-01\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Enero 2022 de Sistemas Operativos con 13 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2022\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2022-01\"}]}"
-  },
-  {
-    "url": "seo/es/eseo/exam/2022-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "es",
-    "pathWithoutLang": "/eseo/exam/2022-07",
-    "title": "Julio 2022 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Julio 2022 de Sistemas Operativos con 16 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2022-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "es_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2022-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2022-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2022 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2022-07\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Julio 2022 de Sistemas Operativos con 16 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2022\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2022-07\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2022-07\"}]}"
-  },
-  {
-    "url": "seo/es/eseo/exam/2023-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "es",
-    "pathWithoutLang": "/eseo/exam/2023-01",
-    "title": "Enero 2023 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Enero 2023 de Sistemas Operativos con 14 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2023-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "es_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2023-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2023-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2023 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2023-01\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Enero 2023 de Sistemas Operativos con 14 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2023\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2023-01\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2023-01\"}]}"
-  },
-  {
-    "url": "seo/es/eseo/exam/2023-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "es",
-    "pathWithoutLang": "/eseo/exam/2023-07",
-    "title": "Julio 2023 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Julio 2023 de Sistemas Operativos con 13 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2023-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "es_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2023-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2023-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2023 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2023-07\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Julio 2023 de Sistemas Operativos con 13 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2023\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2023-07\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2023-07\"}]}"
-  },
-  {
-    "url": "seo/es/eseo/exam/2024-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "es",
-    "pathWithoutLang": "/eseo/exam/2024-01",
-    "title": "Enero 2024 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Enero 2024 de Sistemas Operativos con 11 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2024-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "es_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2024-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2024-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2024-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2024-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2024 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2024-01\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Enero 2024 de Sistemas Operativos con 11 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2024\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2024-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Entrada/Salida: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/es/eseo/practice/entrada-salida\",\"inLanguage\":\"es\",\"description\":\"Practica 1 preguntas de Entrada/Salida de exámenes de Sistemas Operativos, con respuestas modelo y autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Entrada/Salida\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Entrada/Salida\",\"item\":\"https://pe.pablopl.dev/es/eseo/practice/entrada-salida\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/practice/entrada-salida\"}]}"
   },
   {
     "url": "seo/es/eseo/exam/2024-07.html",
@@ -7531,13 +7003,13 @@ export const pages = [
     "lang": "es",
     "pathWithoutLang": "/eseo/exam/2024-07",
     "title": "Julio 2024 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula el examen Julio 2024 de Sistemas Operativos con 10 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.",
+    "description": "Simula el examen Julio 2024 de Sistemas Operativos con 10 preguntas. 7.25 puntos, 165 minutos, respuestas modelo y autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/es/eseo/exam/2024-07",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "es_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -7556,7 +7028,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/exam/2024-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2024 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2024-07\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Julio 2024 de Sistemas Operativos con 10 preguntas. 100 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2024\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2024-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2024 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2024-07\",\"inLanguage\":\"es\",\"description\":\"Simula el examen Julio 2024 de Sistemas Operativos con 10 preguntas. 7.25 puntos, 165 minutos, respuestas modelo y autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/es\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/es/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2024\",\"item\":\"https://pe.pablopl.dev/es/eseo/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/es/eseo/exam/2024-07\"}]}"
   },
   {
     "url": "seo/es/iesede.html",
@@ -11359,13 +10831,13 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/eseo",
     "title": "Sistemas Operativos: exames e preguntas resoltas",
-    "description": "Practica 119 preguntas de Sistemas Operativos de 9 exames con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 10 preguntas de Sistemas Operativos de 1 exames con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/eseo",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -11384,7 +10856,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistemas Operativos: exames e preguntas resoltas\",\"url\":\"https://pe.pablopl.dev/gl/eseo\",\"inLanguage\":\"gl\",\"description\":\"Practica 119 preguntas de Sistemas Operativos de 9 exames con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistemas Operativos: exames e preguntas resoltas\",\"url\":\"https://pe.pablopl.dev/gl/eseo\",\"inLanguage\":\"gl\",\"description\":\"Practica 10 preguntas de Sistemas Operativos de 1 exames con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo\"}]}"
   },
   {
     "url": "seo/gl/eseo/practice/sistema-ficheros.html",
@@ -11392,13 +10864,13 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/eseo/practice/sistema-ficheros",
     "title": "Sistema de Ficheros: preguntas de Sistemas Operativos",
-    "description": "Practica 36 preguntas de Sistema de Ficheros de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 4 preguntas de Sistema de Ficheros de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/practice/sistema-ficheros",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -11417,7 +10889,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/sistema-ficheros"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistema de Ficheros: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/sistema-ficheros\",\"inLanguage\":\"gl\",\"description\":\"Practica 36 preguntas de Sistema de Ficheros de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Sistema de Ficheros\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Sistema de Ficheros\",\"item\":\"https://pe.pablopl.dev/gl/eseo/practice/sistema-ficheros\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/sistema-ficheros\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Sistema de Ficheros: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/sistema-ficheros\",\"inLanguage\":\"gl\",\"description\":\"Practica 4 preguntas de Sistema de Ficheros de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Sistema de Ficheros\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Sistema de Ficheros\",\"item\":\"https://pe.pablopl.dev/gl/eseo/practice/sistema-ficheros\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/sistema-ficheros\"}]}"
   },
   {
     "url": "seo/gl/eseo/practice/memoria.html",
@@ -11425,13 +10897,13 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/eseo/practice/memoria",
     "title": "Gestión de Memoria: preguntas de Sistemas Operativos",
-    "description": "Practica 25 preguntas de Gestión de Memoria de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 2 preguntas de Gestión de Memoria de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/practice/memoria",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -11450,7 +10922,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/memoria"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Gestión de Memoria: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/memoria\",\"inLanguage\":\"gl\",\"description\":\"Practica 25 preguntas de Gestión de Memoria de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Gestión de Memoria\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Gestión de Memoria\",\"item\":\"https://pe.pablopl.dev/gl/eseo/practice/memoria\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/memoria\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Gestión de Memoria: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/memoria\",\"inLanguage\":\"gl\",\"description\":\"Practica 2 preguntas de Gestión de Memoria de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Gestión de Memoria\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Gestión de Memoria\",\"item\":\"https://pe.pablopl.dev/gl/eseo/practice/memoria\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/memoria\"}]}"
   },
   {
     "url": "seo/gl/eseo/practice/procesos.html",
@@ -11458,13 +10930,13 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/eseo/practice/procesos",
     "title": "Procesos e Hilos: preguntas de Sistemas Operativos",
-    "description": "Practica 30 preguntas de Procesos e Hilos de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 3 preguntas de Procesos e Hilos de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/practice/procesos",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -11483,7 +10955,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/procesos"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Procesos e Hilos: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/procesos\",\"inLanguage\":\"gl\",\"description\":\"Practica 30 preguntas de Procesos e Hilos de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Procesos e Hilos\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Procesos e Hilos\",\"item\":\"https://pe.pablopl.dev/gl/eseo/practice/procesos\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/procesos\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Procesos e Hilos: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/procesos\",\"inLanguage\":\"gl\",\"description\":\"Practica 3 preguntas de Procesos e Hilos de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Procesos e Hilos\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Procesos e Hilos\",\"item\":\"https://pe.pablopl.dev/gl/eseo/practice/procesos\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/procesos\"}]}"
   },
   {
     "url": "seo/gl/eseo/practice/entrada-salida.html",
@@ -11491,13 +10963,13 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/eseo/practice/entrada-salida",
     "title": "Entrada/Salida: preguntas de Sistemas Operativos",
-    "description": "Practica 28 preguntas de Entrada/Salida de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
+    "description": "Practica 1 preguntas de Entrada/Salida de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/practice/entrada-salida",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -11516,271 +10988,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/practice/entrada-salida"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Entrada/Salida: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/entrada-salida\",\"inLanguage\":\"gl\",\"description\":\"Practica 28 preguntas de Entrada/Salida de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Entrada/Salida\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Entrada/Salida\",\"item\":\"https://pe.pablopl.dev/gl/eseo/practice/entrada-salida\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/entrada-salida\"}]}"
-  },
-  {
-    "url": "seo/gl/eseo/exam/2020-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "gl",
-    "pathWithoutLang": "/eseo/exam/2020-01",
-    "title": "Enero 2020 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Enero 2020 de Sistemas Operativos con 12 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2020-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "gl_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2020-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2020-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2020-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2020-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2020 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2020-01\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Enero 2020 de Sistemas Operativos con 12 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2020\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2020-01\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2020-01\"}]}"
-  },
-  {
-    "url": "seo/gl/eseo/exam/2021-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "gl",
-    "pathWithoutLang": "/eseo/exam/2021-01",
-    "title": "Enero 2021 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Enero 2021 de Sistemas Operativos con 14 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2021-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "gl_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2021-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2021-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2021 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2021-01\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Enero 2021 de Sistemas Operativos con 14 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2021\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2021-01\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2021-01\"}]}"
-  },
-  {
-    "url": "seo/gl/eseo/exam/2021-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "gl",
-    "pathWithoutLang": "/eseo/exam/2021-07",
-    "title": "Julio 2021 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Julio 2021 de Sistemas Operativos con 16 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2021-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "gl_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2021-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2021-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2021-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2021 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2021-07\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Julio 2021 de Sistemas Operativos con 16 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2021\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2021-07\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2021-07\"}]}"
-  },
-  {
-    "url": "seo/gl/eseo/exam/2022-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "gl",
-    "pathWithoutLang": "/eseo/exam/2022-01",
-    "title": "Enero 2022 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Enero 2022 de Sistemas Operativos con 13 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2022-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "gl_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2022-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2022-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2022 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2022-01\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Enero 2022 de Sistemas Operativos con 13 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2022\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2022-01\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2022-01\"}]}"
-  },
-  {
-    "url": "seo/gl/eseo/exam/2022-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "gl",
-    "pathWithoutLang": "/eseo/exam/2022-07",
-    "title": "Julio 2022 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Julio 2022 de Sistemas Operativos con 16 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2022-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "gl_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2022-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2022-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2022-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2022 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2022-07\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Julio 2022 de Sistemas Operativos con 16 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2022\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2022-07\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2022-07\"}]}"
-  },
-  {
-    "url": "seo/gl/eseo/exam/2023-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "gl",
-    "pathWithoutLang": "/eseo/exam/2023-01",
-    "title": "Enero 2023 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Enero 2023 de Sistemas Operativos con 14 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2023-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "gl_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2023-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2023-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2023 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2023-01\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Enero 2023 de Sistemas Operativos con 14 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2023\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2023-01\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2023-01\"}]}"
-  },
-  {
-    "url": "seo/gl/eseo/exam/2023-07.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "gl",
-    "pathWithoutLang": "/eseo/exam/2023-07",
-    "title": "Julio 2023 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Julio 2023 de Sistemas Operativos con 13 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2023-07",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "gl_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2023-07"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-07"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2023-07"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2023-07"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2023 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2023-07\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Julio 2023 de Sistemas Operativos con 13 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2023\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2023-07\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2023-07\"}]}"
-  },
-  {
-    "url": "seo/gl/eseo/exam/2024-01.html",
-    "bundleEntryPoint": "/src/main.tsx",
-    "lang": "gl",
-    "pathWithoutLang": "/eseo/exam/2024-01",
-    "title": "Enero 2024 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Enero 2024 de Sistemas Operativos con 11 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
-    "siteName": "Pásame Exámenes",
-    "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2024-01",
-    "ogImage": "https://pe.pablopl.dev/og/eseo.png",
-    "ogImageType": "image/png",
-    "locale": "gl_ES",
-    "lastmod": "2026-07-25",
-    "alternates": [
-      {
-        "lang": "en",
-        "href": "https://pe.pablopl.dev/en/eseo/exam/2024-01"
-      },
-      {
-        "lang": "es",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2024-01"
-      },
-      {
-        "lang": "gl",
-        "href": "https://pe.pablopl.dev/gl/eseo/exam/2024-01"
-      },
-      {
-        "lang": "x-default",
-        "href": "https://pe.pablopl.dev/es/eseo/exam/2024-01"
-      }
-    ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Enero 2024 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-01\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Enero 2024 de Sistemas Operativos con 11 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Enero 2024\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-01\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-01\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"name\":\"Entrada/Salida: preguntas de Sistemas Operativos\",\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/entrada-salida\",\"inLanguage\":\"gl\",\"description\":\"Practica 1 preguntas de Entrada/Salida de exames de Sistemas Operativos, con respostas modelo e autocorrección. 202318, Grao en Enxeñaría informática, 2º curso.\",\"about\":[{\"@type\":\"Thing\",\"name\":\"Entrada/Salida\"},{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}]},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Entrada/Salida\",\"item\":\"https://pe.pablopl.dev/gl/eseo/practice/entrada-salida\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/practice/entrada-salida\"}]}"
   },
   {
     "url": "seo/gl/eseo/exam/2024-07.html",
@@ -11788,13 +10996,13 @@ export const pages = [
     "lang": "gl",
     "pathWithoutLang": "/eseo/exam/2024-07",
     "title": "Julio 2024 de Sistemas Operativos: simulador | Pásame Exámenes",
-    "description": "Simula o exame Julio 2024 de Sistemas Operativos con 10 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.",
+    "description": "Simula o exame Julio 2024 de Sistemas Operativos con 10 preguntas. 7.25 puntos, 165 minutos, respostas modelo e autocorrección.",
     "siteName": "Pásame Exámenes",
     "canonicalUrl": "https://pe.pablopl.dev/gl/eseo/exam/2024-07",
     "ogImage": "https://pe.pablopl.dev/og/eseo.png",
     "ogImageType": "image/png",
     "locale": "gl_ES",
-    "lastmod": "2026-07-25",
+    "lastmod": "2026-07-29",
     "alternates": [
       {
         "lang": "en",
@@ -11813,7 +11021,7 @@ export const pages = [
         "href": "https://pe.pablopl.dev/es/eseo/exam/2024-07"
       }
     ],
-    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2024 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-07\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Julio 2024 de Sistemas Operativos con 10 preguntas. 100 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2024\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-07\"}]}"
+    "jsonLd": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"name\":\"Julio 2024 de Sistemas Operativos: simulador | Pásame Exámenes\",\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-07\",\"inLanguage\":\"gl\",\"description\":\"Simula o exame Julio 2024 de Sistemas Operativos con 10 preguntas. 7.25 puntos, 165 minutos, respostas modelo e autocorrección.\",\"about\":{\"@type\":\"Course\",\"name\":\"Sistemas Operativos\",\"courseCode\":\"202318\"}},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Pásame Exámenes\",\"item\":\"https://pe.pablopl.dev/gl\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sistemas Operativos\",\"item\":\"https://pe.pablopl.dev/gl/eseo\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Julio 2024\",\"item\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-07\"}],\"url\":\"https://pe.pablopl.dev/gl/eseo/exam/2024-07\"}]}"
   },
   {
     "url": "seo/gl/iesede.html",
