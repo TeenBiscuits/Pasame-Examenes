@@ -27,6 +27,7 @@ dist-ssr
 public/sitemap.xml
 public/subjects-meta.json
 public/og
+src/seo/pageMetaMap.generated.ts
 
 # Env
 .env
