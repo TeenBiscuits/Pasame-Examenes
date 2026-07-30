@@ -121,6 +121,8 @@ Exporta un array `Question[]`. Tipos de pregunta:
 - **`mc`** — Opción múltiple. `correctAnswer` es una letra `"a"`–`"e"`. Requiere `options[]`. Corrección automática.
 - **`text`** — Respuesta libre. `correctAnswer` es la solución modelo. Auto-evaluada por el usuario; `explanation` puede añadir notas extra.
 - **`matching`** — Emparejar conceptos (incluye verdadero/falso con `"V"`/`"F"`). `correctAnswer` es un `Record<string, string>`. Corrección automática.
+- **`fill`** — Una o varias frases con huecos. `fillStatements` contiene las frases y cada `{{blank}}` se sustituye por un campo; `correctAnswer` es un `string[]` con las respuestas en orden. Una coincidencia exacta ignorando mayúsculas se corrige automáticamente; en otro caso se muestra la solución y el usuario autoevalúa la respuesta. `development` puede añadir un desarrollo desplegable tras mostrar el resultado.
+- **`table-fill`** — Una tabla con huecos en sus celdas. `tableFill` contiene `headers` y `rows`; cada `{{blank}}` se sustituye por un campo y `correctAnswer` es un `string[]` en orden fila por fila. Sigue la misma corrección automática por coincidencia exacta y autoevaluación alternativa que `fill`; `development` puede añadir un desarrollo desplegable tras mostrar el resultado.
 
 ```ts
 import type { Question } from "../../data/types";
@@ -172,16 +174,18 @@ Campos obligatorios de cada pregunta: `id`, `exam`, `topic`, `type`, `points`, `
 
 Los recuentos de preguntas y puntos que muestra la interfaz se calculan desde `questions.ts`. No añadas un campo `description` al examen para repetir esos datos.
 
-Campos opcionales: `explanation`, `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`) y `repeated`.
+Campos opcionales: `development`, `explanation`, `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`) y `repeated`.
+
+- `development` — desarrollo matemático o razonamiento paso a paso en Markdown. Se muestra en un panel desplegable después de mostrar el resultado de preguntas `fill` y `table-fill`.
 
 - `explanation` — nota explicativa mostrada al abrir soluciones. En `mc` y `matching`, si se omite y no hay `explanationImage`, no aparece el botón "Abrir soluciones". En `text`, la solución modelo sale de `correctAnswer` y `explanation` solo añade contexto extra.
 
 - `repeated?: boolean` — por defecto `false`. Marca como `true` cuando la pregunta ya apareció en un examen anterior de forma igual o similar. Solo es una etiqueta visual para avisar al usuario.
 
-**Bloques de código:** Los campos de texto (`question`, `explanation`, `correctAnswer`, `subquestions`, `options` y celdas de tabla) soportan formato markdown:
+**Bloques de código:** Los campos de texto (`question`, `development`, `explanation`, `correctAnswer`, `subquestions`, `options` y celdas de tabla) soportan formato markdown:
 
 - `` `código inline` `` — se renderiza como `<code>` con fuente monoespaciada y texto rosa sobre fondo gris.
-- ` ``` ` bloques de código — se renderizan como un bloque de código oscuro. Funciona en `question`, `explanation` y `correctAnswer`.
+- ` ``` ` bloques de código — se renderizan como un bloque de código oscuro. Funciona en `question`, `development`, `explanation` y `correctAnswer`.
 
 Ejemplo:
 
