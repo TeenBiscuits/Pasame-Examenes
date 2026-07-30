@@ -1076,8 +1076,8 @@ The solution image should appear after opening the explanation.`,
     points: 5,
     question: "Complete the calculation:",
     fillStatements: [
-      { label: "a)", text: "$2 + 2 = {{blank}}$" },
-      { label: "b)", text: "$3 \\times 4 = {{blank}}$" },
+      { label: "a)", text: "$2 + 2 =$ {{blank}}" },
+      { label: "b)", text: "$3 \\times 4 =$ {{blank}}" },
     ],
     correctAnswer: ["4", "12"],
     development: `$$
