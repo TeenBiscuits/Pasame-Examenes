@@ -947,6 +947,7 @@ function ExamPlayer({
         subjectId={subject.id}
         questionId={currentQuestion.id}
         questionType={currentQuestion.type}
+        exam={examInfo}
       />
 
       <ExamDialogs

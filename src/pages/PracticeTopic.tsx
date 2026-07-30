@@ -562,12 +562,12 @@ function PracticePlayer({
     };
   }, [scrollToHeaderRef, scrollToHeader]);
 
-  const examDate = useMemo(() => {
-    const exam = currentQuestion
+  const currentExam = useMemo(() => {
+    return currentQuestion
       ? subject.exams.find((e) => e.year === currentQuestion.exam)
       : undefined;
-    return exam?.date || exam?.title;
   }, [subject, currentQuestion]);
+  const examDate = currentExam?.date || currentExam?.title;
 
   const questionResults = useMemo(
     () =>
@@ -730,6 +730,7 @@ function PracticePlayer({
         subjectId={subject.id}
         questionId={currentQuestion.id}
         questionType={currentQuestion.type}
+        exam={currentExam}
       />
     </div>
   );

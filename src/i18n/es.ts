@@ -428,8 +428,9 @@ export const es: Translations = {
   disclaimer: {
     text: "Las preguntas han sido extraídas de los materiales de referencia por procesos automatizados y podrían contener errores. Si encuentra algún error no dude en",
     reportLink: "Reportar la pregunta",
-    postLinkText:
-      ". En algunos casos puede revisar el material original directamente desde la web.",
+    postLinkText: ".",
+    originalMaterialPrefix: "Puede revisar el",
+    originalMaterialLink: "material original",
   },
   seo: {
     siteName: "Pásame Exámenes",

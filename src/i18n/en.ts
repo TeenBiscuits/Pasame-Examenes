@@ -424,8 +424,9 @@ export const en = {
   disclaimer: {
     text: "Questions have been extracted from reference materials through automated processes and may contain errors. If you find an error, please",
     reportLink: "Report the question",
-    postLinkText:
-      ". In some cases you can review the original material directly from the website.",
+    postLinkText: ".",
+    originalMaterialPrefix: "You can review the",
+    originalMaterialLink: "original material",
   },
   seo: {
     siteName: "Pásame Exámenes",
