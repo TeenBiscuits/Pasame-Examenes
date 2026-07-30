@@ -32,7 +32,12 @@ import {
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
-import { computeQuestionResults } from "../lib/grading";
+import {
+  computeQuestionResults,
+  getQuestionScore,
+  isAutomaticallyCorrect,
+  isSelfGradedQuestion,
+} from "../lib/grading";
 import ScoreProgress from "../components/ScoreProgress";
 import {
   AngleLeftSquare,
@@ -580,11 +585,12 @@ function PracticePlayer({
     () =>
       questions.filter(
         (q) =>
-          q.type === "text" &&
+          isSelfGradedQuestion(q) &&
+          !isAutomaticallyCorrect(q, answers[q.id]) &&
           (checkedQuestions[q.id] || submitted) &&
           !selfGrades[q.id],
       ).length,
-    [questions, checkedQuestions, selfGrades, submitted],
+    [questions, answers, checkedQuestions, selfGrades, submitted],
   );
 
   const pendingTextPoints = useMemo(
@@ -592,43 +598,24 @@ function PracticePlayer({
       questions
         .filter(
           (q) =>
-            q.type === "text" &&
+            isSelfGradedQuestion(q) &&
+            !isAutomaticallyCorrect(q, answers[q.id]) &&
             (checkedQuestions[q.id] || submitted) &&
             !selfGrades[q.id],
         )
         .reduce((sum, q) => sum + q.points, 0),
-    [questions, checkedQuestions, selfGrades, submitted],
+    [questions, answers, checkedQuestions, selfGrades, submitted],
   );
 
   const allTextGraded =
-    questions.filter((q) => q.type === "text").length === 0 ||
+    questions.filter(isSelfGradedQuestion).length === 0 ||
     pendingTextCount === 0;
 
   const getScore = (onlyGraded = false) => {
     let score = 0;
     for (const q of questions) {
-      if (q.type === "text") {
-        if (selfGrades[q.id] === "correct") score += q.points;
-        continue;
-      }
       if (onlyGraded && !submitted && !checkedQuestions[q.id]) continue;
-      if (!answers[q.id] || answers[q.id].trim() === "") continue;
-      if (q.type === "mc") {
-        if (answers[q.id] === q.correctAnswer) score += q.points;
-      } else if (q.type === "matching") {
-        try {
-          const user = JSON.parse(answers[q.id]) as Record<string, string>;
-          const correct = q.correctAnswer as Record<string, string>;
-          const items = Object.keys(correct);
-          let correctCount = 0;
-          for (const item of items) {
-            if (user[item] === correct[item]) correctCount++;
-          }
-          score += Math.round((correctCount / items.length) * q.points);
-        } catch {
-          /* skip */
-        }
-      }
+      score += getQuestionScore(q, answers[q.id], selfGrades[q.id]);
     }
     return roundPoints(score);
   };

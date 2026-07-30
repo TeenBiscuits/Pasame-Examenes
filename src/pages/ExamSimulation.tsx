@@ -22,7 +22,12 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
-import { computeQuestionResults } from "../lib/grading";
+import {
+  computeQuestionResults,
+  getQuestionScore,
+  isAutomaticallyCorrect,
+  isSelfGradedQuestion,
+} from "../lib/grading";
 import ScoreProgress from "../components/ScoreProgress";
 import {
   Alarm,
@@ -32,6 +37,7 @@ import {
   Exit,
   Send,
   Trophy,
+  Bulb,
 } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckmarkBadge02Icon } from "@hugeicons/core-free-icons";
@@ -60,10 +66,13 @@ function ExamStartScreen({
   onStart,
 }: ExamStartScreenProps) {
   const t = useT();
-  const simulationNote = hasAuthorizedExamContent(subject)
+  const isAuthorized = hasAuthorizedExamContent(subject);
+  const simulationNote = isAuthorized
     ? t.exam.simulationNote
     : t.exam.practiceNote;
-  const isAuthorized = hasAuthorizedExamContent(subject);
+  const scoringNote = isAuthorized
+    ? t.exam.simulationScoringNote
+    : t.exam.practiceScoringNote;
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-2xl px-4 py-6 sm:py-16">
       <div className="mb-3 sm:mb-4">
@@ -128,9 +137,13 @@ function ExamStartScreen({
             </p>
           </div>
         </div>
-        <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800 sm:p-4">
+        <div className="border-t-amber-border bg-t-amber-bg text-t-amber-fg flex items-start gap-2 rounded-lg border p-3 text-sm sm:p-4">
           <Alarm size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
           {simulationNote}
+        </div>
+        <div className="border-contribute-border bg-contribute-bg text-contribute-fg flex items-start gap-2 rounded-lg border p-3 text-sm sm:p-4">
+          <Bulb size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
+          {scoringNote}
         </div>
         <button
           type="button"
@@ -795,27 +808,7 @@ function ExamPlayer({
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
-      if (q.type === "text") {
-        if (selfGrades[q.id] === "correct") score += q.points;
-        continue;
-      }
-      if (!answers[q.id] || answers[q.id].trim() === "") continue;
-      if (q.type === "mc") {
-        if (answers[q.id] === q.correctAnswer) score += q.points;
-      } else if (q.type === "matching") {
-        try {
-          const user = JSON.parse(answers[q.id]) as Record<string, string>;
-          const correct = q.correctAnswer as Record<string, string>;
-          const items = Object.keys(correct);
-          let correctCount = 0;
-          for (const item of items) {
-            if (user[item] === correct[item]) correctCount++;
-          }
-          score += Math.round((correctCount / items.length) * q.points);
-        } catch {
-          /* skip */
-        }
-      }
+      score += getQuestionScore(q, answers[q.id], selfGrades[q.id]);
     }
     return roundPoints(score);
   };
@@ -830,17 +823,27 @@ function ExamPlayer({
   const pendingTextCount = useMemo(
     () =>
       questions.filter(
-        (q) => q.type === "text" && submitted && !selfGrades[q.id],
+        (q) =>
+          isSelfGradedQuestion(q) &&
+          !isAutomaticallyCorrect(q, answers[q.id]) &&
+          submitted &&
+          !selfGrades[q.id],
       ).length,
-    [questions, selfGrades, submitted],
+    [questions, answers, selfGrades, submitted],
   );
 
   const pendingTextPoints = useMemo(
     () =>
       questions
-        .filter((q) => q.type === "text" && submitted && !selfGrades[q.id])
+        .filter(
+          (q) =>
+            isSelfGradedQuestion(q) &&
+            !isAutomaticallyCorrect(q, answers[q.id]) &&
+            submitted &&
+            !selfGrades[q.id],
+        )
         .reduce((sum, q) => sum + q.points, 0),
-    [questions, selfGrades, submitted],
+    [questions, answers, selfGrades, submitted],
   );
   const hasScoreSummary = submitted;
 

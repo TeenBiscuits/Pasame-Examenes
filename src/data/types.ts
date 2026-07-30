@@ -1,6 +1,11 @@
 import type { Picture } from "vite-imagetools";
 
-export type QuestionType = "mc" | "text" | "matching";
+export type QuestionType = "mc" | "text" | "matching" | "fill" | "table-fill";
+
+export interface FillStatement {
+  label?: string;
+  text: string;
+}
 
 export interface QuestionTable {
   headers: string[];
@@ -19,6 +24,12 @@ export interface Question {
   subquestions?: string[];
   options?: string[];
   correctAnswer: string | string[] | Record<string, string>;
+  /** Sentences for `fill` questions. Use `{{blank}}` for each input. */
+  fillStatements?: FillStatement[];
+  /** Table cells for `table-fill` questions. Use `{{blank}}` for each input. */
+  tableFill?: QuestionTable;
+  /** Optional worked solution shown in a collapsible panel for fill questions. */
+  development?: string;
   /**
    * For mc/matching: an extra note shown in the solution panel.
    * @deprecated For text questions, use `correctAnswer` as the model solution instead.

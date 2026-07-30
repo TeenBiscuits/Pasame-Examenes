@@ -3,6 +3,7 @@ import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { Markdown, InlineMarkdown } from "../lib/markdown";
+import { isAutomaticallyCorrect, isFillAnswerCorrect } from "../lib/grading";
 import { track } from "../lib/umami";
 import { formatPoints } from "../lib/points";
 import {
@@ -113,6 +114,72 @@ function buildReportUrl(
 
 const solutionPanelClass =
   "bg-surface border-border -mx-4 space-y-3 border-y px-4 py-4 sm:-mx-6 sm:px-6";
+
+function DevelopmentDisclosure({
+  development,
+  questionId,
+  subjectId,
+  topicKey,
+  examYear,
+  mode,
+}: {
+  development: string;
+  questionId: string;
+  subjectId: string;
+  topicKey?: string;
+  examYear?: string;
+  mode?: "practice" | "exam";
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const t = useT();
+
+  return (
+    <div className="mt-3 space-y-3">
+      <button
+        type="button"
+        data-cuelume-press
+        className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+        onClick={() => {
+          triggerLight();
+          const next = !isOpen;
+          track("solution_toggle", {
+            questionId,
+            action: next ? "open" : "close",
+            panel: "development",
+            subjectId,
+            topic: topicKey,
+            exam: examYear,
+            mode,
+          });
+          setIsOpen(next);
+        }}
+      >
+        <BookOpen size={16} aria-hidden="true" />
+        {isOpen
+          ? t.questionCard.closeDevelopment
+          : t.questionCard.openDevelopment}
+      </button>
+      {isOpen && (
+        <div className={solutionPanelClass}>
+          <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
+            {t.questionCard.development}
+          </h4>
+          <Markdown className="text-fg-secondary font-sans text-xs">
+            {development}
+          </Markdown>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function getFillInputWidth(answer: string): "w-16" | "w-24" | "w-36" | "w-52" {
+  const length = answer.trim().length;
+  if (length <= 4) return "w-16";
+  if (length <= 9) return "w-24";
+  if (length <= 18) return "w-36";
+  return "w-52";
+}
 
 function MCQuestion({
   question,
@@ -435,6 +502,374 @@ function TextQuestion({
   );
 }
 
+function FillQuestion({
+  question,
+  onAnswer,
+  savedAnswer,
+  showResult,
+  selfGrade,
+  onSelfGrade,
+  subjectId,
+  topicKey,
+  examYear,
+  mode,
+}: QuestionCardProps) {
+  const t = useT();
+  const statements = question.fillStatements || [];
+  const correctAnswers = question.correctAnswer as string[];
+  const automaticallyCorrect = isAutomaticallyCorrect(question, savedAnswer);
+  let answers: string[] = [];
+  if (savedAnswer) {
+    try {
+      const parsed = JSON.parse(savedAnswer);
+      if (Array.isArray(parsed)) answers = parsed;
+    } catch {
+      answers = [];
+    }
+  }
+
+  let blankIndex = 0;
+  return (
+    <div className="space-y-3">
+      {statements.map((statement, statementIndex) => {
+        const parts = statement.text.split("{{blank}}");
+        return (
+          <div
+            key={`${question.id}-fill-${statementIndex}`}
+            className="text-fg-secondary flex items-baseline gap-2 text-sm leading-relaxed"
+          >
+            {statement.label && (
+              <span className="text-fg-muted shrink-0 font-semibold">
+                {statement.label}
+              </span>
+            )}
+            <span>
+              {parts.map((part, partIndex) => {
+                const currentBlankIndex = blankIndex;
+                const hasBlankAfter = partIndex < parts.length - 1;
+                if (hasBlankAfter) blankIndex++;
+                return (
+                  <span
+                    key={`${question.id}-fill-part-${statementIndex}-${partIndex}`}
+                  >
+                    <InlineMarkdown>{part}</InlineMarkdown>
+                    {hasBlankAfter && (
+                      <>
+                        <label
+                          htmlFor={`${question.id}-blank-${currentBlankIndex}`}
+                          className="sr-only"
+                        >
+                          {statement.label || `${statementIndex + 1}`}{" "}
+                          {currentBlankIndex + 1}
+                        </label>
+                        <input
+                          id={`${question.id}-blank-${currentBlankIndex}`}
+                          name={`${question.id}-blank-${currentBlankIndex}`}
+                          type="text"
+                          autoComplete="off"
+                          enterKeyHint="next"
+                          value={answers[currentBlankIndex] || ""}
+                          onChange={(event) => {
+                            const next = [...answers];
+                            next[currentBlankIndex] = event.target.value;
+                            onAnswer(question.id, JSON.stringify(next));
+                            track("question_answer", {
+                              questionId: question.id,
+                              type: "fill",
+                              blank: currentBlankIndex,
+                              subjectId,
+                              topic: topicKey,
+                              exam: examYear,
+                              mode,
+                            });
+                          }}
+                          disabled={!!showResult}
+                          className={`mx-1 inline-block min-h-8 ${getFillInputWidth(correctAnswers[currentBlankIndex] || "")} focus-visible:ring-accent max-w-[min(100%,13rem)] rounded-md border-2 px-1.5 py-0.5 align-middle text-sm transition-colors transition-shadow duration-200 focus-visible:ring-2 focus-visible:outline-none ${
+                            showResult
+                              ? isFillAnswerCorrect(
+                                  savedAnswer,
+                                  correctAnswers[currentBlankIndex] || "",
+                                  currentBlankIndex,
+                                )
+                                ? "border-correct-border bg-correct-bg text-correct-fg"
+                                : "border-contribute-border bg-contribute-bg text-contribute-fg"
+                              : "border-border bg-surface"
+                          }`}
+                        />
+                        {showResult && (
+                          <span className="text-fg-muted text-xs">
+                            ({t.questionCard.modelSolution}:{" "}
+                            {correctAnswers[currentBlankIndex]})
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </span>
+                );
+              })}
+            </span>
+          </div>
+        );
+      })}
+      {showResult && onSelfGrade && !automaticallyCorrect && (
+        <div className="border-border mt-3 border-t pt-2">
+          <p className="text-fg-secondary mb-2 text-xs font-semibold">
+            {t.questionCard.gradeAnswer}
+          </p>
+          <div className="flex gap-2 *:flex-1">
+            <button
+              type="button"
+              data-cuelume-press
+              onClick={() => {
+                triggerSuccess();
+                playSuccess();
+                onSelfGrade(question.id, "correct");
+              }}
+              className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                selfGrade === "correct"
+                  ? "bg-correct-bg border-correct-border text-correct-fg"
+                  : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
+              }`}
+            >
+              <CheckSquare
+                size={14}
+                weight={selfGrade === "correct" ? "Filled" : "Outline"}
+                aria-hidden="true"
+              />
+              {t.questionCard.correct}
+            </button>
+            <button
+              type="button"
+              data-cuelume-press
+              onClick={() => {
+                triggerError();
+                playError();
+                onSelfGrade(question.id, "incorrect");
+              }}
+              className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                selfGrade === "incorrect"
+                  ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
+                  : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
+              }`}
+            >
+              <XSquare
+                size={14}
+                weight={selfGrade === "incorrect" ? "Filled" : "Outline"}
+                aria-hidden="true"
+              />
+              {t.questionCard.incorrect}
+            </button>
+          </div>
+        </div>
+      )}
+      {showResult && question.development && (
+        <DevelopmentDisclosure
+          development={question.development}
+          questionId={question.id}
+          subjectId={subjectId}
+          topicKey={topicKey}
+          examYear={examYear}
+          mode={mode}
+        />
+      )}
+    </div>
+  );
+}
+
+function TableFillQuestion({
+  question,
+  onAnswer,
+  savedAnswer,
+  showResult,
+  selfGrade,
+  onSelfGrade,
+  subjectId,
+  topicKey,
+  examYear,
+  mode,
+}: QuestionCardProps) {
+  const t = useT();
+  const table = question.tableFill;
+  const correctAnswers = question.correctAnswer as string[];
+  const automaticallyCorrect = isAutomaticallyCorrect(question, savedAnswer);
+  let answers: string[] = [];
+  if (savedAnswer) {
+    try {
+      const parsed = JSON.parse(savedAnswer);
+      if (Array.isArray(parsed)) answers = parsed;
+    } catch {
+      answers = [];
+    }
+  }
+
+  if (!table) return null;
+
+  let blankIndex = 0;
+  return (
+    <div className="space-y-3">
+      <div className="border-border overflow-x-auto rounded-lg border">
+        <table className="divide-border min-w-full divide-y text-sm">
+          <thead className="bg-surface">
+            <tr>
+              {table.headers.map((header, index) => (
+                <th
+                  key={`${question.id}-table-fill-header-${index}`}
+                  scope="col"
+                  className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
+                >
+                  <InlineMarkdown>{header}</InlineMarkdown>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-border bg-surface-alt divide-y">
+            {table.rows.map((row, rowIndex) => (
+              <tr key={`${question.id}-table-fill-row-${rowIndex}`}>
+                {row.map((cell, columnIndex) => {
+                  const parts = cell.split("{{blank}}");
+                  return (
+                    <td
+                      key={`${question.id}-table-fill-cell-${rowIndex}-${columnIndex}`}
+                      className="text-fg-secondary px-4 py-2 align-middle"
+                    >
+                      {parts.map((part, partIndex) => {
+                        const currentBlankIndex = blankIndex;
+                        const hasBlankAfter = partIndex < parts.length - 1;
+                        if (hasBlankAfter) blankIndex++;
+                        return (
+                          <span
+                            key={`${question.id}-table-fill-part-${rowIndex}-${columnIndex}-${partIndex}`}
+                          >
+                            <InlineMarkdown>{part}</InlineMarkdown>
+                            {hasBlankAfter && (
+                              <>
+                                <label
+                                  htmlFor={`${question.id}-table-blank-${currentBlankIndex}`}
+                                  className="sr-only"
+                                >
+                                  {rowIndex + 1}-{columnIndex + 1} blank{" "}
+                                  {currentBlankIndex + 1}
+                                </label>
+                                <input
+                                  id={`${question.id}-table-blank-${currentBlankIndex}`}
+                                  name={`${question.id}-table-blank-${currentBlankIndex}`}
+                                  type="text"
+                                  autoComplete="off"
+                                  enterKeyHint="next"
+                                  value={answers[currentBlankIndex] || ""}
+                                  onChange={(event) => {
+                                    const next = [...answers];
+                                    next[currentBlankIndex] =
+                                      event.target.value;
+                                    onAnswer(question.id, JSON.stringify(next));
+                                    track("question_answer", {
+                                      questionId: question.id,
+                                      type: "table-fill",
+                                      blank: currentBlankIndex,
+                                      subjectId,
+                                      topic: topicKey,
+                                      exam: examYear,
+                                      mode,
+                                    });
+                                  }}
+                                  disabled={!!showResult}
+                                  className={`mx-1 inline-block min-h-8 ${getFillInputWidth(correctAnswers[currentBlankIndex] || "")} focus-visible:ring-accent max-w-[min(100%,13rem)] rounded-md border-2 px-1.5 py-0.5 align-middle text-sm transition-colors transition-shadow duration-200 focus-visible:ring-2 focus-visible:outline-none ${
+                                    showResult
+                                      ? isFillAnswerCorrect(
+                                          savedAnswer,
+                                          correctAnswers[currentBlankIndex] ||
+                                            "",
+                                          currentBlankIndex,
+                                        )
+                                        ? "border-correct-border bg-correct-bg text-correct-fg"
+                                        : "border-contribute-border bg-contribute-bg text-contribute-fg"
+                                      : "border-border bg-surface"
+                                  }`}
+                                />
+                                {showResult && (
+                                  <span className="text-fg-muted text-xs">
+                                    ({t.questionCard.modelSolution}:{" "}
+                                    {correctAnswers[currentBlankIndex]})
+                                  </span>
+                                )}
+                              </>
+                            )}
+                          </span>
+                        );
+                      })}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {showResult && onSelfGrade && !automaticallyCorrect && (
+        <div className="border-border mt-3 border-t pt-2">
+          <p className="text-fg-secondary mb-2 text-xs font-semibold">
+            {t.questionCard.gradeAnswer}
+          </p>
+          <div className="flex gap-2 *:flex-1">
+            <button
+              type="button"
+              data-cuelume-press
+              onClick={() => {
+                triggerSuccess();
+                playSuccess();
+                onSelfGrade(question.id, "correct");
+              }}
+              className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                selfGrade === "correct"
+                  ? "bg-correct-bg border-correct-border text-correct-fg"
+                  : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
+              }`}
+            >
+              <CheckSquare
+                size={14}
+                weight={selfGrade === "correct" ? "Filled" : "Outline"}
+                aria-hidden="true"
+              />
+              {t.questionCard.correct}
+            </button>
+            <button
+              type="button"
+              data-cuelume-press
+              onClick={() => {
+                triggerError();
+                playError();
+                onSelfGrade(question.id, "incorrect");
+              }}
+              className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                selfGrade === "incorrect"
+                  ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
+                  : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
+              }`}
+            >
+              <XSquare
+                size={14}
+                weight={selfGrade === "incorrect" ? "Filled" : "Outline"}
+                aria-hidden="true"
+              />
+              {t.questionCard.incorrect}
+            </button>
+          </div>
+        </div>
+      )}
+      {showResult && question.development && (
+        <DevelopmentDisclosure
+          development={question.development}
+          questionId={question.id}
+          subjectId={subjectId}
+          topicKey={topicKey}
+          examYear={examYear}
+          mode={mode}
+        />
+      )}
+    </div>
+  );
+}
+
 function MatchingQuestion({
   question,
   onAnswer,
@@ -492,7 +927,7 @@ function MatchingQuestion({
                 const chosen = userAnswer === letter;
                 const real = correctAnswer[item] === letter;
                 let cls =
-                  "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
+                  "w-9 h-9 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
                 if (showResult && real) {
                   cls += " bg-correct-bg border-correct-border text-correct-fg";
                 } else if (showResult && chosen && !real) {
@@ -707,6 +1142,10 @@ export default function QuestionCard(props: QuestionCardProps) {
         />
       )}
       {question.type === "text" && <TextQuestion {...questionProps} />}
+      {question.type === "fill" && <FillQuestion {...questionProps} />}
+      {question.type === "table-fill" && (
+        <TableFillQuestion {...questionProps} />
+      )}
       {question.type === "matching" && (
         <MatchingQuestion
           key={`match-${question.id}-${questionProps.savedAnswer || ""}`}
