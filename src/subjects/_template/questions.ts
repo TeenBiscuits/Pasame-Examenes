@@ -1065,6 +1065,54 @@ The solution image should appear after opening the explanation.`,
 | text | B. Model solution text |
 | matching | C. Record of pairs |`,
   },
+  // === Fill in the blanks ===
+  // Use one `{{blank}}` per input. Answers are stored in statement order.
+  // `development` is optional and appears in a collapsible panel after checking.
+  {
+    id: "question-types_q4",
+    exam: "question-types",
+    topic: "question-types",
+    type: "fill",
+    points: 5,
+    question: "Complete the calculation:",
+    fillStatements: [
+      { label: "a)", text: "$2 + 2 = {{blank}}$" },
+      { label: "b)", text: "$3 \\times 4 = {{blank}}$" },
+    ],
+    correctAnswer: ["4", "12"],
+    development: `$$
+2 + 2 = 4
+$$
+
+$$
+3 \\times 4 = 12
+$$`,
+  },
+  // === Fill in a table ===
+  // Table answers follow row order, then column order, considering only blanks.
+  {
+    id: "question-types_q5",
+    exam: "question-types",
+    topic: "question-types",
+    type: "table-fill",
+    points: 5,
+    question: "Complete the results in the table:",
+    tableFill: {
+      headers: ["Expression", "Result"],
+      rows: [
+        ["$5 + 3$", "{{blank}}"],
+        ["$6 \\times 2$", "{{blank}}"],
+      ],
+    },
+    correctAnswer: ["8", "12"],
+    development: `$$
+5 + 3 = 8
+$$
+
+$$
+6 \\times 2 = 12
+$$`,
+  },
 ];
 
 void questions;
