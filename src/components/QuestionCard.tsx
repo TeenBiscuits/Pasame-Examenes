@@ -28,6 +28,10 @@ import {
   XSquare,
 } from "reicon-react";
 
+function defaultLabel(index: number) {
+  return `${String.fromCharCode(97 + index)})`;
+}
+
 function QuestionImage({
   image,
   alt,
@@ -44,7 +48,7 @@ function QuestionImage({
     <div className="border-border bg-surface flex max-w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-lg border p-2">
       {images.map((source, index) =>
         typeof source === "object" ? (
-          <picture key={index}>
+          <picture key={source.img.src}>
             {Object.entries(source.sources).map(([format, srcset]) => (
               <source key={format} srcSet={srcset} type={`image/${format}`} />
             ))}
@@ -62,7 +66,7 @@ function QuestionImage({
           </picture>
         ) : (
           <img
-            key={index}
+            key={source}
             src={source}
             alt={images.length > 1 ? `${alt} ${index + 1}` : alt}
             className={`${heightClass} max-w-full object-contain`}
@@ -544,9 +548,6 @@ function MultipleTextQuestion({
       answers = [];
     }
   }
-
-  const defaultLabel = (index: number) =>
-    `${String.fromCharCode(97 + index)})`;
 
   return (
     <div className="space-y-4">
