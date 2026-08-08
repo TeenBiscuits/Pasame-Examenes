@@ -24,8 +24,10 @@ import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
 import {
   computeQuestionResults,
+  getPendingSelfGradePoints,
   getQuestionScore,
   isAutomaticallyCorrect,
+  isFullySelfGraded,
   isSelfGradedQuestion,
 } from "../lib/grading";
 import ScoreProgress from "../components/ScoreProgress";
@@ -808,7 +810,7 @@ function ExamPlayer({
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
-      score += getQuestionScore(q, answers[q.id], selfGrades[q.id]);
+      score += getQuestionScore(q, answers[q.id], selfGrades);
     }
     return roundPoints(score);
   };
@@ -827,7 +829,7 @@ function ExamPlayer({
           isSelfGradedQuestion(q) &&
           !isAutomaticallyCorrect(q, answers[q.id]) &&
           submitted &&
-          !selfGrades[q.id],
+          !isFullySelfGraded(q, selfGrades),
       ).length,
     [questions, answers, selfGrades, submitted],
   );
@@ -839,10 +841,9 @@ function ExamPlayer({
           (q) =>
             isSelfGradedQuestion(q) &&
             !isAutomaticallyCorrect(q, answers[q.id]) &&
-            submitted &&
-            !selfGrades[q.id],
+            submitted,
         )
-        .reduce((sum, q) => sum + q.points, 0),
+        .reduce((sum, q) => sum + getPendingSelfGradePoints(q, selfGrades), 0),
     [questions, answers, selfGrades, submitted],
   );
   const hasScoreSummary = submitted;
@@ -924,6 +925,7 @@ function ExamPlayer({
           savedAnswer={answers[currentQuestion.id]}
           showResult={submitted}
           selfGrade={selfGrades[currentQuestion.id]}
+          selfGrades={selfGrades}
           onSelfGrade={onSelfGrade}
           direction={direction}
         />

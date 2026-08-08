@@ -1,10 +1,25 @@
 import type { Picture } from "vite-imagetools";
 
-export type QuestionType = "mc" | "text" | "matching" | "fill" | "table-fill";
+export type QuestionType =
+  | "mc"
+  | "text"
+  | "multiple-text"
+  | "matching"
+  | "fill"
+  | "table-fill";
 
 export interface FillStatement {
   label?: string;
   text: string;
+}
+
+export interface TextPart {
+  /** Part label shown before the text, e.g. "a)". Defaults to a), b), c)... */
+  label?: string;
+  /** The subquestion statement. */
+  text: string;
+  /** Optional points awarded for this part. */
+  points?: number;
 }
 
 export interface QuestionTable {
@@ -26,6 +41,8 @@ export interface Question {
   correctAnswer: string | string[] | Record<string, string>;
   /** Sentences for `fill` questions. Use `{{blank}}` for each input. */
   fillStatements?: FillStatement[];
+  /** Subquestions for `multiple-text` questions, one input per part. */
+  textParts?: TextPart[];
   /** Table cells for `table-fill` questions. Use `{{blank}}` for each input. */
   tableFill?: QuestionTable;
   /** Optional worked solution shown in a collapsible panel for fill questions. */

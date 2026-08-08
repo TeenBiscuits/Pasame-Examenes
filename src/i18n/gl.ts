@@ -318,6 +318,7 @@ export const gl: Translations = {
     questionTypes: {
       mc: "Tipo test (mc)",
       text: "Texto aberto (text)",
+      "multiple-text": "Texto aberto con apartados (multiple-text)",
       matching: "Emparellar (matching)",
       fill: "Encher ocos (fill)",
       "table-fill": "Encher táboa (table-fill)",

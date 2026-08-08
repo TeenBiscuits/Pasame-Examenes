@@ -101,7 +101,7 @@ export function usePracticeSession(
       score += getQuestionScore(
         q,
         state.answers[q.id] || "",
-        state.selfGrades[q.id],
+        state.selfGrades,
       );
     }
     const answeredCount = Object.values(state.answers).filter(
@@ -135,11 +135,7 @@ export function usePracticeSession(
       let score = 0;
       const nextGrades = { ...state.selfGrades, [questionId]: grade };
       for (const q of questions) {
-        score += getQuestionScore(
-          q,
-          state.answers[q.id] || "",
-          nextGrades[q.id],
-        );
+        score += getQuestionScore(q, state.answers[q.id] || "", nextGrades);
       }
       saveAttempt(subjectId, {
         id: attemptIdRef.current || getNow().toString(),

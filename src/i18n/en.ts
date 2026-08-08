@@ -315,6 +315,7 @@ export const en = {
     questionTypes: {
       mc: "Multiple Choice (mc)",
       text: "Open Text (text)",
+      "multiple-text": "Text with parts (multiple-text)",
       matching: "Matching (matching)",
       fill: "Fill in the blanks (fill)",
       "table-fill": "Fill in a table (table-fill)",

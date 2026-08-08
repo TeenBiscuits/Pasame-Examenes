@@ -103,7 +103,7 @@ export function useExamSession(
         score += getQuestionScore(
           q,
           state.answers[q.id] || "",
-          state.selfGrades[q.id],
+          state.selfGrades,
         );
       }
       const answeredCount = Object.values(state.answers).filter(

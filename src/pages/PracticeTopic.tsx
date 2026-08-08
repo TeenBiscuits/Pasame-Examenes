@@ -34,8 +34,10 @@ import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
 import {
   computeQuestionResults,
+  getPendingSelfGradePoints,
   getQuestionScore,
   isAutomaticallyCorrect,
+  isFullySelfGraded,
   isSelfGradedQuestion,
 } from "../lib/grading";
 import ScoreProgress from "../components/ScoreProgress";
@@ -394,7 +396,9 @@ function PracticeControls({
         className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
         data-tour="practice-actions"
       >
-        {(answers[currentQuestion.id] || currentQuestion.type === "text") &&
+        {(answers[currentQuestion.id] ||
+          currentQuestion.type === "text" ||
+          currentQuestion.type === "multiple-text") &&
           !submitted &&
           !checkedQuestions[currentQuestion.id] && (
             <>
@@ -588,7 +592,7 @@ function PracticePlayer({
           isSelfGradedQuestion(q) &&
           !isAutomaticallyCorrect(q, answers[q.id]) &&
           (checkedQuestions[q.id] || submitted) &&
-          !selfGrades[q.id],
+          !isFullySelfGraded(q, selfGrades),
       ).length,
     [questions, answers, checkedQuestions, selfGrades, submitted],
   );
@@ -600,10 +604,9 @@ function PracticePlayer({
           (q) =>
             isSelfGradedQuestion(q) &&
             !isAutomaticallyCorrect(q, answers[q.id]) &&
-            (checkedQuestions[q.id] || submitted) &&
-            !selfGrades[q.id],
+            (checkedQuestions[q.id] || submitted),
         )
-        .reduce((sum, q) => sum + q.points, 0),
+        .reduce((sum, q) => sum + getPendingSelfGradePoints(q, selfGrades), 0),
     [questions, answers, checkedQuestions, selfGrades, submitted],
   );
 
@@ -615,7 +618,7 @@ function PracticePlayer({
     let score = 0;
     for (const q of questions) {
       if (onlyGraded && !submitted && !checkedQuestions[q.id]) continue;
-      score += getQuestionScore(q, answers[q.id], selfGrades[q.id]);
+      score += getQuestionScore(q, answers[q.id], selfGrades);
     }
     return roundPoints(score);
   };
@@ -702,6 +705,7 @@ function PracticePlayer({
           savedAnswer={answers[currentQuestion.id]}
           showResult={submitted || !!checkedQuestions[currentQuestion.id]}
           selfGrade={selfGrades[currentQuestion.id]}
+          selfGrades={selfGrades}
           onSelfGrade={onSelfGrade}
           direction={direction}
         />

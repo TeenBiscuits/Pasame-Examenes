@@ -118,46 +118,6 @@
         "destination": "/seo/en/ece/practice/raid.html"
     },
     {
-        "source": "/en/ece/exam/2021-01",
-        "destination": "/seo/en/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2021-07",
-        "destination": "/seo/en/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2022-01",
-        "destination": "/seo/en/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2022-07",
-        "destination": "/seo/en/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2023-01",
-        "destination": "/seo/en/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2023-07",
-        "destination": "/seo/en/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2024-01",
-        "destination": "/seo/en/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2024-07",
-        "destination": "/seo/en/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2025-01",
-        "destination": "/seo/en/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2025-07",
-        "destination": "/seo/en/ece/exam/2025-07.html"
-    },
-    {
         "source": "/en/ece/exam/2026-01",
         "destination": "/seo/en/ece/exam/2026-01.html"
     },
@@ -542,46 +502,6 @@
         "destination": "/seo/es/ece/practice/raid.html"
     },
     {
-        "source": "/es/ece/exam/2021-01",
-        "destination": "/seo/es/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2021-07",
-        "destination": "/seo/es/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2022-01",
-        "destination": "/seo/es/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2022-07",
-        "destination": "/seo/es/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2023-01",
-        "destination": "/seo/es/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2023-07",
-        "destination": "/seo/es/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2024-01",
-        "destination": "/seo/es/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2024-07",
-        "destination": "/seo/es/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2025-01",
-        "destination": "/seo/es/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2025-07",
-        "destination": "/seo/es/ece/exam/2025-07.html"
-    },
-    {
         "source": "/es/ece/exam/2026-01",
         "destination": "/seo/es/ece/exam/2026-01.html"
     },
@@ -964,46 +884,6 @@
     {
         "source": "/gl/ece/practice/raid",
         "destination": "/seo/gl/ece/practice/raid.html"
-    },
-    {
-        "source": "/gl/ece/exam/2021-01",
-        "destination": "/seo/gl/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2021-07",
-        "destination": "/seo/gl/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2022-01",
-        "destination": "/seo/gl/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2022-07",
-        "destination": "/seo/gl/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2023-01",
-        "destination": "/seo/gl/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2023-07",
-        "destination": "/seo/gl/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2024-01",
-        "destination": "/seo/gl/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2024-07",
-        "destination": "/seo/gl/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2025-01",
-        "destination": "/seo/gl/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2025-07",
-        "destination": "/seo/gl/ece/exam/2025-07.html"
     },
     {
         "source": "/gl/ece/exam/2026-01",

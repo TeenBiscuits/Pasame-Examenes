@@ -319,6 +319,7 @@ export const es: Translations = {
     questionTypes: {
       mc: "Tipo test (mc)",
       text: "Texto abierto (text)",
+      "multiple-text": "Texto abierto con apartados (multiple-text)",
       matching: "Emparejar (matching)",
       fill: "Rellenar huecos (fill)",
       "table-fill": "Rellenar tabla (table-fill)",
