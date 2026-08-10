@@ -1004,6 +1004,64 @@ function ExamEmptyState({
   );
 }
 
+function useExamData(subject: ExamSubject | undefined, examId?: string) {
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
+    null,
+  );
+  const [megatopicLabels, setMegatopicLabels] = useState<
+    Record<string, string>
+  >({});
+  const examInfo = useMemo(
+    () =>
+      subject?.exams.find((exam) => exam.id === examId && !exam.deleteRights),
+    [subject, examId],
+  );
+  const totalPoints = roundPoints(
+    questions.reduce((sum, q) => sum + q.points, 0),
+  );
+  const passPoints = examInfo ? getExamPassPoints(examInfo, totalPoints) : 0;
+
+  useEffect(() => {
+    if (!subject || !examId) return;
+
+    getQuestionsByExam(subject.id, examId).then((examQuestions) => {
+      setQuestions(examQuestions);
+      setQuestionsLoadedFor(`${subject.id}/${examId}`);
+    });
+  }, [subject, examId]);
+
+  useEffect(() => {
+    if (!subject || questions.length === 0) return;
+
+    const topics = [...new Set(questions.map((question) => question.topic))];
+    Promise.all(
+      topics.map(async (topic) => {
+        const label = await getTopicMegaTopicLabel(subject.id, topic);
+        return [topic, label] as const;
+      }),
+    ).then((entries) => {
+      const labels: Record<string, string> = {};
+      for (const [topic, label] of entries) {
+        if (label != null) labels[topic] = label;
+      }
+      setMegatopicLabels(labels);
+    });
+  }, [subject, questions]);
+
+  const questionsLoaded =
+    !!subject && !!examId && questionsLoadedFor === `${subject.id}/${examId}`;
+
+  return {
+    questions,
+    questionsLoaded,
+    megatopicLabels,
+    examInfo,
+    totalPoints,
+    passPoints,
+  };
+}
+
 export default function ExamSimulation() {
   const { subjectId, examId } = useParams<{
     subjectId: string;
@@ -1015,46 +1073,14 @@ export default function ExamSimulation() {
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    null,
-  );
-  const [megatopicLabels, setMegatopicLabels] = useState<
-    Record<string, string>
-  >({});
-  const examInfo = useMemo(
-    () => subject?.exams.find((e: Exam) => e.id === examId && !e.deleteRights),
-    [subject, examId],
-  );
-  const totalPoints = roundPoints(questions.reduce((s, q) => s + q.points, 0));
-  const passPoints = examInfo ? getExamPassPoints(examInfo, totalPoints) : 0;
-  useEffect(() => {
-    if (subject && examId) {
-      getQuestionsByExam(subject.id, examId).then((examQuestions) => {
-        setQuestions(examQuestions);
-        setQuestionsLoadedFor(`${subject.id}/${examId}`);
-      });
-    }
-  }, [subject, examId]);
-  const questionsLoaded =
-    !!subject && !!examId && questionsLoadedFor === `${subject.id}/${examId}`;
-
-  useEffect(() => {
-    if (!subject || questions.length === 0) return;
-    const topics = [...new Set(questions.map((q) => q.topic))];
-    Promise.all(
-      topics.map(async (t) => {
-        const label = await getTopicMegaTopicLabel(subject.id, t);
-        return [t, label] as const;
-      }),
-    ).then((entries) => {
-      const labels: Record<string, string> = {};
-      for (const [t, l] of entries) {
-        if (l != null) labels[t] = l;
-      }
-      setMegatopicLabels(labels);
-    });
-  }, [subject, questions]);
+  const {
+    questions,
+    questionsLoaded,
+    megatopicLabels,
+    examInfo,
+    totalPoints,
+    passPoints,
+  } = useExamData(subject, examId);
   const seoMeta = useMemo(
     () =>
       examInfo && subject
