@@ -19,7 +19,7 @@ export const questions: Question[] = [
   // --- V/F Teoría ---
   {
     id: "2024-01_vf_teoria",
-    exam: "2024-01",
+    examId: "2024-01",
     topic: "teoria",
     type: "matching",
     points: 3,
@@ -44,7 +44,7 @@ export const questions: Question[] = [
   // --- V/F Práctica ---
   {
     id: "2024-01_vf_practica",
-    exam: "2024-01",
+    examId: "2024-01",
     topic: "practica",
     type: "matching",
     points: 2,
@@ -67,7 +67,7 @@ export const questions: Question[] = [
   // --- Tema 8: Calidade ---
   {
     id: "2024-01_q2",
-    exam: "2024-01",
+    examId: "2024-01",
     topic: "teoria",
     type: "text",
     points: 1,
@@ -82,7 +82,7 @@ export const questions: Question[] = [
   // --- Tema 4: Riscos ---
   {
     id: "2024-01_q3",
-    exam: "2024-01",
+    examId: "2024-01",
     topic: "teoria",
     type: "text",
     points: 1,
@@ -97,7 +97,7 @@ export const questions: Question[] = [
   // --- Tema 7: Negociación ---
   {
     id: "2024-01_q4",
-    exam: "2024-01",
+    examId: "2024-01",
     topic: "teoria",
     type: "text",
     points: 1,
@@ -112,7 +112,7 @@ export const questions: Question[] = [
   // --- Tema 3: MS-Project ---
   {
     id: "2024-01_q5",
-    exam: "2024-01",
+    examId: "2024-01",
     topic: "practica",
     type: "text",
     points: 1,
@@ -125,7 +125,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024-01_q6",
-    exam: "2024-01",
+    examId: "2024-01",
     topic: "practica",
     type: "text",
     points: 1,
@@ -144,7 +144,7 @@ export const questions: Question[] = [
   // --- Tema 9: Optimización e Programación Lineal ---
   {
     id: "2026-01_q1",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "teoria",
     type: "text",
     points: 3,
@@ -158,7 +158,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-01_q2",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "teoria",
     type: "text",
     points: 2,
@@ -189,7 +189,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // --- V/F Teoría ---
   {
     id: "2026-01_vf_teoria",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "teoria",
     type: "matching",
     points: 3,
@@ -215,7 +215,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // --- V/F Práctica ---
   {
     id: "2026-01_vf_practica",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "practica",
     type: "matching",
     points: 2,
@@ -238,7 +238,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // --- Tema 1: Introdución ---
   {
     id: "2026-01_q4",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "teoria",
     type: "text",
     points: 1,
@@ -253,7 +253,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // --- Tema 5: Xestión da Configuración do Software ---
   {
     id: "2026-01_q5",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "teoria",
     type: "text",
     points: 1,
@@ -268,7 +268,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // --- Tema 7: Negociación ---
   {
     id: "2026-01_q6",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "teoria",
     type: "text",
     points: 1,
@@ -283,7 +283,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // --- Tema 6: Seguimento e Control ---
   {
     id: "2026-01_q7",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "practica",
     type: "text",
     points: 1,
@@ -298,7 +298,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // --- Tema 3: MS-Project ---
   {
     id: "2026-01_q8",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "practica",
     type: "text",
     points: 1,
@@ -313,7 +313,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // --- Tema 3: MS-Project (Práctica 1) ---
   {
     id: "2026-01_q9a",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "practica",
     type: "text",
     points: 2.5,
@@ -326,7 +326,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "2026-01_q9b",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "practica",
     type: "text",
     points: 2.5,
@@ -339,7 +339,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "2026-01_q9c",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "practica",
     type: "text",
     points: 2.5,
@@ -352,7 +352,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "2026-01_q9d",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "practica",
     type: "text",
     points: 2.5,
@@ -368,7 +368,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   // ============================================================
   {
     id: "daypo-tipo-udc_01",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -381,7 +381,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_02",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -392,7 +392,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_03",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -405,7 +405,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_04",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -418,7 +418,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_05",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -431,7 +431,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_06",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -444,7 +444,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_07",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -457,7 +457,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_08",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -470,7 +470,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_09",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -483,7 +483,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_10",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -496,7 +496,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_11",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -508,7 +508,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_12",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -520,7 +520,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_13",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -532,7 +532,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_14",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -543,7 +543,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_15",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -556,7 +556,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_16",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -569,7 +569,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_17",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -582,7 +582,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_18",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -595,7 +595,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_19",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -608,7 +608,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_20",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -619,7 +619,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_21",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -631,7 +631,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_22",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -644,7 +644,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_23",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -655,7 +655,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_24",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -666,7 +666,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_25",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -679,7 +679,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_26",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -691,7 +691,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_27",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -704,7 +704,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_28",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -716,7 +716,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_29",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -728,7 +728,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_30",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -741,7 +741,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_31",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -751,7 +751,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_32",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -763,7 +763,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_33",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -775,7 +775,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_34",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -788,7 +788,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_35",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -799,7 +799,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_36",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -810,7 +810,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_37",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -823,7 +823,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_38",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -836,7 +836,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_39",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -849,7 +849,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_40",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -860,7 +860,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_41",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -872,7 +872,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_42",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -885,7 +885,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_43",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -898,7 +898,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_44",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -911,7 +911,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_45",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -922,7 +922,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_46",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -933,7 +933,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_47",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -946,7 +946,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_48",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -956,7 +956,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_49",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -967,7 +967,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_50",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -978,7 +978,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_51",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -989,7 +989,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_52",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -999,7 +999,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_53",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1010,7 +1010,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_54",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1021,7 +1021,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_55",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1031,7 +1031,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_56",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1042,7 +1042,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_57",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1053,7 +1053,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_58",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1063,7 +1063,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_59",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1073,7 +1073,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_60",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1085,7 +1085,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_61",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1096,7 +1096,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_62",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1107,7 +1107,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-tipo-udc_63",
-    exam: "daypo-tipo-udc",
+    examId: "daypo-tipo-udc",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1118,7 +1118,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_01",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1131,7 +1131,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_02",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1144,7 +1144,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_03",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1157,7 +1157,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_04",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1170,7 +1170,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_05",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1183,7 +1183,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_06",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1196,7 +1196,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_07",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1208,7 +1208,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_08",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1220,7 +1220,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_09",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1232,7 +1232,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_10",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1243,7 +1243,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_11",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1256,7 +1256,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_12",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1267,7 +1267,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_13",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1280,7 +1280,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_14",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1293,7 +1293,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_15",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1305,7 +1305,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_16",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1318,7 +1318,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_17",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1331,7 +1331,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_18",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1344,7 +1344,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_19",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1356,7 +1356,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_20",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1369,7 +1369,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_21",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1380,7 +1380,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_22",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1391,7 +1391,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_23",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1401,7 +1401,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_24",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1413,7 +1413,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_25",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1423,7 +1423,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_26",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1436,7 +1436,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_27",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1449,7 +1449,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_28",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1462,7 +1462,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_29",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1475,7 +1475,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_30",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1487,7 +1487,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_31",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1500,7 +1500,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_32",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1513,7 +1513,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_33",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1526,7 +1526,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-teoria_34",
-    exam: "daypo-teoria",
+    examId: "daypo-teoria",
     topic: "teoria",
     type: "mc",
     points: 1,
@@ -1539,7 +1539,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_01",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1554,7 +1554,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_02",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1568,7 +1568,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_03",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1583,7 +1583,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_04",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1598,7 +1598,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_05",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1613,7 +1613,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_06",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1628,7 +1628,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_07",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1643,7 +1643,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_08",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1658,7 +1658,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_09",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1673,7 +1673,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_10",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1688,7 +1688,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_11",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1703,7 +1703,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_12",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1717,7 +1717,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_13",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1732,7 +1732,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_14",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1747,7 +1747,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_15",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1762,7 +1762,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_16",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1777,7 +1777,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_17",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1792,7 +1792,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_18",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1807,7 +1807,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_19",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1821,7 +1821,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_20",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1836,7 +1836,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_21",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1851,7 +1851,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_22",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1866,7 +1866,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_23",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1881,7 +1881,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_24",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1896,7 +1896,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_25",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1911,7 +1911,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_26",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1926,7 +1926,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_27",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1941,7 +1941,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_28",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1956,7 +1956,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_29",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1971,7 +1971,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_30",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -1985,7 +1985,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_31",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2000,7 +2000,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_32",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2014,7 +2014,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_33",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2029,7 +2029,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_34",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2044,7 +2044,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_35",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2059,7 +2059,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_36",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2074,7 +2074,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_37",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2089,7 +2089,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_38",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2104,7 +2104,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_39",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2119,7 +2119,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_40",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2134,7 +2134,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_41",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2149,7 +2149,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_42",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2164,7 +2164,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_43",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2179,7 +2179,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_44",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2194,7 +2194,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_45",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2208,7 +2208,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_46",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2223,7 +2223,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_47",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2238,7 +2238,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_48",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2253,7 +2253,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_49",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2267,7 +2267,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_50",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2282,7 +2282,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_51",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2296,7 +2296,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_52",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2311,7 +2311,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_53",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2325,7 +2325,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_54",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2340,7 +2340,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_55",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2355,7 +2355,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_56",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2370,7 +2370,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_57",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,
@@ -2385,7 +2385,7 @@ A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x�
   },
   {
     id: "daypo-practica_58",
-    exam: "daypo-practica",
+    examId: "daypo-practica",
     topic: "practica",
     type: "mc",
     points: 1,

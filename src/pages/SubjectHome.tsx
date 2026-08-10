@@ -53,7 +53,7 @@ export default function SubjectHome() {
   const resetProgressDialogRef = useRef<HTMLDialogElement>(null);
   const examSourceDialogRef = useRef<HTMLDialogElement>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const { selectedExamYears, setSelectedExamYears } = useExamSelection(subject);
+  const { selectedExamIds, setSelectedExamIds } = useExamSelection(subject);
   const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
     null,
@@ -61,8 +61,8 @@ export default function SubjectHome() {
   const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
   const [, setProgressRevision] = useState(0);
   const selectedQuestions = useMemo(
-    () => filterQuestionsByExamSelection(allQuestions, selectedExamYears),
-    [allQuestions, selectedExamYears],
+    () => filterQuestionsByExamSelection(allQuestions, selectedExamIds),
+    [allQuestions, selectedExamIds],
   );
   const examStats = useMemo(
     () =>
@@ -113,7 +113,7 @@ export default function SubjectHome() {
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
   const currentSubjectId = subject.id;
   const allExamSourcesSelected =
-    selectedExamYears.length ===
+    selectedExamIds.length ===
     subject.exams.filter((exam) => !exam.deleteRights).length;
   const repeatedText =
     repeatedCount >= 20
@@ -126,7 +126,7 @@ export default function SubjectHome() {
   const description = descriptionTemplate
     .replace("{count}", String(selectedQuestions.length))
     .replace("{repeated}", repeatedText)
-    .replace("{exams}", String(selectedExamYears.length));
+    .replace("{exams}", String(selectedExamIds.length));
 
   function handleResetTopicProgress() {
     const clearedCount = clearTopicProgress(currentSubjectId);
@@ -147,8 +147,8 @@ export default function SubjectHome() {
       <div className="mx-auto max-w-6xl px-4 pb-8">
         <ExamSourceSelector
           subject={subject}
-          selectedExamYears={selectedExamYears}
-          onChange={setSelectedExamYears}
+          selectedExamIds={selectedExamIds}
+          onChange={setSelectedExamIds}
           dialogRef={examSourceDialogRef}
           examStats={examStats}
         />
@@ -194,10 +194,7 @@ export default function SubjectHome() {
           subject={subject}
           hasAuthorizedExams={hasAuthorizedExams}
         />
-        <DaypoLinksSection
-          subject={subject}
-          hasAuthorizedExams={hasAuthorizedExams}
-        />
+        <OriginalContentLinksSection subject={subject} />
         <ContentNotes subject={subject} />
       </div>
     </div>
@@ -489,13 +486,13 @@ function ExamSimulationsSection({
       >
         {subject.exams.map((exam) =>
           exam.deleteRights ? (
-            <RemovedExamCard key={exam.year} title={exam.title} />
+            <RemovedExamCard key={exam.id} title={exam.title} />
           ) : (
             <ExamCard
-              key={exam.year}
+              key={exam.id}
               subject={subject}
               exam={exam}
-              stats={examStats.get(exam.year)}
+              stats={examStats.get(exam.id)}
             />
           ),
         )}
@@ -539,7 +536,7 @@ function ExamCard({
 
   return (
     <Link
-      to={`/${subject.id}/exam/${exam.year}`}
+      to={`/${subject.id}/exam/${exam.id}`}
       data-cuelume-hover="tick"
       data-cuelume-press
       className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-6 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
@@ -547,7 +544,7 @@ function ExamCard({
         triggerLight();
         track("exam_card_click", {
           subjectId: subject.id,
-          year: exam.year,
+          examId: exam.id,
         });
       }}
     >
@@ -663,18 +660,18 @@ function PdfLinksSection({
     >
       {pdfExams.map((exam) => (
         <a
-          key={exam.year}
+          key={exam.id}
           data-cuelume-press
-          href={`https://github.com/TeenBiscuits/Pasame-Examenes/raw/refs/heads/main/public/exams/${subject.id}/Exam-${exam.year}.pdf`}
+          href={`https://github.com/TeenBiscuits/Pasame-Examenes/raw/refs/heads/main/public/exams/${subject.id}/Exam-${exam.id}.pdf`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
             triggerLight();
             track("file_download", {
-              file: `Exam-${exam.year}.pdf`,
+              file: `Exam-${exam.id}.pdf`,
               subjectId: subject.id,
-              year: exam.year,
+              examId: exam.id,
             });
           }}
         >
@@ -686,50 +683,40 @@ function PdfLinksSection({
   );
 }
 
-function DaypoLinksSection({
+function OriginalContentLinksSection({
   subject,
-  hasAuthorizedExams,
 }: {
   subject: SubjectMeta;
-  hasAuthorizedExams: boolean;
 }) {
   const t = useT();
-  const daypoExams = subject.exams.filter(
-    (exam) => !exam.deleteRights && exam.daypoUrl != null,
+  const originalExams = subject.exams.filter(
+    (exam) => !exam.deleteRights && exam.originalUrl != null,
   );
 
-  if (daypoExams.length === 0) return null;
+  if (originalExams.length === 0) return null;
 
   return (
     <ResourceLinksShell
-      title={
-        hasAuthorizedExams
-          ? t.subjectHome.originalDaypos
-          : t.subjectHome.sourceMaterials
-      }
-      description={
-        hasAuthorizedExams
-          ? t.subjectHome.daypoDocsDescription
-          : t.subjectHome.sourceMaterialsDescription
-      }
+      title={t.subjectHome.originalContent}
+      description={t.subjectHome.originalContentDescription}
     >
-      {daypoExams.map((exam) => (
+      {originalExams.map((exam) => (
         <a
-          key={exam.year}
+          key={exam.id}
           data-cuelume-press
-          href={exam.daypoUrl}
+          href={exam.originalUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
             triggerLight();
-            track("daypo_open", {
+            track("original_content_open", {
               subjectId: subject.id,
-              year: exam.year,
+              examId: exam.id,
             });
           }}
         >
-          <span aria-hidden="true">🌐</span> {exam.title} {t.subjectHome.daypo}{" "}
+          <span aria-hidden="true">🌐</span> {exam.title} {t.subjectHome.original}{" "}
           <ArrowRightUp weight="Filled" className="size-3.5" />
         </a>
       ))}

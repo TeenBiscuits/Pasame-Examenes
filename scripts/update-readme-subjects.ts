@@ -17,7 +17,7 @@ function examSummary(subject: SubjectMeta): string {
   const years = [
     ...new Set(
       exams
-        .map((exam) => `${exam.title} ${exam.date ?? ""} ${exam.year}`)
+        .map((exam) => exam.title)
         .flatMap((value) => value.match(/20\d{2}/g) ?? []),
     ),
   ].sort();

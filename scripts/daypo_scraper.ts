@@ -3,11 +3,11 @@
  * Scrape a daypo.com test and export questions as a TypeScript Question array.
  *
  * Usage:
- *     tsx scripts/daypo_scraper.ts <url> [--output FILE] [--topic TOPIC] [--exam EXAM] [--assets-dir DIR]
+ *     tsx scripts/daypo_scraper.ts <url> [--output FILE] [--topic TOPIC] [--exam-id EXAM_ID] [--assets-dir DIR]
  *
  * Examples:
  *     tsx scripts/daypo_scraper.ts https://www.daypo.com/xp-practica.html
- *     tsx scripts/daypo_scraper.ts https://www.daypo.com/xp-teoria.html --topic teoria --exam scraped --output xp-teoria.ts
+ *     tsx scripts/daypo_scraper.ts https://www.daypo.com/xp-teoria.html --topic teoria --exam-id scraped --output xp-teoria.ts
  */
 
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -44,8 +44,8 @@ function parseArgs(args: string[]) {
       flags.output = args[++i] ?? "";
     } else if (args[i] === "--topic") {
       flags.topic = args[++i] ?? "";
-    } else if (args[i] === "--exam") {
-      flags.exam = args[++i] ?? "";
+    } else if (args[i] === "--exam-id") {
+      flags.examId = args[++i] ?? "";
     } else if (args[i].startsWith("--")) {
       const key = args[i].slice(2);
       flags[key] = args[++i] ?? "";
@@ -268,7 +268,7 @@ async function downloadImages(
 function buildTsOutput(
   test: DaypoTest,
   topic: string,
-  exam: string,
+  examId: string,
   images: Map<string, DownloadedImage>,
   imageGlobPattern: string,
 ): string {
@@ -299,7 +299,7 @@ function buildTsOutput(
 
   for (let i = 0; i < test.questions.length; i++) {
     const q = test.questions[i];
-    const qId = `${exam}_${String(i + 1).padStart(2, "0")}`;
+    const qId = `${examId}_${String(i + 1).padStart(2, "0")}`;
     const correctIndices = parseCorrectIndices(q.code);
     const correctLetters = correctIndices
       .filter((idx) => idx >= 0 && idx < LETTERS.length)
@@ -310,7 +310,7 @@ function buildTsOutput(
 
     lines.push("  {");
     lines.push(`    id: "${qId}",`);
-    lines.push(`    exam: "${exam}",`);
+    lines.push(`    examId: "${exam}",`);
     lines.push(`    topic: "${topic}",`);
     lines.push(`    type: "mc",`);
     lines.push(`    points: 1,`);
@@ -367,7 +367,7 @@ async function main() {
   }
 
   const topic = flags.topic || "scraped";
-  const exam = flags.exam || "scraped";
+  const examId = flags.examId || "scraped";
 
   console.log(`Fetching page: ${url}`);
   const htmlResp = await fetch(url, {
@@ -399,7 +399,7 @@ async function main() {
     ? resolve(flags["assets-dir"])
     : resolve(dirname(outPath), "assets");
   const filenamePrefix =
-    normalizeFilenamePart(exam || slug) || `daypo-${ntest}`;
+    normalizeFilenamePart(examId || slug) || `daypo-${ntest}`;
 
   const imageCount = test.questions.filter((q) => q.imageId).length;
   let images = new Map<string, DownloadedImage>();
@@ -426,7 +426,7 @@ async function main() {
   const ts = buildTsOutput(
     test,
     topic,
-    exam,
+    examId,
     images,
     buildImageGlobPattern(outPath, assetsDir),
   );

@@ -40,13 +40,13 @@ function getOriginalMaterial(
 
   if (exam.hasPdf !== false) {
     return {
-      href: `https://github.com/TeenBiscuits/Pasame-Examenes/raw/refs/heads/main/public/exams/${subjectId}/Exam-${exam.year}.pdf`,
+      href: `https://github.com/TeenBiscuits/Pasame-Examenes/raw/refs/heads/main/public/exams/${subjectId}/Exam-${exam.id}.pdf`,
       kind: "pdf",
     };
   }
 
-  if (exam.daypoUrl) {
-    return { href: exam.daypoUrl, kind: "link" };
+  if (exam.originalUrl) {
+    return { href: exam.originalUrl, kind: "link" };
   }
 
   return null;

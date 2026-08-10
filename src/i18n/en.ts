@@ -34,10 +34,10 @@ export const en = {
     sourceMaterials: "Source Materials",
     sourceMaterialsDescription:
       "Open the authorized or public source materials used for these practice questions.",
-    originalDaypos: "Original Daypo Tests",
-    daypoDocsDescription:
-      "Open the original Daypo tests used as the source for these practice questions.",
-    daypo: "Daypo",
+    originalContent: "Link to original content",
+    originalContentDescription:
+      "Open the original content used as the source for these practice questions.",
+    original: "Original",
     pdf: "PDF",
     acknowledgments: "Acknowledgments and Disclaimer",
     legalInformation: "Subject legal information",

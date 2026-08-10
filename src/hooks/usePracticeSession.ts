@@ -117,7 +117,7 @@ export function usePracticeSession(
     });
     saveAttempt(subjectId, {
       id,
-      exam: "practice",
+      examId: "practice",
       mode: "practice",
       topic,
       date: new Date().toISOString(),
@@ -139,7 +139,7 @@ export function usePracticeSession(
       }
       saveAttempt(subjectId, {
         id: attemptIdRef.current || getNow().toString(),
-        exam: "practice",
+        examId: "practice",
         mode: "practice",
         topic,
         date: new Date().toISOString(),

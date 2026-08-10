@@ -19,7 +19,7 @@ export const questions: Question[] = [
   // --- Simbólica ---
   {
     id: "2023_q1",
-    exam: "2023",
+    examId: "2023",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -38,7 +38,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q2",
-    exam: "2023",
+    examId: "2023",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -56,7 +56,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q3",
-    exam: "2023",
+    examId: "2023",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -74,7 +74,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q4",
-    exam: "2023",
+    examId: "2023",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -92,7 +92,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q5",
-    exam: "2023",
+    examId: "2023",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -110,7 +110,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q6",
-    exam: "2023",
+    examId: "2023",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -130,7 +130,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q7",
-    exam: "2023",
+    examId: "2023",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -148,7 +148,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q8",
-    exam: "2023",
+    examId: "2023",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -166,7 +166,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q9",
-    exam: "2023",
+    examId: "2023",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -211,7 +211,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q10",
-    exam: "2023",
+    examId: "2023",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -230,7 +230,7 @@ export const questions: Question[] = [
   // --- Subsimbólica ---
   {
     id: "2023_q11",
-    exam: "2023",
+    examId: "2023",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -249,7 +249,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q12",
-    exam: "2023",
+    examId: "2023",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -267,7 +267,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q13",
-    exam: "2023",
+    examId: "2023",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -285,7 +285,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q14",
-    exam: "2023",
+    examId: "2023",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -304,7 +304,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q15",
-    exam: "2023",
+    examId: "2023",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -324,7 +324,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q16",
-    exam: "2023",
+    examId: "2023",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -343,7 +343,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q17",
-    exam: "2023",
+    examId: "2023",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -362,7 +362,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q18",
-    exam: "2023",
+    examId: "2023",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -381,7 +381,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q19",
-    exam: "2023",
+    examId: "2023",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -401,7 +401,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q20",
-    exam: "2023",
+    examId: "2023",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -421,7 +421,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q21",
-    exam: "2023",
+    examId: "2023",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -441,7 +441,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q22",
-    exam: "2023",
+    examId: "2023",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -459,7 +459,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q23",
-    exam: "2023",
+    examId: "2023",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -477,7 +477,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q24",
-    exam: "2023",
+    examId: "2023",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -491,7 +491,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q25",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -510,7 +510,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q26",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -530,7 +530,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q27",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -549,7 +549,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q28",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -567,7 +567,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q29",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -585,7 +585,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q30",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -604,7 +604,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q31",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -623,7 +623,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q32",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -641,7 +641,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q33",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -660,7 +660,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q34",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -678,7 +678,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q35",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -696,7 +696,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q36",
-    exam: "2023",
+    examId: "2023",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -714,7 +714,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q37",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -733,7 +733,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q38",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -752,7 +752,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q39",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -772,7 +772,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q40",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -790,7 +790,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q41",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -809,7 +809,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q42",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -828,7 +828,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q43",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -847,7 +847,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q44",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -866,7 +866,7 @@ export const questions: Question[] = [
   },
   {
     id: "2023_q45",
-    exam: "2023",
+    examId: "2023",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -889,7 +889,7 @@ export const questions: Question[] = [
   // --- Simbólica ---
   {
     id: "2024_q1",
-    exam: "2024",
+    examId: "2024",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -907,7 +907,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q2",
-    exam: "2024",
+    examId: "2024",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -925,7 +925,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q3",
-    exam: "2024",
+    examId: "2024",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -943,7 +943,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q4",
-    exam: "2024",
+    examId: "2024",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -962,7 +962,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q5",
-    exam: "2024",
+    examId: "2024",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -980,7 +980,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q6",
-    exam: "2024",
+    examId: "2024",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -997,7 +997,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q7",
-    exam: "2024",
+    examId: "2024",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -1015,7 +1015,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q8",
-    exam: "2024",
+    examId: "2024",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -1034,7 +1034,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q9",
-    exam: "2024",
+    examId: "2024",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -1051,7 +1051,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q10",
-    exam: "2024",
+    examId: "2024",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -1070,7 +1070,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q11",
-    exam: "2024",
+    examId: "2024",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -1088,7 +1088,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q12",
-    exam: "2024",
+    examId: "2024",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -1106,7 +1106,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q13",
-    exam: "2024",
+    examId: "2024",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -1124,7 +1124,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q14",
-    exam: "2024",
+    examId: "2024",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -1143,7 +1143,7 @@ export const questions: Question[] = [
   // --- Subsimbólica ---
   {
     id: "2024_q15",
-    exam: "2024",
+    examId: "2024",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -1161,7 +1161,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q16",
-    exam: "2024",
+    examId: "2024",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -1181,7 +1181,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q17",
-    exam: "2024",
+    examId: "2024",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -1201,7 +1201,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q18",
-    exam: "2024",
+    examId: "2024",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -1220,7 +1220,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q19",
-    exam: "2024",
+    examId: "2024",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -1239,7 +1239,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q20",
-    exam: "2024",
+    examId: "2024",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -1257,7 +1257,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q21",
-    exam: "2024",
+    examId: "2024",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -1277,7 +1277,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q22",
-    exam: "2024",
+    examId: "2024",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -1297,7 +1297,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q23",
-    exam: "2024",
+    examId: "2024",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -1317,7 +1317,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q24",
-    exam: "2024",
+    examId: "2024",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -1335,7 +1335,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q25",
-    exam: "2024",
+    examId: "2024",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -1355,7 +1355,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q26",
-    exam: "2024",
+    examId: "2024",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -1369,7 +1369,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q27",
-    exam: "2024",
+    examId: "2024",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -1389,7 +1389,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q28",
-    exam: "2024",
+    examId: "2024",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -1408,7 +1408,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q29",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1427,7 +1427,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q30",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1440,7 +1440,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q31",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1459,7 +1459,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q32",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1478,7 +1478,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q33",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1496,7 +1496,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q34",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1515,7 +1515,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q35",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1533,7 +1533,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q36",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1552,7 +1552,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q37",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1571,7 +1571,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q38",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1590,7 +1590,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q39",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1609,7 +1609,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q40",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1627,7 +1627,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q41",
-    exam: "2024",
+    examId: "2024",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -1645,7 +1645,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q42",
-    exam: "2024",
+    examId: "2024",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -1664,7 +1664,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q43",
-    exam: "2024",
+    examId: "2024",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -1683,7 +1683,7 @@ export const questions: Question[] = [
   },
   {
     id: "2024_q44",
-    exam: "2024",
+    examId: "2024",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -1707,7 +1707,7 @@ export const questions: Question[] = [
   // --- Simbólica ---
   {
     id: "2025-05_q1",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -1726,7 +1726,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q2",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -1744,7 +1744,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q3",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -1757,7 +1757,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q4",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -1774,7 +1774,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q5",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -1792,7 +1792,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q6",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t1",
     type: "mc",
     points: 1,
@@ -1810,7 +1810,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q7",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -1830,7 +1830,7 @@ export const questions: Question[] = [
   // --- Subsimbólica ---
   {
     id: "2025-05_q8",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -1848,7 +1848,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q9",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -1867,7 +1867,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q10",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -1885,7 +1885,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q11",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -1905,7 +1905,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q12",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -1925,7 +1925,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q13",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -1945,7 +1945,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q14",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -1965,7 +1965,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q15",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -1984,7 +1984,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q16",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -2003,7 +2003,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q17",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2023,7 +2023,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q18",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2043,7 +2043,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q19",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2063,7 +2063,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q20",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2082,7 +2082,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q21",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2102,7 +2102,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q22",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2122,7 +2122,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q23",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2141,7 +2141,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q24",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2161,7 +2161,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q25",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2181,7 +2181,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q26",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -2195,7 +2195,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q27",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2214,7 +2214,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q28",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2233,7 +2233,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q29",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2252,7 +2252,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q30",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2272,7 +2272,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q31",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2291,7 +2291,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q32",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2311,7 +2311,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q33",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2330,7 +2330,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q34",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2350,7 +2350,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q35",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2370,7 +2370,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q36",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -2389,7 +2389,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q37",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -2408,7 +2408,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q38",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -2428,7 +2428,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q39",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -2447,7 +2447,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q40",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -2466,7 +2466,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q41",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -2485,7 +2485,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-05_q42",
-    exam: "2025-05",
+    examId: "2025-05",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -2508,7 +2508,7 @@ export const questions: Question[] = [
   // --- Simbólica ---
   {
     id: "2025-07_q1",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -2526,7 +2526,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q2",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -2543,7 +2543,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q3",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t1",
     type: "mc",
     points: 1,
@@ -2560,7 +2560,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q4",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -2573,7 +2573,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q5",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -2590,7 +2590,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q6",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -2603,7 +2603,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q7",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -2621,7 +2621,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q8",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -2638,7 +2638,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q9",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -2655,7 +2655,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q10",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -2674,7 +2674,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q11",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -2693,7 +2693,7 @@ export const questions: Question[] = [
   // --- Subsimbólica ---
   {
     id: "2025-07_q12",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -2712,7 +2712,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q13",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -2732,7 +2732,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q14",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -2750,7 +2750,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q15",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t1",
     type: "mc",
     points: 1,
@@ -2768,7 +2768,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q16",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -2787,7 +2787,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q17",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -2806,7 +2806,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q18",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2826,7 +2826,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q19",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2845,7 +2845,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q20",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2865,7 +2865,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q21",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2883,7 +2883,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q22",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2903,7 +2903,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q23",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -2922,7 +2922,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q24",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -2941,7 +2941,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q25",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2960,7 +2960,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q26",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -2980,7 +2980,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q27",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -2999,7 +2999,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q28",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3018,7 +3018,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q29",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3037,7 +3037,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q30",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3054,7 +3054,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q31",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3072,7 +3072,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q32",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3090,7 +3090,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q33",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3108,7 +3108,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q34",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3126,7 +3126,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q35",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3144,7 +3144,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q36",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3163,7 +3163,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q37",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3182,7 +3182,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q38",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3201,7 +3201,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q39",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3220,7 +3220,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q40",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3238,7 +3238,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q41",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3256,7 +3256,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q42",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3274,7 +3274,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q43",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3293,7 +3293,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q44",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3311,7 +3311,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q45",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3331,7 +3331,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q46",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3350,7 +3350,7 @@ export const questions: Question[] = [
   },
   {
     id: "2025-07_q47",
-    exam: "2025-07",
+    examId: "2025-07",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -3373,7 +3373,7 @@ export const questions: Question[] = [
   // --- Simbólica ---
   {
     id: "2026-06_q1",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -3387,7 +3387,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q2",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -3405,7 +3405,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q3",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -3422,7 +3422,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q4",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -3441,7 +3441,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q5",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -3459,7 +3459,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q6",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t1",
     type: "mc",
     points: 1,
@@ -3477,7 +3477,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q7",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -3503,7 +3503,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q8",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -3533,7 +3533,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q9",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t5",
     type: "mc",
     points: 1,
@@ -3551,7 +3551,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q10",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -3569,7 +3569,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q11",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -3587,7 +3587,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q12",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -3604,7 +3604,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q13",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t5",
     type: "mc",
     points: 1,
@@ -3622,7 +3622,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q14",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t3",
     type: "mc",
     points: 1,
@@ -3640,7 +3640,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q15",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t2",
     type: "mc",
     points: 1,
@@ -3658,7 +3658,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q16",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t4",
     type: "mc",
     points: 1,
@@ -3677,7 +3677,7 @@ export const questions: Question[] = [
   // --- Subsimbólica ---
   {
     id: "2026-06_q17",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -3696,7 +3696,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q18",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -3715,7 +3715,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q19",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -3735,7 +3735,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q20",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -3755,7 +3755,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q21",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t6",
     type: "mc",
     points: 1,
@@ -3775,7 +3775,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q22",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3794,7 +3794,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q23",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3813,7 +3813,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q24",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3832,7 +3832,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q25",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -3851,7 +3851,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q26",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -3869,7 +3869,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q27",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -3889,7 +3889,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q28",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -3907,7 +3907,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q29",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -3927,7 +3927,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q30",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -3946,7 +3946,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q31",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -3966,7 +3966,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q32",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t8",
     type: "mc",
     points: 1,
@@ -3984,7 +3984,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q33",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -4002,7 +4002,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q34",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -4021,7 +4021,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q35",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -4041,7 +4041,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q36",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t7",
     type: "mc",
     points: 1,
@@ -4059,7 +4059,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q37",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4078,7 +4078,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q38",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4097,7 +4097,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q39",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4116,7 +4116,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q40",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4136,7 +4136,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q41",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4155,7 +4155,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q42",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4175,7 +4175,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q43",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4194,7 +4194,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q44",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4214,7 +4214,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q45",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4234,7 +4234,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q46",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t9",
     type: "mc",
     points: 1,
@@ -4253,7 +4253,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q47",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4272,7 +4272,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q48",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4292,7 +4292,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q49",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4311,7 +4311,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q50",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4330,7 +4330,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q51",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4350,7 +4350,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q52",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4369,7 +4369,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q53",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4388,7 +4388,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q54",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4407,7 +4407,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q55",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,
@@ -4426,7 +4426,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-06_q56",
-    exam: "2026-06",
+    examId: "2026-06",
     topic: "t10",
     type: "mc",
     points: 1,

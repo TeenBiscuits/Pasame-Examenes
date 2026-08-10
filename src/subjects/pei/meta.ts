@@ -45,10 +45,8 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
-      year: "recopilacion",
+      id: "recopilacion",
       title: "Recopilación",
-      passPoints: 15,
-      totalPoints: 30,
       durationMinutes: 120,
       hasPdf: false,
     },

@@ -3,7 +3,7 @@ import type { Question } from "../../data/types";
 export const questions: Question[] = [
   {
     id: "q1",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -19,7 +19,7 @@ export const questions: Question[] = [
   },
   {
     id: "q2",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -35,7 +35,7 @@ export const questions: Question[] = [
   },
   {
     id: "q3",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -51,7 +51,7 @@ export const questions: Question[] = [
   },
   {
     id: "q4",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -67,7 +67,7 @@ export const questions: Question[] = [
   },
   {
     id: "q5",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -83,7 +83,7 @@ export const questions: Question[] = [
   },
   {
     id: "q6",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -99,7 +99,7 @@ export const questions: Question[] = [
   },
   {
     id: "q7",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -115,7 +115,7 @@ export const questions: Question[] = [
   },
   {
     id: "q8",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -131,7 +131,7 @@ export const questions: Question[] = [
   },
   {
     id: "q9",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -147,7 +147,7 @@ export const questions: Question[] = [
   },
   {
     id: "q10",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -163,7 +163,7 @@ export const questions: Question[] = [
   },
   {
     id: "q11",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -179,7 +179,7 @@ export const questions: Question[] = [
   },
   {
     id: "q12",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -195,7 +195,7 @@ export const questions: Question[] = [
   },
   {
     id: "q13",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -211,7 +211,7 @@ export const questions: Question[] = [
   },
   {
     id: "q14",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -227,7 +227,7 @@ export const questions: Question[] = [
   },
   {
     id: "q15",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -243,7 +243,7 @@ export const questions: Question[] = [
   },
   {
     id: "q16",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -259,7 +259,7 @@ export const questions: Question[] = [
   },
   {
     id: "q17",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,
@@ -275,7 +275,7 @@ export const questions: Question[] = [
   },
   {
     id: "q18",
-    exam: "examen_recopilatorio",
+    examId: "examen_recopilatorio",
     topic: "general",
     type: "mc",
     points: 1,

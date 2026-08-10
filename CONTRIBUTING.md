@@ -95,13 +95,12 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
-      year: "2024", // string, usado en la URL /exam/2024
-      title: "Examen 2024",
-      date: "2024", // opcional, fecha legible mostrada en las preguntas (ej. "Enero 2024", "June 2025", "2024")
-      passPoints: 30,
-      totalPoints: 60,
+      id: "2024", // slug único, usado en la URL /exam/2024, los PDFs y como examId de las preguntas
+      title: "2024",
       durationMinutes: 180,
       hasPdf: true, // opcional, valor por defecto true. Pon false si no hay PDF
+      originalUrl:
+        "https://www.daypo.com/mi-test.html", // opcional, enlace al contenido original usado como fuente
     },
   ],
 };
@@ -113,7 +112,7 @@ export const meta: SubjectMeta = {
 > Puedes extraer preguntas de cualquier daypo en formato `Question[]` usando [`scripts/daypo_scraper.ts`](scripts/daypo_scraper.ts):
 >
 > ```bash
-> pnpm tsx scripts/daypo_scraper.ts https://www.daypo.com/mi-test.html --topic mi-tema --exam 2024 -o src/subjects/mi-asignatura/preguntas.ts
+> pnpm tsx scripts/daypo_scraper.ts https://www.daypo.com/mi-test.html --topic mi-tema --exam-id 2024 -o src/subjects/mi-asignatura/preguntas.ts
 > ```
 
 Exporta un array `Question[]`. Tipos de pregunta:
@@ -131,7 +130,7 @@ export const questions: Question[] = [
   // Opción múltiple
   {
     id: "2024_q1",
-    exam: "2024",
+    examId: "2024",
     topic: "tema-slug",
     type: "mc",
     points: 5,
@@ -144,7 +143,7 @@ export const questions: Question[] = [
   // Texto / Cálculo
   {
     id: "2024_q2",
-    exam: "2024",
+    examId: "2024",
     topic: "tema-slug",
     type: "text",
     points: 10,
@@ -156,7 +155,7 @@ export const questions: Question[] = [
   // Emparejamiento
   {
     id: "2024_q3",
-    exam: "2024",
+    examId: "2024",
     topic: "tema-slug",
     type: "matching",
     points: 5,
@@ -170,9 +169,9 @@ export const questions: Question[] = [
 ];
 ```
 
-Campos obligatorios de cada pregunta: `id`, `exam`, `topic`, `type`, `points`, `question` y `correctAnswer`. `exam` debe ser un `string` que coincida exactamente con un único `Exam.year` de `meta.ts`; una pregunta no puede pertenecer a varios exámenes.
+Campos obligatorios de cada pregunta: `id`, `examId`, `topic`, `type`, `points`, `question` y `correctAnswer`. `examId` debe ser un `string` que coincida exactamente con un único `Exam.id` de `meta.ts`; una pregunta no puede pertenecer a varios exámenes.
 
-Los recuentos de preguntas y puntos que muestra la interfaz se calculan desde `questions.ts`. No añadas un campo `description` al examen para repetir esos datos.
+Los recuentos de preguntas y puntos que muestra la interfaz se calculan desde `questions.ts`. No añadas un campo `description` al examen para repetir esos datos. La puntuación total de un examen es la suma de los `points` de sus preguntas y el umbral de aprobado es el 50% de esa nota; usa `passPercentage` (fracción 0-1) en el examen solo si el umbral real es distinto.
 
 Campos opcionales: `development`, `explanation`, `image`, `explanationImage`, `table`, `subquestions`, `options` (requerido para `mc`) y `repeated`.
 
@@ -204,7 +203,7 @@ print(foo(5))
 Pista: recuerda que \`foo()\` se llama recursivamente.`,
 ```
 
-**Preguntas repetidas:** Asigna cada pregunta a su examen real mediante `exam`. Si esa pregunta o una variante casi idéntica ya apareció en un examen de un año anterior, marca `repeated: true` como indicador visual. `repeated` no cambia la selección de exámenes ni hace que una pregunta aparezca en otros exámenes.
+**Preguntas repetidas:** Asigna cada pregunta a su examen real mediante `examId`. Si esa pregunta o una variante casi idéntica ya apareció en un examen de un año anterior, marca `repeated: true` como indicador visual. `repeated` no cambia la selección de exámenes ni hace que una pregunta aparezca en otros exámenes.
 
 #### 4. Añade PDFs autorizados, si los hay
 
@@ -214,7 +213,7 @@ Copia únicamente PDFs que puedan compartirse públicamente o con autorización 
 public/exams/{subject-id}/Exam-2024.pdf
 ```
 
-La convención es `Exam-{year}.pdf`. Si un examen o recopilatorio no tiene PDF autorizado, marca `hasPdf: false` en su entrada de `meta.ts` para que el enlace de descarga no aparezca. Si ningún elemento tiene PDF, la sección entera se oculta automáticamente.
+La convención es `Exam-{id}.pdf`. Si un examen o recopilatorio no tiene PDF autorizado, marca `hasPdf: false` en su entrada de `meta.ts` para que el enlace de descarga no aparezca. Si ningún elemento tiene PDF, la sección entera se oculta automáticamente.
 
 #### 5. Añade imágenes (si las hay)
 
@@ -375,7 +374,7 @@ No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación d
 
 - [ ] El ID de la asignatura es kebab-case y coincide con la carpeta
 - [ ] Todas las `topic` en `questions.ts` existen en `meta.ts`
-- [ ] Todas las preguntas tienen un `exam` que coincide con exactamente un `Exam.year`
+- [ ] Todas las preguntas tienen un `examId` que coincide con exactamente un `Exam.id`
 - [ ] Las preguntas MC tienen opciones y una letra válida (`"a"`–`"e"`)
 - [ ] Los bloques de código usan `\`\`\`` en template literals de TypeScript
 - [ ] El contenido es original, autorizado o procede de una fuente pública compatible

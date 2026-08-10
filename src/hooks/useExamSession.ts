@@ -52,7 +52,7 @@ function reducer(state: ExamState, action: ExamAction): ExamState {
 export function useExamSession(
   questions: Question[],
   subjectId: string,
-  year: string,
+  examId: string,
   initialTimeLeft: number,
   t: { exam: { submitConfirm: string } },
   onTimeUp: () => void,
@@ -84,13 +84,13 @@ export function useExamSession(
     triggerMedium();
     track("exam_start", {
       subjectId,
-      year,
+      examId,
       questionsCount: questions.length,
       totalPoints: questions.reduce((s, q) => s + q.points, 0),
     });
     dispatch({ type: "START" });
     startTimeRef.current = getNow();
-  }, [subjectId, year, questions]);
+  }, [subjectId, examId, questions]);
 
   const handleSubmit = useCallback(
     (skipConfirm = false) => {
@@ -111,7 +111,7 @@ export function useExamSession(
       ).length;
       track("exam_submit", {
         subjectId,
-        year,
+        examId,
         score,
         maxScore: questions.reduce((s, q) => s + q.points, 0),
         timeSpent: elapsed,
@@ -120,15 +120,15 @@ export function useExamSession(
       });
       dispatch({ type: "SUBMIT", elapsed });
     },
-    [subjectId, year, questions, state.answers, state.selfGrades, t],
+    [subjectId, examId, questions, state.answers, state.selfGrades, t],
   );
 
   const handleSelfGrade = useCallback(
     (questionId: string, grade: "correct" | "incorrect") => {
-      track("exam_self_grade", { subjectId, year, questionId, grade });
+      track("exam_self_grade", { subjectId, examId, questionId, grade });
       dispatch({ type: "SELF_GRADE", questionId, grade });
     },
-    [subjectId, year],
+    [subjectId, examId],
   );
 
   // Timer
@@ -152,7 +152,7 @@ export function useExamSession(
       timeUpTrackedRef.current = true;
       track("exam_time_up", {
         subjectId,
-        year,
+        examId,
         questionsCount: questions.length,
       });
     }
@@ -161,7 +161,7 @@ export function useExamSession(
     state.started,
     state.submitted,
     subjectId,
-    year,
+    examId,
     questions.length,
   ]);
 

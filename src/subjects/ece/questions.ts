@@ -8,7 +8,7 @@ export const questions: Question[] = [
   // --- Ejercicio 1: Rendimiento ---
   {
     id: "2026-01_q1",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "rendimiento",
     type: "multiple-text",
     points: 0.75,
@@ -41,7 +41,7 @@ $$\\frac{6\\ Ginst/s}{2\\ GHz} = 3\\ inst/ciclo$$`,
   // --- Ejercicio 2: Memoria virtual ---
   {
     id: "2026-01_q2",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "memoria-virtual",
     type: "multiple-text",
     points: 2,
@@ -134,7 +134,7 @@ $$2^3 \\text{ conjuntos} \\times 2^4 \\text{ líneas/conjunto} \\times 2^5 \\tex
   // --- Ejercicio 3: Buses y E/S ---
   {
     id: "2026-01_q3",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "buses",
     type: "multiple-text",
     points: 0.75,
@@ -188,7 +188,7 @@ $$(16 \\text{ transacciones} \\times 100 \\text{ ciclos/tr} + 15 \\times 40) \\t
   // --- Ejercicio 4: RAID y almacenamiento ---
   {
     id: "2026-01_q4a",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "raid",
     type: "mc",
     points: 0.1,
@@ -204,7 +204,7 @@ $$(16 \\text{ transacciones} \\times 100 \\text{ ciclos/tr} + 15 \\times 40) \\t
   },
   {
     id: "2026-01_q4b",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "raid",
     type: "mc",
     points: 0.1,
@@ -221,7 +221,7 @@ $$(16 \\text{ transacciones} \\times 100 \\text{ ciclos/tr} + 15 \\times 40) \\t
   },
   {
     id: "2026-01_q4c",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "raid",
     type: "mc",
     points: 0.1,
@@ -237,7 +237,7 @@ $$(16 \\text{ transacciones} \\times 100 \\text{ ciclos/tr} + 15 \\times 40) \\t
   },
   {
     id: "2026-01_q4d",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "raid",
     type: "mc",
     points: 0.1,
@@ -253,7 +253,7 @@ $$(16 \\text{ transacciones} \\times 100 \\text{ ciclos/tr} + 15 \\times 40) \\t
   },
   {
     id: "2026-01_q4e",
-    exam: "2026-01",
+    examId: "2026-01",
     topic: "raid",
     type: "mc",
     points: 0.1,

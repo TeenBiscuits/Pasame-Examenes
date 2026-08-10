@@ -84,10 +84,10 @@ interface QuestionCardProps {
   total: number;
   topicLabel: string;
   megatopicLabel?: string;
-  examDate?: string;
+  examTitle?: string;
   subjectId: string;
   topicKey?: string;
-  examYear?: string;
+  examId?: string;
   mode?: "practice" | "exam";
   onAnswer: (questionId: string, answer: string) => void;
   savedAnswer?: string;
@@ -133,14 +133,14 @@ function DevelopmentDisclosure({
   questionId,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: {
   development: string;
   questionId: string;
   subjectId: string;
   topicKey?: string;
-  examYear?: string;
+  examId?: string;
   mode?: "practice" | "exam";
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -161,7 +161,7 @@ function DevelopmentDisclosure({
             panel: "development",
             subjectId,
             topic: topicKey,
-            exam: examYear,
+            examId: examId,
             mode,
           });
           setIsOpen(next);
@@ -201,7 +201,7 @@ function MCQuestion({
   showResult,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -234,7 +234,7 @@ function MCQuestion({
             answer: selectedLetter,
             subjectId,
             topic: topicKey,
-            exam: examYear,
+            examId: examId,
             mode,
           });
           onAnswer(question.id, selectedLetter);
@@ -251,7 +251,7 @@ function MCQuestion({
     onAnswer,
     subjectId,
     topicKey,
-    examYear,
+    examId,
     mode,
   ]);
 
@@ -291,7 +291,7 @@ function MCQuestion({
                 answer: letter,
                 subjectId,
                 topic: topicKey,
-                exam: examYear,
+                examId: examId,
                 mode,
               });
               onAnswer(question.id, letter);
@@ -326,7 +326,7 @@ function MCQuestion({
                   action: next ? "open" : "close",
                   subjectId,
                   topic: topicKey,
-                  exam: examYear,
+                  examId: examId,
                   mode,
                 });
                 setIsOpen(next);
@@ -368,7 +368,7 @@ function TextQuestion({
   onSelfGrade,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -402,7 +402,7 @@ function TextQuestion({
               action: "started",
               subjectId,
               topic: topicKey,
-              exam: examYear,
+              examId: examId,
               mode,
             });
           }
@@ -524,7 +524,7 @@ function MultipleTextQuestion({
   selfGrades,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const [openParts, setOpenParts] = useState<Record<number, boolean>>({});
@@ -594,7 +594,7 @@ function MultipleTextQuestion({
                     action: "started",
                     subjectId,
                     topic: topicKey,
-                    exam: examYear,
+                    examId: examId,
                     mode,
                   });
                 }
@@ -709,7 +709,7 @@ function FillQuestion({
   onSelfGrade,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const t = useT();
@@ -777,7 +777,7 @@ function FillQuestion({
                               blank: currentBlankIndex,
                               subjectId,
                               topic: topicKey,
-                              exam: examYear,
+                              examId: examId,
                               mode,
                             });
                           }}
@@ -866,7 +866,7 @@ function FillQuestion({
           questionId={question.id}
           subjectId={subjectId}
           topicKey={topicKey}
-          examYear={examYear}
+          examId={examId}
           mode={mode}
         />
       )}
@@ -883,7 +883,7 @@ function TableFillQuestion({
   onSelfGrade,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const t = useT();
@@ -966,7 +966,7 @@ function TableFillQuestion({
                                       blank: currentBlankIndex,
                                       subjectId,
                                       topic: topicKey,
-                                      exam: examYear,
+                                      examId: examId,
                                       mode,
                                     });
                                   }}
@@ -1060,7 +1060,7 @@ function TableFillQuestion({
           questionId={question.id}
           subjectId={subjectId}
           topicKey={topicKey}
-          examYear={examYear}
+          examId={examId}
           mode={mode}
         />
       )}
@@ -1075,7 +1075,7 @@ function MatchingQuestion({
   showResult,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -1152,7 +1152,7 @@ function MatchingQuestion({
                         answer: letter,
                         subjectId,
                         topic: topicKey,
-                        exam: examYear,
+                        examId: examId,
                         mode,
                       });
                       handleSelect(item, letter);
@@ -1185,7 +1185,7 @@ function MatchingQuestion({
                   action: next ? "open" : "close",
                   subjectId,
                   topic: topicKey,
-                  exam: examYear,
+                  examId: examId,
                   mode,
                 });
                 setIsOpen(next);
@@ -1257,7 +1257,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           )}
           <span className="truncate">{questionProps.topicLabel}</span>
         </span>
-        {(question.repeated || questionProps.examDate) && (
+        {(question.repeated || questionProps.examTitle) && (
           <div className="ml-auto flex items-center gap-2 sm:ml-0">
             {question.repeated && (
               <span className="flex items-center gap-0.5 rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
@@ -1265,10 +1265,10 @@ export default function QuestionCard(props: QuestionCardProps) {
                 {t.questionCard.repeated}
               </span>
             )}
-            {questionProps.examDate && (
+            {questionProps.examTitle && (
               <span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
                 <Notebook size={14} aria-hidden="true" />
-                {questionProps.examDate}
+                {questionProps.examTitle}
               </span>
             )}
           </div>
@@ -1383,7 +1383,7 @@ export default function QuestionCard(props: QuestionCardProps) {
                 questionId: question.id,
                 subjectId: questionProps.subjectId,
                 topic: questionProps.topicKey,
-                exam: questionProps.examYear,
+                examId: questionProps.examId,
                 mode: questionProps.mode,
               });
             }}

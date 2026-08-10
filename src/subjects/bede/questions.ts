@@ -14,7 +14,7 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 export const questions: Question[] = [
   {
     id: "daypo-preguntas_01",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -29,7 +29,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_02",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -44,7 +44,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_03",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -59,7 +59,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_04",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -74,7 +74,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_05",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -88,7 +88,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_06",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -103,7 +103,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_07",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -118,7 +118,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_08",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -132,7 +132,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_09",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -147,7 +147,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_10",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -161,7 +161,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_11",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -176,7 +176,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_12",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -190,7 +190,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_13",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -204,7 +204,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_14",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -218,7 +218,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_15",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -232,7 +232,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_16",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -247,7 +247,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_17",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -261,7 +261,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_18",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -275,7 +275,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_19",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -289,7 +289,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_20",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -303,7 +303,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_21",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -317,7 +317,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_22",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -331,7 +331,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_23",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -345,7 +345,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_24",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -359,7 +359,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_25",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -373,7 +373,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_26",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -387,7 +387,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_27",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -401,7 +401,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_28",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -412,7 +412,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_29",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -426,7 +426,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_30",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -440,7 +440,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_31",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -455,7 +455,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_32",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -466,7 +466,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_33",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -481,7 +481,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_34",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -496,7 +496,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_35",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -511,7 +511,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_36",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -525,7 +525,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_37",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -537,7 +537,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_38",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -551,7 +551,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_39",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -565,7 +565,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_40",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -580,7 +580,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_41",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -592,7 +592,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_42",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -606,7 +606,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_43",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -620,7 +620,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_44",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -636,7 +636,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_45",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -650,7 +650,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_46",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -664,7 +664,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_47",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -679,7 +679,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_48",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -693,7 +693,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_49",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -708,7 +708,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_50",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -723,7 +723,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_51",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -737,7 +737,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_52",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -752,7 +752,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_53",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -767,7 +767,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_54",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -782,7 +782,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_55",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -797,7 +797,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_56",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -812,7 +812,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_57",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -826,7 +826,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_58",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -840,7 +840,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_59",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -855,7 +855,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_60",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -867,7 +867,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_61",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -879,7 +879,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_62",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -891,7 +891,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_63",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -905,7 +905,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_64",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -920,7 +920,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_65",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -934,7 +934,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_66",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -949,7 +949,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_67",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -964,7 +964,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_68",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -975,7 +975,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_69",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -986,7 +986,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_70",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -997,7 +997,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_71",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1008,7 +1008,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_72",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1023,7 +1023,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_73",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1038,7 +1038,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_74",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1053,7 +1053,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_75",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1068,7 +1068,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_76",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1083,7 +1083,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_77",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1098,7 +1098,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_78",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1113,7 +1113,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_79",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1128,7 +1128,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_80",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1142,7 +1142,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_81",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1156,7 +1156,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_82",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1172,7 +1172,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_83",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1187,7 +1187,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_84",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1201,7 +1201,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_85",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1215,7 +1215,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_86",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1229,7 +1229,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_87",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1243,7 +1243,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_88",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1257,7 +1257,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_89",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1268,7 +1268,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_90",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1282,7 +1282,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_91",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1297,7 +1297,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_92",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1311,7 +1311,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_93",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1325,7 +1325,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_94",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 1,
@@ -1339,7 +1339,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_95",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1353,7 +1353,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_96",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1367,7 +1367,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_97",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1381,7 +1381,7 @@ export const questions: Question[] = [
   },
   {
     id: "daypo-preguntas_98",
-    exam: "daypo-preguntas",
+    examId: "daypo-preguntas",
     topic: "ficheros",
     type: "mc",
     points: 1,
@@ -1395,7 +1395,7 @@ export const questions: Question[] = [
   },
   {
     id: "recopilatorio-mayo-2026_01",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "modelado-normalizacion",
     type: "text",
     points: 2,
@@ -1432,7 +1432,7 @@ Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para 
   },
   {
     id: "recopilatorio-mayo-2026_02",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "modelado-normalizacion",
     type: "text",
     points: 0.75,
@@ -1443,7 +1443,7 @@ Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para 
   },
   {
     id: "recopilatorio-mayo-2026_03",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "modelado-normalizacion",
     type: "text",
     points: 1.25,
@@ -1493,7 +1493,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_04",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1508,7 +1508,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_05",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1522,7 +1522,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_06",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1536,7 +1536,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_07",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1551,7 +1551,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_08",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1566,7 +1566,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_09",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,
@@ -1580,7 +1580,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_10",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,
@@ -1594,7 +1594,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_11",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,
@@ -1609,7 +1609,7 @@ Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una desc
   },
   {
     id: "recopilatorio-mayo-2026_12",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,
@@ -1637,7 +1637,7 @@ GRANT accesoBronce TO "Luisa"
   },
   {
     id: "recopilatorio-mayo-2026_13",
-    exam: "recopilatorio-mayo-2026",
+    examId: "recopilatorio-mayo-2026",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,
@@ -1673,7 +1673,7 @@ CREATE TABLE emp (
   },
   {
     id: "recopilatorio-mayo-2022_01",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "modelado-normalizacion",
     type: "text",
     points: 2,
@@ -1718,7 +1718,7 @@ Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para 
   },
   {
     id: "recopilatorio-mayo-2022_02",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "modelado-normalizacion",
     type: "text",
     points: 0.75,
@@ -1729,7 +1729,7 @@ Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para 
   },
   {
     id: "recopilatorio-mayo-2022_03",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "modelado-normalizacion",
     type: "text",
     points: 1.25,
@@ -1774,7 +1774,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_04",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1789,7 +1789,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_05",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1804,7 +1804,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_06",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1816,7 +1816,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_07",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1830,7 +1830,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_08",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1845,7 +1845,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_09",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "ficheros",
     type: "mc",
     points: 0.2,
@@ -1857,7 +1857,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_10",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,
@@ -1871,7 +1871,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_11",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,
@@ -1885,7 +1885,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_12",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,
@@ -1900,7 +1900,7 @@ Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda inf
   },
   {
     id: "recopilatorio-mayo-2022_13",
-    exam: "recopilatorio-mayo-2022",
+    examId: "recopilatorio-mayo-2022",
     topic: "recuperacion-concurrencia",
     type: "mc",
     points: 0.2,

@@ -27,7 +27,7 @@ export const questions: Question[] = [
   // explanation is optional for mc — omit it and no "Open Solution" button is shown.
   {
     id: "2024_q1",
-    exam: "2024",
+    examId: "2024",
     topic: "topic-1",
     type: "mc",
     points: 10,
@@ -42,7 +42,7 @@ export const questions: Question[] = [
   // guidance into `correctAnswer` itself.
   {
     id: "2024_q2",
-    exam: "2024",
+    examId: "2024",
     topic: "topic-1",
     type: "text",
     points: 20,
@@ -60,7 +60,7 @@ Key points to mention: define both laws, explain equilibrium, discuss market cle
   // explanation IS valid for mc/matching — shown in the "Open Solution" panel.
   {
     id: "2024_q3",
-    exam: "2024",
+    examId: "2024",
     topic: "topic-1",
     type: "mc",
     points: 5,
@@ -79,7 +79,7 @@ Key points to mention: define both laws, explain equilibrium, discuss market cle
   // === Matching (minimal) ===
   {
     id: "2024_q4",
-    exam: "2024",
+    examId: "2024",
     topic: "topic-2",
     type: "matching",
     points: 30,
@@ -102,7 +102,7 @@ Key points to mention: define both laws, explain equilibrium, discuss market cle
   // Use $...$ for inline math and $$...$$ for display/block math.
   {
     id: "2025-01_q1",
-    exam: "2025-01",
+    examId: "2025-01",
     topic: "topic-1",
     type: "text",
     points: 15,
@@ -120,7 +120,7 @@ Substitute $r = 5$: $A = \\pi \\times 5^2 = \\pi \\times 25 \\approx 3.14 \\time
   // The language annotation on fenced code blocks triggers syntax highlighting.
   {
     id: "2025-01_q2",
-    exam: "2025-01",
+    examId: "2025-01",
     topic: "topic-1",
     type: "text",
     points: 15,
@@ -147,7 +147,7 @@ Calculation: $5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$.`,
   // Use GFM pipe tables instead of the deprecated `table` field.
   {
     id: "2025-01_q3",
-    exam: "2025-01",
+    examId: "2025-01",
     topic: "topic-1",
     type: "text",
     points: 10,
@@ -173,7 +173,7 @@ Weighted mean: multiply each value by its frequency, sum, divide by total. For S
   // Bold (**), italic (*), inline code (`), and strikethrough (~~) all work.
   {
     id: "2025-01_q4",
-    exam: "2025-01",
+    examId: "2025-01",
     topic: "topic-2",
     type: "mc",
     points: 20,
@@ -192,7 +192,7 @@ Weighted mean: multiply each value by its frequency, sum, divide by total. For S
   // Another example of inline markdown tables replacing the deprecated `table` field.
   {
     id: "2025-01_q5",
-    exam: "2025-01",
+    examId: "2025-01",
     topic: "topic-2",
     type: "text",
     points: 15,
@@ -212,7 +212,7 @@ The profit margin improved from $16.7\\%$ to $20.8\\%$, indicating operational e
   // explanation is valid for matching — shown in the "Open Solution" panel.
   {
     id: "2025-01_q6",
-    exam: "2025-01",
+    examId: "2025-01",
     topic: "topic-2",
     type: "matching",
     points: 10,
@@ -242,7 +242,7 @@ The profit margin improved from $16.7\\%$ to $20.8\\%$, indicating operational e
   // the visual marker that it also appeared in an earlier exam.
   {
     id: "shared_q1",
-    exam: "2024",
+    examId: "2024",
     topic: "topic-1",
     type: "mc",
     points: 5,
@@ -265,7 +265,7 @@ The profit margin improved from $16.7\\%$ to $20.8\\%$, indicating operational e
 
   {
     id: "syntax_javascript",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -281,7 +281,7 @@ console.log(average);
   },
   {
     id: "syntax_typescript",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -302,7 +302,7 @@ function label(user: User): string {
   },
   {
     id: "syntax_python",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -316,7 +316,7 @@ print(even_squares)
   },
   {
     id: "syntax_java",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -333,7 +333,7 @@ System.out.println(point.x() + point.y());
   },
   {
     id: "syntax_c",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -355,7 +355,7 @@ int main(void) {
   },
   {
     id: "syntax_cpp",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -375,7 +375,7 @@ int main() {
   },
   {
     id: "syntax_go",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -397,7 +397,7 @@ func main() {
   },
   {
     id: "syntax_rust",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -414,7 +414,7 @@ fn parse_port(value: &str) -> Result<u16, std::num::ParseIntError> {
   },
   {
     id: "syntax_sql",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -433,7 +433,7 @@ ORDER BY average_salary DESC;
   },
   {
     id: "syntax_bash",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -451,7 +451,7 @@ printf 'Hello, %s!\\n' "$name"
   },
   {
     id: "syntax_html_css",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -477,7 +477,7 @@ printf 'Hello, %s!\\n' "$name"
   },
   {
     id: "syntax_json",
-    exam: "syntax-highlighting",
+    examId: "syntax-highlighting",
     topic: "syntax-highlighting",
     type: "text",
     points: 1,
@@ -503,7 +503,7 @@ printf 'Hello, %s!\\n' "$name"
 
   {
     id: "code-rendering_q1",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -519,7 +519,7 @@ console.log(doubled.join(", "));
   },
   {
     id: "code-rendering_q2",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -535,7 +535,7 @@ function first<T>(items: T[]): T | undefined {
   },
   {
     id: "code-rendering_q3",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -551,7 +551,7 @@ print(long_words)
   },
   {
     id: "code-rendering_q4",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -570,7 +570,7 @@ System.out.println(result);
   },
   {
     id: "code-rendering_q5",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -587,7 +587,7 @@ printf("%d\\n", value);
   },
   {
     id: "code-rendering_q6",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -603,7 +603,7 @@ std::cout << values.size();
   },
   {
     id: "code-rendering_q7",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -623,7 +623,7 @@ func main() {
   },
   {
     id: "code-rendering_q8",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -640,7 +640,7 @@ fn read_count(input: &str) -> Result<usize, std::num::ParseIntError> {
   },
   {
     id: "code-rendering_q9",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -659,7 +659,7 @@ ORDER BY total DESC;
   },
   {
     id: "code-rendering_q10",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -676,7 +676,7 @@ printf 'Listening on %s\\n' "$port"
   },
   {
     id: "code-rendering_q11",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -701,7 +701,7 @@ printf 'Listening on %s\\n' "$port"
   },
   {
     id: "code-rendering_q12",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -720,7 +720,7 @@ printf 'Listening on %s\\n' "$port"
   },
   {
     id: "code-rendering_q13",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "text",
     points: 5,
@@ -735,7 +735,7 @@ console.log(fallback);
   },
   {
     id: "code-rendering_q14",
-    exam: "code-rendering",
+    examId: "code-rendering",
     topic: "syntax-highlighting",
     type: "mc",
     points: 5,
@@ -758,7 +758,7 @@ console.log(fallback);
 
   {
     id: "markdown-complete_q1",
-    exam: "markdown-complete",
+    examId: "markdown-complete",
     topic: "markdown-complete",
     type: "text",
     points: 20,
@@ -802,7 +802,7 @@ The inline expression is $f(x) = x^2 + 1$; the sum formula uses $n(n+1)/2$.`,
   },
   {
     id: "markdown-complete_q2",
-    exam: "markdown-complete",
+    examId: "markdown-complete",
     topic: "markdown-complete",
     type: "mc",
     points: 10,
@@ -824,7 +824,7 @@ The inline expression is $f(x) = x^2 + 1$; the sum formula uses $n(n+1)/2$.`,
   },
   {
     id: "markdown-complete_q3",
-    exam: "markdown-complete",
+    examId: "markdown-complete",
     topic: "markdown-complete",
     type: "matching",
     points: 10,
@@ -848,7 +848,7 @@ The inline expression is $f(x) = x^2 + 1$; the sum formula uses $n(n+1)/2$.`,
   },
   {
     id: "markdown-complete_q4",
-    exam: "markdown-complete",
+    examId: "markdown-complete",
     topic: "markdown-complete",
     type: "text",
     points: 10,
@@ -865,7 +865,7 @@ The total blocked work is **3**: $2 + 1 + 0 = 3$.`,
   },
   {
     id: "markdown-complete_q5",
-    exam: "markdown-complete",
+    examId: "markdown-complete",
     topic: "markdown-complete",
     type: "text",
     points: 10,
@@ -888,7 +888,7 @@ Read more at [the Markdown guide](https://commonmark.org/help/).`,
 
   {
     id: "lorem-ipsum_q1",
-    exam: "lorem-ipsum",
+    examId: "lorem-ipsum",
     topic: "lorem-ipsum",
     type: "text",
     points: 20,
@@ -917,7 +917,7 @@ The exact word counts are less important than identifying the document hierarchy
   },
   {
     id: "lorem-ipsum_q2",
-    exam: "lorem-ipsum",
+    examId: "lorem-ipsum",
     topic: "lorem-ipsum",
     type: "mc",
     points: 10,
@@ -936,7 +936,7 @@ It is intentionally verbose so the interface can be checked with **realistic lin
   },
   {
     id: "lorem-ipsum_q3",
-    exam: "lorem-ipsum",
+    examId: "lorem-ipsum",
     topic: "lorem-ipsum",
     type: "matching",
     points: 10,
@@ -959,7 +959,7 @@ It is intentionally verbose so the interface can be checked with **realistic lin
 
   {
     id: "visual-assets_q1",
-    exam: "visual-assets",
+    examId: "visual-assets",
     topic: "visual-assets",
     type: "text",
     points: 20,
@@ -972,7 +972,7 @@ The arrows show a left-to-right data flow.`,
   },
   {
     id: "visual-assets_q2",
-    exam: "visual-assets",
+    examId: "visual-assets",
     topic: "visual-assets",
     type: "mc",
     points: 15,
@@ -991,7 +991,7 @@ The arrows show a left-to-right data flow.`,
   },
   {
     id: "visual-assets_q3",
-    exam: "visual-assets",
+    examId: "visual-assets",
     topic: "visual-assets",
     type: "matching",
     points: 15,
@@ -1020,7 +1020,7 @@ The solution image should appear after opening the explanation.`,
 
   {
     id: "question-types_q1",
-    exam: "question-types",
+    examId: "question-types",
     topic: "question-types",
     type: "mc",
     points: 10,
@@ -1038,7 +1038,7 @@ The solution image should appear after opening the explanation.`,
   },
   {
     id: "question-types_q2",
-    exam: "question-types",
+    examId: "question-types",
     topic: "question-types",
     type: "text",
     points: 10,
@@ -1049,7 +1049,7 @@ The solution image should appear after opening the explanation.`,
   },
   {
     id: "question-types_q3",
-    exam: "question-types",
+    examId: "question-types",
     topic: "question-types",
     type: "matching",
     points: 10,
@@ -1070,7 +1070,7 @@ The solution image should appear after opening the explanation.`,
   // `development` is optional and appears in a collapsible panel after checking.
   {
     id: "question-types_q4",
-    exam: "question-types",
+    examId: "question-types",
     topic: "question-types",
     type: "fill",
     points: 5,
@@ -1092,7 +1092,7 @@ $$`,
   // Table answers follow row order, then column order, considering only blanks.
   {
     id: "question-types_q5",
-    exam: "question-types",
+    examId: "question-types",
     topic: "question-types",
     type: "table-fill",
     points: 5,

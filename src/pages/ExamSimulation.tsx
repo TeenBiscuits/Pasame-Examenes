@@ -30,6 +30,7 @@ import {
   isFullySelfGraded,
   isSelfGradedQuestion,
 } from "../lib/grading";
+import { getExamPassPoints } from "../lib/exam-stats";
 import ScoreProgress from "../components/ScoreProgress";
 import {
   Alarm,
@@ -57,6 +58,7 @@ interface ExamStartScreenProps {
   examInfo: Exam;
   questions: Question[];
   totalPoints: number;
+  passPoints: number;
   onStart: () => void;
 }
 
@@ -65,6 +67,7 @@ function ExamStartScreen({
   examInfo,
   questions,
   totalPoints,
+  passPoints,
   onStart,
 }: ExamStartScreenProps) {
   const t = useT();
@@ -128,9 +131,7 @@ function ExamStartScreen({
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.pass}</span>
-            <p className="font-semibold">
-              {formatPoints(examInfo.passPoints)}p
-            </p>
+            <p className="font-semibold">{formatPoints(passPoints)}p</p>
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.timeLimit}</span>
@@ -172,6 +173,7 @@ interface ExamPlayerProps {
   submitted: boolean;
   timeLeft: number;
   totalPoints: number;
+  passPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
   scrollToHeaderRef: React.MutableRefObject<() => void>;
@@ -199,6 +201,7 @@ interface ExamPlayerHeaderProps {
   submitted: boolean;
   timeLeft: number;
   totalPoints: number;
+  passPoints: number;
   score: number;
   pendingTextCount: number;
   questionResults: ReturnType<typeof computeQuestionResults>;
@@ -222,6 +225,7 @@ function ExamPlayerHeader({
   submitted,
   timeLeft,
   totalPoints,
+  passPoints,
   score,
   pendingTextCount,
   questionResults,
@@ -298,14 +302,14 @@ function ExamPlayerHeader({
                 className={`animate-fade-in rounded-md px-2.5 py-1 text-xs font-bold ${
                   pendingTextCount > 0
                     ? "bg-pending-bg text-pending-fg"
-                    : score >= examInfo.passPoints
+                    : score >= passPoints
                       ? "bg-correct-bg text-correct-fg"
                       : "bg-incorrect-bg text-incorrect-fg"
                 }`}
               >
                 {pendingTextCount > 0
                   ? t.exam.submitted
-                  : score >= examInfo.passPoints
+                  : score >= passPoints
                     ? t.exam.pass_
                     : t.exam.fail}
               </span>
@@ -323,7 +327,7 @@ function ExamPlayerHeader({
           questionResults={questionResults}
           dataTour="exam-nav"
           eventName="exam_navigate"
-          eventData={{ subjectId: subject.id, year: examInfo.year }}
+          eventData={{ subjectId: subject.id, examId: examInfo.id }}
           className={scoreSummary ? "mt-2 mb-0" : "mt-4 mb-0"}
           onSelectIndex={(i, dir) => {
             setDirection(dir);
@@ -398,7 +402,7 @@ function ExamExitDialog({
             ).length;
             track("exam_abandon", {
               subjectId: subject.id,
-              year: examInfo.year,
+              examId: examInfo.id,
               answeredCount,
               timeLeft,
             });
@@ -558,7 +562,7 @@ function ExamControls({
     setDirection(dir);
     track("exam_navigate", {
       subjectId: subject.id,
-      year: examInfo.year,
+      examId: examInfo.id,
       direction: dir,
       fromIndex: currentIndex,
       toIndex: nextIndex,
@@ -755,6 +759,7 @@ function ExamPlayer({
   submitted,
   timeLeft,
   totalPoints,
+  passPoints,
   direction,
   setDirection,
   showLeftFade,
@@ -885,6 +890,7 @@ function ExamPlayer({
         submitted={submitted}
         timeLeft={timeLeft}
         totalPoints={totalPoints}
+        passPoints={passPoints}
         score={score}
         pendingTextCount={pendingTextCount}
         questionResults={questionResults}
@@ -901,7 +907,7 @@ function ExamPlayer({
               totalPoints={totalPoints}
               pendingTextCount={pendingTextCount}
               pendingTextPoints={pendingTextPoints}
-              passPoints={examInfo.passPoints}
+              passPoints={passPoints}
               compact={scoreCompact}
             />
           ) : null
@@ -916,10 +922,10 @@ function ExamPlayer({
           total={questions.length}
           topicLabel={currentTopic?.label || currentQuestion.topic}
           megatopicLabel={megatopicLabels[currentQuestion.topic]}
-          examDate={examInfo?.date || examInfo?.title}
+          examTitle={examInfo?.title}
           subjectId={subject.id}
           topicKey={currentQuestion.topic}
-          examYear={examInfo.year}
+          examId={examInfo.id}
           mode="exam"
           onAnswer={onAnswer}
           savedAnswer={answers[currentQuestion.id]}
@@ -999,7 +1005,7 @@ function ExamEmptyState({
 }
 
 export default function ExamSimulation() {
-  const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
+  const { subjectId, examId } = useParams<{ subjectId: string; examId: string }>();
   const navigate = useNavigate();
   const t = useT();
   const { lang } = useLang();
@@ -1014,19 +1020,25 @@ export default function ExamSimulation() {
     Record<string, string>
   >({});
   const examInfo = useMemo(
-    () => subject?.exams.find((e: Exam) => e.year === year && !e.deleteRights),
-    [subject, year],
+    () => subject?.exams.find((e: Exam) => e.id === examId && !e.deleteRights),
+    [subject, examId],
   );
+  const totalPoints = roundPoints(
+    questions.reduce((s, q) => s + q.points, 0),
+  );
+  const passPoints = examInfo
+    ? getExamPassPoints(examInfo, totalPoints)
+    : 0;
   useEffect(() => {
-    if (subject && year) {
-      getQuestionsByExam(subject.id, year).then((examQuestions) => {
+    if (subject && examId) {
+      getQuestionsByExam(subject.id, examId).then((examQuestions) => {
         setQuestions(examQuestions);
-        setQuestionsLoadedFor(`${subject.id}/${year}`);
+        setQuestionsLoadedFor(`${subject.id}/${examId}`);
       });
     }
-  }, [subject, year]);
+  }, [subject, examId]);
   const questionsLoaded =
-    !!subject && !!year && questionsLoadedFor === `${subject.id}/${year}`;
+    !!subject && !!examId && questionsLoadedFor === `${subject.id}/${examId}`;
 
   useEffect(() => {
     if (!subject || questions.length === 0) return;
@@ -1048,10 +1060,11 @@ export default function ExamSimulation() {
     () =>
       examInfo && subject
         ? buildExamMeta(lang, subject, examInfo, {
-            examQuestionCounts: { [examInfo.year]: questions.length },
+            examQuestionCounts: { [examInfo.id]: questions.length },
+            examTotalPoints: { [examInfo.id]: totalPoints },
           })
         : undefined,
-    [examInfo, subject, lang, questions.length],
+    [examInfo, subject, lang, questions.length, totalPoints],
   );
   useDocumentTitle(seoMeta?.title ?? t.home.title);
 
@@ -1084,7 +1097,7 @@ export default function ExamSimulation() {
   } = useExamSession(
     questions,
     subject?.id || "",
-    year || "",
+    examId || "",
     (examInfo?.durationMinutes || 120) * 60,
     t,
     showTimeUpDialog,
@@ -1136,8 +1149,8 @@ export default function ExamSimulation() {
   });
 
   const navEventData = useCallback(
-    () => ({ subjectId: subjectId || "", year: year || "" }),
-    [subjectId, year],
+    () => ({ subjectId: subjectId || "", examId: examId || "" }),
+    [subjectId, examId],
   );
 
   useKeyboardNav({
@@ -1243,8 +1256,6 @@ export default function ExamSimulation() {
     return () => clearTimeout(timer);
   }, [started, questions.length, subject, t]);
 
-  const totalPoints = roundPoints(questions.reduce((s, q) => s + q.points, 0));
-
   if (questions.length === 0 || !subject || !examInfo) {
     return (
       <ExamEmptyState subject={subject} questionsLoaded={questionsLoaded} />
@@ -1260,6 +1271,7 @@ export default function ExamSimulation() {
           examInfo={examInfo}
           questions={questions}
           totalPoints={totalPoints}
+          passPoints={passPoints}
           onStart={handleStart}
         />
       </>
@@ -1281,6 +1293,7 @@ export default function ExamSimulation() {
         submitted={submitted}
         timeLeft={timeLeft}
         totalPoints={totalPoints}
+        passPoints={passPoints}
         direction={direction}
         setDirection={setDirection}
         showLeftFade={showLeftFade}

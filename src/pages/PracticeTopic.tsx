@@ -568,10 +568,10 @@ function PracticePlayer({
 
   const currentExam = useMemo(() => {
     return currentQuestion
-      ? subject.exams.find((e) => e.year === currentQuestion.exam)
+      ? subject.exams.find((e) => e.id === currentQuestion.examId)
       : undefined;
   }, [subject, currentQuestion]);
-  const examDate = currentExam?.date || currentExam?.title;
+  const examTitle = currentExam?.title;
 
   const questionResults = useMemo(
     () =>
@@ -696,10 +696,10 @@ function PracticePlayer({
           total={questions.length}
           topicLabel={topicInfo?.label || topic || ""}
           megatopicLabel={megatopicLabel}
-          examDate={examDate}
+          examTitle={examTitle}
           subjectId={subject.id}
           topicKey={topic || undefined}
-          examYear={currentQuestion?.exam}
+          examId={currentQuestion?.examId}
           mode="practice"
           onAnswer={onAnswer}
           savedAnswer={answers[currentQuestion.id]}
@@ -751,7 +751,7 @@ export default function PracticeTopic() {
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const { selectedExamYears } = useExamSelection(subject);
+  const { selectedExamIds } = useExamSelection(subject);
   const [allTopicQuestions, setAllTopicQuestions] = useState<Question[]>([]);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
     null,
@@ -762,8 +762,8 @@ export default function PracticeTopic() {
     [subject, topic],
   );
   const questions = useMemo(
-    () => filterQuestionsByExamSelection(allTopicQuestions, selectedExamYears),
-    [allTopicQuestions, selectedExamYears],
+    () => filterQuestionsByExamSelection(allTopicQuestions, selectedExamIds),
+    [allTopicQuestions, selectedExamIds],
   );
   useEffect(() => {
     if (subject && topic) {

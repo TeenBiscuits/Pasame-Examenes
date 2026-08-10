@@ -22,7 +22,7 @@ export const questions: Question[] = [
   // --- Tema 1 y 2: Introducción y Elementos Básicos de la OO ---
   {
     id: "2020_q1",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -47,7 +47,7 @@ for (int i = 0; i <= sb.length(); i++) {
   },
   {
     id: "2020_q2",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -88,7 +88,7 @@ public class Bar {
   },
   {
     id: "2020_q3",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -106,7 +106,7 @@ public class Bar {
   },
   {
     id: "2020_q4",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -132,7 +132,7 @@ class MiClase {
   },
   {
     id: "2020_q5",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -166,7 +166,7 @@ public class MatrixFunctions {
   },
   {
     id: "2020_q6",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -184,7 +184,7 @@ public class MatrixFunctions {
   },
   {
     id: "2020_q7",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -217,7 +217,7 @@ class TestEnum {
   // --- Tema 3: Propiedades Básicas de la OO ---
   {
     id: "2020_q8",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -235,7 +235,7 @@ class TestEnum {
   },
   {
     id: "2020_q9",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -253,7 +253,7 @@ class TestEnum {
   },
   {
     id: "2020_q10",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -282,7 +282,7 @@ public class Ejemplo {
   },
   {
     id: "2020_q11",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -312,7 +312,7 @@ class Clase2 extends Clase1 {
   },
   {
     id: "2020_q13",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -353,7 +353,7 @@ class Test {
   // --- Tema 4: UML ---
   {
     id: "2020_q14",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -370,7 +370,7 @@ class Test {
   },
   {
     id: "2020_q15",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -392,7 +392,7 @@ class Test {
   },
   {
     id: "2020_q16",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -418,7 +418,7 @@ class A {
   },
   {
     id: "2020_q17",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -436,7 +436,7 @@ class A {
   },
   {
     id: "2020_q18",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -455,7 +455,7 @@ class A {
   },
   {
     id: "2020_q19",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -475,7 +475,7 @@ class A {
   // --- Tema 5: Principios de Diseño ---
   {
     id: "2020_q12",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -504,7 +504,7 @@ class Mercado {
   },
   {
     id: "2020_q20",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -522,7 +522,7 @@ class Mercado {
   },
   {
     id: "2020_q21",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -539,7 +539,7 @@ class Mercado {
   },
   {
     id: "2020_q22",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -557,7 +557,7 @@ class Mercado {
   },
   {
     id: "2020_q23",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -578,7 +578,7 @@ objectA.getObjectB().getObjectC().doSomething();
   },
   {
     id: "2020_q24",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -596,7 +596,7 @@ objectA.getObjectB().getObjectC().doSomething();
   // --- Tema 6: Patrones de Diseño ---
   {
     id: "2020_q25",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -622,7 +622,7 @@ objectA.getObjectB().getObjectC().doSomething();
   },
   {
     id: "2020_q26",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -652,7 +652,7 @@ public final class RGBColor {
   },
   {
     id: "2020_q27",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -670,7 +670,7 @@ public final class RGBColor {
   },
   {
     id: "2020_q28",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -687,7 +687,7 @@ public final class RGBColor {
   },
   {
     id: "2020_q29",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -706,7 +706,7 @@ public final class RGBColor {
   },
   {
     id: "2020_q30",
-    exam: "2020-01",
+    examId: "2020-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -729,7 +729,7 @@ public final class RGBColor {
   // --- Tema 1 y 2: Introducción y Elementos Básicos de la OO ---
   {
     id: "2022_q1",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -757,7 +757,7 @@ public static int countChar(String text, char c) {
   },
   {
     id: "2022_q2",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -787,7 +787,7 @@ else System.out.println("NOT Equal");
   },
   {
     id: "2022_q3",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -805,7 +805,7 @@ else System.out.println("NOT Equal");
   },
   {
     id: "2022_q4",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -834,7 +834,7 @@ public enum Operation implements OperationInterface {
   },
   {
     id: "2022_q5",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "intro-y-objetos",
     type: "mc",
     points: 1,
@@ -857,7 +857,7 @@ public record Box(int value) { }
   // --- Tema 3: Propiedades Básicas de la OO ---
   {
     id: "2022_q6",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -875,7 +875,7 @@ public record Box(int value) { }
   },
   {
     id: "2022_q7",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -893,7 +893,7 @@ public record Box(int value) { }
   },
   {
     id: "2022_q8",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -910,7 +910,7 @@ public record Box(int value) { }
   },
   {
     id: "2022_q9",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -938,7 +938,7 @@ public class SomeClass { // línea 1
   },
   {
     id: "2022_q10",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -974,7 +974,7 @@ class BirdsFarm {
   // --- Tema 4: UML ---
   {
     id: "2022_q11",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -987,7 +987,7 @@ class BirdsFarm {
   },
   {
     id: "2022_q12",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "propiedades-oo",
     type: "mc",
     points: 1,
@@ -1005,7 +1005,7 @@ class BirdsFarm {
   },
   {
     id: "2022_q13",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -1024,7 +1024,7 @@ class BirdsFarm {
   },
   {
     id: "2022_q14",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -1039,7 +1039,7 @@ class BirdsFarm {
   },
   {
     id: "2022_q15",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "uml",
     type: "mc",
     points: 1,
@@ -1060,7 +1060,7 @@ class BirdsFarm {
   // --- Tema 5: Principios de Diseño ---
   {
     id: "2022_q16",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -1078,7 +1078,7 @@ class BirdsFarm {
   },
   {
     id: "2022_q17",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -1097,7 +1097,7 @@ class BirdsFarm {
   },
   {
     id: "2022_q18",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -1124,7 +1124,7 @@ public class Client {
   },
   {
     id: "2022_q19",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -1142,7 +1142,7 @@ public class Client {
   },
   {
     id: "2022_q20",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -1176,7 +1176,7 @@ public class ManageClient {
   // --- Tema 6: Patrones de Diseño ---
   {
     id: "2022_q21",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -1203,7 +1203,7 @@ public class ManageClient {
   },
   {
     id: "2022_q22",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -1220,7 +1220,7 @@ public class ManageClient {
   },
   {
     id: "2022_q23",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,
@@ -1238,7 +1238,7 @@ public class ManageClient {
   },
   {
     id: "2022_q24",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "principios-diseno",
     type: "mc",
     points: 1,
@@ -1277,7 +1277,7 @@ public class SongList {
   },
   {
     id: "2022_q25",
-    exam: "2022-01",
+    examId: "2022-01",
     topic: "patrones-diseno",
     type: "mc",
     points: 1,

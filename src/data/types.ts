@@ -29,8 +29,8 @@ export interface QuestionTable {
 
 export interface Question {
   id: string;
-  /** The single exam this question belongs to. */
-  exam: string;
+  /** The id of the single exam this question belongs to. */
+  examId: string;
   topic: string;
   type: QuestionType;
   points: number;
@@ -83,14 +83,18 @@ export interface ContentLicense {
 }
 
 export interface Exam {
-  year: string;
+  /** Slug used in URLs, PDF filenames and as `Question.examId`. */
+  id: string;
   title: string;
-  date?: string;
-  passPoints: number;
-  totalPoints: number;
+  /**
+   * Fraction of the total score required to pass (0-1).
+   * Defaults to 0.5 (50%). The total is derived from the questions.
+   */
+  passPercentage?: number;
   durationMinutes: number;
   hasPdf?: boolean;
-  daypoUrl?: string;
+  /** Link to the original content source (e.g. a Daypo test). */
+  originalUrl?: string;
   deleteRights?: boolean;
 }
 
@@ -114,7 +118,7 @@ export interface SubjectMeta {
 
 export interface ExamAttempt {
   id: string;
-  exam: string;
+  examId: string;
   mode: "practice" | "exam";
   topic?: string;
   date: string;

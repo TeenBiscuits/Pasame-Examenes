@@ -36,10 +36,10 @@ export const es: Translations = {
     sourceMaterials: "Materiales fuente",
     sourceMaterialsDescription:
       "Abre los materiales autorizados o públicos usados como fuente para estas preguntas de práctica.",
-    originalDaypos: "Tests Daypo originales",
-    daypoDocsDescription:
-      "Abre los tests Daypo originales usados como fuente para estas preguntas de práctica.",
-    daypo: "Daypo",
+    originalContent: "Enlace al contenido original",
+    originalContentDescription:
+      "Abre el contenido original usado como fuente para estas preguntas de práctica.",
+    original: "Original",
     pdf: "PDF",
     acknowledgments: "Agradecimientos y exención de responsabilidad",
     legalInformation: "Información legal de la asignatura",

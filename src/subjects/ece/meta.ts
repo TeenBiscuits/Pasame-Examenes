@@ -26,11 +26,8 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
-      year: "2026-01",
+      id: "2026-01",
       title: "Enero 2026",
-      date: "Enero 2026",
-      passPoints: 2,
-      totalPoints: 4,
       durationMinutes: 90,
       hasPdf: false,
     },
