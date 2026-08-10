@@ -48,9 +48,7 @@ export function useExamSelection(subject: SubjectMeta | undefined) {
   );
   const availableExamIdsKey = availableExamIds.join(",");
   const storageKey = subjectId ? `${STORAGE_PREFIX}${subjectId}` : null;
-  const selectionKey = subjectId
-    ? `${subjectId}:${availableExamIdsKey}`
-    : null;
+  const selectionKey = subjectId ? `${subjectId}:${availableExamIdsKey}` : null;
   const [selectionState, setSelectionState] = useState<{
     key: string | null;
     ids: string[];

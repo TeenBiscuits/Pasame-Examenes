@@ -98,11 +98,7 @@ export function usePracticeSession(
     attemptIdRef.current = id;
     let score = 0;
     for (const q of questions) {
-      score += getQuestionScore(
-        q,
-        state.answers[q.id] || "",
-        state.selfGrades,
-      );
+      score += getQuestionScore(q, state.answers[q.id] || "", state.selfGrades);
     }
     const answeredCount = Object.values(state.answers).filter(
       (a) => a && a.trim() !== "",

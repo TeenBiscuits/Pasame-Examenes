@@ -1,12 +1,7 @@
 import type { Picture } from "vite-imagetools";
 
 export type QuestionType =
-  | "mc"
-  | "text"
-  | "multiple-text"
-  | "matching"
-  | "fill"
-  | "table-fill";
+  "mc" | "text" | "multiple-text" | "matching" | "fill" | "table-fill";
 
 export interface FillStatement {
   label?: string;
@@ -20,6 +15,8 @@ export interface TextPart {
   text: string;
   /** Optional points awarded for this part. */
   points?: number;
+  /** Optional worked-solution image shown inside this part's solution panel. */
+  explanationImage?: Picture | string | (Picture | string)[];
 }
 
 export interface QuestionTable {

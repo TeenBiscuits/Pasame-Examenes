@@ -572,7 +572,8 @@ function MultipleTextQuestion({
               htmlFor={`answer-${question.id}-${partIndex}`}
               className="sr-only"
             >
-              {part.label || defaultLabel(partIndex)} {t.questionCard.yourAnswer}
+              {part.label || defaultLabel(partIndex)}{" "}
+              {t.questionCard.yourAnswer}
             </label>
             <textarea
               id={`answer-${question.id}-${partIndex}`}
@@ -632,6 +633,13 @@ function MultipleTextQuestion({
                     <Markdown className="text-fg-secondary font-sans text-xs whitespace-pre-wrap">
                       {solutions[partIndex]}
                     </Markdown>
+                    {part.explanationImage && (
+                      <QuestionImage
+                        image={part.explanationImage}
+                        alt={t.questionCard.solutionIllustration}
+                        maxHeight="300px"
+                      />
+                    )}
                     {onSelfGrade && (
                       <div className="border-border border-t pt-2">
                         <p className="text-fg-secondary mb-2 text-xs font-semibold">
@@ -657,7 +665,9 @@ function MultipleTextQuestion({
                           >
                             <CheckSquare
                               size={14}
-                              weight={grade === "correct" ? "Filled" : "Outline"}
+                              weight={
+                                grade === "correct" ? "Filled" : "Outline"
+                              }
                               aria-hidden="true"
                             />
                             {t.questionCard.correct}
@@ -681,7 +691,9 @@ function MultipleTextQuestion({
                           >
                             <XSquare
                               size={14}
-                              weight={grade === "incorrect" ? "Filled" : "Outline"}
+                              weight={
+                                grade === "incorrect" ? "Filled" : "Outline"
+                              }
                               aria-hidden="true"
                             />
                             {t.questionCard.incorrect}

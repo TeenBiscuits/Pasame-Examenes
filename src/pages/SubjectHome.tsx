@@ -683,11 +683,7 @@ function PdfLinksSection({
   );
 }
 
-function OriginalContentLinksSection({
-  subject,
-}: {
-  subject: SubjectMeta;
-}) {
+function OriginalContentLinksSection({ subject }: { subject: SubjectMeta }) {
   const t = useT();
   const originalExams = subject.exams.filter(
     (exam) => !exam.deleteRights && exam.originalUrl != null,
@@ -716,7 +712,8 @@ function OriginalContentLinksSection({
             });
           }}
         >
-          <span aria-hidden="true">🌐</span> {exam.title} {t.subjectHome.original}{" "}
+          <span aria-hidden="true">🌐</span> {exam.title}{" "}
+          {t.subjectHome.original}{" "}
           <ArrowRightUp weight="Filled" className="size-3.5" />
         </a>
       ))}

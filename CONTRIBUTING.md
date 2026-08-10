@@ -99,8 +99,7 @@ export const meta: SubjectMeta = {
       title: "2024",
       durationMinutes: 180,
       hasPdf: true, // opcional, valor por defecto true. Pon false si no hay PDF
-      originalUrl:
-        "https://www.daypo.com/mi-test.html", // opcional, enlace al contenido original usado como fuente
+      originalUrl: "https://www.daypo.com/mi-test.html", // opcional, enlace al contenido original usado como fuente
     },
   ],
 };

@@ -1005,7 +1005,10 @@ function ExamEmptyState({
 }
 
 export default function ExamSimulation() {
-  const { subjectId, examId } = useParams<{ subjectId: string; examId: string }>();
+  const { subjectId, examId } = useParams<{
+    subjectId: string;
+    examId: string;
+  }>();
   const navigate = useNavigate();
   const t = useT();
   const { lang } = useLang();
@@ -1023,12 +1026,8 @@ export default function ExamSimulation() {
     () => subject?.exams.find((e: Exam) => e.id === examId && !e.deleteRights),
     [subject, examId],
   );
-  const totalPoints = roundPoints(
-    questions.reduce((s, q) => s + q.points, 0),
-  );
-  const passPoints = examInfo
-    ? getExamPassPoints(examInfo, totalPoints)
-    : 0;
+  const totalPoints = roundPoints(questions.reduce((s, q) => s + q.points, 0));
+  const passPoints = examInfo ? getExamPassPoints(examInfo, totalPoints) : 0;
   useEffect(() => {
     if (subject && examId) {
       getQuestionsByExam(subject.id, examId).then((examQuestions) => {

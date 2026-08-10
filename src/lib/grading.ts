@@ -187,8 +187,8 @@ export function computeQuestionResults(
           results[q.id] = "pending";
           continue;
         }
-        const grades = parts.map((_, i) =>
-          selfGrades[getPartSelfGradeKey(q.id, i)],
+        const grades = parts.map(
+          (_, i) => selfGrades[getPartSelfGradeKey(q.id, i)],
         );
         if (grades.every((grade) => grade === "correct")) {
           results[q.id] = "correct";

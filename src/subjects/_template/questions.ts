@@ -1117,7 +1117,7 @@ $$`,
   // Each `textParts` entry gets its own input and self-grade, and `correctAnswer`
   // holds one model solution per part in `textParts` order. An explicit `points`
   // on a part wins; the parts without explicit points split the remaining points
-  // equally.
+  // equally. A part can carry its own `explanationImage` shown inside its solution panel.
   {
     id: "question-types_q6",
     examId: "question-types",

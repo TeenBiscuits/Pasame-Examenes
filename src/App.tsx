@@ -505,7 +505,10 @@ export default function App() {
                 path="/:subjectId/practice/:topic"
                 element={<LangRedirect />}
               />
-              <Route path="/:subjectId/exam/:examId" element={<LangRedirect />} />
+              <Route
+                path="/:subjectId/exam/:examId"
+                element={<LangRedirect />}
+              />
             </Routes>
           </Suspense>
         </main>

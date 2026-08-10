@@ -257,8 +257,7 @@ $$(16 \\text{ transacciones} \\times 100 \\text{ ciclos/tr} + 15 \\times 40) \\t
     topic: "raid",
     type: "mc",
     points: 0.1,
-    question:
-      "¿Qué nivel RAID permite recuperarse de dos fallos simultáneos?",
+    question: "¿Qué nivel RAID permite recuperarse de dos fallos simultáneos?",
     options: ["A. RAID 3.", "B. RAID 6.", "C. RAID 5."],
     correctAnswer: "b",
     explanation:
