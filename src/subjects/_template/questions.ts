@@ -1113,6 +1113,34 @@ $$
 6 \\times 2 = 12
 $$`,
   },
+  // === Multiple free-text parts ===
+  // Each `textParts` entry gets its own input and self-grade, and `correctAnswer`
+  // holds one model solution per part in `textParts` order. An explicit `points`
+  // on a part wins; the parts without explicit points split the remaining points
+  // equally.
+  {
+    id: "question-types_q6",
+    examId: "question-types",
+    topic: "question-types",
+    type: "multiple-text",
+    points: 10,
+    question: "Answer the following parts about `multiple-text` questions:",
+    textParts: [
+      {
+        label: "a)",
+        text: "How is `correctAnswer` represented for a `multiple-text` question?",
+      },
+      {
+        label: "b)",
+        points: 6,
+        text: "When an explicit `points` is set on a part, how is it graded?",
+      },
+    ],
+    correctAnswer: [
+      "As a `string[]` with one model solution per part, in `textParts` order.",
+      "The explicit `points` win; the parts without explicit points share the remaining question points equally.",
+    ],
+  },
 ];
 
 void questions;
