@@ -22,12 +22,13 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-// Keep subject question files using literal single-line `topic`, `exam`, and `id`
-// fields. These counts are only used for SEO copy, so avoiding dynamic imports
-// of image-heavy question modules keeps build-time metadata generation cheap.
+// Keep subject question files using literal single-line `topic`, `examId`, and
+// `id` fields. These counts are only used for SEO copy, so avoiding dynamic
+// imports of image-heavy question modules keeps build-time metadata generation
+// cheap.
 function countMatches(
   content: string,
-  field: "topic" | "exam",
+  field: "topic" | "examId",
   value: string,
 ): number {
   const pattern = new RegExp(
@@ -48,14 +49,14 @@ function collectStats(
   const content = readFileSync(questionsPath, "utf-8");
   const topicQuestionCounts: Record<string, number> = {};
   const examQuestionCounts: Record<string, number> = {};
-  const bothCount = countMatches(content, "exam", "both");
+  const bothCount = countMatches(content, "examId", "both");
 
   for (const topic of subject.topics) {
     topicQuestionCounts[topic.key] = countMatches(content, "topic", topic.key);
   }
   for (const exam of subject.exams) {
-    examQuestionCounts[exam.year] =
-      countMatches(content, "exam", exam.year) + bothCount;
+    examQuestionCounts[exam.id] =
+      countMatches(content, "examId", exam.id) + bothCount;
   }
 
   return {

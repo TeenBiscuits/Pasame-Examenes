@@ -7,7 +7,7 @@ export const questions: Question[] = [
 
   {
     id: "2026-05_t1",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -25,7 +25,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t2",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -42,7 +42,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t3",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -60,7 +60,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t4",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -78,7 +78,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t5",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -96,7 +96,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t6",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -114,7 +114,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t7",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -132,7 +132,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t8",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -150,7 +150,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t9",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -168,7 +168,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t10",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -186,7 +186,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t11",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -204,7 +204,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t12",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -222,7 +222,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t13",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -240,7 +240,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t14",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -258,7 +258,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t15",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -276,7 +276,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t16",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,
@@ -294,7 +294,7 @@ export const questions: Question[] = [
   },
   {
     id: "2026-05_t17",
-    exam: "2026-05",
+    examId: "2026-05",
     topic: "teoria",
     type: "mc",
     points: 0.5,

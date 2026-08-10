@@ -28,7 +28,7 @@ pnpm doctor    # React Doctor via npx
 - No backend: subjects/questions are static TypeScript under `src/subjects/`; attempts/progress, language, and theme are persisted in `localStorage`.
 - Runtime subject discovery is in `src/subjects/index.ts`: eager `import.meta.glob` loads every `*/meta.ts`, lazy glob loads `*/questions.ts`, and `_template` is excluded.
 - `src/subjects/_visibility.ts` is still required when adding a subject so React Doctor/static analysis sees named `meta` and `questions` exports as consumed.
-- Routes live in `src/App.tsx` under `/:lang` for `en`, `es`, and `gl`: `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:year`. `/:lang/:subjectId/practice` redirects back to the subject page.
+- Routes live in `src/App.tsx` under `/:lang` for `en`, `es`, and `gl`: `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:examId`. `/:lang/:subjectId/practice` redirects back to the subject page.
 - i18n is a custom context in `src/i18n/`; adding a string means updating the `Translations` shape in `en.ts` and adding matching values in `es.ts` and `gl.ts`.
 - Theme state is in `src/theme/`; valid themes come from `themeOrder` in `src/theme/types.ts` and are applied with `data-theme` on `<html>`.
 - Analytics scripts are in `index.html`; app code should use `src/lib/umami.ts`, which no-ops when analytics is unavailable.
@@ -38,8 +38,8 @@ pnpm doctor    # React Doctor via npx
 - To add a subject, copy `src/subjects/_template/`, then create exported `meta` and `questions` from `src/data/types.ts`; see `CONTRIBUTING.md` for full examples.
 - Subject folder names and `meta.id` must match. Use lowercase kebab-case unless preserving the existing short-code convention (`eseo`, `cepe`, etc.).
 - Topic keys referenced by `questions.ts` must exist in `meta.topics`; topic colors must have matching CSS variables in `src/index.css` (`blue`, `indigo`, `green`, `purple`, `pink`, `amber`, `red`, `cyan`, `orange`).
-- `Exam.year` is a string and is used directly in URLs and PDF filenames. PDFs are linked as `public/exams/{subject-id}/Exam-{year}.pdf`; set `hasPdf: false` for exams without a PDF.
-- Every question must have an `exam` string matching exactly one `Exam.year`; there is no shared-exam sentinel. Mark repeated or near-duplicate questions with `repeated: true` only to show the visual repeated marker.
+- `Exam.id` is a slug string used directly in URLs and PDF filenames. PDFs are linked as `public/exams/{subject-id}/Exam-{id}.pdf`; set `hasPdf: false` for exams without a PDF.
+- Every question must have an `examId` string matching exactly one `Exam.id`; there is no shared-exam sentinel. Mark repeated or near-duplicate questions with `repeated: true` only to show the visual repeated marker.
 - Question counts and point totals shown for an exam are derived from the questions assigned to that exam in `src/lib/exam-stats.ts`; do not hardcode an exam description summary.
 - `mc` answers are stored as lowercase letters (`"a"`-`"e"`); `text` questions show `correctAnswer` as the model solution for self-grading; `matching` uses `Record<string, string>`.
 - Optional `explanation` only controls the extra solution panel for `mc`/`matching`; `text` always opens a model solution and can also show `explanation`.

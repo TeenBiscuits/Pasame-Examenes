@@ -52,10 +52,10 @@ export async function getQuestionsByTopic(
 
 export async function getQuestionsByExam(
   subjectId: string,
-  exam: string,
+  examId: string,
 ): Promise<Question[]> {
   const qs = await getAllQuestions(subjectId);
-  return qs.filter((q) => q.exam === exam);
+  return qs.filter((q) => q.examId === examId);
 }
 
 export async function getTopicMegaTopicLabel(

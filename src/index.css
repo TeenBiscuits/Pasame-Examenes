@@ -61,6 +61,7 @@ body {
   --color-t-amber-bg: #fffbeb;
   --color-t-amber-border: #fde68a;
   --color-t-amber-hover: #fbbf24;
+  --color-t-amber-fg: #92400e;
   --color-t-red-bg: #fef2f2;
   --color-t-red-border: #fecaca;
   --color-t-red-hover: #f87171;
@@ -122,6 +123,7 @@ html[data-theme="dark"] {
   --color-t-amber-bg: #451a03;
   --color-t-amber-border: #78350f;
   --color-t-amber-hover: #f59e0b;
+  --color-t-amber-fg: #fbbf24;
   --color-t-red-bg: #450a0a;
   --color-t-red-border: #7f1d1d;
   --color-t-red-hover: #ef4444;
@@ -204,6 +206,7 @@ html[data-theme="catppuccin"] {
   --color-t-amber-bg: #313244;
   --color-t-amber-border: #45475a;
   --color-t-amber-hover: #f9e2af;
+  --color-t-amber-fg: #f9e2af;
   --color-t-red-bg: #313244;
   --color-t-red-border: #45475a;
   --color-t-red-hover: #f38ba8;
@@ -266,6 +269,7 @@ html[data-theme="catppuccin"] {
     --color-t-amber-bg: #451a03;
     --color-t-amber-border: #78350f;
     --color-t-amber-hover: #f59e0b;
+    --color-t-amber-fg: #fbbf24;
     --color-t-red-bg: #450a0a;
     --color-t-red-border: #7f1d1d;
     --color-t-red-hover: #ef4444;

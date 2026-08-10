@@ -44,6 +44,7 @@ export interface SubjectStats {
   questionCount?: number;
   topicQuestionCounts?: Record<string, number>;
   examQuestionCounts?: Record<string, number>;
+  examTotalPoints?: Record<string, number>;
 }
 
 const translations = { en, es, gl } as const;
@@ -321,8 +322,8 @@ export function buildExamMeta(
   stats: SubjectStats = {},
 ): PageMetaData {
   const tr = t(lang);
-  const pathWithoutLang = `/${subject.id}/exam/${exam.year}`;
-  const count = stats.examQuestionCounts?.[exam.year];
+  const pathWithoutLang = `/${subject.id}/exam/${exam.id}`;
+  const count = stats.examQuestionCounts?.[exam.id];
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
   const titleStem = interpolate(
     hasAuthorizedExams ? tr.seo.examAuthorizedTitle : tr.seo.examPracticeTitle,
@@ -338,7 +339,7 @@ export function buildExamMeta(
       questionCount: count
         ? interpolate(tr.seo.questionCountSuffix, { count })
         : "",
-      totalPoints: exam.totalPoints,
+      totalPoints: stats.examTotalPoints?.[exam.id] ?? 0,
       durationMinutes: exam.durationMinutes,
     },
   );

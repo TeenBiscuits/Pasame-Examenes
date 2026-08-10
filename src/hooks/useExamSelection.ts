@@ -3,73 +3,71 @@ import type { Question, SubjectMeta } from "../data/types";
 
 const STORAGE_PREFIX = "exam-sources:v1:";
 
-function getAvailableExamYears(subject: SubjectMeta): string[] {
-  const years: string[] = [];
+function getAvailableExamIds(subject: SubjectMeta): string[] {
+  const examIds: string[] = [];
   for (const exam of subject.exams) {
-    if (!exam.deleteRights) years.push(exam.year);
+    if (!exam.deleteRights) examIds.push(exam.id);
   }
-  return years;
+  return examIds;
 }
 
-function readSelectedExamYears(
+function readSelectedExamIds(
   subjectId: string,
-  availableExamYears: string[],
+  availableExamIds: string[],
 ): string[] {
   try {
     const stored = localStorage.getItem(`${STORAGE_PREFIX}${subjectId}`);
-    if (!stored) return availableExamYears;
+    if (!stored) return availableExamIds;
 
     const parsed: unknown = JSON.parse(stored);
-    if (!Array.isArray(parsed)) return availableExamYears;
+    if (!Array.isArray(parsed)) return availableExamIds;
 
-    const storedYears = new Set(
-      parsed.filter((year): year is string => typeof year === "string"),
+    const storedIds = new Set(
+      parsed.filter((id): id is string => typeof id === "string"),
     );
-    const selected = availableExamYears.filter((year) => storedYears.has(year));
-    return selected.length > 0 ? selected : availableExamYears;
+    const selected = availableExamIds.filter((id) => storedIds.has(id));
+    return selected.length > 0 ? selected : availableExamIds;
   } catch {
-    return availableExamYears;
+    return availableExamIds;
   }
 }
 
 export function filterQuestionsByExamSelection(
   questions: Question[],
-  selectedExamYears: string[],
+  selectedExamIds: string[],
 ): Question[] {
-  const selected = new Set(selectedExamYears);
-  return questions.filter((question) => selected.has(question.exam));
+  const selected = new Set(selectedExamIds);
+  return questions.filter((question) => selected.has(question.examId));
 }
 
 export function useExamSelection(subject: SubjectMeta | undefined) {
   const subjectId = subject?.id;
-  const availableExamYears = useMemo(
-    () => (subject ? getAvailableExamYears(subject) : []),
+  const availableExamIds = useMemo(
+    () => (subject ? getAvailableExamIds(subject) : []),
     [subject],
   );
-  const availableExamYearsKey = availableExamYears.join(",");
+  const availableExamIdsKey = availableExamIds.join(",");
   const storageKey = subjectId ? `${STORAGE_PREFIX}${subjectId}` : null;
-  const selectionKey = subjectId
-    ? `${subjectId}:${availableExamYearsKey}`
-    : null;
+  const selectionKey = subjectId ? `${subjectId}:${availableExamIdsKey}` : null;
   const [selectionState, setSelectionState] = useState<{
     key: string | null;
-    years: string[];
+    ids: string[];
   }>(() => ({
     key: selectionKey,
-    years: subject ? readSelectedExamYears(subject.id, availableExamYears) : [],
+    ids: subject ? readSelectedExamIds(subject.id, availableExamIds) : [],
   }));
-  const selectedExamYears = useMemo(
+  const selectedExamIds = useMemo(
     () =>
       selectionState.key === selectionKey
-        ? selectionState.years
+        ? selectionState.ids
         : subject
-          ? readSelectedExamYears(subject.id, availableExamYears)
+          ? readSelectedExamIds(subject.id, availableExamIds)
           : [],
     [
-      availableExamYears,
+      availableExamIds,
       selectionKey,
       selectionState.key,
-      selectionState.years,
+      selectionState.ids,
       subject,
     ],
   );
@@ -81,34 +79,34 @@ export function useExamSelection(subject: SubjectMeta | undefined) {
       if (event.key !== storageKey || !subject) return;
       setSelectionState({
         key: selectionKey,
-        years: readSelectedExamYears(subject.id, availableExamYears),
+        ids: readSelectedExamIds(subject.id, availableExamIds),
       });
     };
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
-  }, [storageKey, subject, availableExamYears, selectionKey]);
+  }, [storageKey, subject, availableExamIds, selectionKey]);
 
-  const updateSelectedExamYears = useCallback(
-    (years: string[]) => {
+  const updateSelectedExamIds = useCallback(
+    (ids: string[]) => {
       if (!subjectId) return;
 
-      const requested = new Set(years);
-      const next = availableExamYears.filter((year) => requested.has(year));
+      const requested = new Set(ids);
+      const next = availableExamIds.filter((id) => requested.has(id));
       if (next.length === 0) return;
 
-      setSelectionState({ key: selectionKey, years: next });
+      setSelectionState({ key: selectionKey, ids: next });
       try {
         localStorage.setItem(storageKey!, JSON.stringify(next));
       } catch {
         /* localStorage unavailable */
       }
     },
-    [availableExamYears, selectionKey, subjectId, storageKey],
+    [availableExamIds, selectionKey, subjectId, storageKey],
   );
 
   return {
-    availableExamYears,
-    selectedExamYears,
-    setSelectedExamYears: updateSelectedExamYears,
+    availableExamIds,
+    selectedExamIds,
+    setSelectedExamIds: updateSelectedExamIds,
   };
 }

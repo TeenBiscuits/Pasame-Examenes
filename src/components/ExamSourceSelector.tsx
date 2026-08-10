@@ -7,22 +7,22 @@ import { ChecklistAlt, XSquare, Filter } from "reicon-react";
 
 interface ExamSourceSelectorProps {
   subject: SubjectMeta;
-  selectedExamYears: string[];
-  onChange: (years: string[]) => void;
+  selectedExamIds: string[];
+  onChange: (ids: string[]) => void;
   dialogRef: RefObject<HTMLDialogElement | null>;
   examStats: ReadonlyMap<string, ExamQuestionStats>;
 }
 
 export default function ExamSourceSelector({
   subject,
-  selectedExamYears,
+  selectedExamIds,
   onChange,
   dialogRef,
   examStats,
 }: ExamSourceSelectorProps) {
   const t = useT();
   const exams = subject.exams.filter((exam) => !exam.deleteRights);
-  const selected = new Set(selectedExamYears);
+  const selected = new Set(selectedExamIds);
   const allSelected = selected.size === exams.length;
 
   useEffect(() => {
@@ -47,10 +47,10 @@ export default function ExamSourceSelector({
 
   function toggleExam(exam: Exam) {
     const next = new Set(selected);
-    if (next.has(exam.year)) {
-      next.delete(exam.year);
+    if (next.has(exam.id)) {
+      next.delete(exam.id);
     } else {
-      next.add(exam.year);
+      next.add(exam.id);
     }
     onChange([...next]);
   }
@@ -102,7 +102,7 @@ export default function ExamSourceSelector({
               type="button"
               data-cuelume-press
               className="text-accent hover:text-accent-hover focus-visible:ring-accent inline-flex shrink-0 items-center gap-1 rounded-md px-1 py-1 text-[0.625rem] leading-4 font-medium whitespace-nowrap underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:outline-none disabled:opacity-40 sm:gap-1.5 sm:px-2 sm:text-sm"
-              onClick={() => onChange(exams.map((exam) => exam.year))}
+              onClick={() => onChange(exams.map((exam) => exam.id))}
               disabled={allSelected}
             >
               <ChecklistAlt
@@ -115,7 +115,7 @@ export default function ExamSourceSelector({
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {exams.map((exam) => (
               <label
-                key={exam.year}
+                key={exam.id}
                 className="border-border hover:bg-surface-alt has-[:focus-visible]:ring-accent flex cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors has-[:focus-visible]:ring-2"
               >
                 <input
@@ -123,24 +123,24 @@ export default function ExamSourceSelector({
                   className="accent-accent mt-0.5 size-4 shrink-0"
                   data-cuelume-toggle
                   aria-label={exam.title}
-                  checked={selected.has(exam.year)}
+                  checked={selected.has(exam.id)}
                   onChange={() => toggleExam(exam)}
-                  disabled={selected.size === 1 && selected.has(exam.year)}
+                  disabled={selected.size === 1 && selected.has(exam.id)}
                 />
                 <span className="min-w-0">
                   <span className="text-fg block text-sm font-medium">
                     {exam.title}
                   </span>
                   <span className="text-fg-muted mt-0.5 block text-xs">
-                    {examStats.has(exam.year)
+                    {examStats.has(exam.id)
                       ? t.exam.questionSummary
                           .replace(
                             "{questions}",
-                            String(examStats.get(exam.year)?.questionCount),
+                            String(examStats.get(exam.id)?.questionCount),
                           )
                           .replace(
                             "{points}",
-                            formatPoints(examStats.get(exam.year)?.points ?? 0),
+                            formatPoints(examStats.get(exam.id)?.points ?? 0),
                           )
                       : "..."}
                   </span>

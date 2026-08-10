@@ -12,13 +12,1221 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 ) as ImageMap;
 
 export const questions: Question[] = [
+
+  // ============================================================
+  // RECOPILATORIO ENERO 2026
+  // ============================================================
+
+  {
+    id: "2026-01_q1",
+    examId: "2026-01",
+    topic: "tema-1",
+    type: "mc",
+    points: 1,
+    question: "En la técnica de conmutación de paquetes:",
+    options: [
+      "A. Se reservan los recursos necesarios a lo largo de la ruta.",
+      "B. El router no tiene recursos para reservar.",
+      "C. Se utiliza la técnica de transmisión de almacenamiento y reenvío.",
+      "D. Los recursos se mantienen durante la sesión.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q2",
+    examId: "2026-01",
+    topic: "tema-1",
+    type: "mc",
+    points: 1,
+    question:
+      "En el protocolo ARQ retroceder N (Go-Back-N) con un tamaño de ventana de 5 paquetes, si el receptor ha recibido correctamente los paquetes 1, 2, 4 y 5 (se ha perdido el paquete 3), y enviado los correspondientes ACKs, ¿qué paquete o paquetes deberá retransmitir el emisor?",
+    options: [
+      "A. El 3.",
+      "B. El 3, 4 y 5.",
+      "C. El 1, 2, 3, 4 y 5.",
+      "D. Ninguno, porque los ACKs son acumulativos.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q3",
+    examId: "2026-01",
+    topic: "tema-1",
+    type: "mc",
+    points: 1,
+    question:
+      "Y en el mismo escenario de la pregunta anterior, si el emisor ha recibido correctamente todos los ACKs enviados por el receptor, ¿el emisor puede enviar el paquete 6 antes de retransmitir?",
+    options: [
+      "A. Sí.",
+      "B. No antes de retransmitir, pero después sí.",
+      "C. No después de retransmitir, pero antes sí.",
+      "D. No puede enviar el paquete 6.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q4",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    repeated: true,
+    question: "NAT (Network Address Translation):",
+    options: [
+      "A. Se emplea para que un dispositivo sin dirección IP pueda comunicarse con cualquier dispositivo en Internet.",
+      "B. Permite obtener la dirección MAC asociada a una determinada dirección IP.",
+      "C. Permite que múltiples dispositivos de una red privada accedan a Internet empleando una misma dirección IP pública.",
+      "D. Tiene como principal ventaja que permite una conectividad extremo a extremo real.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q5",
+    examId: "2026-01",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question: "Al hacer un ping:",
+    options: [
+      "A. El origen envía un mensaje ICMP echo request y el destino responde con un mensaje ICMP echo reply, encapsulados en datagramas IP.",
+      "B. El origen envía un mensaje ICMP echo request y el destino responde con un mensaje ICMP echo reply, encapsulados en datagramas UDP.",
+      "C. El origen envía un mensaje ICMP echo request y el destino responde con un mensaje ICMP echo reply, encapsulados en segmentos TCP.",
+      "D. Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q6",
+    examId: "2026-01",
+    topic: "tema-12",
+    type: "mc",
+    points: 1,
+    question: "¿Es posible cambiar el SSID de una red WiFi?",
+    options: [
+      "A. No, es fijo.",
+      "B. Solo el proveedor puede cambiarlo.",
+      "C. Sí, desde la configuración del router.",
+      "D. Solo con un software específico externo.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q7",
+    examId: "2026-01",
+    topic: "tema-5",
+    type: "mc",
+    points: 1,
+    question: "En una conexión TCP entre dos dispositivos:",
+    options: [
+      "A. Todos los routers intermedios utilizan TCP para reenviar los segmentos.",
+      "B. Solo los dispositivos de los extremos utilizan TCP, mientras que los nodos intermedios operan a nivel de red.",
+      "C. Únicamente el emisor utiliza TCP.",
+      "D. TCP solo funciona dentro de una misma red local.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q8",
+    examId: "2026-01",
+    topic: "tema-3-4",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué observaré si capturo con Wireshark el tráfico al conectarme a http://http.badssl.com/?",
+    options: [
+      "A. Únicamente las direcciones IP origen y destino.",
+      "B. El contenido de la comunicación cifrado.",
+      "C. La cabecera y el contenido de la petición y de la respuesta HTTP en texto claro.",
+      "D. Únicamente las cabeceras HTTP en texto claro.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q9",
+    examId: "2026-01",
+    topic: "tema-5",
+    type: "mc",
+    points: 1,
+    question:
+      "Si la capa de aplicación le pasa a UDP 10 bytes o 10 Kbytes, ¿cuál es la diferencia para UDP?",
+    options: [
+      "A. En el caso del paquete de 10 Kbytes, UDP debe dividirlo en datagramas más pequeños (p. ej. 1024 bytes).",
+      "B. En el caso del paquete de 10 bytes, UDP debe esperar a recibir más datos para no enviar el datagrama con pocos datos.",
+      "C. A y B son correctas.",
+      "D. No hay ninguna diferencia.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2026-01_q10",
+    examId: "2026-01",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "A partir de la tabla de enrutamiento de la Figura 1, ¿a cuántas redes está directamente conectado el dispositivo?\n\n| Destino | Gateway | Máscara | Flags | Interfaz |\n|---|---|---|---|---|\n| default | 10.51.1.1 | 0.0.0.0 | UG | |\n| 10.51.1.0 | 0.0.0.0 | 255.255.255.0 | U | eth0 |\n| 10.20.15.0 | 0.0.0.0 | 255.255.255.0 | U | eth1 |",
+    options: ["A. 0.", "B. 1.", "C. 2.", "D. 3."],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q11",
+    examId: "2026-01",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "A partir de la tabla de enrutamiento de la Figura 1, ¿cuál es la interfaz de salida de la entrada default?\n\n| Destino | Gateway | Máscara | Flags | Interfaz |\n|---|---|---|---|---|\n| default | 10.51.1.1 | 0.0.0.0 | UG | |\n| 10.51.1.0 | 0.0.0.0 | 255.255.255.0 | U | eth0 |\n| 10.20.15.0 | 0.0.0.0 | 255.255.255.0 | U | eth1 |",
+    options: [
+      "A. eth0.",
+      "B. eth1.",
+      "C. Cualquiera de las dos es válida (eth0 o eth1).",
+      "D. Ninguna.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q12",
+    examId: "2026-01",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "A partir de la tabla de enrutamiento de la Figura 1, ¿cuál es el router por defecto?\n\n| Destino | Gateway | Máscara | Flags | Interfaz |\n|---|---|---|---|---|\n| default | 10.51.1.1 | 0.0.0.0 | UG | |\n| 10.51.1.0 | 0.0.0.0 | 255.255.255.0 | U | eth0 |\n| 10.20.15.0 | 0.0.0.0 | 255.255.255.0 | U | eth1 |",
+    options: [
+      "A. 10.51.1.1.",
+      "B. 10.20.15.1.",
+      "C. A y B son correctas.",
+      "D. Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q13",
+    examId: "2026-01",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question:
+      "En base a la salida de la Figura 2, obtenida al ejecutar el comando `traceroute -n www.example.com` (la opción `-n` hace que se muestren las direcciones IP en la salida y no los nombres DNS), ¿cuál es el primer paquete que se envía y el primero que se recibe?\n\n```text\ntraceroute to www.example.com (93.184.216.34), 30 hops max\n1  192.168.1.1    1.2 ms   1.0 ms   1.1 ms\n2  10.10.0.1      5.4 ms   5.1 ms   5.3 ms\n3  172.16.4.2    12.8 ms  13.0 ms  12.9 ms\n4  93.184.216.34 25.2 ms  25.4 ms  25.1 ms\n```",
+    options: [
+      "A. Se envía un ICMP echo request y se recibe un ICMP echo reply.",
+      "B. Se envía un datagrama UDP y se recibe otro datagrama UDP.",
+      "C. Se envía un datagrama UDP y se recibe un ICMP Tiempo excedido.",
+      "D. Se envía un ICMP echo request y recibe un ARP.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q14",
+    examId: "2026-01",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 2 y en base a la misma información de la pregunta anterior, ¿cuál de estas afirmaciones es correcta respecto al cuarto paquete enviado por el traceroute (ten en cuenta que, por cada salto, el traceroute envía 3 paquetes)?",
+    options: [
+      "A. La dirección IP de destino es 10.10.0.1 y el campo TTL 64.",
+      "B. La dirección IP de destino es 10.10.0.1 y el campo TTL 2.",
+      "C. La dirección IP de destino es 93.184.216.34 y el campo TTL 64.",
+      "D. La dirección IP de destino es 93.184.216.34 y el campo TTL 2.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2026-01_q15",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question: "La dirección 10.11.12.13 / 8 es:",
+    options: [
+      "A. Pública.",
+      "B. Privada.",
+      "C. No es válida.",
+      "D. Broadcast.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q16",
+    examId: "2026-01",
+    topic: "tema-10",
+    type: "mc",
+    points: 1,
+    question: "Respecto a la cabecera de IPv6:",
+    options: [
+      "A. Es de tamaño variable, como en IPv4.",
+      "B. Tiene más campos que la cabecera IPv4.",
+      "C. Es de tamaño fijo.",
+      "D. Ya no es necesario incluir el campo IP origen, al incluirlo automáticamente el router.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q17",
+    examId: "2026-01",
+    topic: "tema-2",
+    type: "mc",
+    points: 1,
+    question: "¿Cuáles son las capas de la pila de protocolos TCP/IP?",
+    options: [
+      "A. Aplicación, presentación, sesión, transporte, red, enlace y físico.",
+      "B. Aplicación, red, enlace y físico.",
+      "C. Transporte, red, enlace y físico.",
+      "D. Aplicación, transporte, red, enlace y físico.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2026-01_q18",
+    examId: "2026-01",
+    topic: "tema-10",
+    type: "mc",
+    points: 1,
+    question: "¿Cuál de las siguientes direcciones IPv6 es una válida?",
+    options: [
+      "A. 2001:db8::1::5",
+      "B. FE80::1",
+      "C. 2001:DB8:10100::10",
+      "D. 2001:85a3::7334",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El OCR muestra también la opción D como una dirección sintácticamente válida; se mantiene una única respuesta por la limitación del formato de test.",
+  },
+  {
+    id: "2026-01_q19",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "La principal diferencia entre el nivel de red y el nivel de transporte es que:",
+    options: [
+      "A. El nivel de transporte utiliza un protocolo salto a salto y el nivel de red extremo a extremo.",
+      "B. El nivel de transporte proporciona enrutamiento, mientras que el nivel de red no.",
+      "C. El nivel de transporte es no orientado a conexión y el nivel de red puede ser orientado o no orientado a conexión.",
+      "D. Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2026-01_q20",
+    examId: "2026-01",
+    topic: "tema-6",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 3, ¿cuánto vale la ventana ofrecida del receptor y la ventana utilizable por el emisor, después de recibir el ACK 2049 y antes de enviar los segmentos de datos?",
+    image: getImage(imageMap, "2026-01-figure-3.png"),
+    options: [
+      "A. 3072 y 4096, respectivamente.",
+      "B. 4096 y 3072, respectivamente.",
+      "C. Las dos valen 3072.",
+      "D. Las dos valen 4096.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q21",
+    examId: "2026-01",
+    topic: "tema-6",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 3, después de enviar los tres segmentos de datos, ¿cuántos segmentos más podría enviar el emisor?",
+    image: getImage(imageMap, "2026-01-figure-3.png"),
+    options: ["A. 0.", "B. 1.", "C. 2.", "D. 3."],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q22",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question: '¿Para qué sirve el campo "Checksum" de la cabecera IP?',
+    options: [
+      "A. Verificar errores en los datos.",
+      "B. Verificar errores en la cabecera IP.",
+      "C. Verificar errores en los datos y en la cabecera IP.",
+      "D. Controlar la congestión.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q23",
+    examId: "2026-01",
+    topic: "tema-3-4",
+    type: "mc",
+    points: 1,
+    question:
+      "Un cliente accede a una página web con múltiples recursos (imágenes, hojas de estilo, scripts, etc.) alojados en el mismo servidor. ¿Qué opción es más eficiente?",
+    options: [
+      "A. HTTP no persistente.",
+      "B. HTTP persistente sin pipeline.",
+      "C. HTTP persistente con pipeline.",
+      "D. Todas las opciones tienen la misma eficiencia.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q24",
+    examId: "2026-01",
+    topic: "tema-6",
+    type: "mc",
+    points: 1,
+    repeated: true,
+    question: "El control de congestión:",
+    options: [
+      "A. Trata de evitar la congestión en los routers intermedios.",
+      "B. Garantiza que no se producirá congestión en el receptor.",
+      "C. Trata de evitar la congestión en el receptor.",
+      "D. Todas las anteriores son correctas.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q25",
+    examId: "2026-01",
+    topic: "tema-6",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Por qué sabe TCP cuánto tiempo esperar antes de realizar la retransmisión de un segmento perdido?",
+    options: [
+      "A. Porque en Internet el RTT (Round-Trip Time) con un destino concreto es fijo y conocido.",
+      "B. Porque en Internet el RTT es fijo.",
+      "C. Porque IP informa del RTT a TCP.",
+      "D. Porque TCP estima o mide el RTT de la conexión.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2026-01_q26",
+    examId: "2026-01",
+    topic: "tema-3-4",
+    type: "mc",
+    points: 1,
+    question:
+      "El servidor de correo de la UDC necesita enviar un mensaje a john.doe@gmail.com. ¿Cuál de las siguientes secuencias describe correctamente el proceso?",
+    options: [
+      "A. El servidor consulta DNS para obtener el registro MX de gmail.com y después utiliza SMTP para enviar el correo al servidor de destino.",
+      "B. El servidor utiliza SMTP para consultar DNS y después POP3 para enviar el mensaje.",
+      "C. El servidor consulta DNS para obtener la dirección IP del cliente y después usa IMAP para enviar el correo.",
+      "D. El servidor utiliza DNS para enviar directamente el mensaje al servidor de Gmail.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q27",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Disponemos de una dirección IP clase C (197.100.100.0) que debemos organizar en las subredes de la Figura 4 usando subredes de tamaño fijo (FLSM). ¿Cuál sería la máscara de subred para el departamento de Matemáticas?\n\n```text\nDepartamento de Informática: 50 hosts\nDepartamento de Matemáticas: 25 hosts\nDepartamento de Ciencias: 10 hosts\nDepartamento de Economía: 8 hosts\n```",
+    options: [
+      "A. 255.255.255.128.",
+      "B. 255.255.255.192.",
+      "C. 255.255.255.224.",
+      "D. 255.255.255.240.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q28",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 4, pero usando subredes de tamaño variable (VLSM) y minimizando el número de bits de host, ¿cuál sería la máscara de subred para el departamento de Matemáticas?",
+    options: [
+      "A. 255.255.255.128.",
+      "B. 255.255.255.192.",
+      "C. 255.255.255.224.",
+      "D. 255.255.255.240.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q29",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 4 y usando VLSM (minimizando el número de bits de host), ¿cuál sería un identificador de subred válido para el departamento de Informática?",
+    options: [
+      "A. 197.100.100.0 (0000 0000).",
+      "B. 197.100.100.96 (0110 0000).",
+      "C. 197.100.100.112 (0111 0000).",
+      "D. Todas las anteriores son correctas.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q30",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 4, en el departamento de Economía, ¿cuántas direcciones IP se desperdician usando FLSM y VLSM (minimizando el número de bits de host), respectivamente?",
+    options: [
+      "A. 118 en los dos casos.",
+      "B. 54 en los dos casos.",
+      "C. 6 en los dos casos.",
+      "D. 54 y 6, respectivamente.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2026-01_q31",
+    examId: "2026-01",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 4, suponiendo que queremos dividir la subred de Informática en dos nuevas sub-subredes correspondientes a las áreas de Desarrollo (25 hosts) y Producción (25 hosts), ¿cuáles serían identificadores y máscaras de subred válidos?",
+    options: [
+      "A. 197.100.100.0/27 y 197.100.100.128/27.",
+      "B. 197.100.100.64/26 y 197.100.100.96/26.",
+      "C. 197.100.100.96/27 y 197.100.100.112/27.",
+      "D. 197.100.100.0/27 y 197.100.100.32/27.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2026-01_q32",
+    examId: "2026-01",
+    topic: "tema-5",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Puede haber dos aplicaciones distintas ejecutándose en el mismo puerto (p. ej. 5000 de TCP)?",
+    options: [
+      "A. Sí.",
+      "B. No.",
+      "C. Sí, si una aplicación está en modo cliente y la otra en modo servidor.",
+      "D. Sí, si son dos usuarios distintos.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q33",
+    examId: "2026-01",
+    topic: "tema-3-4",
+    type: "mc",
+    points: 1,
+    repeated: true,
+    question: "El DNS (Domain Name System):",
+    options: [
+      "A. Es el sistema encargado de convertir nombres de máquinas en direcciones IP, y viceversa.",
+      "B. Es el sistema encargado de convertir direcciones IP en direcciones Ethernet, y viceversa.",
+      "C. Funciona exclusivamente en redes de área local.",
+      "D. Es un protocolo cifrado de comunicaciones.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q34",
+    examId: "2026-01",
+    topic: "tema-11",
+    type: "mc",
+    points: 1,
+    question:
+      "En base a la Figura 5, supón que en la máquina 198.10.10.10 hacemos un ping a la máquina 199.20.20.20. Ten en cuenta que la máquina 198.10.10.10 acaba de reiniciarse y el router y el host 199.20.20.20 tienen la caché ARP completa. En caso de generar el envío de peticiones ARP, los mensajes ICMP no son descartados. ¿Cuál es el primer paquete que circula por la red X y cuál es la dirección MAC de destino de la cabecera Ethernet?",
+    image: getImage(imageMap, "2026-01-figure-5.png"),
+    options: [
+      "A. Un ICMP echo request con dirección MAC de destino ff:ff:ff:ff:ff:ff.",
+      "B. Un ICMP echo request con dirección MAC de destino 0f:09:32:de:32:2a.",
+      "C. Un ARP request con dirección MAC de destino ff:ff:ff:ff:ff:ff.",
+      "D. Un ARP request con dirección MAC de destino 0f:09:32:de:32:2a.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q35",
+    examId: "2026-01",
+    topic: "tema-11",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 5 y continuando con la pregunta anterior, ¿cuál es el segundo paquete que circula por la red X y cuál es la dirección MAC de destino de la cabecera Ethernet?",
+    image: getImage(imageMap, "2026-01-figure-5.png"),
+    options: [
+      "A. Un ICMP echo reply con dirección MAC de destino ff:ff:ff:ff:ff:ff.",
+      "B. Un ICMP echo reply con dirección MAC de destino 0a:87:23:a7:3f:9b.",
+      "C. Un ARP reply con dirección MAC de destino ff:ff:ff:ff:ff:ff.",
+      "D. Un ARP reply con dirección MAC de destino 0a:87:23:a7:3f:9b.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2026-01_q36",
+    examId: "2026-01",
+    topic: "tema-11",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 5 y continuando con la pregunta anterior, ¿cuál es el tercer paquete que circula por la red X y cuáles son sus direcciones IP y MAC de destino?",
+    image: getImage(imageMap, "2026-01-figure-5.png"),
+    options: [
+      "A. Un ICMP echo request con dirección IP de destino 199.20.20.20 y dirección MAC de destino ff:ff:ff:ff:ff:ff.",
+      "B. Un ICMP echo request con dirección IP de destino 199.20.20.20 y dirección MAC de destino 0f:09:32:de:32:2a.",
+      "C. Un ICMP echo request con dirección IP de destino 199.20.20.20 y dirección MAC de destino 0b:15:82:33:fc:82.",
+      "D. Un ICMP echo request con dirección IP de destino 199.20.20.20 y dirección MAC de destino 0e:89:32:ec:7a:98.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2026-01_q37",
+    examId: "2026-01",
+    topic: "tema-11",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 5 y continuando con la pregunta anterior, ¿cuáles son el primer y segundo paquete que circulan por la red Y, con sus respectivas direcciones IP de destino?",
+    image: getImage(imageMap, "2026-01-figure-5.png"),
+    options: [
+      "A. Un ICMP echo request, con IP de destino 199.20.20.20, y un ICMP echo reply, con IP de destino 198.10.10.10.",
+      "B. Un ICMP echo request, con IP de destino 199.20.20.20, y un ICMP echo reply, con IP de destino 199.20.20.1.",
+      "C. Un ICMP echo request, con IP de destino 199.20.20.1, y un ICMP echo reply, con IP de destino 198.10.10.1.",
+      "D. Un ICMP echo request, con IP de destino 199.20.20.1, y un ICMP echo reply, con IP de destino 198.10.10.10.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2026-01_q38",
+    examId: "2026-01",
+    topic: "tema-11",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 5 y continuando con la pregunta anterior, ¿cuáles son las direcciones MAC origen y destino del segundo paquete que circula por la red Y?",
+    image: getImage(imageMap, "2026-01-figure-5.png"),
+    options: [
+      "A. MAC origen 0f:09:32:de:32:2a y MAC destino 0a:87:23:a7:3f:9b.",
+      "B. MAC origen 0f:09:32:de:32:2a y MAC destino 0e:89:32:ec:7a:98.",
+      "C. MAC origen 0e:89:32:ec:7a:98 y MAC destino 0b:15:82:33:fc:82.",
+      "D. MAC origen 0e:89:32:ec:7a:98 y MAC destino 0f:09:32:de:32:2a.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q39",
+    examId: "2026-01",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question:
+      "En base a la Figura 6 y sabiendo que el MTU de las redes A y C es de 1500 bytes, mientras que el MTU de la red B es de 1000 bytes, si desde X se envían a Y 2018 bytes de datos UDP (sin incluir la cabecera UDP), ¿cuál es el tamaño del último fragmento que circula por la red A (incluida la cabecera IP)?",
+    image: getImage(imageMap, "2026-01-figure-6.png"),
+    options: ["A. 558.", "B. 566.", "C. 1480.", "D. 2026."],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q40",
+    examId: "2026-01",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 6 y continuando con la pregunta anterior, ¿cuál es el offset (en decimal) del segundo fragmento que circula por la red B?",
+    image: getImage(imageMap, "2026-01-figure-6.png"),
+    options: ["A. 0.", "B. 976.", "C. 980.", "D. 1480."],
+    correctAnswer: "b",
+  },
+  {
+    id: "2026-01_q41",
+    examId: "2026-01",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 6 y continuando con la pregunta anterior, ¿cuál es el tamaño del segundo fragmento que circula por la red C (incluida la cabecera IP)?",
+    image: getImage(imageMap, "2026-01-figure-6.png"),
+    options: ["A. 520.", "B. 524.", "C. 996.", "D. 1000."],
+    correctAnswer: "b",
+  },
+  // END_DAYPO_UDC
+
+  // ============================================================
+  // RECOPILATORIO MAYO 2025
+  // ============================================================
+
+  {
+    id: "2025-05_q14",
+    examId: "2025-05",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question: "NAT (Network Address Translation):",
+    options: [
+      "A. Se emplea para que un dispositivo sin dirección IP pueda comunicarse con cualquier dispositivo en Internet.",
+      "B. Permite obtener la dirección MAC asociada a una determinada dirección IP.",
+      "C. Permite que múltiples dispositivos de una red privada accedan a Internet empleando una misma dirección pública.",
+      "D. Tiene como principal ventaja que permite una conectividad extremo a extremo real.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2025-05_q15",
+    examId: "2025-05",
+    topic: "tema-11",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de los siguientes dispositivos operan sólo en el nivel de enlace y físico?",
+    options: ["A. Router.", "B. Switch.", "C. Firewall.", "D. Proxy."],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q16",
+    examId: "2025-05",
+    topic: "tema-6",
+    type: "mc",
+    points: 1,
+    question: "El control de congestión:",
+    options: [
+      "A. Trata de evitar la congestión en los routers intermedios.",
+      "B. Garantiza que no se producirá congestión en el receptor.",
+      "C. Trata de evitar la congestión en el receptor.",
+      "D. Todas las anteriores son correctas.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2025-05_q17",
+    examId: "2025-05",
+    topic: "tema-5",
+    type: "mc",
+    points: 1,
+    question: "El protocolo TCP es:",
+    options: [
+      "A. Un protocolo de la capa de transporte, orientado a conexión y fiable.",
+      "B. Un protocolo de la capa de aplicación, orientado a conexión y fiable.",
+      "C. Un protocolo de la capa de transporte, no orientado a conexión y fiable.",
+      "D. Un protocolo de la capa de transporte, no orientado a conexión y no fiable.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2025-05_q18",
+    examId: "2025-05",
+    topic: "tema-6",
+    type: "mc",
+    points: 1,
+    question:
+      "En el protocolo ARQ retroceder N (Go-Back-N), si el receptor ha recibido correctamente los paquetes 1, 2, 3, 5, 6 y 7, y enviado los correspondientes ACKs, ¿qué paquete o paquetes deberá retransmitir el emisor?",
+    options: [
+      "A. El 4.",
+      "B. El 4, 5, 6 y 7.",
+      "C. El 1, 2, 3, 4, 5, 6 y 7.",
+      "D. Ninguno, porque los ACKs son acumulativos.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q19",
+    examId: "2025-05",
+    topic: "tema-6",
+    type: "mc",
+    points: 1,
+    question:
+      "Y en el mismo escenario que la pregunta anterior, en el protocolo ARQ de repetición selectiva, ¿qué paquete o paquetes debe retransmitir el emisor?",
+    options: [
+      "A. El 4.",
+      "B. El 4, 5, 6 y 7.",
+      "C. El 1, 2, 3, 4, 5, 6 y 7.",
+      "D. Ninguno, porque los ACKs son acumulativos.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2025-05_q20",
+    examId: "2025-05",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question: "Si al hacer un ping no recibo respuesta, puede ser porque:",
+    options: [
+      "A. La máquina destino está caída.",
+      "B. Se ha caído un router del camino y la máquina de destino no es alcanzable.",
+      "C. Hay un firewall en la máquina destino que está descartando los mensajes ICMP echo request.",
+      "D. Todas las anteriores son correctas.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2025-05_q21",
+    examId: "2025-05",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 3, sabiendo que el MTU de las redes A y B es de 1500 bytes y suponiendo que se envían 2060 bytes de datos UDP (sin incluir cabecera/s UDP) desde el host X al host Y, ¿cuál de los siguientes es el tamaño del menor de los fragmentos que circula por la red B?",
+    image: getImage(imageMap, "Figura3.png"),
+    options: ["A. 600", "B. 608", "C. 2080", "D. 2088"],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q22",
+    examId: "2025-05",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 3 y con la misma información de la pregunta anterior, por la red A, ¿cuál es el offset (en decimal) del segundo fragmento?",
+    image: getImage(imageMap, "Figura3.png"),
+    options: ["A. 0", "B. 1480", "C. 1500", "D. 2060"],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q23",
+    examId: "2025-05",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 3 y con la misma información de la pregunta anterior, por la red A, ¿cuántos fragmentos tendrán el flag MF activado?",
+    image: getImage(imageMap, "Figura3.png"),
+    options: ["A. 0", "B. 1", "C. 2", "D. Todos"],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q24",
+    examId: "2025-05",
+    topic: "tema-3-4",
+    type: "mc",
+    points: 1,
+    question:
+      "En el modelo de conexiones persistentes del protocolo HTTP, ¿qué es más eficiente el modo sin pipeline o con pipeline?",
+    options: [
+      "A. Sin pipeline.",
+      "B. Con pipeline.",
+      "C. Son los dos igual de eficientes.",
+      "D. Son modelos del modo no persistente.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q25",
+    examId: "2025-05",
+    topic: "tema-2",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Por qué cuando conecto mi portátil a eduroam no tengo que configurar mi interfaz de red inalámbrica?",
+    options: [
+      "A. Porque utiliza DHCP.",
+      "B. Porque utiliza NAT.",
+      "C. Porque utiliza TCP.",
+      "D. Porque utiliza un firewall.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2025-05_q26",
+    examId: "2025-05",
+    topic: "tema-1",
+    type: "mc",
+    points: 1,
+    question: "Las redes de broadcast se caracterizan porque:",
+    options: [
+      "A. Hay un canal de comunicación dedicado para la comunicación entre dos máquinas full-duplex.",
+      "B. Hay un canal de comunicación dedicado para la comunicación entre dos máquinas half-duplex.",
+      "C. El canal de comunicación es compartido.",
+      "D. Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2025-05_q27",
+    examId: "2025-05",
+    topic: "tema-3-4",
+    type: "mc",
+    points: 1,
+    question: "El DNS (Domain Name System):",
+    options: [
+      "A. Es el sistema encargado de convertir nombres de máquinas en direcciones IP, y viceversa.",
+      "B. Es el sistema encargado de convertir nombres de máquinas en direcciones Ethernet, y viceversa.",
+      "C. Es el sistema encargado de gestionar el correo electrónico.",
+      "D. Es un protocolo de nivel de transporte.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2025-05_q28",
+    examId: "2025-05",
+    topic: "tema-12",
+    type: "mc",
+    points: 1,
+    question: "¿Cuál de estas afirmaciones es correcta?",
+    options: [
+      "A. Ethernet utiliza multiplexación por división en tiempo.",
+      "B. Ethernet utiliza multiplexación por división en frecuencia.",
+      "C. Ethernet es una tecnología de nivel de enlace.",
+      "D. Ethernet se basa en la técnica de almacenamiento y reenvío.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2025-05_q29",
+    examId: "2025-05",
+    topic: "tema-1",
+    type: "mc",
+    points: 1,
+    question:
+      "Suponiendo que sólo disponemos de una red de área local sin routers, ¿qué niveles serían imprescindibles para el correcto funcionamiento de la red?",
+    options: [
+      "A. Físico, enlace, red y aplicación.",
+      "B. Físico, enlace, transporte y aplicación.",
+      "C. Físico, enlace, red y transporte.",
+      "D. Físico, red, transporte y aplicación.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2025-05_q30",
+    examId: "2025-05",
+    topic: "tema-3-4",
+    type: "mc",
+    points: 1,
+    question: "Indica cuál de estas URLs está incompleta:",
+    options: [
+      "A. www.udc.es",
+      "B. http://www.udc.es/",
+      "C. http://www.udc.es.80/",
+      "D. ftp://ftp.udc.es/",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "2025-05_q31",
+    examId: "2025-05",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question: "La dirección 10.10.10.10 / 24 es:",
+    options: [
+      "A. Pública.",
+      "B. Privada.",
+      "C. De multicast.",
+      "D. De broadcast.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q32",
+    examId: "2025-05",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question: "El campo TTL (Time To Live) de la cabecera IP:",
+    options: [
+      "A. No se utiliza en la actualidad.",
+      "B. Se utiliza para la fragmentación IP.",
+      "C. Evita que un paquete IP sea descartado por un router.",
+      "D. Evita que un paquete IP circule indefinidamente por la red.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2025-05_q33",
+    examId: "2025-05",
+    topic: "tema-10",
+    type: "mc",
+    points: 1,
+    question: "¿Cuál de estas es una técnica de transición IPv4 a IPv6?",
+    options: ["A. DHCP.", "B. ICMP.", "C. ARP.", "D. Tunneling."],
+    correctAnswer: "d",
+  },
+  {
+    id: "2025-05_q34",
+    examId: "2025-05",
+    topic: "tema-9",
+    type: "mc",
+    points: 1,
+    question: "El funcionamiento del traceroute se basa en:",
+    options: [
+      "A. El campo TTL de la cabecera IP.",
+      "B. Mensajes ICMP de error.",
+      "C. El envío de paquetes al destino (p.e. datagramas UDP o ICMP).",
+      "D. Todas las anteriores son correctas.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2025-05_q35",
+    examId: "2025-05",
+    topic: "tema-3-4",
+    type: "mc",
+    points: 1,
+    question:
+      "Al ejecutar el comando dig www.udc.es, o nslookup www.udc.es ¿qué respuesta obtendré?",
+    options: [
+      "A. El router por defecto para el dominio udc.es.",
+      "B. La dirección IP del servidor POP3 del dominio udc.es.",
+      "C. La dirección IP de www.udc.es.",
+      "D. La dirección IP del servidor de SMTP del dominio udc.es.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2025-05_q36",
+    examId: "2025-05",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question: "¿Qué error hay en la tabla de enrutamiento de la Figura 4?",
+    image: getImage(imageMap, "Figure4.png"),
+    options: [
+      "A. En la entrada 10.51.1.0 debería estar el flag G activado.",
+      "B. La máscara de la entrada 10.51.1.0 tiene que ser la 255.0.0.0.",
+      "C. La máscara de la entrada default tiene que ser la 0.0.0.0.",
+      "D. En la entrada default no debería estar el flag G activado.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2025-05_q37",
+    examId: "2025-05",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "A partir de la tabla de enrutamiento de la Figura 4, y una vez corregido el error, ¿a qué subred pertenece la máquina?",
+    image: getImage(imageMap, "Figura4.png"),
+    options: [
+      "A. 10.51.0.0.",
+      "B. 10.51.0.0.",
+      "C. 10.51.1.0.",
+      "D. 255.255.255.0.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2025-05_q38",
+    examId: "2025-05",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "A partir de la tabla de enrutamiento de la Figura 4, y una vez corregido el error, ¿cuál es el router por defecto?",
+    image: getImage(imageMap, "Figura4.png"),
+    options: [
+      "A. 10.51.1.0.",
+      "B. 10.51.1.1.",
+      "C. 255.255.255.255.",
+      "D. Ninguna de las anteriores es correcta.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q39",
+    examId: "2025-05",
+    topic: "tema-10",
+    type: "mc",
+    points: 1,
+    question: "¿Qué es fe80::16da:e9ff.febb.4e9?",
+    options: [
+      "A. Una dirección IPv4.",
+      "B. Una dirección IPv6.",
+      "C. Una dirección MAC.",
+      "D. Una dirección Ethernet.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q40",
+    examId: "2025-05",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question: "En TCP/IP el nivel de red opera:",
+    options: [
+      'A. Entre no extremo ("end-to-end").',
+      'B. Salto a salto ("hop-by-hop").',
+      "C. Depende del protocolo utilizado (TCP o UDP).",
+      "D. Puede operar de las dos maneras.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q41",
+    examId: "2025-05",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "En la Figura 5, en la tabla de enrutamiento óptima de RC, para enrutar hacia las LAN A, B y C:",
+    image: getImage(imageMap, "Figura5.png"),
+    options: [
+      "A. Hay una entrada independiente para cada LAN.",
+      "B. Hay una entrada combinada, con dirección de destino 192.168.33.0 y máscara 255.255.255.0.",
+      "C. Hay una entrada combinada, con dirección de destino 192.168.33.0 y máscara 255.255.255.192.",
+      "D. Usa la entrada default.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q42",
+    examId: "2025-05",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "En la Figura 5 y suponiendo las tablas de enrutamiento óptimas, ¿cuál es el router por defecto de RB?",
+    image: getImage(imageMap, "Figura5.png"),
+    options: [
+      "A. La IP de RB3.",
+      "B. La IP de RC1.",
+      "C. La IP de RC2.",
+      "D. La IP de RA2.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q43",
+    examId: "2025-05",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "Para la Figura 5, en la tabla de enrutamiento óptima de una máquina de la LAN A, para encaminar hacia Internet:",
+    image: getImage(imageMap, "Figura5.png"),
+    options: [
+      "A. Usa la entrada para la LAN B.",
+      "B. Usa la entrada para la LAN C.",
+      "C. Usa la entrada para la LAN D.",
+      "D. Usa la entrada default.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2025-05_q44",
+    examId: "2025-05",
+    topic: "tema-8",
+    type: "mc",
+    points: 1,
+    question:
+      "En la Figura 5 y suponiendo las tablas de enrutamiento óptimas, en la tabla de enrutamiento de RB, para enrutar hacia la LAN C:",
+    image: getImage(imageMap, "Figura5.png"),
+    options: [
+      "A. Hay una entrada para la red 192.168.33.0, con máscara 255.255.255.0.",
+      "B. Hay una entrada para la red 192.168.33.128, con máscara 255.255.255.128.",
+      "C. Hay una entrada para la red 192.168.33.128, con máscara 255.255.255.192.",
+      "D. Usa la entrada default.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2025-05_q45",
+    examId: "2025-05",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Disponemos de una dirección IP clase C (194.47.55.0) que debemos organizar en las subredes de la Figura 6 en dos niveles (primero departamentos y después áreas). Aplicando VLSM (Variable-Length Subnet Mask), ¿cuál sería la máscara de subred óptima (menor número de bits de subred) para el área de Telemática del departamento Ingeniería Informática?",
+    image: getImage(imageMap, "Figura6.png"),
+    options: [
+      "A. 255.255.255.128.",
+      "B. 255.255.255.192.",
+      "C. 255.255.255.224.",
+      "D. 255.255.255.240.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2025-05_q46",
+    examId: "2025-05",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 6 y aplicando VLSM, ¿cuál es el número máximo de IPs válidas asignables a una interfaz para el área de Estadística del departamento de Matemáticas considerando una máscara de subred óptima (menor número de bits de subred)?",
+    image: getImage(imageMap, "Figura6.png"),
+    options: ["A. 62.", "B. 30.", "C. 14.", "D. 8."],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q47",
+    examId: "2025-05",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 6, aplicando VLSM y sabiendo que el identificador de subred para el departamento de Ingeniería Informática es 194.47.55.128 (último byte en binario: 1000 0000), ¿cuál de estos es un identificador válido para la subred del área de Computación?",
+    image: getImage(imageMap, "Figura6.png"),
+    options: [
+      "A. 194.47.55.128 (1000 0000).",
+      "B. 194.47.55.160 (1010 0000).",
+      "C. 194.47.55.144 (1001 0000).",
+      "D. Todas las anteriores son correctas.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "2025-05_q48",
+    examId: "2025-05",
+    topic: "tema-7",
+    type: "mc",
+    points: 1,
+    question:
+      "Respecto a la Figura 6 y aplicando VLSM, ¿cuál sería la máscara óptima (menor número de bits de subred) del departamento de Ingeniería de Computadores?",
+    image: getImage(imageMap, "Figura6.png"),
+    options: [
+      "A. 255.255.255.128.",
+      "B. 255.255.255.192.",
+      "C. 255.255.255.224.",
+      "D. 255.255.255.240.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "2025-05_q49",
+    examId: "2025-05",
+    topic: "tema-5",
+    type: "mc",
+    points: 1,
+    question:
+      "En la Figura 7, indica el valor de los ACKs enviados (por orden de aparición):",
+    image: getImage(imageMap, "Figura7.png"),
+    options: [
+      "A. 98123 y 48900.",
+      "B. 98124 y 48900.",
+      "C. 98123 y 48901.",
+      "D. 98124 y 48901.",
+    ],
+    correctAnswer: "d",
+  },
+  {
+    id: "2025-05_q50",
+    examId: "2025-05",
+    topic: "tema-5",
+    type: "mc",
+    points: 1,
+    question:
+      "Tras el establecimiento de conexión de la Figura 7, durante el intercambio de datos se intercambiarán segmentos de tamaño:",
+    image: getImage(imageMap, "Figura7.png"),
+    options: [
+      "A. A enviará segmentos de hasta 1024 bytes y B de hasta 512 bytes.",
+      "B. A enviará segmentos de hasta 512 bytes y B de hasta 1024 bytes.",
+      "C. Ambos enviarán segmentos de hasta 512 bytes.",
+      "D. Ambos enviarán segmentos de hasta 1024 bytes.",
+    ],
+    correctAnswer: "c",
+  },
   // ============================================================
   // TEMA 1 — REDES DE ORDENADORES E INTERNET
   // ============================================================
 
   {
     id: "redes_recop_q11",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -33,7 +1241,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q14",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -54,7 +1262,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q115",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -74,7 +1282,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q48",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -90,7 +1298,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q49",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -105,7 +1313,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q53",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -116,7 +1324,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q55",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -132,7 +1340,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q56",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -143,7 +1351,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q57",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -154,7 +1362,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q58",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -170,7 +1378,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q59",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -186,7 +1394,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q60",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -202,7 +1410,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q61",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -217,7 +1425,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q87",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -232,7 +1440,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q89",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -246,7 +1454,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q111",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -260,7 +1468,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q124",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -279,7 +1487,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q66",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -294,7 +1502,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q78",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -308,7 +1516,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q79",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -322,7 +1530,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q85",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -338,7 +1546,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q90",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -354,7 +1562,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q91",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -366,7 +1574,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q92",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -380,7 +1588,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q103",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -395,7 +1603,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q108",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -410,7 +1618,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q112",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -425,7 +1633,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q113",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -439,7 +1647,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q125",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -458,7 +1666,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q86",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -474,7 +1682,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q88",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -488,7 +1696,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q93",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -503,7 +1711,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q94",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -519,7 +1727,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q95",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -534,7 +1742,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q96",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -549,7 +1757,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q97",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -563,7 +1771,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q98",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -577,7 +1785,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q99",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -592,7 +1800,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q100",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -607,7 +1815,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q114",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -621,7 +1829,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q116",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -636,7 +1844,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q117",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -650,7 +1858,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q119",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -664,7 +1872,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q120",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -679,7 +1887,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q121",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -694,7 +1902,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q123",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -715,7 +1923,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q54",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -731,7 +1939,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q69",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -746,7 +1954,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q70",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -761,7 +1969,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q71",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -775,7 +1983,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q73",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -789,7 +1997,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q77",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -803,7 +2011,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q101",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -817,7 +2025,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q104",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -832,7 +2040,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q107",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -846,7 +2054,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q109",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -860,7 +2068,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q118",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -874,7 +2082,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q122",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -893,7 +2101,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q68",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -908,7 +2116,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q72",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -922,7 +2130,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q74",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -937,7 +2145,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q76",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -951,7 +2159,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q106",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -966,7 +2174,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q110",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -982,7 +2190,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q80",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -996,7 +2204,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q81",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -1012,7 +2220,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q82",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -1028,7 +2236,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q83",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -1040,7 +2248,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q84",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -1051,7 +2259,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q105",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -1070,7 +2278,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q16",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1086,7 +2294,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q17",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1102,7 +2310,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q22",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1117,7 +2325,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q23",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1133,7 +2341,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q24",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1149,7 +2357,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q28",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1160,7 +2368,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q29",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1171,7 +2379,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q30",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1182,7 +2390,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q50",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1198,7 +2406,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q51",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1214,7 +2422,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q52",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1230,7 +2438,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q62",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1246,7 +2454,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q63",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1262,7 +2470,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q64",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1278,7 +2486,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q65",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1292,7 +2500,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q67",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1307,7 +2515,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q75",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1322,7 +2530,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q102",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -1341,7 +2549,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_recop_q1",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1352,7 +2560,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q2",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1367,7 +2575,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q3",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1382,7 +2590,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q4",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1398,7 +2606,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q5",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1414,7 +2622,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q6",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1425,7 +2633,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q7",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1440,7 +2648,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q8",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1455,7 +2663,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q9",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1471,7 +2679,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q10",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1487,7 +2695,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q12",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1503,7 +2711,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q13",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1518,7 +2726,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q15",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1534,7 +2742,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q18",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1550,7 +2758,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q19",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1566,7 +2774,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q20",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1582,7 +2790,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q21",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1598,7 +2806,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q25",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1609,7 +2817,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q26",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1624,7 +2832,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q27",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1639,7 +2847,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q31",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1655,7 +2863,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q32",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1671,7 +2879,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q33",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1686,7 +2894,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q34",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1701,7 +2909,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q35",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1717,7 +2925,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q36",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1732,7 +2940,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q37",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1742,7 +2950,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q38",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1753,7 +2961,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q39",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1769,7 +2977,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q40",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1785,7 +2993,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q41",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1801,7 +3009,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q42",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1816,7 +3024,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q43",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1832,7 +3040,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q44",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1847,7 +3055,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q45",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1863,7 +3071,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q46",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1879,7 +3087,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_recop_q47",
-    exam: "daypo-recopilatorio-lara",
+    examId: "daypo-recopilatorio-lara",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -1902,7 +3110,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q1",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -1917,7 +3125,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q2",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -1932,7 +3140,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q3",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -1947,7 +3155,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q4",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -1962,7 +3170,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q5",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -1977,7 +3185,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q6",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -1992,7 +3200,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q7",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2010,7 +3218,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q8",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -2027,7 +3235,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q9",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -2046,7 +3254,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q10",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2061,7 +3269,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q11",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2076,7 +3284,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q12",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2091,7 +3299,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q13",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2106,7 +3314,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q14",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2121,7 +3329,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q15",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2137,7 +3345,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q16",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2153,7 +3361,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q17",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2169,7 +3377,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q18",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2185,7 +3393,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q19",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2201,7 +3409,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q20",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2217,7 +3425,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q21",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2233,7 +3441,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q22",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2248,7 +3456,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q23",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2259,7 +3467,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q24",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2274,7 +3482,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q25",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2290,7 +3498,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q26",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2305,7 +3513,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q27",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2320,7 +3528,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q28",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2336,7 +3544,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q29",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2351,7 +3559,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q30",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2366,7 +3574,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q31",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2381,7 +3589,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q32",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2396,7 +3604,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q33",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2411,7 +3619,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q34",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2427,7 +3635,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q35",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2442,7 +3650,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q36",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2457,7 +3665,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q37",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2472,7 +3680,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q38",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2487,7 +3695,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q39",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2502,7 +3710,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q40",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2517,7 +3725,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q41",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2532,7 +3740,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q42",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2547,7 +3755,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q43",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2563,7 +3771,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q44",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2579,7 +3787,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q45",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2594,7 +3802,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q46",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2609,7 +3817,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q47",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2625,7 +3833,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q48",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2640,7 +3848,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q49",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2655,7 +3863,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q50",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2670,7 +3878,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q51",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2685,7 +3893,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q52",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-1",
     type: "mc",
     points: 1,
@@ -2703,7 +3911,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q53",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2718,7 +3926,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q54",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2729,7 +3937,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q55",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2744,7 +3952,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q56",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2754,7 +3962,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q57",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2771,7 +3979,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q58",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2786,7 +3994,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q59",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2801,7 +4009,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q60",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2816,7 +4024,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q61",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2831,7 +4039,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q62",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2846,7 +4054,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q63",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2861,7 +4069,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q64",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2877,7 +4085,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q65",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2893,7 +4101,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q66",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2908,7 +4116,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q67",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2923,7 +4131,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q68",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2938,7 +4146,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q69",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-2",
     type: "mc",
     points: 1,
@@ -2956,7 +4164,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q70",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -2971,7 +4179,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q71",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -2986,7 +4194,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q72",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3001,7 +4209,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q73",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3016,7 +4224,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q74",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3031,7 +4239,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q75",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3046,7 +4254,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q76",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3061,7 +4269,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q77",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3076,7 +4284,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q78",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3091,7 +4299,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q79",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3101,7 +4309,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q80",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3117,7 +4325,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q81",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3133,7 +4341,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q82",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3148,7 +4356,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q83",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3163,7 +4371,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q84",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3179,7 +4387,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q85",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3197,7 +4405,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q86",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3212,7 +4420,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q87",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3227,7 +4435,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q88",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -3245,7 +4453,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q89",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -3260,7 +4468,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q90",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -3275,7 +4483,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q91",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -3285,7 +4493,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q92",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -3304,7 +4512,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q93",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3319,7 +4527,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q94",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3334,7 +4542,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q95",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3349,7 +4557,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q96",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3364,7 +4572,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q97",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3379,7 +4587,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q98",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3394,7 +4602,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q99",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3409,7 +4617,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q100",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3424,7 +4632,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q101",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3439,7 +4647,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q102",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3454,7 +4662,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q103",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3469,7 +4677,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q104",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3484,7 +4692,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q105",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3499,7 +4707,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q106",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3514,7 +4722,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q107",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3529,7 +4737,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q108",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3544,7 +4752,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q109",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3559,7 +4767,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q110",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3574,7 +4782,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q111",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3589,7 +4797,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q112",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3604,7 +4812,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q113",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3619,7 +4827,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q114",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3630,7 +4838,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q115",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3640,7 +4848,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q116",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3650,7 +4858,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q117",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3665,7 +4873,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q118",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3680,7 +4888,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q119",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3695,7 +4903,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q120",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3710,7 +4918,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q121",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3725,7 +4933,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q122",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3740,7 +4948,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q123",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3755,7 +4963,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q124",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3770,7 +4978,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q125",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3785,7 +4993,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q126",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3800,7 +5008,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q127",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3815,7 +5023,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q128",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3831,7 +5039,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q129",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3846,7 +5054,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q130",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3862,7 +5070,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q131",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3877,7 +5085,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q132",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3892,7 +5100,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q133",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3908,7 +5116,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q134",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3924,7 +5132,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q135",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3939,7 +5147,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q136",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3954,7 +5162,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q137",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3969,7 +5177,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q138",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3984,7 +5192,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q139",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -3999,7 +5207,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q140",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4014,7 +5222,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q141",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4029,7 +5237,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q142",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4044,7 +5252,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q143",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4059,7 +5267,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q144",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4069,7 +5277,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q145",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4084,7 +5292,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q146",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4099,7 +5307,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q147",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4114,7 +5322,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q148",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -4132,7 +5340,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q149",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4147,7 +5355,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q150",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4162,7 +5370,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q151",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4177,7 +5385,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q152",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4187,7 +5395,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q153",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4197,7 +5405,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q154",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4212,7 +5420,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q155",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4227,7 +5435,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q156",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4242,7 +5450,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q157",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4257,7 +5465,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q158",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4272,7 +5480,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q159",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4288,7 +5496,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q160",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4303,7 +5511,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q161",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4318,7 +5526,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q162",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4333,7 +5541,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q163",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4348,7 +5556,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q164",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4358,7 +5566,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q165",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4373,7 +5581,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q166",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4384,7 +5592,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q167",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4395,7 +5603,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q168",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4405,7 +5613,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q169",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4415,7 +5623,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q170",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4426,7 +5634,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q171",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4436,7 +5644,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q172",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4451,7 +5659,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q173",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4466,7 +5674,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q174",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4481,7 +5689,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q175",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4496,7 +5704,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q176",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4511,7 +5719,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q177",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4526,7 +5734,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q178",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -4544,7 +5752,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q179",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4559,7 +5767,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q180",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4569,7 +5777,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q181",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4584,7 +5792,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q182",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4599,7 +5807,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q183",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4615,7 +5823,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q184",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4630,7 +5838,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q185",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4645,7 +5853,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q186",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4660,7 +5868,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q187",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4675,7 +5883,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q188",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4690,7 +5898,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q189",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4705,7 +5913,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q190",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4720,7 +5928,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q191",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4736,7 +5944,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q192",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4746,7 +5954,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q193",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4762,7 +5970,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q194",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -4780,7 +5988,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q195",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4790,7 +5998,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q196",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4801,7 +6009,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q197",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4817,7 +6025,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q198",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4833,7 +6041,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q199",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4848,7 +6056,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q200",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4863,7 +6071,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q201",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4878,7 +6086,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q202",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4893,7 +6101,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q203",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4908,7 +6116,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q204",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4923,7 +6131,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q205",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4938,7 +6146,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q206",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4953,7 +6161,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q207",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4968,7 +6176,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q208",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4981,7 +6189,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q209",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -4993,7 +6201,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q210",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5005,7 +6213,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q211",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5021,7 +6229,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q212",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5036,7 +6244,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q213",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5051,7 +6259,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q214",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5066,7 +6274,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q215",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5081,7 +6289,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q216",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5092,7 +6300,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q217",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5102,7 +6310,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q218",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5112,7 +6320,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q219",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5122,7 +6330,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q220",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5137,7 +6345,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q221",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5152,7 +6360,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q222",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5167,7 +6375,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q223",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5177,7 +6385,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q224",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5187,7 +6395,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q225",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5197,7 +6405,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q226",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5212,7 +6420,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q227",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5222,7 +6430,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q228",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5233,7 +6441,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q229",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5244,7 +6452,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q230",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5259,7 +6467,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q231",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5274,7 +6482,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q232",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5292,7 +6500,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q233",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5303,7 +6511,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q234",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5319,7 +6527,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q235",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5335,7 +6543,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q236",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5352,7 +6560,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q237",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5368,7 +6576,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q238",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5384,7 +6592,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q239",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5399,7 +6607,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q240",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5414,7 +6622,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q241",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-8",
     type: "mc",
     points: 1,
@@ -5432,7 +6640,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q242",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5447,7 +6655,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q243",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5462,7 +6670,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q244",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5477,7 +6685,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q245",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5488,7 +6696,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q246",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5503,7 +6711,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q247",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5518,7 +6726,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q248",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5533,7 +6741,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q249",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5548,7 +6756,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q250",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5563,7 +6771,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q251",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -5581,7 +6789,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q252",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5596,7 +6804,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q253",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5606,7 +6814,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q254",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5621,7 +6829,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q255",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5636,7 +6844,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q256",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5646,7 +6854,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q257",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5656,7 +6864,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q258",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5666,7 +6874,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q259",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5684,7 +6892,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q260",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -5699,7 +6907,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q261",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -5709,7 +6917,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q262",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -5719,7 +6927,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q263",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -5738,7 +6946,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q264",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5755,7 +6963,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q265",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5771,7 +6979,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q266",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5782,7 +6990,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q267",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5797,7 +7005,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q268",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5812,7 +7020,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q269",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5827,7 +7035,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q270",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5838,7 +7046,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q271",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5857,7 +7065,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q272",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-10",
     type: "mc",
     points: 1,
@@ -5870,7 +7078,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q273",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -5883,7 +7091,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q274",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -5901,7 +7109,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q275",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-12",
     type: "mc",
     points: 1,
@@ -5920,7 +7128,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q276",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -5936,7 +7144,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q277",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -5951,7 +7159,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q278",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -5967,7 +7175,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q279",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -5986,7 +7194,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q280",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -6005,7 +7213,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q281",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -6024,7 +7232,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q282",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-3-4",
     type: "mc",
     points: 1,
@@ -6042,7 +7250,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q283",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -6061,7 +7269,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q284",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-11",
     type: "mc",
     points: 1,
@@ -6080,7 +7288,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q285",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -6100,7 +7308,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q286",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -6119,7 +7327,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q287",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-5",
     type: "mc",
     points: 1,
@@ -6137,7 +7345,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q288",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -6152,7 +7360,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q289",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -6171,7 +7379,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q290",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-7",
     type: "mc",
     points: 1,
@@ -6191,7 +7399,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q291",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -6209,7 +7417,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q292",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -6227,7 +7435,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q293",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-9",
     type: "mc",
     points: 1,
@@ -6241,7 +7449,7 @@ export const questions: Question[] = [
 
   {
     id: "redes_udc_q294",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -6257,7 +7465,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q295",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -6272,7 +7480,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q296",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -6287,7 +7495,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q297",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -6302,7 +7510,7 @@ export const questions: Question[] = [
   },
   {
     id: "redes_udc_q298",
-    exam: "daypo-recopilatorio-udc",
+    examId: "daypo-recopilatorio-udc",
     topic: "tema-6",
     type: "mc",
     points: 1,
@@ -6316,1212 +7524,4 @@ export const questions: Question[] = [
     correctAnswer: "a",
   },
 
-  // END_DAYPO_UDC
-
-  // ============================================================
-  // RECOPILATORIO MAYO 2025
-  // ============================================================
-
-  {
-    id: "2025-05_q14",
-    exam: "2025-05",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question: "NAT (Network Address Translation):",
-    options: [
-      "A. Se emplea para que un dispositivo sin dirección IP pueda comunicarse con cualquier dispositivo en Internet.",
-      "B. Permite obtener la dirección MAC asociada a una determinada dirección IP.",
-      "C. Permite que múltiples dispositivos de una red privada accedan a Internet empleando una misma dirección pública.",
-      "D. Tiene como principal ventaja que permite una conectividad extremo a extremo real.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2025-05_q15",
-    exam: "2025-05",
-    topic: "tema-11",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Cuál de los siguientes dispositivos operan sólo en el nivel de enlace y físico?",
-    options: ["A. Router.", "B. Switch.", "C. Firewall.", "D. Proxy."],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q16",
-    exam: "2025-05",
-    topic: "tema-6",
-    type: "mc",
-    points: 1,
-    question: "El control de congestión:",
-    options: [
-      "A. Trata de evitar la congestión en los routers intermedios.",
-      "B. Garantiza que no se producirá congestión en el receptor.",
-      "C. Trata de evitar la congestión en el receptor.",
-      "D. Todas las anteriores son correctas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2025-05_q17",
-    exam: "2025-05",
-    topic: "tema-5",
-    type: "mc",
-    points: 1,
-    question: "El protocolo TCP es:",
-    options: [
-      "A. Un protocolo de la capa de transporte, orientado a conexión y fiable.",
-      "B. Un protocolo de la capa de aplicación, orientado a conexión y fiable.",
-      "C. Un protocolo de la capa de transporte, no orientado a conexión y fiable.",
-      "D. Un protocolo de la capa de transporte, no orientado a conexión y no fiable.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2025-05_q18",
-    exam: "2025-05",
-    topic: "tema-6",
-    type: "mc",
-    points: 1,
-    question:
-      "En el protocolo ARQ retroceder N (Go-Back-N), si el receptor ha recibido correctamente los paquetes 1, 2, 3, 5, 6 y 7, y enviado los correspondientes ACKs, ¿qué paquete o paquetes deberá retransmitir el emisor?",
-    options: [
-      "A. El 4.",
-      "B. El 4, 5, 6 y 7.",
-      "C. El 1, 2, 3, 4, 5, 6 y 7.",
-      "D. Ninguno, porque los ACKs son acumulativos.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q19",
-    exam: "2025-05",
-    topic: "tema-6",
-    type: "mc",
-    points: 1,
-    question:
-      "Y en el mismo escenario que la pregunta anterior, en el protocolo ARQ de repetición selectiva, ¿qué paquete o paquetes debe retransmitir el emisor?",
-    options: [
-      "A. El 4.",
-      "B. El 4, 5, 6 y 7.",
-      "C. El 1, 2, 3, 4, 5, 6 y 7.",
-      "D. Ninguno, porque los ACKs son acumulativos.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2025-05_q20",
-    exam: "2025-05",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question: "Si al hacer un ping no recibo respuesta, puede ser porque:",
-    options: [
-      "A. La máquina destino está caída.",
-      "B. Se ha caído un router del camino y la máquina de destino no es alcanzable.",
-      "C. Hay un firewall en la máquina destino que está descartando los mensajes ICMP echo request.",
-      "D. Todas las anteriores son correctas.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2025-05_q21",
-    exam: "2025-05",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 3, sabiendo que el MTU de las redes A y B es de 1500 bytes y suponiendo que se envían 2060 bytes de datos UDP (sin incluir cabecera/s UDP) desde el host X al host Y, ¿cuál de los siguientes es el tamaño del menor de los fragmentos que circula por la red B?",
-    image: getImage(imageMap, "Figura3.png"),
-    options: ["A. 600", "B. 608", "C. 2080", "D. 2088"],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q22",
-    exam: "2025-05",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 3 y con la misma información de la pregunta anterior, por la red A, ¿cuál es el offset (en decimal) del segundo fragmento?",
-    image: getImage(imageMap, "Figura3.png"),
-    options: ["A. 0", "B. 1480", "C. 1500", "D. 2060"],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q23",
-    exam: "2025-05",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 3 y con la misma información de la pregunta anterior, por la red A, ¿cuántos fragmentos tendrán el flag MF activado?",
-    image: getImage(imageMap, "Figura3.png"),
-    options: ["A. 0", "B. 1", "C. 2", "D. Todos"],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q24",
-    exam: "2025-05",
-    topic: "tema-3-4",
-    type: "mc",
-    points: 1,
-    question:
-      "En el modelo de conexiones persistentes del protocolo HTTP, ¿qué es más eficiente el modo sin pipeline o con pipeline?",
-    options: [
-      "A. Sin pipeline.",
-      "B. Con pipeline.",
-      "C. Son los dos igual de eficientes.",
-      "D. Son modelos del modo no persistente.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q25",
-    exam: "2025-05",
-    topic: "tema-2",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Por qué cuando conecto mi portátil a eduroam no tengo que configurar mi interfaz de red inalámbrica?",
-    options: [
-      "A. Porque utiliza DHCP.",
-      "B. Porque utiliza NAT.",
-      "C. Porque utiliza TCP.",
-      "D. Porque utiliza un firewall.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2025-05_q26",
-    exam: "2025-05",
-    topic: "tema-1",
-    type: "mc",
-    points: 1,
-    question: "Las redes de broadcast se caracterizan porque:",
-    options: [
-      "A. Hay un canal de comunicación dedicado para la comunicación entre dos máquinas full-duplex.",
-      "B. Hay un canal de comunicación dedicado para la comunicación entre dos máquinas half-duplex.",
-      "C. El canal de comunicación es compartido.",
-      "D. Ninguna de las anteriores es correcta.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2025-05_q27",
-    exam: "2025-05",
-    topic: "tema-3-4",
-    type: "mc",
-    points: 1,
-    question: "El DNS (Domain Name System):",
-    options: [
-      "A. Es el sistema encargado de convertir nombres de máquinas en direcciones IP, y viceversa.",
-      "B. Es el sistema encargado de convertir nombres de máquinas en direcciones Ethernet, y viceversa.",
-      "C. Es el sistema encargado de gestionar el correo electrónico.",
-      "D. Es un protocolo de nivel de transporte.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2025-05_q28",
-    exam: "2025-05",
-    topic: "tema-12",
-    type: "mc",
-    points: 1,
-    question: "¿Cuál de estas afirmaciones es correcta?",
-    options: [
-      "A. Ethernet utiliza multiplexación por división en tiempo.",
-      "B. Ethernet utiliza multiplexación por división en frecuencia.",
-      "C. Ethernet es una tecnología de nivel de enlace.",
-      "D. Ethernet se basa en la técnica de almacenamiento y reenvío.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2025-05_q29",
-    exam: "2025-05",
-    topic: "tema-1",
-    type: "mc",
-    points: 1,
-    question:
-      "Suponiendo que sólo disponemos de una red de área local sin routers, ¿qué niveles serían imprescindibles para el correcto funcionamiento de la red?",
-    options: [
-      "A. Físico, enlace, red y aplicación.",
-      "B. Físico, enlace, transporte y aplicación.",
-      "C. Físico, enlace, red y transporte.",
-      "D. Físico, red, transporte y aplicación.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2025-05_q30",
-    exam: "2025-05",
-    topic: "tema-3-4",
-    type: "mc",
-    points: 1,
-    question: "Indica cuál de estas URLs está incompleta:",
-    options: [
-      "A. www.udc.es",
-      "B. http://www.udc.es/",
-      "C. http://www.udc.es.80/",
-      "D. ftp://ftp.udc.es/",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2025-05_q31",
-    exam: "2025-05",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question: "La dirección 10.10.10.10 / 24 es:",
-    options: [
-      "A. Pública.",
-      "B. Privada.",
-      "C. De multicast.",
-      "D. De broadcast.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q32",
-    exam: "2025-05",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question: "El campo TTL (Time To Live) de la cabecera IP:",
-    options: [
-      "A. No se utiliza en la actualidad.",
-      "B. Se utiliza para la fragmentación IP.",
-      "C. Evita que un paquete IP sea descartado por un router.",
-      "D. Evita que un paquete IP circule indefinidamente por la red.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2025-05_q33",
-    exam: "2025-05",
-    topic: "tema-10",
-    type: "mc",
-    points: 1,
-    question: "¿Cuál de estas es una técnica de transición IPv4 a IPv6?",
-    options: ["A. DHCP.", "B. ICMP.", "C. ARP.", "D. Tunneling."],
-    correctAnswer: "d",
-  },
-  {
-    id: "2025-05_q34",
-    exam: "2025-05",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question: "El funcionamiento del traceroute se basa en:",
-    options: [
-      "A. El campo TTL de la cabecera IP.",
-      "B. Mensajes ICMP de error.",
-      "C. El envío de paquetes al destino (p.e. datagramas UDP o ICMP).",
-      "D. Todas las anteriores son correctas.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2025-05_q35",
-    exam: "2025-05",
-    topic: "tema-3-4",
-    type: "mc",
-    points: 1,
-    question:
-      "Al ejecutar el comando dig www.udc.es, o nslookup www.udc.es ¿qué respuesta obtendré?",
-    options: [
-      "A. El router por defecto para el dominio udc.es.",
-      "B. La dirección IP del servidor POP3 del dominio udc.es.",
-      "C. La dirección IP de www.udc.es.",
-      "D. La dirección IP del servidor de SMTP del dominio udc.es.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2025-05_q36",
-    exam: "2025-05",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question: "¿Qué error hay en la tabla de enrutamiento de la Figura 4?",
-    image: getImage(imageMap, "Figure4.png"),
-    options: [
-      "A. En la entrada 10.51.1.0 debería estar el flag G activado.",
-      "B. La máscara de la entrada 10.51.1.0 tiene que ser la 255.0.0.0.",
-      "C. La máscara de la entrada default tiene que ser la 0.0.0.0.",
-      "D. En la entrada default no debería estar el flag G activado.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2025-05_q37",
-    exam: "2025-05",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "A partir de la tabla de enrutamiento de la Figura 4, y una vez corregido el error, ¿a qué subred pertenece la máquina?",
-    image: getImage(imageMap, "Figura4.png"),
-    options: [
-      "A. 10.51.0.0.",
-      "B. 10.51.0.0.",
-      "C. 10.51.1.0.",
-      "D. 255.255.255.0.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2025-05_q38",
-    exam: "2025-05",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "A partir de la tabla de enrutamiento de la Figura 4, y una vez corregido el error, ¿cuál es el router por defecto?",
-    image: getImage(imageMap, "Figura4.png"),
-    options: [
-      "A. 10.51.1.0.",
-      "B. 10.51.1.1.",
-      "C. 255.255.255.255.",
-      "D. Ninguna de las anteriores es correcta.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q39",
-    exam: "2025-05",
-    topic: "tema-10",
-    type: "mc",
-    points: 1,
-    question: "¿Qué es fe80::16da:e9ff.febb.4e9?",
-    options: [
-      "A. Una dirección IPv4.",
-      "B. Una dirección IPv6.",
-      "C. Una dirección MAC.",
-      "D. Una dirección Ethernet.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q40",
-    exam: "2025-05",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question: "En TCP/IP el nivel de red opera:",
-    options: [
-      'A. Entre no extremo ("end-to-end").',
-      'B. Salto a salto ("hop-by-hop").',
-      "C. Depende del protocolo utilizado (TCP o UDP).",
-      "D. Puede operar de las dos maneras.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q41",
-    exam: "2025-05",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "En la Figura 5, en la tabla de enrutamiento óptima de RC, para enrutar hacia las LAN A, B y C:",
-    image: getImage(imageMap, "Figura5.png"),
-    options: [
-      "A. Hay una entrada independiente para cada LAN.",
-      "B. Hay una entrada combinada, con dirección de destino 192.168.33.0 y máscara 255.255.255.0.",
-      "C. Hay una entrada combinada, con dirección de destino 192.168.33.0 y máscara 255.255.255.192.",
-      "D. Usa la entrada default.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q42",
-    exam: "2025-05",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "En la Figura 5 y suponiendo las tablas de enrutamiento óptimas, ¿cuál es el router por defecto de RB?",
-    image: getImage(imageMap, "Figura5.png"),
-    options: [
-      "A. La IP de RB3.",
-      "B. La IP de RC1.",
-      "C. La IP de RC2.",
-      "D. La IP de RA2.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q43",
-    exam: "2025-05",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "Para la Figura 5, en la tabla de enrutamiento óptima de una máquina de la LAN A, para encaminar hacia Internet:",
-    image: getImage(imageMap, "Figura5.png"),
-    options: [
-      "A. Usa la entrada para la LAN B.",
-      "B. Usa la entrada para la LAN C.",
-      "C. Usa la entrada para la LAN D.",
-      "D. Usa la entrada default.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2025-05_q44",
-    exam: "2025-05",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "En la Figura 5 y suponiendo las tablas de enrutamiento óptimas, en la tabla de enrutamiento de RB, para enrutar hacia la LAN C:",
-    image: getImage(imageMap, "Figura5.png"),
-    options: [
-      "A. Hay una entrada para la red 192.168.33.0, con máscara 255.255.255.0.",
-      "B. Hay una entrada para la red 192.168.33.128, con máscara 255.255.255.128.",
-      "C. Hay una entrada para la red 192.168.33.128, con máscara 255.255.255.192.",
-      "D. Usa la entrada default.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2025-05_q45",
-    exam: "2025-05",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Disponemos de una dirección IP clase C (194.47.55.0) que debemos organizar en las subredes de la Figura 6 en dos niveles (primero departamentos y después áreas). Aplicando VLSM (Variable-Length Subnet Mask), ¿cuál sería la máscara de subred óptima (menor número de bits de subred) para el área de Telemática del departamento Ingeniería Informática?",
-    image: getImage(imageMap, "Figura6.png"),
-    options: [
-      "A. 255.255.255.128.",
-      "B. 255.255.255.192.",
-      "C. 255.255.255.224.",
-      "D. 255.255.255.240.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2025-05_q46",
-    exam: "2025-05",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 6 y aplicando VLSM, ¿cuál es el número máximo de IPs válidas asignables a una interfaz para el área de Estadística del departamento de Matemáticas considerando una máscara de subred óptima (menor número de bits de subred)?",
-    image: getImage(imageMap, "Figura6.png"),
-    options: ["A. 62.", "B. 30.", "C. 14.", "D. 8."],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q47",
-    exam: "2025-05",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 6, aplicando VLSM y sabiendo que el identificador de subred para el departamento de Ingeniería Informática es 194.47.55.128 (último byte en binario: 1000 0000), ¿cuál de estos es un identificador válido para la subred del área de Computación?",
-    image: getImage(imageMap, "Figura6.png"),
-    options: [
-      "A. 194.47.55.128 (1000 0000).",
-      "B. 194.47.55.160 (1010 0000).",
-      "C. 194.47.55.144 (1001 0000).",
-      "D. Todas las anteriores son correctas.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2025-05_q48",
-    exam: "2025-05",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 6 y aplicando VLSM, ¿cuál sería la máscara óptima (menor número de bits de subred) del departamento de Ingeniería de Computadores?",
-    image: getImage(imageMap, "Figura6.png"),
-    options: [
-      "A. 255.255.255.128.",
-      "B. 255.255.255.192.",
-      "C. 255.255.255.224.",
-      "D. 255.255.255.240.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2025-05_q49",
-    exam: "2025-05",
-    topic: "tema-5",
-    type: "mc",
-    points: 1,
-    question:
-      "En la Figura 7, indica el valor de los ACKs enviados (por orden de aparición):",
-    image: getImage(imageMap, "Figura7.png"),
-    options: [
-      "A. 98123 y 48900.",
-      "B. 98124 y 48900.",
-      "C. 98123 y 48901.",
-      "D. 98124 y 48901.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2025-05_q50",
-    exam: "2025-05",
-    topic: "tema-5",
-    type: "mc",
-    points: 1,
-    question:
-      "Tras el establecimiento de conexión de la Figura 7, durante el intercambio de datos se intercambiarán segmentos de tamaño:",
-    image: getImage(imageMap, "Figura7.png"),
-    options: [
-      "A. A enviará segmentos de hasta 1024 bytes y B de hasta 512 bytes.",
-      "B. A enviará segmentos de hasta 512 bytes y B de hasta 1024 bytes.",
-      "C. Ambos enviarán segmentos de hasta 512 bytes.",
-      "D. Ambos enviarán segmentos de hasta 1024 bytes.",
-    ],
-    correctAnswer: "c",
-  },
-
-  // ============================================================
-  // RECOPILATORIO ENERO 2026
-  // ============================================================
-
-  {
-    id: "2026-01_q1",
-    exam: "2026-01",
-    topic: "tema-1",
-    type: "mc",
-    points: 1,
-    question: "En la técnica de conmutación de paquetes:",
-    options: [
-      "A. Se reservan los recursos necesarios a lo largo de la ruta.",
-      "B. El router no tiene recursos para reservar.",
-      "C. Se utiliza la técnica de transmisión de almacenamiento y reenvío.",
-      "D. Los recursos se mantienen durante la sesión.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q2",
-    exam: "2026-01",
-    topic: "tema-1",
-    type: "mc",
-    points: 1,
-    question:
-      "En el protocolo ARQ retroceder N (Go-Back-N) con un tamaño de ventana de 5 paquetes, si el receptor ha recibido correctamente los paquetes 1, 2, 4 y 5 (se ha perdido el paquete 3), y enviado los correspondientes ACKs, ¿qué paquete o paquetes deberá retransmitir el emisor?",
-    options: [
-      "A. El 3.",
-      "B. El 3, 4 y 5.",
-      "C. El 1, 2, 3, 4 y 5.",
-      "D. Ninguno, porque los ACKs son acumulativos.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q3",
-    exam: "2026-01",
-    topic: "tema-1",
-    type: "mc",
-    points: 1,
-    question:
-      "Y en el mismo escenario de la pregunta anterior, si el emisor ha recibido correctamente todos los ACKs enviados por el receptor, ¿el emisor puede enviar el paquete 6 antes de retransmitir?",
-    options: [
-      "A. Sí.",
-      "B. No antes de retransmitir, pero después sí.",
-      "C. No después de retransmitir, pero antes sí.",
-      "D. No puede enviar el paquete 6.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q4",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    repeated: true,
-    question: "NAT (Network Address Translation):",
-    options: [
-      "A. Se emplea para que un dispositivo sin dirección IP pueda comunicarse con cualquier dispositivo en Internet.",
-      "B. Permite obtener la dirección MAC asociada a una determinada dirección IP.",
-      "C. Permite que múltiples dispositivos de una red privada accedan a Internet empleando una misma dirección IP pública.",
-      "D. Tiene como principal ventaja que permite una conectividad extremo a extremo real.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q5",
-    exam: "2026-01",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question: "Al hacer un ping:",
-    options: [
-      "A. El origen envía un mensaje ICMP echo request y el destino responde con un mensaje ICMP echo reply, encapsulados en datagramas IP.",
-      "B. El origen envía un mensaje ICMP echo request y el destino responde con un mensaje ICMP echo reply, encapsulados en datagramas UDP.",
-      "C. El origen envía un mensaje ICMP echo request y el destino responde con un mensaje ICMP echo reply, encapsulados en segmentos TCP.",
-      "D. Ninguna de las anteriores es correcta.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q6",
-    exam: "2026-01",
-    topic: "tema-12",
-    type: "mc",
-    points: 1,
-    question: "¿Es posible cambiar el SSID de una red WiFi?",
-    options: [
-      "A. No, es fijo.",
-      "B. Solo el proveedor puede cambiarlo.",
-      "C. Sí, desde la configuración del router.",
-      "D. Solo con un software específico externo.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q7",
-    exam: "2026-01",
-    topic: "tema-5",
-    type: "mc",
-    points: 1,
-    question: "En una conexión TCP entre dos dispositivos:",
-    options: [
-      "A. Todos los routers intermedios utilizan TCP para reenviar los segmentos.",
-      "B. Solo los dispositivos de los extremos utilizan TCP, mientras que los nodos intermedios operan a nivel de red.",
-      "C. Únicamente el emisor utiliza TCP.",
-      "D. TCP solo funciona dentro de una misma red local.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q8",
-    exam: "2026-01",
-    topic: "tema-3-4",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Qué observaré si capturo con Wireshark el tráfico al conectarme a http://http.badssl.com/?",
-    options: [
-      "A. Únicamente las direcciones IP origen y destino.",
-      "B. El contenido de la comunicación cifrado.",
-      "C. La cabecera y el contenido de la petición y de la respuesta HTTP en texto claro.",
-      "D. Únicamente las cabeceras HTTP en texto claro.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q9",
-    exam: "2026-01",
-    topic: "tema-5",
-    type: "mc",
-    points: 1,
-    question:
-      "Si la capa de aplicación le pasa a UDP 10 bytes o 10 Kbytes, ¿cuál es la diferencia para UDP?",
-    options: [
-      "A. En el caso del paquete de 10 Kbytes, UDP debe dividirlo en datagramas más pequeños (p. ej. 1024 bytes).",
-      "B. En el caso del paquete de 10 bytes, UDP debe esperar a recibir más datos para no enviar el datagrama con pocos datos.",
-      "C. A y B son correctas.",
-      "D. No hay ninguna diferencia.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2026-01_q10",
-    exam: "2026-01",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "A partir de la tabla de enrutamiento de la Figura 1, ¿a cuántas redes está directamente conectado el dispositivo?\n\n| Destino | Gateway | Máscara | Flags | Interfaz |\n|---|---|---|---|---|\n| default | 10.51.1.1 | 0.0.0.0 | UG | |\n| 10.51.1.0 | 0.0.0.0 | 255.255.255.0 | U | eth0 |\n| 10.20.15.0 | 0.0.0.0 | 255.255.255.0 | U | eth1 |",
-    options: ["A. 0.", "B. 1.", "C. 2.", "D. 3."],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q11",
-    exam: "2026-01",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "A partir de la tabla de enrutamiento de la Figura 1, ¿cuál es la interfaz de salida de la entrada default?\n\n| Destino | Gateway | Máscara | Flags | Interfaz |\n|---|---|---|---|---|\n| default | 10.51.1.1 | 0.0.0.0 | UG | |\n| 10.51.1.0 | 0.0.0.0 | 255.255.255.0 | U | eth0 |\n| 10.20.15.0 | 0.0.0.0 | 255.255.255.0 | U | eth1 |",
-    options: [
-      "A. eth0.",
-      "B. eth1.",
-      "C. Cualquiera de las dos es válida (eth0 o eth1).",
-      "D. Ninguna.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q12",
-    exam: "2026-01",
-    topic: "tema-8",
-    type: "mc",
-    points: 1,
-    question:
-      "A partir de la tabla de enrutamiento de la Figura 1, ¿cuál es el router por defecto?\n\n| Destino | Gateway | Máscara | Flags | Interfaz |\n|---|---|---|---|---|\n| default | 10.51.1.1 | 0.0.0.0 | UG | |\n| 10.51.1.0 | 0.0.0.0 | 255.255.255.0 | U | eth0 |\n| 10.20.15.0 | 0.0.0.0 | 255.255.255.0 | U | eth1 |",
-    options: [
-      "A. 10.51.1.1.",
-      "B. 10.20.15.1.",
-      "C. A y B son correctas.",
-      "D. Ninguna de las anteriores es correcta.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q13",
-    exam: "2026-01",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question:
-      "En base a la salida de la Figura 2, obtenida al ejecutar el comando `traceroute -n www.example.com` (la opción `-n` hace que se muestren las direcciones IP en la salida y no los nombres DNS), ¿cuál es el primer paquete que se envía y el primero que se recibe?\n\n```text\ntraceroute to www.example.com (93.184.216.34), 30 hops max\n1  192.168.1.1    1.2 ms   1.0 ms   1.1 ms\n2  10.10.0.1      5.4 ms   5.1 ms   5.3 ms\n3  172.16.4.2    12.8 ms  13.0 ms  12.9 ms\n4  93.184.216.34 25.2 ms  25.4 ms  25.1 ms\n```",
-    options: [
-      "A. Se envía un ICMP echo request y se recibe un ICMP echo reply.",
-      "B. Se envía un datagrama UDP y se recibe otro datagrama UDP.",
-      "C. Se envía un datagrama UDP y se recibe un ICMP Tiempo excedido.",
-      "D. Se envía un ICMP echo request y recibe un ARP.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q14",
-    exam: "2026-01",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 2 y en base a la misma información de la pregunta anterior, ¿cuál de estas afirmaciones es correcta respecto al cuarto paquete enviado por el traceroute (ten en cuenta que, por cada salto, el traceroute envía 3 paquetes)?",
-    options: [
-      "A. La dirección IP de destino es 10.10.0.1 y el campo TTL 64.",
-      "B. La dirección IP de destino es 10.10.0.1 y el campo TTL 2.",
-      "C. La dirección IP de destino es 93.184.216.34 y el campo TTL 64.",
-      "D. La dirección IP de destino es 93.184.216.34 y el campo TTL 2.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2026-01_q15",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question: "La dirección 10.11.12.13 / 8 es:",
-    options: [
-      "A. Pública.",
-      "B. Privada.",
-      "C. No es válida.",
-      "D. Broadcast.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q16",
-    exam: "2026-01",
-    topic: "tema-10",
-    type: "mc",
-    points: 1,
-    question: "Respecto a la cabecera de IPv6:",
-    options: [
-      "A. Es de tamaño variable, como en IPv4.",
-      "B. Tiene más campos que la cabecera IPv4.",
-      "C. Es de tamaño fijo.",
-      "D. Ya no es necesario incluir el campo IP origen, al incluirlo automáticamente el router.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q17",
-    exam: "2026-01",
-    topic: "tema-2",
-    type: "mc",
-    points: 1,
-    question: "¿Cuáles son las capas de la pila de protocolos TCP/IP?",
-    options: [
-      "A. Aplicación, presentación, sesión, transporte, red, enlace y físico.",
-      "B. Aplicación, red, enlace y físico.",
-      "C. Transporte, red, enlace y físico.",
-      "D. Aplicación, transporte, red, enlace y físico.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2026-01_q18",
-    exam: "2026-01",
-    topic: "tema-10",
-    type: "mc",
-    points: 1,
-    question: "¿Cuál de las siguientes direcciones IPv6 es una válida?",
-    options: [
-      "A. 2001:db8::1::5",
-      "B. FE80::1",
-      "C. 2001:DB8:10100::10",
-      "D. 2001:85a3::7334",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "El OCR muestra también la opción D como una dirección sintácticamente válida; se mantiene una única respuesta por la limitación del formato de test.",
-  },
-  {
-    id: "2026-01_q19",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "La principal diferencia entre el nivel de red y el nivel de transporte es que:",
-    options: [
-      "A. El nivel de transporte utiliza un protocolo salto a salto y el nivel de red extremo a extremo.",
-      "B. El nivel de transporte proporciona enrutamiento, mientras que el nivel de red no.",
-      "C. El nivel de transporte es no orientado a conexión y el nivel de red puede ser orientado o no orientado a conexión.",
-      "D. Ninguna de las anteriores es correcta.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2026-01_q20",
-    exam: "2026-01",
-    topic: "tema-6",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 3, ¿cuánto vale la ventana ofrecida del receptor y la ventana utilizable por el emisor, después de recibir el ACK 2049 y antes de enviar los segmentos de datos?",
-    image: getImage(imageMap, "2026-01-figure-3.png"),
-    options: [
-      "A. 3072 y 4096, respectivamente.",
-      "B. 4096 y 3072, respectivamente.",
-      "C. Las dos valen 3072.",
-      "D. Las dos valen 4096.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q21",
-    exam: "2026-01",
-    topic: "tema-6",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 3, después de enviar los tres segmentos de datos, ¿cuántos segmentos más podría enviar el emisor?",
-    image: getImage(imageMap, "2026-01-figure-3.png"),
-    options: ["A. 0.", "B. 1.", "C. 2.", "D. 3."],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q22",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question: '¿Para qué sirve el campo "Checksum" de la cabecera IP?',
-    options: [
-      "A. Verificar errores en los datos.",
-      "B. Verificar errores en la cabecera IP.",
-      "C. Verificar errores en los datos y en la cabecera IP.",
-      "D. Controlar la congestión.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q23",
-    exam: "2026-01",
-    topic: "tema-3-4",
-    type: "mc",
-    points: 1,
-    question:
-      "Un cliente accede a una página web con múltiples recursos (imágenes, hojas de estilo, scripts, etc.) alojados en el mismo servidor. ¿Qué opción es más eficiente?",
-    options: [
-      "A. HTTP no persistente.",
-      "B. HTTP persistente sin pipeline.",
-      "C. HTTP persistente con pipeline.",
-      "D. Todas las opciones tienen la misma eficiencia.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q24",
-    exam: "2026-01",
-    topic: "tema-6",
-    type: "mc",
-    points: 1,
-    repeated: true,
-    question: "El control de congestión:",
-    options: [
-      "A. Trata de evitar la congestión en los routers intermedios.",
-      "B. Garantiza que no se producirá congestión en el receptor.",
-      "C. Trata de evitar la congestión en el receptor.",
-      "D. Todas las anteriores son correctas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q25",
-    exam: "2026-01",
-    topic: "tema-6",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Por qué sabe TCP cuánto tiempo esperar antes de realizar la retransmisión de un segmento perdido?",
-    options: [
-      "A. Porque en Internet el RTT (Round-Trip Time) con un destino concreto es fijo y conocido.",
-      "B. Porque en Internet el RTT es fijo.",
-      "C. Porque IP informa del RTT a TCP.",
-      "D. Porque TCP estima o mide el RTT de la conexión.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2026-01_q26",
-    exam: "2026-01",
-    topic: "tema-3-4",
-    type: "mc",
-    points: 1,
-    question:
-      "El servidor de correo de la UDC necesita enviar un mensaje a john.doe@gmail.com. ¿Cuál de las siguientes secuencias describe correctamente el proceso?",
-    options: [
-      "A. El servidor consulta DNS para obtener el registro MX de gmail.com y después utiliza SMTP para enviar el correo al servidor de destino.",
-      "B. El servidor utiliza SMTP para consultar DNS y después POP3 para enviar el mensaje.",
-      "C. El servidor consulta DNS para obtener la dirección IP del cliente y después usa IMAP para enviar el correo.",
-      "D. El servidor utiliza DNS para enviar directamente el mensaje al servidor de Gmail.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q27",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Disponemos de una dirección IP clase C (197.100.100.0) que debemos organizar en las subredes de la Figura 4 usando subredes de tamaño fijo (FLSM). ¿Cuál sería la máscara de subred para el departamento de Matemáticas?\n\n```text\nDepartamento de Informática: 50 hosts\nDepartamento de Matemáticas: 25 hosts\nDepartamento de Ciencias: 10 hosts\nDepartamento de Economía: 8 hosts\n```",
-    options: [
-      "A. 255.255.255.128.",
-      "B. 255.255.255.192.",
-      "C. 255.255.255.224.",
-      "D. 255.255.255.240.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q28",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 4, pero usando subredes de tamaño variable (VLSM) y minimizando el número de bits de host, ¿cuál sería la máscara de subred para el departamento de Matemáticas?",
-    options: [
-      "A. 255.255.255.128.",
-      "B. 255.255.255.192.",
-      "C. 255.255.255.224.",
-      "D. 255.255.255.240.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q29",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 4 y usando VLSM (minimizando el número de bits de host), ¿cuál sería un identificador de subred válido para el departamento de Informática?",
-    options: [
-      "A. 197.100.100.0 (0000 0000).",
-      "B. 197.100.100.96 (0110 0000).",
-      "C. 197.100.100.112 (0111 0000).",
-      "D. Todas las anteriores son correctas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q30",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 4, en el departamento de Economía, ¿cuántas direcciones IP se desperdician usando FLSM y VLSM (minimizando el número de bits de host), respectivamente?",
-    options: [
-      "A. 118 en los dos casos.",
-      "B. 54 en los dos casos.",
-      "C. 6 en los dos casos.",
-      "D. 54 y 6, respectivamente.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2026-01_q31",
-    exam: "2026-01",
-    topic: "tema-7",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 4, suponiendo que queremos dividir la subred de Informática en dos nuevas sub-subredes correspondientes a las áreas de Desarrollo (25 hosts) y Producción (25 hosts), ¿cuáles serían identificadores y máscaras de subred válidos?",
-    options: [
-      "A. 197.100.100.0/27 y 197.100.100.128/27.",
-      "B. 197.100.100.64/26 y 197.100.100.96/26.",
-      "C. 197.100.100.96/27 y 197.100.100.112/27.",
-      "D. 197.100.100.0/27 y 197.100.100.32/27.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2026-01_q32",
-    exam: "2026-01",
-    topic: "tema-5",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Puede haber dos aplicaciones distintas ejecutándose en el mismo puerto (p. ej. 5000 de TCP)?",
-    options: [
-      "A. Sí.",
-      "B. No.",
-      "C. Sí, si una aplicación está en modo cliente y la otra en modo servidor.",
-      "D. Sí, si son dos usuarios distintos.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q33",
-    exam: "2026-01",
-    topic: "tema-3-4",
-    type: "mc",
-    points: 1,
-    repeated: true,
-    question: "El DNS (Domain Name System):",
-    options: [
-      "A. Es el sistema encargado de convertir nombres de máquinas en direcciones IP, y viceversa.",
-      "B. Es el sistema encargado de convertir direcciones IP en direcciones Ethernet, y viceversa.",
-      "C. Funciona exclusivamente en redes de área local.",
-      "D. Es un protocolo cifrado de comunicaciones.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q34",
-    exam: "2026-01",
-    topic: "tema-11",
-    type: "mc",
-    points: 1,
-    question:
-      "En base a la Figura 5, supón que en la máquina 198.10.10.10 hacemos un ping a la máquina 199.20.20.20. Ten en cuenta que la máquina 198.10.10.10 acaba de reiniciarse y el router y el host 199.20.20.20 tienen la caché ARP completa. En caso de generar el envío de peticiones ARP, los mensajes ICMP no son descartados. ¿Cuál es el primer paquete que circula por la red X y cuál es la dirección MAC de destino de la cabecera Ethernet?",
-    image: getImage(imageMap, "2026-01-figure-5.png"),
-    options: [
-      "A. Un ICMP echo request con dirección MAC de destino ff:ff:ff:ff:ff:ff.",
-      "B. Un ICMP echo request con dirección MAC de destino 0f:09:32:de:32:2a.",
-      "C. Un ARP request con dirección MAC de destino ff:ff:ff:ff:ff:ff.",
-      "D. Un ARP request con dirección MAC de destino 0f:09:32:de:32:2a.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q35",
-    exam: "2026-01",
-    topic: "tema-11",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 5 y continuando con la pregunta anterior, ¿cuál es el segundo paquete que circula por la red X y cuál es la dirección MAC de destino de la cabecera Ethernet?",
-    image: getImage(imageMap, "2026-01-figure-5.png"),
-    options: [
-      "A. Un ICMP echo reply con dirección MAC de destino ff:ff:ff:ff:ff:ff.",
-      "B. Un ICMP echo reply con dirección MAC de destino 0a:87:23:a7:3f:9b.",
-      "C. Un ARP reply con dirección MAC de destino ff:ff:ff:ff:ff:ff.",
-      "D. Un ARP reply con dirección MAC de destino 0a:87:23:a7:3f:9b.",
-    ],
-    correctAnswer: "d",
-  },
-  {
-    id: "2026-01_q36",
-    exam: "2026-01",
-    topic: "tema-11",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 5 y continuando con la pregunta anterior, ¿cuál es el tercer paquete que circula por la red X y cuáles son sus direcciones IP y MAC de destino?",
-    image: getImage(imageMap, "2026-01-figure-5.png"),
-    options: [
-      "A. Un ICMP echo request con dirección IP de destino 199.20.20.20 y dirección MAC de destino ff:ff:ff:ff:ff:ff.",
-      "B. Un ICMP echo request con dirección IP de destino 199.20.20.20 y dirección MAC de destino 0f:09:32:de:32:2a.",
-      "C. Un ICMP echo request con dirección IP de destino 199.20.20.20 y dirección MAC de destino 0b:15:82:33:fc:82.",
-      "D. Un ICMP echo request con dirección IP de destino 199.20.20.20 y dirección MAC de destino 0e:89:32:ec:7a:98.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "2026-01_q37",
-    exam: "2026-01",
-    topic: "tema-11",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 5 y continuando con la pregunta anterior, ¿cuáles son el primer y segundo paquete que circulan por la red Y, con sus respectivas direcciones IP de destino?",
-    image: getImage(imageMap, "2026-01-figure-5.png"),
-    options: [
-      "A. Un ICMP echo request, con IP de destino 199.20.20.20, y un ICMP echo reply, con IP de destino 198.10.10.10.",
-      "B. Un ICMP echo request, con IP de destino 199.20.20.20, y un ICMP echo reply, con IP de destino 199.20.20.1.",
-      "C. Un ICMP echo request, con IP de destino 199.20.20.1, y un ICMP echo reply, con IP de destino 198.10.10.1.",
-      "D. Un ICMP echo request, con IP de destino 199.20.20.1, y un ICMP echo reply, con IP de destino 198.10.10.10.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "2026-01_q38",
-    exam: "2026-01",
-    topic: "tema-11",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 5 y continuando con la pregunta anterior, ¿cuáles son las direcciones MAC origen y destino del segundo paquete que circula por la red Y?",
-    image: getImage(imageMap, "2026-01-figure-5.png"),
-    options: [
-      "A. MAC origen 0f:09:32:de:32:2a y MAC destino 0a:87:23:a7:3f:9b.",
-      "B. MAC origen 0f:09:32:de:32:2a y MAC destino 0e:89:32:ec:7a:98.",
-      "C. MAC origen 0e:89:32:ec:7a:98 y MAC destino 0b:15:82:33:fc:82.",
-      "D. MAC origen 0e:89:32:ec:7a:98 y MAC destino 0f:09:32:de:32:2a.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q39",
-    exam: "2026-01",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question:
-      "En base a la Figura 6 y sabiendo que el MTU de las redes A y C es de 1500 bytes, mientras que el MTU de la red B es de 1000 bytes, si desde X se envían a Y 2018 bytes de datos UDP (sin incluir la cabecera UDP), ¿cuál es el tamaño del último fragmento que circula por la red A (incluida la cabecera IP)?",
-    image: getImage(imageMap, "2026-01-figure-6.png"),
-    options: ["A. 558.", "B. 566.", "C. 1480.", "D. 2026."],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q40",
-    exam: "2026-01",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 6 y continuando con la pregunta anterior, ¿cuál es el offset (en decimal) del segundo fragmento que circula por la red B?",
-    image: getImage(imageMap, "2026-01-figure-6.png"),
-    options: ["A. 0.", "B. 976.", "C. 980.", "D. 1480."],
-    correctAnswer: "b",
-  },
-  {
-    id: "2026-01_q41",
-    exam: "2026-01",
-    topic: "tema-9",
-    type: "mc",
-    points: 1,
-    question:
-      "Respecto a la Figura 6 y continuando con la pregunta anterior, ¿cuál es el tamaño del segundo fragmento que circula por la red C (incluida la cabecera IP)?",
-    image: getImage(imageMap, "2026-01-figure-6.png"),
-    options: ["A. 520.", "B. 524.", "C. 996.", "D. 1000."],
-    correctAnswer: "b",
-  },
 ];

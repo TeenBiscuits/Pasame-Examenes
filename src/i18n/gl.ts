@@ -36,10 +36,10 @@ export const gl: Translations = {
     sourceMaterials: "Materiais fonte",
     sourceMaterialsDescription:
       "Abre os materiais autorizados ou públicos usados como fonte para estas preguntas de práctica.",
-    originalDaypos: "Tests Daypo orixinais",
-    daypoDocsDescription:
-      "Abre os tests Daypo orixinais usados como fonte para estas preguntas de práctica.",
-    daypo: "Daypo",
+    originalContent: "Ligazón ao contido orixinal",
+    originalContentDescription:
+      "Abre o contido orixinal usado como fonte para estas preguntas de práctica.",
+    original: "Orixinal",
     pdf: "PDF",
     acknowledgments: "Agradecementos e exención de responsabilidade",
     legalInformation: "Información legal da materia",
@@ -52,7 +52,7 @@ export const gl: Translations = {
   practiceHome: {
     title: "Practicar por tema",
     subtitle:
-      "Elixe un tema para practicar. As preguntas de test e de emparellar autocorríxense.",
+      "Elixe un tema para practicar. As preguntas de test e de emparellar autocorríxense; as de texto e encher ocos autoavalíanse.",
   },
   header: {
     home: "Inicio",
@@ -234,7 +234,7 @@ export const gl: Translations = {
     points: "puntos",
     pointsTotal: "puntos en total",
     allCorrect:
-      "Revisa as túas respostas. Verde = correctas. Só as preguntas de test e de emparellar se autocorrigen.",
+      "Revisa as túas respostas. Verde = correctas. Só as preguntas de test e de emparellar se autocorrigen; as de texto e encher ocos autoavalíanse.",
     previous: "Anterior",
     next: "Seguinte",
     clear: "Limpar",
@@ -244,7 +244,7 @@ export const gl: Translations = {
     checked: "corrixidas",
     openEnded: "preguntas abertas",
     selfGradeHint:
-      "Autoavalia as túas respostas de texto para ver a túa puntuación final.",
+      "Autoavalia as túas respostas de texto e de encher ocos para ver a túa puntuación final.",
     allSelfGraded: "Todas as respostas autoavaliadas",
   },
   exam: {
@@ -262,15 +262,19 @@ export const gl: Translations = {
     minutes: "minutos",
     startExam: "Comezar exame",
     simulationNote:
-      "Esta simulación reflicte o formato real do exame. Para as preguntas abertas, autoavalia as túas respostas coas solucións modelo que se mostran tras enviar. As preguntas de test e emparellar autocorríxense.",
+      "Esta simulación reflicte o formato real do exame. Para as preguntas abertas e de encher ocos, autoavalia as túas respostas coas solucións modelo que se mostran tras enviar. As preguntas de test e emparellar autocorríxense.",
+    simulationScoringNote:
+      "Nalgúns exames reais fallar unha pregunta resta puntos; nesta simulación non se ten en conta isto.",
     practiceNote:
-      "Esta práctica cronometrada usa unha estrutura orientativa para estudar. Para as preguntas abertas, autoavalia as túas respostas coas solucións modelo que se mostran tras enviar. As preguntas de test e emparellar autocorríxense.",
+      "Esta práctica cronometrada usa unha estrutura orientativa para estudar. Para as preguntas abertas e de encher ocos, autoavalia as túas respostas coas solucións modelo que se mostran tras enviar. As preguntas de test e emparellar autocorríxense.",
+    practiceScoringNote:
+      "Nalgúns exames reais fallar unha pregunta resta puntos; nesta práctica non se ten en conta isto.",
     submitted: "Exame enviado.",
     passThreshold: "Limiar de aprobado",
     reviewNote:
-      "Revisa as túas respostas. As preguntas abertas mostran as solucións modelo para autoavaliación.",
+      "Revisa as túas respostas. As preguntas abertas e de encher ocos mostran as solucións modelo para autoavaliación.",
     selfGradeHint:
-      "Autoavalia as túas respostas de texto para ver a túa puntuación final.",
+      "Autoavalia as túas respostas de texto e de encher ocos para ver a túa puntuación final.",
     submitExam: "Entregar exame",
     submitConfirm:
       "Estás seguro de que queres entregar o exame? Non poderás modificar as túas respostas.",
@@ -300,6 +304,9 @@ export const gl: Translations = {
     openSolution: "Mostrar solución",
     openAndSelfGrade: "Mostrar solución e autoavaliarse",
     closeSolution: "Ocultar solución",
+    development: "Desenvolvemento",
+    openDevelopment: "Ver desenvolvemento",
+    closeDevelopment: "Ocultar desenvolvemento",
     yourAnswer: "A túa resposta",
     typeAnswer: "Escribe a túa resposta…",
     matchItemTo: "Relacionar {item} con {letter}",
@@ -311,7 +318,10 @@ export const gl: Translations = {
     questionTypes: {
       mc: "Tipo test (mc)",
       text: "Texto aberto (text)",
+      "multiple-text": "Texto aberto con apartados (multiple-text)",
       matching: "Emparellar (matching)",
+      fill: "Encher ocos (fill)",
+      "table-fill": "Encher táboa (table-fill)",
     },
     repeated: "Repetida",
   },
@@ -418,8 +428,9 @@ export const gl: Translations = {
   disclaimer: {
     text: "As preguntas foron extraídas dos materiais de referencia por procesos automatizados e poderían conter erros. Se atopa algún erro non dubide en",
     reportLink: "Reportar a pregunta",
-    postLinkText:
-      ". Nalgúns casos pode revisar o material orixinal directamente desde a web.",
+    postLinkText: ".",
+    originalMaterialPrefix: "Pode revisar o",
+    originalMaterialLink: "material orixinal",
   },
   seo: {
     siteName: "Pásame Exámenes",

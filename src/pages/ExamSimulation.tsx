@@ -22,7 +22,15 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
-import { computeQuestionResults } from "../lib/grading";
+import {
+  computeQuestionResults,
+  getPendingSelfGradePoints,
+  getQuestionScore,
+  isAutomaticallyCorrect,
+  isFullySelfGraded,
+  isSelfGradedQuestion,
+} from "../lib/grading";
+import { getExamPassPoints } from "../lib/exam-stats";
 import ScoreProgress from "../components/ScoreProgress";
 import {
   Alarm,
@@ -32,6 +40,7 @@ import {
   Exit,
   Send,
   Trophy,
+  Bulb,
 } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckmarkBadge02Icon } from "@hugeicons/core-free-icons";
@@ -49,6 +58,7 @@ interface ExamStartScreenProps {
   examInfo: Exam;
   questions: Question[];
   totalPoints: number;
+  passPoints: number;
   onStart: () => void;
 }
 
@@ -57,13 +67,17 @@ function ExamStartScreen({
   examInfo,
   questions,
   totalPoints,
+  passPoints,
   onStart,
 }: ExamStartScreenProps) {
   const t = useT();
-  const simulationNote = hasAuthorizedExamContent(subject)
+  const isAuthorized = hasAuthorizedExamContent(subject);
+  const simulationNote = isAuthorized
     ? t.exam.simulationNote
     : t.exam.practiceNote;
-  const isAuthorized = hasAuthorizedExamContent(subject);
+  const scoringNote = isAuthorized
+    ? t.exam.simulationScoringNote
+    : t.exam.practiceScoringNote;
   return (
     <div className="animate-fade-in animate-duration-fast mx-auto max-w-2xl px-4 py-6 sm:py-16">
       <div className="mb-3 sm:mb-4">
@@ -117,9 +131,7 @@ function ExamStartScreen({
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.pass}</span>
-            <p className="font-semibold">
-              {formatPoints(examInfo.passPoints)}p
-            </p>
+            <p className="font-semibold">{formatPoints(passPoints)}p</p>
           </div>
           <div>
             <span className="text-fg-muted">{t.exam.timeLimit}</span>
@@ -128,9 +140,13 @@ function ExamStartScreen({
             </p>
           </div>
         </div>
-        <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800 sm:p-4">
+        <div className="border-t-amber-border bg-t-amber-bg text-t-amber-fg flex items-start gap-2 rounded-lg border p-3 text-sm sm:p-4">
           <Alarm size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
           {simulationNote}
+        </div>
+        <div className="border-contribute-border bg-contribute-bg text-contribute-fg flex items-start gap-2 rounded-lg border p-3 text-sm sm:p-4">
+          <Bulb size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
+          {scoringNote}
         </div>
         <button
           type="button"
@@ -157,6 +173,7 @@ interface ExamPlayerProps {
   submitted: boolean;
   timeLeft: number;
   totalPoints: number;
+  passPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
   scrollToHeaderRef: React.MutableRefObject<() => void>;
@@ -184,6 +201,7 @@ interface ExamPlayerHeaderProps {
   submitted: boolean;
   timeLeft: number;
   totalPoints: number;
+  passPoints: number;
   score: number;
   pendingTextCount: number;
   questionResults: ReturnType<typeof computeQuestionResults>;
@@ -207,6 +225,7 @@ function ExamPlayerHeader({
   submitted,
   timeLeft,
   totalPoints,
+  passPoints,
   score,
   pendingTextCount,
   questionResults,
@@ -283,14 +302,14 @@ function ExamPlayerHeader({
                 className={`animate-fade-in rounded-md px-2.5 py-1 text-xs font-bold ${
                   pendingTextCount > 0
                     ? "bg-pending-bg text-pending-fg"
-                    : score >= examInfo.passPoints
+                    : score >= passPoints
                       ? "bg-correct-bg text-correct-fg"
                       : "bg-incorrect-bg text-incorrect-fg"
                 }`}
               >
                 {pendingTextCount > 0
                   ? t.exam.submitted
-                  : score >= examInfo.passPoints
+                  : score >= passPoints
                     ? t.exam.pass_
                     : t.exam.fail}
               </span>
@@ -308,7 +327,7 @@ function ExamPlayerHeader({
           questionResults={questionResults}
           dataTour="exam-nav"
           eventName="exam_navigate"
-          eventData={{ subjectId: subject.id, year: examInfo.year }}
+          eventData={{ subjectId: subject.id, examId: examInfo.id }}
           className={scoreSummary ? "mt-2 mb-0" : "mt-4 mb-0"}
           onSelectIndex={(i, dir) => {
             setDirection(dir);
@@ -383,7 +402,7 @@ function ExamExitDialog({
             ).length;
             track("exam_abandon", {
               subjectId: subject.id,
-              year: examInfo.year,
+              examId: examInfo.id,
               answeredCount,
               timeLeft,
             });
@@ -543,7 +562,7 @@ function ExamControls({
     setDirection(dir);
     track("exam_navigate", {
       subjectId: subject.id,
-      year: examInfo.year,
+      examId: examInfo.id,
       direction: dir,
       fromIndex: currentIndex,
       toIndex: nextIndex,
@@ -740,6 +759,7 @@ function ExamPlayer({
   submitted,
   timeLeft,
   totalPoints,
+  passPoints,
   direction,
   setDirection,
   showLeftFade,
@@ -795,27 +815,7 @@ function ExamPlayer({
   const getScore = () => {
     let score = 0;
     for (const q of questions) {
-      if (q.type === "text") {
-        if (selfGrades[q.id] === "correct") score += q.points;
-        continue;
-      }
-      if (!answers[q.id] || answers[q.id].trim() === "") continue;
-      if (q.type === "mc") {
-        if (answers[q.id] === q.correctAnswer) score += q.points;
-      } else if (q.type === "matching") {
-        try {
-          const user = JSON.parse(answers[q.id]) as Record<string, string>;
-          const correct = q.correctAnswer as Record<string, string>;
-          const items = Object.keys(correct);
-          let correctCount = 0;
-          for (const item of items) {
-            if (user[item] === correct[item]) correctCount++;
-          }
-          score += Math.round((correctCount / items.length) * q.points);
-        } catch {
-          /* skip */
-        }
-      }
+      score += getQuestionScore(q, answers[q.id], selfGrades);
     }
     return roundPoints(score);
   };
@@ -830,17 +830,26 @@ function ExamPlayer({
   const pendingTextCount = useMemo(
     () =>
       questions.filter(
-        (q) => q.type === "text" && submitted && !selfGrades[q.id],
+        (q) =>
+          isSelfGradedQuestion(q) &&
+          !isAutomaticallyCorrect(q, answers[q.id]) &&
+          submitted &&
+          !isFullySelfGraded(q, selfGrades),
       ).length,
-    [questions, selfGrades, submitted],
+    [questions, answers, selfGrades, submitted],
   );
 
   const pendingTextPoints = useMemo(
     () =>
       questions
-        .filter((q) => q.type === "text" && submitted && !selfGrades[q.id])
-        .reduce((sum, q) => sum + q.points, 0),
-    [questions, selfGrades, submitted],
+        .filter(
+          (q) =>
+            isSelfGradedQuestion(q) &&
+            !isAutomaticallyCorrect(q, answers[q.id]) &&
+            submitted,
+        )
+        .reduce((sum, q) => sum + getPendingSelfGradePoints(q, selfGrades), 0),
+    [questions, answers, selfGrades, submitted],
   );
   const hasScoreSummary = submitted;
 
@@ -881,6 +890,7 @@ function ExamPlayer({
         submitted={submitted}
         timeLeft={timeLeft}
         totalPoints={totalPoints}
+        passPoints={passPoints}
         score={score}
         pendingTextCount={pendingTextCount}
         questionResults={questionResults}
@@ -897,7 +907,7 @@ function ExamPlayer({
               totalPoints={totalPoints}
               pendingTextCount={pendingTextCount}
               pendingTextPoints={pendingTextPoints}
-              passPoints={examInfo.passPoints}
+              passPoints={passPoints}
               compact={scoreCompact}
             />
           ) : null
@@ -912,15 +922,16 @@ function ExamPlayer({
           total={questions.length}
           topicLabel={currentTopic?.label || currentQuestion.topic}
           megatopicLabel={megatopicLabels[currentQuestion.topic]}
-          examDate={examInfo?.date || examInfo?.title}
+          examTitle={examInfo?.title}
           subjectId={subject.id}
           topicKey={currentQuestion.topic}
-          examYear={examInfo.year}
+          examId={examInfo.id}
           mode="exam"
           onAnswer={onAnswer}
           savedAnswer={answers[currentQuestion.id]}
           showResult={submitted}
           selfGrade={selfGrades[currentQuestion.id]}
+          selfGrades={selfGrades}
           onSelfGrade={onSelfGrade}
           direction={direction}
         />
@@ -944,6 +955,7 @@ function ExamPlayer({
         subjectId={subject.id}
         questionId={currentQuestion.id}
         questionType={currentQuestion.type}
+        exam={examInfo}
       />
 
       <ExamDialogs
@@ -992,14 +1004,7 @@ function ExamEmptyState({
   );
 }
 
-export default function ExamSimulation() {
-  const { subjectId, year } = useParams<{ subjectId: string; year: string }>();
-  const navigate = useNavigate();
-  const t = useT();
-  const { lang } = useLang();
-  const langTo = useLangTo();
-
-  const subject = subjectId ? getSubject(subjectId) : undefined;
+function useExamData(subject: ExamSubject | undefined, examId?: string) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
     null,
@@ -1008,44 +1013,83 @@ export default function ExamSimulation() {
     Record<string, string>
   >({});
   const examInfo = useMemo(
-    () => subject?.exams.find((e: Exam) => e.year === year && !e.deleteRights),
-    [subject, year],
+    () =>
+      subject?.exams.find((exam) => exam.id === examId && !exam.deleteRights),
+    [subject, examId],
   );
+  const totalPoints = roundPoints(
+    questions.reduce((sum, q) => sum + q.points, 0),
+  );
+  const passPoints = examInfo ? getExamPassPoints(examInfo, totalPoints) : 0;
+
   useEffect(() => {
-    if (subject && year) {
-      getQuestionsByExam(subject.id, year).then((examQuestions) => {
-        setQuestions(examQuestions);
-        setQuestionsLoadedFor(`${subject.id}/${year}`);
-      });
-    }
-  }, [subject, year]);
-  const questionsLoaded =
-    !!subject && !!year && questionsLoadedFor === `${subject.id}/${year}`;
+    if (!subject || !examId) return;
+
+    getQuestionsByExam(subject.id, examId).then((examQuestions) => {
+      setQuestions(examQuestions);
+      setQuestionsLoadedFor(`${subject.id}/${examId}`);
+    });
+  }, [subject, examId]);
 
   useEffect(() => {
     if (!subject || questions.length === 0) return;
-    const topics = [...new Set(questions.map((q) => q.topic))];
+
+    const topics = [...new Set(questions.map((question) => question.topic))];
     Promise.all(
-      topics.map(async (t) => {
-        const label = await getTopicMegaTopicLabel(subject.id, t);
-        return [t, label] as const;
+      topics.map(async (topic) => {
+        const label = await getTopicMegaTopicLabel(subject.id, topic);
+        return [topic, label] as const;
       }),
     ).then((entries) => {
       const labels: Record<string, string> = {};
-      for (const [t, l] of entries) {
-        if (l != null) labels[t] = l;
+      for (const [topic, label] of entries) {
+        if (label != null) labels[topic] = label;
       }
       setMegatopicLabels(labels);
     });
   }, [subject, questions]);
+
+  const questionsLoaded =
+    !!subject && !!examId && questionsLoadedFor === `${subject.id}/${examId}`;
+
+  return {
+    questions,
+    questionsLoaded,
+    megatopicLabels,
+    examInfo,
+    totalPoints,
+    passPoints,
+  };
+}
+
+export default function ExamSimulation() {
+  const { subjectId, examId } = useParams<{
+    subjectId: string;
+    examId: string;
+  }>();
+  const navigate = useNavigate();
+  const t = useT();
+  const { lang } = useLang();
+  const langTo = useLangTo();
+
+  const subject = subjectId ? getSubject(subjectId) : undefined;
+  const {
+    questions,
+    questionsLoaded,
+    megatopicLabels,
+    examInfo,
+    totalPoints,
+    passPoints,
+  } = useExamData(subject, examId);
   const seoMeta = useMemo(
     () =>
       examInfo && subject
         ? buildExamMeta(lang, subject, examInfo, {
-            examQuestionCounts: { [examInfo.year]: questions.length },
+            examQuestionCounts: { [examInfo.id]: questions.length },
+            examTotalPoints: { [examInfo.id]: totalPoints },
           })
         : undefined,
-    [examInfo, subject, lang, questions.length],
+    [examInfo, subject, lang, questions.length, totalPoints],
   );
   useDocumentTitle(seoMeta?.title ?? t.home.title);
 
@@ -1078,7 +1122,7 @@ export default function ExamSimulation() {
   } = useExamSession(
     questions,
     subject?.id || "",
-    year || "",
+    examId || "",
     (examInfo?.durationMinutes || 120) * 60,
     t,
     showTimeUpDialog,
@@ -1130,8 +1174,8 @@ export default function ExamSimulation() {
   });
 
   const navEventData = useCallback(
-    () => ({ subjectId: subjectId || "", year: year || "" }),
-    [subjectId, year],
+    () => ({ subjectId: subjectId || "", examId: examId || "" }),
+    [subjectId, examId],
   );
 
   useKeyboardNav({
@@ -1237,8 +1281,6 @@ export default function ExamSimulation() {
     return () => clearTimeout(timer);
   }, [started, questions.length, subject, t]);
 
-  const totalPoints = roundPoints(questions.reduce((s, q) => s + q.points, 0));
-
   if (questions.length === 0 || !subject || !examInfo) {
     return (
       <ExamEmptyState subject={subject} questionsLoaded={questionsLoaded} />
@@ -1254,6 +1296,7 @@ export default function ExamSimulation() {
           examInfo={examInfo}
           questions={questions}
           totalPoints={totalPoints}
+          passPoints={passPoints}
           onStart={handleStart}
         />
       </>
@@ -1275,6 +1318,7 @@ export default function ExamSimulation() {
         submitted={submitted}
         timeLeft={timeLeft}
         totalPoints={totalPoints}
+        passPoints={passPoints}
         direction={direction}
         setDirection={setDirection}
         showLeftFade={showLeftFade}

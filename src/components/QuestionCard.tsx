@@ -3,6 +3,12 @@ import type { Picture } from "vite-imagetools";
 import type { Question, QuestionType } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { Markdown, InlineMarkdown } from "../lib/markdown";
+import {
+  getPartSelfGradeKey,
+  getTextPartPoints,
+  isAutomaticallyCorrect,
+  isFillAnswerCorrect,
+} from "../lib/grading";
 import { track } from "../lib/umami";
 import { formatPoints } from "../lib/points";
 import {
@@ -22,46 +28,52 @@ import {
   XSquare,
 } from "reicon-react";
 
+function defaultLabel(index: number) {
+  return `${String.fromCharCode(97 + index)})`;
+}
+
 function QuestionImage({
   image,
   alt,
   maxHeight,
 }: {
-  image: Picture | string;
+  image: Picture | string | (Picture | string)[];
   alt: string;
   maxHeight: "300px" | "400px";
 }) {
   const heightClass = maxHeight === "400px" ? "max-h-[400px]" : "max-h-[300px]";
-  if (typeof image === "object") {
-    return (
-      <div className="border-border bg-surface flex max-w-full justify-center overflow-hidden rounded-lg border p-2">
-        <picture>
-          {Object.entries(image.sources).map(([format, srcset]) => (
-            <source key={format} srcSet={srcset} type={`image/${format}`} />
-          ))}
+  const images = Array.isArray(image) ? image : [image];
+
+  return (
+    <div className="border-border bg-surface flex max-w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-lg border p-2">
+      {images.map((source, index) =>
+        typeof source === "object" ? (
+          <picture key={source.img.src}>
+            {Object.entries(source.sources).map(([format, srcset]) => (
+              <source key={format} srcSet={srcset} type={`image/${format}`} />
+            ))}
+            <img
+              src={source.img.src}
+              alt={images.length > 1 ? `${alt} ${index + 1}` : alt}
+              width={source.img.w}
+              height={source.img.h}
+              style={{
+                aspectRatio: `${source.img.w} / ${source.img.h}`,
+              }}
+              className={`${heightClass} max-w-full object-contain`}
+              loading="lazy"
+            />
+          </picture>
+        ) : (
           <img
-            src={image.img.src}
-            alt={alt}
-            width={image.img.w}
-            height={image.img.h}
-            style={{
-              aspectRatio: `${image.img.w} / ${image.img.h}`,
-            }}
+            key={source}
+            src={source}
+            alt={images.length > 1 ? `${alt} ${index + 1}` : alt}
             className={`${heightClass} max-w-full object-contain`}
             loading="lazy"
           />
-        </picture>
-      </div>
-    );
-  }
-  return (
-    <div className="border-border bg-surface flex max-w-full justify-center overflow-hidden rounded-lg border p-2">
-      <img
-        src={image}
-        alt={alt}
-        className={`${heightClass} max-w-full object-contain`}
-        loading="lazy"
-      />
+        ),
+      )}
     </div>
   );
 }
@@ -72,15 +84,17 @@ interface QuestionCardProps {
   total: number;
   topicLabel: string;
   megatopicLabel?: string;
-  examDate?: string;
+  examTitle?: string;
   subjectId: string;
   topicKey?: string;
-  examYear?: string;
+  examId?: string;
   mode?: "practice" | "exam";
   onAnswer: (questionId: string, answer: string) => void;
   savedAnswer?: string;
   showResult?: boolean;
   selfGrade?: "correct" | "incorrect";
+  /** Per-question self-grades keyed by `getPartSelfGradeKey` for `multiple-text` parts. */
+  selfGrades?: Record<string, "correct" | "incorrect">;
   onSelfGrade?: (questionId: string, grade: "correct" | "incorrect") => void;
   direction?: "next" | "prev";
 }
@@ -114,6 +128,72 @@ function buildReportUrl(
 const solutionPanelClass =
   "bg-surface border-border -mx-4 space-y-3 border-y px-4 py-4 sm:-mx-6 sm:px-6";
 
+function DevelopmentDisclosure({
+  development,
+  questionId,
+  subjectId,
+  topicKey,
+  examId,
+  mode,
+}: {
+  development: string;
+  questionId: string;
+  subjectId: string;
+  topicKey?: string;
+  examId?: string;
+  mode?: "practice" | "exam";
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const t = useT();
+
+  return (
+    <div className="mt-3 space-y-3">
+      <button
+        type="button"
+        data-cuelume-press
+        className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+        onClick={() => {
+          triggerLight();
+          const next = !isOpen;
+          track("solution_toggle", {
+            questionId,
+            action: next ? "open" : "close",
+            panel: "development",
+            subjectId,
+            topic: topicKey,
+            examId: examId,
+            mode,
+          });
+          setIsOpen(next);
+        }}
+      >
+        <BookOpen size={16} aria-hidden="true" />
+        {isOpen
+          ? t.questionCard.closeDevelopment
+          : t.questionCard.openDevelopment}
+      </button>
+      {isOpen && (
+        <div className={solutionPanelClass}>
+          <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
+            {t.questionCard.development}
+          </h4>
+          <Markdown className="text-fg-secondary font-sans text-xs">
+            {development}
+          </Markdown>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function getFillInputWidth(answer: string): "w-16" | "w-24" | "w-36" | "w-52" {
+  const length = answer.trim().length;
+  if (length <= 4) return "w-16";
+  if (length <= 9) return "w-24";
+  if (length <= 18) return "w-36";
+  return "w-52";
+}
+
 function MCQuestion({
   question,
   onAnswer,
@@ -121,7 +201,7 @@ function MCQuestion({
   showResult,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -154,7 +234,7 @@ function MCQuestion({
             answer: selectedLetter,
             subjectId,
             topic: topicKey,
-            exam: examYear,
+            examId: examId,
             mode,
           });
           onAnswer(question.id, selectedLetter);
@@ -171,7 +251,7 @@ function MCQuestion({
     onAnswer,
     subjectId,
     topicKey,
-    examYear,
+    examId,
     mode,
   ]);
 
@@ -211,7 +291,7 @@ function MCQuestion({
                 answer: letter,
                 subjectId,
                 topic: topicKey,
-                exam: examYear,
+                examId: examId,
                 mode,
               });
               onAnswer(question.id, letter);
@@ -246,7 +326,7 @@ function MCQuestion({
                   action: next ? "open" : "close",
                   subjectId,
                   topic: topicKey,
-                  exam: examYear,
+                  examId: examId,
                   mode,
                 });
                 setIsOpen(next);
@@ -288,7 +368,7 @@ function TextQuestion({
   onSelfGrade,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -322,7 +402,7 @@ function TextQuestion({
               action: "started",
               subjectId,
               topic: topicKey,
-              exam: examYear,
+              examId: examId,
               mode,
             });
           }
@@ -435,6 +515,571 @@ function TextQuestion({
   );
 }
 
+function MultipleTextQuestion({
+  question,
+  onAnswer,
+  savedAnswer,
+  showResult,
+  onSelfGrade,
+  selfGrades,
+  subjectId,
+  topicKey,
+  examId,
+  mode,
+}: QuestionCardProps) {
+  const [openParts, setOpenParts] = useState<Record<number, boolean>>({});
+  const t = useT();
+  const textStartedRef = useRef(false);
+  const parts = question.textParts || [];
+  const solutions = Array.isArray(question.correctAnswer)
+    ? question.correctAnswer
+    : [];
+
+  useEffect(() => {
+    textStartedRef.current = false;
+  }, [question.id]);
+
+  let answers: string[] = [];
+  if (savedAnswer) {
+    try {
+      const parsed = JSON.parse(savedAnswer);
+      if (Array.isArray(parsed)) answers = parsed;
+    } catch {
+      answers = [];
+    }
+  }
+
+  return (
+    <div className="space-y-4">
+      {parts.map((part, partIndex) => {
+        const isOpen = !!openParts[partIndex];
+        const grade = selfGrades?.[getPartSelfGradeKey(question.id, partIndex)];
+        return (
+          <div key={`${question.id}-part-${partIndex}`}>
+            <div className="mb-1.5 flex items-baseline gap-2">
+              <span className="bg-code text-fg-secondary shrink-0 rounded px-1.5 py-0.5 font-mono text-xs font-bold">
+                {part.label || defaultLabel(partIndex)}
+              </span>
+              <span className="text-fg-secondary flex-1 text-sm">
+                <InlineMarkdown>{part.text}</InlineMarkdown>
+              </span>
+              <span className="bg-accent-light text-accent-fg shrink-0 rounded px-1.5 py-0.5 font-mono text-xs whitespace-nowrap">
+                {formatPoints(getTextPartPoints(question, partIndex))}
+                {t.questionCard.pointsShort}
+              </span>
+            </div>
+            <label
+              htmlFor={`answer-${question.id}-${partIndex}`}
+              className="sr-only"
+            >
+              {part.label || defaultLabel(partIndex)}{" "}
+              {t.questionCard.yourAnswer}
+            </label>
+            <textarea
+              id={`answer-${question.id}-${partIndex}`}
+              aria-label={`${part.label || defaultLabel(partIndex)} ${t.questionCard.yourAnswer}`}
+              className="border-border focus:border-accent focus-visible:ring-accent min-h-[100px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
+              placeholder={t.questionCard.typeAnswer}
+              autoComplete="off"
+              spellCheck={false}
+              value={answers[partIndex] || ""}
+              onChange={(e) => {
+                const next = [...answers];
+                next[partIndex] = e.target.value;
+                onAnswer(question.id, JSON.stringify(next));
+                if (!textStartedRef.current) {
+                  textStartedRef.current = true;
+                  track("question_answer", {
+                    questionId: question.id,
+                    type: "multiple-text",
+                    action: "started",
+                    subjectId,
+                    topic: topicKey,
+                    examId: examId,
+                    mode,
+                  });
+                }
+              }}
+              disabled={!!showResult}
+            />
+            {showResult && typeof solutions[partIndex] === "string" && (
+              <div className="mt-3 space-y-3">
+                <button
+                  type="button"
+                  data-cuelume-press
+                  className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+                  onClick={() => {
+                    triggerLight();
+                    const next = !isOpen;
+                    track("solution_toggle", {
+                      questionId: question.id,
+                      action: next ? "open" : "close",
+                      panel: "part",
+                      part: partIndex,
+                    });
+                    setOpenParts((prev) => ({ ...prev, [partIndex]: next }));
+                  }}
+                >
+                  <BookOpen size={16} aria-hidden="true" />
+                  {isOpen
+                    ? t.questionCard.closeSolution
+                    : t.questionCard.openSolution}
+                </button>
+                {isOpen && (
+                  <div className={solutionPanelClass}>
+                    <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
+                      {t.questionCard.modelSolution}
+                    </h4>
+                    <Markdown className="text-fg-secondary font-sans text-xs whitespace-pre-wrap">
+                      {solutions[partIndex]}
+                    </Markdown>
+                    {part.explanationImage && (
+                      <QuestionImage
+                        image={part.explanationImage}
+                        alt={t.questionCard.solutionIllustration}
+                        maxHeight="300px"
+                      />
+                    )}
+                    {onSelfGrade && (
+                      <div className="border-border border-t pt-2">
+                        <p className="text-fg-secondary mb-2 text-xs font-semibold">
+                          {t.questionCard.gradeAnswer}
+                        </p>
+                        <div className="flex gap-2 *:flex-1">
+                          <button
+                            type="button"
+                            data-cuelume-press
+                            onClick={() => {
+                              triggerSuccess();
+                              playSuccess();
+                              onSelfGrade(
+                                getPartSelfGradeKey(question.id, partIndex),
+                                "correct",
+                              );
+                            }}
+                            className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                              grade === "correct"
+                                ? "bg-correct-bg border-correct-border text-correct-fg"
+                                : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
+                            }`}
+                          >
+                            <CheckSquare
+                              size={14}
+                              weight={
+                                grade === "correct" ? "Filled" : "Outline"
+                              }
+                              aria-hidden="true"
+                            />
+                            {t.questionCard.correct}
+                          </button>
+                          <button
+                            type="button"
+                            data-cuelume-press
+                            onClick={() => {
+                              triggerError();
+                              playError();
+                              onSelfGrade(
+                                getPartSelfGradeKey(question.id, partIndex),
+                                "incorrect",
+                              );
+                            }}
+                            className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                              grade === "incorrect"
+                                ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
+                                : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
+                            }`}
+                          >
+                            <XSquare
+                              size={14}
+                              weight={
+                                grade === "incorrect" ? "Filled" : "Outline"
+                              }
+                              aria-hidden="true"
+                            />
+                            {t.questionCard.incorrect}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function FillQuestion({
+  question,
+  onAnswer,
+  savedAnswer,
+  showResult,
+  selfGrade,
+  onSelfGrade,
+  subjectId,
+  topicKey,
+  examId,
+  mode,
+}: QuestionCardProps) {
+  const t = useT();
+  const statements = question.fillStatements || [];
+  const correctAnswers = question.correctAnswer as string[];
+  const automaticallyCorrect = isAutomaticallyCorrect(question, savedAnswer);
+  let answers: string[] = [];
+  if (savedAnswer) {
+    try {
+      const parsed = JSON.parse(savedAnswer);
+      if (Array.isArray(parsed)) answers = parsed;
+    } catch {
+      answers = [];
+    }
+  }
+
+  let blankIndex = 0;
+  return (
+    <div className="space-y-3">
+      {statements.map((statement, statementIndex) => {
+        const parts = statement.text.split("{{blank}}");
+        return (
+          <div
+            key={`${question.id}-fill-${statementIndex}`}
+            className="text-fg-secondary flex items-baseline gap-2 text-sm leading-relaxed"
+          >
+            {statement.label && (
+              <span className="text-fg-muted shrink-0 font-semibold">
+                {statement.label}
+              </span>
+            )}
+            <span>
+              {parts.map((part, partIndex) => {
+                const currentBlankIndex = blankIndex;
+                const hasBlankAfter = partIndex < parts.length - 1;
+                if (hasBlankAfter) blankIndex++;
+                return (
+                  <span
+                    key={`${question.id}-fill-part-${statementIndex}-${partIndex}`}
+                  >
+                    <InlineMarkdown>{part}</InlineMarkdown>
+                    {hasBlankAfter && (
+                      <>
+                        <label
+                          htmlFor={`${question.id}-blank-${currentBlankIndex}`}
+                          className="sr-only"
+                        >
+                          {statement.label || `${statementIndex + 1}`}{" "}
+                          {currentBlankIndex + 1}
+                        </label>
+                        <input
+                          id={`${question.id}-blank-${currentBlankIndex}`}
+                          name={`${question.id}-blank-${currentBlankIndex}`}
+                          type="text"
+                          autoComplete="off"
+                          enterKeyHint="next"
+                          value={answers[currentBlankIndex] || ""}
+                          onChange={(event) => {
+                            const next = [...answers];
+                            next[currentBlankIndex] = event.target.value;
+                            onAnswer(question.id, JSON.stringify(next));
+                            track("question_answer", {
+                              questionId: question.id,
+                              type: "fill",
+                              blank: currentBlankIndex,
+                              subjectId,
+                              topic: topicKey,
+                              examId: examId,
+                              mode,
+                            });
+                          }}
+                          disabled={!!showResult}
+                          className={`mx-1 inline-block min-h-8 ${getFillInputWidth(correctAnswers[currentBlankIndex] || "")} focus-visible:ring-accent max-w-[min(100%,13rem)] rounded-md border-2 px-1.5 py-0.5 align-middle text-sm transition-colors transition-shadow duration-200 focus-visible:ring-2 focus-visible:outline-none ${
+                            showResult
+                              ? isFillAnswerCorrect(
+                                  savedAnswer,
+                                  correctAnswers[currentBlankIndex] || "",
+                                  currentBlankIndex,
+                                )
+                                ? "border-correct-border bg-correct-bg text-correct-fg"
+                                : "border-contribute-border bg-contribute-bg text-contribute-fg"
+                              : "border-border bg-surface"
+                          }`}
+                        />
+                        {showResult && (
+                          <span className="text-fg-muted text-xs">
+                            ({t.questionCard.modelSolution}:{" "}
+                            {correctAnswers[currentBlankIndex]})
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </span>
+                );
+              })}
+            </span>
+          </div>
+        );
+      })}
+      {showResult && onSelfGrade && !automaticallyCorrect && (
+        <div className="border-border mt-3 border-t pt-2">
+          <p className="text-fg-secondary mb-2 text-xs font-semibold">
+            {t.questionCard.gradeAnswer}
+          </p>
+          <div className="flex gap-2 *:flex-1">
+            <button
+              type="button"
+              data-cuelume-press
+              onClick={() => {
+                triggerSuccess();
+                playSuccess();
+                onSelfGrade(question.id, "correct");
+              }}
+              className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                selfGrade === "correct"
+                  ? "bg-correct-bg border-correct-border text-correct-fg"
+                  : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
+              }`}
+            >
+              <CheckSquare
+                size={14}
+                weight={selfGrade === "correct" ? "Filled" : "Outline"}
+                aria-hidden="true"
+              />
+              {t.questionCard.correct}
+            </button>
+            <button
+              type="button"
+              data-cuelume-press
+              onClick={() => {
+                triggerError();
+                playError();
+                onSelfGrade(question.id, "incorrect");
+              }}
+              className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                selfGrade === "incorrect"
+                  ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
+                  : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
+              }`}
+            >
+              <XSquare
+                size={14}
+                weight={selfGrade === "incorrect" ? "Filled" : "Outline"}
+                aria-hidden="true"
+              />
+              {t.questionCard.incorrect}
+            </button>
+          </div>
+        </div>
+      )}
+      {showResult && question.development && (
+        <DevelopmentDisclosure
+          development={question.development}
+          questionId={question.id}
+          subjectId={subjectId}
+          topicKey={topicKey}
+          examId={examId}
+          mode={mode}
+        />
+      )}
+    </div>
+  );
+}
+
+function TableFillQuestion({
+  question,
+  onAnswer,
+  savedAnswer,
+  showResult,
+  selfGrade,
+  onSelfGrade,
+  subjectId,
+  topicKey,
+  examId,
+  mode,
+}: QuestionCardProps) {
+  const t = useT();
+  const table = question.tableFill;
+  const correctAnswers = question.correctAnswer as string[];
+  const automaticallyCorrect = isAutomaticallyCorrect(question, savedAnswer);
+  let answers: string[] = [];
+  if (savedAnswer) {
+    try {
+      const parsed = JSON.parse(savedAnswer);
+      if (Array.isArray(parsed)) answers = parsed;
+    } catch {
+      answers = [];
+    }
+  }
+
+  if (!table) return null;
+
+  let blankIndex = 0;
+  return (
+    <div className="space-y-3">
+      <div className="border-border overflow-x-auto rounded-lg border">
+        <table className="divide-border min-w-full divide-y text-sm">
+          <thead className="bg-surface">
+            <tr>
+              {table.headers.map((header, index) => (
+                <th
+                  key={`${question.id}-table-fill-header-${index}`}
+                  scope="col"
+                  className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
+                >
+                  <InlineMarkdown>{header}</InlineMarkdown>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-border bg-surface-alt divide-y">
+            {table.rows.map((row, rowIndex) => (
+              <tr key={`${question.id}-table-fill-row-${rowIndex}`}>
+                {row.map((cell, columnIndex) => {
+                  const parts = cell.split("{{blank}}");
+                  return (
+                    <td
+                      key={`${question.id}-table-fill-cell-${rowIndex}-${columnIndex}`}
+                      className="text-fg-secondary px-4 py-2 align-middle"
+                    >
+                      {parts.map((part, partIndex) => {
+                        const currentBlankIndex = blankIndex;
+                        const hasBlankAfter = partIndex < parts.length - 1;
+                        if (hasBlankAfter) blankIndex++;
+                        return (
+                          <span
+                            key={`${question.id}-table-fill-part-${rowIndex}-${columnIndex}-${partIndex}`}
+                          >
+                            <InlineMarkdown>{part}</InlineMarkdown>
+                            {hasBlankAfter && (
+                              <>
+                                <label
+                                  htmlFor={`${question.id}-table-blank-${currentBlankIndex}`}
+                                  className="sr-only"
+                                >
+                                  {rowIndex + 1}-{columnIndex + 1} blank{" "}
+                                  {currentBlankIndex + 1}
+                                </label>
+                                <input
+                                  id={`${question.id}-table-blank-${currentBlankIndex}`}
+                                  name={`${question.id}-table-blank-${currentBlankIndex}`}
+                                  type="text"
+                                  autoComplete="off"
+                                  enterKeyHint="next"
+                                  value={answers[currentBlankIndex] || ""}
+                                  onChange={(event) => {
+                                    const next = [...answers];
+                                    next[currentBlankIndex] =
+                                      event.target.value;
+                                    onAnswer(question.id, JSON.stringify(next));
+                                    track("question_answer", {
+                                      questionId: question.id,
+                                      type: "table-fill",
+                                      blank: currentBlankIndex,
+                                      subjectId,
+                                      topic: topicKey,
+                                      examId: examId,
+                                      mode,
+                                    });
+                                  }}
+                                  disabled={!!showResult}
+                                  className={`mx-1 inline-block min-h-8 ${getFillInputWidth(correctAnswers[currentBlankIndex] || "")} focus-visible:ring-accent max-w-[min(100%,13rem)] rounded-md border-2 px-1.5 py-0.5 align-middle text-sm transition-colors transition-shadow duration-200 focus-visible:ring-2 focus-visible:outline-none ${
+                                    showResult
+                                      ? isFillAnswerCorrect(
+                                          savedAnswer,
+                                          correctAnswers[currentBlankIndex] ||
+                                            "",
+                                          currentBlankIndex,
+                                        )
+                                        ? "border-correct-border bg-correct-bg text-correct-fg"
+                                        : "border-contribute-border bg-contribute-bg text-contribute-fg"
+                                      : "border-border bg-surface"
+                                  }`}
+                                />
+                                {showResult && (
+                                  <span className="text-fg-muted text-xs">
+                                    ({t.questionCard.modelSolution}:{" "}
+                                    {correctAnswers[currentBlankIndex]})
+                                  </span>
+                                )}
+                              </>
+                            )}
+                          </span>
+                        );
+                      })}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {showResult && onSelfGrade && !automaticallyCorrect && (
+        <div className="border-border mt-3 border-t pt-2">
+          <p className="text-fg-secondary mb-2 text-xs font-semibold">
+            {t.questionCard.gradeAnswer}
+          </p>
+          <div className="flex gap-2 *:flex-1">
+            <button
+              type="button"
+              data-cuelume-press
+              onClick={() => {
+                triggerSuccess();
+                playSuccess();
+                onSelfGrade(question.id, "correct");
+              }}
+              className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                selfGrade === "correct"
+                  ? "bg-correct-bg border-correct-border text-correct-fg"
+                  : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
+              }`}
+            >
+              <CheckSquare
+                size={14}
+                weight={selfGrade === "correct" ? "Filled" : "Outline"}
+                aria-hidden="true"
+              />
+              {t.questionCard.correct}
+            </button>
+            <button
+              type="button"
+              data-cuelume-press
+              onClick={() => {
+                triggerError();
+                playError();
+                onSelfGrade(question.id, "incorrect");
+              }}
+              className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
+                selfGrade === "incorrect"
+                  ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
+                  : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
+              }`}
+            >
+              <XSquare
+                size={14}
+                weight={selfGrade === "incorrect" ? "Filled" : "Outline"}
+                aria-hidden="true"
+              />
+              {t.questionCard.incorrect}
+            </button>
+          </div>
+        </div>
+      )}
+      {showResult && question.development && (
+        <DevelopmentDisclosure
+          development={question.development}
+          questionId={question.id}
+          subjectId={subjectId}
+          topicKey={topicKey}
+          examId={examId}
+          mode={mode}
+        />
+      )}
+    </div>
+  );
+}
+
 function MatchingQuestion({
   question,
   onAnswer,
@@ -442,7 +1087,7 @@ function MatchingQuestion({
   showResult,
   subjectId,
   topicKey,
-  examYear,
+  examId,
   mode,
 }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -492,7 +1137,7 @@ function MatchingQuestion({
                 const chosen = userAnswer === letter;
                 const real = correctAnswer[item] === letter;
                 let cls =
-                  "w-8 h-8 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
+                  "w-9 h-9 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
                 if (showResult && real) {
                   cls += " bg-correct-bg border-correct-border text-correct-fg";
                 } else if (showResult && chosen && !real) {
@@ -519,7 +1164,7 @@ function MatchingQuestion({
                         answer: letter,
                         subjectId,
                         topic: topicKey,
-                        exam: examYear,
+                        examId: examId,
                         mode,
                       });
                       handleSelect(item, letter);
@@ -552,7 +1197,7 @@ function MatchingQuestion({
                   action: next ? "open" : "close",
                   subjectId,
                   topic: topicKey,
-                  exam: examYear,
+                  examId: examId,
                   mode,
                 });
                 setIsOpen(next);
@@ -624,7 +1269,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           )}
           <span className="truncate">{questionProps.topicLabel}</span>
         </span>
-        {(question.repeated || questionProps.examDate) && (
+        {(question.repeated || questionProps.examTitle) && (
           <div className="ml-auto flex items-center gap-2 sm:ml-0">
             {question.repeated && (
               <span className="flex items-center gap-0.5 rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
@@ -632,10 +1277,10 @@ export default function QuestionCard(props: QuestionCardProps) {
                 {t.questionCard.repeated}
               </span>
             )}
-            {questionProps.examDate && (
+            {questionProps.examTitle && (
               <span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
                 <Notebook size={14} aria-hidden="true" />
-                {questionProps.examDate}
+                {questionProps.examTitle}
               </span>
             )}
           </div>
@@ -707,6 +1352,13 @@ export default function QuestionCard(props: QuestionCardProps) {
         />
       )}
       {question.type === "text" && <TextQuestion {...questionProps} />}
+      {question.type === "multiple-text" && (
+        <MultipleTextQuestion {...questionProps} />
+      )}
+      {question.type === "fill" && <FillQuestion {...questionProps} />}
+      {question.type === "table-fill" && (
+        <TableFillQuestion {...questionProps} />
+      )}
       {question.type === "matching" && (
         <MatchingQuestion
           key={`match-${question.id}-${questionProps.savedAnswer || ""}`}
@@ -743,7 +1395,7 @@ export default function QuestionCard(props: QuestionCardProps) {
                 questionId: question.id,
                 subjectId: questionProps.subjectId,
                 topic: questionProps.topicKey,
-                exam: questionProps.examYear,
+                examId: questionProps.examId,
                 mode: questionProps.mode,
               });
             }}

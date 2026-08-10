@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import { useEffect, useRef, useState } from "react";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -21,7 +22,7 @@ import {
   oneLight,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useIsDark } from "../theme/hooks";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import "katex/dist/katex.min.css";
 
 const fullRemarkPlugins = [remarkGfm, remarkMath];
@@ -85,6 +86,51 @@ const codeStyleDark = {
     background: "transparent",
   },
 };
+
+function ScrollableTable({ children }: { children: ReactNode }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  useEffect(() => {
+    const element = scrollRef.current;
+    if (!element) return;
+
+    const updateShadows = () => {
+      const maxScrollLeft = element.scrollWidth - element.clientWidth;
+      setCanScrollLeft(element.scrollLeft > 1);
+      setCanScrollRight(maxScrollLeft - element.scrollLeft > 1);
+    };
+
+    updateShadows();
+    element.addEventListener("scroll", updateShadows, { passive: true });
+    const resizeObserver = new ResizeObserver(updateShadows);
+    resizeObserver.observe(element);
+    return () => {
+      element.removeEventListener("scroll", updateShadows);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  return (
+    <div className="not-prose relative m-0 max-w-full">
+      <div
+        ref={scrollRef}
+        className="max-w-full overflow-x-auto overflow-y-hidden"
+      >
+        {children}
+      </div>
+      <span
+        aria-hidden="true"
+        className={`from-surface via-surface/70 pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r to-transparent transition-opacity duration-200 ${canScrollLeft ? "opacity-100" : "opacity-0"}`}
+      />
+      <span
+        aria-hidden="true"
+        className={`from-surface via-surface/70 pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l to-transparent transition-opacity duration-200 ${canScrollRight ? "opacity-100" : "opacity-0"}`}
+      />
+    </div>
+  );
+}
 
 function CodeRenderer({
   className,
@@ -154,6 +200,23 @@ export function Markdown({
         components={{
           pre: ({ children }) => <>{children}</>,
           code: CodeRenderer,
+          table: ({ children }) => (
+            <ScrollableTable>
+              <table className="m-0 w-max min-w-full border-collapse text-left text-sm leading-normal">
+                {children}
+              </table>
+            </ScrollableTable>
+          ),
+          th: ({ children }) => (
+            <th className="border-border border-b px-3 py-2 font-semibold whitespace-nowrap">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="border-border border-b px-3 py-2 whitespace-nowrap">
+              {children}
+            </td>
+          ),
         }}
       >
         {children}

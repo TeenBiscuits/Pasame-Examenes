@@ -52,22 +52,21 @@ Practica con temporizador, puntuación en directo y auto-entrega opcional. En as
 ## Asignaturas
 
 <!-- SUBJECTS_TABLE:START -->
-
-| Asignatura                          | Grao                          | Curso |   Exámenes/etc |
-| ----------------------------------- | ----------------------------- | ----: | -------------: |
-| 🗃️ Bases de Datos                   | Grao en Enxeñaría informática |    2º |  3 (2022–2026) |
-| ⚡ Concorrencia e Paralelismo       | Grao en Enxeñaría informática |    2º | 16 (2018–2025) |
-| 🎨 Deseño de Software               | Grao en Enxeñaría informática |    2º |  2 (2020–2022) |
-| 💻 Estrutura de Computadores        | Grao en Enxeñaría informática |    2º | 11 (2021–2026) |
-| 🗓️ Proceso Software                 | Grao en Enxeñaría informática |    2º |       1 (2026) |
-| 🕸️ Redes                            | Grao en Enxeñaría informática |    2º |  4 (2008–2026) |
-| 🧠 Sistemas Intelixentes            | Grao en Enxeñaría informática |    2º |  5 (2023–2026) |
-| 💽 Sistemas Operativos              | Grao en Enxeñaría informática |    2º |  9 (2020–2024) |
-| 🌐 Internet y Sistemas Distribuidos | Grao en Enxeñaría informática |    3º |              1 |
-| 🔗 Programación Integrativa         | Grao en Enxeñaría informática |    3º |              1 |
-| 🏗️ Xestión de Infraestruturas       | Grao en Enxeñaría informática |    3º |       4 (2024) |
-| 📋 Xestión de Proxectos             | Grao en Enxeñaría informática |    3º |  5 (2024–2026) |
-
+| Asignatura | Grao | Curso | Exámenes/etc |
+| --- | --- | ---: | ---: |
+| 🧮 Cálculo | Grao en Enxeñaría informática | 1º | 8 (2022–2025) |
+| 🗃️ Bases de Datos | Grao en Enxeñaría informática | 2º | 3 (2022–2026) |
+| ⚡ Concorrencia e Paralelismo | Grao en Enxeñaría informática | 2º | 4 (2024–2025) |
+| 🎨 Deseño de Software | Grao en Enxeñaría informática | 2º | 2 (2020–2022) |
+| 💻 Estrutura de Computadores | Grao en Enxeñaría informática | 2º | 1 (2026) |
+| 🗓️ Proceso Software | Grao en Enxeñaría informática | 2º | 1 (2026) |
+| 🕸️ Redes | Grao en Enxeñaría informática | 2º | 4 (2008–2026) |
+| 🧠 Sistemas Intelixentes | Grao en Enxeñaría informática | 2º | 5 (2023–2026) |
+| 💽 Sistemas Operativos | Grao en Enxeñaría informática | 2º | 4 (2023–2024) |
+| 🌐 Internet y Sistemas Distribuidos | Grao en Enxeñaría informática | 3º | 1 |
+| 🔗 Programación Integrativa | Grao en Enxeñaría informática | 3º | 1 |
+| 🏗️ Xestión de Infraestruturas | Grao en Enxeñaría informática | 3º | 4 (2024) |
+| 📋 Xestión de Proxectos | Grao en Enxeñaría informática | 3º | 5 (2024–2026) |
 <!-- SUBJECTS_TABLE:END -->
 
 ## Desarrollo

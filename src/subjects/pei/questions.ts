@@ -8,7 +8,7 @@ export const questions: Question[] = [
   // --- Pandas: Clasificación de baloncesto ---
   {
     id: "rec_q1",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "pandas",
     type: "text",
     points: 0.5,
@@ -29,7 +29,7 @@ export const questions: Question[] = [
   // --- Pandas: Librería ---
   {
     id: "rec_q2",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "pandas",
     type: "text",
     points: 0.5,
@@ -50,7 +50,7 @@ export const questions: Question[] = [
   // --- Pandas: Cafetería con índice jerárquico ---
   {
     id: "rec_q3",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "pandas",
     type: "text",
     points: 0.5,
@@ -69,7 +69,7 @@ export const questions: Question[] = [
   // --- Pandas: Tabla desde archivo de texto ---
   {
     id: "rec_q4",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "pandas",
     type: "text",
     points: 1.0,
@@ -90,7 +90,7 @@ export const questions: Question[] = [
   // --- JSON: Clasificación de baloncesto ---
   {
     id: "rec_q5",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "pandas",
     type: "text",
     points: 0.75,
@@ -130,7 +130,7 @@ export const questions: Question[] = [
   // --- JSON: Messi y Ronaldo ---
   {
     id: "rec_q6",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "pandas",
     type: "text",
     points: 0.75,
@@ -169,7 +169,7 @@ export const questions: Question[] = [
   // --- Python dict: Messi y Ronaldo ---
   {
     id: "rec_q7",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "pandas",
     type: "text",
     points: 0.75,
@@ -207,7 +207,7 @@ jugadores = [
   // --- API / Diccionario anidado ---
   {
     id: "rec_q8",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "pandas",
     type: "text",
     points: 0.75,
@@ -245,7 +245,7 @@ curso = {
   // --- Coche + Radar ---
   {
     id: "rec_q9",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "poo",
     type: "text",
     points: 0.75,
@@ -301,7 +301,7 @@ class Radar:
   // --- Playlist ---
   {
     id: "rec_q10",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "poo",
     type: "text",
     points: 0.75,
@@ -345,7 +345,7 @@ class Playlist:
   // --- Puente ---
   {
     id: "rec_q11",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "poo",
     type: "text",
     points: 0.75,
@@ -377,7 +377,7 @@ class Puente:
   // --- MailServer ---
   {
     id: "rec_q12",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "poo",
     type: "text",
     points: 0.5,
@@ -444,7 +444,7 @@ class MailServer:
   // --- Movimiento / Gasto / Ingreso ---
   {
     id: "rec_q13",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "poo",
     type: "text",
     points: 0.5,
@@ -485,7 +485,7 @@ class Gasto(Movimiento):
   // --- Ranking ---
   {
     id: "rec_q14",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "poo",
     type: "text",
     points: 0.5,
@@ -524,7 +524,7 @@ class Ranking:
   // --- Person (contador estático) ---
   {
     id: "rec_q15",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "poo",
     type: "text",
     points: 0.5,
@@ -555,7 +555,7 @@ class Person:
   // --- Date con propiedades ---
   {
     id: "rec_q16",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "poo",
     type: "text",
     points: 0.75,
@@ -615,7 +615,7 @@ class Date:
   // --- Script emulando find ---
   {
     id: "rec_q17",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.75,
@@ -647,7 +647,7 @@ if __name__ == "__main__":
   // --- CSV suma de filas ---
   {
     id: "rec_q18",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.75,
@@ -682,7 +682,7 @@ done
   // --- Reproductor de audio aleatorio ---
   {
     id: "rec_q19",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.5,
@@ -702,7 +702,7 @@ done
   // --- CSV suma de columnas ---
   {
     id: "rec_q20",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.75,
@@ -739,7 +739,7 @@ END {
   // --- /etc/passwd parsing ---
   {
     id: "rec_q21",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.75,
@@ -755,7 +755,7 @@ awk -F':' '{print $1, $7}' /etc/passwd
   // --- Contador de substrings en Python ---
   {
     id: "rec_q22",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.5,
@@ -784,7 +784,7 @@ print(count)
   // --- Redirección de stderr ---
   {
     id: "rec_q23",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "mc",
     points: 0.25,
@@ -804,7 +804,7 @@ print(count)
   // --- Recuperar stderr ---
   {
     id: "rec_q24",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "mc",
     points: 0.25,
@@ -824,7 +824,7 @@ print(count)
   // --- Comillas simples vs dobles en shell ---
   {
     id: "rec_q25",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.25,
@@ -839,7 +839,7 @@ print(count)
   // --- Tipado en AWK ---
   {
     id: "rec_q26",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.25,
@@ -857,7 +857,7 @@ Ejemplo: \`awk 'BEGIN { a = "5"; b = 3; print a + b }'\` → imprime 8 (conversi
   // --- Procesos > 10 minutos (ps) ---
   {
     id: "rec_q27",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 1.0,
@@ -889,7 +889,7 @@ ps axv | awk 'NR>1 {
   // --- Regex para notación científica ---
   {
     id: "rec_q28",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 0.5,
@@ -905,7 +905,7 @@ Ejemplos válidos: \`.783e-45\`, \`3.14e10\`, \`0.5E+2\``,
   // --- Monitor de conexiones SSH ---
   {
     id: "rec_q29",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 1.0,
@@ -946,7 +946,7 @@ fi
   // --- Script mata-procesos por memoria ---
   {
     id: "rec_q30",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 1.0,
@@ -986,7 +986,7 @@ done
   // --- Filtrar equipos por diferencia de puntos ---
   {
     id: "rec_q31",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "scripting",
     type: "text",
     points: 1.0,
@@ -1030,7 +1030,7 @@ done
   // --- Django request handling ---
   {
     id: "rec_q32",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,
@@ -1051,7 +1051,7 @@ done
   // --- Django URLs ---
   {
     id: "rec_q33",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,
@@ -1092,7 +1092,7 @@ urlpatterns = [
   // --- Django URL completa ---
   {
     id: "rec_q34",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,
@@ -1119,7 +1119,7 @@ Asume que el proyecto Django se ejecuta en \`http://localhost:8000/\`.`,
   // --- MVT: diferencias modelo, vista, plantilla ---
   {
     id: "rec_q35",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,
@@ -1135,7 +1135,7 @@ Asume que el proyecto Django se ejecuta en \`http://localhost:8000/\`.`,
   // --- OAuth: conceptos ---
   {
     id: "rec_q36",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,
@@ -1160,7 +1160,7 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
   // --- OAuth: roles en escenario concreto ---
   {
     id: "rec_q37",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,
@@ -1176,7 +1176,7 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
   // --- OAuth: quién recibe qué credenciales ---
   {
     id: "rec_q38",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "matching",
     points: 0.5,
@@ -1194,7 +1194,7 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
   // --- Dibuja flujo de datos Django ---
   {
     id: "rec_q39",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,
@@ -1221,7 +1221,7 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
   // --- REST: definición del acrónimo ---
   {
     id: "rec_q40",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "mc",
     points: 0.25,
@@ -1240,7 +1240,7 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
   // --- API de Twitter: claves ---
   {
     id: "rec_q41",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "mc",
     points: 0.25,
@@ -1260,7 +1260,7 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
   // --- Django: crear proyecto ---
   {
     id: "rec_q42",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "mc",
     points: 0.25,
@@ -1284,7 +1284,7 @@ f. **Credenciales token** (Access Token): Token obtenido tras la autorización d
   // --- Python: print a+b donde a=string, b=int ---
   {
     id: "rec_q43",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "mc",
     points: 0.25,
@@ -1310,7 +1310,7 @@ b = 2
   // --- Python: método para print ---
   {
     id: "rec_q44",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "mc",
     points: 0.25,
@@ -1330,7 +1330,7 @@ b = 2
   // --- Lenguajes de primera generación ---
   {
     id: "rec_q45",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "mc",
     points: 0.125,
@@ -1350,7 +1350,7 @@ b = 2
   // --- Diferencia compilados vs interpretados ---
   {
     id: "rec_q46",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "text",
     points: 0.5,
@@ -1378,7 +1378,7 @@ b = 2
   // --- Fase de comprobación de tipos en compilación ---
   {
     id: "rec_q47",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "mc",
     points: 0.125,
@@ -1398,7 +1398,7 @@ b = 2
   // --- Operador shell: pipe vs redirección ---
   {
     id: "rec_q48",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "mc",
     points: 0.125,
@@ -1423,7 +1423,7 @@ $ ./program1 opciones1 ■ ./program2 opciones2
   // --- SWIG: compilación de proyecto Python con C/C++ ---
   {
     id: "rec_q49",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "text",
     points: 0.5,
@@ -1445,7 +1445,7 @@ Resultado: se importa en Python como \`import milib\`.`,
   // --- Compilados vs interpretados (MC) ---
   {
     id: "rec_q50",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "mc",
     points: 0.5,
@@ -1465,7 +1465,7 @@ Resultado: se importa en Python como \`import milib\`.`,
   // --- map / split / combine emails ---
   {
     id: "rec_q51",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.75,
@@ -1496,7 +1496,7 @@ dominios = list({email.split("@")[1] for email in emails})
   // --- Test: puntuación del examen tipo test ---
   {
     id: "rec_q52",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "conceptos",
     type: "text",
     points: 0.5,
@@ -1516,7 +1516,7 @@ Si un estudiante responde 15 preguntas correctamente, 5 incorrectamente y deja 1
   // --- Diferencia entre modelo, vista y template en Django (diagrama) ---
   {
     id: "rec_q53",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,
@@ -1552,7 +1552,7 @@ Si un estudiante responde 15 preguntas correctamente, 5 incorrectamente y deja 1
   // --- Petición Django: roles detallados ---
   {
     id: "rec_q54",
-    exam: "recopilacion",
+    examId: "recopilacion",
     topic: "django-apis",
     type: "text",
     points: 0.5,

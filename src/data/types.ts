@@ -1,6 +1,23 @@
 import type { Picture } from "vite-imagetools";
 
-export type QuestionType = "mc" | "text" | "matching";
+export type QuestionType =
+  "mc" | "text" | "multiple-text" | "matching" | "fill" | "table-fill";
+
+export interface FillStatement {
+  label?: string;
+  text: string;
+}
+
+export interface TextPart {
+  /** Part label shown before the text, e.g. "a)". Defaults to a), b), c)... */
+  label?: string;
+  /** The subquestion statement. */
+  text: string;
+  /** Optional points awarded for this part. */
+  points?: number;
+  /** Optional worked-solution image shown inside this part's solution panel. */
+  explanationImage?: Picture | string | (Picture | string)[];
+}
 
 export interface QuestionTable {
   headers: string[];
@@ -9,8 +26,8 @@ export interface QuestionTable {
 
 export interface Question {
   id: string;
-  /** The single exam this question belongs to. */
-  exam: string;
+  /** The id of the single exam this question belongs to. */
+  examId: string;
   topic: string;
   type: QuestionType;
   points: number;
@@ -19,13 +36,21 @@ export interface Question {
   subquestions?: string[];
   options?: string[];
   correctAnswer: string | string[] | Record<string, string>;
+  /** Sentences for `fill` questions. Use `{{blank}}` for each input. */
+  fillStatements?: FillStatement[];
+  /** Subquestions for `multiple-text` questions, one input per part. */
+  textParts?: TextPart[];
+  /** Table cells for `table-fill` questions. Use `{{blank}}` for each input. */
+  tableFill?: QuestionTable;
+  /** Optional worked solution shown in a collapsible panel for fill questions. */
+  development?: string;
   /**
    * For mc/matching: an extra note shown in the solution panel.
    * @deprecated For text questions, use `correctAnswer` as the model solution instead.
    */
   explanation?: string;
-  image?: Picture | string;
-  explanationImage?: Picture | string;
+  image?: Picture | string | (Picture | string)[];
+  explanationImage?: Picture | string | (Picture | string)[];
   /** @deprecated Use markdown pipe tables inside `question` instead. */
   table?: QuestionTable;
   repeated?: boolean;
@@ -55,14 +80,18 @@ export interface ContentLicense {
 }
 
 export interface Exam {
-  year: string;
+  /** Slug used in URLs, PDF filenames and as `Question.examId`. */
+  id: string;
   title: string;
-  date?: string;
-  passPoints: number;
-  totalPoints: number;
+  /**
+   * Fraction of the total score required to pass (0-1).
+   * Defaults to 0.5 (50%). The total is derived from the questions.
+   */
+  passPercentage?: number;
   durationMinutes: number;
   hasPdf?: boolean;
-  daypoUrl?: string;
+  /** Link to the original content source (e.g. a Daypo test). */
+  originalUrl?: string;
   deleteRights?: boolean;
 }
 
@@ -86,7 +115,7 @@ export interface SubjectMeta {
 
 export interface ExamAttempt {
   id: string;
-  exam: string;
+  examId: string;
   mode: "practice" | "exam";
   topic?: string;
   date: string;

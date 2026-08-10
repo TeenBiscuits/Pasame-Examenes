@@ -22,16 +22,88 @@
         "destination": "/seo/en/bede/practice/ficheros.html"
     },
     {
-        "source": "/en/bede/exam/daypo-preguntas",
-        "destination": "/seo/en/bede/exam/daypo-preguntas.html"
-    },
-    {
         "source": "/en/bede/exam/recopilatorio-mayo-2026",
         "destination": "/seo/en/bede/exam/recopilatorio-mayo-2026.html"
     },
     {
         "source": "/en/bede/exam/recopilatorio-mayo-2022",
         "destination": "/seo/en/bede/exam/recopilatorio-mayo-2022.html"
+    },
+    {
+        "source": "/en/bede/exam/daypo-preguntas",
+        "destination": "/seo/en/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/en/calculo",
+        "destination": "/seo/en/calculo.html"
+    },
+    {
+        "source": "/en/calculo/practice/funciones-elementales",
+        "destination": "/seo/en/calculo/practice/funciones-elementales.html"
+    },
+    {
+        "source": "/en/calculo/practice/limites-continuidad",
+        "destination": "/seo/en/calculo/practice/limites-continuidad.html"
+    },
+    {
+        "source": "/en/calculo/practice/metodos-numericos",
+        "destination": "/seo/en/calculo/practice/metodos-numericos.html"
+    },
+    {
+        "source": "/en/calculo/practice/derivadas",
+        "destination": "/seo/en/calculo/practice/derivadas.html"
+    },
+    {
+        "source": "/en/calculo/practice/aplicaciones-derivada",
+        "destination": "/seo/en/calculo/practice/aplicaciones-derivada.html"
+    },
+    {
+        "source": "/en/calculo/practice/integral-definida",
+        "destination": "/seo/en/calculo/practice/integral-definida.html"
+    },
+    {
+        "source": "/en/calculo/practice/integracion-numerica",
+        "destination": "/seo/en/calculo/practice/integracion-numerica.html"
+    },
+    {
+        "source": "/en/calculo/practice/aplicaciones-integral",
+        "destination": "/seo/en/calculo/practice/aplicaciones-integral.html"
+    },
+    {
+        "source": "/en/calculo/practice/ecuaciones-diferenciales",
+        "destination": "/seo/en/calculo/practice/ecuaciones-diferenciales.html"
+    },
+    {
+        "source": "/en/calculo/exam/2025-07",
+        "destination": "/seo/en/calculo/exam/2025-07.html"
+    },
+    {
+        "source": "/en/calculo/exam/2025-01",
+        "destination": "/seo/en/calculo/exam/2025-01.html"
+    },
+    {
+        "source": "/en/calculo/exam/2024-07",
+        "destination": "/seo/en/calculo/exam/2024-07.html"
+    },
+    {
+        "source": "/en/calculo/exam/2024-01",
+        "destination": "/seo/en/calculo/exam/2024-01.html"
+    },
+    {
+        "source": "/en/calculo/exam/2023-07",
+        "destination": "/seo/en/calculo/exam/2023-07.html"
+    },
+    {
+        "source": "/en/calculo/exam/2023-01",
+        "destination": "/seo/en/calculo/exam/2023-01.html"
+    },
+    {
+        "source": "/en/calculo/exam/2022-07",
+        "destination": "/seo/en/calculo/exam/2022-07.html"
+    },
+    {
+        "source": "/en/calculo/exam/2022-01",
+        "destination": "/seo/en/calculo/exam/2022-01.html"
     },
     {
         "source": "/en/cepe",
@@ -54,68 +126,20 @@
         "destination": "/seo/en/cepe/practice/paralelismo-mpi.html"
     },
     {
-        "source": "/en/cepe/exam/2018-06",
-        "destination": "/seo/en/cepe/exam/2018-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2018-07",
-        "destination": "/seo/en/cepe/exam/2018-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2019-06",
-        "destination": "/seo/en/cepe/exam/2019-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2019-07",
-        "destination": "/seo/en/cepe/exam/2019-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2020-06",
-        "destination": "/seo/en/cepe/exam/2020-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2020-07",
-        "destination": "/seo/en/cepe/exam/2020-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2021-06",
-        "destination": "/seo/en/cepe/exam/2021-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2021-07",
-        "destination": "/seo/en/cepe/exam/2021-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2022-06",
-        "destination": "/seo/en/cepe/exam/2022-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2022-07",
-        "destination": "/seo/en/cepe/exam/2022-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2023-06",
-        "destination": "/seo/en/cepe/exam/2023-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2023-07",
-        "destination": "/seo/en/cepe/exam/2023-07.html"
-    },
-    {
-        "source": "/en/cepe/exam/2024-06",
-        "destination": "/seo/en/cepe/exam/2024-06.html"
-    },
-    {
-        "source": "/en/cepe/exam/2024-07",
-        "destination": "/seo/en/cepe/exam/2024-07.html"
+        "source": "/en/cepe/exam/2025-07",
+        "destination": "/seo/en/cepe/exam/2025-07.html"
     },
     {
         "source": "/en/cepe/exam/2025-06",
         "destination": "/seo/en/cepe/exam/2025-06.html"
     },
     {
-        "source": "/en/cepe/exam/2025-07",
-        "destination": "/seo/en/cepe/exam/2025-07.html"
+        "source": "/en/cepe/exam/2024-07",
+        "destination": "/seo/en/cepe/exam/2024-07.html"
+    },
+    {
+        "source": "/en/cepe/exam/2024-06",
+        "destination": "/seo/en/cepe/exam/2024-06.html"
     },
     {
         "source": "/en/deese",
@@ -142,12 +166,12 @@
         "destination": "/seo/en/deese/practice/patrones-diseno.html"
     },
     {
-        "source": "/en/deese/exam/2020-01",
-        "destination": "/seo/en/deese/exam/2020-01.html"
-    },
-    {
         "source": "/en/deese/exam/2022-01",
         "destination": "/seo/en/deese/exam/2022-01.html"
+    },
+    {
+        "source": "/en/deese/exam/2020-01",
+        "destination": "/seo/en/deese/exam/2020-01.html"
     },
     {
         "source": "/en/ece",
@@ -176,46 +200,6 @@
     {
         "source": "/en/ece/practice/raid",
         "destination": "/seo/en/ece/practice/raid.html"
-    },
-    {
-        "source": "/en/ece/exam/2021-01",
-        "destination": "/seo/en/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2021-07",
-        "destination": "/seo/en/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2022-01",
-        "destination": "/seo/en/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2022-07",
-        "destination": "/seo/en/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2023-01",
-        "destination": "/seo/en/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2023-07",
-        "destination": "/seo/en/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2024-01",
-        "destination": "/seo/en/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2024-07",
-        "destination": "/seo/en/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/en/ece/exam/2025-01",
-        "destination": "/seo/en/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/en/ece/exam/2025-07",
-        "destination": "/seo/en/ece/exam/2025-07.html"
     },
     {
         "source": "/en/ece/exam/2026-01",
@@ -262,12 +246,12 @@
         "destination": "/seo/en/equispe/practice/practica.html"
     },
     {
-        "source": "/en/equispe/exam/2024-01",
-        "destination": "/seo/en/equispe/exam/2024-01.html"
-    },
-    {
         "source": "/en/equispe/exam/2026-01",
         "destination": "/seo/en/equispe/exam/2026-01.html"
+    },
+    {
+        "source": "/en/equispe/exam/2024-01",
+        "destination": "/seo/en/equispe/exam/2024-01.html"
     },
     {
         "source": "/en/equispe/exam/daypo-tipo-udc",
@@ -326,24 +310,24 @@
         "destination": "/seo/en/esei/practice/t10.html"
     },
     {
-        "source": "/en/esei/exam/2023",
-        "destination": "/seo/en/esei/exam/2023.html"
-    },
-    {
-        "source": "/en/esei/exam/2024",
-        "destination": "/seo/en/esei/exam/2024.html"
-    },
-    {
-        "source": "/en/esei/exam/2025-05",
-        "destination": "/seo/en/esei/exam/2025-05.html"
+        "source": "/en/esei/exam/2026-06",
+        "destination": "/seo/en/esei/exam/2026-06.html"
     },
     {
         "source": "/en/esei/exam/2025-07",
         "destination": "/seo/en/esei/exam/2025-07.html"
     },
     {
-        "source": "/en/esei/exam/2026-06",
-        "destination": "/seo/en/esei/exam/2026-06.html"
+        "source": "/en/esei/exam/2025-05",
+        "destination": "/seo/en/esei/exam/2025-05.html"
+    },
+    {
+        "source": "/en/esei/exam/2024",
+        "destination": "/seo/en/esei/exam/2024.html"
+    },
+    {
+        "source": "/en/esei/exam/2023",
+        "destination": "/seo/en/esei/exam/2023.html"
     },
     {
         "source": "/en/eseo",
@@ -366,40 +350,20 @@
         "destination": "/seo/en/eseo/practice/entrada-salida.html"
     },
     {
-        "source": "/en/eseo/exam/2020-01",
-        "destination": "/seo/en/eseo/exam/2020-01.html"
-    },
-    {
-        "source": "/en/eseo/exam/2021-01",
-        "destination": "/seo/en/eseo/exam/2021-01.html"
-    },
-    {
-        "source": "/en/eseo/exam/2021-07",
-        "destination": "/seo/en/eseo/exam/2021-07.html"
-    },
-    {
-        "source": "/en/eseo/exam/2022-01",
-        "destination": "/seo/en/eseo/exam/2022-01.html"
-    },
-    {
-        "source": "/en/eseo/exam/2022-07",
-        "destination": "/seo/en/eseo/exam/2022-07.html"
-    },
-    {
-        "source": "/en/eseo/exam/2023-01",
-        "destination": "/seo/en/eseo/exam/2023-01.html"
-    },
-    {
-        "source": "/en/eseo/exam/2023-07",
-        "destination": "/seo/en/eseo/exam/2023-07.html"
+        "source": "/en/eseo/exam/2024-07",
+        "destination": "/seo/en/eseo/exam/2024-07.html"
     },
     {
         "source": "/en/eseo/exam/2024-01",
         "destination": "/seo/en/eseo/exam/2024-01.html"
     },
     {
-        "source": "/en/eseo/exam/2024-07",
-        "destination": "/seo/en/eseo/exam/2024-07.html"
+        "source": "/en/eseo/exam/2023-07",
+        "destination": "/seo/en/eseo/exam/2023-07.html"
+    },
+    {
+        "source": "/en/eseo/exam/2023-01",
+        "destination": "/seo/en/eseo/exam/2023-01.html"
     },
     {
         "source": "/en/iesede",
@@ -502,20 +466,20 @@
         "destination": "/seo/en/redes/practice/tema-12.html"
     },
     {
-        "source": "/en/redes/exam/daypo-recopilatorio-lara",
-        "destination": "/seo/en/redes/exam/daypo-recopilatorio-lara.html"
-    },
-    {
-        "source": "/en/redes/exam/daypo-recopilatorio-udc",
-        "destination": "/seo/en/redes/exam/daypo-recopilatorio-udc.html"
+        "source": "/en/redes/exam/2026-01",
+        "destination": "/seo/en/redes/exam/2026-01.html"
     },
     {
         "source": "/en/redes/exam/2025-05",
         "destination": "/seo/en/redes/exam/2025-05.html"
     },
     {
-        "source": "/en/redes/exam/2026-01",
-        "destination": "/seo/en/redes/exam/2026-01.html"
+        "source": "/en/redes/exam/daypo-recopilatorio-lara",
+        "destination": "/seo/en/redes/exam/daypo-recopilatorio-lara.html"
+    },
+    {
+        "source": "/en/redes/exam/daypo-recopilatorio-udc",
+        "destination": "/seo/en/redes/exam/daypo-recopilatorio-udc.html"
     },
     {
         "source": "/es",
@@ -538,16 +502,88 @@
         "destination": "/seo/es/bede/practice/ficheros.html"
     },
     {
-        "source": "/es/bede/exam/daypo-preguntas",
-        "destination": "/seo/es/bede/exam/daypo-preguntas.html"
-    },
-    {
         "source": "/es/bede/exam/recopilatorio-mayo-2026",
         "destination": "/seo/es/bede/exam/recopilatorio-mayo-2026.html"
     },
     {
         "source": "/es/bede/exam/recopilatorio-mayo-2022",
         "destination": "/seo/es/bede/exam/recopilatorio-mayo-2022.html"
+    },
+    {
+        "source": "/es/bede/exam/daypo-preguntas",
+        "destination": "/seo/es/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/es/calculo",
+        "destination": "/seo/es/calculo.html"
+    },
+    {
+        "source": "/es/calculo/practice/funciones-elementales",
+        "destination": "/seo/es/calculo/practice/funciones-elementales.html"
+    },
+    {
+        "source": "/es/calculo/practice/limites-continuidad",
+        "destination": "/seo/es/calculo/practice/limites-continuidad.html"
+    },
+    {
+        "source": "/es/calculo/practice/metodos-numericos",
+        "destination": "/seo/es/calculo/practice/metodos-numericos.html"
+    },
+    {
+        "source": "/es/calculo/practice/derivadas",
+        "destination": "/seo/es/calculo/practice/derivadas.html"
+    },
+    {
+        "source": "/es/calculo/practice/aplicaciones-derivada",
+        "destination": "/seo/es/calculo/practice/aplicaciones-derivada.html"
+    },
+    {
+        "source": "/es/calculo/practice/integral-definida",
+        "destination": "/seo/es/calculo/practice/integral-definida.html"
+    },
+    {
+        "source": "/es/calculo/practice/integracion-numerica",
+        "destination": "/seo/es/calculo/practice/integracion-numerica.html"
+    },
+    {
+        "source": "/es/calculo/practice/aplicaciones-integral",
+        "destination": "/seo/es/calculo/practice/aplicaciones-integral.html"
+    },
+    {
+        "source": "/es/calculo/practice/ecuaciones-diferenciales",
+        "destination": "/seo/es/calculo/practice/ecuaciones-diferenciales.html"
+    },
+    {
+        "source": "/es/calculo/exam/2025-07",
+        "destination": "/seo/es/calculo/exam/2025-07.html"
+    },
+    {
+        "source": "/es/calculo/exam/2025-01",
+        "destination": "/seo/es/calculo/exam/2025-01.html"
+    },
+    {
+        "source": "/es/calculo/exam/2024-07",
+        "destination": "/seo/es/calculo/exam/2024-07.html"
+    },
+    {
+        "source": "/es/calculo/exam/2024-01",
+        "destination": "/seo/es/calculo/exam/2024-01.html"
+    },
+    {
+        "source": "/es/calculo/exam/2023-07",
+        "destination": "/seo/es/calculo/exam/2023-07.html"
+    },
+    {
+        "source": "/es/calculo/exam/2023-01",
+        "destination": "/seo/es/calculo/exam/2023-01.html"
+    },
+    {
+        "source": "/es/calculo/exam/2022-07",
+        "destination": "/seo/es/calculo/exam/2022-07.html"
+    },
+    {
+        "source": "/es/calculo/exam/2022-01",
+        "destination": "/seo/es/calculo/exam/2022-01.html"
     },
     {
         "source": "/es/cepe",
@@ -570,68 +606,20 @@
         "destination": "/seo/es/cepe/practice/paralelismo-mpi.html"
     },
     {
-        "source": "/es/cepe/exam/2018-06",
-        "destination": "/seo/es/cepe/exam/2018-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2018-07",
-        "destination": "/seo/es/cepe/exam/2018-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2019-06",
-        "destination": "/seo/es/cepe/exam/2019-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2019-07",
-        "destination": "/seo/es/cepe/exam/2019-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2020-06",
-        "destination": "/seo/es/cepe/exam/2020-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2020-07",
-        "destination": "/seo/es/cepe/exam/2020-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2021-06",
-        "destination": "/seo/es/cepe/exam/2021-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2021-07",
-        "destination": "/seo/es/cepe/exam/2021-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2022-06",
-        "destination": "/seo/es/cepe/exam/2022-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2022-07",
-        "destination": "/seo/es/cepe/exam/2022-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2023-06",
-        "destination": "/seo/es/cepe/exam/2023-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2023-07",
-        "destination": "/seo/es/cepe/exam/2023-07.html"
-    },
-    {
-        "source": "/es/cepe/exam/2024-06",
-        "destination": "/seo/es/cepe/exam/2024-06.html"
-    },
-    {
-        "source": "/es/cepe/exam/2024-07",
-        "destination": "/seo/es/cepe/exam/2024-07.html"
+        "source": "/es/cepe/exam/2025-07",
+        "destination": "/seo/es/cepe/exam/2025-07.html"
     },
     {
         "source": "/es/cepe/exam/2025-06",
         "destination": "/seo/es/cepe/exam/2025-06.html"
     },
     {
-        "source": "/es/cepe/exam/2025-07",
-        "destination": "/seo/es/cepe/exam/2025-07.html"
+        "source": "/es/cepe/exam/2024-07",
+        "destination": "/seo/es/cepe/exam/2024-07.html"
+    },
+    {
+        "source": "/es/cepe/exam/2024-06",
+        "destination": "/seo/es/cepe/exam/2024-06.html"
     },
     {
         "source": "/es/deese",
@@ -658,12 +646,12 @@
         "destination": "/seo/es/deese/practice/patrones-diseno.html"
     },
     {
-        "source": "/es/deese/exam/2020-01",
-        "destination": "/seo/es/deese/exam/2020-01.html"
-    },
-    {
         "source": "/es/deese/exam/2022-01",
         "destination": "/seo/es/deese/exam/2022-01.html"
+    },
+    {
+        "source": "/es/deese/exam/2020-01",
+        "destination": "/seo/es/deese/exam/2020-01.html"
     },
     {
         "source": "/es/ece",
@@ -692,46 +680,6 @@
     {
         "source": "/es/ece/practice/raid",
         "destination": "/seo/es/ece/practice/raid.html"
-    },
-    {
-        "source": "/es/ece/exam/2021-01",
-        "destination": "/seo/es/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2021-07",
-        "destination": "/seo/es/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2022-01",
-        "destination": "/seo/es/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2022-07",
-        "destination": "/seo/es/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2023-01",
-        "destination": "/seo/es/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2023-07",
-        "destination": "/seo/es/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2024-01",
-        "destination": "/seo/es/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2024-07",
-        "destination": "/seo/es/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/es/ece/exam/2025-01",
-        "destination": "/seo/es/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/es/ece/exam/2025-07",
-        "destination": "/seo/es/ece/exam/2025-07.html"
     },
     {
         "source": "/es/ece/exam/2026-01",
@@ -778,12 +726,12 @@
         "destination": "/seo/es/equispe/practice/practica.html"
     },
     {
-        "source": "/es/equispe/exam/2024-01",
-        "destination": "/seo/es/equispe/exam/2024-01.html"
-    },
-    {
         "source": "/es/equispe/exam/2026-01",
         "destination": "/seo/es/equispe/exam/2026-01.html"
+    },
+    {
+        "source": "/es/equispe/exam/2024-01",
+        "destination": "/seo/es/equispe/exam/2024-01.html"
     },
     {
         "source": "/es/equispe/exam/daypo-tipo-udc",
@@ -842,24 +790,24 @@
         "destination": "/seo/es/esei/practice/t10.html"
     },
     {
-        "source": "/es/esei/exam/2023",
-        "destination": "/seo/es/esei/exam/2023.html"
-    },
-    {
-        "source": "/es/esei/exam/2024",
-        "destination": "/seo/es/esei/exam/2024.html"
-    },
-    {
-        "source": "/es/esei/exam/2025-05",
-        "destination": "/seo/es/esei/exam/2025-05.html"
+        "source": "/es/esei/exam/2026-06",
+        "destination": "/seo/es/esei/exam/2026-06.html"
     },
     {
         "source": "/es/esei/exam/2025-07",
         "destination": "/seo/es/esei/exam/2025-07.html"
     },
     {
-        "source": "/es/esei/exam/2026-06",
-        "destination": "/seo/es/esei/exam/2026-06.html"
+        "source": "/es/esei/exam/2025-05",
+        "destination": "/seo/es/esei/exam/2025-05.html"
+    },
+    {
+        "source": "/es/esei/exam/2024",
+        "destination": "/seo/es/esei/exam/2024.html"
+    },
+    {
+        "source": "/es/esei/exam/2023",
+        "destination": "/seo/es/esei/exam/2023.html"
     },
     {
         "source": "/es/eseo",
@@ -882,40 +830,20 @@
         "destination": "/seo/es/eseo/practice/entrada-salida.html"
     },
     {
-        "source": "/es/eseo/exam/2020-01",
-        "destination": "/seo/es/eseo/exam/2020-01.html"
-    },
-    {
-        "source": "/es/eseo/exam/2021-01",
-        "destination": "/seo/es/eseo/exam/2021-01.html"
-    },
-    {
-        "source": "/es/eseo/exam/2021-07",
-        "destination": "/seo/es/eseo/exam/2021-07.html"
-    },
-    {
-        "source": "/es/eseo/exam/2022-01",
-        "destination": "/seo/es/eseo/exam/2022-01.html"
-    },
-    {
-        "source": "/es/eseo/exam/2022-07",
-        "destination": "/seo/es/eseo/exam/2022-07.html"
-    },
-    {
-        "source": "/es/eseo/exam/2023-01",
-        "destination": "/seo/es/eseo/exam/2023-01.html"
-    },
-    {
-        "source": "/es/eseo/exam/2023-07",
-        "destination": "/seo/es/eseo/exam/2023-07.html"
+        "source": "/es/eseo/exam/2024-07",
+        "destination": "/seo/es/eseo/exam/2024-07.html"
     },
     {
         "source": "/es/eseo/exam/2024-01",
         "destination": "/seo/es/eseo/exam/2024-01.html"
     },
     {
-        "source": "/es/eseo/exam/2024-07",
-        "destination": "/seo/es/eseo/exam/2024-07.html"
+        "source": "/es/eseo/exam/2023-07",
+        "destination": "/seo/es/eseo/exam/2023-07.html"
+    },
+    {
+        "source": "/es/eseo/exam/2023-01",
+        "destination": "/seo/es/eseo/exam/2023-01.html"
     },
     {
         "source": "/es/iesede",
@@ -1018,20 +946,20 @@
         "destination": "/seo/es/redes/practice/tema-12.html"
     },
     {
-        "source": "/es/redes/exam/daypo-recopilatorio-lara",
-        "destination": "/seo/es/redes/exam/daypo-recopilatorio-lara.html"
-    },
-    {
-        "source": "/es/redes/exam/daypo-recopilatorio-udc",
-        "destination": "/seo/es/redes/exam/daypo-recopilatorio-udc.html"
+        "source": "/es/redes/exam/2026-01",
+        "destination": "/seo/es/redes/exam/2026-01.html"
     },
     {
         "source": "/es/redes/exam/2025-05",
         "destination": "/seo/es/redes/exam/2025-05.html"
     },
     {
-        "source": "/es/redes/exam/2026-01",
-        "destination": "/seo/es/redes/exam/2026-01.html"
+        "source": "/es/redes/exam/daypo-recopilatorio-lara",
+        "destination": "/seo/es/redes/exam/daypo-recopilatorio-lara.html"
+    },
+    {
+        "source": "/es/redes/exam/daypo-recopilatorio-udc",
+        "destination": "/seo/es/redes/exam/daypo-recopilatorio-udc.html"
     },
     {
         "source": "/gl",
@@ -1054,16 +982,88 @@
         "destination": "/seo/gl/bede/practice/ficheros.html"
     },
     {
-        "source": "/gl/bede/exam/daypo-preguntas",
-        "destination": "/seo/gl/bede/exam/daypo-preguntas.html"
-    },
-    {
         "source": "/gl/bede/exam/recopilatorio-mayo-2026",
         "destination": "/seo/gl/bede/exam/recopilatorio-mayo-2026.html"
     },
     {
         "source": "/gl/bede/exam/recopilatorio-mayo-2022",
         "destination": "/seo/gl/bede/exam/recopilatorio-mayo-2022.html"
+    },
+    {
+        "source": "/gl/bede/exam/daypo-preguntas",
+        "destination": "/seo/gl/bede/exam/daypo-preguntas.html"
+    },
+    {
+        "source": "/gl/calculo",
+        "destination": "/seo/gl/calculo.html"
+    },
+    {
+        "source": "/gl/calculo/practice/funciones-elementales",
+        "destination": "/seo/gl/calculo/practice/funciones-elementales.html"
+    },
+    {
+        "source": "/gl/calculo/practice/limites-continuidad",
+        "destination": "/seo/gl/calculo/practice/limites-continuidad.html"
+    },
+    {
+        "source": "/gl/calculo/practice/metodos-numericos",
+        "destination": "/seo/gl/calculo/practice/metodos-numericos.html"
+    },
+    {
+        "source": "/gl/calculo/practice/derivadas",
+        "destination": "/seo/gl/calculo/practice/derivadas.html"
+    },
+    {
+        "source": "/gl/calculo/practice/aplicaciones-derivada",
+        "destination": "/seo/gl/calculo/practice/aplicaciones-derivada.html"
+    },
+    {
+        "source": "/gl/calculo/practice/integral-definida",
+        "destination": "/seo/gl/calculo/practice/integral-definida.html"
+    },
+    {
+        "source": "/gl/calculo/practice/integracion-numerica",
+        "destination": "/seo/gl/calculo/practice/integracion-numerica.html"
+    },
+    {
+        "source": "/gl/calculo/practice/aplicaciones-integral",
+        "destination": "/seo/gl/calculo/practice/aplicaciones-integral.html"
+    },
+    {
+        "source": "/gl/calculo/practice/ecuaciones-diferenciales",
+        "destination": "/seo/gl/calculo/practice/ecuaciones-diferenciales.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2025-07",
+        "destination": "/seo/gl/calculo/exam/2025-07.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2025-01",
+        "destination": "/seo/gl/calculo/exam/2025-01.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2024-07",
+        "destination": "/seo/gl/calculo/exam/2024-07.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2024-01",
+        "destination": "/seo/gl/calculo/exam/2024-01.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2023-07",
+        "destination": "/seo/gl/calculo/exam/2023-07.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2023-01",
+        "destination": "/seo/gl/calculo/exam/2023-01.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2022-07",
+        "destination": "/seo/gl/calculo/exam/2022-07.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2022-01",
+        "destination": "/seo/gl/calculo/exam/2022-01.html"
     },
     {
         "source": "/gl/cepe",
@@ -1086,68 +1086,20 @@
         "destination": "/seo/gl/cepe/practice/paralelismo-mpi.html"
     },
     {
-        "source": "/gl/cepe/exam/2018-06",
-        "destination": "/seo/gl/cepe/exam/2018-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2018-07",
-        "destination": "/seo/gl/cepe/exam/2018-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2019-06",
-        "destination": "/seo/gl/cepe/exam/2019-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2019-07",
-        "destination": "/seo/gl/cepe/exam/2019-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2020-06",
-        "destination": "/seo/gl/cepe/exam/2020-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2020-07",
-        "destination": "/seo/gl/cepe/exam/2020-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2021-06",
-        "destination": "/seo/gl/cepe/exam/2021-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2021-07",
-        "destination": "/seo/gl/cepe/exam/2021-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2022-06",
-        "destination": "/seo/gl/cepe/exam/2022-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2022-07",
-        "destination": "/seo/gl/cepe/exam/2022-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2023-06",
-        "destination": "/seo/gl/cepe/exam/2023-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2023-07",
-        "destination": "/seo/gl/cepe/exam/2023-07.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2024-06",
-        "destination": "/seo/gl/cepe/exam/2024-06.html"
-    },
-    {
-        "source": "/gl/cepe/exam/2024-07",
-        "destination": "/seo/gl/cepe/exam/2024-07.html"
+        "source": "/gl/cepe/exam/2025-07",
+        "destination": "/seo/gl/cepe/exam/2025-07.html"
     },
     {
         "source": "/gl/cepe/exam/2025-06",
         "destination": "/seo/gl/cepe/exam/2025-06.html"
     },
     {
-        "source": "/gl/cepe/exam/2025-07",
-        "destination": "/seo/gl/cepe/exam/2025-07.html"
+        "source": "/gl/cepe/exam/2024-07",
+        "destination": "/seo/gl/cepe/exam/2024-07.html"
+    },
+    {
+        "source": "/gl/cepe/exam/2024-06",
+        "destination": "/seo/gl/cepe/exam/2024-06.html"
     },
     {
         "source": "/gl/deese",
@@ -1174,12 +1126,12 @@
         "destination": "/seo/gl/deese/practice/patrones-diseno.html"
     },
     {
-        "source": "/gl/deese/exam/2020-01",
-        "destination": "/seo/gl/deese/exam/2020-01.html"
-    },
-    {
         "source": "/gl/deese/exam/2022-01",
         "destination": "/seo/gl/deese/exam/2022-01.html"
+    },
+    {
+        "source": "/gl/deese/exam/2020-01",
+        "destination": "/seo/gl/deese/exam/2020-01.html"
     },
     {
         "source": "/gl/ece",
@@ -1208,46 +1160,6 @@
     {
         "source": "/gl/ece/practice/raid",
         "destination": "/seo/gl/ece/practice/raid.html"
-    },
-    {
-        "source": "/gl/ece/exam/2021-01",
-        "destination": "/seo/gl/ece/exam/2021-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2021-07",
-        "destination": "/seo/gl/ece/exam/2021-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2022-01",
-        "destination": "/seo/gl/ece/exam/2022-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2022-07",
-        "destination": "/seo/gl/ece/exam/2022-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2023-01",
-        "destination": "/seo/gl/ece/exam/2023-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2023-07",
-        "destination": "/seo/gl/ece/exam/2023-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2024-01",
-        "destination": "/seo/gl/ece/exam/2024-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2024-07",
-        "destination": "/seo/gl/ece/exam/2024-07.html"
-    },
-    {
-        "source": "/gl/ece/exam/2025-01",
-        "destination": "/seo/gl/ece/exam/2025-01.html"
-    },
-    {
-        "source": "/gl/ece/exam/2025-07",
-        "destination": "/seo/gl/ece/exam/2025-07.html"
     },
     {
         "source": "/gl/ece/exam/2026-01",
@@ -1294,12 +1206,12 @@
         "destination": "/seo/gl/equispe/practice/practica.html"
     },
     {
-        "source": "/gl/equispe/exam/2024-01",
-        "destination": "/seo/gl/equispe/exam/2024-01.html"
-    },
-    {
         "source": "/gl/equispe/exam/2026-01",
         "destination": "/seo/gl/equispe/exam/2026-01.html"
+    },
+    {
+        "source": "/gl/equispe/exam/2024-01",
+        "destination": "/seo/gl/equispe/exam/2024-01.html"
     },
     {
         "source": "/gl/equispe/exam/daypo-tipo-udc",
@@ -1358,24 +1270,24 @@
         "destination": "/seo/gl/esei/practice/t10.html"
     },
     {
-        "source": "/gl/esei/exam/2023",
-        "destination": "/seo/gl/esei/exam/2023.html"
-    },
-    {
-        "source": "/gl/esei/exam/2024",
-        "destination": "/seo/gl/esei/exam/2024.html"
-    },
-    {
-        "source": "/gl/esei/exam/2025-05",
-        "destination": "/seo/gl/esei/exam/2025-05.html"
+        "source": "/gl/esei/exam/2026-06",
+        "destination": "/seo/gl/esei/exam/2026-06.html"
     },
     {
         "source": "/gl/esei/exam/2025-07",
         "destination": "/seo/gl/esei/exam/2025-07.html"
     },
     {
-        "source": "/gl/esei/exam/2026-06",
-        "destination": "/seo/gl/esei/exam/2026-06.html"
+        "source": "/gl/esei/exam/2025-05",
+        "destination": "/seo/gl/esei/exam/2025-05.html"
+    },
+    {
+        "source": "/gl/esei/exam/2024",
+        "destination": "/seo/gl/esei/exam/2024.html"
+    },
+    {
+        "source": "/gl/esei/exam/2023",
+        "destination": "/seo/gl/esei/exam/2023.html"
     },
     {
         "source": "/gl/eseo",
@@ -1398,40 +1310,20 @@
         "destination": "/seo/gl/eseo/practice/entrada-salida.html"
     },
     {
-        "source": "/gl/eseo/exam/2020-01",
-        "destination": "/seo/gl/eseo/exam/2020-01.html"
-    },
-    {
-        "source": "/gl/eseo/exam/2021-01",
-        "destination": "/seo/gl/eseo/exam/2021-01.html"
-    },
-    {
-        "source": "/gl/eseo/exam/2021-07",
-        "destination": "/seo/gl/eseo/exam/2021-07.html"
-    },
-    {
-        "source": "/gl/eseo/exam/2022-01",
-        "destination": "/seo/gl/eseo/exam/2022-01.html"
-    },
-    {
-        "source": "/gl/eseo/exam/2022-07",
-        "destination": "/seo/gl/eseo/exam/2022-07.html"
-    },
-    {
-        "source": "/gl/eseo/exam/2023-01",
-        "destination": "/seo/gl/eseo/exam/2023-01.html"
-    },
-    {
-        "source": "/gl/eseo/exam/2023-07",
-        "destination": "/seo/gl/eseo/exam/2023-07.html"
+        "source": "/gl/eseo/exam/2024-07",
+        "destination": "/seo/gl/eseo/exam/2024-07.html"
     },
     {
         "source": "/gl/eseo/exam/2024-01",
         "destination": "/seo/gl/eseo/exam/2024-01.html"
     },
     {
-        "source": "/gl/eseo/exam/2024-07",
-        "destination": "/seo/gl/eseo/exam/2024-07.html"
+        "source": "/gl/eseo/exam/2023-07",
+        "destination": "/seo/gl/eseo/exam/2023-07.html"
+    },
+    {
+        "source": "/gl/eseo/exam/2023-01",
+        "destination": "/seo/gl/eseo/exam/2023-01.html"
     },
     {
         "source": "/gl/iesede",
@@ -1534,20 +1426,20 @@
         "destination": "/seo/gl/redes/practice/tema-12.html"
     },
     {
-        "source": "/gl/redes/exam/daypo-recopilatorio-lara",
-        "destination": "/seo/gl/redes/exam/daypo-recopilatorio-lara.html"
-    },
-    {
-        "source": "/gl/redes/exam/daypo-recopilatorio-udc",
-        "destination": "/seo/gl/redes/exam/daypo-recopilatorio-udc.html"
+        "source": "/gl/redes/exam/2026-01",
+        "destination": "/seo/gl/redes/exam/2026-01.html"
     },
     {
         "source": "/gl/redes/exam/2025-05",
         "destination": "/seo/gl/redes/exam/2025-05.html"
     },
     {
-        "source": "/gl/redes/exam/2026-01",
-        "destination": "/seo/gl/redes/exam/2026-01.html"
+        "source": "/gl/redes/exam/daypo-recopilatorio-lara",
+        "destination": "/seo/gl/redes/exam/daypo-recopilatorio-lara.html"
+    },
+    {
+        "source": "/gl/redes/exam/daypo-recopilatorio-udc",
+        "destination": "/seo/gl/redes/exam/daypo-recopilatorio-udc.html"
     },
     {
         "source": "/en/(.*)",

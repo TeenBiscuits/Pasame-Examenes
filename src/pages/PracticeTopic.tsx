@@ -32,7 +32,14 @@ import {
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startPracticeTour } from "../lib/tour";
 import { formatPoints, roundPoints } from "../lib/points";
-import { computeQuestionResults } from "../lib/grading";
+import {
+  computeQuestionResults,
+  getPendingSelfGradePoints,
+  getQuestionScore,
+  isAutomaticallyCorrect,
+  isFullySelfGraded,
+  isSelfGradedQuestion,
+} from "../lib/grading";
 import ScoreProgress from "../components/ScoreProgress";
 import {
   AngleLeftSquare,
@@ -389,7 +396,9 @@ function PracticeControls({
         className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
         data-tour="practice-actions"
       >
-        {(answers[currentQuestion.id] || currentQuestion.type === "text") &&
+        {(answers[currentQuestion.id] ||
+          currentQuestion.type === "text" ||
+          currentQuestion.type === "multiple-text") &&
           !submitted &&
           !checkedQuestions[currentQuestion.id] && (
             <>
@@ -557,12 +566,12 @@ function PracticePlayer({
     };
   }, [scrollToHeaderRef, scrollToHeader]);
 
-  const examDate = useMemo(() => {
-    const exam = currentQuestion
-      ? subject.exams.find((e) => e.year === currentQuestion.exam)
+  const currentExam = useMemo(() => {
+    return currentQuestion
+      ? subject.exams.find((e) => e.id === currentQuestion.examId)
       : undefined;
-    return exam?.date || exam?.title;
   }, [subject, currentQuestion]);
+  const examTitle = currentExam?.title;
 
   const questionResults = useMemo(
     () =>
@@ -580,11 +589,12 @@ function PracticePlayer({
     () =>
       questions.filter(
         (q) =>
-          q.type === "text" &&
+          isSelfGradedQuestion(q) &&
+          !isAutomaticallyCorrect(q, answers[q.id]) &&
           (checkedQuestions[q.id] || submitted) &&
-          !selfGrades[q.id],
+          !isFullySelfGraded(q, selfGrades),
       ).length,
-    [questions, checkedQuestions, selfGrades, submitted],
+    [questions, answers, checkedQuestions, selfGrades, submitted],
   );
 
   const pendingTextPoints = useMemo(
@@ -592,43 +602,23 @@ function PracticePlayer({
       questions
         .filter(
           (q) =>
-            q.type === "text" &&
-            (checkedQuestions[q.id] || submitted) &&
-            !selfGrades[q.id],
+            isSelfGradedQuestion(q) &&
+            !isAutomaticallyCorrect(q, answers[q.id]) &&
+            (checkedQuestions[q.id] || submitted),
         )
-        .reduce((sum, q) => sum + q.points, 0),
-    [questions, checkedQuestions, selfGrades, submitted],
+        .reduce((sum, q) => sum + getPendingSelfGradePoints(q, selfGrades), 0),
+    [questions, answers, checkedQuestions, selfGrades, submitted],
   );
 
   const allTextGraded =
-    questions.filter((q) => q.type === "text").length === 0 ||
+    questions.filter(isSelfGradedQuestion).length === 0 ||
     pendingTextCount === 0;
 
   const getScore = (onlyGraded = false) => {
     let score = 0;
     for (const q of questions) {
-      if (q.type === "text") {
-        if (selfGrades[q.id] === "correct") score += q.points;
-        continue;
-      }
       if (onlyGraded && !submitted && !checkedQuestions[q.id]) continue;
-      if (!answers[q.id] || answers[q.id].trim() === "") continue;
-      if (q.type === "mc") {
-        if (answers[q.id] === q.correctAnswer) score += q.points;
-      } else if (q.type === "matching") {
-        try {
-          const user = JSON.parse(answers[q.id]) as Record<string, string>;
-          const correct = q.correctAnswer as Record<string, string>;
-          const items = Object.keys(correct);
-          let correctCount = 0;
-          for (const item of items) {
-            if (user[item] === correct[item]) correctCount++;
-          }
-          score += Math.round((correctCount / items.length) * q.points);
-        } catch {
-          /* skip */
-        }
-      }
+      score += getQuestionScore(q, answers[q.id], selfGrades);
     }
     return roundPoints(score);
   };
@@ -706,15 +696,16 @@ function PracticePlayer({
           total={questions.length}
           topicLabel={topicInfo?.label || topic || ""}
           megatopicLabel={megatopicLabel}
-          examDate={examDate}
+          examTitle={examTitle}
           subjectId={subject.id}
           topicKey={topic || undefined}
-          examYear={currentQuestion?.exam}
+          examId={currentQuestion?.examId}
           mode="practice"
           onAnswer={onAnswer}
           savedAnswer={answers[currentQuestion.id]}
           showResult={submitted || !!checkedQuestions[currentQuestion.id]}
           selfGrade={selfGrades[currentQuestion.id]}
+          selfGrades={selfGrades}
           onSelfGrade={onSelfGrade}
           direction={direction}
         />
@@ -743,6 +734,7 @@ function PracticePlayer({
         subjectId={subject.id}
         questionId={currentQuestion.id}
         questionType={currentQuestion.type}
+        exam={currentExam}
       />
     </div>
   );
@@ -759,7 +751,7 @@ export default function PracticeTopic() {
   const langTo = useLangTo();
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
-  const { selectedExamYears } = useExamSelection(subject);
+  const { selectedExamIds } = useExamSelection(subject);
   const [allTopicQuestions, setAllTopicQuestions] = useState<Question[]>([]);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
     null,
@@ -770,8 +762,8 @@ export default function PracticeTopic() {
     [subject, topic],
   );
   const questions = useMemo(
-    () => filterQuestionsByExamSelection(allTopicQuestions, selectedExamYears),
-    [allTopicQuestions, selectedExamYears],
+    () => filterQuestionsByExamSelection(allTopicQuestions, selectedExamIds),
+    [allTopicQuestions, selectedExamIds],
   );
   useEffect(() => {
     if (subject && topic) {

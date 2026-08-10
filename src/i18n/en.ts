@@ -34,10 +34,10 @@ export const en = {
     sourceMaterials: "Source Materials",
     sourceMaterialsDescription:
       "Open the authorized or public source materials used for these practice questions.",
-    originalDaypos: "Original Daypo Tests",
-    daypoDocsDescription:
-      "Open the original Daypo tests used as the source for these practice questions.",
-    daypo: "Daypo",
+    originalContent: "Link to original content",
+    originalContentDescription:
+      "Open the original content used as the source for these practice questions.",
+    original: "Original",
     pdf: "PDF",
     acknowledgments: "Acknowledgments and Disclaimer",
     legalInformation: "Subject legal information",
@@ -50,7 +50,7 @@ export const en = {
   practiceHome: {
     title: "Practice by Topic",
     subtitle:
-      "Choose a topic to practice. MC and matching questions are auto-graded.",
+      "Choose a topic to practice. MC and matching questions are auto-graded; text and fill-in-the-blank questions are self-graded.",
   },
   header: {
     home: "Home",
@@ -232,7 +232,7 @@ export const en = {
     points: "points",
     pointsTotal: "points total",
     allCorrect:
-      "Review your answers below. Green = correct answers. Only multiple-choice and matching questions are auto-graded.",
+      "Review your answers below. Green = correct answers. Only multiple-choice and matching questions are auto-graded; text and fill-in-the-blank questions are self-graded.",
     previous: "Previous",
     next: "Next",
     clear: "Clear",
@@ -259,9 +259,13 @@ export const en = {
     minutes: "minutes",
     startExam: "Start Exam",
     simulationNote:
-      "This simulation mirrors the real exam format. For open-ended questions, self-grade your answers against the model solutions shown after submission. MC and matching questions are auto-graded.",
+      "This simulation mirrors the real exam format. For open-ended and fill-in-the-blank questions, self-grade your answers against the model solutions shown after submission. MC and matching questions are auto-graded.",
+    simulationScoringNote:
+      "Some real exams subtract points for an incorrect answer; this simulation does not take that into account.",
     practiceNote:
-      "This timed practice uses an indicative structure for studying. For open-ended questions, self-grade your answers against the model solutions shown after submission. MC and matching questions are auto-graded.",
+      "This timed practice uses an indicative structure for studying. For open-ended and fill-in-the-blank questions, self-grade your answers against the model solutions shown after submission. MC and matching questions are auto-graded.",
+    practiceScoringNote:
+      "Some real exams subtract points for an incorrect answer; this practice does not take that into account.",
     submitted: "Exam Submitted.",
     passThreshold: "Pass threshold",
     reviewNote:
@@ -297,6 +301,9 @@ export const en = {
     openSolution: "Show solution",
     openAndSelfGrade: "Show solution and self-evaluate",
     closeSolution: "Hide solution",
+    development: "Worked solution",
+    openDevelopment: "Show worked solution",
+    closeDevelopment: "Hide worked solution",
     yourAnswer: "Your answer",
     typeAnswer: "Type your answer…",
     matchItemTo: "Match {item} to {letter}",
@@ -308,7 +315,10 @@ export const en = {
     questionTypes: {
       mc: "Multiple Choice (mc)",
       text: "Open Text (text)",
+      "multiple-text": "Text with parts (multiple-text)",
       matching: "Matching (matching)",
+      fill: "Fill in the blanks (fill)",
+      "table-fill": "Fill in a table (table-fill)",
     },
     repeated: "Repeated",
   },
@@ -380,7 +390,7 @@ export const en = {
         "These numbered buttons let you jump between questions. Answered ones are highlighted, and the current one is highlighted with the accent color.",
       step3Title: "Answer Questions",
       step3Desc:
-        "Click an option for multiple-choice, type your answer for text questions, or select matching letters for matching questions.",
+        "Click an option for multiple-choice, type your answer for text or fill-in-the-blank questions, or select matching letters for matching questions.",
       step4Title: "Check & Submit",
       step4Desc:
         "Use 'Check' to verify a single question, 'Clear' to erase your answer, or 'Submit & Show Answers' to see all solutions at once.",
@@ -415,8 +425,9 @@ export const en = {
   disclaimer: {
     text: "Questions have been extracted from reference materials through automated processes and may contain errors. If you find an error, please",
     reportLink: "Report the question",
-    postLinkText:
-      ". In some cases you can review the original material directly from the website.",
+    postLinkText: ".",
+    originalMaterialPrefix: "You can review the",
+    originalMaterialLink: "original material",
   },
   seo: {
     siteName: "Pásame Exámenes",
@@ -425,9 +436,9 @@ export const en = {
     homeDescription:
       "Open-source platform for practicing FIC exam questions by topic or timed practice set.",
     homeMetaDescription:
-      "Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, and matching questions.",
+      "Practice FIC exam questions by topic or timed sets with model answers, self-grading, and multiple-choice, text, matching, and fill-in-the-blank questions.",
     defaultDescription:
-      "Practice FIC exam questions with model answers and self-grading. Multiple-choice, text, and matching questions.",
+      "Practice FIC exam questions with model answers and self-grading. Multiple-choice, text, matching, and fill-in-the-blank questions.",
     subjectAuthorizedTitle: "{subjectName}: exams and solved questions",
     subjectCommunityTitle: "{subjectName}: compilations and solved questions",
     subjectAuthorizedDescription:

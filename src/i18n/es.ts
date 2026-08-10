@@ -36,10 +36,10 @@ export const es: Translations = {
     sourceMaterials: "Materiales fuente",
     sourceMaterialsDescription:
       "Abre los materiales autorizados o públicos usados como fuente para estas preguntas de práctica.",
-    originalDaypos: "Tests Daypo originales",
-    daypoDocsDescription:
-      "Abre los tests Daypo originales usados como fuente para estas preguntas de práctica.",
-    daypo: "Daypo",
+    originalContent: "Enlace al contenido original",
+    originalContentDescription:
+      "Abre el contenido original usado como fuente para estas preguntas de práctica.",
+    original: "Original",
     pdf: "PDF",
     acknowledgments: "Agradecimientos y exención de responsabilidad",
     legalInformation: "Información legal de la asignatura",
@@ -52,7 +52,7 @@ export const es: Translations = {
   practiceHome: {
     title: "Practicar por tema",
     subtitle:
-      "Elige un tema para practicar. Las preguntas de test y de emparejar se autocorrigen.",
+      "Elige un tema para practicar. Las preguntas de test y de emparejar se autocorrigen; las de texto y rellenar huecos se autoevalúan.",
   },
   header: {
     home: "Inicio",
@@ -234,7 +234,7 @@ export const es: Translations = {
     points: "puntos",
     pointsTotal: "puntos en total",
     allCorrect:
-      "Revisa tus respuestas. Verde = correctas. Solo las preguntas de test y de emparejar se autocorrigen.",
+      "Revisa tus respuestas. Verde = correctas. Solo las preguntas de test y de emparejar se autocorrigen; las de texto y rellenar huecos se autoevalúan.",
     previous: "Anterior",
     next: "Siguiente",
     clear: "Limpiar",
@@ -244,7 +244,7 @@ export const es: Translations = {
     checked: "corregidas",
     openEnded: "preguntas abiertas",
     selfGradeHint:
-      "Autoevalúa tus respuestas de texto para ver tu puntuación final.",
+      "Autoevalúa tus respuestas de texto y de rellenar huecos para ver tu puntuación final.",
     allSelfGraded: "Todas las respuestas autoevaluadas",
   },
   exam: {
@@ -262,15 +262,19 @@ export const es: Translations = {
     minutes: "minutos",
     startExam: "Comenzar examen",
     simulationNote:
-      "Esta simulación refleja el formato real del examen. Para las preguntas abiertas, autoevalúa tus respuestas con las soluciones modelo que se muestran tras enviar. Las preguntas de test y emparejar se autocorrigen.",
+      "Esta simulación refleja el formato real del examen. Para las preguntas abiertas y de rellenar huecos, autoevalúa tus respuestas con las soluciones modelo que se muestran tras enviar. Las preguntas de test y emparejar se autocorrigen.",
+    simulationScoringNote:
+      "En algunos exámenes reales fallar una pregunta resta puntos; en esta simulación no se tiene en cuenta esto.",
     practiceNote:
-      "Esta práctica cronometrada usa una estructura orientativa para estudiar. Para las preguntas abiertas, autoevalúa tus respuestas con las soluciones modelo que se muestran tras enviar. Las preguntas de test y emparejar se autocorrigen.",
+      "Esta práctica cronometrada usa una estructura orientativa para estudiar. Para las preguntas abiertas y de rellenar huecos, autoevalúa tus respuestas con las soluciones modelo que se muestran tras enviar. Las preguntas de test y emparejar se autocorrigen.",
+    practiceScoringNote:
+      "En algunos exámenes reales fallar una pregunta resta puntos; en esta práctica no se tiene en cuenta esto.",
     submitted: "Examen enviado.",
     passThreshold: "Umbral de aprobado",
     reviewNote:
-      "Revisa tus respuestas. Las preguntas abiertas muestran las soluciones modelo para autoevaluación.",
+      "Revisa tus respuestas. Las preguntas abiertas y de rellenar huecos muestran las soluciones modelo para autoevaluación.",
     selfGradeHint:
-      "Autoevalúa tus respuestas de texto para ver tu puntuación final.",
+      "Autoevalúa tus respuestas de texto y de rellenar huecos para ver tu puntuación final.",
     submitExam: "Entregar examen",
     submitConfirm:
       "¿Estás seguro de que quieres entregar el examen? No podrás modificar tus respuestas.",
@@ -301,6 +305,9 @@ export const es: Translations = {
     openSolution: "Mostrar solución",
     openAndSelfGrade: "Mostrar solución y autoevaluarse",
     closeSolution: "Ocultar solución",
+    development: "Desarrollo",
+    openDevelopment: "Ver desarrollo",
+    closeDevelopment: "Ocultar desarrollo",
     yourAnswer: "Tu respuesta",
     typeAnswer: "Escribe tu respuesta…",
     matchItemTo: "Relacionar {item} con {letter}",
@@ -312,7 +319,10 @@ export const es: Translations = {
     questionTypes: {
       mc: "Tipo test (mc)",
       text: "Texto abierto (text)",
+      "multiple-text": "Texto abierto con apartados (multiple-text)",
       matching: "Emparejar (matching)",
+      fill: "Rellenar huecos (fill)",
+      "table-fill": "Rellenar tabla (table-fill)",
     },
     repeated: "Repetida",
   },
@@ -419,8 +429,9 @@ export const es: Translations = {
   disclaimer: {
     text: "Las preguntas han sido extraídas de los materiales de referencia por procesos automatizados y podrían contener errores. Si encuentra algún error no dude en",
     reportLink: "Reportar la pregunta",
-    postLinkText:
-      ". En algunos casos puede revisar el material original directamente desde la web.",
+    postLinkText: ".",
+    originalMaterialPrefix: "Puede revisar el",
+    originalMaterialLink: "material original",
   },
   seo: {
     siteName: "Pásame Exámenes",

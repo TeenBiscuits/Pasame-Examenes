@@ -21,10 +21,8 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
-      year: "examen_recopilatorio",
+      id: "examen_recopilatorio",
       title: "Recopilación",
-      passPoints: 9,
-      totalPoints: 18,
       durationMinutes: 120,
       hasPdf: false,
     },
