@@ -34,6 +34,78 @@
         "destination": "/seo/en/bede/exam/recopilatorio-mayo-2022.html"
     },
     {
+        "source": "/en/calculo",
+        "destination": "/seo/en/calculo.html"
+    },
+    {
+        "source": "/en/calculo/practice/funciones-elementales",
+        "destination": "/seo/en/calculo/practice/funciones-elementales.html"
+    },
+    {
+        "source": "/en/calculo/practice/limites-continuidad",
+        "destination": "/seo/en/calculo/practice/limites-continuidad.html"
+    },
+    {
+        "source": "/en/calculo/practice/metodos-numericos",
+        "destination": "/seo/en/calculo/practice/metodos-numericos.html"
+    },
+    {
+        "source": "/en/calculo/practice/derivadas",
+        "destination": "/seo/en/calculo/practice/derivadas.html"
+    },
+    {
+        "source": "/en/calculo/practice/aplicaciones-derivada",
+        "destination": "/seo/en/calculo/practice/aplicaciones-derivada.html"
+    },
+    {
+        "source": "/en/calculo/practice/integral-definida",
+        "destination": "/seo/en/calculo/practice/integral-definida.html"
+    },
+    {
+        "source": "/en/calculo/practice/integracion-numerica",
+        "destination": "/seo/en/calculo/practice/integracion-numerica.html"
+    },
+    {
+        "source": "/en/calculo/practice/aplicaciones-integral",
+        "destination": "/seo/en/calculo/practice/aplicaciones-integral.html"
+    },
+    {
+        "source": "/en/calculo/practice/ecuaciones-diferenciales",
+        "destination": "/seo/en/calculo/practice/ecuaciones-diferenciales.html"
+    },
+    {
+        "source": "/en/calculo/exam/2022-01",
+        "destination": "/seo/en/calculo/exam/2022-01.html"
+    },
+    {
+        "source": "/en/calculo/exam/2022-07",
+        "destination": "/seo/en/calculo/exam/2022-07.html"
+    },
+    {
+        "source": "/en/calculo/exam/2023-01",
+        "destination": "/seo/en/calculo/exam/2023-01.html"
+    },
+    {
+        "source": "/en/calculo/exam/2023-07",
+        "destination": "/seo/en/calculo/exam/2023-07.html"
+    },
+    {
+        "source": "/en/calculo/exam/2024-01",
+        "destination": "/seo/en/calculo/exam/2024-01.html"
+    },
+    {
+        "source": "/en/calculo/exam/2024-07",
+        "destination": "/seo/en/calculo/exam/2024-07.html"
+    },
+    {
+        "source": "/en/calculo/exam/2025-01",
+        "destination": "/seo/en/calculo/exam/2025-01.html"
+    },
+    {
+        "source": "/en/calculo/exam/2025-07",
+        "destination": "/seo/en/calculo/exam/2025-07.html"
+    },
+    {
         "source": "/en/cepe",
         "destination": "/seo/en/cepe.html"
     },
@@ -442,6 +514,78 @@
         "destination": "/seo/es/bede/exam/recopilatorio-mayo-2022.html"
     },
     {
+        "source": "/es/calculo",
+        "destination": "/seo/es/calculo.html"
+    },
+    {
+        "source": "/es/calculo/practice/funciones-elementales",
+        "destination": "/seo/es/calculo/practice/funciones-elementales.html"
+    },
+    {
+        "source": "/es/calculo/practice/limites-continuidad",
+        "destination": "/seo/es/calculo/practice/limites-continuidad.html"
+    },
+    {
+        "source": "/es/calculo/practice/metodos-numericos",
+        "destination": "/seo/es/calculo/practice/metodos-numericos.html"
+    },
+    {
+        "source": "/es/calculo/practice/derivadas",
+        "destination": "/seo/es/calculo/practice/derivadas.html"
+    },
+    {
+        "source": "/es/calculo/practice/aplicaciones-derivada",
+        "destination": "/seo/es/calculo/practice/aplicaciones-derivada.html"
+    },
+    {
+        "source": "/es/calculo/practice/integral-definida",
+        "destination": "/seo/es/calculo/practice/integral-definida.html"
+    },
+    {
+        "source": "/es/calculo/practice/integracion-numerica",
+        "destination": "/seo/es/calculo/practice/integracion-numerica.html"
+    },
+    {
+        "source": "/es/calculo/practice/aplicaciones-integral",
+        "destination": "/seo/es/calculo/practice/aplicaciones-integral.html"
+    },
+    {
+        "source": "/es/calculo/practice/ecuaciones-diferenciales",
+        "destination": "/seo/es/calculo/practice/ecuaciones-diferenciales.html"
+    },
+    {
+        "source": "/es/calculo/exam/2022-01",
+        "destination": "/seo/es/calculo/exam/2022-01.html"
+    },
+    {
+        "source": "/es/calculo/exam/2022-07",
+        "destination": "/seo/es/calculo/exam/2022-07.html"
+    },
+    {
+        "source": "/es/calculo/exam/2023-01",
+        "destination": "/seo/es/calculo/exam/2023-01.html"
+    },
+    {
+        "source": "/es/calculo/exam/2023-07",
+        "destination": "/seo/es/calculo/exam/2023-07.html"
+    },
+    {
+        "source": "/es/calculo/exam/2024-01",
+        "destination": "/seo/es/calculo/exam/2024-01.html"
+    },
+    {
+        "source": "/es/calculo/exam/2024-07",
+        "destination": "/seo/es/calculo/exam/2024-07.html"
+    },
+    {
+        "source": "/es/calculo/exam/2025-01",
+        "destination": "/seo/es/calculo/exam/2025-01.html"
+    },
+    {
+        "source": "/es/calculo/exam/2025-07",
+        "destination": "/seo/es/calculo/exam/2025-07.html"
+    },
+    {
         "source": "/es/cepe",
         "destination": "/seo/es/cepe.html"
     },
@@ -848,6 +992,78 @@
     {
         "source": "/gl/bede/exam/recopilatorio-mayo-2022",
         "destination": "/seo/gl/bede/exam/recopilatorio-mayo-2022.html"
+    },
+    {
+        "source": "/gl/calculo",
+        "destination": "/seo/gl/calculo.html"
+    },
+    {
+        "source": "/gl/calculo/practice/funciones-elementales",
+        "destination": "/seo/gl/calculo/practice/funciones-elementales.html"
+    },
+    {
+        "source": "/gl/calculo/practice/limites-continuidad",
+        "destination": "/seo/gl/calculo/practice/limites-continuidad.html"
+    },
+    {
+        "source": "/gl/calculo/practice/metodos-numericos",
+        "destination": "/seo/gl/calculo/practice/metodos-numericos.html"
+    },
+    {
+        "source": "/gl/calculo/practice/derivadas",
+        "destination": "/seo/gl/calculo/practice/derivadas.html"
+    },
+    {
+        "source": "/gl/calculo/practice/aplicaciones-derivada",
+        "destination": "/seo/gl/calculo/practice/aplicaciones-derivada.html"
+    },
+    {
+        "source": "/gl/calculo/practice/integral-definida",
+        "destination": "/seo/gl/calculo/practice/integral-definida.html"
+    },
+    {
+        "source": "/gl/calculo/practice/integracion-numerica",
+        "destination": "/seo/gl/calculo/practice/integracion-numerica.html"
+    },
+    {
+        "source": "/gl/calculo/practice/aplicaciones-integral",
+        "destination": "/seo/gl/calculo/practice/aplicaciones-integral.html"
+    },
+    {
+        "source": "/gl/calculo/practice/ecuaciones-diferenciales",
+        "destination": "/seo/gl/calculo/practice/ecuaciones-diferenciales.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2022-01",
+        "destination": "/seo/gl/calculo/exam/2022-01.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2022-07",
+        "destination": "/seo/gl/calculo/exam/2022-07.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2023-01",
+        "destination": "/seo/gl/calculo/exam/2023-01.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2023-07",
+        "destination": "/seo/gl/calculo/exam/2023-07.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2024-01",
+        "destination": "/seo/gl/calculo/exam/2024-01.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2024-07",
+        "destination": "/seo/gl/calculo/exam/2024-07.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2025-01",
+        "destination": "/seo/gl/calculo/exam/2025-01.html"
+    },
+    {
+        "source": "/gl/calculo/exam/2025-07",
+        "destination": "/seo/gl/calculo/exam/2025-07.html"
     },
     {
         "source": "/gl/cepe",

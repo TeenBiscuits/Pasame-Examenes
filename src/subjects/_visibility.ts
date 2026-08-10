@@ -3,6 +3,8 @@
 // runtime code — Vite's import.meta.glob in index.ts does the actual
 // work.  When adding a subject, add its pair of imports here.
 
+import { meta as calculoMeta } from "./calculo/meta";
+import { questions as calculoQuestions } from "./calculo/questions";
 import { meta as bedeMeta } from "./bede/meta";
 import { questions as bedeQuestions } from "./bede/questions";
 import { meta as cepeMeta } from "./cepe/meta";
@@ -32,6 +34,8 @@ import { questions as espainQuestions } from "./espain/questions";
 import { meta as templateMeta } from "./_template/meta";
 import { questions as templateQuestions } from "./_template/questions";
 
+void calculoMeta;
+void calculoQuestions;
 void bedeMeta;
 void bedeQuestions;
 void cepeMeta;

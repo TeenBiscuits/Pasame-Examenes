@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@mistralai/mistralai": "^2.6.1",
     "@napi-rs/canvas": "^1.0.3",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
@@ -47,6 +48,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.9.0",
+    "pdf-lib": "^1.17.1",
     "prettier": "3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "react-grab": "^0.1.50",

@@ -31,3 +31,5 @@ src/seo/pageMetaMap.generated.ts
 
 # Env
 .env
+
+temp
