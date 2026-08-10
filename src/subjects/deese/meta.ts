@@ -45,14 +45,14 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
-      id: "2020-01",
-      title: "Enero 2020",
+      id: "2022-01",
+      title: "Enero 2022",
       durationMinutes: 150,
       hasPdf: false,
     },
     {
-      id: "2022-01",
-      title: "Enero 2022",
+      id: "2020-01",
+      title: "Enero 2020",
       durationMinutes: 150,
       hasPdf: false,
     },

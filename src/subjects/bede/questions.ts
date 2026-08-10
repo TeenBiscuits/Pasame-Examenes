@@ -13,6 +13,528 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 
 export const questions: Question[] = [
   {
+    id: "recopilatorio-mayo-2026_01",
+    examId: "recopilatorio-mayo-2026",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 2,
+    question: `Modelo Entidad-Relación.
+
+Dibuja el diagrama Entidad-Relación que modela el dominio que se describe a continuación.
+
+Debes identificar claramente las entidades fuertes y débiles (identificando también como débil el tipo de relación que se establece entre ellas), todos los atributos e identificadores de los tipos de entidad, y los atributos, cardinalidad y participación de los tipos de relación, utilizando la notación utilizada en clase (no está permitido usar la notación de mínimos-máximos).
+
+Los supervillanos de PC Comics llevan tiempo sin reciclarse, por lo que están perdiendo la guerra contra los superhéroes sin plantear las debidas dificultades. PC Comics ha creado una academia a la que pueden acudir para modernizarse, y ahora nos encarga construir una base de datos para gestionarla.
+
+Lo primero que debe hacer la base de datos es recoger información sobre todos los supervillanos conocidos (nos da igual si han asistido o no a cursos). De cada uno guardamos su código (que identifica a cada villano entre todos los demás), nombre completo, nacionalidad, y su especialidad (o especialidades, porque pueden ser varias).
+
+Los supervillanos, ocasionalmente, unen esfuerzos, agrupándose en Ligas de Supervillanos. Queremos registrar información sobre todas las ligas conocidas. En particular, queremos registrar su nombre (que identifica a una liga entre todas las demás), y su año de creación.
+
+Las reglas de las ligas de supervillanos son muy estrictas, y no se permite que un villano forme parte de dos ligas al mismo tiempo. Por otra parte, los supervillanos suelen ser caprichosos: un villano puede pasar de estar en una liga durante un tiempo a, de repente, abandonarla y pasar una temporada delinquiendo en solitario, quizás para más adelante unirse a otra liga diferente, o incluso volver a una liga en la que ya había estado antes (es decir, repitiendo liga). Teniendo todo eso en cuenta, queremos que la base de datos nos permita saber todas las ligas en las que ha estado integrado cada villano, y las fechas de inicio y de fin del período - o períodos - en los que formó parte de cada una.
+
+Si se considera necesario, los cursos de reciclaje impartidos en la academia pueden exigir (o recomendar) dominar un conjunto de superpoderes para poder asistir. La base de datos debe contar con espacio para almacenar todos los superpoderes conocidos (estén o no asociados a algún curso). De cada superpoder guardaremos su código (que identifica a cada superpoder entre todos los demás), su descripción, y su utilidad principal (sólo una). Por ejemplo, para desplazamiento, para pelea, para curación...
+
+Cada vez que registremos un curso, debemos indicar (si es el caso) qué superpoderes (de entre los registrados en la base de datos) son obligatorios (pueden ser varios), y cuáles son recomendables (también pueden ser varios). También deberemos guardar el código del curso (que identifica a cada curso entre todos los demás), su título y su precio actual.
+
+Un curso, si se considera necesario, puede establecer como condición de acceso haber superado determinados cursos anteriores, que actúan como prerrequisitos. Por ejemplo, puede decidirse que el curso "Aniquilación mundial mediante esporas de camomila" tenga como prerrequisitos los cursos "Biología básica para supervillanos" y "Botánica elemental". Y, a su vez, podríamos decidir que "Aniquilación mundial mediante esporas de camomila" fuese prerrequisito de los cursos "Aniquilación selectiva de entidades superheroicas" y "Repoblación mundial: de la teoría a la práctica". Queremos poder representar información como esa en la base de datos.
+
+Está previsto que de cada curso se realice una edición cada año (sólo una al año, sin excepción). De cada edición de un curso debemos almacenar el año en el que se celebró (o se celebrará), su duración (número de semanas), y la fecha límite para inscribirse (interesante para ediciones con matrícula aún abierta).
+
+En cuanto una edición de un curso se registra en la base de datos, los supervillanos pueden empezar a inscribirse. Queremos que la base de datos recoja qué supervillanos están inscritos ya en una edición, en qué fecha lo hizo cada uno, y si al final aprobaron o no (en el caso de ediciones ya concluidas).
+
+Una vez superada una edición de un curso, un supervillano debe superar la prueba definitiva: realizar un TFG de dominación mundial. Queremos que la base de datos almacene información sobre todos los TFG presentados: su código (que identifica a un TFG entre todos los demás registrados en la base de datos, sean del curso que sean), y su título (que no tiene por qué ser único). Por supuesto, para cada TFG queremos saber también el supervillano que lo realizó (el TFG es individual, no se puede hacer en equipo), y la edición en la que lo presentó (sólo una: no se puede reutilizar el mismo TFG en ediciones diferentes). Y además también debemos conocer la nota final que obtuvo el TFG (en cuanto se sepa).
+
+Finalmente, nos interesa conocer no sólo cuáles, sino cuántos TFG están vinculados a cada supervillano en la base de datos hasta la fecha de hoy.
+
+Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para identificar tipos de entidad; representa como atributo derivado/calculado los datos calculables; no se admiten tipos de entidad débil dependientes de más de un tipo de entidad fuerte a la vez; evita almacenamiento redundante.`,
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2026_02",
+    examId: "recopilatorio-mayo-2026",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 0.75,
+    question:
+      "Paso a relacional. Transforma el siguiente diagrama ER al esquema relacional equivalente (los esquemas de relación correspondientes al diagrama ER), indicando claramente las claves primarias y representando gráficamente (con flechas) las restricciones de integridad referencial existentes. Utiliza la notación vista en clase.",
+    image: getImage(imageMap, "recopilatorio-mayo-2026-paso-relacional.png"),
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2026_03",
+    examId: "recopilatorio-mayo-2026",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 1.25,
+    question: `Normalización.
+
+**a) Dependencias funcionales [0.4 p]**
+
+La cadena de supermercados Mercachifle necesita una base de datos para gestionar la información relativa a sus repartos a domicilio. Lo que conocemos es lo siguiente:
+
+- La cadena está formada por un conjunto de supermercados distribuidos por todo el país.
+- Cada supermercado dispone de un servicio de reparto a domicilio que cubre un conjunto fijo y predefinido de varias localidades colindantes.
+- En la situación actual existen localidades que son atendidas simultáneamente por varios supermercados.
+- Cada supermercado define sus propias rutas de reparto: cada ruta pertenece a un único supermercado; no existen rutas compartidas entre supermercados; cada ruta pasa siempre por el mismo conjunto de localidades, por lo que las rutas son fijas e inalterables; dentro de un mismo supermercado, no puede haber dos rutas que pasen por la misma localidad; una localidad es atendida por ese supermercado siempre a través de una única ruta; una localidad puede, no obstante, ser atendida por varias rutas distintas si estas pertenecen a supermercados diferentes.
+- La empresa dispone de una flota común de camiones de reparto, compartida por todos los supermercados. La asignación de camiones a rutas se realiza diariamente: cada ruta, cada día, es realizada por un único camión, que puede ser el mismo que hizo la ruta el día anterior u otro camión diferente; un mismo camión puede realizar varias rutas en un mismo día.
+
+Se ha diseñado una base de datos que incluye una relación donde se registra la asignación de camiones a rutas:
+
+\`\`\`
+Asignado(super, ruta, localidad, día, camión)
+\`\`\`
+
+Descripción de atributos: \`super\` es el código del supermercado; \`ruta\` es el código de la ruta y no puede repetirse ni siquiera si son supermercados diferentes; \`localidad\` es el código de localidad; \`día\` es la fecha del reparto; \`camión\` es la matrícula del camión de reparto.
+
+Indica el conjunto de dependencias funcionales completas que existen en \`Asignado\`. No es necesario incluir aquellas deducibles a partir de las indicadas.
+
+**b) Forma normal y claves [0.25 p]**
+
+Una revista cultureta quiere crear una base de datos donde recoger información sobre películas nacionales e internacionales. La base contiene, entre otras, la relación:
+
+\`\`\`
+Interpreta(CodPeli, Titulo, Año, Genero, CodActor, Salario, Personaje, Tipo)
+\`\`\`
+
+Dependencias funcionales completas asociadas a \`Interpreta\`:
+
+1. \`CodPeli -> Titulo, Año, Genero\`
+2. \`Titulo, Año -> CodPeli, Genero\`
+3. \`CodPeli, CodActor -> Salario\`
+4. \`CodPeli, Personaje -> Tipo\`
+
+Indica la/s clave/s candidata/s y la forma normal en la que está \`Interpreta\`. Puedes suponer que, como mínimo, está en 1FN.
+
+**c) Descomposición [0.6 p]**
+
+Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una descomposición donde no se pierda información y todas las relaciones estén en FNBC. Indica, para cada relación resultante: esquema, dependencias funcionales y clave/claves candidatas.`,
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2026_04",
+    examId: "recopilatorio-mayo-2026",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "En un fichero montículo, el coste de la operación de búsqueda de registros con un valor de clave específico:",
+    options: [
+      "A. Siempre es B/2, siendo B el número de bloques del fichero.",
+      "B. Siempre es B, siendo B el número de bloques del fichero.",
+      "C. Ninguna de las dos respuestas anteriores es correcta.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2026_05",
+    examId: "recopilatorio-mayo-2026",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question: "En un árbol B+, cuántos más punteros a nodos hijos por nodo ...",
+    options: [
+      "A. Más ancho y menos alto será el árbol.",
+      "B. Más lentas serán las búsquedas.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2026_06",
+    examId: "recopilatorio-mayo-2026",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question: "Si tenemos un fichero montículo, y añadimos un índice ...",
+    options: [
+      "A. El índice será siempre un índice primario/agrupado.",
+      "B. El índice será siempre un índice secundario.",
+      "C. El índice podrá ser primario/agrupado o secundario, según el usuario decida durante su creación.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2026_07",
+    examId: "recopilatorio-mayo-2026",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "En la tabla SOCIO (código, categoría, nombre, fechaNac, teléfono, país) de una aerolínea, que físicamente se guarda en un fichero montículo, hay almacenadas miles de tuplas, pero nunca hay más de dos o tres tuplas que compartan el mismo valor del campo teléfono. En una consulta que devuelva los socios vinculados a un teléfono determinado:",
+    options: [
+      "A. Un índice por teléfono acelerará la búsqueda con total seguridad.",
+      "B. Un índice por teléfono probablemente no ayudará y podría incluso hacer más lenta la consulta.",
+      "C. Un índice por teléfono no afectará en absoluto al tiempo de respuesta de la consulta.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2026_08",
+    examId: "recopilatorio-mayo-2026",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "La tabla de VENTAS de una empresa ha sido particionada usando como campo de particionamiento la localidad de venta.",
+    options: [
+      "A. Si una consulta especifica una condición sobre el campo localidad, el SGBD puede acelerar la búsqueda lanzando la consulta solo sobre las particiones afectadas.",
+      "B. Si una consulta especifica una condición sobre un campo diferente de localidad, el SGBD no podrá acelerar la búsqueda de ninguna manera.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2026_09",
+    examId: "recopilatorio-mayo-2026",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: "Transacciones:",
+    options: [
+      "A. El resultado final de la ejecución de dos planificaciones serializables sobre las mismas transacciones siempre es el mismo.",
+      "B. Toda planificación serie es serializable.",
+      "C. Ninguna de las dos respuestas anteriores es correcta.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2026_10",
+    examId: "recopilatorio-mayo-2026",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: "En el protocolo de bloqueo riguroso de dos fases:",
+    options: [
+      "A. Los bloqueos solo se pueden adquirir en el instante en que la transacción empieza y no se liberan hasta que la transacción termina.",
+      "B. Los bloqueos se pueden adquirir durante toda la transacción y se liberan cuando la transacción termina.",
+      "C. Hay una fase de crecimiento que dura mientras solo se adquieren bloqueos. La fase de decrecimiento comienza con la primera liberación de un bloqueo en cualquier momento de la transacción; a partir de ese momento, ya no se pueden adquirir más bloqueos.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2026_11",
+    examId: "recopilatorio-mayo-2026",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question:
+      "En relación al método esquema multiversión para control de concurrencia ...",
+    options: [
+      "A. Las escrituras no siempre tienen éxito (y puede ser necesario retroceder una transacción).",
+      "B. Las lecturas pueden tardar demasiado por quedarse esperando.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2026_12",
+    examId: "recopilatorio-mayo-2026",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: `Dadas las siguientes sentencias:
+
+\`\`\`sql
+CREATE ROLE accesoBronce
+CREATE ROLE accesoPlata
+CREATE ROLE accesoOro
+GRANT SELECT ON ventas TO accesoBronce
+GRANT UPDATE ON ventas TO accesoPlata
+GRANT INSERT, DELETE ON ventas TO accesoOro
+GRANT accesoBronce TO accesoPlata
+GRANT accesoPlata TO "Ramón"
+GRANT accesoBronce TO "Luisa"
+\`\`\`
+
+¿Cuál de las siguientes afirmaciones es cierta?`,
+    options: [
+      "A. Ramón puede realizar actualizaciones sobre la tabla ventas, pero no consultas.",
+      "B. Luisa puede realizar consultas sobre la tabla ventas, pero no actualizaciones.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2026_13",
+    examId: "recopilatorio-mayo-2026",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: `Dada la siguiente sentencia de inserción de datos:
+
+\`\`\`sql
+INSERT INTO emp (ename, job, empno, hiredate, deptno) VALUES
+('Adrián', 'Manager', 2002, '24/07/23', NULL);
+\`\`\`
+
+Y suponiendo que la tabla \`emp\` se ha definido de la siguiente forma:
+
+\`\`\`sql
+CREATE TABLE emp (
+  empno NUMERIC(4) CONSTRAINT PK_emp PRIMARY KEY,
+  ename VARCHAR(15) NOT NULL,
+  hiredate DATE NOT NULL,
+  job VARCHAR(15) NOT NULL,
+  sal NUMERIC(7,2) NOT NULL DEFAULT 1400,
+  comm NUMERIC(7,2),
+  mgr NUMERIC(4) REFERENCES emp (empno),
+  deptno NUMERIC(2) REFERENCES departamento (deptno)
+);
+\`\`\`
+
+¿Cuál de las siguientes afirmaciones es cierta?`,
+    options: [
+      "A. La inserción producirá un error porque el orden de las columnas en la sentencia no coincide con el orden de las columnas en la tabla.",
+      "B. La inserción producirá un error asociado a la columna deptno.",
+      "C. La inserción se realizará correctamente.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "recopilatorio-mayo-2022_01",
+    examId: "recopilatorio-mayo-2022",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 2,
+    question: `Modelo entidad-relación.
+
+Dibuja el diagrama entidad-relación que modela el minimundo que se describe a continuación.
+
+Debes identificar claramente las entidades fuertes y débiles (identificando también como débil el tipo de relación que se establece entre ellas), todos los atributos e identificadores de los tipos de entidad, y los atributos, cardinalidad y participación de los tipos de relación, utilizando la notación utilizada en clase (no uses la notación mínimos-máximos).
+
+Queremos diseñar la base de datos de una cadena de supermercados. De cada supermercado almacenamos un código único, nombre, dirección y teléfonos.
+
+Almacenamos información del personal del supermercado. De cada empleado almacenamos el NSS, el nombre, la dirección, la fecha de nacimiento, el número de teléfono y el correo electrónico. En un momento dado, en cada supermercado trabajan varios empleados; y cada empleado está destinado a un solo supermercado y ocupa un solo puesto (reponedor, cajero, carnicero, etc.). Pero debemos poder consultar no solo el personal actual de cada supermercado, sino también el personal del supermercado en cualquier momento en el pasado. Y, para cada empleado, debemos poder consultar el puesto que ocupó en cada uno de los períodos que trabajó. Por ejemplo, el empleado con NSS 34555333Z puede trabajar:
+
+- En el supermercado SUP-1 del 07/01/20 al 07/08/20 como reponedor.
+- Del 08/08/20 al 01/07/22 en el supermercado SUP-99 de supervisor.
+- Desde el 01/07/22 a la fecha vuelve a laborar en el SUP-1 como supervisor.
+
+Como puedes ver, puede trabajar en el mismo supermercado durante varios períodos de tiempo, con el mismo trabajo o con otro diferente.
+
+Necesitamos almacenar los productos a la venta, que son iguales en todos los supermercados. De cada producto almacenamos un código único, nombre y precio de venta actual. Aunque los productos pueden cambiar de precio incluso dentro del mismo día, sólo almacenamos el precio que tiene actualmente.
+
+Cada cierto tiempo aparecen promociones (válidas para todos los supermercados) que incluyen obsequios por la compra de determinados productos. Para cada promoción queremos guardar su código (diferente para cada promoción), nombre y fechas de inicio y finalización del período en el que se aplica. También queremos registrar los productos específicos incluidos en la promoción, y el regalo específico asociado a cada uno de ellos (que puede cambiar de promoción a promoción, y en una misma promoción puede ser diferente para cada producto). Por ejemplo, en la promoción "Verano 2021" (vigente del 01/07/2021 al 31/07/2021), el producto "Yogures Maldonado Pack 4" tenía asociado el regalo "Álbum de cromos", mientras que "Gaseosa espirituosa" tenía asociado el regalo "Bolsa de playa". Y en la promoción "Otoño 2021" (del 10/01/2021 al 15/10/2021), "Gaseosa espirituosa" cambió de regalo: pasó a ser "Copa e cristal"; y "Yogures Maldonado Pack 4" ya no formaba parte de la promoción.
+
+De cada venta a un cliente guardamos información sobre la factura simplificada (o tique de compra). Cada factura simplificada se genera en un supermercado y tiene un número único (dentro de todas las facturas simplificadas de todos los supermercados de la cadena), una fecha y una hora.
+
+La factura debe incluir la lista de productos y el número de unidades de cada producto. Observa que dependiendo de cómo coloque el cliente los productos en la cinta de la caja, puede que el cajero pase un producto al principio del proceso, pase otros productos, y cuando lleguen al final, haya más unidades del mismo producto. Es decir, dentro de la factura simplificada A-0001 pueden aparecer:
+
+- 4 unidades del producto X-0034.
+- 5 unidades del producto C-0001.
+- 2 unidades del producto X-0034 (que ya aparecía en la primera línea).
+
+En la factura simplificada deben figurar las dos líneas de producto diferenciadas X-0034. Para diferenciar líneas dentro de la misma factura simplificada, puedes usar un número de línea dentro de la factura simplificada, que comienza en 1 en cada factura simplificada.
+
+De cada línea hay que saber el producto, el número de unidades, el precio del producto activo en el momento de la creación de la factura simplificada y el subtotal, es decir, el número de unidades por el precio del producto.
+
+Importante: ten en cuenta que en la información del producto sólo mantenemos el precio actual del producto, mientras que para cada línea de una factura necesitamos saber el precio del producto en el momento en que se generó la factura simplificada.
+
+Finalmente, para cada factura simplificada necesitamos saber el importe total.
+
+Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para identificar entidades; si algún dato puede calcularse, represéntalo igualmente como atributo derivado; evita almacenar información duplicada.`,
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2022_02",
+    examId: "recopilatorio-mayo-2022",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 0.75,
+    question:
+      "Paso relacional. Transforma el siguiente diagrama ER al esquema relacional equivalente (los esquemas de relación correspondientes al diagrama ER), indicando claramente las claves primarias y representando gráficamente (con flechas) las restricciones de integridad referencial existentes. Utiliza la notación vista en clase.",
+    image: getImage(imageMap, "recopilatorio-mayo-2022-paso-relacional.png"),
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2022_03",
+    examId: "recopilatorio-mayo-2022",
+    topic: "modelado-normalizacion",
+    type: "text",
+    points: 1.25,
+    question: `Normalización.
+
+**a) Dependencias funcionales [0.4 p]**
+
+Un sitio web de información cinematográfica recopila información sobre diferentes películas, el género cinematográfico al que corresponden y el director/a (o directores/as) de dichas películas.
+
+Considera la relación universal vinculada a la base de datos del sitio web, en la que cada tupla vincula a un director/a con una película de las dirigidas por él/ella:
+
+\`\`\`
+Dirigido(codP, títuloP, añoP, codG, nomG, aptoG, codD, nomD, paisD)
+\`\`\`
+
+Descripción resumida de atributos: \`codP\` identifica una película; \`tituloP\` no es único; cada película tiene un único año de estreno y un único género; \`codG\` identifica el género; \`nomG\` es único por género; \`aptoG\` indica si el género es adecuado para público infantil; \`codD\` identifica un director/a; cada director/a tiene un nombre y un único país; una película puede tener varios directores/as y un director/a puede dirigir varias películas.
+
+Indica el conjunto de dependencias funcionales completas que se producen en \`Dirigido\`.
+
+**b) Forma normal y claves [0.25 p]**
+
+Una compañía telefónica almacena información sobre recibos de consumo de datos de teléfonos móviles con contrato en vigor:
+
+\`\`\`
+Recibo(numTelefono, fechaIniContrato, tipoTarifa, nombreTarifa, precioTarifa, nifUsu, nombreUsu, dirección, fechaRecibo, consumo, importeTotal)
+\`\`\`
+
+Dependencias funcionales completas asociadas a \`Recibo\`:
+
+1. \`nifUsu -> nombreUsu, dirección\`
+2. \`tipoTarifa -> nombreTarifa, precioTarifa\`
+3. \`nombreTarifa -> tipoTarifa, precioTarifa\`
+4. \`numTelefono -> nifUsu, nombreUsu, dirección, fechaIniContrato, tipoTarifa\`
+5. \`numTelefono, fechaRecibo -> consumo, importeTotal\`
+
+Indica la/s clave/s candidata/s que existen y la forma normal en que está \`Recibo\`. Puedes suponer que, como mínimo, está en 1FN.
+
+**c) Descomposición [0.6 p]**
+
+Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda información y todas las relaciones estén en FNBC. Escribe el resultado final con los esquemas de las relaciones, claves candidatas y dependencias funcionales completas de cada una.`,
+    correctAnswer: "Solución modelo no disponible.",
+  },
+  {
+    id: "recopilatorio-mayo-2022_04",
+    examId: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "Si queremos realizar una lectura secuencial de un fichero, ¿qué es más beneficioso?",
+    options: [
+      "A. Usar un tamaño de bloque físico grande.",
+      "B. Usar un tamaño de bloque físico pequeño.",
+      "C. El tamaño de bloque físico no es relevante puesto que se van a leer todos los registros.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2022_05",
+    examId: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "En una estructura de bloques con slots (o estrategia slotted-page), ¿qué es cierto?",
+    options: [
+      "A. Se almacenan registros de tamaño fijo que se insertan rellenando el hueco de otro registro previamente borrado.",
+      "B. Cada bloque está compuesto por varios slots, y cada uno de ellos puede ser transferido a memoria independientemente de los demás.",
+      "C. El número de registros que caben como máximo en cada bloque es variable, puesto que se almacenan registros de tamaño variable.",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "recopilatorio-mayo-2022_06",
+    examId: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "Hash extensible: borramos el registro L en este fichero, conservando el J. ¿Qué valor tendrán después d y d' (para el bloque que contenga J)?",
+    image: getImage(imageMap, "recopilatorio-mayo-2022-hash-extensible.png"),
+    options: ["A. d=3, d'=3", "B. d=2, d'=2", "C. d=3, d'=2"],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2022_07",
+    examId: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question: "En un árbol homogéneo...",
+    options: [
+      "A. Cada nodo posee dos tipos de punteros.",
+      "B. Las búsquedas siempre llegan a nivel de nodos hoja.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "a",
+  },
+  {
+    id: "recopilatorio-mayo-2022_08",
+    examId: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "En la tabla `PEDIDO(código, fecha, producto, marca, sección, unidades)`, que físicamente se guarda en un fichero montículo (heap), hay almacenadas miles de tuplas, pero nunca hay más de dos o tres tuplas que compartan el mismo valor del campo fecha. ¿Crearías un índice sobre el atributo fecha?",
+    options: [
+      "A. No, el índice puede que no ayude mucho en las búsquedas por el atributo fecha, e incluso puede que las empeore.",
+      "B. Sí, el índice ayudará en operaciones de búsqueda sobre el campo fecha.",
+      "C. El índice sería incorrecto y no sería útil para ningún tipo de búsqueda.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2022_09",
+    examId: "recopilatorio-mayo-2022",
+    topic: "ficheros",
+    type: "mc",
+    points: 0.2,
+    question:
+      "Árboles B: si insertamos el valor 30 en este árbol, con d=1, ¿qué valor/es almacenará el nodo que ahora contiene el valor 17?",
+    image: getImage(imageMap, "recopilatorio-mayo-2022-arbol-b.png"),
+    options: ["A. 17", "B. 17 y 20", "C. 17 y 25"],
+    correctAnswer: "c",
+  },
+  {
+    id: "recopilatorio-mayo-2022_10",
+    examId: "recopilatorio-mayo-2022",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: "El protocolo de bloqueo riguroso de dos fases:",
+    options: [
+      "A. Especifica que se tienen que adquirir todos los bloqueos justo en el momento de comenzar la transacción.",
+      "B. Especifica que se tienen que liberar todos los bloqueos justo en el momento de terminar la transacción.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2022_11",
+    examId: "recopilatorio-mayo-2022",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: "Transacciones:",
+    options: [
+      "A. Una ejecución concurrente de dos transacciones es siempre correcta si ambas usan bloqueos de lectura/escritura para acceder a los datos que necesitan.",
+      "B. Para que una ejecución concurrente de dos transacciones se considere correcta debe producir el mismo resultado final que alguna planificación serie de ambas transacciones.",
+      "C. Las dos respuestas anteriores son correctas.",
+    ],
+    correctAnswer: "b",
+  },
+  {
+    id: "recopilatorio-mayo-2022_12",
+    examId: "recopilatorio-mayo-2022",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question:
+      "Si en una transacción se produce el problema de la lectura fantasma:",
+    options: [
+      "A. Quiere decir que se hace una lectura que no devuelve ningún dato, cuando realmente sí que había datos en la base de datos que deberían haber aparecido en el resultado de la consulta.",
+      "B. Quiere decir que se hace una consulta, y el valor devuelto de un dato es demasiado viejo (hay una versión más actualizada de ese dato).",
+      "C. Quiere decir que durante la transacción se hace dos veces la misma consulta, y en la segunda ocasión se recupera un número de filas diferente a la primera vez que se ejecutó la consulta (sin que la transacción haya hecho ninguna actualización que pueda haber dado lugar a ese cambio).",
+    ],
+    correctAnswer: "c",
+  },
+  {
+    id: "recopilatorio-mayo-2022_13",
+    examId: "recopilatorio-mayo-2022",
+    topic: "recuperacion-concurrencia",
+    type: "mc",
+    points: 0.2,
+    question: `Supongamos el siguiente ejemplo de utilización de esquema de multiversión para control de concurrencia. ¿Qué ocurrirá si una transacción, cuya marca temporal asociada es 2, quiere escribir el dato X?
+
+| Versión X | ML | ME |
+| --- | --- | --- |
+| Q1 | 4 | 1 |`,
+    options: [
+      "A. El contenido de la versión Q1 será sobrescrito.",
+      "B. Se creará una nueva versión Q2.",
+      "C. La transacción será abortada.",
+    ],
+    correctAnswer: "c",
+  },  {
     id: "daypo-preguntas_01",
     examId: "daypo-preguntas",
     topic: "recuperacion-concurrencia",
@@ -1393,527 +1915,5 @@ export const questions: Question[] = [
     ],
     correctAnswer: "c",
   },
-  {
-    id: "recopilatorio-mayo-2026_01",
-    examId: "recopilatorio-mayo-2026",
-    topic: "modelado-normalizacion",
-    type: "text",
-    points: 2,
-    question: `Modelo Entidad-Relación.
 
-Dibuja el diagrama Entidad-Relación que modela el dominio que se describe a continuación.
-
-Debes identificar claramente las entidades fuertes y débiles (identificando también como débil el tipo de relación que se establece entre ellas), todos los atributos e identificadores de los tipos de entidad, y los atributos, cardinalidad y participación de los tipos de relación, utilizando la notación utilizada en clase (no está permitido usar la notación de mínimos-máximos).
-
-Los supervillanos de PC Comics llevan tiempo sin reciclarse, por lo que están perdiendo la guerra contra los superhéroes sin plantear las debidas dificultades. PC Comics ha creado una academia a la que pueden acudir para modernizarse, y ahora nos encarga construir una base de datos para gestionarla.
-
-Lo primero que debe hacer la base de datos es recoger información sobre todos los supervillanos conocidos (nos da igual si han asistido o no a cursos). De cada uno guardamos su código (que identifica a cada villano entre todos los demás), nombre completo, nacionalidad, y su especialidad (o especialidades, porque pueden ser varias).
-
-Los supervillanos, ocasionalmente, unen esfuerzos, agrupándose en Ligas de Supervillanos. Queremos registrar información sobre todas las ligas conocidas. En particular, queremos registrar su nombre (que identifica a una liga entre todas las demás), y su año de creación.
-
-Las reglas de las ligas de supervillanos son muy estrictas, y no se permite que un villano forme parte de dos ligas al mismo tiempo. Por otra parte, los supervillanos suelen ser caprichosos: un villano puede pasar de estar en una liga durante un tiempo a, de repente, abandonarla y pasar una temporada delinquiendo en solitario, quizás para más adelante unirse a otra liga diferente, o incluso volver a una liga en la que ya había estado antes (es decir, repitiendo liga). Teniendo todo eso en cuenta, queremos que la base de datos nos permita saber todas las ligas en las que ha estado integrado cada villano, y las fechas de inicio y de fin del período - o períodos - en los que formó parte de cada una.
-
-Si se considera necesario, los cursos de reciclaje impartidos en la academia pueden exigir (o recomendar) dominar un conjunto de superpoderes para poder asistir. La base de datos debe contar con espacio para almacenar todos los superpoderes conocidos (estén o no asociados a algún curso). De cada superpoder guardaremos su código (que identifica a cada superpoder entre todos los demás), su descripción, y su utilidad principal (sólo una). Por ejemplo, para desplazamiento, para pelea, para curación...
-
-Cada vez que registremos un curso, debemos indicar (si es el caso) qué superpoderes (de entre los registrados en la base de datos) son obligatorios (pueden ser varios), y cuáles son recomendables (también pueden ser varios). También deberemos guardar el código del curso (que identifica a cada curso entre todos los demás), su título y su precio actual.
-
-Un curso, si se considera necesario, puede establecer como condición de acceso haber superado determinados cursos anteriores, que actúan como prerrequisitos. Por ejemplo, puede decidirse que el curso "Aniquilación mundial mediante esporas de camomila" tenga como prerrequisitos los cursos "Biología básica para supervillanos" y "Botánica elemental". Y, a su vez, podríamos decidir que "Aniquilación mundial mediante esporas de camomila" fuese prerrequisito de los cursos "Aniquilación selectiva de entidades superheroicas" y "Repoblación mundial: de la teoría a la práctica". Queremos poder representar información como esa en la base de datos.
-
-Está previsto que de cada curso se realice una edición cada año (sólo una al año, sin excepción). De cada edición de un curso debemos almacenar el año en el que se celebró (o se celebrará), su duración (número de semanas), y la fecha límite para inscribirse (interesante para ediciones con matrícula aún abierta).
-
-En cuanto una edición de un curso se registra en la base de datos, los supervillanos pueden empezar a inscribirse. Queremos que la base de datos recoja qué supervillanos están inscritos ya en una edición, en qué fecha lo hizo cada uno, y si al final aprobaron o no (en el caso de ediciones ya concluidas).
-
-Una vez superada una edición de un curso, un supervillano debe superar la prueba definitiva: realizar un TFG de dominación mundial. Queremos que la base de datos almacene información sobre todos los TFG presentados: su código (que identifica a un TFG entre todos los demás registrados en la base de datos, sean del curso que sean), y su título (que no tiene por qué ser único). Por supuesto, para cada TFG queremos saber también el supervillano que lo realizó (el TFG es individual, no se puede hacer en equipo), y la edición en la que lo presentó (sólo una: no se puede reutilizar el mismo TFG en ediciones diferentes). Y además también debemos conocer la nota final que obtuvo el TFG (en cuanto se sepa).
-
-Finalmente, nos interesa conocer no sólo cuáles, sino cuántos TFG están vinculados a cada supervillano en la base de datos hasta la fecha de hoy.
-
-Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para identificar tipos de entidad; representa como atributo derivado/calculado los datos calculables; no se admiten tipos de entidad débil dependientes de más de un tipo de entidad fuerte a la vez; evita almacenamiento redundante.`,
-    correctAnswer: "Solución modelo no disponible.",
-  },
-  {
-    id: "recopilatorio-mayo-2026_02",
-    examId: "recopilatorio-mayo-2026",
-    topic: "modelado-normalizacion",
-    type: "text",
-    points: 0.75,
-    question:
-      "Paso a relacional. Transforma el siguiente diagrama ER al esquema relacional equivalente (los esquemas de relación correspondientes al diagrama ER), indicando claramente las claves primarias y representando gráficamente (con flechas) las restricciones de integridad referencial existentes. Utiliza la notación vista en clase.",
-    image: getImage(imageMap, "recopilatorio-mayo-2026-paso-relacional.png"),
-    correctAnswer: "Solución modelo no disponible.",
-  },
-  {
-    id: "recopilatorio-mayo-2026_03",
-    examId: "recopilatorio-mayo-2026",
-    topic: "modelado-normalizacion",
-    type: "text",
-    points: 1.25,
-    question: `Normalización.
-
-**a) Dependencias funcionales [0.4 p]**
-
-La cadena de supermercados Mercachifle necesita una base de datos para gestionar la información relativa a sus repartos a domicilio. Lo que conocemos es lo siguiente:
-
-- La cadena está formada por un conjunto de supermercados distribuidos por todo el país.
-- Cada supermercado dispone de un servicio de reparto a domicilio que cubre un conjunto fijo y predefinido de varias localidades colindantes.
-- En la situación actual existen localidades que son atendidas simultáneamente por varios supermercados.
-- Cada supermercado define sus propias rutas de reparto: cada ruta pertenece a un único supermercado; no existen rutas compartidas entre supermercados; cada ruta pasa siempre por el mismo conjunto de localidades, por lo que las rutas son fijas e inalterables; dentro de un mismo supermercado, no puede haber dos rutas que pasen por la misma localidad; una localidad es atendida por ese supermercado siempre a través de una única ruta; una localidad puede, no obstante, ser atendida por varias rutas distintas si estas pertenecen a supermercados diferentes.
-- La empresa dispone de una flota común de camiones de reparto, compartida por todos los supermercados. La asignación de camiones a rutas se realiza diariamente: cada ruta, cada día, es realizada por un único camión, que puede ser el mismo que hizo la ruta el día anterior u otro camión diferente; un mismo camión puede realizar varias rutas en un mismo día.
-
-Se ha diseñado una base de datos que incluye una relación donde se registra la asignación de camiones a rutas:
-
-\`\`\`
-Asignado(super, ruta, localidad, día, camión)
-\`\`\`
-
-Descripción de atributos: \`super\` es el código del supermercado; \`ruta\` es el código de la ruta y no puede repetirse ni siquiera si son supermercados diferentes; \`localidad\` es el código de localidad; \`día\` es la fecha del reparto; \`camión\` es la matrícula del camión de reparto.
-
-Indica el conjunto de dependencias funcionales completas que existen en \`Asignado\`. No es necesario incluir aquellas deducibles a partir de las indicadas.
-
-**b) Forma normal y claves [0.25 p]**
-
-Una revista cultureta quiere crear una base de datos donde recoger información sobre películas nacionales e internacionales. La base contiene, entre otras, la relación:
-
-\`\`\`
-Interpreta(CodPeli, Titulo, Año, Genero, CodActor, Salario, Personaje, Tipo)
-\`\`\`
-
-Dependencias funcionales completas asociadas a \`Interpreta\`:
-
-1. \`CodPeli -> Titulo, Año, Genero\`
-2. \`Titulo, Año -> CodPeli, Genero\`
-3. \`CodPeli, CodActor -> Salario\`
-4. \`CodPeli, Personaje -> Tipo\`
-
-Indica la/s clave/s candidata/s y la forma normal en la que está \`Interpreta\`. Puedes suponer que, como mínimo, está en 1FN.
-
-**c) Descomposición [0.6 p]**
-
-Descompón la relación \`Interpreta\` del apartado (b) hasta encontrar una descomposición donde no se pierda información y todas las relaciones estén en FNBC. Indica, para cada relación resultante: esquema, dependencias funcionales y clave/claves candidatas.`,
-    correctAnswer: "Solución modelo no disponible.",
-  },
-  {
-    id: "recopilatorio-mayo-2026_04",
-    examId: "recopilatorio-mayo-2026",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question:
-      "En un fichero montículo, el coste de la operación de búsqueda de registros con un valor de clave específico:",
-    options: [
-      "A. Siempre es B/2, siendo B el número de bloques del fichero.",
-      "B. Siempre es B, siendo B el número de bloques del fichero.",
-      "C. Ninguna de las dos respuestas anteriores es correcta.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "recopilatorio-mayo-2026_05",
-    examId: "recopilatorio-mayo-2026",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question: "En un árbol B+, cuántos más punteros a nodos hijos por nodo ...",
-    options: [
-      "A. Más ancho y menos alto será el árbol.",
-      "B. Más lentas serán las búsquedas.",
-      "C. Las dos respuestas anteriores son correctas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "recopilatorio-mayo-2026_06",
-    examId: "recopilatorio-mayo-2026",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question: "Si tenemos un fichero montículo, y añadimos un índice ...",
-    options: [
-      "A. El índice será siempre un índice primario/agrupado.",
-      "B. El índice será siempre un índice secundario.",
-      "C. El índice podrá ser primario/agrupado o secundario, según el usuario decida durante su creación.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "recopilatorio-mayo-2026_07",
-    examId: "recopilatorio-mayo-2026",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question:
-      "En la tabla SOCIO (código, categoría, nombre, fechaNac, teléfono, país) de una aerolínea, que físicamente se guarda en un fichero montículo, hay almacenadas miles de tuplas, pero nunca hay más de dos o tres tuplas que compartan el mismo valor del campo teléfono. En una consulta que devuelva los socios vinculados a un teléfono determinado:",
-    options: [
-      "A. Un índice por teléfono acelerará la búsqueda con total seguridad.",
-      "B. Un índice por teléfono probablemente no ayudará y podría incluso hacer más lenta la consulta.",
-      "C. Un índice por teléfono no afectará en absoluto al tiempo de respuesta de la consulta.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "recopilatorio-mayo-2026_08",
-    examId: "recopilatorio-mayo-2026",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question:
-      "La tabla de VENTAS de una empresa ha sido particionada usando como campo de particionamiento la localidad de venta.",
-    options: [
-      "A. Si una consulta especifica una condición sobre el campo localidad, el SGBD puede acelerar la búsqueda lanzando la consulta solo sobre las particiones afectadas.",
-      "B. Si una consulta especifica una condición sobre un campo diferente de localidad, el SGBD no podrá acelerar la búsqueda de ninguna manera.",
-      "C. Las dos respuestas anteriores son correctas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "recopilatorio-mayo-2026_09",
-    examId: "recopilatorio-mayo-2026",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question: "Transacciones:",
-    options: [
-      "A. El resultado final de la ejecución de dos planificaciones serializables sobre las mismas transacciones siempre es el mismo.",
-      "B. Toda planificación serie es serializable.",
-      "C. Ninguna de las dos respuestas anteriores es correcta.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "recopilatorio-mayo-2026_10",
-    examId: "recopilatorio-mayo-2026",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question: "En el protocolo de bloqueo riguroso de dos fases:",
-    options: [
-      "A. Los bloqueos solo se pueden adquirir en el instante en que la transacción empieza y no se liberan hasta que la transacción termina.",
-      "B. Los bloqueos se pueden adquirir durante toda la transacción y se liberan cuando la transacción termina.",
-      "C. Hay una fase de crecimiento que dura mientras solo se adquieren bloqueos. La fase de decrecimiento comienza con la primera liberación de un bloqueo en cualquier momento de la transacción; a partir de ese momento, ya no se pueden adquirir más bloqueos.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "recopilatorio-mayo-2026_11",
-    examId: "recopilatorio-mayo-2026",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question:
-      "En relación al método esquema multiversión para control de concurrencia ...",
-    options: [
-      "A. Las escrituras no siempre tienen éxito (y puede ser necesario retroceder una transacción).",
-      "B. Las lecturas pueden tardar demasiado por quedarse esperando.",
-      "C. Las dos respuestas anteriores son correctas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "recopilatorio-mayo-2026_12",
-    examId: "recopilatorio-mayo-2026",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question: `Dadas las siguientes sentencias:
-
-\`\`\`sql
-CREATE ROLE accesoBronce
-CREATE ROLE accesoPlata
-CREATE ROLE accesoOro
-GRANT SELECT ON ventas TO accesoBronce
-GRANT UPDATE ON ventas TO accesoPlata
-GRANT INSERT, DELETE ON ventas TO accesoOro
-GRANT accesoBronce TO accesoPlata
-GRANT accesoPlata TO "Ramón"
-GRANT accesoBronce TO "Luisa"
-\`\`\`
-
-¿Cuál de las siguientes afirmaciones es cierta?`,
-    options: [
-      "A. Ramón puede realizar actualizaciones sobre la tabla ventas, pero no consultas.",
-      "B. Luisa puede realizar consultas sobre la tabla ventas, pero no actualizaciones.",
-      "C. Las dos respuestas anteriores son correctas.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "recopilatorio-mayo-2026_13",
-    examId: "recopilatorio-mayo-2026",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question: `Dada la siguiente sentencia de inserción de datos:
-
-\`\`\`sql
-INSERT INTO emp (ename, job, empno, hiredate, deptno) VALUES
-('Adrián', 'Manager', 2002, '24/07/23', NULL);
-\`\`\`
-
-Y suponiendo que la tabla \`emp\` se ha definido de la siguiente forma:
-
-\`\`\`sql
-CREATE TABLE emp (
-  empno NUMERIC(4) CONSTRAINT PK_emp PRIMARY KEY,
-  ename VARCHAR(15) NOT NULL,
-  hiredate DATE NOT NULL,
-  job VARCHAR(15) NOT NULL,
-  sal NUMERIC(7,2) NOT NULL DEFAULT 1400,
-  comm NUMERIC(7,2),
-  mgr NUMERIC(4) REFERENCES emp (empno),
-  deptno NUMERIC(2) REFERENCES departamento (deptno)
-);
-\`\`\`
-
-¿Cuál de las siguientes afirmaciones es cierta?`,
-    options: [
-      "A. La inserción producirá un error porque el orden de las columnas en la sentencia no coincide con el orden de las columnas en la tabla.",
-      "B. La inserción producirá un error asociado a la columna deptno.",
-      "C. La inserción se realizará correctamente.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "recopilatorio-mayo-2022_01",
-    examId: "recopilatorio-mayo-2022",
-    topic: "modelado-normalizacion",
-    type: "text",
-    points: 2,
-    question: `Modelo entidad-relación.
-
-Dibuja el diagrama entidad-relación que modela el minimundo que se describe a continuación.
-
-Debes identificar claramente las entidades fuertes y débiles (identificando también como débil el tipo de relación que se establece entre ellas), todos los atributos e identificadores de los tipos de entidad, y los atributos, cardinalidad y participación de los tipos de relación, utilizando la notación utilizada en clase (no uses la notación mínimos-máximos).
-
-Queremos diseñar la base de datos de una cadena de supermercados. De cada supermercado almacenamos un código único, nombre, dirección y teléfonos.
-
-Almacenamos información del personal del supermercado. De cada empleado almacenamos el NSS, el nombre, la dirección, la fecha de nacimiento, el número de teléfono y el correo electrónico. En un momento dado, en cada supermercado trabajan varios empleados; y cada empleado está destinado a un solo supermercado y ocupa un solo puesto (reponedor, cajero, carnicero, etc.). Pero debemos poder consultar no solo el personal actual de cada supermercado, sino también el personal del supermercado en cualquier momento en el pasado. Y, para cada empleado, debemos poder consultar el puesto que ocupó en cada uno de los períodos que trabajó. Por ejemplo, el empleado con NSS 34555333Z puede trabajar:
-
-- En el supermercado SUP-1 del 07/01/20 al 07/08/20 como reponedor.
-- Del 08/08/20 al 01/07/22 en el supermercado SUP-99 de supervisor.
-- Desde el 01/07/22 a la fecha vuelve a laborar en el SUP-1 como supervisor.
-
-Como puedes ver, puede trabajar en el mismo supermercado durante varios períodos de tiempo, con el mismo trabajo o con otro diferente.
-
-Necesitamos almacenar los productos a la venta, que son iguales en todos los supermercados. De cada producto almacenamos un código único, nombre y precio de venta actual. Aunque los productos pueden cambiar de precio incluso dentro del mismo día, sólo almacenamos el precio que tiene actualmente.
-
-Cada cierto tiempo aparecen promociones (válidas para todos los supermercados) que incluyen obsequios por la compra de determinados productos. Para cada promoción queremos guardar su código (diferente para cada promoción), nombre y fechas de inicio y finalización del período en el que se aplica. También queremos registrar los productos específicos incluidos en la promoción, y el regalo específico asociado a cada uno de ellos (que puede cambiar de promoción a promoción, y en una misma promoción puede ser diferente para cada producto). Por ejemplo, en la promoción "Verano 2021" (vigente del 01/07/2021 al 31/07/2021), el producto "Yogures Maldonado Pack 4" tenía asociado el regalo "Álbum de cromos", mientras que "Gaseosa espirituosa" tenía asociado el regalo "Bolsa de playa". Y en la promoción "Otoño 2021" (del 10/01/2021 al 15/10/2021), "Gaseosa espirituosa" cambió de regalo: pasó a ser "Copa e cristal"; y "Yogures Maldonado Pack 4" ya no formaba parte de la promoción.
-
-De cada venta a un cliente guardamos información sobre la factura simplificada (o tique de compra). Cada factura simplificada se genera en un supermercado y tiene un número único (dentro de todas las facturas simplificadas de todos los supermercados de la cadena), una fecha y una hora.
-
-La factura debe incluir la lista de productos y el número de unidades de cada producto. Observa que dependiendo de cómo coloque el cliente los productos en la cinta de la caja, puede que el cajero pase un producto al principio del proceso, pase otros productos, y cuando lleguen al final, haya más unidades del mismo producto. Es decir, dentro de la factura simplificada A-0001 pueden aparecer:
-
-- 4 unidades del producto X-0034.
-- 5 unidades del producto C-0001.
-- 2 unidades del producto X-0034 (que ya aparecía en la primera línea).
-
-En la factura simplificada deben figurar las dos líneas de producto diferenciadas X-0034. Para diferenciar líneas dentro de la misma factura simplificada, puedes usar un número de línea dentro de la factura simplificada, que comienza en 1 en cada factura simplificada.
-
-De cada línea hay que saber el producto, el número de unidades, el precio del producto activo en el momento de la creación de la factura simplificada y el subtotal, es decir, el número de unidades por el precio del producto.
-
-Importante: ten en cuenta que en la información del producto sólo mantenemos el precio actual del producto, mientras que para cada línea de una factura necesitamos saber el precio del producto en el momento en que se generó la factura simplificada.
-
-Finalmente, para cada factura simplificada necesitamos saber el importe total.
-
-Avisos: no inventes atributos ni tipos de relaciones; no inventes códigos para identificar entidades; si algún dato puede calcularse, represéntalo igualmente como atributo derivado; evita almacenar información duplicada.`,
-    correctAnswer: "Solución modelo no disponible.",
-  },
-  {
-    id: "recopilatorio-mayo-2022_02",
-    examId: "recopilatorio-mayo-2022",
-    topic: "modelado-normalizacion",
-    type: "text",
-    points: 0.75,
-    question:
-      "Paso relacional. Transforma el siguiente diagrama ER al esquema relacional equivalente (los esquemas de relación correspondientes al diagrama ER), indicando claramente las claves primarias y representando gráficamente (con flechas) las restricciones de integridad referencial existentes. Utiliza la notación vista en clase.",
-    image: getImage(imageMap, "recopilatorio-mayo-2022-paso-relacional.png"),
-    correctAnswer: "Solución modelo no disponible.",
-  },
-  {
-    id: "recopilatorio-mayo-2022_03",
-    examId: "recopilatorio-mayo-2022",
-    topic: "modelado-normalizacion",
-    type: "text",
-    points: 1.25,
-    question: `Normalización.
-
-**a) Dependencias funcionales [0.4 p]**
-
-Un sitio web de información cinematográfica recopila información sobre diferentes películas, el género cinematográfico al que corresponden y el director/a (o directores/as) de dichas películas.
-
-Considera la relación universal vinculada a la base de datos del sitio web, en la que cada tupla vincula a un director/a con una película de las dirigidas por él/ella:
-
-\`\`\`
-Dirigido(codP, títuloP, añoP, codG, nomG, aptoG, codD, nomD, paisD)
-\`\`\`
-
-Descripción resumida de atributos: \`codP\` identifica una película; \`tituloP\` no es único; cada película tiene un único año de estreno y un único género; \`codG\` identifica el género; \`nomG\` es único por género; \`aptoG\` indica si el género es adecuado para público infantil; \`codD\` identifica un director/a; cada director/a tiene un nombre y un único país; una película puede tener varios directores/as y un director/a puede dirigir varias películas.
-
-Indica el conjunto de dependencias funcionales completas que se producen en \`Dirigido\`.
-
-**b) Forma normal y claves [0.25 p]**
-
-Una compañía telefónica almacena información sobre recibos de consumo de datos de teléfonos móviles con contrato en vigor:
-
-\`\`\`
-Recibo(numTelefono, fechaIniContrato, tipoTarifa, nombreTarifa, precioTarifa, nifUsu, nombreUsu, dirección, fechaRecibo, consumo, importeTotal)
-\`\`\`
-
-Dependencias funcionales completas asociadas a \`Recibo\`:
-
-1. \`nifUsu -> nombreUsu, dirección\`
-2. \`tipoTarifa -> nombreTarifa, precioTarifa\`
-3. \`nombreTarifa -> tipoTarifa, precioTarifa\`
-4. \`numTelefono -> nifUsu, nombreUsu, dirección, fechaIniContrato, tipoTarifa\`
-5. \`numTelefono, fechaRecibo -> consumo, importeTotal\`
-
-Indica la/s clave/s candidata/s que existen y la forma normal en que está \`Recibo\`. Puedes suponer que, como mínimo, está en 1FN.
-
-**c) Descomposición [0.6 p]**
-
-Descompón \`Recibo\` hasta encontrar una descomposición donde no se pierda información y todas las relaciones estén en FNBC. Escribe el resultado final con los esquemas de las relaciones, claves candidatas y dependencias funcionales completas de cada una.`,
-    correctAnswer: "Solución modelo no disponible.",
-  },
-  {
-    id: "recopilatorio-mayo-2022_04",
-    examId: "recopilatorio-mayo-2022",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question:
-      "Si queremos realizar una lectura secuencial de un fichero, ¿qué es más beneficioso?",
-    options: [
-      "A. Usar un tamaño de bloque físico grande.",
-      "B. Usar un tamaño de bloque físico pequeño.",
-      "C. El tamaño de bloque físico no es relevante puesto que se van a leer todos los registros.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "recopilatorio-mayo-2022_05",
-    examId: "recopilatorio-mayo-2022",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question:
-      "En una estructura de bloques con slots (o estrategia slotted-page), ¿qué es cierto?",
-    options: [
-      "A. Se almacenan registros de tamaño fijo que se insertan rellenando el hueco de otro registro previamente borrado.",
-      "B. Cada bloque está compuesto por varios slots, y cada uno de ellos puede ser transferido a memoria independientemente de los demás.",
-      "C. El número de registros que caben como máximo en cada bloque es variable, puesto que se almacenan registros de tamaño variable.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "recopilatorio-mayo-2022_06",
-    examId: "recopilatorio-mayo-2022",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question:
-      "Hash extensible: borramos el registro L en este fichero, conservando el J. ¿Qué valor tendrán después d y d' (para el bloque que contenga J)?",
-    image: getImage(imageMap, "recopilatorio-mayo-2022-hash-extensible.png"),
-    options: ["A. d=3, d'=3", "B. d=2, d'=2", "C. d=3, d'=2"],
-    correctAnswer: "b",
-  },
-  {
-    id: "recopilatorio-mayo-2022_07",
-    examId: "recopilatorio-mayo-2022",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question: "En un árbol homogéneo...",
-    options: [
-      "A. Cada nodo posee dos tipos de punteros.",
-      "B. Las búsquedas siempre llegan a nivel de nodos hoja.",
-      "C. Las dos respuestas anteriores son correctas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "recopilatorio-mayo-2022_08",
-    examId: "recopilatorio-mayo-2022",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question:
-      "En la tabla `PEDIDO(código, fecha, producto, marca, sección, unidades)`, que físicamente se guarda en un fichero montículo (heap), hay almacenadas miles de tuplas, pero nunca hay más de dos o tres tuplas que compartan el mismo valor del campo fecha. ¿Crearías un índice sobre el atributo fecha?",
-    options: [
-      "A. No, el índice puede que no ayude mucho en las búsquedas por el atributo fecha, e incluso puede que las empeore.",
-      "B. Sí, el índice ayudará en operaciones de búsqueda sobre el campo fecha.",
-      "C. El índice sería incorrecto y no sería útil para ningún tipo de búsqueda.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "recopilatorio-mayo-2022_09",
-    examId: "recopilatorio-mayo-2022",
-    topic: "ficheros",
-    type: "mc",
-    points: 0.2,
-    question:
-      "Árboles B: si insertamos el valor 30 en este árbol, con d=1, ¿qué valor/es almacenará el nodo que ahora contiene el valor 17?",
-    image: getImage(imageMap, "recopilatorio-mayo-2022-arbol-b.png"),
-    options: ["A. 17", "B. 17 y 20", "C. 17 y 25"],
-    correctAnswer: "c",
-  },
-  {
-    id: "recopilatorio-mayo-2022_10",
-    examId: "recopilatorio-mayo-2022",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question: "El protocolo de bloqueo riguroso de dos fases:",
-    options: [
-      "A. Especifica que se tienen que adquirir todos los bloqueos justo en el momento de comenzar la transacción.",
-      "B. Especifica que se tienen que liberar todos los bloqueos justo en el momento de terminar la transacción.",
-      "C. Las dos respuestas anteriores son correctas.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "recopilatorio-mayo-2022_11",
-    examId: "recopilatorio-mayo-2022",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question: "Transacciones:",
-    options: [
-      "A. Una ejecución concurrente de dos transacciones es siempre correcta si ambas usan bloqueos de lectura/escritura para acceder a los datos que necesitan.",
-      "B. Para que una ejecución concurrente de dos transacciones se considere correcta debe producir el mismo resultado final que alguna planificación serie de ambas transacciones.",
-      "C. Las dos respuestas anteriores son correctas.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "recopilatorio-mayo-2022_12",
-    examId: "recopilatorio-mayo-2022",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question:
-      "Si en una transacción se produce el problema de la lectura fantasma:",
-    options: [
-      "A. Quiere decir que se hace una lectura que no devuelve ningún dato, cuando realmente sí que había datos en la base de datos que deberían haber aparecido en el resultado de la consulta.",
-      "B. Quiere decir que se hace una consulta, y el valor devuelto de un dato es demasiado viejo (hay una versión más actualizada de ese dato).",
-      "C. Quiere decir que durante la transacción se hace dos veces la misma consulta, y en la segunda ocasión se recupera un número de filas diferente a la primera vez que se ejecutó la consulta (sin que la transacción haya hecho ninguna actualización que pueda haber dado lugar a ese cambio).",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "recopilatorio-mayo-2022_13",
-    examId: "recopilatorio-mayo-2022",
-    topic: "recuperacion-concurrencia",
-    type: "mc",
-    points: 0.2,
-    question: `Supongamos el siguiente ejemplo de utilización de esquema de multiversión para control de concurrencia. ¿Qué ocurrirá si una transacción, cuya marca temporal asociada es 2, quiere escribir el dato X?
-
-| Versión X | ML | ME |
-| --- | --- | --- |
-| Q1 | 4 | 1 |`,
-    options: [
-      "A. El contenido de la versión Q1 será sobrescrito.",
-      "B. Se creará una nueva versión Q2.",
-      "C. La transacción será abortada.",
-    ],
-    correctAnswer: "c",
-  },
 ];

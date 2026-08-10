@@ -15,7 +15,578 @@ void imageMap;
 void getImage;
 
 export const questions: Question[] = [
+
   // ================================================================
+  // Exam Enero 2022
+  // ================================================================
+
+  // --- Tema 1 y 2: Introducción y Elementos Básicos de la OO ---
+  {
+    id: "2022_q1",
+    examId: "2022-01",
+    topic: "intro-y-objetos",
+    type: "mc",
+    points: 1,
+    question: `Dada la función countChar() en la que pretendemos contar el número de veces que un determinado carácter aparece en un String. ¿Qué error hemos cometido en su implementación?
+
+\`\`\`java
+public static int countChar(String text, char c) {
+    int sum = 0;
+    for (int i = 0; i < text.length(); i++) {
+        if (text.charAt(i) == c)
+            sum++;
+    }
+    return sum;
+}
+\`\`\``,
+    options: [
+      "A. No comprobamos que text pueda ser null, lo que provocará NullPointerException.",
+      "B. Comparamos caracteres con == cuando deberíamos usar .equals().",
+      "C. El bucle lanza StringIndexOutOfBoundsException al salirse del rango.",
+      "D. No hay ningún error y el código compila y funciona correctamente.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Si text es null, text.length() lanzará NullPointerException. Los char se comparan correctamente con == (son tipos primitivos). El bucle usa i < text.length() que es correcto.",
+  },
+  {
+    id: "2022_q2",
+    examId: "2022-01",
+    topic: "intro-y-objetos",
+    type: "mc",
+    points: 1,
+    question: `Dada la clase Box que NO redefine equals, ¿cuál es el resultado de compilar y ejecutar?
+
+\`\`\`java
+public class Box {
+    private int value;
+    public Box(int value) { this.value = value; }
+}
+Box x = new Box(7);
+Box y = new Box(7);
+if (x == y) System.out.println("Identical");
+else System.out.println("NOT Identical");
+if (x.equals(y)) System.out.println("Equal");
+else System.out.println("NOT Equal");
+\`\`\``,
+    options: [
+      'A. Imprime "Identical" y "Equal"',
+      'B. Imprime "NOT Identical" y "Equal"',
+      'C. Imprime "Identical" y "NOT Equal"',
+      'D. Imprime "NOT Identical" y "NOT Equal"',
+    ],
+    correctAnswer: "d",
+    explanation:
+      "x e y son objetos distintos (referencias diferentes) → == da false (NOT Identical). equals() no está sobreescrito, hereda el de Object que compara referencias → también false (NOT Equal).",
+  },
+  {
+    id: "2022_q3",
+    examId: "2022-01",
+    topic: "intro-y-objetos",
+    type: "mc",
+    points: 1,
+    question:
+      "Comparado con la visibilidad public, protected y private de Java, el especificador de visibilidad por defecto (package) es...",
+    options: [
+      "A. Menos restrictivo que public.",
+      "B. Más restrictivo que public, pero menos restrictivo que protected.",
+      "C. Más restrictivo que protected, pero menos restrictivo que private.",
+      "D. Más restrictivo que private.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "Jerarquía de visibilidad (de menos a más restrictiva): public > protected > package > private. Package es más restrictivo que protected (no visible en subclases de otros paquetes) pero menos que private.",
+  },
+  {
+    id: "2022_q4",
+    examId: "2022-01",
+    topic: "intro-y-objetos",
+    type: "mc",
+    points: 1,
+    question: `Dada el interfaz OperationInterface y el enumerado Operation, indica cuál de las siguientes sentencias es cierta:
+
+\`\`\`java
+interface OperationInterface {
+    double calculate(double first, double second);
+}
+public enum Operation implements OperationInterface {
+    PLUS { public double calculate(double x, double y){return x + y;} },
+    MINUS { public double calculate(double x, double y){return x - y;} },
+    TIMES { public double calculate(double x, double y){return x * y;} },
+    DIVIDE { public double calculate(double x, double y){return x / y;} };
+}
+\`\`\``,
+    options: [
+      "A. No es correcto porque un enumerado no puede implementar interfaces.",
+      "B. No es correcto porque un enumerado puede implementar interfaces pero solo si no incluyen métodos abstractos.",
+      "C. No es correcto, solo debería haber una única implementación de calculate con un switch.",
+      "D. El código es correcto.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "El código es correcto. Los enumerados en Java pueden implementar interfaces, y cada constante puede proporcionar su propia implementación de los métodos abstractos del interfaz.",
+  },
+  {
+    id: "2022_q5",
+    examId: "2022-01",
+    topic: "intro-y-objetos",
+    type: "mc",
+    points: 1,
+    question: `Dado el registro de Java definido a continuación, señala la falsa:
+
+\`\`\`java
+public record Box(int value) { }
+\`\`\``,
+    options: [
+      "A. Box incluye un constructor público Box(int value).",
+      "B. Box incluye implementaciones para equals y hashCode basados en value.",
+      "C. Box incluye un método getValue() y un método setValue(int value) sobre value.",
+      "D. Box incluye una implementación de toString() que devuelve una representación en String de todos los atributos.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "C es falsa. Los records en Java son inmutables. Generan automáticamente un método de acceso value() (no getValue()) pero NO generan setters. Los campos de un record son final.",
+  },
+
+  // --- Tema 3: Propiedades Básicas de la OO ---
+  {
+    id: "2022_q6",
+    examId: "2022-01",
+    topic: "propiedades-oo",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes sentencias sobre clases abstractas es cierta?",
+    options: [
+      "A. Una clase abstracta debe tener definido al menos un método abstracto.",
+      "B. Una clase abstracta puede contener métodos NO abstractos.",
+      "C. Una clase abstracta no puede tener constructores porque no se pueden crear instancias con new.",
+      "D. Una clase abstracta puede tener atributos, pero serán implícitamente public, static y final (constantes).",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "B es cierta. Una clase abstracta puede tener métodos concretos (no abstractos). No necesita tener métodos abstractos. Puede tener constructores (llamados desde subclases). Los atributos no son implícitamente estáticos ni finales.",
+  },
+  {
+    id: "2022_q7",
+    examId: "2022-01",
+    topic: "propiedades-oo",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de estas afirmaciones sobre la sobrecarga paramétrica es falsa?",
+    options: [
+      "A. Es muy usada en constructores para ofrecer distintas maneras de crear objetos.",
+      "B. Es posible sobrecargar métodos heredados de superclases.",
+      "C. Se considera un tipo de polimorfismo aparente (ad hoc).",
+      "D. Sobrecargar un método requiere el uso de la anotación @Overload para que compile.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "D es falsa. No existe la anotación @Overload en Java. La sobrecarga no requiere ninguna anotación especial; el compilador distingue métodos sobrecargados por su firma (nombre + parámetros).",
+  },
+  {
+    id: "2022_q8",
+    examId: "2022-01",
+    topic: "propiedades-oo",
+    type: "mc",
+    points: 1,
+    question: "¿Soporta Java duck typing (tipado del pato)?",
+    options: [
+      "A. Sí, porque Java es un lenguaje con tipado dinámico.",
+      "B. Sí, a través del uso de clases abstractas.",
+      "C. Depende del número en concreto, a veces sí y a veces no.",
+      "D. No, porque Java es un lenguaje con tipado estático.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Java no soporta duck typing porque es un lenguaje con tipado estático. El duck typing ('si camina como pato y suena como pato, es un pato') es propio de lenguajes dinámicos donde el tipo se determina por los métodos disponibles en tiempo de ejecución.",
+  },
+  {
+    id: "2022_q9",
+    examId: "2022-01",
+    topic: "propiedades-oo",
+    type: "mc",
+    points: 1,
+    question: `comparable es un interfaz del API de Java. La clase SomeClass alberga un parámetro de tipo T genérico e implementa Comparable para usar compareTo. ¿Cómo modificarías la línea 1 para que implemente correctamente Comparable?
+
+\`\`\`java
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+public class SomeClass { // línea 1
+    public T value;
+    @Override
+    public int compareTo(T o) { /* ... */ }
+}
+\`\`\``,
+    options: [
+      "A. public class SomeClass implements Comparable",
+      "B. public class SomeClass<T> implements Comparable",
+      "C. public class SomeClass implements Comparable<T>",
+      "D. public class SomeClass<T> implements Comparable<T>",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "La clase usa T sin declararlo. Debe declarar el parámetro de tipo <T> y pasarlo al interfaz Comparable<T>. La opción D es correcta: SomeClass<T> implements Comparable<T>.",
+  },
+  {
+    id: "2022_q10",
+    examId: "2022-01",
+    topic: "propiedades-oo",
+    type: "mc",
+    points: 1,
+    question: `Dado el siguiente código, ¿cuál es el resultado de compilarlo y ejecutarlo?
+
+\`\`\`java
+interface Flyable { void fly(); }
+abstract class Bird implements Flyable {
+    public void fly() { System.out.println("Default fly"); }
+}
+class Chicken extends Bird {
+    public void fly() { System.out.print("Cannot fly"); };
+}
+class BirdsFarm {
+    public static void main(String[] args) {
+        Bird b = new Chicken();
+        Flyable f = b;
+        f.fly();
+    }
+}
+\`\`\``,
+    options: [
+      'A. Muestra "Default fly".',
+      'B. Muestra "Cannot fly".',
+      "C. Error de compilación: no podemos meter un Chicken en una variable Flyable.",
+      "D. Error de ejecución: fly() está sin implementar y lanza excepción.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      'Muestra "Cannot fly". La ligadura dinámica usa el tipo real del objeto (Chicken), no el tipo de la variable (Flyable). Chicken sobrescribe fly(), por lo que se ejecuta su versión.',
+  },
+
+  // --- Tema 4: UML ---
+  {
+    id: "2022_q11",
+    examId: "2022-01",
+    topic: "uml",
+    type: "mc",
+    points: 1,
+    question:
+      "En UML, cuando el nombre de un método aparece subrayado, significa que ese método es...",
+    options: ["A. público", "B. estático", "C. final", "D. abstracto"],
+    correctAnswer: "b",
+    explanation:
+      "En UML, el subrayado indica que un elemento es estático (pertenece a la clase, no a las instancias). Para métodos abstractos se usa cursiva.",
+  },
+  {
+    id: "2022_q12",
+    examId: "2022-01",
+    topic: "propiedades-oo",
+    type: "mc",
+    points: 1,
+    question:
+      'En la asignatura hemos visto tres cosas llamadas "Composición". Indica la falsa.',
+    options: [
+      "A. La composición orientada a objetos que define relaciones TIENE_UN cuando un objeto contiene otros objetos.",
+      "B. La composición UML que define relaciones todo-parte con pertenencia fuerte.",
+      "C. El principio de composición que indica que es mejor tener un objeto compuesto de otros objetos pequeños y no un objeto compuesto de otro objeto grande.",
+      "D. El patrón composición que se utiliza para componer objetos en estructuras de árbol que representan jerarquías todo-parte.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "C es falsa. El principio es 'Favorecer composición sobre herencia' (Composition over Inheritance), que indica que es mejor componer objetos delegando comportamiento que heredar de una gran jerarquía de clases. No se trata del tamaño de los objetos.",
+  },
+  {
+    id: "2022_q13",
+    examId: "2022-01",
+    topic: "uml",
+    type: "mc",
+    points: 1,
+    question:
+      "Dado el siguiente diagrama de secuencia, ¿cuál de las siguientes afirmaciones es falsa?",
+    image: getImage(imageMap, "2022-q13-secuencia.jpeg"),
+    options: [
+      "A. La caja KeyUser representa a un objeto asociado a una línea discontinua que representa su línea de vida.",
+      "B. El fragmento con el operador ref indica interacciones definidas en otro lugar.",
+      "C. El fragmento con el operador opt indica una interacción opcional que solo ocurre si la guardia es cierta.",
+      "D. setPrivateKey() y setForeignKey() son operaciones definidas en la clase KeyUser.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "D es falsa. setPrivateKey() y setForeignKey() son probablemente métodos de otra clase (Gatekeeper), no de KeyUser. KeyUser recibe estos mensajes como destino.",
+  },
+  {
+    id: "2022_q14",
+    examId: "2022-01",
+    topic: "uml",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál es la implementación correcta del siguiente diagrama de clases UML?",
+    image: getImage(imageMap, "2022-q14-clases.jpeg"),
+    options: ["A.", "B.", "C.", "D."],
+    correctAnswer: "a",
+    explanation:
+      "La implementación correcta corresponde a la opción A, que implementa fielmente las relaciones mostradas en el diagrama de clases.",
+    explanationImage: getImage(imageMap, "2022-q14-opciones.jpeg"),
+  },
+  {
+    id: "2022_q15",
+    examId: "2022-01",
+    topic: "uml",
+    type: "mc",
+    points: 1,
+    question:
+      "Dado el siguiente diagrama de estados de una calculadora, indica cuál de las siguientes afirmaciones es falsa:",
+    image: getImage(imageMap, "2022-q15-estados.jpeg"),
+    options: [
+      "A. Cuando se inicia la calculadora, esta está en el estado Off.",
+      "B. En cualquier momento y estado, si ocurre el evento Off button la calculadora pasará al estado Off.",
+      "C. Si la calculadora está en Off y sucede Clear-On button, pasará al estado Entering Operand.",
+      "D. Transitaremos del estado Entering Operand al estado Equals entered si ocurre cualquiera de: Equals button, read operand o execute operation.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "D es falsa. No se transita al estado Equals entered con read operand ni execute operation. La transición a Equals entered solo ocurre con Equals button. Read operand y execute operation llevan a otros estados.",
+  },
+
+  // --- Tema 5: Principios de Diseño ---
+  {
+    id: "2022_q16",
+    examId: "2022-01",
+    topic: "principios-diseno",
+    type: "mc",
+    points: 1,
+    question:
+      "El Principio de Responsabilidad Única indica que... (señala la falsa)",
+    options: [
+      "A. Cada objeto debe tener una responsabilidad única enteramente encapsulada en la clase.",
+      "B. La clase deberá tener solo una razón para cambiar.",
+      "C. El objetivo es crear clases con baja cohesión.",
+      "D. Hay que evitar las clases Dios que lo hacen todo en un programa.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "C es falsa. El SRP busca clases con ALTA cohesión, no baja. Una clase con una única responsabilidad tiene alta cohesión interna.",
+  },
+  {
+    id: "2022_q17",
+    examId: "2022-01",
+    topic: "principios-diseno",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Qué principio SOLID incumplen las nuevas clases selladas (sealed classes) de Java?",
+    options: [
+      "A. Principio de Responsabilidad Única.",
+      "B. Principio Abierto-Cerrado.",
+      "C. Principio de Sustitución de Liskov.",
+      "D. Principio de Inversión de la Dependencia.",
+      "E. Principio de Segregación de Interfaces.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Incumplen el Principio Abierto-Cerrado (OCP). Las sealed classes restringen qué clases pueden extenderlas, limitando la extensibilidad. El OCP dice que las clases deben estar abiertas a extensión pero cerradas a modificación.",
+  },
+  {
+    id: "2022_q18",
+    examId: "2022-01",
+    topic: "principios-diseno",
+    type: "mc",
+    points: 1,
+    question: `En el siguiente código, a Client se le inyecta una dependencia mediante Service (que es un interfaz implementado por distintas clases). ¿Qué principio SOLID estamos siguiendo?
+
+\`\`\`java
+public class Client {
+    private Service service;
+    Client(Service service) { this.service = service; }
+    public void setService(Service service) { this.service = service; }
+    public String greet() { return "Hello " + service.getName(); }
+}
+\`\`\``,
+    options: [
+      "A. Principio de Responsabilidad Única.",
+      "B. Principio Abierto-Cerrado.",
+      "C. Principio de Sustitución de Liskov.",
+      "D. Principio de Inversión de la Dependencia.",
+      "E. Principio de Segregación de Interfaces.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Principio de Inversión de la Dependencia (DIP). Client depende de la abstracción Service (interfaz), no de implementaciones concretas. La dependencia se inyecta desde fuera (constructor/setter injection).",
+  },
+  {
+    id: "2022_q19",
+    examId: "2022-01",
+    topic: "principios-diseno",
+    type: "mc",
+    points: 1,
+    question:
+      '"Una precondición solo puede sustituirse por otra precondición más débil y una postcondición solo puede sustituirse por otra postcondición más fuerte". Esta afirmación corresponde al...',
+    options: [
+      "A. Principio de Subcontratación.",
+      "B. Principio de Inversión de la Dependencia.",
+      "C. Principio de Responsabilidad Única.",
+      "D. Principio Abierto-Cerrado.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Principio de Subcontratación (Design by Contract). Es una extensión del LSP que formaliza que las subclases deben aceptar precondiciones más débiles (requieren menos) y garantizar postcondiciones más fuertes (ofrecen más).",
+  },
+  {
+    id: "2022_q20",
+    examId: "2022-01",
+    topic: "principios-diseno",
+    type: "mc",
+    points: 1,
+    question: `Dadas las clases Person y ManageClient, ¿qué principio de diseño está incumpliendo ManageClient en clientFullName()?
+
+\`\`\`java
+public class Person {
+    public String name;
+    public String middleName;
+    public String surname;
+}
+public class ManageClient {
+    private final Person person;
+    public ManageClient(Person person) { this.person = person; }
+    public String clientFullName() {
+        return person.name + " " + person.middleName + " " + person.surname;
+    }
+}
+\`\`\``,
+    options: [
+      "A. Principio de Sustitución de Liskov",
+      "B. Principio Abierto-Cerrado",
+      "C. Principio de Hollywood",
+      "D. Principio Tell, Don't Ask",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "Tell, Don't Ask. ManageClient accede directamente a los campos de Person para construir el nombre, en lugar de decirle a Person que se lo dé. Debería delegar en un método como person.getFullName(). Person debería encapsular sus datos.",
+  },
+
+  // --- Tema 6: Patrones de Diseño ---
+  {
+    id: "2022_q21",
+    examId: "2022-01",
+    topic: "patrones-diseno",
+    type: "mc",
+    points: 1,
+    question:
+      "La librería Abstract Window Toolkit (AWT) de Java tiene la siguiente estructura. ¿Qué patrón de diseño representa?",
+    image: getImage(imageMap, "2022-q21-awt.jpeg"),
+    options: [
+      "A. Inmutable",
+      "B. Instancia Única",
+      "C. Estrategia",
+      "D. Estado",
+      "E. Composición",
+      "F. Iterador",
+      "G. Observador",
+      "H. Adaptador",
+      "I. Fachada",
+      "J. Método Factoría",
+      "K. Constructor",
+      "L. Método Plantilla",
+    ],
+    correctAnswer: "e",
+    explanation:
+      "La librería AWT utiliza el patrón Composición. Los componentes gráficos (Container, Panel, Button, etc.) forman una jerarquía de árbol donde un Container puede contener otros componentes (incluyendo otros contenedores), siguiendo el patrón Composite.",
+  },
+  {
+    id: "2022_q22",
+    examId: "2022-01",
+    topic: "patrones-diseno",
+    type: "mc",
+    points: 1,
+    question: "En el push model del patrón Observador... (señala la falsa)",
+    options: [
+      "A. El sujeto manda a los observadores información detallada acerca de lo que ha cambiado.",
+      "B. La comunicación es más eficiente ya que no se fuerza a descubrir a los observadores qué ha cambiado.",
+      "C. Sujeto y observadores no son tan independientes como en el modelo pull.",
+      "D. Es más fácil integrar nuevos observadores con necesidades completamente diferentes que en el modelo pull.",
+    ],
+    correctAnswer: "d",
+    explanation:
+      "D es falsa. En el modelo push, el sujeto envía datos concretos, lo que lo hace más acoplado a las necesidades de los observadores existentes. Integrar nuevos observadores con necesidades diferentes es más difícil porque el sujeto no sabe qué datos necesitarán.",
+  },
+  {
+    id: "2022_q23",
+    examId: "2022-01",
+    topic: "patrones-diseno",
+    type: "mc",
+    points: 1,
+    question:
+      "¿Cuál de las siguientes frases describe correctamente el funcionamiento del patrón Iterator?",
+    options: [
+      "A. Proporciona un modo de acceder secuencialmente a los elementos de un objeto agregado sin exponer su representación interna.",
+      "B. Permite a un objeto modificar su conducta al cambiar su estado interno.",
+      "C. Permite definir una dependencia 'uno a muchos' entre objetos para notificar cambios.",
+      "D. Provee de un interfaz unificado para un conjunto de clases en un subsistema.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "A describe el patrón Iterator. B es Estado, C es Observador, y D es Fachada.",
+  },
+  {
+    id: "2022_q24",
+    examId: "2022-01",
+    topic: "principios-diseno",
+    type: "mc",
+    points: 1,
+    question: `Dado el siguiente código, ¿qué principio de diseño estamos incumpliendo?
+
+\`\`\`java
+public class SongList {
+    private List<Song> songs = new ArrayList<>();
+    private int playingSong;
+    public void insertSong(int index, Song song) {
+        if (index < 0 || index >= songs.size())
+            throw new IllegalArgumentException();
+        songs.add(index, song);
+    }
+    public void removeSong(int index) {
+        if (index < 0 || index >= songs.size())
+            throw new IllegalArgumentException();
+        songs.remove(index);
+    }
+    public void selectPlayingSong(int index) {
+        if (index < 0 || index >= songs.size())
+            throw new IllegalArgumentException();
+        playingSong = index;
+    }
+}
+\`\`\``,
+    options: [
+      "A. DRY",
+      "B. KISS",
+      "C. YAGNI",
+      "D. No incumple ningún principio de Diseño.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Incumple DRY (Don't Repeat Yourself). La comprobación de límites del índice se repite en los tres métodos. Debería extraerse a un método privado como validateIndex(int index).",
+  },
+  {
+    id: "2022_q25",
+    examId: "2022-01",
+    topic: "patrones-diseno",
+    type: "mc",
+    points: 1,
+    question:
+      "Dados los siguientes códigos referentes a patrones de diseño, indica cuál representa el patrón Constructor.",
+    options: [
+      "A. public enum Number {ACE, TWO, THREE, ...} / public enum Suit {SPADES, HEARTS, ...} / public record Card(Number number, Suit suit) {}",
+      "B. public final class Integer extends Number { private int value; ... }",
+      "C. for(Enumeration e = collection.getEnumeration(); e.hasMoreElements(); ) ...",
+      'D. CurrencyConverter cc1 = CurrencyConverter.incomingCurrency("USD").outgoingCurrency("EUR").build(); cc1.convert(50.00);',
+    ],
+    correctAnswer: "d",
+    explanation:
+      "D muestra el patrón Constructor (Builder). Se usa un encadenamiento de métodos (incomingCurrency, outgoingCurrency) que configuran el objeto paso a paso, y build() crea la instancia final. Esto es característico del patrón Builder con fluent API.",
+  },  // ================================================================
   // Exam Enero 2020
   // ================================================================
 
@@ -722,577 +1293,6 @@ public final class RGBColor {
       "Instancia Única (Singleton). El atributo instanciaÚnica y su getter son estáticos porque solo hay una instancia que nunca es instanciada desde fuera. En los demás patrones los métodos mencionados son no estáticos.",
   },
 
-  // ================================================================
-  // Exam Enero 2022
-  // ================================================================
-
-  // --- Tema 1 y 2: Introducción y Elementos Básicos de la OO ---
-  {
-    id: "2022_q1",
-    examId: "2022-01",
-    topic: "intro-y-objetos",
-    type: "mc",
-    points: 1,
-    question: `Dada la función countChar() en la que pretendemos contar el número de veces que un determinado carácter aparece en un String. ¿Qué error hemos cometido en su implementación?
-
-\`\`\`java
-public static int countChar(String text, char c) {
-    int sum = 0;
-    for (int i = 0; i < text.length(); i++) {
-        if (text.charAt(i) == c)
-            sum++;
-    }
-    return sum;
-}
-\`\`\``,
-    options: [
-      "A. No comprobamos que text pueda ser null, lo que provocará NullPointerException.",
-      "B. Comparamos caracteres con == cuando deberíamos usar .equals().",
-      "C. El bucle lanza StringIndexOutOfBoundsException al salirse del rango.",
-      "D. No hay ningún error y el código compila y funciona correctamente.",
-    ],
-    correctAnswer: "a",
-    explanation:
-      "Si text es null, text.length() lanzará NullPointerException. Los char se comparan correctamente con == (son tipos primitivos). El bucle usa i < text.length() que es correcto.",
-  },
-  {
-    id: "2022_q2",
-    examId: "2022-01",
-    topic: "intro-y-objetos",
-    type: "mc",
-    points: 1,
-    question: `Dada la clase Box que NO redefine equals, ¿cuál es el resultado de compilar y ejecutar?
-
-\`\`\`java
-public class Box {
-    private int value;
-    public Box(int value) { this.value = value; }
-}
-Box x = new Box(7);
-Box y = new Box(7);
-if (x == y) System.out.println("Identical");
-else System.out.println("NOT Identical");
-if (x.equals(y)) System.out.println("Equal");
-else System.out.println("NOT Equal");
-\`\`\``,
-    options: [
-      'A. Imprime "Identical" y "Equal"',
-      'B. Imprime "NOT Identical" y "Equal"',
-      'C. Imprime "Identical" y "NOT Equal"',
-      'D. Imprime "NOT Identical" y "NOT Equal"',
-    ],
-    correctAnswer: "d",
-    explanation:
-      "x e y son objetos distintos (referencias diferentes) → == da false (NOT Identical). equals() no está sobreescrito, hereda el de Object que compara referencias → también false (NOT Equal).",
-  },
-  {
-    id: "2022_q3",
-    examId: "2022-01",
-    topic: "intro-y-objetos",
-    type: "mc",
-    points: 1,
-    question:
-      "Comparado con la visibilidad public, protected y private de Java, el especificador de visibilidad por defecto (package) es...",
-    options: [
-      "A. Menos restrictivo que public.",
-      "B. Más restrictivo que public, pero menos restrictivo que protected.",
-      "C. Más restrictivo que protected, pero menos restrictivo que private.",
-      "D. Más restrictivo que private.",
-    ],
-    correctAnswer: "c",
-    explanation:
-      "Jerarquía de visibilidad (de menos a más restrictiva): public > protected > package > private. Package es más restrictivo que protected (no visible en subclases de otros paquetes) pero menos que private.",
-  },
-  {
-    id: "2022_q4",
-    examId: "2022-01",
-    topic: "intro-y-objetos",
-    type: "mc",
-    points: 1,
-    question: `Dada el interfaz OperationInterface y el enumerado Operation, indica cuál de las siguientes sentencias es cierta:
-
-\`\`\`java
-interface OperationInterface {
-    double calculate(double first, double second);
-}
-public enum Operation implements OperationInterface {
-    PLUS { public double calculate(double x, double y){return x + y;} },
-    MINUS { public double calculate(double x, double y){return x - y;} },
-    TIMES { public double calculate(double x, double y){return x * y;} },
-    DIVIDE { public double calculate(double x, double y){return x / y;} };
-}
-\`\`\``,
-    options: [
-      "A. No es correcto porque un enumerado no puede implementar interfaces.",
-      "B. No es correcto porque un enumerado puede implementar interfaces pero solo si no incluyen métodos abstractos.",
-      "C. No es correcto, solo debería haber una única implementación de calculate con un switch.",
-      "D. El código es correcto.",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "El código es correcto. Los enumerados en Java pueden implementar interfaces, y cada constante puede proporcionar su propia implementación de los métodos abstractos del interfaz.",
-  },
-  {
-    id: "2022_q5",
-    examId: "2022-01",
-    topic: "intro-y-objetos",
-    type: "mc",
-    points: 1,
-    question: `Dado el registro de Java definido a continuación, señala la falsa:
-
-\`\`\`java
-public record Box(int value) { }
-\`\`\``,
-    options: [
-      "A. Box incluye un constructor público Box(int value).",
-      "B. Box incluye implementaciones para equals y hashCode basados en value.",
-      "C. Box incluye un método getValue() y un método setValue(int value) sobre value.",
-      "D. Box incluye una implementación de toString() que devuelve una representación en String de todos los atributos.",
-    ],
-    correctAnswer: "c",
-    explanation:
-      "C es falsa. Los records en Java son inmutables. Generan automáticamente un método de acceso value() (no getValue()) pero NO generan setters. Los campos de un record son final.",
-  },
-
-  // --- Tema 3: Propiedades Básicas de la OO ---
-  {
-    id: "2022_q6",
-    examId: "2022-01",
-    topic: "propiedades-oo",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Cuál de las siguientes sentencias sobre clases abstractas es cierta?",
-    options: [
-      "A. Una clase abstracta debe tener definido al menos un método abstracto.",
-      "B. Una clase abstracta puede contener métodos NO abstractos.",
-      "C. Una clase abstracta no puede tener constructores porque no se pueden crear instancias con new.",
-      "D. Una clase abstracta puede tener atributos, pero serán implícitamente public, static y final (constantes).",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "B es cierta. Una clase abstracta puede tener métodos concretos (no abstractos). No necesita tener métodos abstractos. Puede tener constructores (llamados desde subclases). Los atributos no son implícitamente estáticos ni finales.",
-  },
-  {
-    id: "2022_q7",
-    examId: "2022-01",
-    topic: "propiedades-oo",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Cuál de estas afirmaciones sobre la sobrecarga paramétrica es falsa?",
-    options: [
-      "A. Es muy usada en constructores para ofrecer distintas maneras de crear objetos.",
-      "B. Es posible sobrecargar métodos heredados de superclases.",
-      "C. Se considera un tipo de polimorfismo aparente (ad hoc).",
-      "D. Sobrecargar un método requiere el uso de la anotación @Overload para que compile.",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "D es falsa. No existe la anotación @Overload en Java. La sobrecarga no requiere ninguna anotación especial; el compilador distingue métodos sobrecargados por su firma (nombre + parámetros).",
-  },
-  {
-    id: "2022_q8",
-    examId: "2022-01",
-    topic: "propiedades-oo",
-    type: "mc",
-    points: 1,
-    question: "¿Soporta Java duck typing (tipado del pato)?",
-    options: [
-      "A. Sí, porque Java es un lenguaje con tipado dinámico.",
-      "B. Sí, a través del uso de clases abstractas.",
-      "C. Depende del número en concreto, a veces sí y a veces no.",
-      "D. No, porque Java es un lenguaje con tipado estático.",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "Java no soporta duck typing porque es un lenguaje con tipado estático. El duck typing ('si camina como pato y suena como pato, es un pato') es propio de lenguajes dinámicos donde el tipo se determina por los métodos disponibles en tiempo de ejecución.",
-  },
-  {
-    id: "2022_q9",
-    examId: "2022-01",
-    topic: "propiedades-oo",
-    type: "mc",
-    points: 1,
-    question: `comparable es un interfaz del API de Java. La clase SomeClass alberga un parámetro de tipo T genérico e implementa Comparable para usar compareTo. ¿Cómo modificarías la línea 1 para que implemente correctamente Comparable?
-
-\`\`\`java
-public interface Comparable<T> {
-    public int compareTo(T o);
-}
-public class SomeClass { // línea 1
-    public T value;
-    @Override
-    public int compareTo(T o) { /* ... */ }
-}
-\`\`\``,
-    options: [
-      "A. public class SomeClass implements Comparable",
-      "B. public class SomeClass<T> implements Comparable",
-      "C. public class SomeClass implements Comparable<T>",
-      "D. public class SomeClass<T> implements Comparable<T>",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "La clase usa T sin declararlo. Debe declarar el parámetro de tipo <T> y pasarlo al interfaz Comparable<T>. La opción D es correcta: SomeClass<T> implements Comparable<T>.",
-  },
-  {
-    id: "2022_q10",
-    examId: "2022-01",
-    topic: "propiedades-oo",
-    type: "mc",
-    points: 1,
-    question: `Dado el siguiente código, ¿cuál es el resultado de compilarlo y ejecutarlo?
-
-\`\`\`java
-interface Flyable { void fly(); }
-abstract class Bird implements Flyable {
-    public void fly() { System.out.println("Default fly"); }
-}
-class Chicken extends Bird {
-    public void fly() { System.out.print("Cannot fly"); };
-}
-class BirdsFarm {
-    public static void main(String[] args) {
-        Bird b = new Chicken();
-        Flyable f = b;
-        f.fly();
-    }
-}
-\`\`\``,
-    options: [
-      'A. Muestra "Default fly".',
-      'B. Muestra "Cannot fly".',
-      "C. Error de compilación: no podemos meter un Chicken en una variable Flyable.",
-      "D. Error de ejecución: fly() está sin implementar y lanza excepción.",
-    ],
-    correctAnswer: "b",
-    explanation:
-      'Muestra "Cannot fly". La ligadura dinámica usa el tipo real del objeto (Chicken), no el tipo de la variable (Flyable). Chicken sobrescribe fly(), por lo que se ejecuta su versión.',
-  },
-
-  // --- Tema 4: UML ---
-  {
-    id: "2022_q11",
-    examId: "2022-01",
-    topic: "uml",
-    type: "mc",
-    points: 1,
-    question:
-      "En UML, cuando el nombre de un método aparece subrayado, significa que ese método es...",
-    options: ["A. público", "B. estático", "C. final", "D. abstracto"],
-    correctAnswer: "b",
-    explanation:
-      "En UML, el subrayado indica que un elemento es estático (pertenece a la clase, no a las instancias). Para métodos abstractos se usa cursiva.",
-  },
-  {
-    id: "2022_q12",
-    examId: "2022-01",
-    topic: "propiedades-oo",
-    type: "mc",
-    points: 1,
-    question:
-      'En la asignatura hemos visto tres cosas llamadas "Composición". Indica la falsa.',
-    options: [
-      "A. La composición orientada a objetos que define relaciones TIENE_UN cuando un objeto contiene otros objetos.",
-      "B. La composición UML que define relaciones todo-parte con pertenencia fuerte.",
-      "C. El principio de composición que indica que es mejor tener un objeto compuesto de otros objetos pequeños y no un objeto compuesto de otro objeto grande.",
-      "D. El patrón composición que se utiliza para componer objetos en estructuras de árbol que representan jerarquías todo-parte.",
-    ],
-    correctAnswer: "c",
-    explanation:
-      "C es falsa. El principio es 'Favorecer composición sobre herencia' (Composition over Inheritance), que indica que es mejor componer objetos delegando comportamiento que heredar de una gran jerarquía de clases. No se trata del tamaño de los objetos.",
-  },
-  {
-    id: "2022_q13",
-    examId: "2022-01",
-    topic: "uml",
-    type: "mc",
-    points: 1,
-    question:
-      "Dado el siguiente diagrama de secuencia, ¿cuál de las siguientes afirmaciones es falsa?",
-    image: getImage(imageMap, "2022-q13-secuencia.jpeg"),
-    options: [
-      "A. La caja KeyUser representa a un objeto asociado a una línea discontinua que representa su línea de vida.",
-      "B. El fragmento con el operador ref indica interacciones definidas en otro lugar.",
-      "C. El fragmento con el operador opt indica una interacción opcional que solo ocurre si la guardia es cierta.",
-      "D. setPrivateKey() y setForeignKey() son operaciones definidas en la clase KeyUser.",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "D es falsa. setPrivateKey() y setForeignKey() son probablemente métodos de otra clase (Gatekeeper), no de KeyUser. KeyUser recibe estos mensajes como destino.",
-  },
-  {
-    id: "2022_q14",
-    examId: "2022-01",
-    topic: "uml",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Cuál es la implementación correcta del siguiente diagrama de clases UML?",
-    image: getImage(imageMap, "2022-q14-clases.jpeg"),
-    options: ["A.", "B.", "C.", "D."],
-    correctAnswer: "a",
-    explanation:
-      "La implementación correcta corresponde a la opción A, que implementa fielmente las relaciones mostradas en el diagrama de clases.",
-    explanationImage: getImage(imageMap, "2022-q14-opciones.jpeg"),
-  },
-  {
-    id: "2022_q15",
-    examId: "2022-01",
-    topic: "uml",
-    type: "mc",
-    points: 1,
-    question:
-      "Dado el siguiente diagrama de estados de una calculadora, indica cuál de las siguientes afirmaciones es falsa:",
-    image: getImage(imageMap, "2022-q15-estados.jpeg"),
-    options: [
-      "A. Cuando se inicia la calculadora, esta está en el estado Off.",
-      "B. En cualquier momento y estado, si ocurre el evento Off button la calculadora pasará al estado Off.",
-      "C. Si la calculadora está en Off y sucede Clear-On button, pasará al estado Entering Operand.",
-      "D. Transitaremos del estado Entering Operand al estado Equals entered si ocurre cualquiera de: Equals button, read operand o execute operation.",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "D es falsa. No se transita al estado Equals entered con read operand ni execute operation. La transición a Equals entered solo ocurre con Equals button. Read operand y execute operation llevan a otros estados.",
-  },
-
-  // --- Tema 5: Principios de Diseño ---
-  {
-    id: "2022_q16",
-    examId: "2022-01",
-    topic: "principios-diseno",
-    type: "mc",
-    points: 1,
-    question:
-      "El Principio de Responsabilidad Única indica que... (señala la falsa)",
-    options: [
-      "A. Cada objeto debe tener una responsabilidad única enteramente encapsulada en la clase.",
-      "B. La clase deberá tener solo una razón para cambiar.",
-      "C. El objetivo es crear clases con baja cohesión.",
-      "D. Hay que evitar las clases Dios que lo hacen todo en un programa.",
-    ],
-    correctAnswer: "c",
-    explanation:
-      "C es falsa. El SRP busca clases con ALTA cohesión, no baja. Una clase con una única responsabilidad tiene alta cohesión interna.",
-  },
-  {
-    id: "2022_q17",
-    examId: "2022-01",
-    topic: "principios-diseno",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Qué principio SOLID incumplen las nuevas clases selladas (sealed classes) de Java?",
-    options: [
-      "A. Principio de Responsabilidad Única.",
-      "B. Principio Abierto-Cerrado.",
-      "C. Principio de Sustitución de Liskov.",
-      "D. Principio de Inversión de la Dependencia.",
-      "E. Principio de Segregación de Interfaces.",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "Incumplen el Principio Abierto-Cerrado (OCP). Las sealed classes restringen qué clases pueden extenderlas, limitando la extensibilidad. El OCP dice que las clases deben estar abiertas a extensión pero cerradas a modificación.",
-  },
-  {
-    id: "2022_q18",
-    examId: "2022-01",
-    topic: "principios-diseno",
-    type: "mc",
-    points: 1,
-    question: `En el siguiente código, a Client se le inyecta una dependencia mediante Service (que es un interfaz implementado por distintas clases). ¿Qué principio SOLID estamos siguiendo?
-
-\`\`\`java
-public class Client {
-    private Service service;
-    Client(Service service) { this.service = service; }
-    public void setService(Service service) { this.service = service; }
-    public String greet() { return "Hello " + service.getName(); }
-}
-\`\`\``,
-    options: [
-      "A. Principio de Responsabilidad Única.",
-      "B. Principio Abierto-Cerrado.",
-      "C. Principio de Sustitución de Liskov.",
-      "D. Principio de Inversión de la Dependencia.",
-      "E. Principio de Segregación de Interfaces.",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "Principio de Inversión de la Dependencia (DIP). Client depende de la abstracción Service (interfaz), no de implementaciones concretas. La dependencia se inyecta desde fuera (constructor/setter injection).",
-  },
-  {
-    id: "2022_q19",
-    examId: "2022-01",
-    topic: "principios-diseno",
-    type: "mc",
-    points: 1,
-    question:
-      '"Una precondición solo puede sustituirse por otra precondición más débil y una postcondición solo puede sustituirse por otra postcondición más fuerte". Esta afirmación corresponde al...',
-    options: [
-      "A. Principio de Subcontratación.",
-      "B. Principio de Inversión de la Dependencia.",
-      "C. Principio de Responsabilidad Única.",
-      "D. Principio Abierto-Cerrado.",
-    ],
-    correctAnswer: "a",
-    explanation:
-      "Principio de Subcontratación (Design by Contract). Es una extensión del LSP que formaliza que las subclases deben aceptar precondiciones más débiles (requieren menos) y garantizar postcondiciones más fuertes (ofrecen más).",
-  },
-  {
-    id: "2022_q20",
-    examId: "2022-01",
-    topic: "principios-diseno",
-    type: "mc",
-    points: 1,
-    question: `Dadas las clases Person y ManageClient, ¿qué principio de diseño está incumpliendo ManageClient en clientFullName()?
-
-\`\`\`java
-public class Person {
-    public String name;
-    public String middleName;
-    public String surname;
-}
-public class ManageClient {
-    private final Person person;
-    public ManageClient(Person person) { this.person = person; }
-    public String clientFullName() {
-        return person.name + " " + person.middleName + " " + person.surname;
-    }
-}
-\`\`\``,
-    options: [
-      "A. Principio de Sustitución de Liskov",
-      "B. Principio Abierto-Cerrado",
-      "C. Principio de Hollywood",
-      "D. Principio Tell, Don't Ask",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "Tell, Don't Ask. ManageClient accede directamente a los campos de Person para construir el nombre, en lugar de decirle a Person que se lo dé. Debería delegar en un método como person.getFullName(). Person debería encapsular sus datos.",
-  },
-
-  // --- Tema 6: Patrones de Diseño ---
-  {
-    id: "2022_q21",
-    examId: "2022-01",
-    topic: "patrones-diseno",
-    type: "mc",
-    points: 1,
-    question:
-      "La librería Abstract Window Toolkit (AWT) de Java tiene la siguiente estructura. ¿Qué patrón de diseño representa?",
-    image: getImage(imageMap, "2022-q21-awt.jpeg"),
-    options: [
-      "A. Inmutable",
-      "B. Instancia Única",
-      "C. Estrategia",
-      "D. Estado",
-      "E. Composición",
-      "F. Iterador",
-      "G. Observador",
-      "H. Adaptador",
-      "I. Fachada",
-      "J. Método Factoría",
-      "K. Constructor",
-      "L. Método Plantilla",
-    ],
-    correctAnswer: "e",
-    explanation:
-      "La librería AWT utiliza el patrón Composición. Los componentes gráficos (Container, Panel, Button, etc.) forman una jerarquía de árbol donde un Container puede contener otros componentes (incluyendo otros contenedores), siguiendo el patrón Composite.",
-  },
-  {
-    id: "2022_q22",
-    examId: "2022-01",
-    topic: "patrones-diseno",
-    type: "mc",
-    points: 1,
-    question: "En el push model del patrón Observador... (señala la falsa)",
-    options: [
-      "A. El sujeto manda a los observadores información detallada acerca de lo que ha cambiado.",
-      "B. La comunicación es más eficiente ya que no se fuerza a descubrir a los observadores qué ha cambiado.",
-      "C. Sujeto y observadores no son tan independientes como en el modelo pull.",
-      "D. Es más fácil integrar nuevos observadores con necesidades completamente diferentes que en el modelo pull.",
-    ],
-    correctAnswer: "d",
-    explanation:
-      "D es falsa. En el modelo push, el sujeto envía datos concretos, lo que lo hace más acoplado a las necesidades de los observadores existentes. Integrar nuevos observadores con necesidades diferentes es más difícil porque el sujeto no sabe qué datos necesitarán.",
-  },
-  {
-    id: "2022_q23",
-    examId: "2022-01",
-    topic: "patrones-diseno",
-    type: "mc",
-    points: 1,
-    question:
-      "¿Cuál de las siguientes frases describe correctamente el funcionamiento del patrón Iterator?",
-    options: [
-      "A. Proporciona un modo de acceder secuencialmente a los elementos de un objeto agregado sin exponer su representación interna.",
-      "B. Permite a un objeto modificar su conducta al cambiar su estado interno.",
-      "C. Permite definir una dependencia 'uno a muchos' entre objetos para notificar cambios.",
-      "D. Provee de un interfaz unificado para un conjunto de clases en un subsistema.",
-    ],
-    correctAnswer: "a",
-    explanation:
-      "A describe el patrón Iterator. B es Estado, C es Observador, y D es Fachada.",
-  },
-  {
-    id: "2022_q24",
-    examId: "2022-01",
-    topic: "principios-diseno",
-    type: "mc",
-    points: 1,
-    question: `Dado el siguiente código, ¿qué principio de diseño estamos incumpliendo?
-
-\`\`\`java
-public class SongList {
-    private List<Song> songs = new ArrayList<>();
-    private int playingSong;
-    public void insertSong(int index, Song song) {
-        if (index < 0 || index >= songs.size())
-            throw new IllegalArgumentException();
-        songs.add(index, song);
-    }
-    public void removeSong(int index) {
-        if (index < 0 || index >= songs.size())
-            throw new IllegalArgumentException();
-        songs.remove(index);
-    }
-    public void selectPlayingSong(int index) {
-        if (index < 0 || index >= songs.size())
-            throw new IllegalArgumentException();
-        playingSong = index;
-    }
-}
-\`\`\``,
-    options: [
-      "A. DRY",
-      "B. KISS",
-      "C. YAGNI",
-      "D. No incumple ningún principio de Diseño.",
-    ],
-    correctAnswer: "a",
-    explanation:
-      "Incumple DRY (Don't Repeat Yourself). La comprobación de límites del índice se repite en los tres métodos. Debería extraerse a un método privado como validateIndex(int index).",
-  },
-  {
-    id: "2022_q25",
-    examId: "2022-01",
-    topic: "patrones-diseno",
-    type: "mc",
-    points: 1,
-    question:
-      "Dados los siguientes códigos referentes a patrones de diseño, indica cuál representa el patrón Constructor.",
-    options: [
-      "A. public enum Number {ACE, TWO, THREE, ...} / public enum Suit {SPADES, HEARTS, ...} / public record Card(Number number, Suit suit) {}",
-      "B. public final class Integer extends Number { private int value; ... }",
-      "C. for(Enumeration e = collection.getEnumeration(); e.hasMoreElements(); ) ...",
-      'D. CurrencyConverter cc1 = CurrencyConverter.incomingCurrency("USD").outgoingCurrency("EUR").build(); cc1.convert(50.00);',
-    ],
-    correctAnswer: "d",
-    explanation:
-      "D muestra el patrón Constructor (Builder). Se usa un encadenamiento de métodos (incomingCurrency, outgoingCurrency) que configuran el objeto paso a paso, y build() crea la instancia final. Esto es característico del patrón Builder con fluent API.",
-  },
 ];
 
 void questions;

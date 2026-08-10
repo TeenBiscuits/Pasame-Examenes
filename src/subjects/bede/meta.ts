@@ -28,13 +28,6 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
-      id: "daypo-preguntas",
-      title: "Daypo Preguntas",
-      durationMinutes: 120,
-      hasPdf: false,
-      originalUrl: "https://www.daypo.com/bd-preguntas-examen-udc.html",
-    },
-    {
       id: "recopilatorio-mayo-2026",
       title: "Recopilatorio Mayo 2026",
       durationMinutes: 120,
@@ -45,6 +38,13 @@ export const meta: SubjectMeta = {
       title: "Recopilatorio Mayo 2022",
       durationMinutes: 120,
       hasPdf: false,
+    },
+    {
+      id: "daypo-preguntas",
+      title: "Daypo Preguntas",
+      durationMinutes: 120,
+      hasPdf: false,
+      originalUrl: "https://www.daypo.com/bd-preguntas-examen-udc.html",
     },
   ],
 };

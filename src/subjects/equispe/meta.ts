@@ -27,14 +27,14 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
-      id: "2024-01",
-      title: "Xaneiro 2024",
-      durationMinutes: 120,
-    },
-    {
       id: "2026-01",
       title: "Xaneiro 2026",
       durationMinutes: 180,
+    },
+    {
+      id: "2024-01",
+      title: "Xaneiro 2024",
+      durationMinutes: 120,
     },
     {
       id: "daypo-tipo-udc",

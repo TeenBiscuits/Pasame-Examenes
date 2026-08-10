@@ -87,20 +87,8 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
-      id: "2023",
-      title: "2023",
-      durationMinutes: 120,
-      hasPdf: false,
-    },
-    {
-      id: "2024",
-      title: "2024",
-      durationMinutes: 120,
-      hasPdf: false,
-    },
-    {
-      id: "2025-05",
-      title: "Mayo 2025",
+      id: "2026-06",
+      title: "Junio 2026",
       durationMinutes: 120,
       hasPdf: false,
     },
@@ -111,8 +99,20 @@ export const meta: SubjectMeta = {
       hasPdf: false,
     },
     {
-      id: "2026-06",
-      title: "Junio 2026",
+      id: "2025-05",
+      title: "Mayo 2025",
+      durationMinutes: 120,
+      hasPdf: false,
+    },
+    {
+      id: "2024",
+      title: "2024",
+      durationMinutes: 120,
+      hasPdf: false,
+    },
+    {
+      id: "2023",
+      title: "2023",
       durationMinutes: 120,
       hasPdf: false,
     },

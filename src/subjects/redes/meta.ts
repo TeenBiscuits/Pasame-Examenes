@@ -81,6 +81,18 @@ export const meta: SubjectMeta = {
   ],
   exams: [
     {
+      id: "2026-01",
+      title: "Recopilatorio Enero 2026",
+      durationMinutes: 120,
+      hasPdf: false,
+    },
+    {
+      id: "2025-05",
+      title: "Recopilatorio Mayo 2025",
+      durationMinutes: 120,
+      hasPdf: false,
+    },
+    {
       id: "daypo-recopilatorio-lara",
       title: "Daypo Recopilatorio (des. 2008)",
       durationMinutes: 120,
@@ -93,18 +105,6 @@ export const meta: SubjectMeta = {
       durationMinutes: 240,
       hasPdf: false,
       originalUrl: "https://www.daypo.com/redes-udc.html",
-    },
-    {
-      id: "2025-05",
-      title: "Recopilatorio Mayo 2025",
-      durationMinutes: 120,
-      hasPdf: false,
-    },
-    {
-      id: "2026-01",
-      title: "Recopilatorio Enero 2026",
-      durationMinutes: 120,
-      hasPdf: false,
     },
   ],
 };

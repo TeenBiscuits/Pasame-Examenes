@@ -13,6 +13,334 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 
 export const questions: Question[] = [
   {
+    id: "2024-07_q1",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "¿Cuál es la distancia máxima recomendada para un enlace de fibra óptica monomodo?",
+    options: ["A. 500 metros", "B. 50 kilómetros", "C. 2 kilómetros"],
+    correctAnswer: "b",
+    explanation:
+      "La fibra monomodo está diseñada para largas distancias. Sin repetidores puede alcanzar 50-100 km.",
+  },
+  {
+    id: "2024-07_q2",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question: "¿Cuál es el principal beneficio de una SAN sobre una NAS?",
+    options: [
+      "A. Mayor facilidad de instalación",
+      "B. Mayor rendimiento y escalabilidad",
+      "C. Mayor compatibilidad con redes TCP/IP",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "SAN ofrece acceso a nivel de bloque con mayor rendimiento y escalabilidad que NAS (acceso a nivel de fichero).",
+  },
+  {
+    id: "2024-07_q3",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "En una red SAN, ¿qué protocolo se utiliza comúnmente para la transferencia de datos?",
+    options: ["A. FTP", "B. HTTP", "C. Fibre Channel"],
+    correctAnswer: "c",
+    explanation:
+      "Fibre Channel es el protocolo estándar para SAN, proporcionando acceso a nivel de bloque con alta velocidad.",
+  },
+  {
+    id: "2024-07_q4",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "¿Cuál es una característica clave de las redes definidas por software (SDN)?",
+    options: [
+      "A. La dependencia de hardware propietario",
+      "B. La separación del plano de control y el plano de datos",
+      "C. La falta de flexibilidad en la gestión de la red",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "SDN separa el plano de control (controlador) del plano de datos (switches), permitiendo programabilidad centralizada.",
+  },
+  {
+    id: "2024-07_q5",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "¿Qué componente de una SDN se encarga de tomar decisiones sobre el flujo de tráfico?",
+    options: ["A. El controlador SDN", "B. El switch SDN", "C. El firewall"],
+    correctAnswer: "a",
+    explanation:
+      "El controlador SDN es el cerebro que decide las rutas y políticas de tráfico, comunicándose con los switches vía OpenFlow.",
+  },
+  {
+    id: "2024-07_q6",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "¿Cuál es la ventaja de utilizar cableado estructurado en una red corporativa?",
+    options: [
+      "A. Menor costo de instalación",
+      "B. Facilidad de gestión y escalabilidad",
+      "C. Mayor velocidad de conexión",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El cableado estructurado facilita la gestión, mantenimiento y escalabilidad de la red mediante una organización jerárquica (MDA-HDA-ZDA-EDA).",
+  },
+  {
+    id: "2024-07_q7",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "¿Qué tipo de almacenamiento es típicamente utilizado en una SAN?",
+    options: [
+      "A. Almacenamiento en bloques",
+      "B. Almacenamiento en archivos",
+      "C. Almacenamiento en objetos",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "SAN trabaja a nivel de bloque (Block I/O), a diferencia de NAS que trabaja a nivel de fichero.",
+  },
+  {
+    id: "2024-07_q8",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "¿Cuál es uno de los desafíos de implementar SDN en una red existente?",
+    options: [
+      "A. Compatibilidad con el hardware existente",
+      "B. Mayor costo de implementación",
+      "C. Falta de personal capacitado",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "La compatibilidad con hardware existente es un desafío clave, ya que SDN requiere switches que soporten OpenFlow.",
+  },
+  {
+    id: "2024-07_q9",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question: "¿Qué ventaja ofrece SDN en la gestión de la red?",
+    options: [
+      "A. Mayor dependencia de hardware específico",
+      "B. Capacidad para automatizar configuraciones de red",
+      "C. Reducción de la seguridad en la red",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "SDN permite automatizar configuraciones y políticas de red desde un controlador centralizado.",
+  },
+  {
+    id: "2024-07_q10",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "¿Cuál es la función principal de un patch panel en un sistema de cableado estructurado?",
+    options: [
+      "A. Actuar como un switch de red",
+      "B. Facilitar la organización y gestión de cables",
+      "C. Proporcionar conectividad inalámbrica",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El patch panel organiza y centraliza las conexiones de cableado, facilitando cambios y gestión.",
+  },
+  {
+    id: "2024-07_q11",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    repeated: true,
+    question:
+      "En relación al CPD, indica cuál de las siguientes afirmaciones es correcta:",
+    options: [
+      "A. En el organigrama funcional o departamental de un CPD, éste se estructura por proyectos, de forma que en cada momento se organizan los equipos, las funciones y el personal en función de los distintos proyectos activos, enfocados a un área concreta de la organización.",
+      "B. Entre otras tareas, el director del CPD es el encargado de proponer estrategias y políticas de proceso de datos así como establecer políticas de personal específicas de su departamento.",
+      "C. Ninguna de las respuestas anteriores es correcta.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "El director del CPD propone estrategias y políticas. El organigrama funcional se estructura por departamentos/funciones, no por proyectos (eso es el organigrama por proyectos).",
+  },
+  {
+    id: "2024-07_q12",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    repeated: true,
+    question: "En el estándar ITIL, es falso que:",
+    options: [
+      "A. El núcleo central de la Gestión de Servicios TI es la transformación de recursos en servicios con valor, explotando para ello las capacidades de la organización.",
+      "B. Es mucho más complejo adquirir recursos en comparación con capacidades, debido a que éstos tienen un coste superior a las mismas.",
+      "C. Los servicios Core son servicios que proporcionan los resultados básicos que desea el cliente, el valor que éste busca y por el que está dispuesto a pagar.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Es FALSO que sea más complejo adquirir recursos: los recursos son más fáciles de adquirir que las capacidades, que se desarrollan con el tiempo.",
+  },
+  {
+    id: "2024-07_q13",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    repeated: true,
+    question: "En el estándar ITIL, es falso que:",
+    options: [
+      "A. Una función es un equipo o grupo de personas que junto con las herramientas y otros recursos llevan a cabo uno o más procesos o actividades.",
+      "B. Un cliente externo trabaja en la misma organización que el proveedor TI. Su pago se registra como una transacción interna y nunca es un ingreso real.",
+      "C. La garantía es la funcionalidad que ofrece un producto o servicio para satisfacer una necesidad particular.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Un cliente externo NO trabaja en la misma organización. Esa descripción corresponde a un cliente interno. La funcionalidad es la utilidad, no la garantía.",
+  },
+  {
+    id: "2024-07_q14",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    repeated: true,
+    question: "En el estándar ITIL, es falso que:",
+    options: [
+      "A. El valor de un servicio puede considerarse como el nivel o grado en que éste cumple las expectativas de los clientes.",
+      "B. Los recursos se consideran los activos intangibles de una organización.",
+      "C. Un servicio al cliente interno es un servicio IT que apoya directamente a un proceso de negocio gestionado por otro departamento o unidad de la organización.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Los recursos son activos TANGIBLES (hardware, software, personal). Las capacidades son los activos intangibles (conocimiento, experiencia).",
+  },
+  {
+    id: "2024-07_q15",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question: "¿Qué tipo de hipervisor es el sistema operativo Vmware ESXi?",
+    options: [
+      "A. Hipervisor tipo 1",
+      "B. Hipervisor tipo 2",
+      "C. No es un hipervisor",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "VMware ESXi es un hipervisor tipo 1 (bare-metal), que se ejecuta directamente sobre el hardware sin necesidad de un SO intermedio.",
+  },
+  {
+    id: "2024-07_q16",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    repeated: true,
+    question:
+      "¿Cuál de las siguientes no es una técnica de liberación de memoria?",
+    options: [
+      "A. Compresión de memoria",
+      "B. Compartición transparente de páginas (TPS)",
+      "C. Descarte aleatorio de páginas de memoria",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "El descarte aleatorio de páginas no es una técnica real de VMware. Las técnicas son: TPS, compresión de memoria y ballooning.",
+  },
+  {
+    id: "2024-07_q17",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    repeated: true,
+    question: "¿Cuál de las siguientes afirmaciones es verdadera?",
+    options: [
+      "A. Si queremos conseguir que una máquina virtual no tenga caída de servicio (Zero downtime) ante la caída física del nodo ESXi en el que se está ejecutando debemos configurar la máquina en Fault Tolerance.",
+      "B. Con la alta disponibilidad en VMware (HA) nunca vamos a perder el servicio que se presta a través de una máquina virtual, incluso aunque se rompa el host ESXi.",
+      "C. Si una máquina virtual está configurada con alta disponibilidad en VMware (HA) está siendo ejecutada en dos nodos de virtualización simultáneamente.",
+    ],
+    correctAnswer: "a",
+    explanation:
+      "Fault Tolerance (FT) mantiene una copia exacta en otro host para zero downtime. HA reinicia la VM (hay caída). HA no ejecuta en dos nodos simultáneamente (eso es FT).",
+  },
+  {
+    id: "2024-07_q18",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    repeated: true,
+    question:
+      "Si realizamos un snapshot (foto de estado) de una máquina virtual, ¿afectamos al rendimiento de la misma?",
+    options: [
+      "A. No, simplemente guardamos su estado por si queremos volver a ese punto.",
+      "B. Sí, ya que es necesario incurrir en alguna penalización debido a las lecturas y escrituras extra.",
+      "C. Depende, de si guardamos la memoria o no. Si guardamos la memoria sí que afectamos al performance, pero si no la guardamos entonces no afectamos.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "Los snapshots siempre afectan al rendimiento por el I/O extra que generan, independientemente de si se guarda la memoria o no.",
+  },
+  {
+    id: "2024-07_q19",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "Si tenemos un host de virtualización ESXi con 8 GB de RAM, ¿cuál de las siguientes configuraciones de máquinas virtuales no podríamos tener?",
+    options: [
+      "A. 4 máquinas virtuales, cada una de ellas configurada con 2 GB de RAM.",
+      "B. 3 máquinas virtuales, 2 de ellas configuradas con 4 GB de RAM y la otra con 2 GB de RAM.",
+      "C. 1 máquina virtual configurada con 10 GB de RAM.",
+    ],
+    correctAnswer: "c",
+    explanation:
+      "No se puede asignar a una VM más RAM de la que tiene el host físico (10 GB > 8 GB).",
+  },
+  {
+    id: "2024-07_q20",
+    examId: "2024-07",
+    topic: "modulo-ii",
+    type: "mc",
+    points: 0.5,
+    question:
+      "¿Cuál de las siguientes sentencias con respecto al almacenamiento en VMware es falsa?",
+    options: [
+      "A. Los VMDKs pueden ser thick o thin.",
+      "B. Los datastores únicamente pueden ser volúmenes VMFS.",
+      "C. El almacenamiento SAN debe ser formateado con VMFS para trabajar con él.",
+    ],
+    correctAnswer: "b",
+    explanation:
+      "ES FALSO que los datastores solo puedan ser VMFS: también pueden ser NFS (para NAS).",
+  },
+  {
     id: "daypo-modulo-i_01",
     examId: "daypo-modulo-i",
     topic: "modulo-i",
@@ -3545,334 +3873,6 @@ export const questions: Question[] = [
       "C. La optimización viene de usar una máquina virtual encima del hardware físico de la RAM, denominado memoria virtual",
     ],
     correctAnswer: "c",
-  },
-  {
-    id: "2024-07_q1",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "¿Cuál es la distancia máxima recomendada para un enlace de fibra óptica monomodo?",
-    options: ["A. 500 metros", "B. 50 kilómetros", "C. 2 kilómetros"],
-    correctAnswer: "b",
-    explanation:
-      "La fibra monomodo está diseñada para largas distancias. Sin repetidores puede alcanzar 50-100 km.",
-  },
-  {
-    id: "2024-07_q2",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question: "¿Cuál es el principal beneficio de una SAN sobre una NAS?",
-    options: [
-      "A. Mayor facilidad de instalación",
-      "B. Mayor rendimiento y escalabilidad",
-      "C. Mayor compatibilidad con redes TCP/IP",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "SAN ofrece acceso a nivel de bloque con mayor rendimiento y escalabilidad que NAS (acceso a nivel de fichero).",
-  },
-  {
-    id: "2024-07_q3",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "En una red SAN, ¿qué protocolo se utiliza comúnmente para la transferencia de datos?",
-    options: ["A. FTP", "B. HTTP", "C. Fibre Channel"],
-    correctAnswer: "c",
-    explanation:
-      "Fibre Channel es el protocolo estándar para SAN, proporcionando acceso a nivel de bloque con alta velocidad.",
-  },
-  {
-    id: "2024-07_q4",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "¿Cuál es una característica clave de las redes definidas por software (SDN)?",
-    options: [
-      "A. La dependencia de hardware propietario",
-      "B. La separación del plano de control y el plano de datos",
-      "C. La falta de flexibilidad en la gestión de la red",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "SDN separa el plano de control (controlador) del plano de datos (switches), permitiendo programabilidad centralizada.",
-  },
-  {
-    id: "2024-07_q5",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "¿Qué componente de una SDN se encarga de tomar decisiones sobre el flujo de tráfico?",
-    options: ["A. El controlador SDN", "B. El switch SDN", "C. El firewall"],
-    correctAnswer: "a",
-    explanation:
-      "El controlador SDN es el cerebro que decide las rutas y políticas de tráfico, comunicándose con los switches vía OpenFlow.",
-  },
-  {
-    id: "2024-07_q6",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "¿Cuál es la ventaja de utilizar cableado estructurado en una red corporativa?",
-    options: [
-      "A. Menor costo de instalación",
-      "B. Facilidad de gestión y escalabilidad",
-      "C. Mayor velocidad de conexión",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "El cableado estructurado facilita la gestión, mantenimiento y escalabilidad de la red mediante una organización jerárquica (MDA-HDA-ZDA-EDA).",
-  },
-  {
-    id: "2024-07_q7",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "¿Qué tipo de almacenamiento es típicamente utilizado en una SAN?",
-    options: [
-      "A. Almacenamiento en bloques",
-      "B. Almacenamiento en archivos",
-      "C. Almacenamiento en objetos",
-    ],
-    correctAnswer: "a",
-    explanation:
-      "SAN trabaja a nivel de bloque (Block I/O), a diferencia de NAS que trabaja a nivel de fichero.",
-  },
-  {
-    id: "2024-07_q8",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "¿Cuál es uno de los desafíos de implementar SDN en una red existente?",
-    options: [
-      "A. Compatibilidad con el hardware existente",
-      "B. Mayor costo de implementación",
-      "C. Falta de personal capacitado",
-    ],
-    correctAnswer: "a",
-    explanation:
-      "La compatibilidad con hardware existente es un desafío clave, ya que SDN requiere switches que soporten OpenFlow.",
-  },
-  {
-    id: "2024-07_q9",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question: "¿Qué ventaja ofrece SDN en la gestión de la red?",
-    options: [
-      "A. Mayor dependencia de hardware específico",
-      "B. Capacidad para automatizar configuraciones de red",
-      "C. Reducción de la seguridad en la red",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "SDN permite automatizar configuraciones y políticas de red desde un controlador centralizado.",
-  },
-  {
-    id: "2024-07_q10",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "¿Cuál es la función principal de un patch panel en un sistema de cableado estructurado?",
-    options: [
-      "A. Actuar como un switch de red",
-      "B. Facilitar la organización y gestión de cables",
-      "C. Proporcionar conectividad inalámbrica",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "El patch panel organiza y centraliza las conexiones de cableado, facilitando cambios y gestión.",
-  },
-  {
-    id: "2024-07_q11",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    repeated: true,
-    question:
-      "En relación al CPD, indica cuál de las siguientes afirmaciones es correcta:",
-    options: [
-      "A. En el organigrama funcional o departamental de un CPD, éste se estructura por proyectos, de forma que en cada momento se organizan los equipos, las funciones y el personal en función de los distintos proyectos activos, enfocados a un área concreta de la organización.",
-      "B. Entre otras tareas, el director del CPD es el encargado de proponer estrategias y políticas de proceso de datos así como establecer políticas de personal específicas de su departamento.",
-      "C. Ninguna de las respuestas anteriores es correcta.",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "El director del CPD propone estrategias y políticas. El organigrama funcional se estructura por departamentos/funciones, no por proyectos (eso es el organigrama por proyectos).",
-  },
-  {
-    id: "2024-07_q12",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    repeated: true,
-    question: "En el estándar ITIL, es falso que:",
-    options: [
-      "A. El núcleo central de la Gestión de Servicios TI es la transformación de recursos en servicios con valor, explotando para ello las capacidades de la organización.",
-      "B. Es mucho más complejo adquirir recursos en comparación con capacidades, debido a que éstos tienen un coste superior a las mismas.",
-      "C. Los servicios Core son servicios que proporcionan los resultados básicos que desea el cliente, el valor que éste busca y por el que está dispuesto a pagar.",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "Es FALSO que sea más complejo adquirir recursos: los recursos son más fáciles de adquirir que las capacidades, que se desarrollan con el tiempo.",
-  },
-  {
-    id: "2024-07_q13",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    repeated: true,
-    question: "En el estándar ITIL, es falso que:",
-    options: [
-      "A. Una función es un equipo o grupo de personas que junto con las herramientas y otros recursos llevan a cabo uno o más procesos o actividades.",
-      "B. Un cliente externo trabaja en la misma organización que el proveedor TI. Su pago se registra como una transacción interna y nunca es un ingreso real.",
-      "C. La garantía es la funcionalidad que ofrece un producto o servicio para satisfacer una necesidad particular.",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "Un cliente externo NO trabaja en la misma organización. Esa descripción corresponde a un cliente interno. La funcionalidad es la utilidad, no la garantía.",
-  },
-  {
-    id: "2024-07_q14",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    repeated: true,
-    question: "En el estándar ITIL, es falso que:",
-    options: [
-      "A. El valor de un servicio puede considerarse como el nivel o grado en que éste cumple las expectativas de los clientes.",
-      "B. Los recursos se consideran los activos intangibles de una organización.",
-      "C. Un servicio al cliente interno es un servicio IT que apoya directamente a un proceso de negocio gestionado por otro departamento o unidad de la organización.",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "Los recursos son activos TANGIBLES (hardware, software, personal). Las capacidades son los activos intangibles (conocimiento, experiencia).",
-  },
-  {
-    id: "2024-07_q15",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question: "¿Qué tipo de hipervisor es el sistema operativo Vmware ESXi?",
-    options: [
-      "A. Hipervisor tipo 1",
-      "B. Hipervisor tipo 2",
-      "C. No es un hipervisor",
-    ],
-    correctAnswer: "a",
-    explanation:
-      "VMware ESXi es un hipervisor tipo 1 (bare-metal), que se ejecuta directamente sobre el hardware sin necesidad de un SO intermedio.",
-  },
-  {
-    id: "2024-07_q16",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    repeated: true,
-    question:
-      "¿Cuál de las siguientes no es una técnica de liberación de memoria?",
-    options: [
-      "A. Compresión de memoria",
-      "B. Compartición transparente de páginas (TPS)",
-      "C. Descarte aleatorio de páginas de memoria",
-    ],
-    correctAnswer: "c",
-    explanation:
-      "El descarte aleatorio de páginas no es una técnica real de VMware. Las técnicas son: TPS, compresión de memoria y ballooning.",
-  },
-  {
-    id: "2024-07_q17",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    repeated: true,
-    question: "¿Cuál de las siguientes afirmaciones es verdadera?",
-    options: [
-      "A. Si queremos conseguir que una máquina virtual no tenga caída de servicio (Zero downtime) ante la caída física del nodo ESXi en el que se está ejecutando debemos configurar la máquina en Fault Tolerance.",
-      "B. Con la alta disponibilidad en VMware (HA) nunca vamos a perder el servicio que se presta a través de una máquina virtual, incluso aunque se rompa el host ESXi.",
-      "C. Si una máquina virtual está configurada con alta disponibilidad en VMware (HA) está siendo ejecutada en dos nodos de virtualización simultáneamente.",
-    ],
-    correctAnswer: "a",
-    explanation:
-      "Fault Tolerance (FT) mantiene una copia exacta en otro host para zero downtime. HA reinicia la VM (hay caída). HA no ejecuta en dos nodos simultáneamente (eso es FT).",
-  },
-  {
-    id: "2024-07_q18",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    repeated: true,
-    question:
-      "Si realizamos un snapshot (foto de estado) de una máquina virtual, ¿afectamos al rendimiento de la misma?",
-    options: [
-      "A. No, simplemente guardamos su estado por si queremos volver a ese punto.",
-      "B. Sí, ya que es necesario incurrir en alguna penalización debido a las lecturas y escrituras extra.",
-      "C. Depende, de si guardamos la memoria o no. Si guardamos la memoria sí que afectamos al performance, pero si no la guardamos entonces no afectamos.",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "Los snapshots siempre afectan al rendimiento por el I/O extra que generan, independientemente de si se guarda la memoria o no.",
-  },
-  {
-    id: "2024-07_q19",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "Si tenemos un host de virtualización ESXi con 8 GB de RAM, ¿cuál de las siguientes configuraciones de máquinas virtuales no podríamos tener?",
-    options: [
-      "A. 4 máquinas virtuales, cada una de ellas configurada con 2 GB de RAM.",
-      "B. 3 máquinas virtuales, 2 de ellas configuradas con 4 GB de RAM y la otra con 2 GB de RAM.",
-      "C. 1 máquina virtual configurada con 10 GB de RAM.",
-    ],
-    correctAnswer: "c",
-    explanation:
-      "No se puede asignar a una VM más RAM de la que tiene el host físico (10 GB > 8 GB).",
-  },
-  {
-    id: "2024-07_q20",
-    examId: "2024-07",
-    topic: "modulo-ii",
-    type: "mc",
-    points: 0.5,
-    question:
-      "¿Cuál de las siguientes sentencias con respecto al almacenamiento en VMware es falsa?",
-    options: [
-      "A. Los VMDKs pueden ser thick o thin.",
-      "B. Los datastores únicamente pueden ser volúmenes VMFS.",
-      "C. El almacenamiento SAN debe ser formateado con VMFS para trabajar con él.",
-    ],
-    correctAnswer: "b",
-    explanation:
-      "ES FALSO que los datastores solo puedan ser VMFS: también pueden ser NFS (para NAS).",
   },
   {
     id: "megarecopilacion_q1",
