@@ -10,7 +10,6 @@ import type { SoundName } from "cuelume";
 interface FloatingEmojiProps {
   emoji: string;
   style: CSSProperties;
-  sound?: SoundName;
 }
 
 interface DragState {
@@ -22,14 +21,28 @@ interface DragState {
   offsetY: number;
 }
 
-const SPRING_MS = 800;
+const PLAYFUL_SOUNDS: readonly SoundName[] = [
+  "bloom",
+  "chime",
+  "droplet",
+  "ready",
+  "sparkle",
+  "tick",
+  "whisper",
+];
+let lastSound: SoundName | undefined;
+
+function playRandomSound() {
+  const choices = PLAYFUL_SOUNDS.filter((sound) => sound !== lastSound);
+  const sound = choices[Math.floor(Math.random() * choices.length)];
+  lastSound = sound;
+  playSound(sound);
+}
+
+const SPRING_MS = 500;
 const SPRING_EASING = "cubic-bezier(0.18, 0.89, 0.32, 1.28)";
 
-export default function FloatingEmoji({
-  emoji,
-  style,
-  sound,
-}: FloatingEmojiProps) {
+export default function FloatingEmoji({ emoji, style }: FloatingEmojiProps) {
   const drag = useRef<DragState>({
     active: false,
     moved: false,
@@ -54,7 +67,6 @@ export default function FloatingEmoji({
     };
     setFlying(false);
     setPressed(true);
-    if (sound) playSound(sound);
     try {
       e.currentTarget.setPointerCapture(e.pointerId);
     } catch {
@@ -73,6 +85,7 @@ export default function FloatingEmoji({
   }
 
   function endDrag(e: ReactPointerEvent<HTMLSpanElement>) {
+    const cancelled = e.type === "pointercancel";
     try {
       e.currentTarget.releasePointerCapture(e.pointerId);
     } catch {
@@ -80,12 +93,21 @@ export default function FloatingEmoji({
     }
     drag.current.active = false;
     setPressed(false);
+    if (cancelled) {
+      setFlying(false);
+      setOffset({ x: 0, y: 0 });
+      return;
+    }
     if (drag.current.moved) {
+      playSound("release");
       setFlying(true);
       setOffset({ x: 0, y: 0 });
       window.setTimeout(() => setFlying(false), SPRING_MS);
     } else if (offset.x !== 0 || offset.y !== 0) {
       setOffset({ x: 0, y: 0 });
+      playRandomSound();
+    } else {
+      playRandomSound();
     }
   }
 
@@ -96,7 +118,7 @@ export default function FloatingEmoji({
     transform = `translate(${offset.x}px, ${offset.y}px) ${baseTransform ?? ""}`;
   }
   if (pressed) {
-    transform += " scale(1.18)";
+    transform += " scale(1.08)";
   }
 
   const isAnimating = pressed || dragging || flying;
@@ -112,7 +134,7 @@ export default function FloatingEmoji({
         transition: flying
           ? `transform ${SPRING_MS}ms ${SPRING_EASING}`
           : pressed && !dragging
-            ? "transform 0.15s ease-out"
+            ? "transform 0.14s cubic-bezier(0.23, 1, 0.32, 1)"
             : undefined,
         animationPlayState: dragging || flying ? "paused" : undefined,
       }}

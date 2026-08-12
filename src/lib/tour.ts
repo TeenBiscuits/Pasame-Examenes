@@ -1,4 +1,4 @@
-import { driver, type DriveStep } from "driver.js";
+import { driver, type DriveStep, type PopoverDOM } from "driver.js";
 import "driver.js/dist/driver.css";
 
 const PRACTICE_TOUR_KEY = "has-seen-practice-tour";
@@ -26,6 +26,19 @@ function markTourSeen(key: string): void {
   }
 }
 
+function prefersReducedMotion(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function addTourSounds(
+  popover: PopoverDOM,
+  isLastStep: boolean,
+) {
+  popover.previousButton.dataset.cuelumeToggle = "page";
+  popover.nextButton.dataset.cuelumeToggle = isLastStep ? "success" : "page";
+  popover.closeButton.dataset.cuelumeToggle = "droplet";
+}
+
 export function startPracticeTour(
   steps: DriveStep[],
   buttonTexts: TourButtonTexts,
@@ -33,12 +46,14 @@ export function startPracticeTour(
   if (hasSeenTour(PRACTICE_TOUR_KEY)) return false;
   const driverObj = driver({
     showProgress: true,
-    animate: true,
+    animate: !prefersReducedMotion(),
     popoverClass: "tour-popover",
     nextBtnText: buttonTexts.next,
     prevBtnText: buttonTexts.previous,
     doneBtnText: buttonTexts.done,
     steps,
+    onPopoverRender: (popover, { driver: driverObj }) =>
+      addTourSounds(popover, driverObj.isLastStep()),
     onDestroyed: () => markTourSeen(PRACTICE_TOUR_KEY),
   });
   driverObj.drive();
@@ -52,12 +67,14 @@ export function startExamTour(
   if (hasSeenTour(EXAM_TOUR_KEY)) return false;
   const driverObj = driver({
     showProgress: true,
-    animate: true,
+    animate: !prefersReducedMotion(),
     popoverClass: "tour-popover",
     nextBtnText: buttonTexts.next,
     prevBtnText: buttonTexts.previous,
     doneBtnText: buttonTexts.done,
     steps,
+    onPopoverRender: (popover, { driver: driverObj }) =>
+      addTourSounds(popover, driverObj.isLastStep()),
     onDestroyed: () => markTourSeen(EXAM_TOUR_KEY),
   });
   driverObj.drive();

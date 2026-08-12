@@ -4,6 +4,7 @@ import { useT } from "../i18n/hooks";
 import type { ExamQuestionStats } from "../lib/exam-stats";
 import { formatPoints } from "../lib/points";
 import { ChecklistAlt, XSquare, Filter } from "reicon-react";
+import { playSound } from "../lib/sound";
 
 interface ExamSourceSelectorProps {
   subject: SubjectMeta;
@@ -38,11 +39,19 @@ export default function ExamSourceSelector({
         event.clientX <= rect.right &&
         event.clientY >= rect.top &&
         event.clientY <= rect.bottom;
-      if (!insideDialog) dialog.close();
+      if (!insideDialog) {
+        playSound("droplet");
+        dialog.close();
+      }
     };
+    const handleCancel = () => playSound("droplet");
 
     dialog.addEventListener("click", handleBackdropClick);
-    return () => dialog.removeEventListener("click", handleBackdropClick);
+    dialog.addEventListener("cancel", handleCancel);
+    return () => {
+      dialog.removeEventListener("click", handleBackdropClick);
+      dialog.removeEventListener("cancel", handleCancel);
+    };
   }, [dialogRef]);
 
   function toggleExam(exam: Exam) {
@@ -76,7 +85,7 @@ export default function ExamSourceSelector({
         </h2>
         <button
           type="button"
-          data-cuelume-press
+          data-cuelume-press="droplet"
           onClick={() => dialogRef.current?.close()}
           className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 cursor-pointer rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.footer.close}
@@ -100,7 +109,7 @@ export default function ExamSourceSelector({
             </span>
             <button
               type="button"
-              data-cuelume-press
+              data-cuelume-press="toggle"
               className="text-accent hover:text-accent-hover focus-visible:ring-accent inline-flex shrink-0 items-center gap-1 rounded-md px-1 py-1 text-[0.625rem] leading-4 font-medium whitespace-nowrap underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:outline-none disabled:opacity-40 sm:gap-1.5 sm:px-2 sm:text-sm"
               onClick={() => onChange(exams.map((exam) => exam.id))}
               disabled={allSelected}

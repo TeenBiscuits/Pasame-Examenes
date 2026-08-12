@@ -4,6 +4,7 @@ import { track } from "../lib/umami";
 import { XSquare } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons";
+import { playSound } from "../lib/sound";
 
 export interface AddSubjectModalHandle {
   open: () => void;
@@ -32,11 +33,13 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
     const handleBackdropClick = (e: MouseEvent) => {
       if (e.target === dialog) {
         closeMethodRef.current = "backdrop";
+        playSound("droplet");
         dialog.close();
       }
     };
     const handleCancel = () => {
       closeMethodRef.current = "esc";
+      playSound("droplet");
     };
     dialog.addEventListener("click", handleBackdropClick);
     dialog.addEventListener("cancel", handleCancel);
@@ -73,7 +76,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
           </h2>
           <button
             type="button"
-            data-cuelume-press
+            data-cuelume-press="droplet"
             onClick={() => {
               closeMethodRef.current = "x";
               dialogRef.current?.close();
@@ -87,6 +90,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
 
         <div className="space-y-3">
           <a
+            data-cuelume-hover="tick"
             data-cuelume-press
             href={t.addSubject.openIssueUrl}
             target="_blank"
@@ -106,6 +110,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
           </a>
 
           <a
+            data-cuelume-hover="tick"
             data-cuelume-press
             href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/CONTRIBUTING.md"
             target="_blank"
@@ -126,6 +131,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
 
           <div className="border-border border-t pt-2">
             <a
+              data-cuelume-hover="tick"
               data-cuelume-press
               href="mailto:pablo.portas@udc.es"
               onClick={() => track("add_subject_email")}

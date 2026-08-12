@@ -31,6 +31,7 @@ import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { getExamQuestionStats } from "../lib/exam-stats";
 import type { ExamQuestionStats } from "../lib/exam-stats";
 import { formatPoints } from "../lib/points";
+import { playSound } from "../lib/sound";
 import {
   filterQuestionsByExamSelection,
   useExamSelection,
@@ -215,10 +216,18 @@ function ResetTopicProgressDialog({
     if (!dialog) return;
 
     const handleBackdropClick = (event: MouseEvent) => {
-      if (event.target === dialog) dialog.close();
+      if (event.target === dialog) {
+        playSound("droplet");
+        dialog.close();
+      }
     };
+    const handleCancel = () => playSound("droplet");
     dialog.addEventListener("click", handleBackdropClick);
-    return () => dialog.removeEventListener("click", handleBackdropClick);
+    dialog.addEventListener("cancel", handleCancel);
+    return () => {
+      dialog.removeEventListener("click", handleBackdropClick);
+      dialog.removeEventListener("cancel", handleCancel);
+    };
   }, [dialogRef]);
 
   return (
@@ -237,7 +246,7 @@ function ResetTopicProgressDialog({
         </h2>
         <button
           type="button"
-          data-cuelume-press
+          data-cuelume-press="droplet"
           onClick={() => dialogRef.current?.close()}
           className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.subjectHome.resetTopicProgressCancel}
@@ -251,7 +260,7 @@ function ResetTopicProgressDialog({
       <div className="flex gap-3">
         <button
           type="button"
-          data-cuelume-press
+          data-cuelume-press="droplet"
           onClick={() => dialogRef.current?.close()}
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
         >
@@ -259,7 +268,7 @@ function ResetTopicProgressDialog({
         </button>
         <button
           type="button"
-          data-cuelume-press
+          data-cuelume-press="error"
           onClick={onConfirm}
           className="focus-visible:ring-incorrect-fg flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
         >
@@ -374,7 +383,8 @@ function TopicsSection({
         <div className="flex items-center gap-1">
           <button
             type="button"
-            data-cuelume-press="whisper"
+            data-cuelume-hover="whisper"
+            data-cuelume-press="bloom"
             onClick={onOpenExamSources}
             className="text-fg-muted hover:text-accent focus-visible:ring-accent rounded p-1 transition-colors focus-visible:ring-2 focus-visible:outline-none"
             aria-label={t.subjectHome.questionSources}
@@ -388,7 +398,8 @@ function TopicsSection({
           </button>
           <button
             type="button"
-            data-cuelume-press="whisper"
+            data-cuelume-hover="whisper"
+            data-cuelume-press="bloom"
             onClick={onResetProgress}
             className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-accent rounded p-1 transition-colors focus-visible:ring-2 focus-visible:outline-none"
             aria-label={t.subjectHome.resetTopicProgress}
@@ -539,7 +550,7 @@ function ExamCard({
       to={`/${subject.id}/exam/${exam.id}`}
       data-cuelume-hover="tick"
       data-cuelume-press
-      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-6 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+      className="interactive-card border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent block rounded-xl border-2 p-6 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();
         track("exam_card_click", {
@@ -593,13 +604,14 @@ function ExamActionButtons({
     <div className="grid grid-cols-2 gap-4">
       <button
         type="button"
-        data-cuelume-press
+        data-cuelume-hover="tick"
+        data-cuelume-press="bloom"
         onClick={() => {
           triggerLight();
           onAddExam();
           track("add_exam_modal_open", { subjectId });
         }}
-        className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full rounded-xl border-2 border-dashed p-4 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
+        className="interactive-card border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block w-full rounded-xl border-2 border-dashed p-4 hover:shadow-md"
       >
         <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
           <span className="text-4xl leading-none font-light">
@@ -610,13 +622,14 @@ function ExamActionButtons({
       </button>
       <button
         type="button"
-        data-cuelume-press
+        data-cuelume-hover="tick"
+        data-cuelume-press="bloom"
         onClick={() => {
           triggerLight();
           onReportCopyright();
           track("copyright_report_modal_open", { subjectId });
         }}
-        className="border-t-red-border text-fg-secondary bg-t-red-bg/40 hover:text-fg hover:border-t-red-hover hover:bg-t-red-bg block w-full rounded-xl border-2 border-dashed p-4 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
+        className="interactive-card border-t-red-border text-fg-secondary bg-t-red-bg/40 hover:text-fg hover:border-t-red-hover hover:bg-t-red-bg block w-full rounded-xl border-2 border-dashed p-4 hover:shadow-md"
       >
         <div className="flex h-full min-h-28 flex-col items-center justify-center gap-2">
           <span className="text-t-red-hover text-4xl leading-none font-light">
@@ -661,6 +674,7 @@ function PdfLinksSection({
       {pdfExams.map((exam) => (
         <a
           key={exam.id}
+          data-cuelume-hover="whisper"
           data-cuelume-press
           href={`https://github.com/TeenBiscuits/Pasame-Examenes/raw/refs/heads/main/public/exams/${subject.id}/Exam-${exam.id}.pdf`}
           target="_blank"
@@ -699,6 +713,7 @@ function OriginalContentLinksSection({ subject }: { subject: SubjectMeta }) {
       {originalExams.map((exam) => (
         <a
           key={exam.id}
+          data-cuelume-hover="whisper"
           data-cuelume-press
           href={exam.originalUrl}
           target="_blank"

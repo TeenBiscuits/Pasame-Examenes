@@ -1,4 +1,4 @@
-[![Pásame Exámenes](./public/og.jpg)](https://pe.pablopl.dev/?utm_source=github-readme&utm_medium=social&utm_campaign=public-launch)
+[![Pásame Exámenes](./public/og-2x.webp)](https://pe.pablopl.dev/?utm_source=github-readme&utm_medium=social&utm_campaign=public-launch)
 
 # <a href="https://pe.pablopl.dev/?utm_source=github-readme&utm_medium=social&utm_campaign=public-launch"><img src="https://raw.githubusercontent.com/TeenBiscuits/Pasame-Examenes/refs/heads/main/public/favicon.svg" alt="" align="left" width="40" height="40"></a> Pásame Exámenes
 

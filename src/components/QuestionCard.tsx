@@ -150,7 +150,7 @@ function DevelopmentDisclosure({
     <div className="mt-3 space-y-3">
       <button
         type="button"
-        data-cuelume-press
+        data-cuelume-press={isOpen ? "droplet" : "bloom"}
         className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
         onClick={() => {
           triggerLight();
@@ -316,7 +316,7 @@ function MCQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
-              data-cuelume-press
+              data-cuelume-press={isOpen ? "droplet" : "bloom"}
               className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
@@ -413,7 +413,7 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
-            data-cuelume-press
+            data-cuelume-press={isOpen ? "droplet" : "bloom"}
             className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             onClick={() => {
               triggerLight();
@@ -462,7 +462,6 @@ function TextQuestion({
                   <div className="flex gap-2 *:flex-1">
                     <button
                       type="button"
-                      data-cuelume-press
                       onClick={() => {
                         triggerSuccess();
                         playSuccess();
@@ -483,7 +482,6 @@ function TextQuestion({
                     </button>
                     <button
                       type="button"
-                      data-cuelume-press
                       onClick={() => {
                         triggerError();
                         playError();
@@ -606,7 +604,7 @@ function MultipleTextQuestion({
               <div className="mt-3 space-y-3">
                 <button
                   type="button"
-                  data-cuelume-press
+                  data-cuelume-press={isOpen ? "droplet" : "bloom"}
                   className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
                   onClick={() => {
                     triggerLight();
@@ -648,7 +646,6 @@ function MultipleTextQuestion({
                         <div className="flex gap-2 *:flex-1">
                           <button
                             type="button"
-                            data-cuelume-press
                             onClick={() => {
                               triggerSuccess();
                               playSuccess();
@@ -674,7 +671,6 @@ function MultipleTextQuestion({
                           </button>
                           <button
                             type="button"
-                            data-cuelume-press
                             onClick={() => {
                               triggerError();
                               playError();
@@ -829,7 +825,6 @@ function FillQuestion({
           <div className="flex gap-2 *:flex-1">
             <button
               type="button"
-              data-cuelume-press
               onClick={() => {
                 triggerSuccess();
                 playSuccess();
@@ -850,7 +845,6 @@ function FillQuestion({
             </button>
             <button
               type="button"
-              data-cuelume-press
               onClick={() => {
                 triggerError();
                 playError();
@@ -1023,7 +1017,6 @@ function TableFillQuestion({
           <div className="flex gap-2 *:flex-1">
             <button
               type="button"
-              data-cuelume-press
               onClick={() => {
                 triggerSuccess();
                 playSuccess();
@@ -1044,7 +1037,6 @@ function TableFillQuestion({
             </button>
             <button
               type="button"
-              data-cuelume-press
               onClick={() => {
                 triggerError();
                 playError();
@@ -1137,7 +1129,7 @@ function MatchingQuestion({
                 const chosen = userAnswer === letter;
                 const real = correctAnswer[item] === letter;
                 let cls =
-                  "w-9 h-9 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
+                  "w-9 h-9 rounded-md border-2 text-xs font-bold font-mono active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
                 if (showResult && real) {
                   cls += " bg-correct-bg border-correct-border text-correct-fg";
                 } else if (showResult && chosen && !real) {
@@ -1187,7 +1179,7 @@ function MatchingQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
-              data-cuelume-press
+              data-cuelume-press={isOpen ? "droplet" : "bloom"}
               className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
@@ -1235,17 +1227,8 @@ export default function QuestionCard(props: QuestionCardProps) {
   const { question } = questionProps;
   const t = useT();
 
-  const slideClass =
-    questionProps.direction === "next"
-      ? "animate-slide-in-right animate-duration-fast"
-      : questionProps.direction === "prev"
-        ? "animate-slide-in-left animate-duration-fast"
-        : "animate-fade-in animate-duration-fast";
-
   return (
-    <div
-      className={`bg-surface-alt border-border rounded-xl border p-4 shadow-sm sm:p-6 ${slideClass}`}
-    >
+    <div className="bg-surface-alt border-border rounded-xl border p-4 shadow-sm sm:p-6">
       <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
         <span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">
           {t.questionCard.questionPrefix}
@@ -1380,6 +1363,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           <a
             data-tour="report-issue"
             data-cuelume-hover="whisper"
+            data-cuelume-press="whisper"
             href={buildReportUrl(
               question,
               questionProps.subjectId,

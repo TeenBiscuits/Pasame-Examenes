@@ -103,36 +103,23 @@ export default function GitHubStarButton() {
   const href = `https://github.com/${REPO}`;
 
   return (
-    <>
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-cuelume-hover="sparkle"
-        data-cuelume-press="sparkle"
-        className="border-border hover:bg-surface text-fg-secondary hidden cursor-pointer items-center gap-1.5 rounded border px-2 py-1 text-xs font-medium no-underline transition active:scale-95 sm:inline-flex"
-        onClick={() => track("github_star_click", { location: "header" })}
-        aria-label={t.header.starOnGithub}
-      >
-        <StarIcon className="text-amber-500" />
-        <span>{t.header.star}</span>
-        {count !== null && (
-          <span className="tabular-nums">{formatCount(count)}</span>
-        )}
-      </a>
-
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-cuelume-hover="sparkle"
-        data-cuelume-press="sparkle"
-        className="border-border hover:bg-surface inline-flex cursor-pointer items-center rounded border px-2 py-1 text-amber-500 transition active:scale-95 sm:hidden"
-        onClick={() => track("github_star_click", { location: "header" })}
-        aria-label={t.header.starOnGithub}
-      >
-        <StarIcon />
-      </a>
-    </>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cuelume-hover="sparkle"
+      data-cuelume-press="sparkle"
+      className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent inline-flex h-10 min-w-10 cursor-pointer items-center justify-center gap-1.5 rounded-lg border px-2 text-xs font-medium no-underline transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96] sm:px-3"
+      onClick={() => track("github_star_click", { location: "header" })}
+      aria-label={t.header.starOnGithub}
+    >
+      <StarIcon className="text-amber-500" />
+      <span className="hidden sm:inline">{t.header.star}</span>
+      {count !== null && (
+        <span className="hidden tabular-nums sm:inline">
+          {formatCount(count)}
+        </span>
+      )}
+    </a>
   );
 }

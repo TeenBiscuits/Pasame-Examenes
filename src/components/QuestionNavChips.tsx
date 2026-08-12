@@ -61,7 +61,7 @@ export default function QuestionNavChips({
         const isChecked = !!checkedQuestions?.[q.id];
         const isCurrent = i === currentIndex;
         let cls =
-          "size-[42px] rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
+          "size-[42px] rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
         if (isCurrent) cls += " bg-accent text-white border-accent";
         else if (result === "correct")
           cls += " bg-correct-bg border-correct-border text-correct-fg";
@@ -78,7 +78,7 @@ export default function QuestionNavChips({
           <button
             type="button"
             key={q.id}
-            data-cuelume-press
+            data-cuelume-press="page"
             className={cls}
             onClick={() => {
               triggerLight();

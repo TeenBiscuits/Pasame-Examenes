@@ -12,6 +12,6 @@ export function playError() {
   playSound("error");
 }
 
-export function playPress() {
-  playSound("press");
+export function playPage() {
+  playSound("page");
 }

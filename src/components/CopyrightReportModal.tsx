@@ -4,6 +4,7 @@ import { track } from "../lib/umami";
 import { XSquare } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { LegalHammerIcon } from "@hugeicons/core-free-icons";
+import { playSound } from "../lib/sound";
 
 const CONTACT_EMAIL = "pablo.portas@udc.es";
 
@@ -41,11 +42,13 @@ function CopyrightReportModal({
     const handleBackdropClick = (e: MouseEvent) => {
       if (e.target === dialog) {
         closeMethodRef.current = "backdrop";
+        playSound("droplet");
         dialog.close();
       }
     };
     const handleCancel = () => {
       closeMethodRef.current = "esc";
+      playSound("droplet");
     };
     dialog.addEventListener("click", handleBackdropClick);
     dialog.addEventListener("cancel", handleCancel);
@@ -91,7 +94,7 @@ function CopyrightReportModal({
           </h2>
           <button
             type="button"
-            data-cuelume-press
+            data-cuelume-press="droplet"
             onClick={() => {
               closeMethodRef.current = "x";
               dialogRef.current?.close();
@@ -112,6 +115,7 @@ function CopyrightReportModal({
           </p>
 
           <a
+            data-cuelume-hover="tick"
             data-cuelume-press
             href={mailtoUrl}
             onClick={() => track("copyright_report_email", { subjectId })}

@@ -22,6 +22,7 @@ import { useLang, useT } from "./i18n/hooks";
 import type { Lang } from "./i18n/context";
 import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link-utils";
+import { playSound } from "./lib/sound";
 import { useTheme } from "./theme/hooks";
 import { XSquare, MemoCheck, ShieldCheck, ArrowRightUp } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -176,11 +177,17 @@ function ModalShell({
 
     const handleClick = (event: MouseEvent) => {
       if (event.target === el) {
+        playSound("droplet");
         el.close();
       }
     };
+    const handleCancel = () => playSound("droplet");
     el.addEventListener("click", handleClick);
-    return () => el.removeEventListener("click", handleClick);
+    el.addEventListener("cancel", handleCancel);
+    return () => {
+      el.removeEventListener("click", handleClick);
+      el.removeEventListener("cancel", handleCancel);
+    };
   }, [dialogRef]);
 
   return (
@@ -195,7 +202,7 @@ function ModalShell({
         </h2>
         <button
           type="button"
-          data-cuelume-press
+          data-cuelume-press="droplet"
           onClick={() => dialogRef.current?.close()}
           className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent cursor-pointer rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.footer.close}
@@ -422,6 +429,7 @@ function Footer() {
               type="button"
               className={footerTextLinkClass}
               data-cuelume-hover="whisper"
+              data-cuelume-press="bloom"
               onClick={() => {
                 track("modal_open", { modal: "licenses" });
                 if (!licensesDialogRef.current?.open) {
@@ -436,6 +444,7 @@ function Footer() {
               type="button"
               className={footerTextLinkClass}
               data-cuelume-hover="whisper"
+              data-cuelume-press="bloom"
               onClick={() => {
                 track("modal_open", { modal: "privacy" });
                 if (!privacyDialogRef.current?.open) {

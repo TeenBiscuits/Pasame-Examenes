@@ -71,6 +71,8 @@ export default function Disclaimer({
       <p className="text-fg-muted text-xs leading-relaxed">
         {t.disclaimer.text}{" "}
         <a
+          data-cuelume-hover="whisper"
+          data-cuelume-press="whisper"
           href={buildDisclaimerReportUrl(
             subjectId,
             questionId,
@@ -102,6 +104,8 @@ export default function Disclaimer({
             {" "}
             {t.disclaimer.originalMaterialPrefix}{" "}
             <a
+              data-cuelume-hover="whisper"
+              data-cuelume-press="whisper"
               href={originalMaterial.href}
               target="_blank"
               rel="noopener noreferrer"

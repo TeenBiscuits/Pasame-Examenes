@@ -65,7 +65,6 @@ interface PracticePlayerProps {
   selfGrades: Record<string, "correct" | "incorrect">;
   submitted: boolean;
   checkedQuestions: Record<string, boolean>;
-  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
   totalPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
@@ -302,7 +301,6 @@ interface PracticeControlsProps {
   onSubmit: () => void;
   onCheckQuestion: (questionId: string) => void;
   onClearAnswer: (questionId: string) => void;
-  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
 }
 
 function PracticeControls({
@@ -321,7 +319,6 @@ function PracticeControls({
   onSubmit,
   onCheckQuestion,
   onClearAnswer,
-  arrowAnimateRef,
 }: PracticeControlsProps) {
   const t = useT();
   const [hoveredControl, dispatchHover] = useReducer(
@@ -330,22 +327,6 @@ function PracticeControls({
   );
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
-
-  const animateArrowPress = useCallback(
-    (ref: React.RefObject<HTMLButtonElement | null>) => {
-      ref.current?.animate(
-        [{ transform: "scale(0.92)" }, { transform: "scale(1)" }],
-        { duration: 150, easing: "ease-out" },
-      );
-    },
-    [],
-  );
-
-  useEffect(() => {
-    arrowAnimateRef.current = (dir) => {
-      animateArrowPress(dir === "prev" ? prevBtnRef : nextBtnRef);
-    };
-  }, [arrowAnimateRef, animateArrowPress]);
 
   const navigateQuestion = (dir: "prev" | "next") => {
     triggerLight();
@@ -375,7 +356,7 @@ function PracticeControls({
       <button
         type="button"
         ref={prevBtnRef}
-        data-cuelume-press
+        data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
         onMouseEnter={() => dispatchHover({ type: "enter", control: "prev" })}
         onMouseLeave={() => dispatchHover({ type: "leave", control: "prev" })}
@@ -406,6 +387,7 @@ function PracticeControls({
                 answers[currentQuestion.id].trim() !== "" && (
                   <button
                     type="button"
+                    data-cuelume-press="droplet"
                     className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
                     onMouseEnter={() =>
                       dispatchHover({ type: "enter", control: "clear" })
@@ -436,7 +418,6 @@ function PracticeControls({
                 )}
               <button
                 type="button"
-                data-cuelume-press
                 className="flex min-w-0 items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-3 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95 sm:py-2"
                 onMouseEnter={() =>
                   dispatchHover({ type: "enter", control: "check" })
@@ -461,7 +442,7 @@ function PracticeControls({
         {!submitted && (
           <button
             type="button"
-            data-cuelume-press
+            data-cuelume-press="ready"
             className="bg-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
             onMouseEnter={() =>
               dispatchHover({ type: "enter", control: "submit" })
@@ -489,7 +470,7 @@ function PracticeControls({
       <button
         type="button"
         ref={nextBtnRef}
-        data-cuelume-press
+        data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
         onMouseEnter={() => dispatchHover({ type: "enter", control: "next" })}
         onMouseLeave={() => dispatchHover({ type: "leave", control: "next" })}
@@ -534,7 +515,6 @@ function PracticePlayer({
   onSubmit,
   onCheckQuestion,
   onClearAnswer,
-  arrowAnimateRef,
   scrollToHeaderRef,
 }: PracticePlayerProps) {
   const currentQuestion = questions[currentIndex];
@@ -727,7 +707,6 @@ function PracticePlayer({
         onSubmit={onSubmit}
         onCheckQuestion={onCheckQuestion}
         onClearAnswer={onClearAnswer}
-        arrowAnimateRef={arrowAnimateRef}
       />
 
       <Disclaimer
@@ -846,7 +825,6 @@ export default function PracticeTopic() {
   });
 
   const subjectReadyRef = useRef(false);
-  const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
   const scrollToHeaderRef = useRef<() => void>(() => {});
   useEffect(() => {
     subjectReadyRef.current = !!subject;
@@ -866,8 +844,7 @@ export default function PracticeTopic() {
     setDirection,
     eventName: "practice_navigate",
     eventData: navEventData,
-    onKeyPress: (dir) => {
-      arrowAnimateRef.current(dir);
+    onKeyPress: () => {
       scrollToHeaderRef.current();
     },
   });
@@ -1019,7 +996,6 @@ export default function PracticeTopic() {
         onSubmit={handleSubmit}
         onCheckQuestion={handleCheckQuestion}
         onClearAnswer={handleClearAnswer}
-        arrowAnimateRef={arrowAnimateRef}
         scrollToHeaderRef={scrollToHeaderRef}
       />
     </>

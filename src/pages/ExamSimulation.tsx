@@ -31,6 +31,7 @@ import {
   isSelfGradedQuestion,
 } from "../lib/grading";
 import { getExamPassPoints } from "../lib/exam-stats";
+import { playError, playSound } from "../lib/sound";
 import ScoreProgress from "../components/ScoreProgress";
 import {
   Alarm,
@@ -150,8 +151,8 @@ function ExamStartScreen({
         </div>
         <button
           type="button"
-          data-cuelume-press
-          className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full animate-pulse rounded-lg py-3 font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
+          data-cuelume-press="ready"
+          className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg py-3 font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
           onClick={onStart}
         >
           {t.exam.startExam}
@@ -185,7 +186,6 @@ interface ExamPlayerProps {
   onAnswer: (questionId: string, answer: string) => void;
   onSelfGrade: (questionId: string, grade: "correct" | "incorrect") => void;
   onSubmit: () => void;
-  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
 }
 
 type ExamSubject = ExamPlayerProps["subject"];
@@ -246,7 +246,7 @@ function ExamPlayerHeader({
         <Link
           to={`/${subject.id}`}
           data-cuelume-hover
-          data-cuelume-press
+          data-cuelume-press="bloom"
           onClick={(e) => {
             if (!submitted) {
               e.preventDefault();
@@ -291,7 +291,7 @@ function ExamPlayerHeader({
           <div className="shrink-0">
             {!submitted && (
               <span
-                className={`flex items-center gap-1.5 font-mono text-sm font-bold ${timeLeft < 600 ? "text-incorrect-fg animate-pulse" : "text-fg-secondary"}`}
+                className={`flex items-center gap-1.5 font-mono text-sm font-bold ${timeLeft < 600 ? "text-incorrect-fg" : "text-fg-secondary"}`}
               >
                 <Alarm size={16} aria-hidden="true" className="shrink-0" />
                 {formatTime(timeLeft)}
@@ -362,6 +362,7 @@ function ExamExitDialog({
       ref={dialogRef}
       className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="exam-exit-modal-title"
+      onCancel={() => playSound("droplet")}
     >
       <div className="mb-5 flex items-center justify-between gap-4">
         <h2
@@ -373,7 +374,7 @@ function ExamExitDialog({
         </h2>
         <button
           type="button"
-          data-cuelume-press
+          data-cuelume-press="droplet"
           onClick={() => dialogRef.current?.close()}
           className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
           aria-label={t.exam.exitModalCancel}
@@ -385,7 +386,7 @@ function ExamExitDialog({
       <div className="flex gap-3">
         <button
           type="button"
-          data-cuelume-press
+          data-cuelume-press="droplet"
           onClick={() => dialogRef.current?.close()}
           className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
         >
@@ -393,7 +394,7 @@ function ExamExitDialog({
         </button>
         <Link
           to={`/${subject.id}`}
-          data-cuelume-press
+          data-cuelume-press="droplet"
           className="focus-visible:ring-incorrect-fg inline-flex flex-1 items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-center text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
             dialogRef.current?.close();
@@ -515,7 +516,6 @@ interface ExamControlsProps {
   scrollToNav: (index: number) => void;
   scrollToHeader: () => void;
   submitDialogRef: React.RefObject<HTMLDialogElement | null>;
-  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
 }
 
 function ExamControls({
@@ -529,29 +529,12 @@ function ExamControls({
   scrollToNav,
   scrollToHeader,
   submitDialogRef,
-  arrowAnimateRef,
 }: ExamControlsProps) {
   const t = useT();
   const [hoverPrev, setHoverPrev] = useState(false);
   const [hoverNext, setHoverNext] = useState(false);
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
-
-  const animateArrowPress = useCallback(
-    (ref: React.RefObject<HTMLButtonElement | null>) => {
-      ref.current?.animate(
-        [{ transform: "scale(0.92)" }, { transform: "scale(1)" }],
-        { duration: 150, easing: "ease-out" },
-      );
-    },
-    [],
-  );
-
-  useEffect(() => {
-    arrowAnimateRef.current = (dir) => {
-      animateArrowPress(dir === "prev" ? prevBtnRef : nextBtnRef);
-    };
-  }, [arrowAnimateRef, animateArrowPress]);
 
   const navigateQuestion = (dir: "prev" | "next") => {
     triggerLight();
@@ -578,7 +561,7 @@ function ExamControls({
       <button
         type="button"
         ref={prevBtnRef}
-        data-cuelume-press
+        data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
         onMouseEnter={() => setHoverPrev(true)}
         onMouseLeave={() => setHoverPrev(false)}
@@ -602,7 +585,7 @@ function ExamControls({
         {!submitted && (
           <button
             type="button"
-            data-cuelume-press
+            data-cuelume-press="bloom"
             className="focus-visible:ring-incorrect-fg flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
             onClick={() => submitDialogRef.current?.showModal()}
           >
@@ -614,7 +597,7 @@ function ExamControls({
       <button
         type="button"
         ref={nextBtnRef}
-        data-cuelume-press
+        data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
         onMouseEnter={() => setHoverNext(true)}
         onMouseLeave={() => setHoverNext(false)}
@@ -656,6 +639,7 @@ function ExamDialogs({
         ref={submitDialogRef}
         className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
         aria-labelledby="exam-submit-modal-title"
+        onCancel={() => playSound("droplet")}
         onClose={() => {}}
       >
         <div>
@@ -668,6 +652,7 @@ function ExamDialogs({
             </h2>
             <button
               type="button"
+              data-cuelume-press="droplet"
               onClick={() => submitDialogRef.current?.close()}
               className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
               aria-label={t.footer.close}
@@ -681,7 +666,7 @@ function ExamDialogs({
           <div className="flex gap-3">
             <button
               type="button"
-              data-cuelume-press
+              data-cuelume-press="droplet"
               onClick={() => submitDialogRef.current?.close()}
               className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             >
@@ -689,7 +674,7 @@ function ExamDialogs({
             </button>
             <button
               type="button"
-              data-cuelume-press
+              data-cuelume-press="ready"
               onClick={() => {
                 submitDialogRef.current?.close();
                 onSubmit();
@@ -705,6 +690,7 @@ function ExamDialogs({
         ref={timeUpDialogRef}
         className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
         aria-labelledby="exam-timeup-modal-title"
+        onCancel={() => playSound("droplet")}
         onClose={() => {
           if (!submitted) onSubmit();
         }}
@@ -722,7 +708,7 @@ function ExamDialogs({
             </h2>
             <button
               type="button"
-              data-cuelume-press
+              data-cuelume-press="droplet"
               onClick={() => timeUpDialogRef.current?.close()}
               className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
               aria-label={t.footer.close}
@@ -735,7 +721,7 @@ function ExamDialogs({
           </p>
           <button
             type="button"
-            data-cuelume-press
+            data-cuelume-press="ready"
             onClick={() => timeUpDialogRef.current?.close()}
             className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           >
@@ -770,7 +756,6 @@ function ExamPlayer({
   onAnswer,
   onSelfGrade,
   onSubmit,
-  arrowAnimateRef,
   scrollToHeaderRef,
 }: ExamPlayerProps) {
   const currentQuestion = questions[currentIndex];
@@ -948,7 +933,6 @@ function ExamPlayer({
         scrollToNav={scrollToNav}
         scrollToHeader={scrollToHeader}
         submitDialogRef={submitDialogRef}
-        arrowAnimateRef={arrowAnimateRef}
       />
 
       <Disclaimer
@@ -1104,6 +1088,7 @@ export default function ExamSimulation() {
 
   const timeUpDialogRef = useRef<HTMLDialogElement>(null);
   const showTimeUpDialog = useCallback(() => {
+    playError();
     timeUpDialogRef.current?.showModal();
   }, []);
 
@@ -1149,7 +1134,6 @@ export default function ExamSimulation() {
   const navRef = useRef<HTMLDivElement>(null);
   const currentIndexRef = useRef(currentIndex);
   const startedRef = useRef(started);
-  const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
   const scrollToHeaderRef = useRef<() => void>(() => {});
 
   const scrollToNav = useCallback((index: number) => {
@@ -1187,8 +1171,7 @@ export default function ExamSimulation() {
     setDirection,
     eventName: "exam_navigate",
     eventData: navEventData,
-    onKeyPress: (dir) => {
-      arrowAnimateRef.current(dir);
+    onKeyPress: () => {
       scrollToHeaderRef.current();
     },
   });
@@ -1329,7 +1312,6 @@ export default function ExamSimulation() {
         onAnswer={handleAnswer}
         onSelfGrade={handleSelfGrade}
         onSubmit={handleSubmitConfirm}
-        arrowAnimateRef={arrowAnimateRef}
         scrollToHeaderRef={scrollToHeaderRef}
       />
     </>

@@ -38,7 +38,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       to={`/${subject.id}`}
       data-cuelume-hover="tick"
       data-cuelume-press
-      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent flex h-full min-h-[172px] flex-col rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+      className="interactive-card border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent flex h-full min-h-[172px] flex-col rounded-xl border-2 p-5 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();
         track("subject_card_click", {

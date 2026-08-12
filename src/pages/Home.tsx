@@ -135,7 +135,7 @@ export default function Home() {
                           location: "recent",
                         });
                       }}
-                      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 block w-full rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
+                      className="interactive-card border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 block w-full rounded-xl border-2 p-5 hover:shadow-md"
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-2xl" aria-hidden="true">
@@ -158,22 +158,20 @@ export default function Home() {
 
         <div className="grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
           {subjects.map((subject) => (
-            <div
-              key={subject.id}
-              className="animate-fade-in-up timeline-view animate-range-entry"
-            >
+            <div key={subject.id}>
               <SubjectCard subject={subject} />
             </div>
           ))}
-          <div className="animate-fade-in-up timeline-view animate-range-entry">
+          <div>
             <button
               type="button"
-              data-cuelume-press
+              data-cuelume-hover="tick"
+              data-cuelume-press="bloom"
               onClick={() => {
                 modalRef.current?.open();
                 track("add_subject_modal_open");
               }}
-              className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block h-full min-h-[172px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 transition-colors transition-transform duration-200 hover:scale-[1.02]"
+              className="interactive-card border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block h-full min-h-[172px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 hover:shadow-md"
             >
               <div className="flex h-full flex-col items-center justify-center gap-2">
                 <span className="text-4xl leading-none font-light">

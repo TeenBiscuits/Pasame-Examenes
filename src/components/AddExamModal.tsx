@@ -4,6 +4,7 @@ import { track } from "../lib/umami";
 import { XSquare } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons";
+import { playSound } from "../lib/sound";
 
 export interface AddExamModalHandle {
   open: () => void;
@@ -39,11 +40,13 @@ function AddExamModal({
     const handleBackdropClick = (e: MouseEvent) => {
       if (e.target === dialog) {
         closeMethodRef.current = "backdrop";
+        playSound("droplet");
         dialog.close();
       }
     };
     const handleCancel = () => {
       closeMethodRef.current = "esc";
+      playSound("droplet");
     };
     dialog.addEventListener("click", handleBackdropClick);
     dialog.addEventListener("cancel", handleCancel);
@@ -83,7 +86,7 @@ function AddExamModal({
           </h2>
           <button
             type="button"
-            data-cuelume-press
+            data-cuelume-press="droplet"
             onClick={() => {
               closeMethodRef.current = "x";
               dialogRef.current?.close();
@@ -101,6 +104,7 @@ function AddExamModal({
           </p>
 
           <a
+            data-cuelume-hover="tick"
             data-cuelume-press
             href={issueUrl}
             target="_blank"
@@ -120,6 +124,7 @@ function AddExamModal({
           </a>
 
           <a
+            data-cuelume-hover="tick"
             data-cuelume-press
             href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/CONTRIBUTING.md"
             target="_blank"
@@ -140,6 +145,7 @@ function AddExamModal({
 
           <div className="border-border border-t pt-2">
             <a
+              data-cuelume-hover="tick"
               data-cuelume-press
               href="mailto:pablo.portas@udc.es"
               onClick={() => track("add_exam_email", { subjectId })}

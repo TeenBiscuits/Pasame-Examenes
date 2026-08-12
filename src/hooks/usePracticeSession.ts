@@ -3,7 +3,7 @@ import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
 import { triggerMedium } from "../lib/haptics";
-import { playSuccess, playError } from "../lib/sound";
+import { playSuccess, playError, playSound } from "../lib/sound";
 import { getQuestionScore, isSelfGradedQuestion } from "../lib/grading";
 
 const getNow = () => Date.now();
@@ -163,6 +163,8 @@ export function usePracticeSession(
         } else {
           playError();
         }
+      } else if (question && isSelfGradedQuestion(question)) {
+        playSound("ready");
       }
       track("practice_check_question", { subjectId, topic, questionId });
       dispatch({ type: "CHECK_QUESTION", questionId });
