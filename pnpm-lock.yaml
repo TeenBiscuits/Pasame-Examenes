@@ -108,6 +108,9 @@ importers:
       globals:
         specifier: ^17.9.0
         version: 17.9.0
+      mesurer:
+        specifier: ^0.0.9
+        version: 0.0.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       pdf-lib:
         specifier: ^1.17.1
         version: 1.17.1
@@ -1726,6 +1729,12 @@ packages:
 
   mdast-util-to-string@4.0.0:
     resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
+
+  mesurer@0.0.9:
+    resolution: {integrity: sha512-1U81xTSki9fhgatm2XIpwUUUWTU6zjnrOvSjqAjvQFoinwX/WTV1Ar74DRhA46ohtUeS9TnN9YpmD1IvrIMm/w==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
 
   micromark-core-commonmark@2.0.3:
     resolution: {integrity: sha512-RDBrHEMSxVFLg6xvnXmb1Ayr2WzLAWjeSATAoxwKYJV94TeNavgoIdA0a9ytzDSVzBy2YKFK+emCPOEibLeCrg==}
@@ -3815,6 +3824,11 @@ snapshots:
   mdast-util-to-string@4.0.0:
     dependencies:
       '@types/mdast': 4.0.4
+
+  mesurer@0.0.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+    dependencies:
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
 
   micromark-core-commonmark@2.0.3:
     dependencies:

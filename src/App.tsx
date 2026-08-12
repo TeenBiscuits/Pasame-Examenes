@@ -16,6 +16,7 @@ import {
   Navigate,
   Outlet,
 } from "react-router";
+import { Measurer } from "mesurer";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
@@ -523,6 +524,7 @@ export default function App() {
         </main>
         <Footer />
       </div>
+      {import.meta.env.DEV && <Measurer />}
     </BrowserRouter>
   );
 }
