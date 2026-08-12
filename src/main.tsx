@@ -9,7 +9,10 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { I18nProvider } from "./i18n/context";
+import { initializeSound } from "./lib/sound";
 import { ThemeProvider } from "./theme/context";
+
+initializeSound();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
