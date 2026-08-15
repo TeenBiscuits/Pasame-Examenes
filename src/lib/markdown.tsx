@@ -129,8 +129,8 @@ const codeStyle = {
 
 function ScrollableTable({ children }: { children: ReactNode }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [canScrollLeft, setCanScrollLeft] = useState<boolean>();
+  const [canScrollRight, setCanScrollRight] = useState<boolean>();
 
   useEffect(() => {
     const element = scrollRef.current;

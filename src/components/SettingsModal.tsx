@@ -147,7 +147,7 @@ export default function SettingsModal() {
         type="button"
         data-cuelume-hover="whisper"
         data-cuelume-toggle="bloom"
-        className="border-border hover:bg-surface focus-visible:ring-accent inline-flex size-10 cursor-pointer items-center justify-center rounded-lg border text-fg-secondary transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+        className="border-border hover:bg-surface focus-visible:ring-accent text-fg-secondary inline-flex size-10 cursor-pointer items-center justify-center rounded-lg border transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
         onClick={openDialog}
         aria-label={t.settings.open}
         aria-haspopup="dialog"
@@ -254,6 +254,7 @@ export default function SettingsModal() {
                   max="100"
                   step="10"
                   value={volume}
+                  aria-label={t.settings.volume}
                   onChange={handleVolumeChange}
                   onPointerUp={(event) =>
                     commitVolume(Number(event.currentTarget.value))

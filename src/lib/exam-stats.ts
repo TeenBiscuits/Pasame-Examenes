@@ -1,7 +1,7 @@
 import type { Exam, Question } from "../data/types";
 import { roundPoints } from "./points";
 
-export const DEFAULT_PASS_PERCENTAGE = 0.5;
+const DEFAULT_PASS_PERCENTAGE = 0.5;
 
 export interface ExamQuestionStats {
   questionCount: number;

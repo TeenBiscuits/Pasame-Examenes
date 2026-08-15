@@ -79,14 +79,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   const setTheme = useCallback((next: Theme) => {
-    const update = () => {
+    startTransition(() => {
       setThemeState(applyTheme(next));
-    };
-    if (document.startViewTransition) {
-      document.startViewTransition(update);
-    } else {
-      startTransition(update);
-    }
+    });
   }, []);
 
   const cycleTheme = useCallback(() => {

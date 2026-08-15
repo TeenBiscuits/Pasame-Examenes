@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { Ref } from "react";
 import type { Question } from "../data/types";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
@@ -10,7 +10,7 @@ interface QuestionNavChipsProps {
   questions: Question[];
   answers: Record<string, string>;
   currentIndex: number;
-  navRef: RefObject<HTMLDivElement | null>;
+  navRef: Ref<HTMLDivElement>;
   showLeftFade: boolean;
   showRightFade: boolean;
   onSelectIndex: (i: number, direction: "next" | "prev" | undefined) => void;

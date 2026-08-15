@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { use, useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useParams, useNavigate } from "react-router";
 import { LangLink as Link } from "../lib/lang-link";
 import { useLangTo } from "../lib/useLangTo";
@@ -184,7 +184,7 @@ interface ExamPlayerProps {
   scrollToHeaderRef: React.MutableRefObject<() => void>;
   showLeftFade: boolean;
   showRightFade: boolean;
-  navRef: React.RefObject<HTMLDivElement | null>;
+  navRef: React.Ref<HTMLDivElement>;
   timeUpDialogRef: React.RefObject<HTMLDialogElement | null>;
   scrollToNav: (index: number) => void;
   onAnswer: (questionId: string, answer: string) => void;
@@ -213,7 +213,7 @@ interface ExamPlayerHeaderProps {
   setDirection: (d: "next" | "prev" | undefined) => void;
   showLeftFade: boolean;
   showRightFade: boolean;
-  navRef: React.RefObject<HTMLDivElement | null>;
+  navRef: React.Ref<HTMLDivElement>;
   scrollToNav: (index: number) => void;
   exitDialogRef: React.RefObject<HTMLDialogElement | null>;
   scoreSummary: React.ReactNode;
@@ -976,53 +976,55 @@ function ExamEmptyState({
   );
 }
 
-function useExamData(subject: ExamSubject | undefined, examId?: string) {
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    null,
+interface LoadedExamData {
+  questions: Question[];
+  megatopicLabels: Record<string, string>;
+}
+
+const examDataCache = new Map<string, Promise<LoadedExamData>>();
+
+function loadExamData(subjectId: string, examId: string) {
+  const cacheKey = `${subjectId}/${examId}`;
+  const cached = examDataCache.get(cacheKey);
+  if (cached) return cached;
+
+  const promise = getQuestionsByExam(subjectId, examId).then(
+    async (questions) => {
+      const topics = [...new Set(questions.map((question) => question.topic))];
+      const entries = await Promise.all(
+        topics.map(async (topic) => {
+          const label = await getTopicMegaTopicLabel(subjectId, topic);
+          return [topic, label] as const;
+        }),
+      );
+      const megatopicLabels: Record<string, string> = {};
+      for (const [topic, label] of entries) {
+        if (label != null) megatopicLabels[topic] = label;
+      }
+      return { questions, megatopicLabels };
+    },
   );
-  const [megatopicLabels, setMegatopicLabels] = useState<
-    Record<string, string>
-  >({});
+  examDataCache.set(cacheKey, promise);
+  return promise;
+}
+
+function useExamData(subject: ExamSubject | undefined, examId?: string) {
   const examInfo = useMemo(
     () =>
       subject?.exams.find((exam) => exam.id === examId && !exam.deleteRights),
     [subject, examId],
   );
+  const loadedData =
+    subject && examId
+      ? use(loadExamData(subject.id, examId))
+      : { questions: [], megatopicLabels: {} };
+  const { questions, megatopicLabels } = loadedData;
   const totalPoints = roundPoints(
     questions.reduce((sum, q) => sum + q.points, 0),
   );
   const passPoints = examInfo ? getExamPassPoints(examInfo, totalPoints) : 0;
 
-  useEffect(() => {
-    if (!subject || !examId) return;
-
-    getQuestionsByExam(subject.id, examId).then((examQuestions) => {
-      setQuestions(examQuestions);
-      setQuestionsLoadedFor(`${subject.id}/${examId}`);
-    });
-  }, [subject, examId]);
-
-  useEffect(() => {
-    if (!subject || questions.length === 0) return;
-
-    const topics = [...new Set(questions.map((question) => question.topic))];
-    Promise.all(
-      topics.map(async (topic) => {
-        const label = await getTopicMegaTopicLabel(subject.id, topic);
-        return [topic, label] as const;
-      }),
-    ).then((entries) => {
-      const labels: Record<string, string> = {};
-      for (const [topic, label] of entries) {
-        if (label != null) labels[topic] = label;
-      }
-      setMegatopicLabels(labels);
-    });
-  }, [subject, questions]);
-
-  const questionsLoaded =
-    !!subject && !!examId && questionsLoadedFor === `${subject.id}/${examId}`;
+  const questionsLoaded = !!subject && !!examId;
 
   return {
     questions,
@@ -1121,6 +1123,33 @@ export default function ExamSimulation() {
     [],
   );
   const navRef = useRef<HTMLDivElement>(null);
+  const navCleanupRef = useRef<() => void>(() => {});
+  const setNavRef = useCallback((element: HTMLDivElement | null) => {
+    navCleanupRef.current();
+    navCleanupRef.current = () => {};
+    navRef.current = element;
+    if (!element) return;
+
+    const check = () => {
+      setNavState((prev) => ({
+        ...prev,
+        showLeftFade: element.scrollLeft > 4,
+        showRightFade:
+          element.scrollLeft + element.clientWidth < element.scrollWidth - 4,
+      }));
+    };
+    check();
+    element.addEventListener("scroll", check, { passive: true });
+    const resizeObserver = new ResizeObserver(check);
+    resizeObserver.observe(element);
+    const mutationObserver = new MutationObserver(check);
+    mutationObserver.observe(element, { childList: true });
+    navCleanupRef.current = () => {
+      element.removeEventListener("scroll", check);
+      resizeObserver.disconnect();
+      mutationObserver.disconnect();
+    };
+  }, []);
   const currentIndexRef = useRef(currentIndex);
   const startedRef = useRef(started);
   const scrollToHeaderRef = useRef<() => void>(() => {});
@@ -1172,26 +1201,6 @@ export default function ExamSimulation() {
       navigate(langTo(`/${subject.id}`), { replace: true });
     }
   }, [subject, examInfo, navigate, langTo]);
-
-  useEffect(() => {
-    const el = navRef.current;
-    if (!el) return;
-    const check = () => {
-      setNavState((prev) => ({
-        ...prev,
-        showLeftFade: el.scrollLeft > 4,
-        showRightFade: el.scrollLeft + el.clientWidth < el.scrollWidth - 4,
-      }));
-    };
-    check();
-    el.addEventListener("scroll", check, { passive: true });
-    const ro = new ResizeObserver(check);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", check);
-      ro.disconnect();
-    };
-  }, [questions, started, setNavState]);
 
   useEffect(() => {
     if (!started || questions.length === 0) return;
@@ -1295,7 +1304,7 @@ export default function ExamSimulation() {
         setDirection={setDirection}
         showLeftFade={showLeftFade}
         showRightFade={showRightFade}
-        navRef={navRef}
+        navRef={setNavRef}
         timeUpDialogRef={timeUpDialogRef}
         scrollToNav={scrollToNav}
         onAnswer={handleAnswer}

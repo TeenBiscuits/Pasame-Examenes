@@ -20,55 +20,55 @@ const topicCardVariants = [
     lower: "bg-topic-blue-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-blue-border",
     track: "bg-topic-blue-border/20",
-    progress: "bg-topic-blue-border",
+    progress: "text-topic-blue-border",
   },
   {
     lower: "bg-topic-indigo-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-indigo-border",
     track: "bg-topic-indigo-border/20",
-    progress: "bg-topic-indigo-border",
+    progress: "text-topic-indigo-border",
   },
   {
     lower: "bg-topic-green-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-green-border",
     track: "bg-topic-green-border/20",
-    progress: "bg-topic-green-border",
+    progress: "text-topic-green-border",
   },
   {
     lower: "bg-topic-purple-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-purple-border",
     track: "bg-topic-purple-border/20",
-    progress: "bg-topic-purple-border",
+    progress: "text-topic-purple-border",
   },
   {
     lower: "bg-topic-pink-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-pink-border",
     track: "bg-topic-pink-border/20",
-    progress: "bg-topic-pink-border",
+    progress: "text-topic-pink-border",
   },
   {
     lower: "bg-topic-amber-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-amber-border",
     track: "bg-topic-amber-border/20",
-    progress: "bg-topic-amber-border",
+    progress: "text-topic-amber-border",
   },
   {
     lower: "bg-topic-red-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-red-border",
     track: "bg-topic-red-border/20",
-    progress: "bg-topic-red-border",
+    progress: "text-topic-red-border",
   },
   {
     lower: "bg-topic-cyan-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-cyan-border",
     track: "bg-topic-cyan-border/20",
-    progress: "bg-topic-cyan-border",
+    progress: "text-topic-cyan-border",
   },
   {
     lower: "bg-topic-orange-bg/60",
     lowerBorder: "border-x-2 border-b-2 border-topic-orange-border",
     track: "bg-topic-orange-border/20",
-    progress: "bg-topic-orange-border",
+    progress: "text-topic-orange-border",
   },
 ] as const;
 
@@ -105,7 +105,7 @@ export default function TopicCard({
           <span className="text-3xl leading-none" aria-hidden="true">
             {topic.icon}
           </span>
-          <span className="bg-code text-fg-secondary inline-flex shrink-0 items-center rounded px-2 py-1 text-xs font-semibold tabular-nums whitespace-nowrap">
+          <span className="bg-code text-fg-secondary inline-flex shrink-0 items-center rounded px-2 py-1 text-xs font-semibold whitespace-nowrap tabular-nums">
             {questionCount} {t.subjectCard.questions}
           </span>
         </div>
@@ -128,19 +128,12 @@ export default function TopicCard({
           )}
         </div>
         {progressValue !== undefined && (
-          <div
-            className={`${variant.track} mt-2 h-1.5 overflow-hidden rounded-full`}
-            role="progressbar"
+          <progress
+            className={`${variant.track} ${variant.progress} mt-2 block h-1.5 w-full appearance-none overflow-hidden rounded-full [&::-moz-progress-bar]:bg-current [&::-webkit-progress-bar]:bg-transparent [&::-webkit-progress-value]:bg-current`}
             aria-label={`${topic.label}: ${Math.round(progressValue)}%`}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-valuenow={Math.round(progressValue)}
-          >
-            <div
-              className={`${variant.progress} h-full rounded-full`}
-              style={{ width: `${progressValue}%` }}
-            />
-          </div>
+            max={100}
+            value={progressValue}
+          />
         )}
       </div>
     </Link>

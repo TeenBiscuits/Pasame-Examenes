@@ -742,6 +742,7 @@ function FillQuestion({
                           type="text"
                           autoComplete="off"
                           enterKeyHint="next"
+                          aria-label={`${t.questionCard.typeAnswer} ${statement.label || statementIndex + 1}-${currentBlankIndex + 1}`}
                           value={answers[currentBlankIndex] || ""}
                           onChange={(event) => {
                             const next = [...answers];
@@ -841,9 +842,9 @@ function TableFillQuestion({
         <table className="divide-border min-w-full divide-y text-sm">
           <thead className="bg-surface">
             <tr>
-              {table.headers.map((header, index) => (
+              {table.headers.map((header) => (
                 <th
-                  key={`${question.id}-table-fill-header-${index}`}
+                  key={`${question.id}-table-fill-header-${header}`}
                   scope="col"
                   className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
                 >
@@ -886,6 +887,7 @@ function TableFillQuestion({
                                   type="text"
                                   autoComplete="off"
                                   enterKeyHint="next"
+                                  aria-label={`${t.questionCard.typeAnswer} ${rowIndex + 1}-${columnIndex + 1}-${currentBlankIndex + 1}`}
                                   value={answers[currentBlankIndex] || ""}
                                   onChange={(event) => {
                                     const next = [...answers];
