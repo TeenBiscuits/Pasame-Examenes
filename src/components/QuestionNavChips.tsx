@@ -1,9 +1,4 @@
-import {
-  useRef,
-  type MouseEvent as ReactMouseEvent,
-  type PointerEvent as ReactPointerEvent,
-  type RefObject,
-} from "react";
+import type { RefObject } from "react";
 import type { Question } from "../data/types";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
@@ -29,15 +24,6 @@ interface QuestionNavChipsProps {
   className?: string;
 }
 
-interface NavDragState {
-  pointerId: number | null;
-  startX: number;
-  startY: number;
-  startScrollLeft: number;
-  dragging: boolean;
-  suppressClick: boolean;
-}
-
 export default function QuestionNavChips({
   questions,
   answers,
@@ -53,87 +39,11 @@ export default function QuestionNavChips({
   dataTour,
   className = "mb-4",
 }: QuestionNavChipsProps) {
-  const dragRef = useRef<NavDragState>({
-    pointerId: null,
-    startX: 0,
-    startY: 0,
-    startScrollLeft: 0,
-    dragging: false,
-    suppressClick: false,
-  });
-
-  function handlePointerDown(event: ReactPointerEvent<HTMLDivElement>) {
-    if (event.pointerType === "mouse") return;
-
-    dragRef.current = {
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      startScrollLeft: event.currentTarget.scrollLeft,
-      dragging: false,
-      suppressClick: false,
-    };
-  }
-
-  function handlePointerMove(event: ReactPointerEvent<HTMLDivElement>) {
-    const drag = dragRef.current;
-    if (drag.pointerId !== event.pointerId) return;
-
-    const deltaX = event.clientX - drag.startX;
-    const deltaY = event.clientY - drag.startY;
-
-    if (!drag.dragging) {
-      if (Math.abs(deltaY) > 8 && Math.abs(deltaY) > Math.abs(deltaX)) {
-        drag.pointerId = null;
-        return;
-      }
-      if (Math.abs(deltaX) <= 8) return;
-
-      drag.dragging = true;
-      drag.suppressClick = true;
-      try {
-        event.currentTarget.setPointerCapture(event.pointerId);
-      } catch {
-        /* Pointer capture is unavailable in a few embedded webviews. */
-      }
-    }
-
-    event.preventDefault();
-    event.currentTarget.scrollLeft = drag.startScrollLeft - deltaX;
-  }
-
-  function handlePointerEnd(event: ReactPointerEvent<HTMLDivElement>) {
-    const drag = dragRef.current;
-    if (drag.pointerId !== event.pointerId) return;
-
-    if (drag.dragging) {
-      try {
-        event.currentTarget.releasePointerCapture(event.pointerId);
-      } catch {
-        /* Pointer capture may already have been released by the browser. */
-      }
-    }
-    drag.pointerId = null;
-    drag.dragging = false;
-  }
-
-  function handleClickCapture(event: ReactMouseEvent<HTMLDivElement>) {
-    if (!dragRef.current.suppressClick) return;
-    event.preventDefault();
-    event.stopPropagation();
-    dragRef.current.suppressClick = false;
-  }
-
   return (
     <div
       ref={navRef}
       className={`question-nav-scroll flex gap-2 overflow-x-auto overflow-y-hidden pb-0 sm:pb-2 ${className}`}
       data-tour={dataTour}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerEnd}
-      onPointerCancel={handlePointerEnd}
-      onClickCapture={handleClickCapture}
       style={{
         maskImage:
           showLeftFade && showRightFade

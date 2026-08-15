@@ -74,10 +74,10 @@ body {
   }
 }
 
-/* The question index is a horizontal gesture surface. Horizontal dragging is
-   handled by the component so vertical movement can keep scrolling the page. */
+/* Keep the question index a native two-axis touch surface so mobile browsers
+   can provide their normal horizontal momentum and vertical page scrolling. */
 .question-nav-scroll {
-  touch-action: pan-y;
+  touch-action: pan-x pan-y;
   overscroll-behavior-x: contain;
 }
 
