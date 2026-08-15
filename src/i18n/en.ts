@@ -74,6 +74,10 @@ export const en = {
     light: "☀️ Light",
     dark: "🌙 Dark",
     princess: "👑 Princess",
+    latte: "🌻 Latte",
+    frappe: "🪴 Frappé",
+    macchiato: "🌺 Macchiato",
+    mocha: "🌿 Mocha",
   },
   footer: {
     github: "GitHub",

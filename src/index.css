@@ -24,6 +24,16 @@ html[data-theme="princess"] {
   color-scheme: light;
 }
 
+html[data-theme="latte"] {
+  color-scheme: light;
+}
+
+html[data-theme="frappe"],
+html[data-theme="macchiato"],
+html[data-theme="mocha"] {
+  color-scheme: dark;
+}
+
 html[data-theme="system"] {
   color-scheme: light dark;
 }
@@ -591,6 +601,441 @@ html[data-theme="princess"] {
   --color-pending-bg: oklch(0.965 0.012 265);
   --color-pending-border: oklch(0.76 0.12 265);
   --color-pending-fg: oklch(0.42 0.16 265);
+}
+
+/* ── Catppuccin Latte ──
+   Official Latte roles are used for the surfaces and accents. A few
+   foreground roles are lowered in lightness so the pastel palette remains
+   readable at WCAG AA contrast. */
+html[data-theme="latte"] {
+  --color-surface: oklch(0.958 0.006 264.532);
+  --color-surface-alt: oklch(0.906 0.012 264.507);
+  --color-fg: oklch(0.435 0.043 279.325);
+  --color-fg-secondary: oklch(0.492 0.038 279.299);
+  --color-fg-muted: oklch(0.5 0.034 279.084);
+  --color-border: oklch(0.857 0.014 268.476);
+  --color-card-footer: oklch(0.933 0.009 264.521);
+  --color-card-footer-border: oklch(0.808 0.017 271.198);
+
+  --color-accent: oklch(0.555 0.25 297.016);
+  --color-on-accent: oklch(0.958 0.006 264.532);
+  --color-accent-light: oklch(0.857 0.014 268.476);
+  --color-accent-fg: oklch(0.43 0.18 262.087);
+  --color-accent-hover: oklch(0.46 0.2 297.016);
+  --color-accent-border: oklch(0.664 0.175 273.135);
+
+  --color-code: oklch(0.906 0.012 264.507);
+  --color-code-fg: oklch(0.435 0.043 279.325);
+  --color-code-block: oklch(0.906 0.012 264.507);
+  --color-code-block-fg: oklch(0.435 0.043 279.325);
+  --color-code-comment: oklch(0.492 0.038 279.299);
+  --color-code-punctuation: oklch(0.492 0.038 279.299);
+  --color-code-keyword: oklch(0.5 0.2 297.016);
+  --color-code-string: oklch(0.44 0.13 140.445);
+  --color-code-number: oklch(0.48 0.12 42.429);
+  --color-code-function: oklch(0.46 0.18 262.087);
+  --color-code-operator: oklch(0.46 0.09 235.382);
+  --color-code-property: oklch(0.44 0.06 201.105);
+  --color-code-class: oklch(0.47 0.16 338.433);
+
+  --color-info: oklch(0.559 0.226 262.087);
+  --color-on-info: oklch(1 0 0);
+  --color-info-hover: oklch(0.48 0.2 262.087);
+  --color-info-light: oklch(0.965 0.012 262.087);
+  --color-info-fg: oklch(0.43 0.18 262.087);
+  --color-info-border: oklch(0.559 0.226 262.087);
+
+  --color-danger: oklch(0.55 0.216 19.809);
+  --color-on-danger: oklch(1 0 0);
+  --color-danger-hover: oklch(0.48 0.18 19.809);
+  --color-danger-light: oklch(0.965 0.012 19.809);
+  --color-danger-fg: oklch(0.43 0.17 19.809);
+  --color-danger-border: oklch(0.55 0.216 19.809);
+
+  --color-reward: oklch(0.714 0.149 67.777);
+  --color-on-reward: oklch(0.32 0.03 279.325);
+  --color-reward-hover: oklch(0.72 0.12 67.777);
+  --color-reward-light: oklch(0.965 0.02 67.777);
+  --color-reward-fg: oklch(0.43 0.08 67.777);
+  --color-reward-border: oklch(0.714 0.149 67.777);
+  --color-github-star: oklch(0.43 0.08 67.777);
+  --color-warning-bg: var(--color-reward-light);
+  --color-warning-fg: var(--color-reward-fg);
+  --color-warning-border: var(--color-reward-border);
+
+  --color-contribute-bg: var(--color-info-light);
+  --color-contribute-fg: var(--color-info-fg);
+  --color-contribute-border: var(--color-info-border);
+  --color-contribute-hover-bg: oklch(0.94 0.012 262.087);
+  --color-contribute-hover-border: oklch(0.48 0.2 262.087);
+
+  --color-overlay: oklch(0 0 0 / 0.5);
+  --color-shadow: oklch(0 0 0 / 0.14);
+  --color-mask: oklch(0 0 0);
+  --color-selection-bg: oklch(0.555 0.25 297.016 / 0.25);
+  --color-selection-fg: oklch(0.435 0.043 279.325);
+
+  --color-topic-blue-bg: oklch(0.972 0.008 262.087);
+  --color-topic-blue-border: oklch(0.48 0.18 262.087);
+  --color-topic-blue-hover: oklch(0.42 0.16 262.087);
+  --color-topic-indigo-bg: oklch(0.972 0.008 273.135);
+  --color-topic-indigo-border: oklch(0.48 0.17 273.135);
+  --color-topic-indigo-hover: oklch(0.42 0.15 273.135);
+  --color-topic-green-bg: oklch(0.972 0.008 140.445);
+  --color-topic-green-border: oklch(0.5 0.13 140.445);
+  --color-topic-green-hover: oklch(0.45 0.12 140.445);
+  --color-topic-purple-bg: oklch(0.972 0.008 297.016);
+  --color-topic-purple-border: oklch(0.48 0.2 297.016);
+  --color-topic-purple-hover: oklch(0.42 0.18 297.016);
+  --color-topic-pink-bg: oklch(0.972 0.008 338.433);
+  --color-topic-pink-border: oklch(0.55 0.14 338.433);
+  --color-topic-pink-hover: oklch(0.49 0.13 338.433);
+  --color-topic-amber-bg: oklch(0.972 0.008 67.777);
+  --color-topic-amber-border: oklch(0.55 0.1 67.777);
+  --color-topic-amber-hover: oklch(0.49 0.09 67.777);
+  --color-topic-red-bg: oklch(0.972 0.008 19.809);
+  --color-topic-red-border: oklch(0.48 0.17 19.809);
+  --color-topic-red-hover: oklch(0.42 0.15 19.809);
+  --color-topic-cyan-bg: oklch(0.972 0.008 201.105);
+  --color-topic-cyan-border: oklch(0.5 0.07 201.105);
+  --color-topic-cyan-hover: oklch(0.44 0.06 201.105);
+  --color-topic-orange-bg: oklch(0.972 0.008 42.429);
+  --color-topic-orange-border: oklch(0.55 0.15 42.429);
+  --color-topic-orange-hover: oklch(0.49 0.13 42.429);
+
+  --color-correct-bg: oklch(0.965 0.022 140.445);
+  --color-correct-border: oklch(0.78 0.1 140.445);
+  --color-correct-fg: oklch(0.43 0.12 140.445);
+  --color-incorrect-bg: oklch(0.965 0.012 19.809);
+  --color-incorrect-border: oklch(0.78 0.1 19.809);
+  --color-incorrect-fg: oklch(0.43 0.16 19.809);
+  --color-pending-bg: oklch(0.965 0.012 262.087);
+  --color-pending-border: oklch(0.78 0.1 262.087);
+  --color-pending-fg: oklch(0.43 0.18 262.087);
+}
+
+/* ── Catppuccin Frappé ── */
+html[data-theme="frappe"] {
+  --color-surface: oklch(0.329 0.032 274.758);
+  --color-surface-alt: oklch(0.272 0.026 275.115);
+  --color-fg: oklch(0.862 0.053 273.347);
+  --color-fg-secondary: oklch(0.808 0.051 272.678);
+  --color-fg-muted: oklch(0.808 0.051 272.678);
+  --color-border: oklch(0.46 0.037 272.966);
+  --color-card-footer: oklch(0.297 0.029 276.214);
+  --color-card-footer-border: oklch(0.521 0.039 273.999);
+
+  --color-accent: oklch(0.765 0.111 311.744);
+  --color-on-accent: oklch(0.329 0.032 274.758);
+  --color-accent-light: oklch(0.272 0.026 275.115);
+  --color-accent-fg: oklch(0.742 0.104 265.663);
+  --color-accent-hover: oklch(0.81 0.076 283.74);
+  --color-accent-border: oklch(0.81 0.076 283.74);
+
+  --color-code: oklch(0.272 0.026 275.115);
+  --color-code-fg: oklch(0.862 0.053 273.347);
+  --color-code-block: oklch(0.272 0.026 275.115);
+  --color-code-block-fg: oklch(0.862 0.053 273.347);
+  --color-code-comment: oklch(0.697 0.046 273.777);
+  --color-code-punctuation: oklch(0.697 0.046 273.777);
+  --color-code-keyword: oklch(0.765 0.111 311.744);
+  --color-code-string: oklch(0.812 0.107 133.392);
+  --color-code-number: oklch(0.773 0.111 47.726);
+  --color-code-function: oklch(0.742 0.104 265.663);
+  --color-code-operator: oklch(0.826 0.059 209.756);
+  --color-code-property: oklch(0.783 0.073 184.645);
+  --color-code-class: oklch(0.85 0.089 336.263);
+
+  --color-info: oklch(0.742 0.104 265.663);
+  --color-on-info: oklch(0.329 0.032 274.758);
+  --color-info-hover: oklch(0.81 0.076 283.74);
+  --color-info-light: oklch(0.364 0.045 265.663);
+  --color-info-fg: oklch(0.742 0.104 265.663);
+  --color-info-border: oklch(0.742 0.104 265.663);
+
+  --color-danger: oklch(0.717 0.124 19.386);
+  --color-on-danger: oklch(0.329 0.032 274.758);
+  --color-danger-hover: oklch(0.844 0.055 18.307);
+  --color-danger-light: oklch(0.34 0.045 19.386);
+  --color-danger-fg: oklch(0.717 0.124 19.386);
+  --color-danger-border: oklch(0.717 0.124 19.386);
+
+  --color-reward: oklch(0.844 0.08 83.472);
+  --color-on-reward: oklch(0.329 0.032 274.758);
+  --color-reward-hover: oklch(0.844 0.08 83.472);
+  --color-reward-light: oklch(0.364 0.045 83.472);
+  --color-reward-fg: oklch(0.844 0.08 83.472);
+  --color-reward-border: oklch(0.844 0.08 83.472);
+  --color-github-star: oklch(0.844 0.08 83.472);
+  --color-warning-bg: var(--color-reward-light);
+  --color-warning-fg: var(--color-reward-fg);
+  --color-warning-border: var(--color-reward-border);
+
+  --color-contribute-bg: var(--color-info-light);
+  --color-contribute-fg: var(--color-info-fg);
+  --color-contribute-border: var(--color-info-border);
+  --color-contribute-hover-bg: oklch(0.399 0.055 265.663);
+  --color-contribute-hover-border: oklch(0.81 0.076 283.74);
+
+  --color-overlay: oklch(0 0 0 / 0.65);
+  --color-shadow: oklch(0 0 0 / 0.45);
+  --color-mask: oklch(1 0 0);
+  --color-selection-bg: oklch(0.765 0.111 311.744 / 0.35);
+  --color-selection-fg: oklch(0.329 0.032 274.758);
+
+  --color-topic-blue-bg: oklch(0.354 0.045 265.663);
+  --color-topic-blue-border: oklch(0.742 0.104 265.663);
+  --color-topic-blue-hover: oklch(0.81 0.076 283.74);
+  --color-topic-indigo-bg: oklch(0.354 0.045 283.74);
+  --color-topic-indigo-border: oklch(0.81 0.076 283.74);
+  --color-topic-indigo-hover: oklch(0.765 0.111 311.744);
+  --color-topic-green-bg: oklch(0.354 0.045 133.392);
+  --color-topic-green-border: oklch(0.812 0.107 133.392);
+  --color-topic-green-hover: oklch(0.783 0.073 184.645);
+  --color-topic-purple-bg: oklch(0.354 0.045 311.744);
+  --color-topic-purple-border: oklch(0.765 0.111 311.744);
+  --color-topic-purple-hover: oklch(0.85 0.089 336.263);
+  --color-topic-pink-bg: oklch(0.354 0.045 336.263);
+  --color-topic-pink-border: oklch(0.85 0.089 336.263);
+  --color-topic-pink-hover: oklch(0.844 0.055 18.307);
+  --color-topic-amber-bg: oklch(0.354 0.045 83.472);
+  --color-topic-amber-border: oklch(0.844 0.08 83.472);
+  --color-topic-amber-hover: oklch(0.773 0.111 47.726);
+  --color-topic-red-bg: oklch(0.354 0.045 19.386);
+  --color-topic-red-border: oklch(0.717 0.124 19.386);
+  --color-topic-red-hover: oklch(0.844 0.055 18.307);
+  --color-topic-cyan-bg: oklch(0.354 0.045 184.645);
+  --color-topic-cyan-border: oklch(0.783 0.073 184.645);
+  --color-topic-cyan-hover: oklch(0.826 0.059 209.756);
+  --color-topic-orange-bg: oklch(0.354 0.045 47.726);
+  --color-topic-orange-border: oklch(0.773 0.111 47.726);
+  --color-topic-orange-hover: oklch(0.824 0.101 52.629);
+
+  --color-correct-bg: oklch(0.359 0.05 133.392);
+  --color-correct-border: oklch(0.812 0.107 133.392);
+  --color-correct-fg: oklch(0.812 0.107 133.392);
+  --color-incorrect-bg: oklch(0.339 0.045 19.386);
+  --color-incorrect-border: oklch(0.717 0.124 19.386);
+  --color-incorrect-fg: oklch(0.717 0.124 19.386);
+  --color-pending-bg: oklch(0.364 0.045 265.663);
+  --color-pending-border: oklch(0.742 0.104 265.663);
+  --color-pending-fg: oklch(0.742 0.104 265.663);
+}
+
+/* ── Catppuccin Macchiato ── */
+html[data-theme="macchiato"] {
+  --color-surface: oklch(0.279 0.035 276.937);
+  --color-surface-alt: oklch(0.219 0.025 280.657);
+  --color-fg: oklch(0.871 0.048 273.665);
+  --color-fg-secondary: oklch(0.812 0.046 274.267);
+  --color-fg-muted: oklch(0.812 0.046 274.267);
+  --color-border: oklch(0.426 0.039 276.948);
+  --color-card-footer: oklch(0.249 0.03 278.435);
+  --color-card-footer-border: oklch(0.494 0.039 275.683);
+
+  --color-accent: oklch(0.772 0.126 303.898);
+  --color-on-accent: oklch(0.279 0.035 276.937);
+  --color-accent-light: oklch(0.219 0.025 280.657);
+  --color-accent-fg: oklch(0.75 0.11 263.81);
+  --color-accent-hover: oklch(0.814 0.083 279.854);
+  --color-accent-border: oklch(0.814 0.083 279.854);
+
+  --color-code: oklch(0.219 0.025 280.657);
+  --color-code-fg: oklch(0.871 0.048 273.665);
+  --color-code-block: oklch(0.219 0.025 280.657);
+  --color-code-block-fg: oklch(0.871 0.048 273.665);
+  --color-code-comment: oklch(0.69 0.043 274.539);
+  --color-code-punctuation: oklch(0.69 0.043 274.539);
+  --color-code-keyword: oklch(0.772 0.126 303.898);
+  --color-code-string: oklch(0.835 0.108 138.15);
+  --color-code-number: oklch(0.799 0.106 49.638);
+  --color-code-function: oklch(0.75 0.11 263.81);
+  --color-code-operator: oklch(0.837 0.072 209.366);
+  --color-code-property: oklch(0.821 0.076 184.1);
+  --color-code-class: oklch(0.861 0.083 336.18);
+
+  --color-info: oklch(0.75 0.11 263.81);
+  --color-on-info: oklch(0.279 0.035 276.937);
+  --color-info-hover: oklch(0.814 0.083 279.854);
+  --color-info-light: oklch(0.314 0.045 263.81);
+  --color-info-fg: oklch(0.75 0.11 263.81);
+  --color-info-border: oklch(0.75 0.11 263.81);
+
+  --color-danger: oklch(0.737 0.125 11.194);
+  --color-on-danger: oklch(0.279 0.035 276.937);
+  --color-danger-hover: oklch(0.863 0.048 18.12);
+  --color-danger-light: oklch(0.314 0.045 11.194);
+  --color-danger-fg: oklch(0.737 0.125 11.194);
+  --color-danger-border: oklch(0.737 0.125 11.194);
+
+  --color-reward: oklch(0.879 0.074 84.751);
+  --color-on-reward: oklch(0.279 0.035 276.937);
+  --color-reward-hover: oklch(0.879 0.074 84.751);
+  --color-reward-light: oklch(0.314 0.045 84.751);
+  --color-reward-fg: oklch(0.879 0.074 84.751);
+  --color-reward-border: oklch(0.879 0.074 84.751);
+  --color-github-star: oklch(0.879 0.074 84.751);
+  --color-warning-bg: var(--color-reward-light);
+  --color-warning-fg: var(--color-reward-fg);
+  --color-warning-border: var(--color-reward-border);
+
+  --color-contribute-bg: var(--color-info-light);
+  --color-contribute-fg: var(--color-info-fg);
+  --color-contribute-border: var(--color-info-border);
+  --color-contribute-hover-bg: oklch(0.349 0.055 263.81);
+  --color-contribute-hover-border: oklch(0.814 0.083 279.854);
+
+  --color-overlay: oklch(0 0 0 / 0.65);
+  --color-shadow: oklch(0 0 0 / 0.45);
+  --color-mask: oklch(1 0 0);
+  --color-selection-bg: oklch(0.772 0.126 303.898 / 0.35);
+  --color-selection-fg: oklch(0.279 0.035 276.937);
+
+  --color-topic-blue-bg: oklch(0.304 0.045 263.81);
+  --color-topic-blue-border: oklch(0.75 0.11 263.81);
+  --color-topic-blue-hover: oklch(0.814 0.083 279.854);
+  --color-topic-indigo-bg: oklch(0.304 0.045 279.854);
+  --color-topic-indigo-border: oklch(0.814 0.083 279.854);
+  --color-topic-indigo-hover: oklch(0.772 0.126 303.898);
+  --color-topic-green-bg: oklch(0.304 0.045 138.15);
+  --color-topic-green-border: oklch(0.835 0.108 138.15);
+  --color-topic-green-hover: oklch(0.821 0.076 184.1);
+  --color-topic-purple-bg: oklch(0.304 0.045 303.898);
+  --color-topic-purple-border: oklch(0.772 0.126 303.898);
+  --color-topic-purple-hover: oklch(0.861 0.083 336.18);
+  --color-topic-pink-bg: oklch(0.304 0.045 336.18);
+  --color-topic-pink-border: oklch(0.861 0.083 336.18);
+  --color-topic-pink-hover: oklch(0.863 0.048 18.12);
+  --color-topic-amber-bg: oklch(0.304 0.045 84.751);
+  --color-topic-amber-border: oklch(0.879 0.074 84.751);
+  --color-topic-amber-hover: oklch(0.799 0.106 49.638);
+  --color-topic-red-bg: oklch(0.304 0.045 11.194);
+  --color-topic-red-border: oklch(0.737 0.125 11.194);
+  --color-topic-red-hover: oklch(0.863 0.048 18.12);
+  --color-topic-cyan-bg: oklch(0.304 0.045 184.1);
+  --color-topic-cyan-border: oklch(0.821 0.076 184.1);
+  --color-topic-cyan-hover: oklch(0.837 0.072 209.366);
+  --color-topic-orange-bg: oklch(0.304 0.045 49.638);
+  --color-topic-orange-border: oklch(0.799 0.106 49.638);
+  --color-topic-orange-hover: oklch(0.824 0.101 49.638);
+
+  --color-correct-bg: oklch(0.309 0.05 138.15);
+  --color-correct-border: oklch(0.835 0.108 138.15);
+  --color-correct-fg: oklch(0.835 0.108 138.15);
+  --color-incorrect-bg: oklch(0.309 0.05 11.194);
+  --color-incorrect-border: oklch(0.737 0.125 11.194);
+  --color-incorrect-fg: oklch(0.737 0.125 11.194);
+  --color-pending-bg: oklch(0.314 0.045 263.81);
+  --color-pending-border: oklch(0.75 0.11 263.81);
+  --color-pending-fg: oklch(0.75 0.11 263.81);
+}
+
+/* ── Catppuccin Mocha ── */
+html[data-theme="mocha"] {
+  --color-surface: oklch(0.243 0.03 283.911);
+  --color-surface-alt: oklch(0.183 0.02 284.204);
+  --color-fg: oklch(0.879 0.043 272.277);
+  --color-fg-secondary: oklch(0.817 0.04 272.862);
+  --color-fg-muted: oklch(0.817 0.04 272.862);
+  --color-border: oklch(0.404 0.032 280.152);
+  --color-card-footer: oklch(0.216 0.025 284.065);
+  --color-card-footer-border: oklch(0.477 0.034 278.643);
+
+  --color-accent: oklch(0.787 0.119 304.769);
+  --color-on-accent: oklch(0.243 0.03 283.911);
+  --color-accent-light: oklch(0.183 0.02 284.204);
+  --color-accent-fg: oklch(0.766 0.111 259.885);
+  --color-accent-hover: oklch(0.817 0.091 277.309);
+  --color-accent-border: oklch(0.817 0.091 277.309);
+
+  --color-code: oklch(0.183 0.02 284.204);
+  --color-code-fg: oklch(0.879 0.043 272.277);
+  --color-code-block: oklch(0.183 0.02 284.204);
+  --color-code-block-fg: oklch(0.879 0.043 272.277);
+  --color-code-comment: oklch(0.687 0.037 274.725);
+  --color-code-punctuation: oklch(0.687 0.037 274.725);
+  --color-code-keyword: oklch(0.787 0.119 304.769);
+  --color-code-string: oklch(0.858 0.109 142.715);
+  --color-code-number: oklch(0.824 0.101 52.629);
+  --color-code-function: oklch(0.766 0.111 259.885);
+  --color-code-operator: oklch(0.847 0.083 210.255);
+  --color-code-property: oklch(0.858 0.079 182.75);
+  --color-code-class: oklch(0.87 0.075 336.304);
+
+  --color-info: oklch(0.766 0.111 259.885);
+  --color-on-info: oklch(0.243 0.03 283.911);
+  --color-info-hover: oklch(0.817 0.091 277.309);
+  --color-info-light: oklch(0.278 0.045 259.885);
+  --color-info-fg: oklch(0.766 0.111 259.885);
+  --color-info-border: oklch(0.766 0.111 259.885);
+
+  --color-danger: oklch(0.756 0.13 2.764);
+  --color-on-danger: oklch(0.243 0.03 283.911);
+  --color-danger-hover: oklch(0.88 0.042 17.975);
+  --color-danger-light: oklch(0.278 0.045 2.764);
+  --color-danger-fg: oklch(0.756 0.13 2.764);
+  --color-danger-border: oklch(0.756 0.13 2.764);
+
+  --color-reward: oklch(0.919 0.07 86.528);
+  --color-on-reward: oklch(0.243 0.03 283.911);
+  --color-reward-hover: oklch(0.919 0.07 86.528);
+  --color-reward-light: oklch(0.278 0.045 86.528);
+  --color-reward-fg: oklch(0.919 0.07 86.528);
+  --color-reward-border: oklch(0.919 0.07 86.528);
+  --color-github-star: oklch(0.919 0.07 86.528);
+  --color-warning-bg: var(--color-reward-light);
+  --color-warning-fg: var(--color-reward-fg);
+  --color-warning-border: var(--color-reward-border);
+
+  --color-contribute-bg: var(--color-info-light);
+  --color-contribute-fg: var(--color-info-fg);
+  --color-contribute-border: var(--color-info-border);
+  --color-contribute-hover-bg: oklch(0.313 0.055 259.885);
+  --color-contribute-hover-border: oklch(0.817 0.091 277.309);
+
+  --color-overlay: oklch(0 0 0 / 0.65);
+  --color-shadow: oklch(0 0 0 / 0.45);
+  --color-mask: oklch(1 0 0);
+  --color-selection-bg: oklch(0.787 0.119 304.769 / 0.35);
+  --color-selection-fg: oklch(0.243 0.03 283.911);
+
+  --color-topic-blue-bg: oklch(0.268 0.045 259.885);
+  --color-topic-blue-border: oklch(0.766 0.111 259.885);
+  --color-topic-blue-hover: oklch(0.817 0.091 277.309);
+  --color-topic-indigo-bg: oklch(0.268 0.045 277.309);
+  --color-topic-indigo-border: oklch(0.817 0.091 277.309);
+  --color-topic-indigo-hover: oklch(0.787 0.119 304.769);
+  --color-topic-green-bg: oklch(0.268 0.045 142.715);
+  --color-topic-green-border: oklch(0.858 0.109 142.715);
+  --color-topic-green-hover: oklch(0.858 0.079 182.75);
+  --color-topic-purple-bg: oklch(0.268 0.045 304.769);
+  --color-topic-purple-border: oklch(0.787 0.119 304.769);
+  --color-topic-purple-hover: oklch(0.87 0.075 336.304);
+  --color-topic-pink-bg: oklch(0.268 0.045 336.304);
+  --color-topic-pink-border: oklch(0.87 0.075 336.304);
+  --color-topic-pink-hover: oklch(0.88 0.042 17.975);
+  --color-topic-amber-bg: oklch(0.268 0.045 86.528);
+  --color-topic-amber-border: oklch(0.919 0.07 86.528);
+  --color-topic-amber-hover: oklch(0.824 0.101 52.629);
+  --color-topic-red-bg: oklch(0.268 0.045 2.764);
+  --color-topic-red-border: oklch(0.756 0.13 2.764);
+  --color-topic-red-hover: oklch(0.88 0.042 17.975);
+  --color-topic-cyan-bg: oklch(0.268 0.045 182.75);
+  --color-topic-cyan-border: oklch(0.858 0.079 182.75);
+  --color-topic-cyan-hover: oklch(0.847 0.083 210.255);
+  --color-topic-orange-bg: oklch(0.268 0.045 52.629);
+  --color-topic-orange-border: oklch(0.824 0.101 52.629);
+  --color-topic-orange-hover: oklch(0.919 0.07 86.528);
+
+  --color-correct-bg: oklch(0.273 0.05 142.715);
+  --color-correct-border: oklch(0.858 0.109 142.715);
+  --color-correct-fg: oklch(0.858 0.109 142.715);
+  --color-incorrect-bg: oklch(0.273 0.05 2.764);
+  --color-incorrect-border: oklch(0.756 0.13 2.764);
+  --color-incorrect-fg: oklch(0.756 0.13 2.764);
+  --color-pending-bg: oklch(0.278 0.045 259.885);
+  --color-pending-border: oklch(0.766 0.111 259.885);
+  --color-pending-fg: oklch(0.766 0.111 259.885);
 }
 
 ::selection {

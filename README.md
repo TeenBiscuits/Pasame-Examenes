@@ -85,7 +85,7 @@ No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación d
 
 ### i18n y temas
 
-La plataforma es trilingüe (español, inglés, gallego) con un sistema de i18n propio en `src/i18n/`. Incluye apariencias clara y oscura, un tema claro Princesa y un modo sistema, conmutables desde la interfaz y aplicadas mediante `data-theme` en `<html>`.
+La plataforma es trilingüe (español, inglés, gallego) con un sistema de i18n propio en `src/i18n/`. Incluye apariencias clara y oscura, el tema claro Princesa, los cuatro sabores de Catppuccin y un modo sistema, conmutables desde la interfaz y aplicadas mediante `data-theme` en `<html>`.
 
 ### Generación de OG images
 

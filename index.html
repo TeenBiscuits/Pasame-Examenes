@@ -35,7 +35,11 @@
           stored === "light" ||
           stored === "dark" ||
           stored === "system" ||
-          stored === "princess"
+          stored === "princess" ||
+          stored === "latte" ||
+          stored === "frappe" ||
+          stored === "macchiato" ||
+          stored === "mocha"
             ? stored
             : "system";
         document.documentElement.setAttribute("data-theme", t);
@@ -44,11 +48,19 @@
           light: "oklch(1 0 0)",
           dark: "oklch(0.278 0.030 256.848)",
           princess: "oklch(0.99 0.003 15)",
+          latte: "oklch(0.906 0.012 264.507)",
+          frappe: "oklch(0.272 0.026 275.115)",
+          macchiato: "oklch(0.219 0.025 280.657)",
+          mocha: "oklch(0.183 0.020 284.204)",
         };
         var schemes = {
           light: "light",
           dark: "dark",
           princess: "light",
+          latte: "light",
+          frappe: "dark",
+          macchiato: "dark",
+          mocha: "dark",
         };
         var resolved =
           t === "system"

@@ -13,7 +13,11 @@ const themeScript = `(function () {
     stored === "light" ||
     stored === "dark" ||
     stored === "system" ||
-    stored === "princess"
+    stored === "princess" ||
+    stored === "latte" ||
+    stored === "frappe" ||
+    stored === "macchiato" ||
+    stored === "mocha"
       ? stored
       : "system";
   document.documentElement.setAttribute("data-theme", t);
@@ -22,11 +26,19 @@ const themeScript = `(function () {
     light: "${themeSurfaceAlt.light}",
     dark: "${themeSurfaceAlt.dark}",
     princess: "${themeSurfaceAlt.princess}",
+    latte: "${themeSurfaceAlt.latte}",
+    frappe: "${themeSurfaceAlt.frappe}",
+    macchiato: "${themeSurfaceAlt.macchiato}",
+    mocha: "${themeSurfaceAlt.mocha}",
   };
   var schemes = {
     light: "light",
     dark: "dark",
     princess: "light",
+    latte: "light",
+    frappe: "dark",
+    macchiato: "dark",
+    mocha: "dark",
   };
   var resolved =
     t === "system"

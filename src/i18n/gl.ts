@@ -76,6 +76,10 @@ export const gl: Translations = {
     light: "☀️ Claro",
     dark: "🌙 Escuro",
     princess: "👑 Princesa",
+    latte: "🌻 Latte",
+    frappe: "🪴 Frappé",
+    macchiato: "🌺 Macchiato",
+    mocha: "🌿 Mocha",
   },
   footer: {
     github: "GitHub",
