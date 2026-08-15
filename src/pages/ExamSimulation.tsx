@@ -979,6 +979,7 @@ function ExamEmptyState({
 interface LoadedExamData {
   questions: Question[];
   megatopicLabels: Record<string, string>;
+  loadFailed: boolean;
 }
 
 const examDataCache = new Map<string, Promise<LoadedExamData>>();
@@ -1001,12 +1002,13 @@ function loadExamData(subjectId: string, examId: string) {
       for (const [topic, label] of entries) {
         if (label != null) megatopicLabels[topic] = label;
       }
-      return { questions, megatopicLabels };
+      return { questions, megatopicLabels, loadFailed: false };
     })
-    .catch(() => {
-      examDataCache.delete(cacheKey);
-      return { questions: [], megatopicLabels: {} };
-    });
+    .catch(() => ({
+      questions: [],
+      megatopicLabels: {},
+      loadFailed: true,
+    }));
   examDataCache.set(cacheKey, promise);
   return promise;
 }
@@ -1020,8 +1022,13 @@ function useExamData(subject: ExamSubject | undefined, examId?: string) {
   const loadedData =
     subject && examId
       ? use(loadExamData(subject.id, examId))
-      : { questions: [], megatopicLabels: {} };
+      : { questions: [], megatopicLabels: {}, loadFailed: false };
   const { questions, megatopicLabels } = loadedData;
+  useEffect(() => {
+    if (loadedData.loadFailed && subject && examId) {
+      examDataCache.delete(`${subject.id}/${examId}`);
+    }
+  }, [loadedData.loadFailed, subject, examId]);
   const totalPoints = roundPoints(
     questions.reduce((sum, q) => sum + q.points, 0),
   );
