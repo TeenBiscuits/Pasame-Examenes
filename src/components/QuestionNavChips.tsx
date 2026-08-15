@@ -78,7 +78,7 @@ export default function QuestionNavChips({
           <button
             type="button"
             key={q.id}
-            data-cuelume-press="page"
+            data-cuelume-toggle="page"
             className={cls}
             onPointerUp={(event) => event.currentTarget.blur()}
             onClick={() => {
