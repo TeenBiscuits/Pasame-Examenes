@@ -12,9 +12,8 @@ export const themeAppearance: Record<
 };
 
 // Header and footer use `surface-alt`, which is also the browser chrome color.
-// Use sRGB values here because installed mobile web apps have historically
-// been stricter than the page CSS when parsing `theme-color`.
+// Keep these values in CSS notation so the meta tag follows the OKLCH system.
 export const themeSurfaceAlt: Record<ThemeAppearance, string> = {
-  light: "#ffffff",
-  dark: "#1f2937",
+  light: "oklch(1 0 0)",
+  dark: "oklch(0.278 0.030 256.848)",
 };
