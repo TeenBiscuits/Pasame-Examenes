@@ -988,8 +988,8 @@ function loadExamData(subjectId: string, examId: string) {
   const cached = examDataCache.get(cacheKey);
   if (cached) return cached;
 
-  const promise = getQuestionsByExam(subjectId, examId).then(
-    async (questions) => {
+  const promise: Promise<LoadedExamData> = getQuestionsByExam(subjectId, examId)
+    .then(async (questions) => {
       const topics = [...new Set(questions.map((question) => question.topic))];
       const entries = await Promise.all(
         topics.map(async (topic) => {
@@ -1002,8 +1002,11 @@ function loadExamData(subjectId: string, examId: string) {
         if (label != null) megatopicLabels[topic] = label;
       }
       return { questions, megatopicLabels };
-    },
-  );
+    })
+    .catch(() => {
+      examDataCache.delete(cacheKey);
+      return { questions: [], megatopicLabels: {} };
+    });
   examDataCache.set(cacheKey, promise);
   return promise;
 }
