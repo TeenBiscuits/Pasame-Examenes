@@ -21,27 +21,66 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta id="theme-color" name="theme-color" content="#f9fafb" />
+    <meta id="theme-color" name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light dark" />
     <script>
       (function () {
-        var t = localStorage.getItem("theme") || "system";
+        var stored;
+        try {
+          stored = localStorage.getItem("theme");
+        } catch (_) {
+          stored = null;
+        }
+        var t =
+          stored === "light" ||
+          stored === "dark" ||
+          stored === "system" ||
+          stored === "princess" ||
+          stored === "latte" ||
+          stored === "frappe" ||
+          stored === "macchiato" ||
+          stored === "mocha"
+            ? stored
+            : "system";
         document.documentElement.setAttribute("data-theme", t);
 
         var colors = {
           light: "#ffffff",
           dark: "#1f2937",
-          pink: "#ffffff",
-          catppuccin: "#313244",
+          princess: "#fefbfb",
+          latte: "#dce0e8",
+          frappe: "#232634",
+          macchiato: "#181926",
+          mocha: "#11111b",
         };
-        var color = colors[t];
-        if (t === "system") {
-          color = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? colors.dark
-            : colors.light;
-        }
+        var schemes = {
+          light: "light",
+          dark: "dark",
+          princess: "light",
+          latte: "light",
+          frappe: "dark",
+          macchiato: "dark",
+          mocha: "dark",
+        };
+        var resolved =
+          t === "system"
+            ? window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+            : t;
+        var color = colors[resolved];
+        document.documentElement.style.setProperty(
+          "--browser-chrome-color",
+          color,
+        );
         var meta = document.getElementById("theme-color");
         if (meta) meta.setAttribute("content", color);
+        var scheme = document.querySelector('meta[name="color-scheme"]');
+        if (scheme)
+          scheme.setAttribute(
+            "content",
+            t === "system" ? "light dark" : schemes[t],
+          );
       })();
     </script>
     <title>Pásame Exámenes</title>
@@ -50,6 +89,7 @@
       name="description"
       content="Practica preguntas de exámenes de la FIC con respuestas modelo y autocorrección. Preguntas tipo test, de desarrollo y de emparejar."
     />
+    <meta id="meta-robots" name="robots" content="noindex, nofollow" />
     <!-- Default OG/twitter tags for JS-less crawlers.
          Per-subject tags are set dynamically by useSeoHead at runtime. -->
     <meta id="og:title" property="og:title" content="Pásame Exámenes" />

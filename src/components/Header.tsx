@@ -1,27 +1,11 @@
-import { useLocation, useMatch, useNavigate } from "react-router";
+import { useLocation, useMatch } from "react-router";
 import { getSubject } from "../subjects";
-import { useT, useLang } from "../i18n/hooks";
-import type { Lang } from "../i18n/context";
+import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
-import ThemeToggle from "../theme/ThemeToggle";
 import { LangLink as Link } from "../lib/lang-link";
-import { replaceLangInPath } from "../lib/lang-link-utils";
 import GitHubStarButton from "./GitHubStarButton";
-
-const langCycle: Lang[] = ["en", "es", "gl"];
-
-const langLabel: Record<Lang, string> = {
-  en: "🇬🇧 EN",
-  es: "🇪🇸 ES",
-  gl: "🧜🏻‍♀️ GL",
-};
-
-const langFlag: Record<Lang, string> = {
-  en: "🇬🇧",
-  es: "🇪🇸",
-  gl: "🧜🏻‍♀️",
-};
+import SettingsModal from "./SettingsModal";
 
 function acronym(name: string): string {
   const letters = name.replace(/[^A-Z]/g, "");
@@ -30,11 +14,9 @@ function acronym(name: string): string {
 
 export default function Header() {
   const location = useLocation();
-  const navigate = useNavigate();
   const match = useMatch("/:lang/:subjectId/*");
   const subjectId = match?.params.subjectId;
   const t = useT();
-  const { lang, setLang } = useLang();
   const subject = subjectId ? getSubject(subjectId) : null;
 
   const abbr = subject ? acronym(subject.name) : "";
@@ -49,13 +31,13 @@ export default function Header() {
   const subjectLinkClasses = `px-3 py-1.5 ${subjectLinkBase}`;
 
   return (
-    <header className="bg-surface-alt border-border border-b sm:sticky sm:top-0 sm:z-50">
+    <header className="safe-area-top bg-surface-alt border-border border-b sm:sticky sm:top-0 sm:z-50">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link
           to="/"
           data-cuelume-hover="sparkle"
           data-cuelume-press
-          className="text-fg hover:text-accent focus-visible:ring-accent group flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          className="text-fg hover:text-accent-fg focus-visible:ring-accent group flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home" });
@@ -64,9 +46,9 @@ export default function Header() {
           <img
             src="/favicon.svg"
             alt=""
-            width={28}
-            height={32}
-            className="h-8 w-7 transition-transform duration-300 group-hover:rotate-12"
+            width={36}
+            height={36}
+            className="h-9 w-9"
             aria-hidden="true"
           />
           <p className="text-sm sm:text-lg">{t.home.title}</p>
@@ -109,26 +91,7 @@ export default function Header() {
             </>
           )}
           <GitHubStarButton />
-          <ThemeToggle />
-          <button
-            type="button"
-            data-cuelume-toggle
-            className="border-border hover:bg-surface rounded border px-2 py-1 text-xs font-medium transition active:scale-95"
-            onClick={() => {
-              triggerLight();
-              const idx = langCycle.indexOf(lang);
-              const nextLang = langCycle[(idx + 1) % langCycle.length];
-              track("lang_toggle", { lang: nextLang });
-              setLang(nextLang);
-              navigate(replaceLangInPath(location.pathname, nextLang), {
-                replace: true,
-              });
-            }}
-            aria-label={langLabel[lang]}
-          >
-            <span className="sm:hidden">{langFlag[lang]}</span>
-            <span className="hidden sm:inline">{langLabel[lang]}</span>
-          </button>
+          <SettingsModal />
         </div>
       </div>
     </header>

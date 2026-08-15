@@ -6,8 +6,12 @@ import {
   startTransition,
   type ReactNode,
 } from "react";
-import type { Theme } from "./types";
-import { themeOrder } from "./types";
+import {
+  themeAppearance,
+  themeOrder,
+  themeSurfaceAlt,
+  type Theme,
+} from "./types";
 import { ThemeContext } from "./context-value";
 
 function getInitialTheme(): Theme {
@@ -20,20 +24,18 @@ function getInitialTheme(): Theme {
   return "system";
 }
 
-const themeColors: Record<Exclude<Theme, "system">, string> = {
-  light: "#ffffff",
-  dark: "#1f2937",
-  pink: "#ffffff",
-  catppuccin: "#313244",
-};
-
-function resolveThemeColor(theme: Theme): string {
+function resolveAppearance(theme: Theme): "light" | "dark" {
   if (theme === "system") {
     return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? themeColors.dark
-      : themeColors.light;
+      ? "dark"
+      : "light";
   }
-  return themeColors[theme];
+  return themeAppearance[theme];
+}
+
+function resolveSurfaceAlt(theme: Theme): string {
+  if (theme === "system") return themeSurfaceAlt[resolveAppearance(theme)];
+  return themeSurfaceAlt[theme];
 }
 
 function applyTheme(theme: Theme): Theme {
@@ -44,8 +46,20 @@ function applyTheme(theme: Theme): Theme {
     /* localStorage unavailable */
   }
   document.documentElement.setAttribute("data-theme", theme);
-  const meta = document.getElementById("theme-color");
-  if (meta) meta.setAttribute("content", resolveThemeColor(theme));
+  const appearance = resolveAppearance(theme);
+  const surfaceAlt = resolveSurfaceAlt(theme);
+  document.documentElement.style.setProperty(
+    "--browser-chrome-color",
+    surfaceAlt,
+  );
+  const themeColor = document.getElementById("theme-color");
+  if (themeColor) themeColor.setAttribute("content", surfaceAlt);
+  const colorScheme = document.querySelector<HTMLMetaElement>(
+    'meta[name="color-scheme"]',
+  );
+  if (colorScheme) {
+    colorScheme.content = theme === "system" ? "light dark" : appearance;
+  }
   return theme;
 }
 
@@ -65,13 +79,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   const setTheme = useCallback((next: Theme) => {
-    if (!document.startViewTransition) {
+    const update = () => {
       setThemeState(applyTheme(next));
-      return;
+    };
+    if (document.startViewTransition) {
+      document.startViewTransition(update);
+    } else {
+      startTransition(update);
     }
-    startTransition(() => {
-      setThemeState(applyTheme(next));
-    });
   }, []);
 
   const cycleTheme = useCallback(() => {

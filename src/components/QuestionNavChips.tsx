@@ -42,16 +42,16 @@ export default function QuestionNavChips({
   return (
     <div
       ref={navRef}
-      className={`flex gap-2 overflow-x-auto overflow-y-hidden pb-0 sm:pb-2 ${className}`}
+      className={`question-nav-scroll flex gap-2 overflow-x-auto overflow-y-hidden pb-0 sm:pb-2 ${className}`}
       data-tour={dataTour}
       style={{
         maskImage:
           showLeftFade && showRightFade
-            ? "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)"
+            ? "linear-gradient(to right, transparent 0%, var(--color-mask) 8%, var(--color-mask) 92%, transparent 100%)"
             : showLeftFade
-              ? "linear-gradient(to right, transparent 0%, black 8%, black 100%)"
+              ? "linear-gradient(to right, transparent 0%, var(--color-mask) 8%, var(--color-mask) 100%)"
               : showRightFade
-                ? "linear-gradient(to right, black 0%, black 92%, transparent 100%)"
+                ? "linear-gradient(to right, var(--color-mask) 0%, var(--color-mask) 92%, transparent 100%)"
                 : undefined,
       }}
     >
@@ -61,8 +61,8 @@ export default function QuestionNavChips({
         const isChecked = !!checkedQuestions?.[q.id];
         const isCurrent = i === currentIndex;
         let cls =
-          "size-[42px] rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
-        if (isCurrent) cls += " bg-accent text-white border-accent";
+          "size-[42px] rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
+        if (isCurrent) cls += " bg-accent text-on-accent border-accent";
         else if (result === "correct")
           cls += " bg-correct-bg border-correct-border text-correct-fg";
         else if (result === "incorrect")
@@ -78,8 +78,9 @@ export default function QuestionNavChips({
           <button
             type="button"
             key={q.id}
-            data-cuelume-press
+            data-cuelume-toggle="page"
             className={cls}
+            onPointerUp={(event) => event.currentTarget.blur()}
             onClick={() => {
               triggerLight();
               if (direction !== undefined) {

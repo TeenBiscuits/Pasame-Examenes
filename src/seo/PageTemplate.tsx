@@ -1,24 +1,61 @@
 /* @jsxRuntime automatic */
-import type { PageMetaData } from "./meta";
+import { isIndexablePagePath, type PageMetaData } from "./meta";
+import { themeSurfaceAlt } from "../theme/types";
 
 const themeScript = `(function () {
-  var t = localStorage.getItem("theme") || "system";
+  var stored;
+  try {
+    stored = localStorage.getItem("theme");
+  } catch (_) {
+    stored = null;
+  }
+  var t =
+    stored === "light" ||
+    stored === "dark" ||
+    stored === "system" ||
+    stored === "princess" ||
+    stored === "latte" ||
+    stored === "frappe" ||
+    stored === "macchiato" ||
+    stored === "mocha"
+      ? stored
+      : "system";
   document.documentElement.setAttribute("data-theme", t);
 
   var colors = {
-    light: "#ffffff",
-    dark: "#1f2937",
-    pink: "#ffffff",
-    catppuccin: "#313244",
+    light: "${themeSurfaceAlt.light}",
+    dark: "${themeSurfaceAlt.dark}",
+    princess: "${themeSurfaceAlt.princess}",
+    latte: "${themeSurfaceAlt.latte}",
+    frappe: "${themeSurfaceAlt.frappe}",
+    macchiato: "${themeSurfaceAlt.macchiato}",
+    mocha: "${themeSurfaceAlt.mocha}",
   };
-  var color = colors[t];
-  if (t === "system") {
-    color = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? colors.dark
-      : colors.light;
-  }
+  var schemes = {
+    light: "light",
+    dark: "dark",
+    princess: "light",
+    latte: "light",
+    frappe: "dark",
+    macchiato: "dark",
+    mocha: "dark",
+  };
+  var resolved =
+    t === "system"
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
+      : t;
+  var color = colors[resolved];
+  document.documentElement.style.setProperty(
+    "--browser-chrome-color",
+    color,
+  );
   var meta = document.getElementById("theme-color");
   if (meta) meta.setAttribute("content", color);
+  var scheme = document.querySelector('meta[name="color-scheme"]');
+  if (scheme)
+    scheme.setAttribute("content", t === "system" ? "light dark" : schemes[t]);
 })();`;
 
 export default function PageTemplate(page: PageMetaData) {
@@ -45,7 +82,11 @@ export default function PageTemplate(page: PageMetaData) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
-        <meta id="theme-color" name="theme-color" content="#f9fafb" />
+        <meta
+          id="theme-color"
+          name="theme-color"
+          content={themeSurfaceAlt.light}
+        />
         <meta name="color-scheme" content="light dark" />
         <script>{themeScript}</script>
         <title>{page.title}</title>
@@ -53,6 +94,15 @@ export default function PageTemplate(page: PageMetaData) {
           id="meta-description"
           name="description"
           content={page.description}
+        />
+        <meta
+          id="meta-robots"
+          name="robots"
+          content={
+            isIndexablePagePath(page.pathWithoutLang)
+              ? "index, follow"
+              : "noindex, nofollow"
+          }
         />
         <link id="link-canonical" rel="canonical" href={page.canonicalUrl} />
         {page.alternates.map((alternate) => (

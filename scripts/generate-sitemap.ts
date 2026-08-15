@@ -2,6 +2,7 @@ import { writeFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { pages } from "../src/seo/pageMetaMap.generated";
+import { isIndexablePagePath } from "../src/seo/meta";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
@@ -39,11 +40,8 @@ function changefreqForPath(pathWithoutLang: string) {
 }
 
 async function main() {
-  const sitemapPages = pages.filter(
-    (page) =>
-      !page.pathWithoutLang.split("/").includes("espain") &&
-      !page.pathWithoutLang.includes("/practice/") &&
-      !page.pathWithoutLang.includes("/exam/"),
+  const sitemapPages = pages.filter((page) =>
+    isIndexablePagePath(page.pathWithoutLang),
   );
 
   const xmlEntries = sitemapPages.map((page) => {

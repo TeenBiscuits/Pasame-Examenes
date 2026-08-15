@@ -16,25 +16,21 @@ export const meta: SubjectMeta = {
       key: "concurrencia-mutex",
       label: "Mutex y Condiciones",
       icon: "🔒",
-      color: "blue",
     },
     {
       key: "concurrencia-erlang",
       label: "Erlang",
       icon: "🧵",
-      color: "purple",
     },
     {
       key: "paralelismo-teoria",
       label: "Preguntas Teóricas",
       icon: "📖",
-      color: "green",
     },
     {
       key: "paralelismo-mpi",
       label: "Ejercicios de MPI",
       icon: "🔄",
-      color: "amber",
     },
   ],
   megatopics: [

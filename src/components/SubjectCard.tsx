@@ -38,7 +38,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       to={`/${subject.id}`}
       data-cuelume-hover="tick"
       data-cuelume-press
-      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 focus-visible:ring-accent flex h-full min-h-[172px] flex-col rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+      className="interactive-card focus-visible:ring-accent flex min-h-[160px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();
         track("subject_card_click", {
@@ -48,40 +48,44 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
         recordSubjectClick(subject.id);
       }}
     >
-      <div className="mb-2 flex items-start justify-between">
-        <span className="text-4xl leading-none" aria-hidden="true">
-          {subject.icon}
-        </span>
-        <div className="flex items-center gap-2">
-          <ContentPolicyIcon subject={subject} />
-          <span className="bg-code text-fg-secondary inline-flex h-6 items-center rounded px-2 font-mono text-xs font-semibold">
-            {subject.courseCode}
+      <div className="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-5 pt-5 pb-2">
+        <div className="mb-2 flex items-start justify-between">
+          <span className="text-4xl leading-none" aria-hidden="true">
+            {subject.icon}
+          </span>
+          <div className="flex items-center gap-2">
+            <ContentPolicyIcon subject={subject} />
+            <span className="bg-code text-fg-secondary inline-flex h-6 items-center rounded px-2 font-mono text-xs font-semibold">
+              {subject.courseCode}
+            </span>
+          </div>
+        </div>
+        <h2 className="text-fg mb-0.5 text-base font-semibold">
+          {subject.name}
+        </h2>
+        <div className="text-fg-muted flex min-w-0 items-center justify-between gap-2 text-sm">
+          <span className="min-w-0 truncate" title={subject.degree}>
+            {subject.degree}
+          </span>
+          <span className="shrink-0">
+            {t.subjectCard.course.replace("{course}", String(subject.course))}
           </span>
         </div>
       </div>
-      <h2 className="text-fg mb-0.5 text-base font-semibold">{subject.name}</h2>
-      <div className="text-fg-muted mb-2 flex min-w-0 items-center gap-2 text-sm">
-        <span className="min-w-0 truncate" title={subject.degree}>
-          {subject.degree}
-        </span>
-        <span aria-hidden="true">&middot;</span>
-        <span className="shrink-0">
-          {t.subjectCard.course.replace("{course}", String(subject.course))}
-        </span>
-      </div>
-      <div className="border-border/70 text-fg-muted mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 border-t pt-4 text-xs">
+      <div className="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-5 py-1 text-xs">
         <span>
           {questionCount !== null ? questionCount : "..."}{" "}
           {t.subjectCard.questions}
         </span>
-        <span>&middot;</span>
-        <span>
-          {subject.topics.length} {t.subjectCard.topics}
-        </span>
-        <span>&middot;</span>
-        <span>
-          {availableExamCount} {examCountLabel}
-        </span>
+        <div className="flex shrink-0 items-center gap-2">
+          <span>
+            {subject.topics.length} {t.subjectCard.topics}
+          </span>
+          <span aria-hidden="true">&middot;</span>
+          <span>
+            {availableExamCount} {examCountLabel}
+          </span>
+        </div>
       </div>
     </Link>
   );

@@ -12,17 +12,16 @@ export const meta: SubjectMeta = {
   acknowledgments:
     "Exámenes y soluciones originales proporcionadas por el profesorado de la asignatura.",
   topics: [
-    { key: "rendimiento", label: "Rendimiento", icon: "⚡", color: "blue" },
-    { key: "segmentacion", label: "Segmentación", icon: "🔄", color: "green" },
-    { key: "cache", label: "Memoria caché", icon: "💾", color: "purple" },
+    { key: "rendimiento", label: "Rendimiento", icon: "⚡" },
+    { key: "segmentacion", label: "Segmentación", icon: "🔄" },
+    { key: "cache", label: "Memoria caché", icon: "💾" },
     {
       key: "memoria-virtual",
       label: "Memoria virtual",
       icon: "📄",
-      color: "amber",
     },
-    { key: "buses", label: "Buses y E/S", icon: "🔌", color: "red" },
-    { key: "raid", label: "RAID y almacenamiento", icon: "🗄️", color: "cyan" },
+    { key: "buses", label: "Buses y E/S", icon: "🔌" },
+    { key: "raid", label: "RAID y almacenamiento", icon: "🗄️" },
   ],
   exams: [
     {

@@ -1,6 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import { useEffect, useRef, useState } from "react";
 import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -17,16 +18,15 @@ import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
 import rust from "react-syntax-highlighter/dist/esm/languages/prism/rust";
 import sql from "react-syntax-highlighter/dist/esm/languages/prism/sql";
 import typescript from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
-import {
-  oneDark,
-  oneLight,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useIsDark } from "../theme/hooks";
 import type { ComponentProps, ReactNode } from "react";
+import type { ExtraProps } from "react-markdown";
 import "katex/dist/katex.min.css";
 
-const fullRemarkPlugins = [remarkGfm, remarkMath];
-const inlineRemarkPlugins = [remarkGfm, remarkMath];
+// A single newline is an intentional line break in question data. Markdown's
+// default soft-break behavior would otherwise make it depend on the field or
+// its surrounding CSS whether the line break is visible.
+const fullRemarkPlugins = [remarkGfm, remarkMath, remarkBreaks];
+const inlineRemarkPlugins = [remarkGfm, remarkMath, remarkBreaks];
 const rehypePlugins = [rehypeKatex];
 const inlineRehypePlugins: [typeof rehypeKatex, { output: "html" }][] = [
   [rehypeKatex, { output: "html" }],
@@ -35,7 +35,7 @@ const inlineRehypePlugins: [typeof rehypeKatex, { output: "html" }][] = [
 const codeFont =
   '"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace';
 
-for (const [name, grammar] of Object.entries({
+const languageGrammars = {
   bash,
   c,
   cpp,
@@ -49,31 +49,40 @@ for (const [name, grammar] of Object.entries({
   rust,
   sql,
   typescript,
+};
+
+const languageAliases = {
+  html: markup,
+  js: javascript,
+  jsx: javascript,
+  mjs: javascript,
+  sh: bash,
+  shell: bash,
+  ts: typescript,
+  tsx: typescript,
+  xml: markup,
+};
+
+for (const [name, grammar] of Object.entries({
+  ...languageGrammars,
+  ...languageAliases,
 })) {
   SyntaxHighlighter.registerLanguage(name, grammar);
 }
 
-const codeStyleLight = {
-  ...oneLight,
-  'pre[class*="language-"]': {
-    ...oneLight['pre[class*="language-"]'],
-    fontFamily: codeFont,
-    background: "transparent",
-    margin: 0,
-    padding: 0,
-    overflow: "visible",
-  },
-  'code[class*="language-"]': {
-    ...oneLight['code[class*="language-"]'],
-    fontFamily: codeFont,
-    background: "transparent",
-  },
-};
+const supportedLanguages = new Set([
+  ...Object.keys(languageGrammars),
+  ...Object.keys(languageAliases),
+]);
 
-const codeStyleDark = {
-  ...oneDark,
+const codeStyle = {
+  plain: {
+    color: "var(--color-code-block-fg)",
+    background: "transparent",
+    fontFamily: codeFont,
+  },
   'pre[class*="language-"]': {
-    ...oneDark['pre[class*="language-"]'],
+    color: "var(--color-code-block-fg)",
     fontFamily: codeFont,
     background: "transparent",
     margin: 0,
@@ -81,10 +90,41 @@ const codeStyleDark = {
     overflow: "visible",
   },
   'code[class*="language-"]': {
-    ...oneDark['code[class*="language-"]'],
+    color: "var(--color-code-block-fg)",
     fontFamily: codeFont,
     background: "transparent",
   },
+  comment: { color: "var(--color-code-comment)" },
+  prolog: { color: "var(--color-code-comment)" },
+  cdata: { color: "var(--color-code-comment)" },
+  doctype: { color: "var(--color-code-comment)" },
+  punctuation: { color: "var(--color-code-punctuation)" },
+  property: { color: "var(--color-code-property)" },
+  tag: { color: "var(--color-code-keyword)" },
+  boolean: { color: "var(--color-code-number)" },
+  constant: { color: "var(--color-code-number)" },
+  number: { color: "var(--color-code-number)" },
+  symbol: { color: "var(--color-code-number)" },
+  deleted: { color: "var(--color-danger-fg)" },
+  selector: { color: "var(--color-code-property)" },
+  "attr-name": { color: "var(--color-code-property)" },
+  string: { color: "var(--color-code-string)" },
+  char: { color: "var(--color-code-string)" },
+  builtin: { color: "var(--color-code-function)" },
+  inserted: { color: "var(--color-correct-fg)" },
+  operator: { color: "var(--color-code-operator)" },
+  entity: { color: "var(--color-code-property)" },
+  url: { color: "var(--color-code-property)" },
+  variable: { color: "var(--color-code-class)" },
+  atrule: { color: "var(--color-code-keyword)" },
+  "attr-value": { color: "var(--color-code-string)" },
+  keyword: { color: "var(--color-code-keyword)" },
+  function: { color: "var(--color-code-function)" },
+  "class-name": { color: "var(--color-code-class)" },
+  regex: { color: "var(--color-code-string)" },
+  important: { color: "var(--color-code-keyword)" },
+  bold: { fontWeight: "700" },
+  italic: { fontStyle: "italic" },
 };
 
 function ScrollableTable({ children }: { children: ReactNode }) {
@@ -113,7 +153,7 @@ function ScrollableTable({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <div className="not-prose relative m-0 max-w-full">
+    <div className="not-prose markdown-table relative m-0 max-w-full">
       <div
         ref={scrollRef}
         className="max-w-full overflow-x-auto overflow-y-hidden"
@@ -132,40 +172,104 @@ function ScrollableTable({ children }: { children: ReactNode }) {
   );
 }
 
-function CodeRenderer({
-  className,
-  children,
-  ...rest
-}: ComponentProps<"code">) {
-  const isDark = useIsDark();
-  const match = /language-(\w+)/.exec(className || "");
+function PlainCodeBlock({
+  code,
+  language,
+}: {
+  code: string;
+  language?: string;
+}) {
+  return (
+    <div className="not-prose markdown-code-block bg-code-block border-border overflow-hidden rounded-lg border">
+      {language && (
+        <div className="border-border/50 flex items-center border-b px-4 py-1.5">
+          <span className="text-fg-muted font-mono text-[11px] font-semibold tracking-wider uppercase">
+            {language}
+          </span>
+        </div>
+      )}
+      <pre className="text-code-block-fg m-0 max-w-full overflow-x-auto p-4 font-mono text-sm leading-relaxed whitespace-pre">
+        <code>{code}</code>
+      </pre>
+    </div>
+  );
+}
+
+function getCodeLanguage(node: ExtraProps["node"]): string | undefined {
+  const child = node?.children[0];
+  if (!child || child.type !== "element" || child.tagName !== "code") {
+    return undefined;
+  }
+
+  const className = child.properties.className;
+  const classes = Array.isArray(className)
+    ? className.join(" ")
+    : String(className ?? "");
+  return /language-([\w-]+)/.exec(classes)?.[1]?.toLowerCase();
+}
+
+function getCodeText(node: ExtraProps["node"]): string {
+  const child = node?.children[0];
+  if (!child || child.type !== "element" || child.tagName !== "code") {
+    return "";
+  }
+
+  return child.children.reduce(
+    (text, grandchild) =>
+      grandchild.type === "text" ? text + grandchild.value : text,
+    "",
+  );
+}
+
+function MarkdownPre({ children, node }: ComponentProps<"pre"> & ExtraProps) {
+  // Typed blocks are rendered by CodeRenderer. Fenced blocks without a
+  // language have no className, so they need an explicit block fallback here.
+  if (getCodeLanguage(node)) return <>{children}</>;
+
+  return <PlainCodeBlock code={getCodeText(node).replace(/\n$/, "")} />;
+}
+
+function MarkdownLink({ children, href, title }: ComponentProps<"a">) {
+  return (
+    <a
+      href={href}
+      title={title}
+      className="text-accent-fg hover:text-accent-hover underline decoration-current underline-offset-2"
+    >
+      {children}
+    </a>
+  );
+}
+
+function CodeRenderer({ className, children }: ComponentProps<"code">) {
+  const match = /language-([\w-]+)/.exec(className || "");
   const code = String(children).replace(/\n$/, "");
 
   if (!match) {
     return (
-      <code
-        className="bg-code rounded px-1.5 py-0.5 font-mono text-[0.85em] text-pink-600"
-        {...rest}
-      >
+      <code className="bg-code text-code-fg rounded px-1.5 py-0.5 font-mono text-[0.85em]">
         {children}
       </code>
     );
   }
 
+  const language = match[1].toLowerCase();
+  if (!supportedLanguages.has(language)) {
+    return <PlainCodeBlock code={code} language={language} />;
+  }
+
   return (
-    <div
-      className={`not-prose border-border my-3 overflow-hidden rounded-lg border ${isDark ? "bg-code-block" : "bg-code"}`}
-    >
+    <div className="not-prose markdown-code-block bg-code-block border-border overflow-hidden rounded-lg border">
       <div className="border-border/50 flex items-center border-b px-4 py-1.5">
         <span className="text-fg-muted font-mono text-[11px] font-semibold tracking-wider uppercase">
-          {match[1]}
+          {language}
         </span>
       </div>
       <div className="overflow-x-auto text-sm leading-relaxed">
         <SyntaxHighlighter
           PreTag="pre"
-          language={match[1]}
-          style={isDark ? codeStyleDark : codeStyleLight}
+          language={language}
+          style={codeStyle}
           customStyle={{
             margin: 0,
             padding: "1rem",
@@ -187,19 +291,18 @@ export function Markdown({
   children: string;
   className?: string;
 }) {
-  const isDark = useIsDark();
-
   if (!children) return null;
   return (
     <div
-      className={`prose prose-sm max-w-none ${isDark ? "prose-invert" : ""} ${className ?? ""}`}
+      className={`markdown-body prose prose-sm max-w-none ${className ?? ""}`}
     >
       <ReactMarkdown
         remarkPlugins={fullRemarkPlugins}
         rehypePlugins={rehypePlugins}
         components={{
-          pre: ({ children }) => <>{children}</>,
+          pre: MarkdownPre,
           code: CodeRenderer,
+          a: MarkdownLink,
           table: ({ children }) => (
             <ScrollableTable>
               <table className="m-0 w-max min-w-full border-collapse text-left text-sm leading-normal">
@@ -243,7 +346,7 @@ export function InlineMarkdown({ children }: { children: string }) {
         "span",
         "img",
       ]}
-      components={{ code: CodeRenderer }}
+      components={{ a: MarkdownLink, code: CodeRenderer }}
       unwrapDisallowed
     >
       {children}

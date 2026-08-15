@@ -5,6 +5,7 @@ import {
   DEFAULT_LANG,
   LANGS,
   buildCanonicalPath,
+  isIndexablePagePath,
   langMeta,
 } from "../seo/meta";
 
@@ -75,6 +76,7 @@ interface SeoUpdateBatch {
   pathWithoutLang: string;
   locale: string;
   siteName: string;
+  indexable: boolean;
   jsonLd?: string;
 }
 
@@ -155,6 +157,11 @@ function applySeoUpdates(batch: SeoUpdateBatch) {
   for (const op of linkOps) {
     setLink(op.id, op.rel, op.href, "extra" in op ? op.extra : undefined);
   }
+  setMeta(
+    "meta-robots",
+    batch.indexable ? "index, follow" : "noindex, nofollow",
+    "name",
+  );
   setJsonLd(batch.jsonLd);
 }
 
@@ -164,6 +171,7 @@ export interface SeoPageMeta {
   pathWithoutLang: string;
   ogImage?: string;
   jsonLd?: string;
+  indexable?: boolean;
   enabled?: boolean;
 }
 
@@ -173,6 +181,7 @@ export function useSeoHead({
   pathWithoutLang,
   ogImage,
   jsonLd,
+  indexable,
   enabled = true,
 }: SeoPageMeta) {
   const t = useT();
@@ -189,6 +198,7 @@ export function useSeoHead({
 
     const imageUrl = ogImage || "/og.jpg";
     const imageType = imageUrl.endsWith(".png") ? "image/png" : "image/jpeg";
+    const shouldIndex = indexable ?? isIndexablePagePath(pathWithoutLang);
 
     applySeoUpdates({
       title,
@@ -199,6 +209,7 @@ export function useSeoHead({
       pathWithoutLang,
       locale: meta.locale,
       siteName: t.seo.siteName,
+      indexable: shouldIndex,
       jsonLd,
     });
   }, [
@@ -210,6 +221,7 @@ export function useSeoHead({
     t.seo.siteName,
     ogImage,
     jsonLd,
+    indexable,
     enabled,
   ]);
 }

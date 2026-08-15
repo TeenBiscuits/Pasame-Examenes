@@ -19,37 +19,32 @@ export const meta: SubjectMeta = {
       "Example-only license for demonstrating subject-specific content licensing.",
   },
   topics: [
-    { key: "topic-1", label: "Foundations", icon: "📌", color: "blue" },
-    { key: "topic-2", label: "Data and Reasoning", icon: "🔍", color: "green" },
+    { key: "topic-1", label: "Foundations", icon: "📌" },
+    { key: "topic-2", label: "Data and Reasoning", icon: "🔍" },
     {
       key: "syntax-highlighting",
       label: "Code Rendering",
       icon: "💻",
-      color: "purple",
     },
     {
       key: "markdown-complete",
       label: "Markdown Coverage",
       icon: "✍️",
-      color: "pink",
     },
     {
       key: "lorem-ipsum",
       label: "Long-form Text",
       icon: "📖",
-      color: "amber",
     },
     {
       key: "visual-assets",
       label: "Images and Solutions",
       icon: "🖼️",
-      color: "cyan",
     },
     {
       key: "question-types",
       label: "Question Types",
       icon: "🧪",
-      color: "orange",
     },
   ],
   megatopics: [

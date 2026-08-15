@@ -16,15 +16,13 @@ export const meta: SubjectMeta = {
       key: "modelado-normalizacion",
       label: "Modelado y Normalización",
       icon: "🧩",
-      color: "blue",
     },
     {
       key: "recuperacion-concurrencia",
       label: "Recuperación y Concurrencia",
       icon: "🔄",
-      color: "purple",
     },
-    { key: "ficheros", label: "Ficheros", icon: "📁", color: "green" },
+    { key: "ficheros", label: "Ficheros", icon: "📁" },
   ],
   exams: [
     {

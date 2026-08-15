@@ -1,8 +1,5 @@
 import { type CSSProperties, type ReactNode } from "react";
-import type { SoundName } from "cuelume";
 import FloatingEmoji from "./FloatingEmoji";
-
-const FLOATING_SOUNDS: SoundName[] = ["chime", "droplet", "bloom"];
 
 function pseudo(i: number, salt: number, seed: number): number {
   const x = Math.sin(i * 9301 + salt * 49297 + seed * 8347) * 233280;
@@ -143,12 +140,10 @@ export default function Hero({
       >
         {emojis.map((emoji, i) => {
           const slot = (i + placementOffset) % emojis.length;
-          const sound = FLOATING_SOUNDS[i % FLOATING_SOUNDS.length];
           return (
             <FloatingEmoji
               key={`${emoji}-${i}`}
               emoji={emoji}
-              sound={sound}
               style={buildDesktopStyle(slot, emojis.length, compact, seed)}
             />
           );
@@ -161,13 +156,11 @@ export default function Hero({
         {emojis.map((emoji, i) => {
           const slot = (i + placementOffset) % emojis.length;
           return (
-            <span
+            <FloatingEmoji
               key={`${emoji}-${i}-mobile`}
-              className="floating-emoji-mark select-none"
+              emoji={emoji}
               style={buildMobileStyle(slot, emojis.length, seed, compact)}
-            >
-              {emoji}
-            </span>
+            />
           );
         })}
       </div>

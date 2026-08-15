@@ -22,7 +22,7 @@ import {
   BookOpen,
   CaretRight,
   CheckSquare,
-  Notebook,
+  DocText,
   Restart,
   TriangleWarning,
   XSquare,
@@ -128,6 +128,70 @@ function buildReportUrl(
 const solutionPanelClass =
   "bg-surface border-border -mx-4 space-y-3 border-y px-4 py-4 sm:-mx-6 sm:px-6";
 
+type SelfGrade = "correct" | "incorrect";
+
+function SelfGradeControls({
+  questionId,
+  grade,
+  onSelfGrade,
+}: {
+  questionId: string;
+  grade?: SelfGrade;
+  onSelfGrade: (questionId: string, grade: SelfGrade) => void;
+}) {
+  const t = useT();
+
+  const handleGrade = (nextGrade: SelfGrade) => {
+    if (nextGrade === "correct") {
+      triggerSuccess();
+      playSuccess();
+    } else {
+      triggerError();
+      playError();
+    }
+    onSelfGrade(questionId, nextGrade);
+  };
+
+  const buttonBaseClass =
+    "flex min-h-11 min-w-0 items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition-[background-color,border-color,color,transform] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none active:scale-[0.96]";
+
+  return (
+    <div className="border-border border-t pt-3">
+      <p className="text-fg-secondary mb-2 text-xs font-semibold">
+        {t.questionCard.gradeAnswer}
+      </p>
+      <div className="grid grid-cols-2 gap-2">
+        <button
+          type="button"
+          aria-pressed={grade === "correct"}
+          onClick={() => handleGrade("correct")}
+          className={`${buttonBaseClass} focus-visible:ring-correct-fg ${grade === "correct" ? "bg-correct-bg border-correct-border text-correct-fg" : "bg-surface-alt border-border text-fg-secondary hover:bg-correct-bg hover:border-correct-border hover:text-correct-fg"}`}
+        >
+          <CheckSquare
+            size={16}
+            weight={grade === "correct" ? "Filled" : "Outline"}
+            aria-hidden="true"
+          />
+          {t.questionCard.correct}
+        </button>
+        <button
+          type="button"
+          aria-pressed={grade === "incorrect"}
+          onClick={() => handleGrade("incorrect")}
+          className={`${buttonBaseClass} focus-visible:ring-incorrect-fg ${grade === "incorrect" ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg" : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg hover:text-incorrect-fg"}`}
+        >
+          <XSquare
+            size={16}
+            weight={grade === "incorrect" ? "Filled" : "Outline"}
+            aria-hidden="true"
+          />
+          {t.questionCard.incorrect}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function DevelopmentDisclosure({
   development,
   questionId,
@@ -150,8 +214,8 @@ function DevelopmentDisclosure({
     <div className="mt-3 space-y-3">
       <button
         type="button"
-        data-cuelume-press
-        className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+        data-cuelume-press={isOpen ? "droplet" : "bloom"}
+        className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
         onClick={() => {
           triggerLight();
           const next = !isOpen;
@@ -265,7 +329,7 @@ function MCQuestion({
         const isSelected = savedAnswer === letter;
         const isCorrect = question.correctAnswer === letter;
         let className =
-          "w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
+          "text-fg w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
         if (showResult && isCorrect) {
           className += " bg-correct-bg border-correct-border";
         } else if (isSelected && showResult && !isCorrect) {
@@ -316,8 +380,8 @@ function MCQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
-              data-cuelume-press
-              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              data-cuelume-press={isOpen ? "droplet" : "bloom"}
+              className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
@@ -387,7 +451,7 @@ function TextQuestion({
       <textarea
         id={`answer-${question.id}`}
         aria-label={t.questionCard.yourAnswer}
-        className="border-border focus:border-accent focus-visible:ring-accent min-h-[120px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
+        className="border-border bg-surface-alt text-fg focus:border-accent focus-visible:ring-accent min-h-[120px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
         placeholder={t.questionCard.typeAnswer}
         autoComplete="off"
         spellCheck={false}
@@ -413,8 +477,8 @@ function TextQuestion({
         <div className="mt-3 space-y-3">
           <button
             type="button"
-            data-cuelume-press
-            className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+            data-cuelume-press={isOpen ? "droplet" : "bloom"}
+            className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             onClick={() => {
               triggerLight();
               const next = !isOpen;
@@ -436,7 +500,7 @@ function TextQuestion({
               <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                 {t.questionCard.modelSolution}
               </h4>
-              <Markdown className="text-fg-secondary font-sans text-xs whitespace-pre-wrap">
+              <Markdown className="text-fg-secondary font-sans text-xs">
                 {typeof question.correctAnswer === "string"
                   ? question.correctAnswer
                   : JSON.stringify(question.correctAnswer, null, 2)}
@@ -455,57 +519,11 @@ function TextQuestion({
               )}
 
               {onSelfGrade && (
-                <div className="border-border border-t pt-2">
-                  <p className="text-fg-secondary mb-2 text-xs font-semibold">
-                    {t.questionCard.gradeAnswer}
-                  </p>
-                  <div className="flex gap-2 *:flex-1">
-                    <button
-                      type="button"
-                      data-cuelume-press
-                      onClick={() => {
-                        triggerSuccess();
-                        playSuccess();
-                        onSelfGrade(question.id, "correct");
-                      }}
-                      className={`focus-visible:ring-accent flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                        selfGrade === "correct"
-                          ? "bg-correct-bg border-correct-border text-correct-fg"
-                          : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
-                      }`}
-                    >
-                      <CheckSquare
-                        size={14}
-                        weight={selfGrade === "correct" ? "Filled" : "Outline"}
-                        aria-hidden="true"
-                      />
-                      {t.questionCard.correct}
-                    </button>
-                    <button
-                      type="button"
-                      data-cuelume-press
-                      onClick={() => {
-                        triggerError();
-                        playError();
-                        onSelfGrade(question.id, "incorrect");
-                      }}
-                      className={`focus-visible:ring-incorrect-fg flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                        selfGrade === "incorrect"
-                          ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
-                          : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
-                      }`}
-                    >
-                      <XSquare
-                        size={14}
-                        weight={
-                          selfGrade === "incorrect" ? "Filled" : "Outline"
-                        }
-                        aria-hidden="true"
-                      />
-                      {t.questionCard.incorrect}
-                    </button>
-                  </div>
-                </div>
+                <SelfGradeControls
+                  questionId={question.id}
+                  grade={selfGrade}
+                  onSelfGrade={onSelfGrade}
+                />
               )}
             </div>
           )}
@@ -578,7 +596,7 @@ function MultipleTextQuestion({
             <textarea
               id={`answer-${question.id}-${partIndex}`}
               aria-label={`${part.label || defaultLabel(partIndex)} ${t.questionCard.yourAnswer}`}
-              className="border-border focus:border-accent focus-visible:ring-accent min-h-[100px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
+              className="border-border bg-surface-alt text-fg focus:border-accent focus-visible:ring-accent min-h-[100px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
               placeholder={t.questionCard.typeAnswer}
               autoComplete="off"
               spellCheck={false}
@@ -606,8 +624,8 @@ function MultipleTextQuestion({
               <div className="mt-3 space-y-3">
                 <button
                   type="button"
-                  data-cuelume-press
-                  className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+                  data-cuelume-press={isOpen ? "droplet" : "bloom"}
+                  className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
                   onClick={() => {
                     triggerLight();
                     const next = !isOpen;
@@ -630,7 +648,7 @@ function MultipleTextQuestion({
                     <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                       {t.questionCard.modelSolution}
                     </h4>
-                    <Markdown className="text-fg-secondary font-sans text-xs whitespace-pre-wrap">
+                    <Markdown className="text-fg-secondary font-sans text-xs">
                       {solutions[partIndex]}
                     </Markdown>
                     {part.explanationImage && (
@@ -641,65 +659,11 @@ function MultipleTextQuestion({
                       />
                     )}
                     {onSelfGrade && (
-                      <div className="border-border border-t pt-2">
-                        <p className="text-fg-secondary mb-2 text-xs font-semibold">
-                          {t.questionCard.gradeAnswer}
-                        </p>
-                        <div className="flex gap-2 *:flex-1">
-                          <button
-                            type="button"
-                            data-cuelume-press
-                            onClick={() => {
-                              triggerSuccess();
-                              playSuccess();
-                              onSelfGrade(
-                                getPartSelfGradeKey(question.id, partIndex),
-                                "correct",
-                              );
-                            }}
-                            className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                              grade === "correct"
-                                ? "bg-correct-bg border-correct-border text-correct-fg"
-                                : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
-                            }`}
-                          >
-                            <CheckSquare
-                              size={14}
-                              weight={
-                                grade === "correct" ? "Filled" : "Outline"
-                              }
-                              aria-hidden="true"
-                            />
-                            {t.questionCard.correct}
-                          </button>
-                          <button
-                            type="button"
-                            data-cuelume-press
-                            onClick={() => {
-                              triggerError();
-                              playError();
-                              onSelfGrade(
-                                getPartSelfGradeKey(question.id, partIndex),
-                                "incorrect",
-                              );
-                            }}
-                            className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                              grade === "incorrect"
-                                ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
-                                : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
-                            }`}
-                          >
-                            <XSquare
-                              size={14}
-                              weight={
-                                grade === "incorrect" ? "Filled" : "Outline"
-                              }
-                              aria-hidden="true"
-                            />
-                            {t.questionCard.incorrect}
-                          </button>
-                        </div>
-                      </div>
+                      <SelfGradeControls
+                        questionId={getPartSelfGradeKey(question.id, partIndex)}
+                        grade={grade}
+                        onSelfGrade={onSelfGrade}
+                      />
                     )}
                   </div>
                 )}
@@ -822,55 +786,11 @@ function FillQuestion({
         );
       })}
       {showResult && onSelfGrade && !automaticallyCorrect && (
-        <div className="border-border mt-3 border-t pt-2">
-          <p className="text-fg-secondary mb-2 text-xs font-semibold">
-            {t.questionCard.gradeAnswer}
-          </p>
-          <div className="flex gap-2 *:flex-1">
-            <button
-              type="button"
-              data-cuelume-press
-              onClick={() => {
-                triggerSuccess();
-                playSuccess();
-                onSelfGrade(question.id, "correct");
-              }}
-              className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                selfGrade === "correct"
-                  ? "bg-correct-bg border-correct-border text-correct-fg"
-                  : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
-              }`}
-            >
-              <CheckSquare
-                size={14}
-                weight={selfGrade === "correct" ? "Filled" : "Outline"}
-                aria-hidden="true"
-              />
-              {t.questionCard.correct}
-            </button>
-            <button
-              type="button"
-              data-cuelume-press
-              onClick={() => {
-                triggerError();
-                playError();
-                onSelfGrade(question.id, "incorrect");
-              }}
-              className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                selfGrade === "incorrect"
-                  ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
-                  : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
-              }`}
-            >
-              <XSquare
-                size={14}
-                weight={selfGrade === "incorrect" ? "Filled" : "Outline"}
-                aria-hidden="true"
-              />
-              {t.questionCard.incorrect}
-            </button>
-          </div>
-        </div>
+        <SelfGradeControls
+          questionId={question.id}
+          grade={selfGrade}
+          onSelfGrade={onSelfGrade}
+        />
       )}
       {showResult && question.development && (
         <DevelopmentDisclosure
@@ -1016,55 +936,11 @@ function TableFillQuestion({
         </table>
       </div>
       {showResult && onSelfGrade && !automaticallyCorrect && (
-        <div className="border-border mt-3 border-t pt-2">
-          <p className="text-fg-secondary mb-2 text-xs font-semibold">
-            {t.questionCard.gradeAnswer}
-          </p>
-          <div className="flex gap-2 *:flex-1">
-            <button
-              type="button"
-              data-cuelume-press
-              onClick={() => {
-                triggerSuccess();
-                playSuccess();
-                onSelfGrade(question.id, "correct");
-              }}
-              className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                selfGrade === "correct"
-                  ? "bg-correct-bg border-correct-border text-correct-fg"
-                  : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
-              }`}
-            >
-              <CheckSquare
-                size={14}
-                weight={selfGrade === "correct" ? "Filled" : "Outline"}
-                aria-hidden="true"
-              />
-              {t.questionCard.correct}
-            </button>
-            <button
-              type="button"
-              data-cuelume-press
-              onClick={() => {
-                triggerError();
-                playError();
-                onSelfGrade(question.id, "incorrect");
-              }}
-              className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                selfGrade === "incorrect"
-                  ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
-                  : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
-              }`}
-            >
-              <XSquare
-                size={14}
-                weight={selfGrade === "incorrect" ? "Filled" : "Outline"}
-                aria-hidden="true"
-              />
-              {t.questionCard.incorrect}
-            </button>
-          </div>
-        </div>
+        <SelfGradeControls
+          questionId={question.id}
+          grade={selfGrade}
+          onSelfGrade={onSelfGrade}
+        />
       )}
       {showResult && question.development && (
         <DevelopmentDisclosure
@@ -1137,7 +1013,7 @@ function MatchingQuestion({
                 const chosen = userAnswer === letter;
                 const real = correctAnswer[item] === letter;
                 let cls =
-                  "w-9 h-9 rounded-md border-2 text-xs font-bold font-mono active:scale-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
+                  "w-9 h-9 rounded-md border-2 text-xs font-bold font-mono active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition flex items-center justify-center";
                 if (showResult && real) {
                   cls += " bg-correct-bg border-correct-border text-correct-fg";
                 } else if (showResult && chosen && !real) {
@@ -1187,8 +1063,8 @@ function MatchingQuestion({
           <div className="mt-3 space-y-3">
             <button
               type="button"
-              data-cuelume-press
-              className="text-accent hover:text-accent-fg focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              data-cuelume-press={isOpen ? "droplet" : "bloom"}
+              className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
                 triggerLight();
                 const next = !isOpen;
@@ -1235,137 +1111,130 @@ export default function QuestionCard(props: QuestionCardProps) {
   const { question } = questionProps;
   const t = useT();
 
-  const slideClass =
-    questionProps.direction === "next"
-      ? "animate-slide-in-right animate-duration-fast"
-      : questionProps.direction === "prev"
-        ? "animate-slide-in-left animate-duration-fast"
-        : "animate-fade-in animate-duration-fast";
-
   return (
-    <div
-      className={`bg-surface-alt border-border rounded-xl border p-4 shadow-sm sm:p-6 ${slideClass}`}
-    >
-      <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
-        <span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">
-          {t.questionCard.questionPrefix}
-          {questionProps.index + 1}/{questionProps.total}
-        </span>
-        <span className="bg-accent-light text-accent-fg rounded px-2 py-0.5 font-mono text-xs">
-          {formatPoints(question.points)}
-          {t.questionCard.pointsShort}
-        </span>
-        <span className="text-fg-muted order-last flex w-full min-w-0 items-center gap-0.5 text-xs sm:order-none sm:w-auto sm:flex-1">
-          {questionProps.megatopicLabel && (
-            <>
-              <span className="truncate">{questionProps.megatopicLabel}</span>
-              <CaretRight
-                size={12}
-                weight="Filled"
-                aria-hidden="true"
-                className="shrink-0"
-              />
-            </>
+    <div className="flex flex-col rounded-xl shadow-sm">
+      <div className="border-border bg-surface-alt rounded-t-xl border-x-2 border-t-2 px-4 py-4 sm:px-6 sm:py-6">
+        <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+          <span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">
+            {t.questionCard.questionPrefix}
+            {questionProps.index + 1}/{questionProps.total}
+          </span>
+          <span className="bg-accent-light text-accent-fg rounded px-2 py-0.5 font-mono text-xs">
+            {formatPoints(question.points)}
+            {t.questionCard.pointsShort}
+          </span>
+          <span className="text-fg-muted order-last flex w-full min-w-0 items-center gap-0.5 text-xs sm:order-none sm:w-auto sm:flex-1">
+            {questionProps.megatopicLabel && (
+              <>
+                <span className="truncate">{questionProps.megatopicLabel}</span>
+                <CaretRight
+                  size={12}
+                  weight="Filled"
+                  aria-hidden="true"
+                  className="shrink-0"
+                />
+              </>
+            )}
+            <span className="truncate">{questionProps.topicLabel}</span>
+          </span>
+          {(question.repeated || questionProps.examTitle) && (
+            <div className="ml-auto flex items-center gap-2 sm:ml-0">
+              {question.repeated && (
+                <span className="border-reward-border bg-reward-light text-reward-fg flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[10px] font-semibold">
+                  <Restart size={10} aria-hidden="true" />
+                  {t.questionCard.repeated}
+                </span>
+              )}
+              {questionProps.examTitle && (
+                <span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
+                  <DocText size={14} aria-hidden="true" />
+                  {questionProps.examTitle}
+                </span>
+              )}
+            </div>
           )}
-          <span className="truncate">{questionProps.topicLabel}</span>
-        </span>
-        {(question.repeated || questionProps.examTitle) && (
-          <div className="ml-auto flex items-center gap-2 sm:ml-0">
-            {question.repeated && (
-              <span className="flex items-center gap-0.5 rounded border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
-                <Restart size={10} aria-hidden="true" />
-                {t.questionCard.repeated}
-              </span>
-            )}
-            {questionProps.examTitle && (
-              <span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
-                <Notebook size={14} aria-hidden="true" />
-                {questionProps.examTitle}
-              </span>
-            )}
-          </div>
-        )}
-      </div>
-      <div>
-        <Markdown className="text-fg mb-4 text-sm font-medium">
-          {question.question}
-        </Markdown>
-        {question.subquestions && (
-          <ul className="text-fg-secondary mb-4 list-inside list-disc space-y-1 text-sm">
-            {question.subquestions.map((sq) => (
-              <li key={sq}>
-                <InlineMarkdown>{sq}</InlineMarkdown>
-              </li>
-            ))}
-          </ul>
-        )}
-        {question.image && (
-          <div className="mb-4">
-            <QuestionImage
-              image={question.image}
-              alt={`Illustration for ${question.id}`}
-              maxHeight="400px"
-            />
-          </div>
-        )}
-        {question.table && (
-          <div className="border-border mb-4 overflow-x-auto rounded-lg border">
-            <table className="divide-border min-w-full divide-y text-sm">
-              <thead className="bg-surface">
-                <tr>
-                  {question.table.headers.map((h) => (
-                    <th
-                      key={h}
-                      scope="col"
-                      className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
-                    >
-                      <InlineMarkdown>{h}</InlineMarkdown>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-border bg-surface-alt divide-y">
-                {question.table.rows.map((row, ri) => (
-                  <tr
-                    key={`${question.id}-row-${ri}`}
-                    className="hover:bg-surface/50 transition-colors"
-                  >
-                    {row.map((cell, ci) => (
-                      <td
-                        key={`${question.id}-cell-${ri}-${ci}`}
-                        className="text-fg-secondary px-4 py-2 whitespace-nowrap"
+        </div>
+        <div>
+          <Markdown className="text-fg mb-4 text-sm font-medium">
+            {question.question}
+          </Markdown>
+          {question.subquestions && (
+            <ul className="text-fg-secondary mb-4 list-inside list-disc space-y-1 text-sm">
+              {question.subquestions.map((sq) => (
+                <li key={sq}>
+                  <InlineMarkdown>{sq}</InlineMarkdown>
+                </li>
+              ))}
+            </ul>
+          )}
+          {question.image && (
+            <div className="mb-4">
+              <QuestionImage
+                image={question.image}
+                alt={`Illustration for ${question.id}`}
+                maxHeight="400px"
+              />
+            </div>
+          )}
+          {question.table && (
+            <div className="border-border mb-4 overflow-x-auto rounded-lg border">
+              <table className="divide-border min-w-full divide-y text-sm">
+                <thead className="bg-surface">
+                  <tr>
+                    {question.table.headers.map((h) => (
+                      <th
+                        key={h}
+                        scope="col"
+                        className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
                       >
-                        <InlineMarkdown>{cell}</InlineMarkdown>
-                      </td>
+                        <InlineMarkdown>{h}</InlineMarkdown>
+                      </th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-border bg-surface-alt divide-y">
+                  {question.table.rows.map((row, ri) => (
+                    <tr
+                      key={`${question.id}-row-${ri}`}
+                      className="hover:bg-surface/50 transition-colors"
+                    >
+                      {row.map((cell, ci) => (
+                        <td
+                          key={`${question.id}-cell-${ri}-${ci}`}
+                          className="text-fg-secondary px-4 py-2 whitespace-nowrap"
+                        >
+                          <InlineMarkdown>{cell}</InlineMarkdown>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+        {question.type === "mc" && (
+          <MCQuestion
+            key={`mc-${question.id}-${questionProps.savedAnswer || ""}`}
+            {...questionProps}
+          />
+        )}
+        {question.type === "text" && <TextQuestion {...questionProps} />}
+        {question.type === "multiple-text" && (
+          <MultipleTextQuestion {...questionProps} />
+        )}
+        {question.type === "fill" && <FillQuestion {...questionProps} />}
+        {question.type === "table-fill" && (
+          <TableFillQuestion {...questionProps} />
+        )}
+        {question.type === "matching" && (
+          <MatchingQuestion
+            key={`match-${question.id}-${questionProps.savedAnswer || ""}`}
+            {...questionProps}
+          />
         )}
       </div>
-      {question.type === "mc" && (
-        <MCQuestion
-          key={`mc-${question.id}-${questionProps.savedAnswer || ""}`}
-          {...questionProps}
-        />
-      )}
-      {question.type === "text" && <TextQuestion {...questionProps} />}
-      {question.type === "multiple-text" && (
-        <MultipleTextQuestion {...questionProps} />
-      )}
-      {question.type === "fill" && <FillQuestion {...questionProps} />}
-      {question.type === "table-fill" && (
-        <TableFillQuestion {...questionProps} />
-      )}
-      {question.type === "matching" && (
-        <MatchingQuestion
-          key={`match-${question.id}-${questionProps.savedAnswer || ""}`}
-          {...questionProps}
-        />
-      )}
-      <div className="border-border mt-4 flex items-center justify-between gap-3 border-t pt-4">
+      <div className="bg-card-footer border-card-footer-border text-fg-muted flex flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-4 py-1 text-xs sm:px-6">
         <span className="text-fg-muted inline-flex min-w-0 items-center gap-1.5 text-xs font-semibold">
           <span
             className="question-card-brand-mark bg-fg-muted size-[18px] shrink-0"
@@ -1380,6 +1249,7 @@ export default function QuestionCard(props: QuestionCardProps) {
           <a
             data-tour="report-issue"
             data-cuelume-hover="whisper"
+            data-cuelume-press="whisper"
             href={buildReportUrl(
               question,
               questionProps.subjectId,
@@ -1388,7 +1258,7 @@ export default function QuestionCard(props: QuestionCardProps) {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg -mr-2 inline-flex shrink-0 items-center gap-1 rounded px-2 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg inline-flex shrink-0 items-center gap-1 rounded px-2 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
             onClick={() => {
               triggerLight();
               track("report_issue", {

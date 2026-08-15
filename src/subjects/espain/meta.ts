@@ -14,31 +14,26 @@ export const meta: SubjectMeta = {
       key: "tarea-1",
       label: "Tarea 1: Gobierno e instituciones",
       icon: "🏛️",
-      color: "blue",
     },
     {
       key: "tarea-2",
       label: "Tarea 2: Nacionalidad y ciudadanía",
       icon: "⚖️",
-      color: "indigo",
     },
     {
       key: "tarea-3",
       label: "Tarea 3: Territorio y geografía",
       icon: "🗺️",
-      color: "green",
     },
     {
       key: "tarea-4",
       label: "Tarea 4: Cultura e historia",
       icon: "🎨",
-      color: "purple",
     },
     {
       key: "tarea-5",
       label: "Tarea 5: Vida cotidiana y trámites",
       icon: "🧾",
-      color: "orange",
     },
   ],
   exams: [

@@ -16,31 +16,26 @@ export const meta: SubjectMeta = {
       key: "intro-y-objetos",
       label: "Introducción y Elementos Básicos de la OO",
       icon: "📦",
-      color: "blue",
     },
     {
       key: "propiedades-oo",
       label: "Propiedades Básicas de la OO",
       icon: "🧬",
-      color: "indigo",
     },
     {
       key: "uml",
       label: "UML",
       icon: "📐",
-      color: "green",
     },
     {
       key: "principios-diseno",
       label: "Principios de Diseño",
       icon: "📏",
-      color: "purple",
     },
     {
       key: "patrones-diseno",
       label: "Patrones de Diseño",
       icon: "🧩",
-      color: "pink",
     },
   ],
   exams: [

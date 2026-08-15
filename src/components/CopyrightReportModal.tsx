@@ -1,9 +1,15 @@
-import { useEffect, useImperativeHandle, useRef, type Ref } from "react";
+import { useImperativeHandle, useRef, type Ref } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { XSquare } from "reicon-react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { LegalHammerIcon } from "@hugeicons/core-free-icons";
+import { Copyright, Envelope, InfoCircle } from "reicon-react";
+import {
+  closeDialog,
+  showDialog,
+  useDialogClose,
+  useDialogDismiss,
+} from "../lib/dialog";
+import { playSound } from "../lib/sound";
+import { compactModalDialogClass, ModalActionLink, ModalHeader } from "./Modal";
 
 const CONTACT_EMAIL = "pablo.portas@udc.es";
 
@@ -30,30 +36,22 @@ function CopyrightReportModal({
   const closeMethodRef = useRef<"x" | "backdrop" | "esc">("backdrop");
 
   useImperativeHandle(ref, () => ({
-    open: () => dialogRef.current?.showModal(),
-    close: () => dialogRef.current?.close(),
+    open: () => showDialog(dialogRef.current),
+    close: () => closeDialog(dialogRef.current),
   }));
 
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    const handleBackdropClick = (e: MouseEvent) => {
-      if (e.target === dialog) {
-        closeMethodRef.current = "backdrop";
-        dialog.close();
-      }
-    };
-    const handleCancel = () => {
-      closeMethodRef.current = "esc";
-    };
-    dialog.addEventListener("click", handleBackdropClick);
-    dialog.addEventListener("cancel", handleCancel);
-    return () => {
-      dialog.removeEventListener("click", handleBackdropClick);
-      dialog.removeEventListener("cancel", handleCancel);
-    };
-  }, []);
+  useDialogDismiss(dialogRef, (method) => {
+    closeMethodRef.current = method;
+    playSound("droplet");
+  });
+  useDialogClose(dialogRef, () => {
+    track("modal_close", {
+      modal: "copyright_report",
+      method: closeMethodRef.current,
+      subjectId,
+    });
+    onClose();
+  });
 
   const emailSubject = t.copyrightReport.emailSubject.replace(
     "{subjectName}",
@@ -67,67 +65,40 @@ function CopyrightReportModal({
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      closedby="any"
+      className={`${compactModalDialogClass} p-6`}
       aria-labelledby="copyright-report-title"
-      onClose={() => {
-        track("modal_close", {
-          modal: "copyright_report",
-          method: closeMethodRef.current,
-          subjectId,
-        });
-        onClose();
-      }}
     >
-      <div>
-        <div className="mb-5 flex items-center justify-between">
-          <h2
-            id="copyright-report-title"
-            className="text-fg text-lg font-semibold"
-          >
-            <span className="inline-flex items-center gap-2">
-              <HugeiconsIcon icon={LegalHammerIcon} size={24} strokeWidth={2} />
-              {t.copyrightReport.title}{" "}
-            </span>
-          </h2>
-          <button
-            type="button"
-            data-cuelume-press
-            onClick={() => {
-              closeMethodRef.current = "x";
-              dialogRef.current?.close();
-            }}
-            className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
-            aria-label={t.copyrightReport.close}
-          >
-            <XSquare className="size-5" />
-          </button>
-        </div>
+      <ModalHeader
+        titleId="copyright-report-title"
+        closeLabel={t.copyrightReport.close}
+        onClose={() => {
+          closeMethodRef.current = "x";
+          closeDialog(dialogRef.current);
+        }}
+      >
+        <Copyright className="size-5 shrink-0" aria-hidden="true" />
+        {t.copyrightReport.title}
+      </ModalHeader>
 
-        <div className="space-y-4">
-          <p className="text-fg-secondary text-sm">
-            {t.copyrightReport.description}
-          </p>
-          <p className="text-fg-muted text-sm">
-            {t.copyrightReport.includeDetails}
-          </p>
+      <div className="space-y-3">
+        <p className="text-fg-secondary text-sm leading-relaxed">
+          {t.copyrightReport.description}
+        </p>
+        <p className="border-border bg-surface/60 text-fg-muted flex items-start gap-2 rounded-xl border p-3 text-xs leading-relaxed">
+          <InfoCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+          <span>{t.copyrightReport.includeDetails}</span>
+        </p>
 
-          <a
-            data-cuelume-press
-            href={mailtoUrl}
-            onClick={() => track("copyright_report_email", { subjectId })}
-            className="border-t-red-border bg-t-red-bg/70 hover:bg-t-red-bg hover:border-t-red-hover text-fg flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left no-underline transition-colors"
-          >
-            <span className="text-t-red-hover text-xl" aria-hidden="true">
-              !
-            </span>
-            <div>
-              <div className="text-sm font-medium">
-                {t.copyrightReport.email}
-              </div>
-              <div className="text-fg-muted text-xs">{CONTACT_EMAIL}</div>
-            </div>
-          </a>
-        </div>
+        <ModalActionLink
+          href={mailtoUrl}
+          icon={<Envelope className="size-5" aria-hidden="true" />}
+          iconClassName="bg-danger-light text-danger-fg"
+          title={t.copyrightReport.email}
+          description={CONTACT_EMAIL}
+          className="border-danger-border bg-danger-light/60 hover:border-danger-fg hover:bg-danger-light"
+          onClick={() => track("copyright_report_email", { subjectId })}
+        />
       </div>
     </dialog>
   );

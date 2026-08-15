@@ -65,7 +65,6 @@ interface PracticePlayerProps {
   selfGrades: Record<string, "correct" | "incorrect">;
   submitted: boolean;
   checkedQuestions: Record<string, boolean>;
-  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
   totalPoints: number;
   direction: "next" | "prev" | undefined;
   setDirection: (d: "next" | "prev" | undefined) => void;
@@ -148,7 +147,7 @@ function PracticePlayerHeader({
           to={`/${subject.id}`}
           data-cuelume-hover
           data-cuelume-press
-          className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-accent-fg focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
           onClick={() =>
             track("nav_click", { target: "subject_home", from: "practice" })
           }
@@ -158,7 +157,7 @@ function PracticePlayerHeader({
         </Link>
       </div>
       <div ref={headerAnchorRef} className="h-0" aria-hidden="true" />
-      <div className="bg-surface border-border sticky top-0 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:top-14 sm:mb-6">
+      <div className="sticky-player-header bg-surface border-border sticky z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
             <h1 className="text-fg truncate text-xl font-semibold sm:text-2xl">
@@ -232,7 +231,7 @@ function PracticeScoreSummary({
       className={`animate-fade-in-up relative transition-[height] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-12 overflow-hidden" : "min-h-24"}`}
     >
       <div
-        className={`relative rounded-lg border transition-[background-color,border-color,padding] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-full overflow-hidden p-0" : "min-h-24 p-3 pb-7 sm:p-4 sm:pb-8"} ${
+        className={`relative rounded-lg border-2 transition-[background-color,border-color,padding] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-full overflow-hidden p-0" : "min-h-24 p-3 pb-7 sm:p-4 sm:pb-8"} ${
           completed
             ? "border-correct-border bg-correct-bg"
             : "border-pending-border bg-pending-bg"
@@ -302,7 +301,6 @@ interface PracticeControlsProps {
   onSubmit: () => void;
   onCheckQuestion: (questionId: string) => void;
   onClearAnswer: (questionId: string) => void;
-  arrowAnimateRef: React.MutableRefObject<(dir: "prev" | "next") => void>;
 }
 
 function PracticeControls({
@@ -321,7 +319,6 @@ function PracticeControls({
   onSubmit,
   onCheckQuestion,
   onClearAnswer,
-  arrowAnimateRef,
 }: PracticeControlsProps) {
   const t = useT();
   const [hoveredControl, dispatchHover] = useReducer(
@@ -330,22 +327,6 @@ function PracticeControls({
   );
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
-
-  const animateArrowPress = useCallback(
-    (ref: React.RefObject<HTMLButtonElement | null>) => {
-      ref.current?.animate(
-        [{ transform: "scale(0.92)" }, { transform: "scale(1)" }],
-        { duration: 150, easing: "ease-out" },
-      );
-    },
-    [],
-  );
-
-  useEffect(() => {
-    arrowAnimateRef.current = (dir) => {
-      animateArrowPress(dir === "prev" ? prevBtnRef : nextBtnRef);
-    };
-  }, [arrowAnimateRef, animateArrowPress]);
 
   const navigateQuestion = (dir: "prev" | "next") => {
     triggerLight();
@@ -375,10 +356,16 @@ function PracticeControls({
       <button
         type="button"
         ref={prevBtnRef}
-        data-cuelume-press
+        data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-        onMouseEnter={() => dispatchHover({ type: "enter", control: "prev" })}
-        onMouseLeave={() => dispatchHover({ type: "leave", control: "prev" })}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse")
+            dispatchHover({ type: "enter", control: "prev" });
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse")
+            dispatchHover({ type: "leave", control: "prev" });
+        }}
         onClick={() => navigateQuestion("prev")}
         disabled={currentIndex === 0}
       >
@@ -406,13 +393,16 @@ function PracticeControls({
                 answers[currentQuestion.id].trim() !== "" && (
                   <button
                     type="button"
+                    data-cuelume-press="droplet"
                     className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-                    onMouseEnter={() =>
-                      dispatchHover({ type: "enter", control: "clear" })
-                    }
-                    onMouseLeave={() =>
-                      dispatchHover({ type: "leave", control: "clear" })
-                    }
+                    onPointerEnter={(event) => {
+                      if (event.pointerType === "mouse")
+                        dispatchHover({ type: "enter", control: "clear" });
+                    }}
+                    onPointerLeave={(event) => {
+                      if (event.pointerType === "mouse")
+                        dispatchHover({ type: "leave", control: "clear" });
+                    }}
                     onClick={() => {
                       triggerLight();
                       track("practice_clear_answer", {
@@ -436,14 +426,15 @@ function PracticeControls({
                 )}
               <button
                 type="button"
-                data-cuelume-press
-                className="flex min-w-0 items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-3 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95 sm:py-2"
-                onMouseEnter={() =>
-                  dispatchHover({ type: "enter", control: "check" })
-                }
-                onMouseLeave={() =>
-                  dispatchHover({ type: "leave", control: "check" })
-                }
+                className="bg-info text-on-info hover:bg-info-hover focus-visible:ring-info-fg flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+                onPointerEnter={(event) => {
+                  if (event.pointerType === "mouse")
+                    dispatchHover({ type: "enter", control: "check" });
+                }}
+                onPointerLeave={(event) => {
+                  if (event.pointerType === "mouse")
+                    dispatchHover({ type: "leave", control: "check" });
+                }}
                 onClick={() => onCheckQuestion(currentQuestion.id)}
               >
                 <Eye
@@ -461,14 +452,16 @@ function PracticeControls({
         {!submitted && (
           <button
             type="button"
-            data-cuelume-press
-            className="bg-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-            onMouseEnter={() =>
-              dispatchHover({ type: "enter", control: "submit" })
-            }
-            onMouseLeave={() =>
-              dispatchHover({ type: "leave", control: "submit" })
-            }
+            data-cuelume-press="ready"
+            className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+            onPointerEnter={(event) => {
+              if (event.pointerType === "mouse")
+                dispatchHover({ type: "enter", control: "submit" });
+            }}
+            onPointerLeave={(event) => {
+              if (event.pointerType === "mouse")
+                dispatchHover({ type: "leave", control: "submit" });
+            }}
             onClick={() => {
               onSubmit();
               scrollToHeader();
@@ -489,10 +482,16 @@ function PracticeControls({
       <button
         type="button"
         ref={nextBtnRef}
-        data-cuelume-press
+        data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-        onMouseEnter={() => dispatchHover({ type: "enter", control: "next" })}
-        onMouseLeave={() => dispatchHover({ type: "leave", control: "next" })}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse")
+            dispatchHover({ type: "enter", control: "next" });
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse")
+            dispatchHover({ type: "leave", control: "next" });
+        }}
         onClick={() => navigateQuestion("next")}
         disabled={currentIndex === questions.length - 1}
       >
@@ -534,7 +533,6 @@ function PracticePlayer({
   onSubmit,
   onCheckQuestion,
   onClearAnswer,
-  arrowAnimateRef,
   scrollToHeaderRef,
 }: PracticePlayerProps) {
   const currentQuestion = questions[currentIndex];
@@ -727,7 +725,6 @@ function PracticePlayer({
         onSubmit={onSubmit}
         onCheckQuestion={onCheckQuestion}
         onClearAnswer={onClearAnswer}
-        arrowAnimateRef={arrowAnimateRef}
       />
 
       <Disclaimer
@@ -793,6 +790,7 @@ export default function PracticeTopic() {
     pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,
+    indexable: false,
     enabled: !(subject && topicInfo) || questionsLoaded,
   });
 
@@ -846,7 +844,6 @@ export default function PracticeTopic() {
   });
 
   const subjectReadyRef = useRef(false);
-  const arrowAnimateRef = useRef<(dir: "prev" | "next") => void>(() => {});
   const scrollToHeaderRef = useRef<() => void>(() => {});
   useEffect(() => {
     subjectReadyRef.current = !!subject;
@@ -866,8 +863,7 @@ export default function PracticeTopic() {
     setDirection,
     eventName: "practice_navigate",
     eventData: navEventData,
-    onKeyPress: (dir) => {
-      arrowAnimateRef.current(dir);
+    onKeyPress: () => {
       scrollToHeaderRef.current();
     },
   });
@@ -980,7 +976,7 @@ export default function PracticeTopic() {
           to={subject ? `/${subject.id}` : "/"}
           data-cuelume-hover
           data-cuelume-press
-          className="text-accent mt-4 inline-block hover:underline"
+          className="text-accent-fg mt-4 inline-block hover:underline"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home", from: "practice_empty" });
@@ -1019,7 +1015,6 @@ export default function PracticeTopic() {
         onSubmit={handleSubmit}
         onCheckQuestion={handleCheckQuestion}
         onClearAnswer={handleClearAnswer}
-        arrowAnimateRef={arrowAnimateRef}
         scrollToHeaderRef={scrollToHeaderRef}
       />
     </>

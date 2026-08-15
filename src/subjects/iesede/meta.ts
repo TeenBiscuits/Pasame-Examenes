@@ -16,7 +16,6 @@ export const meta: SubjectMeta = {
       key: "general",
       label: "General",
       icon: "📚",
-      color: "blue",
     },
   ],
   exams: [

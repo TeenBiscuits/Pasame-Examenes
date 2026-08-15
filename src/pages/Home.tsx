@@ -16,9 +16,7 @@ import {
   recordSubjectClick,
   clearRecentSubjects,
 } from "../lib/recent";
-import { Trash5 } from "reicon-react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons";
+import { Book, Trash5 } from "reicon-react";
 import SecretToro from "../components/SecretToro";
 
 const MAX_SLOTS = 3;
@@ -60,6 +58,7 @@ export default function Home() {
     description: seoMeta.description,
     pathWithoutLang: seoMeta.pathWithoutLang,
     jsonLd: seoMeta.jsonLd,
+    indexable: true,
   });
   const modalRef = useRef<AddSubjectModalHandle>(null);
   const [recentKey, setRecentKey] = useState(0);
@@ -97,7 +96,7 @@ export default function Home() {
       </Hero>
       <div className="animate-fade-in animate-duration-fast mx-auto max-w-6xl px-4 pb-14 text-center">
         {recentSubjects.length > 0 && (
-          <div className="mb-10 text-left" key={recentKey}>
+          <div className="mb-6 text-left" key={recentKey}>
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-fg-muted text-sm font-semibold tracking-wide uppercase">
                 {t.home.recentlyVisited}
@@ -135,10 +134,10 @@ export default function Home() {
                           location: "recent",
                         });
                       }}
-                      className="border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 block w-full rounded-xl border-2 p-5 transition-colors transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
+                      className="interactive-card border-border bg-surface-alt block w-full rounded-xl border-2 px-5 py-4 hover:shadow-md"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-2xl" aria-hidden="true">
+                        <span className="text-4xl" aria-hidden="true">
                           {slot.subject.icon}
                         </span>
                         <span className="text-fg text-base font-semibold">
@@ -152,32 +151,30 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <hr className="border-border mt-10" />
+            <hr className="border-border mt-6" />
           </div>
         )}
 
         <div className="grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
           {subjects.map((subject) => (
-            <div
-              key={subject.id}
-              className="animate-fade-in-up timeline-view animate-range-entry"
-            >
+            <div key={subject.id}>
               <SubjectCard subject={subject} />
             </div>
           ))}
-          <div className="animate-fade-in-up timeline-view animate-range-entry">
+          <div>
             <button
               type="button"
-              data-cuelume-press
+              data-cuelume-hover="tick"
+              data-cuelume-press="bloom"
               onClick={() => {
                 modalRef.current?.open();
                 track("add_subject_modal_open");
               }}
-              className="border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block h-full min-h-[172px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 transition-colors transition-transform duration-200 hover:scale-[1.02]"
+              className="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent hover:bg-accent-light/30 block h-full min-h-[160px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 hover:shadow-md"
             >
               <div className="flex h-full flex-col items-center justify-center gap-2">
                 <span className="text-4xl leading-none font-light">
-                  <HugeiconsIcon icon={DashboardSquareAddIcon} size={35} />
+                  <Book className="size-8" aria-hidden="true" />
                 </span>
                 <span className="text-sm font-medium">{t.home.addSubject}</span>
               </div>

@@ -1,4 +1,4 @@
-[![Pásame Exámenes](./public/og.jpg)](https://pe.pablopl.dev/?utm_source=github-readme&utm_medium=social&utm_campaign=public-launch)
+[![Pásame Exámenes](./public/og-2x.webp)](https://pe.pablopl.dev/?utm_source=github-readme&utm_medium=social&utm_campaign=public-launch)
 
 # <a href="https://pe.pablopl.dev/?utm_source=github-readme&utm_medium=social&utm_campaign=public-launch"><img src="https://raw.githubusercontent.com/TeenBiscuits/Pasame-Examenes/refs/heads/main/public/favicon.svg" alt="" align="left" width="40" height="40"></a> Pásame Exámenes
 
@@ -85,7 +85,7 @@ No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación d
 
 ### i18n y temas
 
-La plataforma es trilingüe (español, inglés, gallego) con un sistema de i18n propio en `src/i18n/`. Incluye 4 temas visuales (claro, oscuro, rosa, Catppuccin) conmutables desde la interfaz, aplicados mediante `data-theme` en `<html>`.
+La plataforma es trilingüe (español, inglés, gallego) con un sistema de i18n propio en `src/i18n/`. Incluye apariencias clara y oscura, el tema claro Princesa, los cuatro sabores de Catppuccin y un modo sistema, conmutables desde la interfaz y aplicadas mediante `data-theme` en `<html>`.
 
 ### Generación de OG images
 
