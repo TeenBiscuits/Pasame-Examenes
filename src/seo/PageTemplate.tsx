@@ -46,8 +46,13 @@ const themeScript = `(function () {
         ? "dark"
         : "light"
       : t;
+  var color = colors[resolved];
+  document.documentElement.style.setProperty(
+    "--browser-chrome-color",
+    color,
+  );
   var meta = document.getElementById("theme-color");
-  if (meta) meta.setAttribute("content", colors[resolved]);
+  if (meta) meta.setAttribute("content", color);
   var scheme = document.querySelector('meta[name="color-scheme"]');
   if (scheme)
     scheme.setAttribute("content", t === "system" ? "light dark" : schemes[t]);

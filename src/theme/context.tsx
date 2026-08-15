@@ -47,8 +47,13 @@ function applyTheme(theme: Theme): Theme {
   }
   document.documentElement.setAttribute("data-theme", theme);
   const appearance = resolveAppearance(theme);
+  const surfaceAlt = resolveSurfaceAlt(theme);
+  document.documentElement.style.setProperty(
+    "--browser-chrome-color",
+    surfaceAlt,
+  );
   const themeColor = document.getElementById("theme-color");
-  if (themeColor) themeColor.setAttribute("content", resolveSurfaceAlt(theme));
+  if (themeColor) themeColor.setAttribute("content", surfaceAlt);
   const colorScheme = document.querySelector<HTMLMetaElement>(
     'meta[name="color-scheme"]',
   );

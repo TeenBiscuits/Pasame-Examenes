@@ -21,7 +21,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta id="theme-color" name="theme-color" content="oklch(1 0 0)" />
+    <meta id="theme-color" name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light dark" />
     <script>
       (function () {
@@ -45,13 +45,13 @@
         document.documentElement.setAttribute("data-theme", t);
 
         var colors = {
-          light: "oklch(1 0 0)",
-          dark: "oklch(0.278 0.030 256.848)",
-          princess: "oklch(0.99 0.003 15)",
-          latte: "oklch(0.906 0.012 264.507)",
-          frappe: "oklch(0.272 0.026 275.115)",
-          macchiato: "oklch(0.219 0.025 280.657)",
-          mocha: "oklch(0.183 0.020 284.204)",
+          light: "#ffffff",
+          dark: "#1f2937",
+          princess: "#fefbfb",
+          latte: "#dce0e8",
+          frappe: "#232634",
+          macchiato: "#181926",
+          mocha: "#11111b",
         };
         var schemes = {
           light: "light",
@@ -68,8 +68,13 @@
               ? "dark"
               : "light"
             : t;
+        var color = colors[resolved];
+        document.documentElement.style.setProperty(
+          "--browser-chrome-color",
+          color,
+        );
         var meta = document.getElementById("theme-color");
-        if (meta) meta.setAttribute("content", colors[resolved]);
+        if (meta) meta.setAttribute("content", color);
         var scheme = document.querySelector('meta[name="color-scheme"]');
         if (scheme)
           scheme.setAttribute(

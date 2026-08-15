@@ -47,8 +47,9 @@ html[data-theme="system"] {
 html,
 body {
   /* Match the header/footer surface so the Safari toolbar/safe-area background
-     has the same color as the surrounding chrome. */
-  background-color: var(--color-surface-alt);
+     has the same color as the surrounding chrome. Safari 26 no longer uses
+     `theme-color` for this surface, so keep the value updated on <html>. */
+  background-color: var(--browser-chrome-color, var(--color-surface-alt));
   min-height: 100%;
   overscroll-behavior: none;
 }
