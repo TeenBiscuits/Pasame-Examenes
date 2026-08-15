@@ -134,7 +134,7 @@ export default function Home() {
                           location: "recent",
                         });
                       }}
-                      className="interactive-card border-border bg-surface-alt block w-full rounded-xl border-2 p-4 hover:shadow-md"
+                      className="interactive-card border-border bg-surface-alt block w-full rounded-xl border-2 px-5 py-4 hover:shadow-md"
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-4xl" aria-hidden="true">
