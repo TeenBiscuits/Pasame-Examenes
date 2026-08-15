@@ -42,9 +42,11 @@ function applyTheme(theme: Theme): Theme {
   }
   document.documentElement.setAttribute("data-theme", theme);
   const appearance = resolveAppearance(theme);
-  const themeColor = document.getElementById("theme-color");
-  if (themeColor)
-    themeColor.setAttribute("content", themeSurfaceAlt[appearance]);
+  document
+    .querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
+    .forEach((themeColor) => {
+      themeColor.content = themeSurfaceAlt[appearance];
+    });
   const colorScheme = document.querySelector<HTMLMetaElement>(
     'meta[name="color-scheme"]',
   );

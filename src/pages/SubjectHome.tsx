@@ -440,9 +440,7 @@ function TopicsSection({
           />
         </>
       ) : (
-        <div
-          className={`mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 ${subject.topics.length > 4 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
-        >
+        <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {topicsWithQuestions.map(renderTopicCard)}
         </div>
       )}

@@ -22,8 +22,9 @@ const themeScript = `(function () {
   var isDark =
     t === "dark" ||
     (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  var meta = document.getElementById("theme-color");
-  if (meta) meta.setAttribute("content", isDark ? colors.dark : colors.light);
+  var metas = document.querySelectorAll('meta[name="theme-color"]');
+  for (var i = 0; i < metas.length; i++)
+    metas[i].setAttribute("content", isDark ? colors.dark : colors.light);
   var scheme = document.querySelector('meta[name="color-scheme"]');
   if (scheme) scheme.setAttribute("content", t === "system" ? "light dark" : t);
 })();`;
@@ -53,9 +54,14 @@ export default function PageTemplate(page: PageMetaData) {
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
         <meta
-          id="theme-color"
           name="theme-color"
+          media="(prefers-color-scheme: light)"
           content={themeSurfaceAlt.light}
+        />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content={themeSurfaceAlt.dark}
         />
         <meta name="color-scheme" content="light dark" />
         <script>{themeScript}</script>

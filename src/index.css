@@ -7,6 +7,9 @@ html {
   color-scheme: light dark;
   accent-color: var(--color-accent);
   caret-color: var(--color-accent);
+  min-height: 100%;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html[data-theme="light"] {
@@ -32,6 +35,64 @@ body {
   /* Match the header/footer surface so the Safari toolbar/safe-area background
      has the same color as the surrounding chrome. */
   background-color: var(--color-surface-alt);
+  min-height: 100%;
+  overscroll-behavior: none;
+}
+
+/* ── Mobile interaction defaults ──
+   Keep native scrolling and text selection where they are useful, while
+   making controls respond immediately and avoiding iOS's input zoom. */
+:where(button, a, [role="button"]) {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+:where(button, [role="button"]) {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:is(
+  textarea,
+  select,
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="url"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"]
+) {
+  /* iOS zooms focused controls below 16px, even when the page is otherwise
+     correctly configured. */
+  font-size: 1rem;
+}
+
+@media (pointer: coarse) {
+  :where(button, a, [role="button"]):active:not(:disabled) {
+    opacity: 0.88;
+  }
+}
+
+/* The question index is a horizontal gesture surface. Horizontal dragging is
+   handled by the component so vertical movement can keep scrolling the page. */
+.question-nav-scroll {
+  touch-action: pan-y;
+  overscroll-behavior-x: contain;
+}
+
+.safe-area-top {
+  padding-block-start: env(safe-area-inset-top);
+}
+
+.sticky-player-header {
+  top: env(safe-area-inset-top);
+}
+
+@media (min-width: 640px) {
+  .sticky-player-header {
+    top: 3.5rem;
+  }
 }
 
 /* ── Semantic theme tokens ──
@@ -604,10 +665,6 @@ body {
   transition: color 0.15s;
 }
 
-.tour-popover .driver-popover-close-btn:hover {
-  color: var(--color-fg);
-}
-
 .tour-popover .driver-popover-progress-text {
   color: var(--color-fg-muted);
   font-size: 0.75rem;
@@ -634,10 +691,6 @@ body {
   border-color: var(--color-border);
 }
 
-.tour-popover .driver-popover-prev-btn:hover {
-  background-color: var(--color-border);
-}
-
 .tour-popover .driver-popover-next-btn,
 .tour-popover.driver-popover .driver-popover-next-btn.driver-popover-done-btn {
   background: var(--color-accent);
@@ -645,9 +698,19 @@ body {
   border-color: var(--color-accent);
 }
 
-.tour-popover .driver-popover-next-btn:hover,
-.tour-popover.driver-popover
-  .driver-popover-next-btn.driver-popover-done-btn:hover {
-  background: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+@media (hover: hover) and (pointer: fine) {
+  .tour-popover .driver-popover-close-btn:hover {
+    color: var(--color-fg);
+  }
+
+  .tour-popover .driver-popover-prev-btn:hover {
+    background-color: var(--color-border);
+  }
+
+  .tour-popover .driver-popover-next-btn:hover,
+  .tour-popover.driver-popover
+    .driver-popover-next-btn.driver-popover-done-btn:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
 }

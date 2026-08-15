@@ -261,7 +261,7 @@ function ExamPlayerHeader({
       </div>
       <div ref={headerAnchorRef} className="h-0" aria-hidden="true" />
       <div
-        className="bg-surface border-border sticky top-0 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:top-14 sm:mb-6"
+        className="sticky-player-header bg-surface border-border sticky z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6"
         data-tour="exam-header"
       >
         <div className="flex items-center justify-between gap-4">
@@ -563,8 +563,12 @@ function ExamControls({
         ref={prevBtnRef}
         data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-        onMouseEnter={() => setHoverPrev(true)}
-        onMouseLeave={() => setHoverPrev(false)}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse") setHoverPrev(true);
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") setHoverPrev(false);
+        }}
         onClick={() => navigateQuestion("prev")}
         disabled={currentIndex === 0}
       >
@@ -599,8 +603,12 @@ function ExamControls({
         ref={nextBtnRef}
         data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-        onMouseEnter={() => setHoverNext(true)}
-        onMouseLeave={() => setHoverNext(false)}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse") setHoverNext(true);
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") setHoverNext(false);
+        }}
         onClick={() => navigateQuestion("next")}
         disabled={currentIndex === questions.length - 1}
       >

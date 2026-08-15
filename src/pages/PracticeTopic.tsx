@@ -157,7 +157,7 @@ function PracticePlayerHeader({
         </Link>
       </div>
       <div ref={headerAnchorRef} className="h-0" aria-hidden="true" />
-      <div className="bg-surface border-border sticky top-0 z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:top-14 sm:mb-6">
+      <div className="sticky-player-header bg-surface border-border sticky z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
             <h1 className="text-fg truncate text-xl font-semibold sm:text-2xl">
@@ -358,8 +358,14 @@ function PracticeControls({
         ref={prevBtnRef}
         data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-        onMouseEnter={() => dispatchHover({ type: "enter", control: "prev" })}
-        onMouseLeave={() => dispatchHover({ type: "leave", control: "prev" })}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse")
+            dispatchHover({ type: "enter", control: "prev" });
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse")
+            dispatchHover({ type: "leave", control: "prev" });
+        }}
         onClick={() => navigateQuestion("prev")}
         disabled={currentIndex === 0}
       >
@@ -389,12 +395,14 @@ function PracticeControls({
                     type="button"
                     data-cuelume-press="droplet"
                     className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-                    onMouseEnter={() =>
-                      dispatchHover({ type: "enter", control: "clear" })
-                    }
-                    onMouseLeave={() =>
-                      dispatchHover({ type: "leave", control: "clear" })
-                    }
+                    onPointerEnter={(event) => {
+                      if (event.pointerType === "mouse")
+                        dispatchHover({ type: "enter", control: "clear" });
+                    }}
+                    onPointerLeave={(event) => {
+                      if (event.pointerType === "mouse")
+                        dispatchHover({ type: "leave", control: "clear" });
+                    }}
                     onClick={() => {
                       triggerLight();
                       track("practice_clear_answer", {
@@ -419,12 +427,14 @@ function PracticeControls({
               <button
                 type="button"
                 className="bg-info text-on-info hover:bg-info-hover focus-visible:ring-info-fg flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-                onMouseEnter={() =>
-                  dispatchHover({ type: "enter", control: "check" })
-                }
-                onMouseLeave={() =>
-                  dispatchHover({ type: "leave", control: "check" })
-                }
+                onPointerEnter={(event) => {
+                  if (event.pointerType === "mouse")
+                    dispatchHover({ type: "enter", control: "check" });
+                }}
+                onPointerLeave={(event) => {
+                  if (event.pointerType === "mouse")
+                    dispatchHover({ type: "leave", control: "check" });
+                }}
                 onClick={() => onCheckQuestion(currentQuestion.id)}
               >
                 <Eye
@@ -444,12 +454,14 @@ function PracticeControls({
             type="button"
             data-cuelume-press="ready"
             className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-            onMouseEnter={() =>
-              dispatchHover({ type: "enter", control: "submit" })
-            }
-            onMouseLeave={() =>
-              dispatchHover({ type: "leave", control: "submit" })
-            }
+            onPointerEnter={(event) => {
+              if (event.pointerType === "mouse")
+                dispatchHover({ type: "enter", control: "submit" });
+            }}
+            onPointerLeave={(event) => {
+              if (event.pointerType === "mouse")
+                dispatchHover({ type: "leave", control: "submit" });
+            }}
             onClick={() => {
               onSubmit();
               scrollToHeader();
@@ -472,8 +484,14 @@ function PracticeControls({
         ref={nextBtnRef}
         data-cuelume-press="page"
         className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-        onMouseEnter={() => dispatchHover({ type: "enter", control: "next" })}
-        onMouseLeave={() => dispatchHover({ type: "leave", control: "next" })}
+        onPointerEnter={(event) => {
+          if (event.pointerType === "mouse")
+            dispatchHover({ type: "enter", control: "next" });
+        }}
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse")
+            dispatchHover({ type: "leave", control: "next" });
+        }}
         onClick={() => navigateQuestion("next")}
         disabled={currentIndex === questions.length - 1}
       >

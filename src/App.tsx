@@ -484,7 +484,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="bg-surface text-fg flex min-h-screen min-h-svh flex-col font-sans">
+      <div className="bg-surface text-fg flex min-h-screen min-h-svh min-h-dvh flex-col font-sans">
         <SessionTracker />
         <ScrollToTop />
         <Header />

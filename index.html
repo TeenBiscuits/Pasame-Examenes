@@ -21,7 +21,16 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta id="theme-color" name="theme-color" content="oklch(1 0 0)" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#ffffff"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#1f2937"
+    />
     <meta name="color-scheme" content="light dark" />
     <script>
       (function () {
@@ -38,16 +47,16 @@
         document.documentElement.setAttribute("data-theme", t);
 
         var colors = {
-          light: "oklch(1 0 0)",
-          dark: "oklch(0.278 0.030 256.848)",
+          light: "#ffffff",
+          dark: "#1f2937",
         };
         var isDark =
           t === "dark" ||
           (t === "system" &&
             window.matchMedia("(prefers-color-scheme: dark)").matches);
-        var meta = document.getElementById("theme-color");
-        if (meta)
-          meta.setAttribute("content", isDark ? colors.dark : colors.light);
+        var metas = document.querySelectorAll('meta[name="theme-color"]');
+        for (var i = 0; i < metas.length; i++)
+          metas[i].setAttribute("content", isDark ? colors.dark : colors.light);
         var scheme = document.querySelector('meta[name="color-scheme"]');
         if (scheme)
           scheme.setAttribute("content", t === "system" ? "light dark" : t);
