@@ -49,9 +49,6 @@ export default function StarPopup() {
   const t = useT();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const openRef = useRef<boolean | null>(null);
-  if (openRef.current === null) {
-    openRef.current = shouldShow();
-  }
 
   const finish = useCallback((clickedStar: boolean) => {
     if (!openRef.current) return;
@@ -66,6 +63,9 @@ export default function StarPopup() {
   const dismissRef = useRef(dismiss);
 
   useEffect(() => {
+    if (openRef.current === null) {
+      openRef.current = shouldShow();
+    }
     if (!openRef.current) return;
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -75,7 +75,7 @@ export default function StarPopup() {
       if (e.target === dialog) dismissRef.current();
     };
 
-    showDialog(dialog);
+    if (!dialog.open) showDialog(dialog);
     dialog.addEventListener("close", handleClose);
     dialog.addEventListener("click", handleBackdropClick);
     return () => {
