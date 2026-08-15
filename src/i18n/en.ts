@@ -73,6 +73,7 @@ export const en = {
     system: "🖥️ System",
     light: "☀️ Light",
     dark: "🌙 Dark",
+    princess: "👑 Princess",
   },
   footer: {
     github: "GitHub",

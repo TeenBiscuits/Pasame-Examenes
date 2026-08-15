@@ -32,7 +32,10 @@
           stored = null;
         }
         var t =
-          stored === "light" || stored === "dark" || stored === "system"
+          stored === "light" ||
+          stored === "dark" ||
+          stored === "system" ||
+          stored === "princess"
             ? stored
             : "system";
         document.documentElement.setAttribute("data-theme", t);
@@ -40,17 +43,27 @@
         var colors = {
           light: "oklch(1 0 0)",
           dark: "oklch(0.278 0.030 256.848)",
+          princess: "oklch(0.99 0.003 15)",
         };
-        var isDark =
-          t === "dark" ||
-          (t === "system" &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        var schemes = {
+          light: "light",
+          dark: "dark",
+          princess: "light",
+        };
+        var resolved =
+          t === "system"
+            ? window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+            : t;
         var meta = document.getElementById("theme-color");
-        if (meta)
-          meta.setAttribute("content", isDark ? colors.dark : colors.light);
+        if (meta) meta.setAttribute("content", colors[resolved]);
         var scheme = document.querySelector('meta[name="color-scheme"]');
         if (scheme)
-          scheme.setAttribute("content", t === "system" ? "light dark" : t);
+          scheme.setAttribute(
+            "content",
+            t === "system" ? "light dark" : schemes[t],
+          );
       })();
     </script>
     <title>Pásame Exámenes</title>

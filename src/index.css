@@ -20,6 +20,10 @@ html[data-theme="dark"] {
   color-scheme: dark;
 }
 
+html[data-theme="princess"] {
+  color-scheme: light;
+}
+
 html[data-theme="system"] {
   color-scheme: light dark;
 }
@@ -273,7 +277,7 @@ body {
   );
 
   --color-github-star: light-dark(
-    oklch(0.834 0.14 91.507),
+    oklch(0.54 0.14 91.507),
     oklch(0.79 0.139 85.237)
   );
 
@@ -470,6 +474,123 @@ body {
     oklch(0.424 0.181 265.638),
     oklch(0.809 0.096 251.813)
   );
+}
+
+/* ── Princess theme ──
+   A warm, high-contrast light appearance. It keeps the browser in light mode
+   while replacing every semantic role instead of recoloring components ad hoc. */
+html[data-theme="princess"] {
+  --color-surface: oklch(0.975 0.008 15);
+  --color-surface-alt: oklch(0.99 0.003 15);
+  --color-fg: oklch(0.24 0.055 335);
+  --color-fg-secondary: oklch(0.43 0.04 335);
+  --color-fg-muted: oklch(0.48 0.035 335);
+  --color-border: oklch(0.89 0.03 350);
+  --color-card-footer: oklch(0.95 0.025 350);
+  --color-card-footer-border: oklch(0.84 0.055 350);
+
+  /* Rose is the theme accent. The foreground pair is intentionally darker
+     than the solid action so links and labels retain AA contrast. */
+  --color-accent: oklch(0.5 0.18 350);
+  --color-on-accent: oklch(1 0 0);
+  --color-accent-light: oklch(0.95 0.025 350);
+  --color-accent-fg: oklch(0.43 0.16 350);
+  --color-accent-hover: oklch(0.37 0.14 350);
+  --color-accent-border: oklch(0.72 0.12 350);
+
+  /* Warm code surfaces and syntax roles. */
+  --color-code: oklch(0.955 0.012 345);
+  --color-code-fg: oklch(0.24 0.055 335);
+  --color-code-block: oklch(0.945 0.02 345);
+  --color-code-block-fg: oklch(0.24 0.055 335);
+  --color-code-comment: oklch(0.43 0.04 335);
+  --color-code-punctuation: oklch(0.48 0.035 335);
+  --color-code-keyword: oklch(0.45 0.16 300);
+  --color-code-string: oklch(0.43 0.16 350);
+  --color-code-number: oklch(0.43 0.09 70);
+  --color-code-function: oklch(0.45 0.14 260);
+  --color-code-operator: oklch(0.45 0.14 25);
+  --color-code-property: oklch(0.45 0.07 210);
+  --color-code-class: oklch(0.45 0.15 320);
+
+  /* Informational state. */
+  --color-info: oklch(0.49 0.19 265);
+  --color-on-info: oklch(1 0 0);
+  --color-info-hover: oklch(0.38 0.15 265);
+  --color-info-light: oklch(0.965 0.012 265);
+  --color-info-fg: oklch(0.42 0.16 265);
+  --color-info-border: oklch(0.76 0.12 265);
+
+  /* Destructive state. */
+  --color-danger: oklch(0.5 0.18 25);
+  --color-on-danger: oklch(1 0 0);
+  --color-danger-hover: oklch(0.39 0.15 25);
+  --color-danger-light: oklch(0.965 0.01 25);
+  --color-danger-fg: oklch(0.42 0.16 25);
+  --color-danger-border: oklch(0.76 0.11 25);
+
+  /* Reward and contribution states. */
+  --color-reward: oklch(0.5 0.1 65);
+  --color-on-reward: oklch(1 0 0);
+  --color-reward-hover: oklch(0.4 0.08 65);
+  --color-reward-light: oklch(0.97 0.02 90);
+  --color-reward-fg: oklch(0.43 0.08 65);
+  --color-reward-border: oklch(0.77 0.08 80);
+  --color-github-star: oklch(0.54 0.14 91.507);
+  --color-warning-bg: oklch(0.97 0.02 90);
+  --color-warning-fg: oklch(0.43 0.08 65);
+  --color-warning-border: oklch(0.77 0.08 80);
+  --color-contribute-bg: oklch(0.965 0.012 265);
+  --color-contribute-fg: oklch(0.42 0.16 265);
+  --color-contribute-border: oklch(0.76 0.12 265);
+  --color-contribute-hover-bg: oklch(0.925 0.025 265);
+  --color-contribute-hover-border: oklch(0.66 0.14 265);
+
+  --color-overlay: oklch(0 0 0 / 0.5);
+  --color-shadow: oklch(0.25 0.05 335 / 0.16);
+  --color-mask: oklch(0 0 0);
+  --color-selection-bg: oklch(0.5 0.18 350 / 0.25);
+  --color-selection-fg: oklch(0.24 0.055 335);
+
+  /* Topic category roles remain colorful, with slightly warmer pastels. */
+  --color-topic-blue-bg: oklch(0.97 0.012 255);
+  --color-topic-blue-border: oklch(0.546 0.18 263);
+  --color-topic-blue-hover: oklch(0.488 0.18 264);
+  --color-topic-indigo-bg: oklch(0.962 0.014 272);
+  --color-topic-indigo-border: oklch(0.511 0.2 277);
+  --color-topic-indigo-hover: oklch(0.457 0.18 277);
+  --color-topic-green-bg: oklch(0.982 0.014 156);
+  --color-topic-green-border: oklch(0.627 0.15 149);
+  --color-topic-green-hover: oklch(0.527 0.14 150);
+  --color-topic-purple-bg: oklch(0.977 0.012 308);
+  --color-topic-purple-border: oklch(0.558 0.22 302);
+  --color-topic-purple-hover: oklch(0.496 0.2 302);
+  --color-topic-pink-bg: oklch(0.971 0.012 343);
+  --color-topic-pink-border: oklch(0.592 0.19 1);
+  --color-topic-pink-hover: oklch(0.525 0.17 4);
+  --color-topic-amber-bg: oklch(0.987 0.016 95);
+  --color-topic-amber-border: oklch(0.555 0.12 49);
+  --color-topic-amber-hover: oklch(0.473 0.1 46);
+  --color-topic-red-bg: oklch(0.971 0.012 17);
+  --color-topic-red-border: oklch(0.577 0.18 27);
+  --color-topic-red-hover: oklch(0.505 0.17 27);
+  --color-topic-cyan-bg: oklch(0.984 0.015 201);
+  --color-topic-cyan-border: oklch(0.609 0.1 222);
+  --color-topic-cyan-hover: oklch(0.52 0.09 223);
+  --color-topic-orange-bg: oklch(0.98 0.014 74);
+  --color-topic-orange-border: oklch(0.646 0.17 41);
+  --color-topic-orange-hover: oklch(0.553 0.15 38);
+
+  /* Answer feedback. */
+  --color-correct-bg: oklch(0.982 0.014 156);
+  --color-correct-border: oklch(0.925 0.07 156);
+  --color-correct-fg: oklch(0.448 0.1 151);
+  --color-incorrect-bg: oklch(0.971 0.012 17);
+  --color-incorrect-border: oklch(0.885 0.055 18);
+  --color-incorrect-fg: oklch(0.444 0.15 27);
+  --color-pending-bg: oklch(0.965 0.012 265);
+  --color-pending-border: oklch(0.76 0.12 265);
+  --color-pending-fg: oklch(0.42 0.16 265);
 }
 
 ::selection {

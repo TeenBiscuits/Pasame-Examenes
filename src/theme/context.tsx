@@ -33,6 +33,11 @@ function resolveAppearance(theme: Theme): "light" | "dark" {
   return themeAppearance[theme];
 }
 
+function resolveSurfaceAlt(theme: Theme): string {
+  if (theme === "system") return themeSurfaceAlt[resolveAppearance(theme)];
+  return themeSurfaceAlt[theme];
+}
+
 function applyTheme(theme: Theme): Theme {
   if (typeof document === "undefined") return theme;
   try {
@@ -43,8 +48,7 @@ function applyTheme(theme: Theme): Theme {
   document.documentElement.setAttribute("data-theme", theme);
   const appearance = resolveAppearance(theme);
   const themeColor = document.getElementById("theme-color");
-  if (themeColor)
-    themeColor.setAttribute("content", themeSurfaceAlt[appearance]);
+  if (themeColor) themeColor.setAttribute("content", resolveSurfaceAlt(theme));
   const colorScheme = document.querySelector<HTMLMetaElement>(
     'meta[name="color-scheme"]',
   );

@@ -10,7 +10,10 @@ const themeScript = `(function () {
     stored = null;
   }
   var t =
-    stored === "light" || stored === "dark" || stored === "system"
+    stored === "light" ||
+    stored === "dark" ||
+    stored === "system" ||
+    stored === "princess"
       ? stored
       : "system";
   document.documentElement.setAttribute("data-theme", t);
@@ -18,14 +21,24 @@ const themeScript = `(function () {
   var colors = {
     light: "${themeSurfaceAlt.light}",
     dark: "${themeSurfaceAlt.dark}",
+    princess: "${themeSurfaceAlt.princess}",
   };
-  var isDark =
-    t === "dark" ||
-    (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  var schemes = {
+    light: "light",
+    dark: "dark",
+    princess: "light",
+  };
+  var resolved =
+    t === "system"
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
+      : t;
   var meta = document.getElementById("theme-color");
-  if (meta) meta.setAttribute("content", isDark ? colors.dark : colors.light);
+  if (meta) meta.setAttribute("content", colors[resolved]);
   var scheme = document.querySelector('meta[name="color-scheme"]');
-  if (scheme) scheme.setAttribute("content", t === "system" ? "light dark" : t);
+  if (scheme)
+    scheme.setAttribute("content", t === "system" ? "light dark" : schemes[t]);
 })();`;
 
 export default function PageTemplate(page: PageMetaData) {
