@@ -1,22 +1,22 @@
 import type { ReactNode } from "react";
 import { XSquare } from "reicon-react";
 
-export const modalDialogClass =
+const modalDialogClass =
   "modal-dialog animate-dialog animate-dialog-zoom animate-dialog-duration-[240ms]";
 export const compactModalDialogClass = `${modalDialogClass} modal-dialog--compact`;
 export const wideModalDialogClass = `${modalDialogClass} modal-dialog--wide`;
 export const settingsModalDialogClass = `${modalDialogClass} modal-dialog--settings`;
 
-export const modalTitleClass =
+const modalTitleClass =
   "text-fg flex min-w-0 items-center gap-2 text-balance text-lg leading-tight font-semibold";
 
-export const modalCloseButtonClass =
+const modalCloseButtonClass =
   "text-fg-muted hover:bg-surface hover:text-fg focus-visible:ring-accent inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-xl transition-[color,background-color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]";
 
-export const modalActionLinkClass =
+const modalActionLinkClass =
   "flex min-w-0 cursor-pointer items-start gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-[background-color,border-color,box-shadow] duration-150 ease-out hover:shadow-sm focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none";
 
-export const modalActionIconClass =
+const modalActionIconClass =
   "flex size-10 shrink-0 items-center justify-center rounded-lg";
 
 export function ModalActionLink({

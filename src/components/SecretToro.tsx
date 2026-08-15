@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import { useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -58,12 +58,15 @@ export default function SecretToro() {
     animationFrameRef.current = requestAnimationFrame(moveToro);
   }
 
-  useEffect(() => {
-    return () => {
+  const setToroElement = useCallback((element: HTMLButtonElement | null) => {
+    if (element === null) {
+      runningRef.current = false;
       if (animationFrameRef.current !== null) {
         cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
       }
-    };
+    }
+    toroRef.current = element;
   }, []);
 
   function startToroRunning() {
@@ -110,7 +113,7 @@ export default function SecretToro() {
       aria-hidden="false"
     >
       <button
-        ref={toroRef}
+        ref={setToroElement}
         type="button"
         aria-label="Toro de Osborne"
         title="Toro de Osborne"

@@ -48,7 +48,7 @@ export default function Header() {
             alt=""
             width={36}
             height={36}
-            className="h-9 w-9"
+            className="size-9"
             aria-hidden="true"
           />
           <p className="text-sm sm:text-lg">{t.home.title}</p>

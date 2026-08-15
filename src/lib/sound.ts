@@ -1,4 +1,4 @@
-import { play, setEnabled, setVolume } from "cuelume";
+import { play, setEnabled, setVolume as setCuelumeVolume } from "cuelume";
 
 const SOUND_ENABLED_KEY = "sound-enabled";
 const SOUND_VOLUME_KEY = "sound-volume";
@@ -12,7 +12,7 @@ function clampVolume(volume: number): number {
 }
 
 function applySoundVolume(volume: number) {
-  setVolume(volume / 100);
+  setCuelumeVolume(volume / 100);
   setEnabled(volume > 0);
 }
 
