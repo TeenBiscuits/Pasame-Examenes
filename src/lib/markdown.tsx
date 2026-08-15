@@ -214,10 +214,11 @@ function getCodeText(node: ExtraProps["node"]): string {
     return "";
   }
 
-  return child.children
-    .filter((grandchild) => grandchild.type === "text")
-    .map((grandchild) => grandchild.value)
-    .join("");
+  return child.children.reduce(
+    (text, grandchild) =>
+      grandchild.type === "text" ? text + grandchild.value : text,
+    "",
+  );
 }
 
 function MarkdownPre({ children, node }: ComponentProps<"pre"> & ExtraProps) {
