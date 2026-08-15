@@ -17,11 +17,6 @@ import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
 import rust from "react-syntax-highlighter/dist/esm/languages/prism/rust";
 import sql from "react-syntax-highlighter/dist/esm/languages/prism/sql";
 import typescript from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
-import {
-  oneDark,
-  oneLight,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useIsDark } from "../theme/hooks";
 import type { ComponentProps, ReactNode } from "react";
 import "katex/dist/katex.min.css";
 
@@ -53,10 +48,14 @@ for (const [name, grammar] of Object.entries({
   SyntaxHighlighter.registerLanguage(name, grammar);
 }
 
-const codeStyleLight = {
-  ...oneLight,
+const codeStyle = {
+  plain: {
+    color: "var(--color-code-block-fg)",
+    background: "transparent",
+    fontFamily: codeFont,
+  },
   'pre[class*="language-"]': {
-    ...oneLight['pre[class*="language-"]'],
+    color: "var(--color-code-block-fg)",
     fontFamily: codeFont,
     background: "transparent",
     margin: 0,
@@ -64,27 +63,41 @@ const codeStyleLight = {
     overflow: "visible",
   },
   'code[class*="language-"]': {
-    ...oneLight['code[class*="language-"]'],
+    color: "var(--color-code-block-fg)",
     fontFamily: codeFont,
     background: "transparent",
   },
-};
-
-const codeStyleDark = {
-  ...oneDark,
-  'pre[class*="language-"]': {
-    ...oneDark['pre[class*="language-"]'],
-    fontFamily: codeFont,
-    background: "transparent",
-    margin: 0,
-    padding: 0,
-    overflow: "visible",
-  },
-  'code[class*="language-"]': {
-    ...oneDark['code[class*="language-"]'],
-    fontFamily: codeFont,
-    background: "transparent",
-  },
+  comment: { color: "var(--color-code-comment)" },
+  prolog: { color: "var(--color-code-comment)" },
+  cdata: { color: "var(--color-code-comment)" },
+  doctype: { color: "var(--color-code-comment)" },
+  punctuation: { color: "var(--color-code-punctuation)" },
+  property: { color: "var(--color-code-property)" },
+  tag: { color: "var(--color-code-keyword)" },
+  boolean: { color: "var(--color-code-number)" },
+  constant: { color: "var(--color-code-number)" },
+  number: { color: "var(--color-code-number)" },
+  symbol: { color: "var(--color-code-number)" },
+  deleted: { color: "var(--color-danger-fg)" },
+  selector: { color: "var(--color-code-property)" },
+  "attr-name": { color: "var(--color-code-property)" },
+  string: { color: "var(--color-code-string)" },
+  char: { color: "var(--color-code-string)" },
+  builtin: { color: "var(--color-code-function)" },
+  inserted: { color: "var(--color-correct-fg)" },
+  operator: { color: "var(--color-code-operator)" },
+  entity: { color: "var(--color-code-property)" },
+  url: { color: "var(--color-code-property)" },
+  variable: { color: "var(--color-code-class)" },
+  atrule: { color: "var(--color-code-keyword)" },
+  "attr-value": { color: "var(--color-code-string)" },
+  keyword: { color: "var(--color-code-keyword)" },
+  function: { color: "var(--color-code-function)" },
+  "class-name": { color: "var(--color-code-class)" },
+  regex: { color: "var(--color-code-string)" },
+  important: { color: "var(--color-code-keyword)" },
+  bold: { fontWeight: "700" },
+  italic: { fontStyle: "italic" },
 };
 
 function ScrollableTable({ children }: { children: ReactNode }) {
@@ -137,14 +150,13 @@ function CodeRenderer({
   children,
   ...rest
 }: ComponentProps<"code">) {
-  const isDark = useIsDark();
   const match = /language-(\w+)/.exec(className || "");
   const code = String(children).replace(/\n$/, "");
 
   if (!match) {
     return (
       <code
-        className="bg-code rounded px-1.5 py-0.5 font-mono text-[0.85em] text-pink-600"
+        className="bg-code text-code-fg rounded px-1.5 py-0.5 font-mono text-[0.85em]"
         {...rest}
       >
         {children}
@@ -153,9 +165,7 @@ function CodeRenderer({
   }
 
   return (
-    <div
-      className={`not-prose border-border my-3 overflow-hidden rounded-lg border ${isDark ? "bg-code-block" : "bg-code"}`}
-    >
+    <div className="not-prose bg-code-block border-border my-3 overflow-hidden rounded-lg border">
       <div className="border-border/50 flex items-center border-b px-4 py-1.5">
         <span className="text-fg-muted font-mono text-[11px] font-semibold tracking-wider uppercase">
           {match[1]}
@@ -165,7 +175,7 @@ function CodeRenderer({
         <SyntaxHighlighter
           PreTag="pre"
           language={match[1]}
-          style={isDark ? codeStyleDark : codeStyleLight}
+          style={codeStyle}
           customStyle={{
             margin: 0,
             padding: "1rem",
@@ -187,13 +197,9 @@ export function Markdown({
   children: string;
   className?: string;
 }) {
-  const isDark = useIsDark();
-
   if (!children) return null;
   return (
-    <div
-      className={`prose prose-sm max-w-none ${isDark ? "prose-invert" : ""} ${className ?? ""}`}
-    >
+    <div className={`prose prose-sm max-w-none ${className ?? ""}`}>
       <ReactMarkdown
         remarkPlugins={fullRemarkPlugins}
         rehypePlugins={rehypePlugins}

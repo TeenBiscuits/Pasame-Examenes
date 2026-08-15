@@ -120,7 +120,7 @@ function LangGuard() {
 }
 
 const modalLinkClass =
-  "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-border bg-surface px-3 py-2 text-xs font-medium text-fg-secondary hover:border-accent hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors";
+  "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-border bg-surface px-3 py-2 text-xs font-medium text-fg-secondary hover:border-accent hover:text-accent-fg focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors";
 const footerTextLinkClass =
   "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium text-fg-muted underline-offset-4 hover:bg-surface hover:text-fg focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors";
 
@@ -194,7 +194,7 @@ function ModalShell({
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog bg-surface-alt m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby={titleId}
     >
       <div className="border-border mb-5 flex items-center justify-between gap-4 border-b pb-4">
@@ -237,7 +237,7 @@ function LicensesModal({
           <article className="border-accent-border bg-accent-light/50 flex flex-col rounded-2xl border-2 p-4">
             <div className="mb-3 flex items-start justify-between gap-3">
               <div>
-                <p className="text-accent mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
+                <p className="text-accent-fg mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
                   {t.footer.contentLicenseTitle.split(":")[0]}
                 </p>
                 <h3 className="text-fg text-base font-semibold">
@@ -335,7 +335,7 @@ function PrivacyModal({
               </p>
             ))}
             {section.items && (
-              <ul className="marker:text-accent list-disc space-y-1 pl-5 leading-relaxed">
+              <ul className="marker:text-accent-fg list-disc space-y-1 pl-5 leading-relaxed">
                 {section.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -367,7 +367,7 @@ function PrivacyModal({
                   href={provider.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent focus-visible:ring-accent mt-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:outline-none"
+                  className="text-accent-fg focus-visible:ring-accent mt-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:outline-none"
                   onClick={() =>
                     track("external_link_click", { target: provider.target })
                   }
@@ -397,7 +397,7 @@ function Footer() {
           <p className="max-w-3xl leading-relaxed text-pretty">
             <a
               href="https://pe.pablopl.dev"
-              className="text-fg hover:text-accent focus-visible:ring-accent rounded font-semibold underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
+              className="text-fg hover:text-accent-fg focus-visible:ring-accent rounded font-semibold underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
               onClick={() => track("external_link_click", { target: "site" })}
             >
               Pásame Exámenes
@@ -405,7 +405,7 @@ function Footer() {
             <span className="text-fg-muted">© {currentYear}</span> {t.footer.by}{" "}
             <a
               href="https://pablopl.dev"
-              className="text-fg-secondary hover:text-accent focus-visible:ring-accent rounded underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
+              className="text-fg-secondary hover:text-accent-fg focus-visible:ring-accent rounded underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
               onClick={() => track("external_link_click", { target: "author" })}
             >
               Pablo Portas López
@@ -413,7 +413,7 @@ function Footer() {
             {t.footer.contentIsLicensedUnder}{" "}
             <a
               href="https://creativecommons.org/licenses/BY-SA/4.0/"
-              className="text-fg-secondary hover:text-accent focus-visible:ring-accent rounded underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
+              className="text-fg-secondary hover:text-accent-fg focus-visible:ring-accent rounded underline-offset-4 transition-colors hover:underline focus-visible:ring-2 focus-visible:outline-none"
               onClick={() =>
                 track("external_link_click", { target: "cc_by_sa" })
               }

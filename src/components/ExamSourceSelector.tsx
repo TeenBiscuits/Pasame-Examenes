@@ -68,7 +68,7 @@ export default function ExamSourceSelector({
     <dialog
       ref={dialogRef}
       closedby="any"
-      className="animate-dialog bg-surface-alt m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog bg-surface-alt m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="question-sources-title"
     >
       <div className="border-border mb-5 flex items-center justify-between gap-4 border-b pb-4">
@@ -110,7 +110,7 @@ export default function ExamSourceSelector({
             <button
               type="button"
               data-cuelume-press="toggle"
-              className="text-accent hover:text-accent-hover focus-visible:ring-accent inline-flex shrink-0 items-center gap-1 rounded-md px-1 py-1 text-[0.625rem] leading-4 font-medium whitespace-nowrap underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:outline-none disabled:opacity-40 sm:gap-1.5 sm:px-2 sm:text-sm"
+              className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent inline-flex shrink-0 items-center gap-1 rounded-md px-1 py-1 text-[0.625rem] leading-4 font-medium whitespace-nowrap underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:outline-none disabled:opacity-40 sm:gap-1.5 sm:px-2 sm:text-sm"
               onClick={() => onChange(exams.map((exam) => exam.id))}
               disabled={allSelected}
             >

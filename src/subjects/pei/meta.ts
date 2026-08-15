@@ -16,31 +16,26 @@ export const meta: SubjectMeta = {
       key: "pandas",
       label: "Pandas y Datos Estructurados",
       icon: "🐼",
-      color: "blue",
     },
     {
       key: "poo",
       label: "POO en Python",
       icon: "🧱",
-      color: "green",
     },
     {
       key: "scripting",
       label: "Scripting y Regex",
       icon: "💻",
-      color: "amber",
     },
     {
       key: "django-apis",
       label: "Django, APIs e Integración",
       icon: "🌐",
-      color: "purple",
     },
     {
       key: "conceptos",
       label: "Conceptos y Test",
       icon: "📝",
-      color: "pink",
     },
   ],
   exams: [

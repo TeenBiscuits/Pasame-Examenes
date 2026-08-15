@@ -82,9 +82,9 @@ export const meta: SubjectMeta = {
       key: "tema-slug",
       label: "Nombre del Tema",
       icon: "📌",
-      color: "blue", // blue, indigo, green, purple, pink, amber, red, cyan, orange
     },
   ],
+  // Los colores de las tarjetas se asignan automáticamente en el orden de esta lista.
   megatopics: [
     // opcional: agrupar temas en categorías superiores
     {

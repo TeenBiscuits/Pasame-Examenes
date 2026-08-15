@@ -60,7 +60,6 @@ export interface Topic {
   key: string;
   label: string;
   icon: string;
-  color: string;
 }
 
 export interface MegaTopic {

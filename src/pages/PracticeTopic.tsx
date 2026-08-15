@@ -147,7 +147,7 @@ function PracticePlayerHeader({
           to={`/${subject.id}`}
           data-cuelume-hover
           data-cuelume-press
-          className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-accent-fg focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
           onClick={() =>
             track("nav_click", { target: "subject_home", from: "practice" })
           }
@@ -418,7 +418,7 @@ function PracticeControls({
                 )}
               <button
                 type="button"
-                className="flex min-w-0 items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-3 text-sm text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:scale-95 sm:py-2"
+                className="bg-info text-on-info hover:bg-info-hover focus-visible:ring-info-fg flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
                 onMouseEnter={() =>
                   dispatchHover({ type: "enter", control: "check" })
                 }
@@ -443,7 +443,7 @@ function PracticeControls({
           <button
             type="button"
             data-cuelume-press="ready"
-            className="bg-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+            className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
             onMouseEnter={() =>
               dispatchHover({ type: "enter", control: "submit" })
             }
@@ -957,7 +957,7 @@ export default function PracticeTopic() {
           to={subject ? `/${subject.id}` : "/"}
           data-cuelume-hover
           data-cuelume-press
-          className="text-accent mt-4 inline-block hover:underline"
+          className="text-accent-fg mt-4 inline-block hover:underline"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home", from: "practice_empty" });

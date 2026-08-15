@@ -37,7 +37,7 @@ export default function Header() {
           to="/"
           data-cuelume-hover="sparkle"
           data-cuelume-press
-          className="text-fg hover:text-accent focus-visible:ring-accent group flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
+          className="text-fg hover:text-accent-fg focus-visible:ring-accent group flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
             triggerLight();
             track("nav_click", { target: "home" });
@@ -46,9 +46,9 @@ export default function Header() {
           <img
             src="/favicon.svg"
             alt=""
-            width={28}
-            height={32}
-            className="h-8 w-7"
+            width={36}
+            height={36}
+            className="h-9 w-9"
             aria-hidden="true"
           />
           <p className="text-sm sm:text-lg">{t.home.title}</p>

@@ -86,7 +86,7 @@ function ExamStartScreen({
           to={`/${subject.id}`}
           data-cuelume-hover
           data-cuelume-press
-          className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-accent-fg focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
           onClick={() =>
             track("nav_click", {
               target: "subject_home",
@@ -104,7 +104,7 @@ function ExamStartScreen({
           {examInfo.title}
           {isAuthorized && (
             <span
-              className="border-t-amber-border bg-t-amber-bg text-t-amber-hover inline-flex size-6 shrink-0 items-center justify-center rounded border"
+              className="border-warning-border bg-warning-bg text-warning-fg inline-flex size-6 shrink-0 items-center justify-center rounded border"
               title={t.contentPolicy.authorized}
             >
               <HugeiconsIcon
@@ -141,7 +141,7 @@ function ExamStartScreen({
             </p>
           </div>
         </div>
-        <div className="border-t-amber-border bg-t-amber-bg text-t-amber-fg flex items-start gap-2 rounded-lg border p-3 text-sm sm:p-4">
+        <div className="border-warning-border bg-warning-bg text-warning-fg flex items-start gap-2 rounded-lg border p-3 text-sm sm:p-4">
           <Alarm size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
           {simulationNote}
         </div>
@@ -152,7 +152,7 @@ function ExamStartScreen({
         <button
           type="button"
           data-cuelume-press="ready"
-          className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg py-3 font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
+          className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg py-3 font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
           onClick={onStart}
         >
           {t.exam.startExam}
@@ -253,7 +253,7 @@ function ExamPlayerHeader({
               exitDialogRef.current?.showModal();
             }
           }}
-          className="text-accent focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          className="text-accent-fg focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
         >
           <Exit size={16} aria-hidden="true" className="shrink-0" />
           {t.exam.backToSubject}
@@ -272,7 +272,7 @@ function ExamPlayerHeader({
               </span>
               {isAuthorized && (
                 <span
-                  className="border-t-amber-border bg-t-amber-bg text-t-amber-hover inline-flex size-5 shrink-0 items-center justify-center rounded border"
+                  className="border-warning-border bg-warning-bg text-warning-fg inline-flex size-5 shrink-0 items-center justify-center rounded border"
                   title={t.contentPolicy.authorized}
                 >
                   <HugeiconsIcon
@@ -360,7 +360,7 @@ function ExamExitDialog({
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="exam-exit-modal-title"
       onCancel={() => playSound("droplet")}
     >
@@ -395,7 +395,7 @@ function ExamExitDialog({
         <Link
           to={`/${subject.id}`}
           data-cuelume-press="droplet"
-          className="focus-visible:ring-incorrect-fg inline-flex flex-1 items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-center text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+          className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg inline-flex flex-1 items-center justify-center rounded-lg px-4 py-2 text-center text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
             dialogRef.current?.close();
             const answeredCount = Object.values(answers).filter(
@@ -586,7 +586,7 @@ function ExamControls({
           <button
             type="button"
             data-cuelume-press="bloom"
-            className="focus-visible:ring-incorrect-fg flex min-w-0 items-center gap-1.5 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+            className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
             onClick={() => submitDialogRef.current?.showModal()}
           >
             <Send size={18} aria-hidden="true" className="shrink-0" />
@@ -637,7 +637,7 @@ function ExamDialogs({
     <>
       <dialog
         ref={submitDialogRef}
-        className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+        className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
         aria-labelledby="exam-submit-modal-title"
         onCancel={() => playSound("droplet")}
         onClose={() => {}}
@@ -679,7 +679,7 @@ function ExamDialogs({
                 submitDialogRef.current?.close();
                 onSubmit();
               }}
-              className="focus-visible:ring-incorrect-fg flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex-1 rounded-lg px-4 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             >
               {t.exam.submitModalConfirm}
             </button>
@@ -688,7 +688,7 @@ function ExamDialogs({
       </dialog>
       <dialog
         ref={timeUpDialogRef}
-        className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+        className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
         aria-labelledby="exam-timeup-modal-title"
         onCancel={() => playSound("droplet")}
         onClose={() => {
@@ -723,7 +723,7 @@ function ExamDialogs({
             type="button"
             data-cuelume-press="ready"
             onClick={() => timeUpDialogRef.current?.close()}
-            className="bg-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg px-4 py-2 text-sm font-medium text-white transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+            className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg px-4 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           >
             {t.exam.timeUpModalAcknowledge}
           </button>
@@ -976,7 +976,7 @@ function ExamEmptyState({
         to={subject ? `/${subject.id}` : "/"}
         data-cuelume-hover
         data-cuelume-press
-        className="text-accent mt-4 inline-block hover:underline"
+        className="text-accent-fg mt-4 inline-block hover:underline"
         onClick={() => {
           triggerLight();
           track("nav_click", { target: "home", from: "exam_empty" });

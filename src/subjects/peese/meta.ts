@@ -11,7 +11,7 @@ export const meta: SubjectMeta = {
   contentPolicy: "community-practice",
   acknowledgments:
     "Las preguntas y respuestas incluidas en esta plataforma son ejercicios originales creados por estudiantes anónimos a partir del temario oficial. No se reproducen exámenes oficiales, enunciados originales ni materiales docentes protegidos del profesorado o de la institución. Si se detecta alguna coincidencia sustancial no autorizada, puede notificarse para su revisión y retirada.",
-  topics: [{ key: "teoria", label: "Teoría", icon: "📖", color: "blue" }],
+  topics: [{ key: "teoria", label: "Teoría", icon: "📖" }],
   exams: [
     {
       id: "2026-05",

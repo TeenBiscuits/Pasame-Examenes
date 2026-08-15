@@ -8,67 +8,140 @@ import { formatPoints } from "../lib/points";
 interface TopicCardProps {
   subjectId: string;
   topic: Topic;
+  topicIndex: number;
   questionCount: number;
   pointsCount: number;
   progress?: number;
 }
 
-const colorMap: Record<string, string> = {
-  blue: "border-t-blue-border hover:border-t-blue-hover bg-t-blue-bg/50 hover:bg-t-blue-bg",
-  indigo:
-    "border-t-indigo-border hover:border-t-indigo-hover bg-t-indigo-bg/50 hover:bg-t-indigo-bg",
-  green:
-    "border-t-green-border hover:border-t-green-hover bg-t-green-bg/50 hover:bg-t-green-bg",
-  purple:
-    "border-t-purple-border hover:border-t-purple-hover bg-t-purple-bg/50 hover:bg-t-purple-bg",
-  pink: "border-t-pink-border hover:border-t-pink-hover bg-t-pink-bg/50 hover:bg-t-pink-bg",
-  amber:
-    "border-t-amber-border hover:border-t-amber-hover bg-t-amber-bg/50 hover:bg-t-amber-bg",
-  red: "border-t-red-border hover:border-t-red-hover bg-t-red-bg/50 hover:bg-t-red-bg",
-  cyan: "border-t-cyan-border hover:border-t-cyan-hover bg-t-cyan-bg/50 hover:bg-t-cyan-bg",
-  orange:
-    "border-t-orange-border hover:border-t-orange-hover bg-t-orange-bg/50 hover:bg-t-orange-bg",
-};
+// Presentation order only: topic metadata should never choose a card color.
+const topicCardVariants = [
+  {
+    lower: "bg-topic-blue-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-blue-border",
+    track: "bg-topic-blue-border/20",
+    progress: "bg-topic-blue-border",
+  },
+  {
+    lower: "bg-topic-indigo-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-indigo-border",
+    track: "bg-topic-indigo-border/20",
+    progress: "bg-topic-indigo-border",
+  },
+  {
+    lower: "bg-topic-green-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-green-border",
+    track: "bg-topic-green-border/20",
+    progress: "bg-topic-green-border",
+  },
+  {
+    lower: "bg-topic-purple-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-purple-border",
+    track: "bg-topic-purple-border/20",
+    progress: "bg-topic-purple-border",
+  },
+  {
+    lower: "bg-topic-pink-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-pink-border",
+    track: "bg-topic-pink-border/20",
+    progress: "bg-topic-pink-border",
+  },
+  {
+    lower: "bg-topic-amber-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-amber-border",
+    track: "bg-topic-amber-border/20",
+    progress: "bg-topic-amber-border",
+  },
+  {
+    lower: "bg-topic-red-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-red-border",
+    track: "bg-topic-red-border/20",
+    progress: "bg-topic-red-border",
+  },
+  {
+    lower: "bg-topic-cyan-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-cyan-border",
+    track: "bg-topic-cyan-border/20",
+    progress: "bg-topic-cyan-border",
+  },
+  {
+    lower: "bg-topic-orange-bg/60",
+    lowerBorder: "border-x-2 border-b-2 border-topic-orange-border",
+    track: "bg-topic-orange-border/20",
+    progress: "bg-topic-orange-border",
+  },
+] as const;
 
 export default function TopicCard({
   subjectId,
   topic,
+  topicIndex,
   questionCount,
   pointsCount,
   progress,
 }: TopicCardProps) {
   const t = useT();
+  const variantIndex =
+    ((topicIndex % topicCardVariants.length) + topicCardVariants.length) %
+    topicCardVariants.length;
+  const variant = topicCardVariants[variantIndex];
+  const progressValue =
+    progress === undefined ? undefined : Math.min(Math.max(progress, 0), 100);
+
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
       data-cuelume-hover="tick"
       data-cuelume-press
-      className={`interactive-card focus-visible:ring-accent block rounded-xl border-2 p-5 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none ${colorMap[topic.color] || colorMap.blue}`}
+      className="interactive-card focus-visible:ring-accent flex h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
         triggerLight();
         track("topic_card_click", { subjectId, topic: topic.key });
       }}
     >
-      <div className="mb-3 flex items-start justify-between">
-        <span className="text-2xl" aria-hidden="true">
-          {topic.icon}
-        </span>
-        <span className="text-fg-muted text-xs font-medium">
-          {questionCount} {t.subjectCard.questions} &middot;{" "}
-          {formatPoints(pointsCount)} {t.subjectCard.points}
-        </span>
+      <div className="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-3 pt-2 pb-1">
+        <div className="flex items-start justify-between gap-4">
+          <span className="text-3xl leading-none" aria-hidden="true">
+            {topic.icon}
+          </span>
+          <span className="bg-code text-fg-secondary inline-flex shrink-0 items-center rounded px-2 py-1 text-xs font-semibold tabular-nums whitespace-nowrap">
+            {questionCount} {t.subjectCard.questions}
+          </span>
+        </div>
+        <h2
+          className="text-fg mt-1 min-w-0 truncate text-base leading-snug font-semibold"
+          title={topic.label}
+        >
+          {topic.label}
+        </h2>
       </div>
-      <h2 className="text-fg mb-2 text-sm font-semibold">{topic.label}</h2>
-      {progress !== undefined && (
-        <div className="mt-2">
-          <div className="bg-border h-1.5 overflow-hidden rounded-full">
+      <div
+        className={`${variant.lower} ${variant.lowerBorder} text-fg-muted flex-1 rounded-b-xl px-3 py-2 text-sm`}
+      >
+        <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+          <span>
+            {formatPoints(pointsCount)} {t.subjectCard.points}
+          </span>
+          {progressValue !== undefined && (
+            <span className="tabular-nums">{Math.round(progressValue)}%</span>
+          )}
+        </div>
+        {progressValue !== undefined && (
+          <div
+            className={`${variant.track} mt-2 h-1.5 overflow-hidden rounded-full`}
+            role="progressbar"
+            aria-label={`${topic.label}: ${Math.round(progressValue)}%`}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(progressValue)}
+          >
             <div
-              className="bg-accent h-full rounded-full"
-              style={{ width: `${Math.min(progress, 100)}%` }}
+              className={`${variant.progress} h-full rounded-full`}
+              style={{ width: `${progressValue}%` }}
             />
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </Link>
   );
 }

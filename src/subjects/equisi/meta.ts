@@ -16,13 +16,11 @@ export const meta: SubjectMeta = {
       key: "modulo-i",
       label: "Módulo I: Sinais e Comunicacións",
       icon: "📡",
-      color: "blue",
     },
     {
       key: "modulo-ii",
       label: "Módulo II: Infraestruturas TI",
       icon: "🖥️",
-      color: "green",
     },
   ],
   exams: [

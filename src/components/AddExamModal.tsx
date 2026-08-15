@@ -61,7 +61,7 @@ function AddExamModal({
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="add-exam-title"
       onClose={() => {
         track("modal_close", {

@@ -1,5 +1,6 @@
 import { use, useSyncExternalStore } from "react";
 import { ThemeContext } from "./context-value";
+import { themeAppearance } from "./types";
 
 const darkQuery = "(prefers-color-scheme: dark)";
 
@@ -30,5 +31,5 @@ export function useIsDark(): boolean {
   );
 
   if (theme === "system") return prefersDark;
-  return theme === "dark" || theme === "catppuccin";
+  return themeAppearance[theme] === "dark";
 }

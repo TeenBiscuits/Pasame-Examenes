@@ -16,20 +16,17 @@ export const meta: SubjectMeta = {
       key: "sistema-ficheros",
       label: "Sistema de Ficheros",
       icon: "📁",
-      color: "blue",
     },
     {
       key: "memoria",
       label: "Gestión de Memoria",
       icon: "🧠",
-      color: "indigo",
     },
-    { key: "procesos", label: "Procesos e Hilos", icon: "⚙️", color: "green" },
+    { key: "procesos", label: "Procesos e Hilos", icon: "⚙️" },
     {
       key: "entrada-salida",
       label: "Entrada/Salida",
       icon: "💾",
-      color: "purple",
     },
   ],
   exams: [

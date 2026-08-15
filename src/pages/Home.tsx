@@ -135,7 +135,7 @@ export default function Home() {
                           location: "recent",
                         });
                       }}
-                      className="interactive-card border-border hover:border-accent bg-surface-alt hover:bg-accent-light/30 block w-full rounded-xl border-2 p-5 hover:shadow-md"
+                      className="interactive-card border-border bg-surface-alt block w-full rounded-xl border-2 p-5 hover:shadow-md"
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-2xl" aria-hidden="true">
@@ -171,7 +171,7 @@ export default function Home() {
                 modalRef.current?.open();
                 track("add_subject_modal_open");
               }}
-              className="interactive-card border-border text-fg-muted hover:text-accent hover:border-accent hover:bg-accent-light/30 block h-full min-h-[172px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 hover:shadow-md"
+              className="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent hover:bg-accent-light/30 block h-full min-h-[160px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 hover:shadow-md"
             >
               <div className="flex h-full flex-col items-center justify-center gap-2">
                 <span className="text-4xl leading-none font-light">

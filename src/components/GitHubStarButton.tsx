@@ -113,7 +113,7 @@ export default function GitHubStarButton() {
       onClick={() => track("github_star_click", { location: "header" })}
       aria-label={t.header.starOnGithub}
     >
-      <StarIcon className="text-amber-500" />
+      <StarIcon className="text-reward-fg" />
       <span className="hidden sm:inline">{t.header.star}</span>
       {count !== null && (
         <span className="hidden tabular-nums sm:inline">

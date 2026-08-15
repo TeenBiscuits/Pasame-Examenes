@@ -92,7 +92,7 @@ export default function StarPopup() {
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-black/50 backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
       aria-labelledby="star-popup-title"
     >
       <div className="text-center">
@@ -100,7 +100,7 @@ export default function StarPopup() {
           type="button"
           aria-label={t.starPopup.sparkleButton}
           onClick={handleSparkle}
-          className="mx-auto mb-4 flex size-12 cursor-pointer items-center justify-center rounded-full bg-amber-500/10 text-amber-500 transition hover:bg-amber-500/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 active:scale-[0.98]"
+          className="bg-reward-light text-reward-fg mx-auto mb-4 flex size-12 cursor-pointer items-center justify-center rounded-full transition hover:bg-reward-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-reward-fg active:scale-[0.98]"
         >
           <StarIcon />
         </button>
@@ -120,7 +120,7 @@ export default function StarPopup() {
             rel="noopener noreferrer"
             data-cuelume-hover="sparkle"
             onClick={handleStar}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-white no-underline transition hover:bg-amber-600 active:scale-[0.98]"
+            className="bg-reward text-on-reward hover:bg-reward-hover inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold no-underline transition active:scale-[0.98]"
           >
             <StarIcon />
             {t.starPopup.starButton}

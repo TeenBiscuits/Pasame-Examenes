@@ -1,24 +1,31 @@
 /* @jsxRuntime automatic */
 import type { PageMetaData } from "./meta";
+import { themeSurfaceAlt } from "../theme/types";
 
 const themeScript = `(function () {
-  var t = localStorage.getItem("theme") || "system";
+  var stored;
+  try {
+    stored = localStorage.getItem("theme");
+  } catch (_) {
+    stored = null;
+  }
+  var t =
+    stored === "light" || stored === "dark" || stored === "system"
+      ? stored
+      : "system";
   document.documentElement.setAttribute("data-theme", t);
 
   var colors = {
-    light: "#ffffff",
-    dark: "#1f2937",
-    pink: "#ffffff",
-    catppuccin: "#313244",
+    light: "${themeSurfaceAlt.light}",
+    dark: "${themeSurfaceAlt.dark}",
   };
-  var color = colors[t];
-  if (t === "system") {
-    color = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? colors.dark
-      : colors.light;
-  }
+  var isDark =
+    t === "dark" ||
+    (t === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
   var meta = document.getElementById("theme-color");
-  if (meta) meta.setAttribute("content", color);
+  if (meta) meta.setAttribute("content", isDark ? colors.dark : colors.light);
+  var scheme = document.querySelector('meta[name="color-scheme"]');
+  if (scheme) scheme.setAttribute("content", t === "system" ? "light dark" : t);
 })();`;
 
 export default function PageTemplate(page: PageMetaData) {
@@ -45,7 +52,11 @@ export default function PageTemplate(page: PageMetaData) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
-        <meta id="theme-color" name="theme-color" content="#f9fafb" />
+        <meta
+          id="theme-color"
+          name="theme-color"
+          content={themeSurfaceAlt.light}
+        />
         <meta name="color-scheme" content="light dark" />
         <script>{themeScript}</script>
         <title>{page.title}</title>

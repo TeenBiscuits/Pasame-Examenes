@@ -252,7 +252,7 @@ export default function SettingsModal() {
                 <button
                   type="button"
                   onClick={toggleMuted}
-                  className="border-border bg-surface text-fg-secondary hover:border-accent hover:text-accent focus-visible:ring-accent inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+                  className="border-border bg-surface text-fg-secondary hover:border-accent hover:text-accent-fg focus-visible:ring-accent inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
                   aria-label={volume > 0 ? t.settings.mute : t.settings.unmute}
                   aria-pressed={volume === 0}
                 >
