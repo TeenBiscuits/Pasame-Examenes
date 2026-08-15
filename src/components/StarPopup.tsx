@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useT } from "../i18n/hooks";
+import { showDialog } from "../lib/dialog";
 import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
 import { StarSparkle } from "reicon-react";
@@ -74,7 +75,7 @@ export default function StarPopup() {
       if (e.target === dialog) dismissRef.current();
     };
 
-    dialog.showModal();
+    showDialog(dialog);
     dialog.addEventListener("close", handleClose);
     dialog.addEventListener("click", handleBackdropClick);
     return () => {

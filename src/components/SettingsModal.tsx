@@ -19,6 +19,7 @@ import {
   playSound,
   updateSoundVolume,
 } from "../lib/sound";
+import { showDialog } from "../lib/dialog";
 import { track } from "../lib/umami";
 import { useTheme } from "../theme/hooks";
 import { themeOrder, type Theme } from "../theme/types";
@@ -71,7 +72,7 @@ export default function SettingsModal() {
   function openDialog() {
     closeMethodRef.current = "x";
     setOpen(true);
-    dialogRef.current?.showModal();
+    showDialog(dialogRef.current);
     track("modal_open", { modal: "settings" });
   }
 

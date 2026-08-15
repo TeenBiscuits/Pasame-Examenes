@@ -170,6 +170,7 @@ export default function QuestionNavChips({
             key={q.id}
             data-cuelume-press="page"
             className={cls}
+            onPointerUp={(event) => event.currentTarget.blur()}
             onClick={() => {
               triggerLight();
               if (direction !== undefined) {

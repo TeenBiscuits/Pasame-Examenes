@@ -4,6 +4,7 @@ import { track } from "../lib/umami";
 import { XSquare } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { LegalHammerIcon } from "@hugeicons/core-free-icons";
+import { showDialog } from "../lib/dialog";
 import { playSound } from "../lib/sound";
 
 const CONTACT_EMAIL = "pablo.portas@udc.es";
@@ -31,7 +32,7 @@ function CopyrightReportModal({
   const closeMethodRef = useRef<"x" | "backdrop" | "esc">("backdrop");
 
   useImperativeHandle(ref, () => ({
-    open: () => dialogRef.current?.showModal(),
+    open: () => showDialog(dialogRef.current),
     close: () => dialogRef.current?.close(),
   }));
 

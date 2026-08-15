@@ -4,6 +4,7 @@ import { track } from "../lib/umami";
 import { XSquare } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons";
+import { showDialog } from "../lib/dialog";
 import { playSound } from "../lib/sound";
 
 export interface AddSubjectModalHandle {
@@ -22,7 +23,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
   const closeMethodRef = useRef<"x" | "backdrop" | "esc">("backdrop");
 
   useImperativeHandle(ref, () => ({
-    open: () => dialogRef.current?.showModal(),
+    open: () => showDialog(dialogRef.current),
     close: () => dialogRef.current?.close(),
   }));
 

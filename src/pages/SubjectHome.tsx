@@ -31,6 +31,7 @@ import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { getExamQuestionStats } from "../lib/exam-stats";
 import type { ExamQuestionStats } from "../lib/exam-stats";
 import { formatPoints } from "../lib/points";
+import { showDialog } from "../lib/dialog";
 import { playSound } from "../lib/sound";
 import {
   filterQuestionsByExamSelection,
@@ -157,12 +158,12 @@ export default function SubjectHome() {
           questions={selectedQuestions}
           progress={progress}
           allExamSourcesSelected={allExamSourcesSelected}
-          onOpenExamSources={() => examSourceDialogRef.current?.showModal()}
+          onOpenExamSources={() => showDialog(examSourceDialogRef.current)}
           onResetProgress={() => {
             track("reset_topic_progress_modal_open", {
               subjectId: currentSubjectId,
             });
-            resetProgressDialogRef.current?.showModal();
+            showDialog(resetProgressDialogRef.current);
           }}
         />
         <ExamSimulationsSection

@@ -22,6 +22,7 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
+import { showDialog } from "../lib/dialog";
 import {
   computeQuestionResults,
   getPendingSelfGradePoints,
@@ -250,7 +251,7 @@ function ExamPlayerHeader({
           onClick={(e) => {
             if (!submitted) {
               e.preventDefault();
-              exitDialogRef.current?.showModal();
+              showDialog(exitDialogRef.current);
             }
           }}
           className="text-accent-fg focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
@@ -591,7 +592,7 @@ function ExamControls({
             type="button"
             data-cuelume-press="bloom"
             className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-            onClick={() => submitDialogRef.current?.showModal()}
+            onClick={() => showDialog(submitDialogRef.current)}
           >
             <Send size={18} aria-hidden="true" className="shrink-0" />
             <span className="min-w-0 truncate">{t.exam.submitExam}</span>
@@ -1097,7 +1098,7 @@ export default function ExamSimulation() {
   const timeUpDialogRef = useRef<HTMLDialogElement>(null);
   const showTimeUpDialog = useCallback(() => {
     playError();
-    timeUpDialogRef.current?.showModal();
+    showDialog(timeUpDialogRef.current);
   }, []);
 
   const {
