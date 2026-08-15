@@ -790,6 +790,7 @@ export default function PracticeTopic() {
     pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,
+    indexable: false,
     enabled: !(subject && topicInfo) || questionsLoaded,
   });
 

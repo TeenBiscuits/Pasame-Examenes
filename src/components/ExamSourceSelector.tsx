@@ -1,10 +1,12 @@
-import { useEffect, type RefObject } from "react";
+import { type RefObject } from "react";
 import type { Exam, SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
 import type { ExamQuestionStats } from "../lib/exam-stats";
 import { formatPoints } from "../lib/points";
-import { ChecklistAlt, XSquare, Filter } from "reicon-react";
+import { ChecklistAlt, Filter } from "reicon-react";
 import { playSound } from "../lib/sound";
+import { closeDialog, useDialogDismiss } from "../lib/dialog";
+import { ModalHeader, wideModalDialogClass } from "./Modal";
 
 interface ExamSourceSelectorProps {
   subject: SubjectMeta;
@@ -26,33 +28,7 @@ export default function ExamSourceSelector({
   const selected = new Set(selectedExamIds);
   const allSelected = selected.size === exams.length;
 
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    const handleBackdropClick = (event: MouseEvent) => {
-      if (event.target !== dialog) return;
-
-      const rect = dialog.getBoundingClientRect();
-      const insideDialog =
-        event.clientX >= rect.left &&
-        event.clientX <= rect.right &&
-        event.clientY >= rect.top &&
-        event.clientY <= rect.bottom;
-      if (!insideDialog) {
-        playSound("droplet");
-        dialog.close();
-      }
-    };
-    const handleCancel = () => playSound("droplet");
-
-    dialog.addEventListener("click", handleBackdropClick);
-    dialog.addEventListener("cancel", handleCancel);
-    return () => {
-      dialog.removeEventListener("click", handleBackdropClick);
-      dialog.removeEventListener("cancel", handleCancel);
-    };
-  }, [dialogRef]);
+  useDialogDismiss(dialogRef, () => playSound("droplet"));
 
   function toggleExam(exam: Exam) {
     const next = new Set(selected);
@@ -68,32 +44,22 @@ export default function ExamSourceSelector({
     <dialog
       ref={dialogRef}
       closedby="any"
-      className="animate-dialog bg-surface-alt m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      className={`${wideModalDialogClass} p-6`}
       aria-labelledby="question-sources-title"
     >
-      <div className="border-border mb-5 flex items-center justify-between gap-4 border-b pb-4">
-        <h2
-          id="question-sources-title"
-          className="text-fg inline-flex items-center gap-2 text-lg font-semibold"
-        >
-          <Filter
-            className="size-5 shrink-0"
-            weight={allSelected ? "Outline" : "Filled"}
-            aria-hidden="true"
-          />
-          {t.subjectHome.questionSources}
-        </h2>
-        <button
-          type="button"
-          data-cuelume-press="droplet"
-          onClick={() => dialogRef.current?.close()}
-          className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 cursor-pointer rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
-          aria-label={t.footer.close}
-        >
-          <XSquare className="size-5" />
-        </button>
-      </div>
-      <div className="max-h-[calc(86svh-7rem)] overflow-y-auto pr-1">
+      <ModalHeader
+        titleId="question-sources-title"
+        closeLabel={t.footer.close}
+        onClose={() => closeDialog(dialogRef.current)}
+      >
+        <Filter
+          className="size-5 shrink-0"
+          weight={allSelected ? "Outline" : "Filled"}
+          aria-hidden="true"
+        />
+        {t.subjectHome.questionSources}
+      </ModalHeader>
+      <div className="modal-dialog__scroll pr-1">
         <p className="text-fg-secondary mb-4 text-sm">
           {t.subjectHome.questionSourcesDescription}
         </p>

@@ -91,6 +91,7 @@ export default function TopicCard({
   return (
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
+      rel="nofollow"
       data-cuelume-hover="tick"
       data-cuelume-press
       className="interactive-card focus-visible:ring-accent flex h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"

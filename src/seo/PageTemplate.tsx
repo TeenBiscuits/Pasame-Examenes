@@ -1,5 +1,5 @@
 /* @jsxRuntime automatic */
-import type { PageMetaData } from "./meta";
+import { isIndexablePagePath, type PageMetaData } from "./meta";
 import { themeSurfaceAlt } from "../theme/types";
 
 const themeScript = `(function () {
@@ -89,6 +89,15 @@ export default function PageTemplate(page: PageMetaData) {
           id="meta-description"
           name="description"
           content={page.description}
+        />
+        <meta
+          id="meta-robots"
+          name="robots"
+          content={
+            isIndexablePagePath(page.pathWithoutLang)
+              ? "index, follow"
+              : "noindex, nofollow"
+          }
         />
         <link id="link-canonical" rel="canonical" href={page.canonicalUrl} />
         {page.alternates.map((alternate) => (

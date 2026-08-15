@@ -22,7 +22,12 @@ import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { startExamTour } from "../lib/tour";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { formatPoints, roundPoints } from "../lib/points";
-import { showDialog } from "../lib/dialog";
+import {
+  closeDialog,
+  showDialog,
+  useDialogClose,
+  useDialogDismiss,
+} from "../lib/dialog";
 import {
   computeQuestionResults,
   getPendingSelfGradePoints,
@@ -38,14 +43,13 @@ import {
   Alarm,
   AngleLeftSquare,
   AngleRightSquare,
-  XSquare,
   Exit,
   Send,
   Trophy,
   Bulb,
+  Verified,
 } from "reicon-react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { CheckmarkBadge02Icon } from "@hugeicons/core-free-icons";
+import { compactModalDialogClass, ModalHeader } from "../components/Modal";
 
 const minScrollRangeForCompactScore = 256;
 
@@ -108,8 +112,7 @@ function ExamStartScreen({
               className="border-warning-border bg-warning-bg text-warning-fg inline-flex size-6 shrink-0 items-center justify-center rounded border"
               title={t.contentPolicy.authorized}
             >
-              <HugeiconsIcon
-                icon={CheckmarkBadge02Icon}
+              <Verified
                 className="size-4"
                 role="img"
                 aria-label={t.contentPolicy.authorized}
@@ -187,6 +190,7 @@ interface ExamPlayerProps {
   onAnswer: (questionId: string, answer: string) => void;
   onSelfGrade: (questionId: string, grade: "correct" | "incorrect") => void;
   onSubmit: () => void;
+  onExit: () => void;
 }
 
 type ExamSubject = ExamPlayerProps["subject"];
@@ -276,8 +280,7 @@ function ExamPlayerHeader({
                   className="border-warning-border bg-warning-bg text-warning-fg inline-flex size-5 shrink-0 items-center justify-center rounded border"
                   title={t.contentPolicy.authorized}
                 >
-                  <HugeiconsIcon
-                    icon={CheckmarkBadge02Icon}
+                  <Verified
                     className="size-3.5"
                     role="img"
                     aria-label={t.contentPolicy.authorized}
@@ -347,6 +350,7 @@ interface ExamExitDialogProps {
   answers: Record<string, string>;
   timeLeft: number;
   dialogRef: React.RefObject<HTMLDialogElement | null>;
+  onExit: () => void;
 }
 
 function ExamExitDialog({
@@ -355,50 +359,43 @@ function ExamExitDialog({
   answers,
   timeLeft,
   dialogRef,
+  onExit,
 }: ExamExitDialogProps) {
   const t = useT();
+
+  useDialogDismiss(dialogRef, () => playSound("droplet"));
 
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      closedby="any"
+      className={`${compactModalDialogClass} p-6`}
       aria-labelledby="exam-exit-modal-title"
-      onCancel={() => playSound("droplet")}
     >
-      <div className="mb-5 flex items-center justify-between gap-4">
-        <h2
-          id="exam-exit-modal-title"
-          className="text-fg inline-flex items-center gap-2 text-lg font-semibold"
-        >
-          <Exit size={24} aria-hidden="true" className="shrink-0" />
-          {t.exam.exitModalTitle}
-        </h2>
-        <button
-          type="button"
-          data-cuelume-press="droplet"
-          onClick={() => dialogRef.current?.close()}
-          className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
-          aria-label={t.exam.exitModalCancel}
-        >
-          <XSquare className="size-5" />
-        </button>
-      </div>
+      <ModalHeader
+        titleId="exam-exit-modal-title"
+        closeLabel={t.exam.exitModalCancel}
+        onClose={() => closeDialog(dialogRef.current)}
+      >
+        <Exit size={24} aria-hidden="true" className="shrink-0" />
+        {t.exam.exitModalTitle}
+      </ModalHeader>
       <p className="text-fg-secondary mb-6 text-sm">{t.exam.exitConfirm}</p>
       <div className="flex gap-3">
         <button
           type="button"
           data-cuelume-press="droplet"
-          onClick={() => dialogRef.current?.close()}
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+          onClick={() => closeDialog(dialogRef.current)}
+          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition-[background-color,border-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
         >
           {t.exam.exitModalCancel}
         </button>
         <Link
           to={`/${subject.id}`}
           data-cuelume-press="droplet"
-          className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg inline-flex flex-1 items-center justify-center rounded-lg px-4 py-2 text-center text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
-          onClick={() => {
-            dialogRef.current?.close();
+          className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg inline-flex flex-1 items-center justify-center rounded-lg px-4 py-2 text-center text-sm font-medium transition-[background-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+          onClick={(event) => {
+            event.preventDefault();
             const answeredCount = Object.values(answers).filter(
               (answer) => answer && answer.trim() !== "",
             ).length;
@@ -408,6 +405,7 @@ function ExamExitDialog({
               answeredCount,
               timeLeft,
             });
+            closeDialog(dialogRef.current, onExit);
           }}
         >
           {t.exam.exitModalConfirm}
@@ -642,33 +640,28 @@ function ExamDialogs({
 }: ExamDialogsProps) {
   const t = useT();
 
+  useDialogDismiss(submitDialogRef, () => playSound("droplet"));
+  useDialogDismiss(timeUpDialogRef, () => playSound("droplet"));
+  useDialogClose(timeUpDialogRef, () => {
+    if (!submitted) onSubmit();
+  });
+
   return (
     <>
       <dialog
         ref={submitDialogRef}
-        className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+        closedby="any"
+        className={`${compactModalDialogClass} p-6`}
         aria-labelledby="exam-submit-modal-title"
-        onCancel={() => playSound("droplet")}
-        onClose={() => {}}
       >
         <div>
-          <div className="mb-5 flex items-center justify-between">
-            <h2
-              id="exam-submit-modal-title"
-              className="text-fg text-lg font-semibold"
-            >
-              {t.exam.submitModalTitle}
-            </h2>
-            <button
-              type="button"
-              data-cuelume-press="droplet"
-              onClick={() => submitDialogRef.current?.close()}
-              className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
-              aria-label={t.footer.close}
-            >
-              <XSquare className="size-5" />
-            </button>
-          </div>
+          <ModalHeader
+            titleId="exam-submit-modal-title"
+            closeLabel={t.footer.close}
+            onClose={() => closeDialog(submitDialogRef.current)}
+          >
+            {t.exam.submitModalTitle}
+          </ModalHeader>
           <p className="text-fg-secondary mb-6 text-sm">
             {t.exam.submitModalBody}
           </p>
@@ -676,8 +669,8 @@ function ExamDialogs({
             <button
               type="button"
               data-cuelume-press="droplet"
-              onClick={() => submitDialogRef.current?.close()}
-              className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              onClick={() => closeDialog(submitDialogRef.current)}
+              className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition-[background-color,border-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
             >
               {t.exam.submitModalCancel}
             </button>
@@ -685,10 +678,9 @@ function ExamDialogs({
               type="button"
               data-cuelume-press="ready"
               onClick={() => {
-                submitDialogRef.current?.close();
-                onSubmit();
+                closeDialog(submitDialogRef.current, onSubmit);
               }}
-              className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex-1 rounded-lg px-4 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+              className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex-1 rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
             >
               {t.exam.submitModalConfirm}
             </button>
@@ -697,42 +689,27 @@ function ExamDialogs({
       </dialog>
       <dialog
         ref={timeUpDialogRef}
-        className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+        closedby="any"
+        className={`${compactModalDialogClass} p-6`}
         aria-labelledby="exam-timeup-modal-title"
-        onCancel={() => playSound("droplet")}
-        onClose={() => {
-          if (!submitted) onSubmit();
-        }}
       >
         <div>
-          <div className="mb-5 flex items-center justify-between">
-            <h2
-              id="exam-timeup-modal-title"
-              className="text-fg text-lg font-semibold"
-            >
-              <span className="inline-flex items-center gap-2">
-                <Alarm size={24} aria-hidden="true" />
-                {t.exam.timeUpModalTitle}
-              </span>
-            </h2>
-            <button
-              type="button"
-              data-cuelume-press="droplet"
-              onClick={() => timeUpDialogRef.current?.close()}
-              className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
-              aria-label={t.footer.close}
-            >
-              <XSquare className="size-5" />
-            </button>
-          </div>
+          <ModalHeader
+            titleId="exam-timeup-modal-title"
+            closeLabel={t.footer.close}
+            onClose={() => closeDialog(timeUpDialogRef.current)}
+          >
+            <Alarm size={24} aria-hidden="true" />
+            {t.exam.timeUpModalTitle}
+          </ModalHeader>
           <p className="text-fg-secondary mb-6 text-sm">
             {t.exam.timeUpModalBody}
           </p>
           <button
             type="button"
             data-cuelume-press="ready"
-            onClick={() => timeUpDialogRef.current?.close()}
-            className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg px-4 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+            onClick={() => closeDialog(timeUpDialogRef.current)}
+            className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
           >
             {t.exam.timeUpModalAcknowledge}
           </button>
@@ -765,6 +742,7 @@ function ExamPlayer({
   onAnswer,
   onSelfGrade,
   onSubmit,
+  onExit,
   scrollToHeaderRef,
 }: ExamPlayerProps) {
   const currentQuestion = questions[currentIndex];
@@ -963,6 +941,7 @@ function ExamPlayer({
         answers={answers}
         timeLeft={timeLeft}
         dialogRef={exitDialogRef}
+        onExit={onExit}
       />
     </div>
   );
@@ -1092,6 +1071,7 @@ export default function ExamSimulation() {
     pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,
+    indexable: false,
     enabled: !(subject && examInfo) || questionsLoaded,
   });
 
@@ -1321,6 +1301,7 @@ export default function ExamSimulation() {
         onAnswer={handleAnswer}
         onSelfGrade={handleSelfGrade}
         onSubmit={handleSubmitConfirm}
+        onExit={() => navigate(langTo(`/${subject.id}`))}
         scrollToHeaderRef={scrollToHeaderRef}
       />
     </>

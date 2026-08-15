@@ -25,9 +25,11 @@ import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
 import { buildLangPath } from "./lib/lang-link-utils";
 import { playSound } from "./lib/sound";
 import { useTheme } from "./theme/hooks";
-import { XSquare, MemoCheck, ShieldCheck, ArrowRightUp } from "reicon-react";
+import { MemoCheck, ShieldCheck, ArrowRightUp } from "reicon-react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Github01Icon } from "@hugeicons/core-free-icons";
+import { closeDialog, showDialog, useDialogDismiss } from "./lib/dialog";
+import { ModalHeader, wideModalDialogClass } from "./components/Modal";
 
 const Home = lazy(() => import("./pages/Home"));
 const SubjectHome = lazy(() => import("./pages/SubjectHome"));
@@ -119,8 +121,6 @@ function LangGuard() {
   return <Outlet />;
 }
 
-const modalLinkClass =
-  "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-border bg-surface px-3 py-2 text-xs font-medium text-fg-secondary hover:border-accent hover:text-accent-fg focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors";
 const footerTextLinkClass =
   "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium text-fg-muted underline-offset-4 hover:bg-surface hover:text-fg focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors";
 
@@ -143,20 +143,18 @@ function CreativeCommonsIcons() {
   );
 }
 
-function CloseIcon() {
-  return <XSquare className="size-5" />;
-}
-
 function LicenseIcon() {
-  return <MemoCheck className="size-4" />;
+  return <MemoCheck className="size-4" aria-hidden="true" />;
 }
 
 function PrivacyIcon() {
-  return <ShieldCheck className="size-4" />;
+  return <ShieldCheck className="size-4" aria-hidden="true" />;
 }
 
 function ExternalLinkIcon() {
-  return <ArrowRightUp weight="Filled" className="size-3.5" />;
+  return (
+    <ArrowRightUp weight="Filled" className="size-3.5" aria-hidden="true" />
+  );
 }
 
 function ModalShell({
@@ -172,45 +170,22 @@ function ModalShell({
 }) {
   const t = useT();
 
-  useEffect(() => {
-    const el = dialogRef.current;
-    if (!el) return;
-
-    const handleClick = (event: MouseEvent) => {
-      if (event.target === el) {
-        playSound("droplet");
-        el.close();
-      }
-    };
-    const handleCancel = () => playSound("droplet");
-    el.addEventListener("click", handleClick);
-    el.addEventListener("cancel", handleCancel);
-    return () => {
-      el.removeEventListener("click", handleClick);
-      el.removeEventListener("cancel", handleCancel);
-    };
-  }, [dialogRef]);
+  useDialogDismiss(dialogRef, () => playSound("droplet"));
 
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-h-[86svh] w-[min(92vw,42rem)] overflow-hidden rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      closedby="any"
+      className={`${wideModalDialogClass} p-6`}
       aria-labelledby={titleId}
     >
-      <div className="border-border mb-5 flex items-center justify-between gap-4 border-b pb-4">
-        <h2 id={titleId} className="text-fg text-lg font-semibold">
-          {title}
-        </h2>
-        <button
-          type="button"
-          data-cuelume-press="droplet"
-          onClick={() => dialogRef.current?.close()}
-          className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent cursor-pointer rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
-          aria-label={t.footer.close}
-        >
-          <CloseIcon />
-        </button>
-      </div>
+      <ModalHeader
+        titleId={titleId}
+        closeLabel={t.footer.close}
+        onClose={() => closeDialog(dialogRef.current)}
+      >
+        {title}
+      </ModalHeader>
       {children}
     </dialog>
   );
@@ -234,66 +209,72 @@ function LicensesModal({
           {t.footer.licenseIntro}
         </p>
         <div className="grid gap-3 md:grid-cols-[1.08fr_0.92fr]">
-          <article className="border-accent-border bg-accent-light/50 flex flex-col rounded-2xl border-2 p-4">
-            <div className="mb-3 flex items-start justify-between gap-3">
-              <div>
-                <p className="text-accent-fg mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
-                  {t.footer.contentLicenseTitle.split(":")[0]}
-                </p>
-                <h3 className="text-fg text-base font-semibold">
-                  CC BY-SA 4.0
-                </h3>
+          <a
+            href="https://creativecommons.org/licenses/BY-SA/4.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cuelume-hover="tick"
+            data-cuelume-press
+            className="interactive-card group flex h-full min-w-0 flex-col rounded-xl text-left focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+            onClick={() => track("external_link_click", { target: "cc_by_sa" })}
+          >
+            <div className="border-border bg-surface-alt flex flex-1 flex-col rounded-t-xl border-x-2 border-t-2 px-4 pt-4 pb-3">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-accent-fg mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
+                    {t.footer.contentLicenseTitle.split(":")[0]}
+                  </p>
+                  <h3 className="text-fg text-base leading-tight font-semibold">
+                    CC BY-SA 4.0
+                  </h3>
+                </div>
+                <CreativeCommonsIcons />
               </div>
-              <CreativeCommonsIcons />
+              <p className="text-fg-secondary mt-3 text-xs leading-relaxed">
+                {t.footer.contentLicenseDescription}
+              </p>
             </div>
-            <p className="text-fg-secondary mb-4 text-xs leading-relaxed">
-              {t.footer.contentLicenseDescription}
-            </p>
-            <div className="mt-auto">
-              <a
-                href="https://creativecommons.org/licenses/BY-SA/4.0/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${modalLinkClass} w-full`}
-                onClick={() =>
-                  track("external_link_click", { target: "cc_by_sa" })
-                }
-              >
+            <div className="bg-card-footer border-card-footer-border text-fg flex items-center gap-1.5 rounded-b-xl border-x-2 border-b-2 px-4 py-2 text-sm">
+              <span className="inline-flex items-center gap-1.5 font-medium transition-colors group-hover:text-accent-fg group-focus-visible:text-accent-fg">
                 {t.footer.license}
                 <ExternalLinkIcon />
-              </a>
-            </div>
-          </article>
-          <article className="border-border bg-surface/50 flex flex-col rounded-2xl border-2 p-4">
-            <div className="mb-3 flex items-start justify-between gap-3">
-              <div>
-                <p className="text-fg-muted mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
-                  {t.footer.softwareLicenseTitle.split(":")[0]}
-                </p>
-                <h3 className="text-fg text-base font-semibold">Apache 2.0</h3>
-              </div>
-              <span className="border-border bg-surface-alt text-fg-muted rounded-full border p-2">
-                <LicenseIcon />
               </span>
             </div>
-            <p className="text-fg-muted mb-4 text-xs leading-relaxed">
-              {t.footer.softwareLicenseDescription}
-            </p>
-            <div className="mt-auto">
-              <a
-                href="https://www.apache.org/licenses/LICENSE-2.0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${modalLinkClass} w-full`}
-                onClick={() =>
-                  track("external_link_click", { target: "apache_2" })
-                }
-              >
+          </a>
+          <a
+            href="https://www.apache.org/licenses/LICENSE-2.0"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cuelume-hover="tick"
+            data-cuelume-press
+            className="interactive-card group flex h-full min-w-0 flex-col rounded-xl text-left focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+            onClick={() => track("external_link_click", { target: "apache_2" })}
+          >
+            <div className="border-border bg-surface-alt flex flex-1 flex-col rounded-t-xl border-x-2 border-t-2 px-4 pt-4 pb-3">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-fg-muted mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
+                    {t.footer.softwareLicenseTitle.split(":")[0]}
+                  </p>
+                  <h3 className="text-fg text-base leading-tight font-semibold">
+                    Apache 2.0
+                  </h3>
+                </div>
+                <span className="border-border bg-surface text-fg-muted rounded-full border p-2">
+                  <LicenseIcon />
+                </span>
+              </div>
+              <p className="text-fg-muted mt-3 text-xs leading-relaxed">
+                {t.footer.softwareLicenseDescription}
+              </p>
+            </div>
+            <div className="bg-card-footer border-card-footer-border text-fg flex items-center gap-1.5 rounded-b-xl border-x-2 border-b-2 px-4 py-2 text-sm">
+              <span className="inline-flex items-center gap-1.5 font-medium transition-colors group-hover:text-accent-fg group-focus-visible:text-accent-fg">
                 {t.footer.license}
                 <ExternalLinkIcon />
-              </a>
+              </span>
             </div>
-          </article>
+          </a>
         </div>
       </div>
     </ModalShell>
@@ -434,7 +415,7 @@ function Footer() {
               onClick={() => {
                 track("modal_open", { modal: "licenses" });
                 if (!licensesDialogRef.current?.open) {
-                  licensesDialogRef.current?.showModal();
+                  showDialog(licensesDialogRef.current);
                 }
               }}
             >
@@ -449,7 +430,7 @@ function Footer() {
               onClick={() => {
                 track("modal_open", { modal: "privacy" });
                 if (!privacyDialogRef.current?.open) {
-                  privacyDialogRef.current?.showModal();
+                  showDialog(privacyDialogRef.current);
                 }
               }}
             >

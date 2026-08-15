@@ -28,22 +28,26 @@ import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
+import { isPublicSubject } from "../subjects/visibility";
 import { getExamQuestionStats } from "../lib/exam-stats";
 import type { ExamQuestionStats } from "../lib/exam-stats";
 import { formatPoints } from "../lib/points";
-import { showDialog } from "../lib/dialog";
+import { closeDialog, showDialog, useDialogDismiss } from "../lib/dialog";
 import { playSound } from "../lib/sound";
 import {
   filterQuestionsByExamSelection,
   useExamSelection,
 } from "../hooks/useExamSelection";
-import { ArrowRightUp, XSquare, Filter, Restart } from "reicon-react";
-import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  LegalHammerIcon,
-  Legal01Icon,
-  DashboardSquareAddIcon,
-} from "@hugeicons/core-free-icons";
+  ArrowRightUp,
+  Copyright,
+  FilePlus,
+  FilePdf,
+  DocText,
+  Filter,
+  Restart,
+} from "reicon-react";
+import { compactModalDialogClass, ModalHeader } from "../components/Modal";
 
 export default function SubjectHome() {
   const { subjectId } = useParams<{ subjectId: string }>();
@@ -103,6 +107,7 @@ export default function SubjectHome() {
     pathWithoutLang: seoMeta?.pathWithoutLang ?? "/",
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,
+    indexable: Boolean(subject && isPublicSubject(subject.id)),
     enabled: !subject || questionsLoaded,
   });
 
@@ -138,7 +143,7 @@ export default function SubjectHome() {
     if (clearedCount > 0) {
       setProgressRevision((revision) => revision + 1);
     }
-    resetProgressDialogRef.current?.close();
+    closeDialog(resetProgressDialogRef.current);
   }
 
   return (
@@ -211,49 +216,27 @@ function ResetTopicProgressDialog({
 }) {
   const t = useT();
 
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    const handleBackdropClick = (event: MouseEvent) => {
-      if (event.target === dialog) {
-        playSound("droplet");
-        dialog.close();
-      }
-    };
-    const handleCancel = () => playSound("droplet");
-    dialog.addEventListener("click", handleBackdropClick);
-    dialog.addEventListener("cancel", handleCancel);
-    return () => {
-      dialog.removeEventListener("click", handleBackdropClick);
-      dialog.removeEventListener("cancel", handleCancel);
-    };
-  }, [dialogRef]);
+  useDialogDismiss(dialogRef, () => playSound("droplet"));
 
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto w-[min(92vw,24rem)] rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      closedby="any"
+      className={`${compactModalDialogClass} p-6`}
       aria-labelledby="reset-topic-progress-title"
     >
-      <div className="mb-5 flex items-center justify-between gap-4">
-        <h2
-          id="reset-topic-progress-title"
-          className="text-fg inline-flex items-center gap-2 text-lg font-semibold"
-        >
-          <Restart className="size-5 shrink-0" weight="Filled" />
-          {t.subjectHome.resetTopicProgress}
-        </h2>
-        <button
-          type="button"
-          data-cuelume-press="droplet"
-          onClick={() => dialogRef.current?.close()}
-          className="text-fg-muted hover:text-fg-secondary focus-visible:ring-accent shrink-0 rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
-          aria-label={t.subjectHome.resetTopicProgressCancel}
-        >
-          <XSquare className="size-5" />
-        </button>
-      </div>
+      <ModalHeader
+        titleId="reset-topic-progress-title"
+        closeLabel={t.subjectHome.resetTopicProgressCancel}
+        onClose={() => closeDialog(dialogRef.current)}
+      >
+        <Restart
+          className="size-5 shrink-0"
+          weight="Filled"
+          aria-hidden="true"
+        />
+        {t.subjectHome.resetTopicProgress}
+      </ModalHeader>
       <p className="text-fg-secondary mb-6 text-sm">
         {t.subjectHome.resetTopicProgressConfirm}
       </p>
@@ -261,8 +244,8 @@ function ResetTopicProgressDialog({
         <button
           type="button"
           data-cuelume-press="droplet"
-          onClick={() => dialogRef.current?.close()}
-          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+          onClick={() => closeDialog(dialogRef.current)}
+          className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition-[background-color,border-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
         >
           {t.subjectHome.resetTopicProgressCancel}
         </button>
@@ -270,7 +253,7 @@ function ResetTopicProgressDialog({
           type="button"
           data-cuelume-press="error"
           onClick={onConfirm}
-          className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex-1 rounded-lg px-4 py-2 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+          className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex-1 rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
         >
           {t.subjectHome.resetTopicProgressAction}
         </button>
@@ -494,9 +477,7 @@ function ExamSimulationsSection({
           ? t.subjectHome.examSimulations
           : t.subjectHome.practiceSimulations}
       </h2>
-      <div
-        className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-      >
+      <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {subject.exams.map((exam) =>
           exam.deleteRights ? (
             <RemovedExamCard key={exam.id} title={exam.title} />
@@ -526,9 +507,7 @@ function RemovedExamCard({ title }: { title: string }) {
     <div className="flex min-h-[122px] flex-col rounded-xl">
       <div className="border-danger-border bg-danger-light flex flex-col rounded-t-xl border-x-2 border-t-2 border-dashed px-4 pt-4 pb-1">
         <div className="flex items-start justify-between gap-4">
-          <div className="text-danger-fg text-3xl leading-none" aria-hidden="true">
-            <HugeiconsIcon icon={Legal01Icon} size={30} />
-          </div>
+          <Copyright className="text-danger-fg size-7" aria-hidden="true" />
         </div>
         <h2 className="text-fg mt-3 text-base leading-snug font-semibold">
           {title}
@@ -555,6 +534,7 @@ function ExamCard({
   return (
     <Link
       to={`/${subject.id}/exam/${exam.id}`}
+      rel="nofollow"
       data-cuelume-hover="tick"
       data-cuelume-press
       className="interactive-card focus-visible:ring-accent flex min-h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
@@ -569,9 +549,9 @@ function ExamCard({
       <div className="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-4 pt-4 pb-1">
         <div className="flex items-start justify-between gap-4">
           <div className="text-3xl leading-none" aria-hidden="true">
-            📝
+            <DocText className="size-7" aria-hidden="true" />
           </div>
-          <ContentPolicyIcon subject={subject} />
+          <ContentPolicyIcon subject={subject} variant="verified" />
         </div>
         <h2 className="text-fg mt-3 text-base leading-snug font-semibold">
           {exam.title}
@@ -618,9 +598,7 @@ function ExamActionButtons({
         className="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent hover:bg-accent-light/30 block h-full min-h-[122px] min-w-0 w-full rounded-xl border-2 border-dashed p-4 hover:shadow-md"
       >
         <div className="flex h-full flex-col items-center justify-center gap-2">
-          <span className="text-4xl leading-none font-light">
-            <HugeiconsIcon icon={DashboardSquareAddIcon} size={35} />
-          </span>
+          <FilePlus className="size-8" aria-hidden="true" />
           <span className="text-sm font-medium">{t.subjectHome.addExam}</span>
         </div>
       </button>
@@ -636,9 +614,7 @@ function ExamActionButtons({
         className="interactive-card border-danger-border text-danger-fg bg-danger-light hover:text-fg hover:border-danger-fg hover:bg-danger-light block h-full min-h-[122px] min-w-0 w-full rounded-xl border-2 border-dashed p-4 hover:shadow-md"
       >
         <div className="flex h-full flex-col items-center justify-center gap-2">
-          <span className="text-danger-fg text-4xl leading-none font-light">
-            <HugeiconsIcon icon={LegalHammerIcon} size={35} />
-          </span>
+          <Copyright className="text-danger-fg size-8" aria-hidden="true" />
           <span className="text-sm font-medium">
             {t.subjectHome.reportCopyright}
           </span>
@@ -693,7 +669,8 @@ function PdfLinksSection({
             });
           }}
         >
-          <span aria-hidden="true">📄</span> {exam.title} {t.subjectHome.pdf}{" "}
+          <FilePdf className="size-4" aria-hidden="true" /> {exam.title}{" "}
+          {t.subjectHome.pdf}{" "}
           <ArrowRightUp weight="Filled" className="size-3.5" />
         </a>
       ))}

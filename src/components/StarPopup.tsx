@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useT } from "../i18n/hooks";
-import { showDialog } from "../lib/dialog";
+import { closeDialog, showDialog, useDialogDismiss } from "../lib/dialog";
 import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
 import { StarSparkle } from "reicon-react";
+import { compactModalDialogClass } from "./Modal";
 
 const STORAGE_KEY_DISMISSED = "star_popup_dismissed";
 const STORAGE_KEY_VISITS = "star_popup_visits";
@@ -54,13 +55,15 @@ export default function StarPopup() {
     if (!openRef.current) return;
     openRef.current = false;
     writeDismissed();
-    dialogRef.current?.close();
+    closeDialog(dialogRef.current);
     playSound(clickedStar ? "sparkle" : "droplet");
     track(clickedStar ? "star_popup_click" : "star_popup_dismiss");
   }, []);
 
   const dismiss = useCallback(() => finish(false), [finish]);
   const dismissRef = useRef(dismiss);
+
+  useDialogDismiss(dialogRef, () => dismissRef.current());
 
   useEffect(() => {
     if (openRef.current === null) {
@@ -71,16 +74,11 @@ export default function StarPopup() {
     if (!dialog) return;
 
     const handleClose = () => dismissRef.current();
-    const handleBackdropClick = (e: MouseEvent) => {
-      if (e.target === dialog) dismissRef.current();
-    };
 
     if (!dialog.open) showDialog(dialog);
     dialog.addEventListener("close", handleClose);
-    dialog.addEventListener("click", handleBackdropClick);
     return () => {
       dialog.removeEventListener("close", handleClose);
-      dialog.removeEventListener("click", handleBackdropClick);
     };
   }, []);
 
@@ -93,7 +91,8 @@ export default function StarPopup() {
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      closedby="any"
+      className={`${compactModalDialogClass} p-6`}
       aria-labelledby="star-popup-title"
     >
       <div className="text-center">
@@ -101,7 +100,7 @@ export default function StarPopup() {
           type="button"
           aria-label={t.starPopup.sparkleButton}
           onClick={handleSparkle}
-          className="bg-reward-light text-github-star mx-auto mb-4 flex size-12 cursor-pointer items-center justify-center rounded-full transition hover:bg-reward-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-reward-fg active:scale-[0.98]"
+          className="bg-reward-light text-github-star mx-auto mb-4 flex size-12 cursor-pointer items-center justify-center rounded-full transition-[background-color,scale] duration-150 ease-out hover:bg-reward-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-reward-fg active:scale-[0.96]"
         >
           <StarIcon />
         </button>
@@ -121,7 +120,7 @@ export default function StarPopup() {
             rel="noopener noreferrer"
             data-cuelume-hover="sparkle"
             onClick={handleStar}
-            className="bg-reward text-on-reward hover:bg-reward-hover inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold no-underline transition active:scale-[0.98]"
+            className="bg-reward text-on-reward hover:bg-reward-hover inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold no-underline transition-[background-color,scale] duration-150 ease-out active:scale-[0.96]"
           >
             <StarIcon />
             {t.starPopup.starButton}
@@ -129,7 +128,7 @@ export default function StarPopup() {
           <button
             type="button"
             onClick={dismiss}
-            className="text-fg-muted hover:text-fg-secondary hover:bg-surface cursor-pointer rounded-lg px-4 py-2 text-sm transition"
+            className="text-fg-muted hover:text-fg-secondary hover:bg-surface cursor-pointer rounded-lg px-4 py-2 text-sm transition-[background-color,color,scale] duration-150 ease-out active:scale-[0.96]"
           >
             {t.starPopup.dismiss}
           </button>

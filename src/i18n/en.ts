@@ -43,7 +43,7 @@ export const en = {
     legalInformation: "Subject legal information",
     contentLicense: "Content license",
     addExam: "Add?",
-    reportCopyright: "Report copyright",
+    reportCopyright: "Report",
     copyrightRemoved: "Removed for copyright reasons",
     repeatedSuffix: "{count} repeated questions across years",
   },
@@ -382,7 +382,7 @@ export const en = {
       "If an exam, test, compilation, or question should be removed for copyright reasons, send an email to pablo.portas@udc.es.",
     includeDetails:
       "Please include the subject, exam/year or affected question, and the reason for the removal request.",
-    email: "Send removal request",
+    email: "Report",
     emailSubject: "Copyright removal request - {subjectName}",
     emailBody:
       "Subject: {subjectName}\nSubject ID: {subjectId}\n\nAffected exam/year or question:\n\nReason for removal request:\n",

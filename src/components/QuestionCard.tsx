@@ -22,7 +22,7 @@ import {
   BookOpen,
   CaretRight,
   CheckSquare,
-  Notebook,
+  DocText,
   Restart,
   TriangleWarning,
   XSquare,
@@ -127,6 +127,70 @@ function buildReportUrl(
 
 const solutionPanelClass =
   "bg-surface border-border -mx-4 space-y-3 border-y px-4 py-4 sm:-mx-6 sm:px-6";
+
+type SelfGrade = "correct" | "incorrect";
+
+function SelfGradeControls({
+  questionId,
+  grade,
+  onSelfGrade,
+}: {
+  questionId: string;
+  grade?: SelfGrade;
+  onSelfGrade: (questionId: string, grade: SelfGrade) => void;
+}) {
+  const t = useT();
+
+  const handleGrade = (nextGrade: SelfGrade) => {
+    if (nextGrade === "correct") {
+      triggerSuccess();
+      playSuccess();
+    } else {
+      triggerError();
+      playError();
+    }
+    onSelfGrade(questionId, nextGrade);
+  };
+
+  const buttonBaseClass =
+    "flex min-h-11 min-w-0 items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition-[background-color,border-color,color,transform] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none active:scale-[0.96]";
+
+  return (
+    <div className="border-border border-t pt-3">
+      <p className="text-fg-secondary mb-2 text-xs font-semibold">
+        {t.questionCard.gradeAnswer}
+      </p>
+      <div className="grid grid-cols-2 gap-2">
+        <button
+          type="button"
+          aria-pressed={grade === "correct"}
+          onClick={() => handleGrade("correct")}
+          className={`${buttonBaseClass} focus-visible:ring-correct-fg ${grade === "correct" ? "bg-correct-bg border-correct-border text-correct-fg" : "bg-surface-alt border-border text-fg-secondary hover:bg-correct-bg hover:border-correct-border hover:text-correct-fg"}`}
+        >
+          <CheckSquare
+            size={16}
+            weight={grade === "correct" ? "Filled" : "Outline"}
+            aria-hidden="true"
+          />
+          {t.questionCard.correct}
+        </button>
+        <button
+          type="button"
+          aria-pressed={grade === "incorrect"}
+          onClick={() => handleGrade("incorrect")}
+          className={`${buttonBaseClass} focus-visible:ring-incorrect-fg ${grade === "incorrect" ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg" : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg hover:text-incorrect-fg"}`}
+        >
+          <XSquare
+            size={16}
+            weight={grade === "incorrect" ? "Filled" : "Outline"}
+            aria-hidden="true"
+          />
+          {t.questionCard.incorrect}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function DevelopmentDisclosure({
   development,
@@ -436,7 +500,7 @@ function TextQuestion({
               <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                 {t.questionCard.modelSolution}
               </h4>
-              <Markdown className="text-fg-secondary font-sans text-xs whitespace-pre-wrap">
+              <Markdown className="text-fg-secondary font-sans text-xs">
                 {typeof question.correctAnswer === "string"
                   ? question.correctAnswer
                   : JSON.stringify(question.correctAnswer, null, 2)}
@@ -455,55 +519,11 @@ function TextQuestion({
               )}
 
               {onSelfGrade && (
-                <div className="border-border border-t pt-2">
-                  <p className="text-fg-secondary mb-2 text-xs font-semibold">
-                    {t.questionCard.gradeAnswer}
-                  </p>
-                  <div className="flex gap-2 *:flex-1">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        triggerSuccess();
-                        playSuccess();
-                        onSelfGrade(question.id, "correct");
-                      }}
-                      className={`focus-visible:ring-accent flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                        selfGrade === "correct"
-                          ? "bg-correct-bg border-correct-border text-correct-fg"
-                          : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
-                      }`}
-                    >
-                      <CheckSquare
-                        size={14}
-                        weight={selfGrade === "correct" ? "Filled" : "Outline"}
-                        aria-hidden="true"
-                      />
-                      {t.questionCard.correct}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        triggerError();
-                        playError();
-                        onSelfGrade(question.id, "incorrect");
-                      }}
-                      className={`focus-visible:ring-incorrect-fg flex items-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                        selfGrade === "incorrect"
-                          ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
-                          : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
-                      }`}
-                    >
-                      <XSquare
-                        size={14}
-                        weight={
-                          selfGrade === "incorrect" ? "Filled" : "Outline"
-                        }
-                        aria-hidden="true"
-                      />
-                      {t.questionCard.incorrect}
-                    </button>
-                  </div>
-                </div>
+                <SelfGradeControls
+                  questionId={question.id}
+                  grade={selfGrade}
+                  onSelfGrade={onSelfGrade}
+                />
               )}
             </div>
           )}
@@ -628,7 +648,7 @@ function MultipleTextQuestion({
                     <h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                       {t.questionCard.modelSolution}
                     </h4>
-                    <Markdown className="text-fg-secondary font-sans text-xs whitespace-pre-wrap">
+                    <Markdown className="text-fg-secondary font-sans text-xs">
                       {solutions[partIndex]}
                     </Markdown>
                     {part.explanationImage && (
@@ -639,63 +659,11 @@ function MultipleTextQuestion({
                       />
                     )}
                     {onSelfGrade && (
-                      <div className="border-border border-t pt-2">
-                        <p className="text-fg-secondary mb-2 text-xs font-semibold">
-                          {t.questionCard.gradeAnswer}
-                        </p>
-                        <div className="flex gap-2 *:flex-1">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              triggerSuccess();
-                              playSuccess();
-                              onSelfGrade(
-                                getPartSelfGradeKey(question.id, partIndex),
-                                "correct",
-                              );
-                            }}
-                            className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                              grade === "correct"
-                                ? "bg-correct-bg border-correct-border text-correct-fg"
-                                : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
-                            }`}
-                          >
-                            <CheckSquare
-                              size={14}
-                              weight={
-                                grade === "correct" ? "Filled" : "Outline"
-                              }
-                              aria-hidden="true"
-                            />
-                            {t.questionCard.correct}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              triggerError();
-                              playError();
-                              onSelfGrade(
-                                getPartSelfGradeKey(question.id, partIndex),
-                                "incorrect",
-                              );
-                            }}
-                            className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                              grade === "incorrect"
-                                ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
-                                : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
-                            }`}
-                          >
-                            <XSquare
-                              size={14}
-                              weight={
-                                grade === "incorrect" ? "Filled" : "Outline"
-                              }
-                              aria-hidden="true"
-                            />
-                            {t.questionCard.incorrect}
-                          </button>
-                        </div>
-                      </div>
+                      <SelfGradeControls
+                        questionId={getPartSelfGradeKey(question.id, partIndex)}
+                        grade={grade}
+                        onSelfGrade={onSelfGrade}
+                      />
                     )}
                   </div>
                 )}
@@ -818,53 +786,11 @@ function FillQuestion({
         );
       })}
       {showResult && onSelfGrade && !automaticallyCorrect && (
-        <div className="border-border mt-3 border-t pt-2">
-          <p className="text-fg-secondary mb-2 text-xs font-semibold">
-            {t.questionCard.gradeAnswer}
-          </p>
-          <div className="flex gap-2 *:flex-1">
-            <button
-              type="button"
-              onClick={() => {
-                triggerSuccess();
-                playSuccess();
-                onSelfGrade(question.id, "correct");
-              }}
-              className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                selfGrade === "correct"
-                  ? "bg-correct-bg border-correct-border text-correct-fg"
-                  : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
-              }`}
-            >
-              <CheckSquare
-                size={14}
-                weight={selfGrade === "correct" ? "Filled" : "Outline"}
-                aria-hidden="true"
-              />
-              {t.questionCard.correct}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                triggerError();
-                playError();
-                onSelfGrade(question.id, "incorrect");
-              }}
-              className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                selfGrade === "incorrect"
-                  ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
-                  : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
-              }`}
-            >
-              <XSquare
-                size={14}
-                weight={selfGrade === "incorrect" ? "Filled" : "Outline"}
-                aria-hidden="true"
-              />
-              {t.questionCard.incorrect}
-            </button>
-          </div>
-        </div>
+        <SelfGradeControls
+          questionId={question.id}
+          grade={selfGrade}
+          onSelfGrade={onSelfGrade}
+        />
       )}
       {showResult && question.development && (
         <DevelopmentDisclosure
@@ -1010,53 +936,11 @@ function TableFillQuestion({
         </table>
       </div>
       {showResult && onSelfGrade && !automaticallyCorrect && (
-        <div className="border-border mt-3 border-t pt-2">
-          <p className="text-fg-secondary mb-2 text-xs font-semibold">
-            {t.questionCard.gradeAnswer}
-          </p>
-          <div className="flex gap-2 *:flex-1">
-            <button
-              type="button"
-              onClick={() => {
-                triggerSuccess();
-                playSuccess();
-                onSelfGrade(question.id, "correct");
-              }}
-              className={`focus-visible:ring-accent flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                selfGrade === "correct"
-                  ? "bg-correct-bg border-correct-border text-correct-fg"
-                  : "bg-surface-alt border-border text-fg-secondary hover:bg-accent-light/50 hover:border-accent-border"
-              }`}
-            >
-              <CheckSquare
-                size={14}
-                weight={selfGrade === "correct" ? "Filled" : "Outline"}
-                aria-hidden="true"
-              />
-              {t.questionCard.correct}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                triggerError();
-                playError();
-                onSelfGrade(question.id, "incorrect");
-              }}
-              className={`focus-visible:ring-incorrect-fg flex min-h-11 items-center justify-center gap-1.5 rounded-md border-2 px-3 py-1.5 text-xs font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 ${
-                selfGrade === "incorrect"
-                  ? "border-incorrect-border bg-incorrect-bg text-incorrect-fg"
-                  : "bg-surface-alt border-border text-fg-secondary hover:border-incorrect-border hover:bg-incorrect-bg/50"
-              }`}
-            >
-              <XSquare
-                size={14}
-                weight={selfGrade === "incorrect" ? "Filled" : "Outline"}
-                aria-hidden="true"
-              />
-              {t.questionCard.incorrect}
-            </button>
-          </div>
-        </div>
+        <SelfGradeControls
+          questionId={question.id}
+          grade={selfGrade}
+          onSelfGrade={onSelfGrade}
+        />
       )}
       {showResult && question.development && (
         <DevelopmentDisclosure
@@ -1263,7 +1147,7 @@ export default function QuestionCard(props: QuestionCardProps) {
               )}
               {questionProps.examTitle && (
                 <span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
-                  <Notebook size={14} aria-hidden="true" />
+                  <DocText size={14} aria-hidden="true" />
                   {questionProps.examTitle}
                 </span>
               )}

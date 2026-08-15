@@ -7,7 +7,6 @@ import {
   VolumeDown,
   VolumeMute,
   VolumeUp,
-  XSquare,
 } from "reicon-react";
 import { useLang, useT } from "../i18n/hooks";
 import type { Lang } from "../i18n/context";
@@ -19,10 +18,16 @@ import {
   playSound,
   updateSoundVolume,
 } from "../lib/sound";
-import { showDialog } from "../lib/dialog";
+import {
+  closeDialog,
+  showDialog,
+  useDialogClose,
+  useDialogDismiss,
+} from "../lib/dialog";
 import { track } from "../lib/umami";
 import { useTheme } from "../theme/hooks";
 import { themeOrder, type Theme } from "../theme/types";
+import { ModalHeader, settingsModalDialogClass } from "./Modal";
 
 const languageOptions: ReadonlyArray<{ value: Lang; label: string }> = [
   { value: "es", label: "🇪🇸 Español" },
@@ -69,6 +74,19 @@ export default function SettingsModal() {
   const [open, setOpen] = useState(false);
   const [volume, setVolumeState] = useState(getStoredSoundVolume);
 
+  useDialogDismiss(dialogRef, (method) => {
+    closeMethodRef.current = method;
+    setOpen(false);
+    playSound("droplet");
+  });
+  useDialogClose(dialogRef, () => {
+    setOpen(false);
+    track("modal_close", {
+      modal: "settings",
+      method: closeMethodRef.current,
+    });
+  });
+
   function openDialog() {
     closeMethodRef.current = "x";
     setOpen(true);
@@ -76,9 +94,10 @@ export default function SettingsModal() {
     track("modal_open", { modal: "settings" });
   }
 
-  function closeDialog(method: "x" | "backdrop") {
+  function requestClose(method: "x" | "backdrop") {
     closeMethodRef.current = method;
-    dialogRef.current?.close();
+    setOpen(false);
+    closeDialog(dialogRef.current);
   }
 
   function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
@@ -140,51 +159,19 @@ export default function SettingsModal() {
 
       <dialog
         ref={dialogRef}
-        className="animate-dialog m-auto h-full max-h-none w-full max-w-none overflow-hidden bg-transparent p-0 open:grid open:place-items-center"
+        closedby="any"
+        className={`${settingsModalDialogClass} p-6`}
         aria-labelledby="settings-modal-title"
-        onCancel={(event) => {
-          event.preventDefault();
-          closeMethodRef.current = "esc";
-          playSound("droplet");
-          dialogRef.current?.close();
-        }}
-        onClose={() => {
-          setOpen(false);
-          track("modal_close", {
-            modal: "settings",
-            method: closeMethodRef.current,
-          });
-        }}
       >
-        <button
-          type="button"
-          className="absolute inset-0 size-full cursor-default"
-          onClick={() => {
-            playSound("droplet");
-            closeDialog("backdrop");
-          }}
-          aria-label={t.settings.close}
-          tabIndex={-1}
-        />
-        <div className="bg-surface-alt relative z-10 max-h-[86svh] w-[min(92vw,28rem)] overscroll-contain rounded-2xl p-6 shadow-2xl">
-          <div className="mb-6 flex items-center justify-between gap-4">
-            <h2
-              id="settings-modal-title"
-              className="text-fg inline-flex items-center gap-2 text-lg font-semibold"
-            >
-              <Gear size={21} aria-hidden="true" />
-              {t.settings.title}
-            </h2>
-            <button
-              type="button"
-              data-cuelume-toggle="droplet"
-              onClick={() => closeDialog("x")}
-              className="text-fg-muted hover:bg-surface hover:text-fg focus-visible:ring-accent inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
-              aria-label={t.settings.close}
-            >
-              <XSquare size={20} aria-hidden="true" />
-            </button>
-          </div>
+        <div className="relative">
+          <ModalHeader
+            titleId="settings-modal-title"
+            closeLabel={t.settings.close}
+            onClose={() => requestClose("x")}
+          >
+            <Gear size={21} aria-hidden="true" />
+            {t.settings.title}
+          </ModalHeader>
 
           <div className="space-y-6">
             <div className="space-y-2">

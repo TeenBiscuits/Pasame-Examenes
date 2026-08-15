@@ -1062,6 +1062,125 @@ html[data-theme="mocha"] {
   --tw-prose-td-borders: var(--color-border);
 }
 
+/* ── Question-card Markdown ──
+   The typography plugin is tuned for article-length prose. Question content
+   is denser and mixes prompts, lists, formulas, and code blocks, so keep its
+   rhythm explicit and shared across every Markdown field. */
+.markdown-body {
+  overflow-wrap: break-word;
+  line-height: 1.5;
+}
+
+.markdown-body > :first-child {
+  margin-block-start: 0;
+}
+
+.markdown-body > :last-child {
+  margin-block-end: 0;
+}
+
+.markdown-body :where(p) {
+  margin-block: 0;
+  text-wrap: pretty;
+}
+
+.markdown-body :where(p + p) {
+  margin-block-start: 0.75em;
+}
+
+.markdown-body :where(h1, h2, h3, h4) {
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.markdown-body :where(h1) {
+  margin-block: 0 0.5em;
+  font-size: 1.5em;
+  line-height: 1.2;
+}
+
+.markdown-body :where(h2) {
+  margin-block: 1em 0.45em;
+  font-size: 1.25em;
+  line-height: 1.25;
+}
+
+.markdown-body :where(h3) {
+  margin-block: 0.9em 0.35em;
+  font-size: 1.125em;
+  line-height: 1.3;
+}
+
+.markdown-body :where(h4) {
+  margin-block: 0.8em 0.3em;
+  font-size: 1em;
+  line-height: 1.35;
+}
+
+.markdown-body :where(ul, ol) {
+  margin-block: 0.75em;
+  padding-inline-start: 1.5em;
+}
+
+.markdown-body :where(li) {
+  margin-block: 0.25em;
+}
+
+.markdown-body :where(li > ul, li > ol) {
+  margin-block: 0.35em;
+}
+
+.markdown-body :where(blockquote) {
+  margin-block: 0.75em;
+  border-inline-start: 0.2em solid var(--color-border);
+  padding-inline-start: 1em;
+  color: var(--color-fg-secondary);
+}
+
+.markdown-body :where(hr) {
+  margin-block: 1.25em;
+  border: 0;
+  border-block-start: 1px solid var(--color-border);
+}
+
+.markdown-body :where(a) {
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.15em;
+  text-underline-position: from-font;
+}
+
+.markdown-body :where(.markdown-code-block) {
+  max-inline-size: 100%;
+  margin-block: 0.75em;
+}
+
+.markdown-body :where(.markdown-table) {
+  margin-block: 0.75em;
+}
+
+.markdown-body :where(.markdown-code-block pre) {
+  max-inline-size: 100%;
+}
+
+.markdown-body :where(.footnotes) {
+  margin-block-start: 1em;
+  font-size: 0.9em;
+}
+
+.markdown-body :where(.footnotes ol) {
+  margin-block: 0.5em 0;
+}
+
+.markdown-body :where(.footnotes li) {
+  margin-block: 0.35em;
+}
+
+.markdown-body :where(input[type="checkbox"]) {
+  margin-inline-end: 0.5em;
+  vertical-align: middle;
+  accent-color: var(--color-accent);
+}
+
 /* ── Floating hero emojis ── */
 @keyframes floatDrift {
   0%,
@@ -1127,42 +1246,56 @@ html[data-theme="mocha"] {
   }
 }
 
-/* ── Dialog animations ── */
-.animate-dialog {
-  opacity: 0;
-  transform: scale(0.95);
-  transition:
-    opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1),
-    transform 0.2s cubic-bezier(0.23, 1, 0.32, 1),
-    overlay 0.2s cubic-bezier(0.23, 1, 0.32, 1) allow-discrete,
-    display 0.2s cubic-bezier(0.23, 1, 0.32, 1) allow-discrete;
+/* ── Shared modal surface ──
+   The animation itself comes from tailwind-animations' `animate-dialog`
+   utility. These classes only define the app's surface, spacing and sizes. */
+.modal-dialog {
+  box-sizing: border-box;
+  width: min(32rem, calc(100% - 2rem));
+  max-width: calc(100% - 2rem);
+  max-height: min(86svh, 48rem);
+  margin: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  border: 0;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--color-surface-alt);
+  color: var(--color-fg);
+  --tw-anim-dialog-duration: 240ms;
+  --tw-anim-dialog-backdrop-background: var(--color-overlay);
+  --tw-anim-dialog-backdrop-filter: blur(4px);
+  box-shadow:
+    0 0 0 1px light-dark(oklch(0 0 0 / 0.06), oklch(1 0 0 / 0.08)),
+    0 24px 64px -16px var(--color-shadow),
+    0 8px 24px -12px var(--color-shadow);
 }
 
-.animate-dialog[open] {
-  opacity: 1;
-  transform: scale(1);
+.modal-dialog--compact {
+  width: min(24rem, calc(100% - 2rem));
 }
 
-.animate-dialog::backdrop {
-  background-color: transparent;
-  transition:
-    background-color 0.2s cubic-bezier(0.23, 1, 0.32, 1),
-    overlay 0.2s cubic-bezier(0.23, 1, 0.32, 1) allow-discrete,
-    display 0.2s cubic-bezier(0.23, 1, 0.32, 1) allow-discrete;
+.modal-dialog--wide {
+  width: min(42rem, calc(100% - 2rem));
 }
 
-.animate-dialog[open]::backdrop {
-  background-color: var(--color-overlay);
+.modal-dialog--settings {
+  width: min(28rem, calc(100% - 2rem));
 }
 
-@starting-style {
-  .animate-dialog[open] {
-    opacity: 0;
-    transform: scale(0.95);
-  }
+.modal-dialog__scroll {
+  max-height: min(calc(86svh - 7rem), 41rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
 
-  .animate-dialog[open]::backdrop {
-    background-color: transparent;
+@media (max-width: 30rem) {
+  .modal-dialog {
+    border-radius: 1.25rem;
+    padding: 1.25rem;
   }
 }
 
@@ -1175,14 +1308,17 @@ html[data-theme="mocha"] {
   }
 
   .interactive-card,
-  .animate-dialog,
-  .animate-dialog::backdrop {
-    transition-duration: 0.01ms;
+  .modal-dialog,
+  .modal-dialog::backdrop {
+    transition-duration: 0.01ms !important;
   }
 
-  .animate-dialog,
-  .animate-dialog[open] {
-    transform: none;
+  .modal-dialog {
+    --tw-anim-dialog-duration: 1ms;
+  }
+
+  .modal-dialog::backdrop {
+    --tw-anim-dialog-backdrop-filter: none;
   }
 }
 

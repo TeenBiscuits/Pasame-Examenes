@@ -1,11 +1,15 @@
-import { useImperativeHandle, useEffect, useRef, type Ref } from "react";
+import { useImperativeHandle, useRef, type Ref } from "react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { XSquare } from "reicon-react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { DashboardSquareAddIcon } from "@hugeicons/core-free-icons";
-import { showDialog } from "../lib/dialog";
+import { BranchUp, Envelope, PlusCircle2, FilePlus, InfoCircle } from "reicon-react";
+import {
+  closeDialog,
+  showDialog,
+  useDialogClose,
+  useDialogDismiss,
+} from "../lib/dialog";
 import { playSound } from "../lib/sound";
+import { compactModalDialogClass, ModalActionLink, ModalHeader } from "./Modal";
 
 export interface AddExamModalHandle {
   open: () => void;
@@ -31,137 +35,82 @@ function AddExamModal({
 
   useImperativeHandle(ref, () => ({
     open: () => showDialog(dialogRef.current),
-    close: () => dialogRef.current?.close(),
+    close: () => closeDialog(dialogRef.current),
   }));
 
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    const handleBackdropClick = (e: MouseEvent) => {
-      if (e.target === dialog) {
-        closeMethodRef.current = "backdrop";
-        playSound("droplet");
-        dialog.close();
-      }
-    };
-    const handleCancel = () => {
-      closeMethodRef.current = "esc";
-      playSound("droplet");
-    };
-    dialog.addEventListener("click", handleBackdropClick);
-    dialog.addEventListener("cancel", handleCancel);
-    return () => {
-      dialog.removeEventListener("click", handleBackdropClick);
-      dialog.removeEventListener("cancel", handleCancel);
-    };
-  }, []);
+  useDialogDismiss(dialogRef, (method) => {
+    closeMethodRef.current = method;
+    playSound("droplet");
+  });
+  useDialogClose(dialogRef, () => {
+    track("modal_close", {
+      modal: "add_exam",
+      method: closeMethodRef.current,
+      subjectId,
+    });
+    onClose();
+  });
 
   const issueUrl = `${t.addExam.openIssueUrl}&title=${encodeURIComponent(subjectName)}&subject=${encodeURIComponent(subjectId)}`;
 
   return (
     <dialog
       ref={dialogRef}
-      className="animate-dialog bg-surface-alt m-auto max-w-sm rounded-2xl p-6 shadow-2xl backdrop:bg-overlay backdrop:transition-[background-color,overlay,display] backdrop:duration-200"
+      closedby="any"
+      className={`${compactModalDialogClass} p-6`}
       aria-labelledby="add-exam-title"
-      onClose={() => {
-        track("modal_close", {
-          modal: "add_exam",
-          method: closeMethodRef.current,
-          subjectId,
-        });
-        onClose();
-      }}
     >
-      <div>
-        <div className="mb-5 flex items-center justify-between">
-          <h2 id="add-exam-title" className="text-fg text-lg font-semibold">
-            <span className="inline-flex items-center gap-2">
-              <HugeiconsIcon
-                icon={DashboardSquareAddIcon}
-                size={24}
-                strokeWidth={2}
-              />{" "}
-              {t.addExam.title}
-            </span>
-          </h2>
-          <button
-            type="button"
-            data-cuelume-press="droplet"
-            onClick={() => {
-              closeMethodRef.current = "x";
-              dialogRef.current?.close();
-            }}
-            className="text-fg-muted hover:text-fg-secondary cursor-pointer transition-colors"
-            aria-label={t.addExam.close}
-          >
-            <XSquare className="size-5" />
-          </button>
-        </div>
+      <ModalHeader
+        titleId="add-exam-title"
+        closeLabel={t.addExam.close}
+        onClose={() => {
+          closeMethodRef.current = "x";
+          closeDialog(dialogRef.current);
+        }}
+      >
+        <FilePlus className="size-5 shrink-0" aria-hidden="true" />
+        {t.addExam.title}
+      </ModalHeader>
 
-        <div className="space-y-3">
-          <p className="border-border bg-surface/50 text-fg-muted rounded-xl border p-3 text-xs">
-            {t.addExam.legalNotice}
-          </p>
+      <div className="space-y-2.5">
+        <p className="border-border bg-surface/60 text-fg-muted flex items-start gap-2 rounded-xl border p-3 text-xs leading-relaxed">
+          <InfoCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+          <span>{t.addExam.legalNotice}</span>
+        </p>
 
-          <a
-            data-cuelume-hover="tick"
-            data-cuelume-press
-            href={issueUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track("add_exam_open_issue", { subjectId })}
-            className="border-accent-border bg-accent-light hover:bg-accent-light hover:border-accent flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-colors"
-          >
-            <span className="text-xl">📝</span>
-            <div>
-              <div className="text-fg text-sm font-medium">
-                {t.addExam.openIssue}
-              </div>
-              <div className="text-fg-muted text-xs">
-                {t.addExam.openIssueDesc}
-              </div>
-            </div>
-          </a>
+        <ModalActionLink
+          href={issueUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          icon={<PlusCircle2 className="size-5" aria-hidden="true" />}
+          iconClassName="bg-accent-light text-accent-fg"
+          title={t.addExam.openIssue}
+          description={t.addExam.openIssueDesc}
+          className="border-accent-border bg-accent-light/60 hover:border-accent hover:bg-accent-light"
+          onClick={() => track("add_exam_open_issue", { subjectId })}
+        />
 
-          <a
-            data-cuelume-hover="tick"
-            data-cuelume-press
-            href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/CONTRIBUTING.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => track("add_exam_contribute", { subjectId })}
-            className="border-contribute-border bg-contribute-bg hover:bg-contribute-hover-bg hover:border-contribute-hover-border flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-colors"
-          >
-            <span className="text-xl">🚀</span>
-            <div>
-              <div className="text-fg text-sm font-medium">
-                {t.addExam.contribute}
-              </div>
-              <div className="text-fg-muted text-xs">
-                {t.addExam.contributeDesc}
-              </div>
-            </div>
-          </a>
+        <ModalActionLink
+          href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/CONTRIBUTING.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          icon={<BranchUp className="size-5" aria-hidden="true" />}
+          iconClassName="bg-contribute-bg text-contribute-fg"
+          title={t.addExam.contribute}
+          description={t.addExam.contributeDesc}
+          className="border-contribute-border bg-contribute-bg hover:border-contribute-hover-border hover:bg-contribute-hover-bg"
+          onClick={() => track("add_exam_contribute", { subjectId })}
+        />
 
-          <div className="border-border border-t pt-2">
-            <a
-              data-cuelume-hover="tick"
-              data-cuelume-press
-              href="mailto:pablo.portas@udc.es"
-              onClick={() => track("add_exam_email", { subjectId })}
-              className="border-border bg-surface/50 hover:bg-surface hover:border-border flex cursor-pointer items-center gap-3 rounded-xl border-2 p-3 text-left text-inherit no-underline transition-colors"
-            >
-              <span className="text-xl">✉️</span>
-              <div>
-                <div className="text-fg-secondary text-sm font-medium">
-                  {t.addExam.email}
-                </div>
-                <div className="text-fg-muted text-xs">pablo.portas@udc.es</div>
-              </div>
-            </a>
-          </div>
-        </div>
+        <ModalActionLink
+          href="mailto:pablo.portas@udc.es"
+          icon={<Envelope className="size-5" aria-hidden="true" />}
+          iconClassName="bg-surface text-fg-secondary"
+          title={t.addExam.email}
+          description="pablo.portas@udc.es"
+          className="border-border bg-surface/60 hover:border-accent hover:bg-surface"
+          onClick={() => track("add_exam_email", { subjectId })}
+        />
       </div>
     </dialog>
   );

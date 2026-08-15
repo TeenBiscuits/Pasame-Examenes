@@ -45,7 +45,7 @@ export const gl: Translations = {
     legalInformation: "Información legal da materia",
     contentLicense: "Licenza do contido",
     addExam: "Engadir?",
-    reportCopyright: "Reportar dereitos de autor",
+    reportCopyright: "Reportar",
     copyrightRemoved: "Retirada por dereitos de autor",
     repeatedSuffix: "{count} repetidas ao longo dos anos",
   },
@@ -384,7 +384,7 @@ export const gl: Translations = {
       "Se un exame, proba, compilación ou pregunta debe retirarse por dereitos de autor, envía un correo a pablo.portas@udc.es.",
     includeDetails:
       "Inclúe a materia, o exame/ano ou pregunta afectada e o motivo da solicitude de retirada.",
-    email: "Enviar solicitude de retirada",
+    email: "Reportar",
     emailSubject:
       "Solicitude de retirada por dereitos de autor - {subjectName}",
     emailBody:
