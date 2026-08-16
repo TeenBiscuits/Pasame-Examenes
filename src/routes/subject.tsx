@@ -26,9 +26,10 @@ export const meta: MetaFunction = ({ params }) => {
     ];
   }
 
-  const availableExamIds = new Set(
-    subject.exams.filter((exam) => !exam.deleteRights).map((exam) => exam.id),
-  );
+  const availableExamIds = new Set<string>();
+  for (const exam of subject.exams) {
+    if (!exam.deleteRights) availableExamIds.add(exam.id);
+  }
   const questionCount = getQuestionSummaries(subject.id).filter((question) =>
     availableExamIds.has(question.examId),
   ).length;
