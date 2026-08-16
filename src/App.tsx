@@ -1,28 +1,11 @@
-import {
-  lazy,
-  Suspense,
-  useEffect,
-  useRef,
-  type ReactNode,
-  type RefObject,
-} from "react";
+import { useEffect, useRef, type ReactNode, type RefObject } from "react";
 import { bind as bindCuelume } from "cuelume";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-  useParams,
-  Navigate,
-  Outlet,
-} from "react-router";
+import { useLocation, Outlet } from "react-router";
 import { Measurer } from "mesurer";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
 import { useLang, useT } from "./i18n/hooks";
-import type { Lang } from "./i18n/context";
 import { track, identify, setSessionData, getDistinctId } from "./lib/umami";
-import { buildLangPath } from "./lib/lang-link-utils";
 import { playSound } from "./lib/sound";
 import { useTheme } from "./theme/hooks";
 import { MemoCheck, ShieldCheck, ArrowRightUp } from "reicon-react";
@@ -30,13 +13,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Github01Icon } from "@hugeicons/core-free-icons";
 import { closeDialog, showDialog, useDialogDismiss } from "./lib/dialog";
 import { ModalHeader, wideModalDialogClass } from "./components/Modal";
+import { LangLink } from "./lib/lang-link";
 
-const Home = lazy(() => import("./pages/Home"));
-const SubjectHome = lazy(() => import("./pages/SubjectHome"));
-const PracticeTopic = lazy(() => import("./pages/PracticeTopic"));
-const ExamSimulation = lazy(() => import("./pages/ExamSimulation"));
-
-function PageLoader() {
+export function PageLoader() {
   return (
     <div
       className="flex items-center justify-center py-16"
@@ -69,56 +48,6 @@ function SessionTracker() {
   setSessionData({ lang, theme });
 
   return null;
-}
-
-function detectLang(): Lang {
-  try {
-    const stored = localStorage.getItem("lang");
-    if (stored === "en" || stored === "es" || stored === "gl")
-      return stored as Lang;
-  } catch {
-    /* localStorage unavailable */
-  }
-  const nav = navigator.language.toLowerCase();
-  if (nav.startsWith("es")) return "es";
-  return "en";
-}
-
-function LangRedirect() {
-  const { pathname } = useLocation();
-  const lang = detectLang();
-  const target = pathname === "/" ? `/${lang}` : `/${lang}${pathname}`;
-  return <Navigate to={target} replace />;
-}
-
-function LangGuard() {
-  const { lang: paramLang } = useParams<{ lang: string }>();
-  const { lang, setLang } = useLang();
-
-  useEffect(() => {
-    if (
-      paramLang &&
-      (paramLang === "en" || paramLang === "es" || paramLang === "gl") &&
-      paramLang !== lang
-    ) {
-      setLang(paramLang);
-    }
-  }, [paramLang, lang, setLang]);
-
-  if (!paramLang || !["en", "es", "gl"].includes(paramLang)) {
-    const detected = detectLang();
-    return (
-      <Navigate
-        to={buildLangPath(
-          detected,
-          location.pathname.replace(/^\/(en|es|gl)\/?/, "/") || "/",
-        )}
-        replace
-      />
-    );
-  }
-
-  return <Outlet />;
 }
 
 const footerTextLinkClass =
@@ -224,9 +153,9 @@ function LicensesModal({
                   <p className="text-accent-fg mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
                     {t.footer.contentLicenseTitle.split(":")[0]}
                   </p>
-                  <h3 className="text-fg text-base leading-tight font-semibold">
+                  <div className="text-fg text-base leading-tight font-semibold">
                     CC BY-SA 4.0
-                  </h3>
+                  </div>
                 </div>
                 <CreativeCommonsIcons />
               </div>
@@ -256,9 +185,9 @@ function LicensesModal({
                   <p className="text-fg-muted mb-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase">
                     {t.footer.softwareLicenseTitle.split(":")[0]}
                   </p>
-                  <h3 className="text-fg text-base leading-tight font-semibold">
+                  <div className="text-fg text-base leading-tight font-semibold">
                     Apache 2.0
-                  </h3>
+                  </div>
                 </div>
                 <span className="border-border bg-surface text-fg-muted rounded-full border p-2">
                   <LicenseIcon />
@@ -281,95 +210,10 @@ function LicensesModal({
   );
 }
 
-function PrivacyModal({
-  dialogRef,
-}: {
-  dialogRef: RefObject<HTMLDialogElement | null>;
-}) {
-  const t = useT();
-
-  return (
-    <ModalShell
-      dialogRef={dialogRef}
-      title={t.footer.privacyTitle}
-      titleId="privacy-modal-title"
-    >
-      <div className="text-fg-secondary max-h-[65svh] [scrollbar-gutter:stable] space-y-5 overflow-y-auto pr-4 text-sm">
-        <div className="space-y-2">
-          <p className="text-fg-muted text-xs font-medium tracking-[0.18em] uppercase">
-            {t.footer.privacyLastUpdated}
-          </p>
-          <p className="max-w-prose leading-relaxed text-pretty">
-            {t.footer.privacySummary}
-          </p>
-        </div>
-
-        {t.footer.privacySections.map((section) => (
-          <section
-            key={section.title}
-            className="border-border space-y-2 border-t pt-4 first:border-t-0 first:pt-0"
-          >
-            <h3 className="text-fg text-base font-semibold">{section.title}</h3>
-            {section.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="leading-relaxed text-pretty">
-                {paragraph}
-              </p>
-            ))}
-            {section.items && (
-              <ul className="marker:text-accent-fg list-disc space-y-1 pl-5 leading-relaxed">
-                {section.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            )}
-          </section>
-        ))}
-
-        <section className="border-border space-y-3 border-t pt-4">
-          <div className="space-y-2">
-            <h3 className="text-fg text-base font-semibold">
-              {t.footer.privacyProvidersTitle}
-            </h3>
-            <p className="leading-relaxed text-pretty">
-              {t.footer.privacyProvidersIntro}
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {t.footer.privacyProviders.map((provider) => (
-              <article
-                key={provider.name}
-                className="border-border bg-surface/60 rounded-xl border p-3"
-              >
-                <h4 className="text-fg font-semibold">{provider.name}</h4>
-                <p className="text-fg-muted mt-1 text-xs leading-relaxed">
-                  {provider.description}
-                </p>
-                <a
-                  href={provider.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent-fg focus-visible:ring-accent mt-3 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:outline-none"
-                  onClick={() =>
-                    track("external_link_click", { target: provider.target })
-                  }
-                >
-                  {provider.linkLabel}
-                  <ExternalLinkIcon />
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-      </div>
-    </ModalShell>
-  );
-}
-
 function Footer() {
   const t = useT();
   const currentYear = new Date().getFullYear();
   const licensesDialogRef = useRef<HTMLDialogElement>(null);
-  const privacyDialogRef = useRef<HTMLDialogElement>(null);
 
   return (
     <footer className="border-border bg-surface-alt text-fg-muted border-t pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] text-sm">
@@ -422,21 +266,17 @@ function Footer() {
               <LicenseIcon />
               {t.footer.licenses}
             </button>
-            <button
-              type="button"
+            <LangLink
+              to="/privacy"
+              rel="nofollow"
               className={footerTextLinkClass}
               data-cuelume-hover="whisper"
               data-cuelume-press="bloom"
-              onClick={() => {
-                track("modal_open", { modal: "privacy" });
-                if (!privacyDialogRef.current?.open) {
-                  showDialog(privacyDialogRef.current);
-                }
-              }}
+              onClick={() => track("nav_click", { target: "privacy" })}
             >
               <PrivacyIcon />
               {t.footer.privacy}
-            </button>
+            </LangLink>
             <a
               href="https://github.com/TeenBiscuits/Pasame-Examenes"
               target="_blank"
@@ -452,7 +292,6 @@ function Footer() {
           </nav>
         </div>
         <LicensesModal dialogRef={licensesDialogRef} />
-        <PrivacyModal dialogRef={privacyDialogRef} />
       </div>
     </footer>
   );
@@ -464,48 +303,16 @@ export default function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <div className="bg-surface text-fg flex min-h-screen min-h-svh min-h-dvh flex-col font-sans">
-        <SessionTracker />
-        <ScrollToTop />
-        <Header />
-        <StarPopup />
-        <main className="flex-grow">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/:lang" element={<LangGuard />}>
-                <Route index element={<Home />} />
-                <Route path=":subjectId" element={<SubjectHome />} />
-                <Route
-                  path=":subjectId/practice"
-                  element={<Navigate to=".." relative="path" replace />}
-                />
-                <Route
-                  path=":subjectId/practice/:topic"
-                  element={<PracticeTopic />}
-                />
-                <Route
-                  path=":subjectId/exam/:examId"
-                  element={<ExamSimulation />}
-                />
-              </Route>
-              <Route path="/" element={<LangRedirect />} />
-              <Route path="/:subjectId" element={<LangRedirect />} />
-              <Route path="/:subjectId/practice" element={<LangRedirect />} />
-              <Route
-                path="/:subjectId/practice/:topic"
-                element={<LangRedirect />}
-              />
-              <Route
-                path="/:subjectId/exam/:examId"
-                element={<LangRedirect />}
-              />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-      </div>
-      {import.meta.env.DEV && <Measurer />}
-    </BrowserRouter>
+    <div className="bg-surface text-fg flex min-h-screen min-h-svh min-h-dvh flex-col font-sans">
+      <SessionTracker />
+      <ScrollToTop />
+      <Header />
+      <StarPopup />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      <Footer />
+      {import.meta.env.DEV ? <Measurer /> : null}
+    </div>
   );
 }

@@ -11,8 +11,8 @@ export const LANGS = ["en", "es", "gl"] as const;
 export const DEFAULT_LANG: Lang = "es";
 export const BUNDLE_ENTRY_POINT = "/src/main.tsx";
 export const SITEMAP_LASTMOD = {
-  global: "2026-07-25",
-  home: "2026-07-25",
+  global: "2026-08-16",
+  home: "2026-08-16",
 } as const;
 
 export const langMeta: Record<
@@ -193,6 +193,20 @@ export function buildHomeMeta(lang: Lang): PageMetaData {
         url: canonicalUrl,
         inLanguage: langMeta[lang].hreflang,
         description,
+      },
+      {
+        "@type": "FAQPage",
+        name: tr.home.faqTitle,
+        url: canonicalUrl,
+        inLanguage: langMeta[lang].hreflang,
+        mainEntity: tr.home.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
       },
     ],
     SITEMAP_LASTMOD.home,

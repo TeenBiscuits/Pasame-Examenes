@@ -7,6 +7,59 @@ export const en = {
     recentlyVisited: "Recently visited",
     clearRecent: "Clear recent subjects",
     quote: "Exams don't repeat, but they rhyme.",
+    faqTitle: "Frequently asked questions",
+    faqs: [
+      {
+        question: "What is Pásame Exámenes?",
+        answer:
+          "It is an open-source platform for practicing questions from subjects in the degree programmes taught at the Faculty of Computer Science of A Coruña (FIC), organized by topic and timed simulations.",
+      },
+      {
+        question: "How can I practice a subject?",
+        answer:
+          "Choose a subject card, select a topic, or start a practice session or exam from the subject page.",
+      },
+      {
+        question: "Practice by topic or take an exam?",
+        answer:
+          "Practicing by topic lets you focus on a specific block; exam mode or timed practice reproduces a complete session with a time limit.",
+      },
+      {
+        question: "What types of questions are available?",
+        answer:
+          "There are multiple-choice, text, matching, fill-in-the-blank, and multi-part questions. Multiple-choice and matching questions are auto-graded; open-ended questions are self-graded using the model answer.",
+      },
+      {
+        question: "What are model answers?",
+        answer:
+          "They are reference solutions that help you review and assess your own answers. They are extracted from original materials or provided by our contributors.",
+      },
+      {
+        question: "Is my progress saved?",
+        answer:
+          "Yes. Your progress, attempts, preferences, and recently visited subjects are saved locally in your browser. You do not need an account, but this data is not synchronized between devices and is deleted when you clear this site's data.",
+      },
+      {
+        question: "Why do some questions appear more than once?",
+        answer:
+          "Some questions are repeated or very similar across exam sessions or compilations. The app marks them so you can identify them and better assess the actual coverage of the syllabus. We try to find these matches as accurately as possible, but some may go unnoticed.",
+      },
+      {
+        question: "Where do the questions and documents come from?",
+        answer:
+          "Each subject identifies its sources. Some use authorized exams, while others use compilations or community materials. When a PDF or original material is available, it is linked from the relevant page together with its licensing information. Questions are extracted through automated processes and may contain errors; we work constantly to fix them, and you can help by reporting any errors you find.",
+      },
+      {
+        question: "Can I trust the answers?",
+        answer:
+          "We review the answers constantly. If an answer does not seem right, you can report the question and we can correct the error. Unlike Daypo tests or compilations uploaded to Wuolah, errors found here can be fixed and many answers from well-known compilations shared every day have already been corrected. As Linus's Law says: “Given enough eyeballs, all bugs are shallow.”",
+      },
+      {
+        question: "Who are you?",
+        answer:
+          "I am Pablo Portas López, with help from everyone who wants to contribute. Frustrated by outdated ways of studying for exams and wanting to help as many students as possible, I created this website: fast, modern, ad-free, transparent, and open source. I hope you find it useful.",
+      },
+    ],
   },
   subjectHome: {
     notFound: "Subject Not Found",

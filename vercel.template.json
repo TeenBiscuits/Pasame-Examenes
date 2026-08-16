@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "dist/client",
   "rewrites": __REWRITES__,
   "headers": [
     {

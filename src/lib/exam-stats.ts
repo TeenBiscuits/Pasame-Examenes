@@ -1,4 +1,4 @@
-import type { Exam, Question } from "../data/types";
+import type { Exam, QuestionSummary } from "../data/types";
 import { roundPoints } from "./points";
 
 const DEFAULT_PASS_PERCENTAGE = 0.5;
@@ -16,7 +16,7 @@ export function getExamPassPoints(exam: Exam, totalPoints: number) {
 
 export function getExamQuestionStats(
   exams: Exam[],
-  questions: Question[],
+  questions: QuestionSummary[],
 ): Map<string, ExamQuestionStats> {
   const stats = new Map<string, ExamQuestionStats>();
 

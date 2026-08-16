@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import type { Question, SubjectMeta } from "../data/types";
+import { useCallback, useMemo, useSyncExternalStore } from "react";
+import type { QuestionSummary, SubjectMeta } from "../data/types";
 
 const STORAGE_PREFIX = "exam-sources:v1:";
+const CHANGE_EVENT = "exam-sources-change";
 
 function getAvailableExamIds(subject: SubjectMeta): string[] {
   const examIds: string[] = [];
@@ -11,12 +12,11 @@ function getAvailableExamIds(subject: SubjectMeta): string[] {
   return examIds;
 }
 
-function readSelectedExamIds(
-  subjectId: string,
+function parseSelectedExamIds(
+  stored: string | null,
   availableExamIds: string[],
 ): string[] {
   try {
-    const stored = localStorage.getItem(`${STORAGE_PREFIX}${subjectId}`);
     if (!stored) return availableExamIds;
 
     const parsed: unknown = JSON.parse(stored);
@@ -32,10 +32,19 @@ function readSelectedExamIds(
   }
 }
 
-export function filterQuestionsByExamSelection(
-  questions: Question[],
+function readStoredSelection(storageKey: string | null): string | null {
+  if (!storageKey) return null;
+  try {
+    return localStorage.getItem(storageKey);
+  } catch {
+    return null;
+  }
+}
+
+export function filterQuestionsByExamSelection<T extends QuestionSummary>(
+  questions: T[],
   selectedExamIds: string[],
-): Question[] {
+): T[] {
   const selected = new Set(selectedExamIds);
   return questions.filter((question) => selected.has(question.examId));
 }
@@ -46,45 +55,35 @@ export function useExamSelection(subject: SubjectMeta | undefined) {
     () => (subject ? getAvailableExamIds(subject) : []),
     [subject],
   );
-  const availableExamIdsKey = availableExamIds.join(",");
   const storageKey = subjectId ? `${STORAGE_PREFIX}${subjectId}` : null;
-  const selectionKey = subjectId ? `${subjectId}:${availableExamIdsKey}` : null;
-  const [selectionState, setSelectionState] = useState<{
-    key: string | null;
-    ids: string[];
-  }>(() => ({
-    key: selectionKey,
-    ids: subject ? readSelectedExamIds(subject.id, availableExamIds) : [],
-  }));
-  const selectedExamIds = useMemo(
-    () =>
-      selectionState.key === selectionKey
-        ? selectionState.ids
-        : subject
-          ? readSelectedExamIds(subject.id, availableExamIds)
-          : [],
-    [
-      availableExamIds,
-      selectionKey,
-      selectionState.key,
-      selectionState.ids,
-      subject,
-    ],
+  const subscribe = useCallback(
+    (onChange: () => void) => {
+      if (!storageKey) return () => {};
+      const handleStorage = (event: StorageEvent) => {
+        if (event.key === storageKey) onChange();
+      };
+      window.addEventListener("storage", handleStorage);
+      window.addEventListener(CHANGE_EVENT, onChange);
+      return () => {
+        window.removeEventListener("storage", handleStorage);
+        window.removeEventListener(CHANGE_EVENT, onChange);
+      };
+    },
+    [storageKey],
   );
-
-  useEffect(() => {
-    if (!storageKey) return;
-
-    const handleStorage = (event: StorageEvent) => {
-      if (event.key !== storageKey || !subject) return;
-      setSelectionState({
-        key: selectionKey,
-        ids: readSelectedExamIds(subject.id, availableExamIds),
-      });
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, [storageKey, subject, availableExamIds, selectionKey]);
+  const getSnapshot = useCallback(
+    () => readStoredSelection(storageKey),
+    [storageKey],
+  );
+  const storedSelection = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    () => null,
+  );
+  const selectedExamIds = parseSelectedExamIds(
+    storedSelection,
+    availableExamIds,
+  );
 
   const updateSelectedExamIds = useCallback(
     (ids: string[]) => {
@@ -94,14 +93,14 @@ export function useExamSelection(subject: SubjectMeta | undefined) {
       const next = availableExamIds.filter((id) => requested.has(id));
       if (next.length === 0) return;
 
-      setSelectionState({ key: selectionKey, ids: next });
       try {
         localStorage.setItem(storageKey!, JSON.stringify(next));
+        window.dispatchEvent(new Event(CHANGE_EVENT));
       } catch {
         /* localStorage unavailable */
       }
     },
-    [availableExamIds, selectionKey, subjectId, storageKey],
+    [availableExamIds, subjectId, storageKey],
   );
 
   return {

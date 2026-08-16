@@ -3,6 +3,7 @@ import {
   useState,
   useEffect,
   useMemo,
+  useSyncExternalStore,
   type ReactNode,
   type RefObject,
 } from "react";
@@ -20,7 +21,7 @@ import CopyrightReportModal, {
 } from "../components/CopyrightReportModal";
 import ContentPolicyIcon from "../components/ContentPolicyIcon";
 import Hero from "../components/Hero";
-import type { Question, SubjectMeta, Topic } from "../data/types";
+import type { QuestionSummary, SubjectMeta, Topic } from "../data/types";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
@@ -49,7 +50,13 @@ import {
 } from "reicon-react";
 import { compactModalDialogClass, ModalHeader } from "../components/Modal";
 
-export default function SubjectHome() {
+const subscribeToHydration = () => () => {};
+
+export default function SubjectHome({
+  initialQuestions = [],
+}: {
+  initialQuestions?: QuestionSummary[];
+}) {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
   const { lang } = useLang();
@@ -59,12 +66,18 @@ export default function SubjectHome() {
   const examSourceDialogRef = useRef<HTMLDialogElement>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const { selectedExamIds, setSelectedExamIds } = useExamSelection(subject);
-  const [allQuestions, setAllQuestions] = useState<Question[]>([]);
+  const [allQuestions, setAllQuestions] =
+    useState<QuestionSummary[]>(initialQuestions);
   const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    null,
+    initialQuestions.length > 0 && subject ? subject.id : null,
   );
   const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
   const [, setProgressRevision] = useState(0);
+  const storageReady = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  );
   const selectedQuestions = useMemo(
     () => filterQuestionsByExamSelection(allQuestions, selectedExamIds),
     [allQuestions, selectedExamIds],
@@ -75,7 +88,7 @@ export default function SubjectHome() {
     [subject, allQuestions],
   );
   const progress =
-    subject && questionsLoaded
+    subject && questionsLoaded && storageReady
       ? getTopicProgress(
           subject.id,
           selectedQuestions.map((q) => ({ topic: q.topic, points: q.points })),
@@ -93,13 +106,21 @@ export default function SubjectHome() {
   useDocumentTitle(seoMeta?.title ?? t.home.title);
 
   useEffect(() => {
-    if (subject) {
+    if (subject && questionsLoadedFor !== subject.id) {
       getAllQuestions(subject.id).then((questions) => {
-        setAllQuestions(questions);
+        setAllQuestions(
+          questions.map(({ id, examId, topic, points, repeated }) => ({
+            id,
+            examId,
+            topic,
+            points,
+            repeated,
+          })),
+        );
         setQuestionsLoadedFor(subject.id);
       });
     }
-  }, [subject]);
+  }, [subject, questionsLoadedFor]);
 
   useSeoHead({
     title: seoMeta?.title ?? t.home.title,
@@ -323,7 +344,7 @@ function TopicsSection({
   onResetProgress,
 }: {
   subject: SubjectMeta;
-  questions: Question[];
+  questions: QuestionSummary[];
   progress: ReturnType<typeof getTopicProgress>;
   allExamSourcesSelected: boolean;
   onOpenExamSources: () => void;

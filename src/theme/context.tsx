@@ -1,9 +1,8 @@
 import {
-  useState,
   useCallback,
   useMemo,
   useEffect,
-  startTransition,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import {
@@ -14,13 +13,19 @@ import {
 } from "./types";
 import { ThemeContext } from "./context-value";
 
-function getInitialTheme(): Theme {
+const CHANGE_EVENT = "theme-change";
+
+function getStoredTheme(): Theme {
   try {
     const stored = localStorage.getItem("theme");
     if (stored && themeOrder.includes(stored as Theme)) return stored as Theme;
   } catch {
     /* localStorage unavailable */
   }
+  return "system";
+}
+
+function getServerTheme(): Theme {
   return "system";
 }
 
@@ -64,11 +69,23 @@ function applyTheme(theme: Theme): Theme {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
-
-  useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+  const theme = useSyncExternalStore(
+    (onChange) => {
+      const handleStorage = (event: StorageEvent) => {
+        if (event.key !== "theme") return;
+        applyTheme(getStoredTheme());
+        onChange();
+      };
+      window.addEventListener("storage", handleStorage);
+      window.addEventListener(CHANGE_EVENT, onChange);
+      return () => {
+        window.removeEventListener("storage", handleStorage);
+        window.removeEventListener(CHANGE_EVENT, onChange);
+      };
+    },
+    getStoredTheme,
+    getServerTheme,
+  );
 
   useEffect(() => {
     if (theme !== "system") return;
@@ -79,9 +96,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   const setTheme = useCallback((next: Theme) => {
-    startTransition(() => {
-      setThemeState(applyTheme(next));
-    });
+    applyTheme(next);
+    window.dispatchEvent(new Event(CHANGE_EVENT));
   }, []);
 
   const cycleTheme = useCallback(() => {

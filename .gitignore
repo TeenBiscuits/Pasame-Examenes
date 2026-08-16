@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.react-router
 *.local
 
 # Editor directories and files
@@ -28,6 +29,7 @@ public/sitemap.xml
 public/subjects-meta.json
 public/og
 src/seo/pageMetaMap.generated.ts
+src/subjects/questionSummaries.generated.ts
 
 # Env
 .env
