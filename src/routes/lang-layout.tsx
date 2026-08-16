@@ -1,23 +1,8 @@
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation, useParams } from "react-router";
 import { useLang } from "../i18n/hooks";
-import type { Lang } from "../i18n/context";
 import { isLang } from "../i18n/context-value";
-
-function detectBrowserLang(): Lang {
-  if (typeof navigator === "undefined") return "es";
-  const languages = navigator.languages?.length
-    ? navigator.languages
-    : [navigator.language];
-
-  for (const preferredLanguage of languages) {
-    const language = preferredLanguage.toLowerCase();
-    if (language.startsWith("en")) return "en";
-    if (language.startsWith("es")) return "es";
-    if (language.startsWith("gl")) return "gl";
-  }
-  return "es";
-}
+import { detectPreferredLang } from "../i18n/detect-lang";
 
 export default function LangLayout() {
   const { lang: paramLang } = useParams<{ lang: string }>();
@@ -32,7 +17,7 @@ export default function LangLayout() {
   if (!validLang) {
     return (
       <Navigate
-        to={`/${detectBrowserLang()}${pathname}${search}${hash}`}
+        to={`/${detectPreferredLang()}${pathname}${search}${hash}`}
         replace
       />
     );
