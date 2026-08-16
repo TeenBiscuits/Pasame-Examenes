@@ -1,5 +1,6 @@
 import { AngleDown } from "reicon-react";
 import { useT } from "../i18n/hooks";
+import { playSound } from "../lib/sound";
 
 export default function FaqSection() {
   const t = useT();
@@ -17,6 +18,9 @@ export default function FaqSection() {
           <details
             key={faq.question}
             className="faq-item border-border bg-surface-alt overflow-hidden rounded-xl border-2"
+            onToggle={() => {
+              playSound("toggle");
+            }}
           >
             <summary className="faq-summary text-fg flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-left font-semibold sm:px-5">
               <span>{faq.question}</span>
