@@ -21,6 +21,11 @@ import {
 import { Book, Trash5 } from "reicon-react";
 import SecretToro from "../components/SecretToro";
 import FaqSection from "../components/FaqSection";
+import { questionCountsBySubject } from "../subjects/questionCounts.generated";
+import {
+  HomeCardsSkeleton,
+  HomeCardsSkeletonFixture,
+} from "../components/LoadingSkeletons";
 
 const MAX_SLOTS = 3;
 
@@ -129,6 +134,7 @@ export default function Home() {
                   {slot.type === "subject" ? (
                     <LangLink
                       to={`/${slot.subject.id}`}
+                      prefetch="intent"
                       data-cuelume-hover="tick"
                       data-cuelume-press
                       onClick={() => {
@@ -159,32 +165,46 @@ export default function Home() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
-          {subjects.map((subject) => (
-            <div key={subject.id}>
-              <SubjectCard subject={subject} />
-            </div>
-          ))}
-          <div>
-            <button
-              type="button"
-              data-cuelume-hover="tick"
-              data-cuelume-press="bloom"
-              onClick={() => {
-                modalRef.current?.open();
-                track("add_subject_modal_open");
-              }}
-              className="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent hover:bg-accent-light/30 block h-full min-h-[160px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 hover:shadow-md"
-            >
-              <div className="flex h-full flex-col items-center justify-center gap-2">
-                <span className="text-4xl leading-none font-light">
-                  <Book className="size-8" aria-hidden="true" />
-                </span>
-                <span className="text-sm font-medium">{t.home.addSubject}</span>
+        <HomeCardsSkeleton
+          loading={false}
+          fixture={<HomeCardsSkeletonFixture count={subjects.length + 1} />}
+        >
+          <div className="grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
+            {subjects.map((subject) => (
+              <div key={subject.id}>
+                <SubjectCard
+                  subject={subject}
+                  questionCount={
+                    questionCountsBySubject[
+                      subject.id as keyof typeof questionCountsBySubject
+                    ] ?? 0
+                  }
+                />
               </div>
-            </button>
+            ))}
+            <div>
+              <button
+                type="button"
+                data-cuelume-hover="tick"
+                data-cuelume-press="bloom"
+                onClick={() => {
+                  modalRef.current?.open();
+                  track("add_subject_modal_open");
+                }}
+                className="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent hover:bg-accent-light/30 block h-full min-h-[160px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 hover:shadow-md"
+              >
+                <div className="flex h-full flex-col items-center justify-center gap-2">
+                  <span className="text-4xl leading-none font-light">
+                    <Book className="size-8" aria-hidden="true" />
+                  </span>
+                  <span className="text-sm font-medium">
+                    {t.home.addSubject}
+                  </span>
+                </div>
+              </button>
+            </div>
           </div>
-        </div>
+        </HomeCardsSkeleton>
 
         <FaqSection />
 

@@ -49,6 +49,7 @@ import {
   Restart,
 } from "reicon-react";
 import { compactModalDialogClass, ModalHeader } from "../components/Modal";
+import { SubjectContentSkeleton } from "../components/LoadingSkeletons";
 
 const subscribeToHydration = () => () => {};
 
@@ -172,33 +173,37 @@ export default function SubjectHome({
       {questionsLoaded && null}
       <SubjectHeader subject={subject} description={description} />
       <div className="mx-auto max-w-6xl px-4 pb-8">
-        <ExamSourceSelector
-          subject={subject}
-          selectedExamIds={selectedExamIds}
-          onChange={setSelectedExamIds}
-          dialogRef={examSourceDialogRef}
-          examStats={examStats}
-        />
-        <TopicsSection
-          subject={subject}
-          questions={selectedQuestions}
-          progress={progress}
-          allExamSourcesSelected={allExamSourcesSelected}
-          onOpenExamSources={() => showDialog(examSourceDialogRef.current)}
-          onResetProgress={() => {
-            track("reset_topic_progress_modal_open", {
-              subjectId: currentSubjectId,
-            });
-            showDialog(resetProgressDialogRef.current);
-          }}
-        />
-        <ExamSimulationsSection
-          subject={subject}
-          hasAuthorizedExams={hasAuthorizedExams}
-          examStats={examStats}
-          onAddExam={() => examModalRef.current?.open()}
-          onReportCopyright={() => copyrightModalRef.current?.open()}
-        />
+        <SubjectContentSkeleton loading={false}>
+          <>
+            <ExamSourceSelector
+              subject={subject}
+              selectedExamIds={selectedExamIds}
+              onChange={setSelectedExamIds}
+              dialogRef={examSourceDialogRef}
+              examStats={examStats}
+            />
+            <TopicsSection
+              subject={subject}
+              questions={selectedQuestions}
+              progress={progress}
+              allExamSourcesSelected={allExamSourcesSelected}
+              onOpenExamSources={() => showDialog(examSourceDialogRef.current)}
+              onResetProgress={() => {
+                track("reset_topic_progress_modal_open", {
+                  subjectId: currentSubjectId,
+                });
+                showDialog(resetProgressDialogRef.current);
+              }}
+            />
+            <ExamSimulationsSection
+              subject={subject}
+              hasAuthorizedExams={hasAuthorizedExams}
+              examStats={examStats}
+              onAddExam={() => examModalRef.current?.open()}
+              onReportCopyright={() => copyrightModalRef.current?.open()}
+            />
+          </>
+        </SubjectContentSkeleton>
 
         <AddExamModal
           ref={examModalRef}
@@ -556,6 +561,9 @@ function ExamCard({
     <Link
       to={`/${subject.id}/exam/${exam.id}`}
       rel="nofollow"
+      prefetch="intent"
+      onMouseEnter={() => void getAllQuestions(subject.id)}
+      onFocus={() => void getAllQuestions(subject.id)}
       data-cuelume-hover="tick"
       data-cuelume-press
       className="interactive-card focus-visible:ring-accent flex min-h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
@@ -616,7 +624,7 @@ function ExamActionButtons({
           onAddExam();
           track("add_exam_modal_open", { subjectId });
         }}
-        className="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent hover:bg-accent-light/30 block h-full min-h-[122px] min-w-0 w-full rounded-xl border-2 border-dashed p-4 hover:shadow-md"
+        className="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent hover:bg-accent-light/30 block h-full min-h-[122px] w-full min-w-0 rounded-xl border-2 border-dashed p-4 hover:shadow-md"
       >
         <div className="flex h-full flex-col items-center justify-center gap-2">
           <FilePlus className="size-8" aria-hidden="true" />
@@ -632,7 +640,7 @@ function ExamActionButtons({
           onReportCopyright();
           track("copyright_report_modal_open", { subjectId });
         }}
-        className="interactive-card border-danger-border text-danger-fg bg-danger-light hover:text-fg hover:border-danger-fg hover:bg-danger-light block h-full min-h-[122px] min-w-0 w-full rounded-xl border-2 border-dashed p-4 hover:shadow-md"
+        className="interactive-card border-danger-border text-danger-fg bg-danger-light hover:text-fg hover:border-danger-fg hover:bg-danger-light block h-full min-h-[122px] w-full min-w-0 rounded-xl border-2 border-dashed p-4 hover:shadow-md"
       >
         <div className="flex h-full flex-col items-center justify-center gap-2">
           <Copyright className="text-danger-fg size-8" aria-hidden="true" />

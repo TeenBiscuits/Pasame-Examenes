@@ -1,21 +1,22 @@
-import { useState, useEffect } from "react";
 import { LangLink as Link } from "../lib/lang-link";
 import type { SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { recordSubjectClick } from "../lib/recent";
-import { getAllQuestions } from "../subjects";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import ContentPolicyIcon from "./ContentPolicyIcon";
 
 interface SubjectCardProps {
   subject: SubjectMeta;
+  questionCount: number;
 }
 
-export default function SubjectCard({ subject }: SubjectCardProps) {
+export default function SubjectCard({
+  subject,
+  questionCount,
+}: SubjectCardProps) {
   const t = useT();
-  const [questionCount, setQuestionCount] = useState<number | null>(null);
   const availableExamCount = subject.exams.filter(
     (exam) => !exam.deleteRights,
   ).length;
@@ -23,19 +24,10 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
     ? t.subjectCard.exams
     : t.subjectCard.practiceSets;
 
-  useEffect(() => {
-    let mounted = true;
-    getAllQuestions(subject.id).then((qs) => {
-      if (mounted) setQuestionCount(qs.length);
-    });
-    return () => {
-      mounted = false;
-    };
-  }, [subject.id]);
-
   return (
     <Link
       to={`/${subject.id}`}
+      prefetch="intent"
       data-cuelume-hover="tick"
       data-cuelume-press
       className="interactive-card focus-visible:ring-accent flex min-h-[160px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
@@ -74,8 +66,7 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       </div>
       <div className="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-5 py-1 text-xs">
         <span>
-          {questionCount !== null ? questionCount : "..."}{" "}
-          {t.subjectCard.questions}
+          {questionCount} {t.subjectCard.questions}
         </span>
         <div className="flex shrink-0 items-center gap-2">
           <span>

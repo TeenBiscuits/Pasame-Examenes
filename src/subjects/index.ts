@@ -66,5 +66,6 @@ export async function getTopicMegaTopicLabel(
 
 // Reachability marker: makes _visibility.ts discoverable by static analysis
 // tools so they see every subject's named exports as consumed. The glob
-// patterns above do the actual work at runtime.
-import("./_visibility");
+// patterns above do the actual work at runtime. Keep this server-only so the
+// browser never downloads every question module as background work.
+if (import.meta.env.SSR) void import("./_visibility");

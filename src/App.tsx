@@ -14,14 +14,101 @@ import { Github01Icon } from "@hugeicons/core-free-icons";
 import { closeDialog, showDialog, useDialogDismiss } from "./lib/dialog";
 import { ModalHeader, wideModalDialogClass } from "./components/Modal";
 import { LangLink } from "./lib/lang-link";
+import { getSubject, subjects } from "./subjects";
+import {
+  HomeCardsSkeleton,
+  HomeCardsSkeletonFixture,
+  SubjectContentSkeleton,
+  SubjectContentSkeletonFixture,
+} from "./components/LoadingSkeletons";
 
 export function PageLoader() {
+  const { pathname } = useLocation();
+  const parts = pathname.split("/").filter(Boolean);
+  const lang = parts[0] === "en" || parts[0] === "gl" ? parts[0] : "es";
+  const subject = parts.length === 2 ? getSubject(parts[1]) : undefined;
+  const copy = {
+    en: {
+      subtitle:
+        "Open-source platform for practicing FIC exam questions. Choose a subject below to get started.",
+      loading: "Loading content…",
+    },
+    es: {
+      subtitle:
+        "Plataforma de código abierto para practicar preguntas de exámenes de la FIC. Elige una asignatura para empezar.",
+      loading: "Cargando contenido…",
+    },
+    gl: {
+      subtitle:
+        "Plataforma de código aberto para practicar preguntas de exames da FIC. Elixe unha materia para comezar.",
+      loading: "Cargando contido…",
+    },
+  }[lang];
+
   return (
     <div
-      className="flex items-center justify-center py-16"
-      style={{ minHeight: "60svh" }}
+      className="bg-surface text-fg min-h-screen min-h-svh font-sans"
+      aria-busy="true"
     >
-      <div className="border-accent size-8 animate-spin rounded-full border-2 border-t-transparent" />
+      <header className="safe-area-top bg-surface-alt border-border border-b">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+          <div className="flex items-center gap-2 text-sm font-bold sm:text-lg">
+            <img
+              src="/favicon.svg"
+              alt=""
+              width={36}
+              height={36}
+              className="size-9"
+            />
+            <span>Pásame Exámenes</span>
+          </div>
+          <div
+            className="bg-border h-8 w-24 rounded-lg opacity-70"
+            aria-hidden="true"
+          />
+        </div>
+      </header>
+      <main>
+        <section className="px-4 py-16 text-center sm:py-20">
+          {subject ? (
+            <>
+              <p className="text-fg-muted mb-3 font-mono text-xs tracking-widest uppercase">
+                {subject.courseCode} &middot; {subject.degree}
+              </p>
+              <h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+                {subject.name}
+              </h1>
+              <div
+                className="bg-border mx-auto mt-5 h-5 max-w-xl rounded-full opacity-70"
+                aria-hidden="true"
+              />
+            </>
+          ) : (
+            <>
+              <h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+                Pásame Exámenes
+              </h1>
+              <p className="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl">
+                {copy.subtitle}
+              </p>
+            </>
+          )}
+        </section>
+        <div className="mx-auto max-w-6xl px-4 pb-14">
+          {subject ? (
+            <SubjectContentSkeleton loading>
+              <SubjectContentSkeletonFixture />
+            </SubjectContentSkeleton>
+          ) : (
+            <HomeCardsSkeleton loading>
+              <HomeCardsSkeletonFixture count={subjects.length + 1} />
+            </HomeCardsSkeleton>
+          )}
+        </div>
+        <span className="sr-only" role="status">
+          {copy.loading}
+        </span>
+      </main>
     </div>
   );
 }
@@ -144,7 +231,7 @@ function LicensesModal({
             rel="noopener noreferrer"
             data-cuelume-hover="tick"
             data-cuelume-press
-            className="interactive-card group flex h-full min-w-0 flex-col rounded-xl text-left focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+            className="interactive-card group focus-visible:ring-accent flex h-full min-w-0 flex-col rounded-xl text-left focus-visible:ring-2 focus-visible:outline-none"
             onClick={() => track("external_link_click", { target: "cc_by_sa" })}
           >
             <div className="border-border bg-surface-alt flex flex-1 flex-col rounded-t-xl border-x-2 border-t-2 px-4 pt-4 pb-3">
@@ -164,7 +251,7 @@ function LicensesModal({
               </p>
             </div>
             <div className="bg-card-footer border-card-footer-border text-fg flex items-center gap-1.5 rounded-b-xl border-x-2 border-b-2 px-4 py-2 text-sm">
-              <span className="inline-flex items-center gap-1.5 font-medium transition-colors group-hover:text-accent-fg group-focus-visible:text-accent-fg">
+              <span className="group-hover:text-accent-fg group-focus-visible:text-accent-fg inline-flex items-center gap-1.5 font-medium transition-colors">
                 {t.footer.license}
                 <ExternalLinkIcon />
               </span>
@@ -176,7 +263,7 @@ function LicensesModal({
             rel="noopener noreferrer"
             data-cuelume-hover="tick"
             data-cuelume-press
-            className="interactive-card group flex h-full min-w-0 flex-col rounded-xl text-left focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+            className="interactive-card group focus-visible:ring-accent flex h-full min-w-0 flex-col rounded-xl text-left focus-visible:ring-2 focus-visible:outline-none"
             onClick={() => track("external_link_click", { target: "apache_2" })}
           >
             <div className="border-border bg-surface-alt flex flex-1 flex-col rounded-t-xl border-x-2 border-t-2 px-4 pt-4 pb-3">
@@ -198,7 +285,7 @@ function LicensesModal({
               </p>
             </div>
             <div className="bg-card-footer border-card-footer-border text-fg flex items-center gap-1.5 rounded-b-xl border-x-2 border-b-2 px-4 py-2 text-sm">
-              <span className="inline-flex items-center gap-1.5 font-medium transition-colors group-hover:text-accent-fg group-focus-visible:text-accent-fg">
+              <span className="group-hover:text-accent-fg group-focus-visible:text-accent-fg inline-flex items-center gap-1.5 font-medium transition-colors">
                 {t.footer.license}
                 <ExternalLinkIcon />
               </span>
@@ -303,7 +390,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-surface text-fg flex min-h-screen min-h-svh min-h-dvh flex-col font-sans">
+    <div className="bg-surface text-fg flex min-h-dvh min-h-screen min-h-svh flex-col font-sans">
       <SessionTracker />
       <ScrollToTop />
       <Header />

@@ -9,6 +9,7 @@ import {
 import "@fontsource-variable/onest";
 import "@fontsource-variable/cascadia-code";
 import "./index.css";
+import "./bones/registry";
 import App, { PageLoader } from "./App";
 import { I18nProvider } from "./i18n/context";
 import type { Lang } from "./i18n/context";

@@ -2,6 +2,34 @@
 @import "tailwind-animations";
 @plugin "@tailwindcss/typography";
 
+.app-skeleton-bone,
+.app-skeleton-placeholder {
+  background-image: linear-gradient(
+    105deg,
+    var(--color-border) 35%,
+    color-mix(in oklch, var(--color-border), var(--color-fg-muted) 18%) 50%,
+    var(--color-border) 65%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: app-skeleton-shimmer 1.8s linear infinite !important;
+}
+
+@keyframes app-skeleton-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-skeleton-bone,
+  .app-skeleton-placeholder {
+    animation: none !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   color-scheme: light dark;

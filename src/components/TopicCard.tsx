@@ -4,6 +4,7 @@ import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { formatPoints } from "../lib/points";
+import { getAllQuestions } from "../subjects";
 
 interface TopicCardProps {
   subjectId: string;
@@ -92,6 +93,9 @@ export default function TopicCard({
     <Link
       to={`/${subjectId}/practice/${topic.key}`}
       rel="nofollow"
+      prefetch="intent"
+      onMouseEnter={() => void getAllQuestions(subjectId)}
+      onFocus={() => void getAllQuestions(subjectId)}
       data-cuelume-hover="tick"
       data-cuelume-press
       className="interactive-card focus-visible:ring-accent flex h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"

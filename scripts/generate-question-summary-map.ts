@@ -14,6 +14,7 @@ interface QuestionSummary {
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const subjectsDir = resolve(root, "src", "subjects");
 const outPath = resolve(subjectsDir, "questionSummaries.generated.ts");
+const countsOutPath = resolve(subjectsDir, "questionCounts.generated.ts");
 
 function propertyName(node: ts.PropertyName): string | undefined {
   if (ts.isIdentifier(node) || ts.isStringLiteral(node)) return node.text;
@@ -116,6 +117,22 @@ const output = [
 ].join("\n");
 
 writeFileSync(outPath, output);
+writeFileSync(
+  countsOutPath,
+  [
+    `export const questionCountsBySubject = ${JSON.stringify(
+      Object.fromEntries(
+        Object.entries(summaries).map(([subjectId, questions]) => [
+          subjectId,
+          questions.length,
+        ]),
+      ),
+      null,
+      2,
+    )} as const satisfies Record<string, number>;`,
+    "",
+  ].join("\n"),
+);
 console.log(
-  `✓ Generated question summaries for ${Object.keys(summaries).length} subjects → ${outPath}`,
+  `✓ Generated question summaries and counts for ${Object.keys(summaries).length} subjects`,
 );

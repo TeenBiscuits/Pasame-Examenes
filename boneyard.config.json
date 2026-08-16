@@ -1,0 +1,7 @@
+{
+  "breakpoints": [375, 768, 1280],
+  "out": "./src/bones",
+  "wait": 500,
+  "animate": "solid",
+  "boneClass": "app-skeleton-bone"
+}
