@@ -20,6 +20,7 @@ import {
 } from "../lib/recent";
 import { Book, Trash5 } from "reicon-react";
 import SecretToro from "../components/SecretToro";
+import FaqSection from "../components/FaqSection";
 
 const MAX_SLOTS = 3;
 
@@ -184,6 +185,8 @@ export default function Home() {
             </button>
           </div>
         </div>
+
+        <FaqSection />
 
         <blockquote className="border-border text-fg-secondary mx-auto mt-14 max-w-2xl border-y py-8 text-center text-xl font-medium italic sm:text-2xl">
           “{t.home.quote}”

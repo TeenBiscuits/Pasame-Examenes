@@ -67,6 +67,30 @@ body {
   -webkit-user-select: none;
 }
 
+/* ── FAQ disclosures ── */
+.faq-summary {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-chevron {
+  transition: transform 0.2s ease-out;
+}
+
+.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-chevron {
+    transition: none;
+  }
+}
+
 :is(
   textarea,
   select,

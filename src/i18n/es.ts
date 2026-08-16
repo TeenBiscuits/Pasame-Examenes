@@ -9,6 +9,59 @@ export const es: Translations = {
     recentlyVisited: "Visitadas recientemente",
     clearRecent: "Limpiar asignaturas recientes",
     quote: "Los exámenes no se repiten, pero riman",
+    faqTitle: "Preguntas frecuentes",
+    faqs: [
+      {
+        question: "¿Qué es Pásame Exámenes?",
+        answer:
+          "Es una plataforma de código abierto para practicar preguntas de asignaturas de los grados impartidos en la Facultade de Informática da Coruña (FIC), organizadas por temas y simulaciones cronometradas.",
+      },
+      {
+        question: "¿Cómo puedo practicar una asignatura?",
+        answer:
+          "Elige una tarjeta de asignatura, selecciona un tema o inicia una práctica o un examen desde la página de la asignatura.",
+      },
+      {
+        question: "¿Practicar por tema o hacer un examen?",
+        answer:
+          "Practicar por tema permite concentrarse en un bloque concreto; el modo examen o práctica cronometrada reproduce una sesión completa con límite de tiempo.",
+      },
+      {
+        question: "¿Qué tipos de preguntas hay?",
+        answer:
+          "Hay preguntas de tipo test, texto, emparejamiento, rellenar huecos y preguntas con varias partes. Las preguntas tipo test y de emparejamiento se autocorrigen; las preguntas abiertas se autoevalúan usando la respuesta modelo.",
+      },
+      {
+        question: "¿Qué son las respuestas modelo?",
+        answer:
+          "Son soluciones de referencia para revisar y valorar tus propias respuestas. Se extraen de los materiales originales o las aportan nuestros colaboradores.",
+      },
+      {
+        question: "¿Se guarda mi progreso?",
+        answer:
+          "Sí. El progreso, los intentos, las preferencias y las asignaturas visitadas se guardan localmente en el navegador. No hace falta crear una cuenta, pero esos datos no se sincronizan entre dispositivos y se pierden al borrar los datos de este sitio.",
+      },
+      {
+        question: "¿Por qué algunas preguntas aparecen repetidas?",
+        answer:
+          "Algunas preguntas se repiten o son muy parecidas entre convocatorias o recopilatorios. La aplicación las marca para que puedas identificarlas y valorar mejor la cobertura real del temario. Tratamos de encontrar estas coincidencias con la mayor precisión posible, pero puede que algunas pasen desapercibidas.",
+      },
+      {
+        question: "¿De dónde salen las preguntas y los documentos?",
+        answer:
+          "Cada asignatura indica sus fuentes. Algunas utilizan exámenes autorizados y otras recopilatorios o materiales comunitarios. Cuando existe un PDF o material original, se enlaza desde la página correspondiente junto con la información de licencia. Las preguntas se extraen mediante procesos automatizados y pueden contener errores; trabajamos constantemente para corregirlos y puedes ayudarnos a localizar los que encuentres reportándolos.",
+      },
+      {
+        question: "¿Puedo confiar en las respuestas?",
+        answer:
+          "Revisamos las respuestas constantemente. Si una respuesta no te cuadra, puedes reportar la pregunta y podremos corregir el error. A diferencia de los tests de Daypo o de los recopilatorios subidos a Wuolah, los errores que encuentres aquí se pueden corregir y ya hemos corregido muchas respuestas de recopilatorios conocidos que se comparten a diario. Como dice la ley de Linus: «Dado un número suficientemente elevado de ojos, todos los errores se vuelven obvios».",
+      },
+      {
+        question: "¿Quiénes sois?",
+        answer:
+          "Soy Pablo Portas López y cuento con la ayuda de todas las personas que quieren colaborar. Frustrado por las formas anticuadas de estudiar para los exámenes y queriendo ayudar al mayor número posible de estudiantes, creé esta web: rápida, moderna, sin anuncios, transparente y de código abierto. Espero que te resulte útil.",
+      },
+    ],
   },
   subjectHome: {
     notFound: "Asignatura no encontrada",

@@ -194,6 +194,20 @@ export function buildHomeMeta(lang: Lang): PageMetaData {
         inLanguage: langMeta[lang].hreflang,
         description,
       },
+      {
+        "@type": "FAQPage",
+        name: tr.home.faqTitle,
+        url: canonicalUrl,
+        inLanguage: langMeta[lang].hreflang,
+        mainEntity: tr.home.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      },
     ],
     SITEMAP_LASTMOD.home,
   );
