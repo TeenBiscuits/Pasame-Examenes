@@ -6,7 +6,7 @@ import tseslint from "typescript-eslint";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores(["dist", "scripts", "temp"]),
+  globalIgnores([".react-router", "dist", "scripts", "temp"]),
   {
     files: ["**/*.{ts,tsx}"],
     extends: [
@@ -21,6 +21,15 @@ export default defineConfig([
         tsconfigRootDir: import.meta.dirname,
         project: ["./tsconfig.app.json", "./tsconfig.node.json"],
       },
+    },
+    rules: {
+      "react-refresh/only-export-components": [
+        "error",
+        {
+          allowConstantExport: true,
+          allowExportNames: ["HydrateFallback", "Layout", "meta"],
+        },
+      ],
     },
   },
 ]);

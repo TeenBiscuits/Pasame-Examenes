@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useSyncExternalStore } from "react";
 import { subjects } from "../subjects";
 import SubjectCard from "../components/SubjectCard";
 import Hero from "../components/Hero";
@@ -13,8 +13,10 @@ import { LangLink } from "../lib/lang-link";
 import { buildHomeMeta } from "../seo/meta";
 import {
   getRecentSubjects,
+  getServerRecentSubjects,
   recordSubjectClick,
   clearRecentSubjects,
+  subscribeToRecentSubjects,
 } from "../lib/recent";
 import { Book, Trash5 } from "reicon-react";
 import SecretToro from "../components/SecretToro";
@@ -61,9 +63,11 @@ export default function Home() {
     indexable: true,
   });
   const modalRef = useRef<AddSubjectModalHandle>(null);
-  const [recentKey, setRecentKey] = useState(0);
-
-  const recentIds = getRecentSubjects();
+  const recentIds = useSyncExternalStore(
+    subscribeToRecentSubjects,
+    getRecentSubjects,
+    getServerRecentSubjects,
+  );
   const recentSubjects = recentIds
     .map((id) => subjects.find((s) => s.id === id))
     .filter((s): s is NonNullable<typeof s> => s != null);
@@ -71,7 +75,6 @@ export default function Home() {
   function handleClearRecent() {
     clearRecentSubjects();
     track("clear_recent_subjects", { count: recentSubjects.length });
-    setRecentKey((k) => k + 1);
   }
 
   const slots = Array.from({ length: MAX_SLOTS }, (_, i) => {
@@ -96,7 +99,7 @@ export default function Home() {
       </Hero>
       <div className="animate-fade-in animate-duration-fast mx-auto max-w-6xl px-4 pb-14 text-center">
         {recentSubjects.length > 0 && (
-          <div className="mb-6 text-left" key={recentKey}>
+          <div className="mb-6 text-left">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-fg-muted text-sm font-semibold tracking-wide uppercase">
                 {t.home.recentlyVisited}

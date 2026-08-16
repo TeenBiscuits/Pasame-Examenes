@@ -56,6 +56,11 @@ export interface Question {
   repeated?: boolean;
 }
 
+export type QuestionSummary = Pick<
+  Question,
+  "id" | "examId" | "topic" | "points" | "repeated"
+>;
+
 export interface Topic {
   key: string;
   label: string;
