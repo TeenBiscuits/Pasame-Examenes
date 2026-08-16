@@ -45,11 +45,10 @@ export default function Header() {
         >
           <img
             src="/favicon.svg"
-            alt=""
+            alt="Logotipo de Pásame Exámenes"
             width={36}
             height={36}
             className="size-9"
-            aria-hidden="true"
           />
           <p className="text-sm sm:text-lg">{t.home.title}</p>
         </Link>
