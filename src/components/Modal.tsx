@@ -78,9 +78,9 @@ export function ModalHeader({
 }) {
   return (
     <div className="border-border mb-5 flex items-center justify-between gap-4 border-b pb-4">
-      <h2 id={titleId} className={modalTitleClass}>
+      <div id={titleId} className={modalTitleClass}>
         {children}
-      </h2>
+      </div>
       <button
         type="button"
         data-cuelume-press="droplet"

@@ -6,6 +6,7 @@ export default [
   route(":subjectId/exam/:examId", "./routes/legacy-exam-redirect.tsx"),
   route(":lang", "./routes/lang-layout.tsx", [
     index("./routes/home.tsx"),
+    route("privacy", "./routes/privacy.tsx"),
     route(":subjectId", "./routes/subject.tsx"),
     route(":subjectId/practice", "./routes/subject-practice-redirect.tsx"),
     route(":subjectId/practice/:topic", "./routes/practice-topic.tsx"),

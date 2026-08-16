@@ -105,12 +105,12 @@ export default function StarPopup() {
           <StarIcon />
         </button>
 
-        <h2
+        <div
           id="star-popup-title"
           className="text-fg mb-2 text-lg font-semibold"
         >
           {t.starPopup.title}
-        </h2>
+        </div>
         <p className="text-fg-secondary mb-6 text-sm">{t.starPopup.subtitle}</p>
 
         <div className="flex flex-col gap-2">
