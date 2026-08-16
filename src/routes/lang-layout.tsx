@@ -7,12 +7,12 @@ import { detectPreferredLang } from "../i18n/detect-lang";
 export default function LangLayout() {
   const { lang: paramLang } = useParams<{ lang: string }>();
   const { pathname, search, hash } = useLocation();
-  const { lang, setLang } = useLang();
+  const { setLang } = useLang();
   const validLang = isLang(paramLang) ? paramLang : null;
 
   useEffect(() => {
-    if (validLang && validLang !== lang) setLang(validLang);
-  }, [validLang, lang, setLang]);
+    if (validLang) setLang(validLang);
+  }, [validLang, setLang]);
 
   if (!validLang) {
     return (
