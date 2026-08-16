@@ -268,6 +268,7 @@ function Footer() {
             </button>
             <LangLink
               to="/privacy"
+              rel="nofollow"
               className={footerTextLinkClass}
               data-cuelume-hover="whisper"
               data-cuelume-press="bloom"

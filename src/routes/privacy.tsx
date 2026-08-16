@@ -16,6 +16,7 @@ export const meta: MetaFunction = ({ params }) => {
   return [
     { title: `${t.footer.privacyTitle} | ${t.seo.siteName}` },
     { name: "description", content: t.footer.privacySummary },
+    { name: "robots", content: "noindex, nofollow" },
   ];
 };
 
