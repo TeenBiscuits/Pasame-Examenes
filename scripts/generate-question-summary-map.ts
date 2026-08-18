@@ -108,7 +108,7 @@ function parseQuestions(sourcePath: string): ParsedQuestion[] {
           const sourceText = element.getText(source);
           const imageNames = [
             ...sourceText.matchAll(
-              /getImage\s*\(\s*imageMap\s*,\s*["']([^"']+)["']\s*\)/g,
+              /getImage\s*\(\s*imageMap\s*,\s*["']([^"']+)["']\s*,?\s*\)/g,
             ),
           ].map((match) => match[1]);
 
@@ -136,6 +136,7 @@ function safeModuleName(value: string): string {
 
 function writeQuestionPayload(
   outPath: string,
+  subjectId: string,
   questions: ParsedQuestion[],
 ): void {
   const imageNames = [
@@ -143,7 +144,7 @@ function writeQuestionPayload(
   ].sort();
   const imageImports =
     imageNames.length > 0
-      ? `import type { Picture } from "vite-imagetools";\nimport { getImage } from "../../../../lib/image";\nimport type { ImageMap } from "../../../../lib/image";\n\nconst imageMap = import.meta.glob<{ default: Picture }>(\n  ${JSON.stringify(imageNames.map((name) => `./assets/${name}`))},\n  {\n    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },\n    eager: true,\n  },\n) as ImageMap;\n\n`
+      ? `import type { Picture } from "vite-imagetools";\nimport { getImage } from "../../../../lib/image";\nimport type { ImageMap } from "../../../../lib/image";\n\nconst rawImageMap = import.meta.glob<{ default: Picture }>(\n  ${JSON.stringify(imageNames.map((name) => `../../../../${subjectId}/assets/${name}`))},\n  {\n    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },\n    eager: true,\n  },\n);\nconst imageMap = Object.fromEntries(\n  Object.entries(rawImageMap).map(([path, image]) => [\n    "./assets/" + path.slice(path.lastIndexOf("/") + 1),\n    image,\n  ]),\n) as ImageMap;\n\n`
       : "";
 
   const output = [
@@ -200,12 +201,14 @@ for (const entry of readdirSync(subjectsDir, { withFileTypes: true })) {
   for (const [topic, questions] of topics) {
     writeQuestionPayload(
       resolve(topicsDir, `${safeModuleName(topic)}.ts`),
+      entry.name,
       questions,
     );
   }
   for (const [examId, questions] of exams) {
     writeQuestionPayload(
       resolve(examsDir, `${safeModuleName(examId)}.ts`),
+      entry.name,
       questions,
     );
   }

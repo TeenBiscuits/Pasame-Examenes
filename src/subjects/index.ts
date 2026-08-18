@@ -70,6 +70,8 @@ export async function getTopicMegaTopicLabel(
   return subject.megatopics.find((mt) => mt.topics.includes(topicKey))?.label;
 }
 
-// `_visibility.ts` is intentionally not imported here. It exists for static
-// analysis, while this module must not make every canonical question file
-// reachable from the client runtime graph.
+// Keep the reachability marker available to React Doctor and other static
+// analysis tools without loading all canonical question files in production.
+if (import.meta.env.DEV) {
+  void import("./_visibility");
+}
