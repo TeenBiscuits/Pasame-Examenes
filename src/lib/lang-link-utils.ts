@@ -14,3 +14,7 @@ export function replaceLangInPath(pathname: string, newLang: Lang): string {
   }
   return buildLangPath(newLang, pathname === "/" ? "/" : pathname);
 }
+
+export function buildLocationSuffix(searchStr: string, hash: string): string {
+  return `${searchStr}${hash ? `#${hash}` : ""}`;
+}

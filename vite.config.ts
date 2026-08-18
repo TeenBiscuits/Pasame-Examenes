@@ -1,12 +1,17 @@
 import { defineConfig } from "vite";
-import { reactRouter } from "@react-router/dev/vite";
+import react from "@vitejs/plugin-react";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { imagetools } from "vite-imagetools";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    reactRouter(),
+    tanstackRouter({
+      target: "react",
+      autoCodeSplitting: true,
+    }),
+    react(),
     tailwindcss(),
     imagetools({
       defaultDirectives: () =>
@@ -19,7 +24,7 @@ export default defineConfig({
         manualChunks(id: string) {
           if (id.includes("node_modules/react-dom")) return "vendor";
           if (id.includes("node_modules/react/")) return "vendor";
-          if (id.includes("node_modules/react-router/")) return "router";
+          if (id.includes("node_modules/@tanstack/")) return "router";
           if (id.includes("node_modules/katex/")) return "katex";
           if (
             id.includes("node_modules/react-syntax-highlighter/") ||

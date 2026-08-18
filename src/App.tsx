@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode, type RefObject } from "react";
 import { bind as bindCuelume } from "cuelume";
-import { useLocation, Outlet } from "react-router";
+import { Outlet, useLocation } from "@tanstack/react-router";
 import { Measurer } from "mesurer";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";

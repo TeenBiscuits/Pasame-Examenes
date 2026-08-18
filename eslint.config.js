@@ -6,7 +6,7 @@ import tseslint from "typescript-eslint";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores([".react-router", "dist", "scripts", "temp"]),
+  globalIgnores(["dist", "scripts", "src/routeTree.gen.ts", "temp"]),
   {
     files: ["**/*.{ts,tsx}"],
     extends: [
@@ -27,9 +27,16 @@ export default defineConfig([
         "error",
         {
           allowConstantExport: true,
-          allowExportNames: ["HydrateFallback", "Layout", "meta"],
+          allowExportNames: ["HydrateFallback", "Layout", "meta", "Route"],
         },
       ],
+    },
+  },
+  {
+    files: ["src/routes/**/*.tsx"],
+    rules: {
+      // TanStack route modules must export `Route` alongside their component.
+      "react-refresh/only-export-components": "off",
     },
   },
 ]);

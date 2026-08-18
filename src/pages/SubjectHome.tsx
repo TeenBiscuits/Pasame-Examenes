@@ -7,7 +7,7 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
-import { useParams } from "react-router";
+import { useParams } from "@tanstack/react-router";
 import { LangLink as Link } from "../lib/lang-link";
 import { getSubject, getAllQuestions } from "../subjects";
 import { clearTopicProgress, getTopicProgress } from "../data/store";
@@ -57,7 +57,7 @@ export default function SubjectHome({
 }: {
   initialQuestions?: QuestionSummary[];
 }) {
-  const { subjectId } = useParams<{ subjectId: string }>();
+  const { subjectId } = useParams({ strict: false });
   const t = useT();
   const { lang } = useLang();
   const examModalRef = useRef<AddExamModalHandle>(null);

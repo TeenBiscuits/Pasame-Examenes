@@ -15,7 +15,7 @@ function main() {
   const output = template.split("__REWRITES__").join(rewritesJson);
 
   writeFileSync(outputPath, output);
-  console.log("✓ Generated vercel.json with the React Router SPA fallback");
+  console.log("✓ Generated vercel.json with the TanStack Router SPA fallback");
 }
 
 main();

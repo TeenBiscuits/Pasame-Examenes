@@ -28,7 +28,7 @@ pnpm doctor    # React Doctor via npx
 - No backend: subjects/questions are static TypeScript under `src/subjects/`; attempts/progress, language, and theme are persisted in `localStorage`.
 - Runtime subject discovery is in `src/subjects/index.ts`: eager `import.meta.glob` loads every `*/meta.ts`, lazy glob loads `*/questions.ts`, and `_template` is excluded.
 - `src/subjects/_visibility.ts` is still required when adding a subject so React Doctor/static analysis sees named `meta` and `questions` exports as consumed.
-- The React Router framework hierarchy lives in `src/routes.ts`, with route modules under `src/routes/`; `src/App.tsx` is the shared application shell. Language-prefixed routes support `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:examId`. `/:lang/:subjectId/practice` redirects back to the subject page.
+- The TanStack Router file-based hierarchy lives in `src/routes/`, with the generated tree in `src/routeTree.gen.ts` and the router instance in `src/router.tsx`; `src/App.tsx` is the shared application shell. Language-prefixed routes support `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:examId`. `/:lang/:subjectId/practice` redirects back to the subject page.
 - i18n is a custom context in `src/i18n/`; adding a string means updating the `Translations` shape in `en.ts` and adding matching values in `es.ts` and `gl.ts`.
 - Theme state is in `src/theme/`; valid themes come from `themeOrder` in `src/theme/types.ts` and are applied with `data-theme` on `<html>`.
 - Analytics scripts are in `index.html`; app code should use `src/lib/umami.ts`, which no-ops when analytics is unavailable.
