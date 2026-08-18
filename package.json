@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx scripts/generate-question-summary-map.ts && tsx scripts/generate-page-meta-map.ts && vite",
-    "build": "tsx scripts/generate-question-summary-map.ts && tsx scripts/generate-page-meta-map.ts && tsc -b && tsx scripts/generate-vercel-rewrites.ts && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && vite build",
+    "build": "tsx scripts/generate-question-summary-map.ts && tsx scripts/generate-page-meta-map.ts && tsc -b && tsx scripts/generate-vercel-rewrites.ts && tsx scripts/generate-sitemap.ts && tsx scripts/generate-indexnow-key.ts && tsx scripts/generate-og-images.ts && vite build && tsx scripts/generate-static-seo-pages.ts",
     "lint": "eslint .",
     "readme": "tsx scripts/update-readme-subjects.ts",
     "preview": "vite preview",
