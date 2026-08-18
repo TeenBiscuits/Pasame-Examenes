@@ -16,6 +16,7 @@ import { initializeSound } from "./lib/sound";
 import { ThemeProvider } from "./theme/context";
 import { themeScript } from "./theme/theme-script";
 import { themeSurfaceAlt } from "./theme/types";
+import "./bones/registry";
 
 function langFromPathname(pathname: string): Lang {
   const match = pathname.match(/^\/(en|es|gl)(?:\/|$)/);

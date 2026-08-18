@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode, type RefObject } from "react";
 import { bind as bindCuelume } from "cuelume";
-import { useLocation, Outlet } from "react-router";
+import { useLocation } from "react-router";
 import { Measurer } from "mesurer";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
@@ -14,6 +14,7 @@ import { Github01Icon } from "@hugeicons/core-free-icons";
 import { closeDialog, showDialog, useDialogDismiss } from "./lib/dialog";
 import { ModalHeader, wideModalDialogClass } from "./components/Modal";
 import { LangLink } from "./lib/lang-link";
+import RouteTransitionSkeleton from "./components/RouteTransitionSkeleton";
 
 export function PageLoader() {
   return (
@@ -309,7 +310,7 @@ export default function App() {
       <Header />
       <StarPopup />
       <main className="flex-grow">
-        <Outlet />
+        <RouteTransitionSkeleton />
       </main>
       <Footer />
       {import.meta.env.DEV ? <Measurer /> : null}

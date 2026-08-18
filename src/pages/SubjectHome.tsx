@@ -1,7 +1,6 @@
 import {
   useRef,
   useState,
-  useEffect,
   useMemo,
   useSyncExternalStore,
   type ReactNode,
@@ -9,7 +8,7 @@ import {
 } from "react";
 import { useParams } from "react-router";
 import { LangLink as Link } from "../lib/lang-link";
-import { getSubject, getAllQuestions } from "../subjects";
+import { getSubject } from "../subjects";
 import { clearTopicProgress, getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
 import ExamSourceSelector from "../components/ExamSourceSelector";
@@ -53,9 +52,9 @@ import { compactModalDialogClass, ModalHeader } from "../components/Modal";
 const subscribeToHydration = () => () => {};
 
 export default function SubjectHome({
-  initialQuestions = [],
+  initialQuestions,
 }: {
-  initialQuestions?: QuestionSummary[];
+  initialQuestions: QuestionSummary[];
 }) {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
@@ -66,12 +65,8 @@ export default function SubjectHome({
   const examSourceDialogRef = useRef<HTMLDialogElement>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const { selectedExamIds, setSelectedExamIds } = useExamSelection(subject);
-  const [allQuestions, setAllQuestions] =
-    useState<QuestionSummary[]>(initialQuestions);
-  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    initialQuestions.length > 0 && subject ? subject.id : null,
-  );
-  const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
+  const allQuestions = initialQuestions;
+  const questionsLoaded = !!subject;
   const [, setProgressRevision] = useState(0);
   const storageReady = useSyncExternalStore(
     subscribeToHydration,
@@ -104,23 +99,6 @@ export default function SubjectHome({
     [subject, lang, selectedQuestions.length],
   );
   useDocumentTitle(seoMeta?.title ?? t.home.title);
-
-  useEffect(() => {
-    if (subject && questionsLoadedFor !== subject.id) {
-      getAllQuestions(subject.id).then((questions) => {
-        setAllQuestions(
-          questions.map(({ id, examId, topic, points, repeated }) => ({
-            id,
-            examId,
-            topic,
-            points,
-            repeated,
-          })),
-        );
-        setQuestionsLoadedFor(subject.id);
-      });
-    }
-  }, [subject, questionsLoadedFor]);
 
   useSeoHead({
     title: seoMeta?.title ?? t.home.title,

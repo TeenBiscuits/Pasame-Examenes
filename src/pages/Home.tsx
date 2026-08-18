@@ -21,6 +21,7 @@ import {
 import { Book, Trash5 } from "reicon-react";
 import SecretToro from "../components/SecretToro";
 import FaqSection from "../components/FaqSection";
+import { prefetchSubjectPage } from "../lib/subject-prefetch";
 
 const MAX_SLOTS = 3;
 
@@ -131,6 +132,8 @@ export default function Home() {
                       to={`/${slot.subject.id}`}
                       data-cuelume-hover="tick"
                       data-cuelume-press
+                      onMouseEnter={() => prefetchSubjectPage(slot.subject.id)}
+                      onFocus={() => prefetchSubjectPage(slot.subject.id)}
                       onClick={() => {
                         recordSubjectClick(slot.subject.id);
                         track("subject_card_click", {

@@ -1,4 +1,10 @@
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
@@ -9,6 +15,13 @@ interface QuestionSummary {
   topic: string;
   points: number;
   repeated?: boolean;
+}
+
+interface ParsedQuestion {
+  summary: QuestionSummary;
+  source: string;
+  imageNames: string[];
+  disableNoUselessEscape: boolean;
 }
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -73,7 +86,7 @@ function parseQuestion(
     : { id, examId, topic, points };
 }
 
-function parseQuestions(sourcePath: string): QuestionSummary[] {
+function parseQuestions(sourcePath: string): ParsedQuestion[] {
   const source = ts.createSourceFile(
     sourcePath,
     readFileSync(sourcePath, "utf-8"),
@@ -91,9 +104,23 @@ function parseQuestions(sourcePath: string): QuestionSummary[] {
         declaration.initializer &&
         ts.isArrayLiteralExpression(declaration.initializer)
       ) {
-        return declaration.initializer.elements.map((element) =>
-          parseQuestion(element, sourcePath),
-        );
+        return declaration.initializer.elements.map((element) => {
+          const sourceText = element.getText(source);
+          const imageNames = [
+            ...sourceText.matchAll(
+              /getImage\s*\(\s*imageMap\s*,\s*["']([^"']+)["']\s*\)/g,
+            ),
+          ].map((match) => match[1]);
+
+          return {
+            summary: parseQuestion(element, sourcePath),
+            source: sourceText,
+            imageNames,
+            disableNoUselessEscape: source.text.includes(
+              "eslint-disable no-useless-escape",
+            ),
+          };
+        });
       }
     }
   }
@@ -101,11 +128,87 @@ function parseQuestions(sourcePath: string): QuestionSummary[] {
   throw new Error(`Could not find the questions array in ${sourcePath}`);
 }
 
+function safeModuleName(value: string): string {
+  const name = value.replace(/[^a-zA-Z0-9_-]+/g, "-");
+  if (!name) throw new Error(`Cannot create a module name for ${value}`);
+  return name;
+}
+
+function writeQuestionPayload(
+  outPath: string,
+  questions: ParsedQuestion[],
+): void {
+  const imageNames = [
+    ...new Set(questions.flatMap((question) => question.imageNames)),
+  ].sort();
+  const imageImports =
+    imageNames.length > 0
+      ? `import type { Picture } from "vite-imagetools";\nimport { getImage } from "../../../../lib/image";\nimport type { ImageMap } from "../../../../lib/image";\n\nconst imageMap = import.meta.glob<{ default: Picture }>(\n  ${JSON.stringify(imageNames.map((name) => `./assets/${name}`))},\n  {\n    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },\n    eager: true,\n  },\n) as ImageMap;\n\n`
+      : "";
+
+  const output = [
+    ...(questions.some((question) => question.disableNoUselessEscape)
+      ? ["/* eslint-disable no-useless-escape */"]
+      : []),
+    'import type { Question } from "../../../../data/types";',
+    imageImports,
+    "export const questions: Question[] = [",
+    questions.map((question) => `  ${question.source}`).join(",\n"),
+    "];",
+    "",
+  ].join("\n");
+
+  writeFileSync(outPath, output);
+}
+
 const summaries: Record<string, QuestionSummary[]> = {};
+const subjectQuestionCounts: Record<string, number> = {};
+const generatedSubjectsDir = resolve(subjectsDir, "generated");
+rmSync(generatedSubjectsDir, { recursive: true, force: true });
+mkdirSync(generatedSubjectsDir, { recursive: true });
+
 for (const entry of readdirSync(subjectsDir, { withFileTypes: true })) {
-  if (!entry.isDirectory() || entry.name === "_template") continue;
+  if (
+    !entry.isDirectory() ||
+    entry.name === "_template" ||
+    entry.name === "generated"
+  )
+    continue;
   const questionsPath = resolve(subjectsDir, entry.name, "questions.ts");
-  summaries[entry.name] = parseQuestions(questionsPath);
+  const parsedQuestions = parseQuestions(questionsPath);
+  summaries[entry.name] = parsedQuestions.map((question) => question.summary);
+  subjectQuestionCounts[entry.name] = parsedQuestions.length;
+
+  const topics = new Map<string, ParsedQuestion[]>();
+  const exams = new Map<string, ParsedQuestion[]>();
+  for (const question of parsedQuestions) {
+    const topicQuestions = topics.get(question.summary.topic) ?? [];
+    topicQuestions.push(question);
+    topics.set(question.summary.topic, topicQuestions);
+
+    const examQuestions = exams.get(question.summary.examId) ?? [];
+    examQuestions.push(question);
+    exams.set(question.summary.examId, examQuestions);
+  }
+
+  const subjectGeneratedDir = resolve(generatedSubjectsDir, entry.name);
+  const topicsDir = resolve(subjectGeneratedDir, "topics");
+  const examsDir = resolve(subjectGeneratedDir, "exams");
+  mkdirSync(topicsDir, { recursive: true });
+  mkdirSync(examsDir, { recursive: true });
+
+  for (const [topic, questions] of topics) {
+    writeQuestionPayload(
+      resolve(topicsDir, `${safeModuleName(topic)}.ts`),
+      questions,
+    );
+  }
+  for (const [examId, questions] of exams) {
+    writeQuestionPayload(
+      resolve(examsDir, `${safeModuleName(examId)}.ts`),
+      questions,
+    );
+  }
 }
 
 const output = [
@@ -116,6 +219,14 @@ const output = [
 ].join("\n");
 
 writeFileSync(outPath, output);
+writeFileSync(
+  resolve(subjectsDir, "subjectQuestionCounts.generated.ts"),
+  [
+    "export const subjectQuestionCounts = ",
+    `${JSON.stringify(subjectQuestionCounts, null, 2)} as const satisfies Record<string, number>;`,
+    "",
+  ].join("\n"),
+);
 console.log(
-  `✓ Generated question summaries for ${Object.keys(summaries).length} subjects → ${outPath}`,
+  `✓ Generated question summaries and route payloads for ${Object.keys(summaries).length} subjects → ${outPath}`,
 );

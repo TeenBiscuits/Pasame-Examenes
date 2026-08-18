@@ -30,6 +30,8 @@ public/subjects-meta.json
 public/og
 src/seo/pageMetaMap.generated.ts
 src/subjects/questionSummaries.generated.ts
+src/subjects/subjectQuestionCounts.generated.ts
+src/subjects/generated/
 
 # Env
 .env

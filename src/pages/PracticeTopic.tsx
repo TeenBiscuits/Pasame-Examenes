@@ -1,4 +1,5 @@
 import {
+  use,
   useState,
   useReducer,
   useCallback,
@@ -737,6 +738,29 @@ function PracticePlayer({
   );
 }
 
+interface LoadedTopicData {
+  questions: Question[];
+  megatopicLabel: string | undefined;
+}
+
+const topicDataCache = new Map<string, Promise<LoadedTopicData>>();
+
+function loadTopicData(subjectId: string, topic: string) {
+  const cacheKey = `${subjectId}/${topic}`;
+  const cached = topicDataCache.get(cacheKey);
+  if (cached) return cached;
+
+  const promise = Promise.all([
+    getQuestionsByTopic(subjectId, topic),
+    getTopicMegaTopicLabel(subjectId, topic),
+  ]).then(([questions, megatopicLabel]) => ({
+    questions,
+    megatopicLabel,
+  }));
+  topicDataCache.set(cacheKey, promise);
+  return promise;
+}
+
 export default function PracticeTopic() {
   const { subjectId, topic } = useParams<{
     subjectId: string;
@@ -749,11 +773,11 @@ export default function PracticeTopic() {
 
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const { selectedExamIds } = useExamSelection(subject);
-  const [allTopicQuestions, setAllTopicQuestions] = useState<Question[]>([]);
-  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    null,
-  );
-  const [megatopicLabel, setMegatopicLabel] = useState<string | undefined>();
+  const loadedData =
+    subject && topic
+      ? use(loadTopicData(subject.id, topic))
+      : { questions: [], megatopicLabel: undefined };
+  const { questions: allTopicQuestions, megatopicLabel } = loadedData;
   const topicInfo = useMemo(
     () => subject?.topics.find((tp) => tp.key === topic),
     [subject, topic],
@@ -762,17 +786,7 @@ export default function PracticeTopic() {
     () => filterQuestionsByExamSelection(allTopicQuestions, selectedExamIds),
     [allTopicQuestions, selectedExamIds],
   );
-  useEffect(() => {
-    if (subject && topic) {
-      getQuestionsByTopic(subject.id, topic).then((topicQuestions) => {
-        setAllTopicQuestions(topicQuestions);
-        setQuestionsLoadedFor(`${subject.id}/${topic}`);
-      });
-      getTopicMegaTopicLabel(subject.id, topic).then(setMegatopicLabel);
-    }
-  }, [subject, topic]);
-  const questionsLoaded =
-    !!subject && !!topic && questionsLoadedFor === `${subject.id}/${topic}`;
+  const questionsLoaded = !!subject && !!topic;
   const seoMeta = useMemo(
     () =>
       subject && topicInfo

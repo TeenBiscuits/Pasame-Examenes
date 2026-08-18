@@ -1,5 +1,6 @@
 import type { SubjectMeta, Question } from "../data/types";
 import { isPublicSubject } from "./visibility";
+import { subjectQuestionCounts } from "./subjectQuestionCounts.generated";
 
 interface MetaModule {
   meta: SubjectMeta;
@@ -14,9 +15,12 @@ interface QuestionsModule {
 const metaModules = import.meta.glob<MetaModule>(["./*/meta.ts"], {
   eager: true,
 });
-const questionsModules = import.meta.glob<QuestionsModule>([
-  "./*/questions.ts",
-]);
+const topicQuestionsModules = import.meta.glob<QuestionsModule>(
+  "./generated/*/topics/*.ts",
+);
+const examQuestionsModules = import.meta.glob<QuestionsModule>(
+  "./generated/*/exams/*.ts",
+);
 
 const discoveredSubjects: SubjectMeta[] = [];
 for (const m of Object.values(metaModules)) {
@@ -28,31 +32,33 @@ export const subjects = discoveredSubjects.filter((subject) =>
   isPublicSubject(subject.id),
 );
 
+export { subjectQuestionCounts };
+
 export function getSubject(id: string): SubjectMeta | undefined {
   if (id === "_template") return undefined;
   return discoveredSubjects.find((s) => s.id === id);
-}
-
-export async function getAllQuestions(subjectId: string): Promise<Question[]> {
-  const modulePath = `./${subjectId}/questions.ts`;
-  const mod = await questionsModules[modulePath]?.();
-  return mod?.questions ?? [];
 }
 
 export async function getQuestionsByTopic(
   subjectId: string,
   topic: string,
 ): Promise<Question[]> {
-  const qs = await getAllQuestions(subjectId);
-  return qs.filter((q) => q.topic === topic);
+  const modulePath = `./generated/${subjectId}/topics/${safeModuleName(topic)}.ts`;
+  const mod = await topicQuestionsModules[modulePath]?.();
+  return mod?.questions ?? [];
 }
 
 export async function getQuestionsByExam(
   subjectId: string,
   examId: string,
 ): Promise<Question[]> {
-  const qs = await getAllQuestions(subjectId);
-  return qs.filter((q) => q.examId === examId);
+  const modulePath = `./generated/${subjectId}/exams/${safeModuleName(examId)}.ts`;
+  const mod = await examQuestionsModules[modulePath]?.();
+  return mod?.questions ?? [];
+}
+
+function safeModuleName(value: string): string {
+  return value.replace(/[^a-zA-Z0-9_-]+/g, "-");
 }
 
 export async function getTopicMegaTopicLabel(
@@ -64,7 +70,6 @@ export async function getTopicMegaTopicLabel(
   return subject.megatopics.find((mt) => mt.topics.includes(topicKey))?.label;
 }
 
-// Reachability marker: makes _visibility.ts discoverable by static analysis
-// tools so they see every subject's named exports as consumed. The glob
-// patterns above do the actual work at runtime.
-import("./_visibility");
+// `_visibility.ts` is intentionally not imported here. It exists for static
+// analysis, while this module must not make every canonical question file
+// reachable from the client runtime graph.
