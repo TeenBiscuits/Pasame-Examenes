@@ -1,0 +1,44 @@
+---
+interface Props {
+  emojis: string[];
+  compact?: boolean;
+}
+
+const { emojis, compact = false } = Astro.props;
+const spacing = compact ? "py-16 md:py-[50px]" : "py-24 sm:py-28 lg:py-32";
+
+function pseudo(index: number, salt: number): number {
+  const value = Math.sin(index * 9301 + salt * 49297) * 233280;
+  return value - Math.floor(value);
+}
+
+function emojiStyle(index: number, mobile: boolean): string {
+  const count = Math.max(1, emojis.length);
+  const columns = mobile ? 3 : 5;
+  const column = index % columns;
+  const row = Math.floor(index / columns);
+  const rows = Math.max(1, Math.ceil(count / columns));
+  const left = 5 + (column / Math.max(1, columns - 1)) * 90 + (pseudo(index, 1) - 0.5) * 5;
+  const top = 8 + (row / Math.max(1, rows - 1)) * (compact ? 58 : 72) + (pseudo(index, 2) - 0.5) * 5;
+  const rotation = (pseudo(index, 3) - 0.5) * 42;
+  const delay = -(pseudo(index, 4) * 8);
+  const size = mobile ? 1.8 + pseudo(index, 5) * 1.4 : 3 + pseudo(index, 5) * 2.8;
+  return `left:${Math.min(94, Math.max(2, left)).toFixed(2)}%;top:${Math.min(84, Math.max(4, top)).toFixed(2)}%;transform:rotate(${rotation.toFixed(1)}deg);animation-delay:${delay.toFixed(2)}s;font-size:${size.toFixed(2)}rem`;
+}
+---
+
+<section class="relative w-full overflow-hidden">
+  <div class="pointer-events-none absolute inset-y-0 left-1/2 z-0 hidden w-full max-w-6xl -translate-x-1/2 md:block" aria-hidden="true">
+    {emojis.map((emoji, index) => (
+      <span class="floating-emoji-mark absolute select-none" style={emojiStyle(index, false)}>{emoji}</span>
+    ))}
+  </div>
+  <div class="pointer-events-none absolute inset-y-0 left-1/2 z-0 w-full max-w-6xl -translate-x-1/2 md:hidden" aria-hidden="true">
+    {emojis.map((emoji, index) => (
+      <span class="floating-emoji-mark absolute select-none" style={emojiStyle(index, true)}>{emoji}</span>
+    ))}
+  </div>
+  <div class:list={["pointer-events-none relative z-10 mx-auto max-w-6xl px-4 text-center", spacing]}>
+    <slot />
+  </div>
+</section>

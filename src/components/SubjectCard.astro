@@ -1,0 +1,51 @@
+---
+import type { SubjectMeta } from "../data/types";
+import { getTranslations, langPath, type Lang } from "../lib/i18n";
+import { hasAuthorizedExamContent } from "../lib/subjects";
+import Reicon from "./Reicon.astro";
+
+interface Props {
+  lang: Lang;
+  subject: SubjectMeta;
+  questionCount: number;
+}
+
+const { lang, subject, questionCount } = Astro.props;
+const t = getTranslations(lang);
+const availableExamCount = subject.exams.filter((exam) => !exam.deleteRights).length;
+const examLabel = hasAuthorizedExamContent(subject)
+  ? t.subjectCard.exams
+  : t.subjectCard.practiceSets;
+---
+
+<a
+  href={langPath(lang, `/${subject.id}`)}
+  data-subject-link={subject.id}
+  data-subject-card={subject.id}
+  class="interactive-card focus-visible:ring-accent flex min-h-[160px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+>
+  <div class="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-5 pt-5 pb-2">
+    <div class="mb-2 flex items-start justify-between">
+      <span class="text-4xl leading-none" aria-hidden="true">{subject.icon}</span>
+      <div class="flex items-center gap-2">
+        <span class="text-fg-muted" title={hasAuthorizedExamContent(subject) ? t.contentPolicy.authorized : t.contentPolicy.community}>
+          {hasAuthorizedExamContent(subject) ? <Reicon name="GraduationCap" size={18} weight="Filled" role="img" aria-label={t.contentPolicy.authorized} /> : <Reicon name="Users3" size={18} weight="Filled" role="img" aria-label={t.contentPolicy.community} />}
+        </span>
+        <span class="bg-code text-fg-secondary inline-flex h-6 items-center rounded px-2 font-mono text-xs font-semibold">{subject.courseCode}</span>
+      </div>
+    </div>
+    <h2 class="text-fg mb-0.5 text-base font-semibold">{subject.name}</h2>
+    <div class="text-fg-muted flex min-w-0 items-center justify-between gap-2 text-sm">
+      <span class="min-w-0 truncate" title={subject.degree}>{subject.degree}</span>
+      <span class="shrink-0">{t.subjectCard.course.replace("{course}", String(subject.course))}</span>
+    </div>
+  </div>
+  <div class="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-5 py-1 text-xs">
+    <span>{questionCount} {t.subjectCard.questions}</span>
+    <div class="flex shrink-0 items-center gap-2">
+      <span>{subject.topics.length} {t.subjectCard.topics}</span>
+      <span aria-hidden="true">·</span>
+      <span>{availableExamCount} {examLabel}</span>
+    </div>
+  </div>
+</a>

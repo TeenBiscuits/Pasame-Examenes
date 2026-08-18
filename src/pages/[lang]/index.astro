@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import SubjectCard from "../../components/SubjectCard.astro";
+import { getTranslations, isLang, languages, type Lang } from "../../lib/i18n";
+import { getQuestionSummaries, subjects } from "../../lib/subjects";
+import { buildHomeMeta } from "../../seo/meta";
+import Reicon from "../../components/Reicon.astro";
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+if (!isLang(langParam)) return Astro.redirect("/es");
+const lang: Lang = langParam;
+const t = getTranslations(lang);
+const meta = buildHomeMeta(lang);
+const subjectCounts = new Map(subjects.map((subject) => [subject.id, getQuestionSummaries(subject.id).length]));
+---
+
+<BaseLayout
+  {lang}
+  title={meta.title}
+  description={meta.description}
+  canonicalUrl={meta.canonicalUrl}
+  alternates={meta.alternates}
+  ogImage={meta.ogImage}
+  ogImageType={meta.ogImageType}
+  locale={meta.locale}
+  jsonLd={meta.jsonLd}
+>
+  <div class="relative">
+    <Hero emojis={subjects.map((subject) => subject.icon)}>
+      <h1 class="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">{t.home.title}</h1>
+      <p class="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl">{t.home.subtitle}</p>
+    </Hero>
+
+    <div class="mx-auto max-w-6xl px-4 pb-14 text-center">
+      <section data-recent-section hidden class="mb-6 text-left" aria-labelledby="recent-heading">
+        <div class="mb-3 flex items-center justify-between">
+          <h2 id="recent-heading" class="text-fg-muted text-sm font-semibold tracking-wide uppercase">{t.home.recentlyVisited}</h2>
+          <button type="button" data-clear-recents class="text-fg-muted hover:text-incorrect-fg rounded p-1 transition-colors" aria-label={t.home.clearRecent} title={t.home.clearRecent}><Reicon name="Trash5" size={16} weight="Filled" aria-hidden="true" /></button>
+        </div>
+        <div data-recent-grid class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+        <hr class="border-border mt-6" />
+      </section>
+
+      <div class="grid grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
+        {subjects.map((subject) => (
+          <div>
+            <SubjectCard lang={lang} subject={subject} questionCount={subjectCounts.get(subject.id) ?? 0} />
+          </div>
+        ))}
+        <div>
+          <button type="button" data-dialog-open="add-subject-dialog" class="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent hover:bg-accent-light/30 block h-full min-h-[160px] w-full cursor-pointer rounded-xl border-2 border-dashed p-5 hover:shadow-md">
+            <span class="flex h-full flex-col items-center justify-center gap-2">
+              <Reicon name="PlusCircle2" size={36} aria-hidden="true" />
+              <span class="text-sm font-medium">{t.home.addSubject}</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <section class="mt-14 text-left" aria-labelledby="faq-title">
+        <h2 id="faq-title" class="text-fg mb-5 text-center text-2xl font-semibold sm:text-3xl">{t.home.faqTitle}</h2>
+        <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
+          {t.home.faqs.map((faq) => (
+            <details class="faq-item border-border bg-surface-alt overflow-hidden rounded-xl border-2">
+              <summary class="faq-summary text-fg flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-left font-semibold sm:px-5">
+                <span>{faq.question}</span><span class="faq-chevron text-fg-muted text-xl" aria-hidden="true">⌄</span>
+              </summary>
+              <div class="bg-card-footer border-card-footer-border text-fg-secondary rounded-b-[calc(0.75rem-2px)] px-4 py-4 text-sm leading-relaxed sm:px-5"><p>{faq.answer}</p></div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <blockquote class="border-border text-fg-secondary mx-auto mt-14 max-w-2xl border-y py-8 text-center text-xl font-medium italic sm:text-2xl">“{t.home.quote}”</blockquote>
+    </div>
+  </div>
+
+  <dialog id="add-subject-dialog" closedby="any" class="modal-dialog modal-dialog--compact p-6" aria-labelledby="add-subject-title">
+    <form method="dialog">
+      <div class="mb-5 flex items-center justify-between gap-4">
+        <h2 id="add-subject-title" class="text-fg flex items-center gap-2 text-xl font-semibold"><Reicon name="Book" size={20} aria-hidden="true" /> {t.addSubject.title}</h2>
+        <button type="submit" class="text-fg-muted hover:text-fg size-9 rounded-lg" aria-label={t.addSubject.close}><Reicon name="XSquare" size={20} aria-hidden="true" /></button>
+      </div>
+      <div class="space-y-2.5">
+        <a href={t.addSubject.openIssueUrl} target="_blank" rel="noopener noreferrer" class="astro-dialog-action border-accent-border bg-accent-light/60 hover:border-accent"><Reicon name="PlusCircle2" size={20} aria-hidden="true" /><span><strong class="text-fg block">{t.addSubject.openIssue}</strong><small class="text-fg-muted">{t.addSubject.openIssueDesc}</small></span></a>
+        <a href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="astro-dialog-action border-border bg-surface hover:border-accent"><Reicon name="BranchUp" size={20} aria-hidden="true" /><span><strong class="text-fg block">{t.addSubject.contribute}</strong><small class="text-fg-muted">{t.addSubject.contributeDesc}</small></span></a>
+        <a href="mailto:pablo.portas@udc.es" class="astro-dialog-action border-border bg-surface hover:border-accent"><Reicon name="Envelope" size={20} aria-hidden="true" /><span><strong class="text-fg block">{t.addSubject.email}</strong><small class="text-fg-muted">pablo.portas@udc.es</small></span></a>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+    const storageKey = "recent-subjects:v1";
+    const section = document.querySelector<HTMLElement>("[data-recent-section]");
+    const grid = document.querySelector<HTMLElement>("[data-recent-grid]");
+
+    function readRecents(): string[] {
+      try {
+        const parsed: unknown = JSON.parse(localStorage.getItem(storageKey) ?? "[]");
+        return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === "string").slice(0, 3) : [];
+      } catch { return []; }
+    }
+
+    function renderRecents() {
+      const ids = readRecents();
+      if (!section || !grid) return;
+      grid.replaceChildren();
+      for (const id of ids) {
+        const original = document.querySelector<HTMLElement>(`[data-subject-card="${CSS.escape(id)}"]`);
+        if (original) grid.append(original.cloneNode(true));
+      }
+      section.hidden = grid.childElementCount === 0;
+    }
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const link = target.closest<HTMLElement>("[data-subject-link]");
+      if (link?.dataset.subjectLink) {
+        const next = readRecents().filter((id) => id !== link.dataset.subjectLink);
+        next.unshift(link.dataset.subjectLink);
+        localStorage.setItem(storageKey, JSON.stringify(next.slice(0, 3)));
+      }
+      if (target.closest("[data-clear-recents]")) {
+        localStorage.removeItem(storageKey);
+        renderRecents();
+      }
+    });
+    renderRecents();
+  </script>
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getTranslations, isLang, languages, langPath, type Lang } from "../../lib/i18n";
+import Reicon from "../../components/Reicon.astro";
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({ params: { lang } }));
+}
+
+const langParam = Astro.params.lang;
+if (!isLang(langParam)) return Astro.redirect("/es/privacy");
+const lang: Lang = langParam;
+const t = getTranslations(lang);
+const canonicalUrl = `https://pe.pablopl.dev${langPath(lang, "/privacy")}`;
+const title = `${t.footer.privacyTitle} | ${t.seo.siteName}`;
+---
+
+<BaseLayout {lang} {title} description={t.footer.privacySummary} {canonicalUrl} noindex>
+  <article class="mx-auto w-full max-w-4xl px-4 py-10 sm:py-14">
+    <header class="border-border mb-8 space-y-3 border-b pb-6">
+      <p class="text-accent-fg text-xs font-semibold tracking-[0.18em] uppercase">{t.footer.privacyLastUpdated}</p>
+      <h1 class="text-fg text-3xl font-bold tracking-tight sm:text-4xl">{t.footer.privacyTitle}</h1>
+      <p class="text-fg-secondary max-w-prose text-base leading-relaxed text-pretty sm:text-lg">{t.footer.privacySummary}</p>
+    </header>
+
+    <div class="text-fg-secondary space-y-8">
+      {t.footer.privacySections.map((section) => (
+        <section class="space-y-3">
+          <h2 class="text-fg text-xl font-semibold">{section.title}</h2>
+          {section.paragraphs.map((paragraph) => <p class="max-w-prose leading-relaxed text-pretty">{paragraph}</p>)}
+          {section.items && (
+            <ul class="marker:text-accent-fg max-w-prose list-disc space-y-2 pl-5 leading-relaxed">
+              {section.items.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </section>
+      ))}
+
+      <section class="border-border space-y-4 border-t pt-8">
+        <div class="space-y-2">
+          <h2 class="text-fg text-xl font-semibold">{t.footer.privacyProvidersTitle}</h2>
+          <p class="max-w-prose leading-relaxed text-pretty">{t.footer.privacyProvidersIntro}</p>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {t.footer.privacyProviders.map((provider) => (
+            <article class="border-border bg-surface-alt rounded-xl border p-4">
+              <h3 class="text-fg font-semibold">{provider.name}</h3>
+              <p class="text-fg-muted mt-1 text-sm leading-relaxed">{provider.description}</p>
+              <a href={provider.href} target="_blank" rel="noopener noreferrer" class="text-accent-fg focus-visible:ring-accent mt-3 inline-flex items-center gap-1.5 rounded-lg text-sm font-medium underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:outline-none">
+                {provider.linkLabel}<Reicon name="ArrowRightUp" size={14} weight="Filled" aria-hidden="true" />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

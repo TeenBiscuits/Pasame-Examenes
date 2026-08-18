@@ -1,0 +1,78 @@
+---
+import * as React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import {
+  ArrowRightUp,
+  Book,
+  BranchUp,
+  Copyright,
+  DocText,
+  Envelope,
+  FilePdf,
+  FilePlus,
+  Filter,
+  Global,
+  GraduationCap,
+  InfoCircle,
+  Palette,
+  PlusCircle2,
+  Restart,
+  Settings,
+  ShieldCheck,
+  Star,
+  Trash5,
+  Users3,
+  Verified,
+  VolumeHigh,
+  XSquare,
+} from "reicon-react";
+
+const icons = {
+  ArrowRightUp,
+  Book,
+  BranchUp,
+  Copyright,
+  DocText,
+  Envelope,
+  FilePdf,
+  FilePlus,
+  Filter,
+  Global,
+  GraduationCap,
+  InfoCircle,
+  Palette,
+  PlusCircle2,
+  Restart,
+  Settings,
+  ShieldCheck,
+  Star,
+  Trash5,
+  Users3,
+  Verified,
+  VolumeHigh,
+  XSquare,
+} as const;
+
+export type ReiconName = keyof typeof icons;
+
+interface Props {
+  name: ReiconName;
+  size?: number;
+  weight?: "Outline" | "Filled";
+  className?: string;
+  [attribute: string]: unknown;
+}
+
+const { name, size = 24, weight = "Outline", className, ...attributes } = Astro.props;
+const Icon = icons[name];
+const svg = renderToStaticMarkup(
+  React.createElement(Icon, {
+    size,
+    weight,
+    className,
+    ...attributes,
+  }),
+);
+---
+
+<Fragment set:html={svg} />

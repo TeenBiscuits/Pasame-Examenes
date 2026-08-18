@@ -1,0 +1,26 @@
+---
+const fallback = "/es";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Pásame Exámenes</title>
+    <noscript><meta http-equiv="refresh" content={`0;url=${fallback}`} /></noscript>
+    <script is:inline>
+      (() => {
+        let stored = null;
+        try { stored = localStorage.getItem("lang"); } catch {}
+        const browser = navigator.language.toLowerCase();
+        const lang = stored === "en" || stored === "es" || stored === "gl"
+          ? stored
+          : browser.startsWith("gl") ? "gl" : browser.startsWith("en") ? "en" : "es";
+        location.replace(`/${lang}`);
+      })();
+    </script>
+  </head>
+  <body><p><a href={fallback}>Continuar a Pásame Exámenes</a></p></body>
+</html>

@@ -1,0 +1,53 @@
+---
+import type { Topic } from "../data/types";
+import { getTranslations, langPath, type Lang } from "../lib/i18n";
+import { formatPoints } from "../lib/subjects";
+
+interface Props {
+  lang: Lang;
+  subjectId: string;
+  topic: Topic;
+  topicIndex: number;
+  questionCount: number;
+  points: number;
+}
+
+const { lang, subjectId, topic, topicIndex, questionCount, points } = Astro.props;
+const t = getTranslations(lang);
+const variants = [
+  "bg-topic-blue-bg/60 border-topic-blue-border",
+  "bg-topic-indigo-bg/60 border-topic-indigo-border",
+  "bg-topic-green-bg/60 border-topic-green-border",
+  "bg-topic-purple-bg/60 border-topic-purple-border",
+  "bg-topic-pink-bg/60 border-topic-pink-border",
+  "bg-topic-amber-bg/60 border-topic-amber-border",
+  "bg-topic-red-bg/60 border-topic-red-border",
+  "bg-topic-cyan-bg/60 border-topic-cyan-border",
+  "bg-topic-orange-bg/60 border-topic-orange-border",
+] as const;
+const variant = variants[topicIndex % variants.length];
+---
+
+<a
+  href={langPath(lang, `/${subjectId}/practice/${topic.key}`)}
+  rel="nofollow"
+  data-topic-card={topic.key}
+  class="interactive-card focus-visible:ring-accent flex h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+>
+  <div class="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-3 pt-2 pb-1">
+    <div class="flex items-start justify-between gap-4">
+      <span class="text-3xl leading-none" aria-hidden="true">{topic.icon}</span>
+      <span class="bg-code text-fg-secondary inline-flex shrink-0 items-center rounded px-2 py-1 text-xs font-semibold whitespace-nowrap tabular-nums">
+        <span data-topic-count>{questionCount}</span>&nbsp;{t.subjectCard.questions}
+      </span>
+    </div>
+    <h3 class="text-fg mt-1 min-w-0 truncate text-base leading-snug font-semibold" title={topic.label}>{topic.label}</h3>
+  </div>
+  <div class:list={[variant, "text-fg-muted flex-1 rounded-b-xl border-x-2 border-b-2 px-3 py-2 text-sm"]}>
+    <div class="flex items-center justify-between gap-2">
+      <span><span data-topic-points>{formatPoints(points)}</span> {t.subjectCard.points}</span>
+      <span class="tabular-nums" data-topic-progress-value>0%</span>
+    </div>
+    <progress data-topic-progress class="mt-2 block h-1.5 w-full appearance-none overflow-hidden rounded-full" aria-label={`${topic.label}: 0%`} max="100" value="0"></progress>
+  </div>
+</a>

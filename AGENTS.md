@@ -1,11 +1,33 @@
 # AGENTS.md - Pasame Examenes
 
+## Development
+
+When starting the dev server, use background mode:
+
+```
+astro dev --background
+```
+
+Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+
+## Documentation
+
+Full documentation: https://docs.astro.build
+
+Consult these guides before working on related tasks:
+
+- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
+- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
+- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
+- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
+- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
+- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
 ## Commands
 
 ```bash
 pnpm dev       # Vite dev server; src/main.tsx loads react-grab only in DEV
 pnpm build     # tsc -b, generate sitemap, optional IndexNow key, then vite build
-pnpm lint      # ESLint flat config for TS/TSX; scripts/ is ignored
 pnpm readme    # Update the subject table in README.md
 pnpm format    # Prettier write
 pnpm preview   # Preview production build

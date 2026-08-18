@@ -1,0 +1,315 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Hero from "../../../components/Hero.astro";
+import TopicCard from "../../../components/TopicCard.astro";
+import { getTranslations, isLang, languages, langPath, type Lang } from "../../../lib/i18n";
+import {
+  formatPoints,
+  getQuestionSummaries,
+  hasAuthorizedExamContent,
+  subjects,
+} from "../../../lib/subjects";
+import { buildSubjectMeta } from "../../../seo/meta";
+import Reicon from "../../../components/Reicon.astro";
+
+export function getStaticPaths() {
+  return languages.flatMap((lang) =>
+    subjects.map((subject) => ({ params: { lang, subjectId: subject.id }, props: { subject } })),
+  );
+}
+
+const langParam = Astro.params.lang;
+if (!isLang(langParam)) return Astro.redirect("/es");
+const lang: Lang = langParam;
+const { subject } = Astro.props;
+const t = getTranslations(lang);
+const allQuestions = getQuestionSummaries(subject.id);
+const availableExamIds = new Set(subject.exams.filter((exam) => !exam.deleteRights).map((exam) => exam.id));
+const questions = allQuestions.filter((question) => availableExamIds.has(question.examId));
+const filterBuckets = new Map<string, {
+  examId: string;
+  topic: string;
+  count: number;
+  points: number;
+  repeated: number;
+}>();
+for (const question of questions) {
+  const key = `${question.examId}\u0000${question.topic}`;
+  const bucket = filterBuckets.get(key) ?? {
+    examId: question.examId,
+    topic: question.topic,
+    count: 0,
+    points: 0,
+    repeated: 0,
+  };
+  bucket.count += 1;
+  bucket.points += question.points;
+  if (question.repeated) bucket.repeated += 1;
+  filterBuckets.set(key, bucket);
+}
+const questionMatrix = [...filterBuckets.values()];
+const hasAuthorizedExams = hasAuthorizedExamContent(subject);
+const repeatedCount = questions.filter((question) => question.repeated).length;
+const repeatedText = repeatedCount >= 20
+  ? ` (${t.subjectHome.repeatedSuffix.replace("{count}", String(repeatedCount))})`
+  : "";
+const descriptionTemplate = hasAuthorizedExams
+  ? t.subjectHome.description
+  : t.subjectHome.communityDescription;
+const description = descriptionTemplate
+  .replace("{count}", String(questions.length))
+  .replace("{repeated}", repeatedText)
+  .replace("{exams}", String(availableExamIds.size));
+const meta = buildSubjectMeta(lang, subject, { questionCount: questions.length });
+const topicIndex = new Map(subject.topics.map((topic, index) => [topic.key, index]));
+const topicStats = new Map(subject.topics.map((topic) => {
+  const topicQuestions = questions.filter((question) => question.topic === topic.key);
+  return [topic.key, {
+    count: topicQuestions.length,
+    points: topicQuestions.reduce((sum, question) => sum + question.points, 0),
+  }];
+}));
+const visibleTopics = subject.topics.filter((topic) => subject.id === "espain" || (topicStats.get(topic.key)?.count ?? 0) > 0);
+const examStats = new Map(subject.exams.map((exam) => {
+  const examQuestions = allQuestions.filter((question) => question.examId === exam.id);
+  return [exam.id, {
+    count: examQuestions.length,
+    points: examQuestions.reduce((sum, question) => sum + question.points, 0),
+  }];
+}));
+const groupedTopicKeys = new Set(subject.megatopics?.flatMap((group) => group.topics) ?? []);
+const pdfExams = subject.exams.filter((exam) => !exam.deleteRights && exam.hasPdf !== false);
+const originalExams = subject.exams.filter((exam) => !exam.deleteRights && exam.originalUrl);
+const issueUrl = `${t.addExam.openIssueUrl}&title=${encodeURIComponent(subject.name)}&subject=${encodeURIComponent(subject.id)}`;
+const copyrightSubject = t.copyrightReport.emailSubject.replace("{subjectName}", subject.name);
+const copyrightBody = t.copyrightReport.emailBody.replace("{subjectName}", subject.name).replace("{subjectId}", subject.id);
+---
+
+<BaseLayout
+  {lang}
+  subject={subject}
+  title={meta.title}
+  description={meta.description}
+  canonicalUrl={meta.canonicalUrl}
+  alternates={meta.alternates}
+  ogImage={meta.ogImage}
+  ogImageType={meta.ogImageType}
+  locale={meta.locale}
+  jsonLd={meta.jsonLd}
+>
+  <div>
+    <Hero emojis={subject.topics.map((topic) => topic.icon)} compact>
+      <p class="text-fg-muted mb-3 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
+        <span aria-hidden="true">{hasAuthorizedExams ? "✓" : "◇"}</span>
+        <span>{subject.courseCode} · {subject.degree} · {t.subjectCard.course.replace("{course}", String(subject.course))}</span>
+      </p>
+      <h1 class="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">{subject.name}</h1>
+      <p
+        data-subject-description
+        data-template={descriptionTemplate}
+        data-repeated-template={t.subjectHome.repeatedSuffix}
+        class="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl"
+      >{description}</p>
+    </Hero>
+
+    <div class="mx-auto max-w-6xl px-4 pb-8">
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-fg text-lg font-semibold">{t.subjectHome.practiceByTopic}</h2>
+        <div class="flex items-center gap-1">
+          <button type="button" data-dialog-open="source-dialog" class="text-fg-muted hover:text-accent-fg focus-visible:ring-accent rounded p-2 transition-colors focus-visible:ring-2 focus-visible:outline-none" aria-label={t.subjectHome.questionSources} title={t.subjectHome.questionSources}><Reicon name="Filter" size={20} aria-hidden="true" /></button>
+          <button type="button" data-dialog-open="reset-progress-dialog" class="text-fg-muted hover:text-incorrect-fg focus-visible:ring-accent rounded p-2 transition-colors focus-visible:ring-2 focus-visible:outline-none" aria-label={t.subjectHome.resetTopicProgress} title={t.subjectHome.resetTopicProgress}><Reicon name="Restart" size={20} aria-hidden="true" /></button>
+        </div>
+      </div>
+
+      {subject.megatopics?.map((group) => {
+        const groupTopics = visibleTopics.filter((topic) => group.topics.includes(topic.key));
+        if (groupTopics.length === 0) return null;
+        return (
+          <section data-topic-group class="mb-8">
+            <h2 class="text-md text-fg-secondary mt-2 mb-3 font-medium">{group.label}</h2>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {groupTopics.map((topic) => {
+                const stats = topicStats.get(topic.key) ?? { count: 0, points: 0 };
+                return <TopicCard {lang} subjectId={subject.id} {topic} topicIndex={topicIndex.get(topic.key) ?? 0} questionCount={stats.count} points={stats.points} />;
+              })}
+            </div>
+          </section>
+        );
+      })}
+
+      <div data-topic-group class="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {visibleTopics.filter((topic) => !groupedTopicKeys.has(topic.key)).map((topic) => {
+          const stats = topicStats.get(topic.key) ?? { count: 0, points: 0 };
+          return <TopicCard {lang} subjectId={subject.id} {topic} topicIndex={topicIndex.get(topic.key) ?? 0} questionCount={stats.count} points={stats.points} />;
+        })}
+      </div>
+
+      <h2 class="text-fg mb-4 text-lg font-semibold">{hasAuthorizedExams ? t.subjectHome.examSimulations : t.subjectHome.practiceSimulations}</h2>
+      <div class="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {subject.exams.map((exam) => {
+          const stats = examStats.get(exam.id);
+          return exam.deleteRights ? (
+            <article class="border-danger-border bg-danger-light flex min-h-[122px] flex-col rounded-xl border-2 border-dashed p-4">
+              <Reicon name="Copyright" className="text-danger-fg" size={28} aria-hidden="true" />
+              <h3 class="text-fg mt-3 font-semibold">{exam.title}</h3>
+              <p class="text-danger-fg mt-auto text-sm">{t.subjectHome.copyrightRemoved}</p>
+            </article>
+          ) : (
+            <a href={langPath(lang, `/${subject.id}/exam/${exam.id}`)} rel="nofollow" class="interactive-card focus-visible:ring-accent flex min-h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none">
+              <div class="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-4 pt-4 pb-1">
+                <div class="flex items-start justify-between"><Reicon name="DocText" size={28} aria-hidden="true" /><span class="text-accent-fg">{hasAuthorizedExams && <Reicon name="Verified" size={20} aria-label={t.contentPolicy.authorized} />}</span></div>
+                <h3 class="text-fg mt-3 text-base font-semibold">{exam.title}</h3>
+              </div>
+              <div class="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-2 rounded-b-xl border-x-2 border-b-2 px-4 py-1 text-sm">
+                <span>{t.exam.questionSummary.replace("{questions}", String(stats?.count ?? 0)).replace("{points}", formatPoints(stats?.points ?? 0))}</span>
+                <span>{exam.durationMinutes} {t.exam.minutes}</span>
+              </div>
+            </a>
+          );
+        })}
+        <div class="grid grid-cols-2 gap-4">
+          <button type="button" data-dialog-open="add-exam-dialog" class="interactive-card border-border text-fg-muted hover:text-accent-fg hover:border-accent min-h-[122px] rounded-xl border-2 border-dashed p-4"><Reicon name="FilePlus" className="mx-auto mb-2" size={32} aria-hidden="true" /><span class="text-sm font-medium">{t.subjectHome.addExam}</span></button>
+          <button type="button" data-dialog-open="copyright-dialog" class="interactive-card border-danger-border text-danger-fg bg-danger-light min-h-[122px] rounded-xl border-2 border-dashed p-4"><Reicon name="Copyright" className="mx-auto mb-2" size={32} aria-hidden="true" /><span class="text-sm font-medium">{t.subjectHome.reportCopyright}</span></button>
+        </div>
+      </div>
+
+      {pdfExams.length > 0 && (
+        <section class="bg-surface border-border mb-10 rounded-xl border p-6">
+          <h2 class="text-fg mb-2 font-semibold">{hasAuthorizedExams ? t.subjectHome.originalExams : t.subjectHome.sourceMaterials}</h2>
+          <p class="text-fg-secondary mb-4 text-sm">{hasAuthorizedExams ? t.subjectHome.examDocsDescription : t.subjectHome.sourceMaterialsDescription}</p>
+          <div class="flex flex-wrap gap-4">
+            {pdfExams.map((exam) => <a href={`/exams/${subject.id}/Exam-${exam.id}.pdf`} target="_blank" rel="noopener noreferrer" class="text-accent-fg bg-accent-light border-accent-border focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium focus-visible:ring-2 focus-visible:outline-none"><Reicon name="FilePdf" size={16} aria-hidden="true" /> {exam.title} {t.subjectHome.pdf} <Reicon name="ArrowRightUp" size={14} weight="Filled" aria-hidden="true" /></a>)}
+          </div>
+        </section>
+      )}
+
+      {originalExams.length > 0 && (
+        <section class="bg-surface border-border mb-10 rounded-xl border p-6">
+          <h2 class="text-fg mb-2 font-semibold">{t.subjectHome.originalContent}</h2>
+          <p class="text-fg-secondary mb-4 text-sm">{t.subjectHome.originalContentDescription}</p>
+          <div class="flex flex-wrap gap-4">{originalExams.map((exam) => <a href={exam.originalUrl} target="_blank" rel="noopener noreferrer" class="text-accent-fg bg-accent-light border-accent-border inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium"><Reicon name="ArrowRightUp" size={14} weight="Filled" aria-hidden="true" /> {exam.title} {t.subjectHome.original}</a>)}</div>
+        </section>
+      )}
+
+      {(subject.acknowledgments || subject.contentLicense) && (
+        <aside aria-labelledby="legal-notes-title" class="border-border text-fg-muted mt-10 border-t pt-5 text-sm">
+          <h2 id="legal-notes-title" class="sr-only">{t.subjectHome.legalInformation}</h2>
+          <div class="grid gap-5 sm:grid-cols-2 sm:gap-8">
+            {subject.acknowledgments && <div><h3 class="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">{t.subjectHome.acknowledgments}</h3><p class="leading-relaxed">{subject.acknowledgments}</p></div>}
+            {subject.contentLicense && <div><h3 class="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">{t.subjectHome.contentLicense}</h3><p><a href={subject.contentLicense.url} target="_blank" rel="noopener noreferrer" class="text-accent-fg hover:underline">{subject.contentLicense.name}</a> <code class="text-xs">({subject.contentLicense.spdxId})</code></p>{subject.contentLicense.notice && <p class="mt-2 leading-relaxed">{subject.contentLicense.notice}</p>}</div>}
+          </div>
+        </aside>
+      )}
+    </div>
+  </div>
+
+  <dialog id="source-dialog" closedby="any" class="modal-dialog modal-dialog--compact p-6" aria-labelledby="source-title">
+    <form method="dialog">
+      <div class="mb-4 flex items-center justify-between"><h2 id="source-title" class="text-fg flex items-center gap-2 text-xl font-semibold"><Reicon name="Filter" size={20} aria-hidden="true" /> {t.subjectHome.questionSources}</h2><button type="submit" aria-label={t.footer.close}><Reicon name="XSquare" size={20} aria-hidden="true" /></button></div>
+      <p class="text-fg-secondary mb-4 text-sm">{t.subjectHome.questionSourcesDescription}</p>
+      <fieldset class="space-y-2">
+        <legend class="sr-only">{t.subjectHome.questionSources}</legend>
+        {subject.exams.filter((exam) => !exam.deleteRights).map((exam) => (
+          <label class="border-border bg-surface flex min-h-11 cursor-pointer items-center gap-3 rounded-lg border px-3"><input type="checkbox" name="exam-source" value={exam.id} checked /> <span>{exam.title}</span></label>
+        ))}
+      </fieldset>
+    </form>
+  </dialog>
+
+  <dialog id="reset-progress-dialog" closedby="any" class="modal-dialog modal-dialog--compact p-6" aria-labelledby="reset-title">
+    <form method="dialog"><h2 id="reset-title" class="text-fg flex items-center gap-2 mb-3 text-xl font-semibold"><Reicon name="Restart" size={20} aria-hidden="true" /> {t.subjectHome.resetTopicProgress}</h2><p class="text-fg-secondary mb-5 text-sm">{t.subjectHome.resetTopicProgressConfirm}</p><div class="flex justify-end gap-3"><button type="submit" class="border-border rounded-lg border px-4 py-2">{t.subjectHome.resetTopicProgressCancel}</button><button type="button" data-reset-progress class="bg-incorrect text-white rounded-lg px-4 py-2">{t.subjectHome.resetTopicProgressAction}</button></div></form>
+  </dialog>
+
+  <dialog id="add-exam-dialog" closedby="any" class="modal-dialog modal-dialog--compact p-6" aria-labelledby="add-exam-title">
+    <form method="dialog"><div class="mb-4 flex items-center justify-between"><h2 id="add-exam-title" class="text-fg flex items-center gap-2 text-xl font-semibold"><Reicon name="FilePlus" size={20} aria-hidden="true" /> {t.addExam.title}</h2><button type="submit" aria-label={t.addExam.close}><Reicon name="XSquare" size={20} aria-hidden="true" /></button></div><p class="border-border bg-surface text-fg-muted mb-3 flex items-start gap-2 rounded-xl border p-3 text-xs"><Reicon name="InfoCircle" className="mt-0.5 shrink-0" size={16} aria-hidden="true" /> {t.addExam.legalNotice}</p><div class="space-y-2.5"><a href={issueUrl} target="_blank" rel="noopener noreferrer" class="astro-dialog-action border-accent-border bg-accent-light/60"><Reicon name="PlusCircle2" size={20} aria-hidden="true" /><span><strong class="text-fg block">{t.addExam.openIssue}</strong><small class="text-fg-muted">{t.addExam.openIssueDesc}</small></span></a><a href="https://github.com/TeenBiscuits/Pasame-Examenes/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="astro-dialog-action border-border bg-surface"><Reicon name="BranchUp" size={20} aria-hidden="true" /><span><strong class="text-fg block">{t.addExam.contribute}</strong><small class="text-fg-muted">{t.addExam.contributeDesc}</small></span></a></div></form>
+  </dialog>
+
+  <dialog id="copyright-dialog" closedby="any" class="modal-dialog modal-dialog--compact p-6" aria-labelledby="copyright-title">
+    <form method="dialog"><div class="mb-4 flex items-center justify-between"><h2 id="copyright-title" class="text-fg flex items-center gap-2 text-xl font-semibold"><Reicon name="Copyright" size={20} aria-hidden="true" /> {t.copyrightReport.title}</h2><button type="submit" aria-label={t.copyrightReport.close}><Reicon name="XSquare" size={20} aria-hidden="true" /></button></div><p class="text-fg-secondary mb-3 text-sm">{t.copyrightReport.description}</p><p class="border-border bg-surface text-fg-muted mb-3 flex items-start gap-2 rounded-xl border p-3 text-xs"><Reicon name="InfoCircle" className="mt-0.5 shrink-0" size={16} aria-hidden="true" /> {t.copyrightReport.includeDetails}</p><a href={`mailto:pablo.portas@udc.es?subject=${encodeURIComponent(copyrightSubject)}&body=${encodeURIComponent(copyrightBody)}`} class="astro-dialog-action border-danger-border bg-danger-light"><Reicon name="Envelope" size={20} aria-hidden="true" /><span><strong class="text-fg block">{t.copyrightReport.email}</strong><small class="text-fg-muted">pablo.portas@udc.es</small></span></a></form>
+  </dialog>
+
+  <script is:inline type="application/json" id="question-matrix" set:html={JSON.stringify(questionMatrix)}></script>
+  <script is:inline define:vars={{ subjectId: subject.id, availableExamIds: [...availableExamIds] }}>
+    const matrixNode = document.querySelector("#question-matrix");
+    const matrix = JSON.parse(matrixNode?.textContent ?? "[]");
+    const storageKey = `exam-sources:v1:${subjectId}`;
+    const checkboxes = [...document.querySelectorAll('input[name="exam-source"]')];
+
+    function selectedIds() {
+      const selected = checkboxes.filter((input) => input.checked).map((input) => input.value);
+      return selected.length > 0 ? selected : availableExamIds;
+    }
+
+    function updateTopics() {
+      const selected = new Set(selectedIds());
+      const filtered = matrix.filter((bucket) => selected.has(bucket.examId));
+      for (const card of document.querySelectorAll("[data-topic-card]")) {
+        const topic = card.dataset.topicCard;
+        const topicBuckets = filtered.filter((bucket) => bucket.topic === topic);
+        const questionCount = topicBuckets.reduce((sum, bucket) => sum + bucket.count, 0);
+        card.hidden = questionCount === 0;
+        const count = card.querySelector("[data-topic-count]");
+        const points = card.querySelector("[data-topic-points]");
+        if (count) count.textContent = String(questionCount);
+        if (points) points.textContent = String(Math.round(topicBuckets.reduce((sum, bucket) => sum + bucket.points, 0) * 1000) / 1000);
+      }
+      for (const group of document.querySelectorAll("[data-topic-group]")) {
+        group.hidden = !group.querySelector("[data-topic-card]:not([hidden])");
+      }
+      const description = document.querySelector("[data-subject-description]");
+      if (description) {
+        const questionCount = filtered.reduce((sum, bucket) => sum + bucket.count, 0);
+        const repeated = filtered.reduce((sum, bucket) => sum + bucket.repeated, 0);
+        const repeatedText = repeated >= 20
+          ? ` (${description.dataset.repeatedTemplate.replace("{count}", String(repeated))})`
+          : "";
+        description.textContent = description.dataset.template
+          .replace("{count}", String(questionCount))
+          .replace("{repeated}", repeatedText)
+          .replace("{exams}", String(selected.size));
+      }
+    }
+
+    try {
+      const stored = JSON.parse(localStorage.getItem(storageKey) ?? "null");
+      if (Array.isArray(stored) && stored.length > 0) {
+        for (const checkbox of checkboxes) checkbox.checked = stored.includes(checkbox.value);
+      }
+    } catch {}
+    for (const checkbox of checkboxes) checkbox.addEventListener("change", () => {
+      if (!checkboxes.some((input) => input.checked)) checkbox.checked = true;
+      localStorage.setItem(storageKey, JSON.stringify(selectedIds()));
+      updateTopics();
+      updateProgress();
+    });
+
+    function updateProgress() {
+      const selected = new Set(selectedIds());
+      let attempts = [];
+      try { attempts = JSON.parse(localStorage.getItem(`exam-attempts:${subjectId}`) ?? "[]"); } catch {}
+      const best = new Map();
+      for (const attempt of attempts) {
+        if (attempt.mode === "practice" && attempt.topic) best.set(attempt.topic, Math.max(best.get(attempt.topic) ?? 0, attempt.score ?? 0));
+      }
+      for (const card of document.querySelectorAll("[data-topic-card]")) {
+        const topic = card.dataset.topicCard;
+        const total = matrix
+          .filter((bucket) => selected.has(bucket.examId) && bucket.topic === topic)
+          .reduce((sum, bucket) => sum + bucket.points, 0);
+        const value = total > 0 ? Math.min(100, ((best.get(topic) ?? 0) / total) * 100) : 0;
+        const progress = card.querySelector("[data-topic-progress]");
+        const label = card.querySelector("[data-topic-progress-value]");
+        if (progress) progress.value = value;
+        if (label) label.textContent = `${Math.round(value)}%`;
+      }
+    }
+
+    document.querySelector("[data-reset-progress]")?.addEventListener("click", () => {
+      localStorage.removeItem(`exam-attempts:${subjectId}`);
+      document.querySelector("#reset-progress-dialog")?.close();
+      updateProgress();
+    });
+    updateTopics();
+    updateProgress();
+  </script>
+</BaseLayout>

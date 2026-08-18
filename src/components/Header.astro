@@ -1,0 +1,102 @@
+---
+import type { SubjectMeta } from "../data/types";
+import { themeOrder } from "../theme/types";
+import { getTranslations, langPath, type Lang } from "../lib/i18n";
+import Reicon from "./Reicon.astro";
+
+interface Props {
+  lang: Lang;
+  subject?: SubjectMeta;
+}
+
+const { lang, subject } = Astro.props;
+const t = getTranslations(lang);
+const acronym = subject
+  ? subject.name.replace(/[^A-Z]/g, "") || subject.name.charAt(0).toUpperCase()
+  : "";
+---
+
+<header class="safe-area-top bg-surface-alt border-border border-b sm:sticky sm:top-0 sm:z-50">
+  <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+    <a
+      href={langPath(lang)}
+      class="text-fg hover:text-accent-fg focus-visible:ring-accent group flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
+    >
+      <img src="/favicon.svg" alt="Pásame Exámenes" width="36" height="36" class="size-9" />
+      <span class="text-sm sm:text-lg">{t.home.title}</span>
+    </a>
+
+    <nav class="flex items-center gap-1 text-sm sm:gap-3" aria-label={t.header.home}>
+      {subject && (
+        <>
+          <a
+            href={langPath(lang, `/${subject.id}`)}
+            class="bg-accent-light text-accent-fg focus-visible:ring-accent rounded-md px-1.5 py-1 transition-colors focus-visible:ring-2 focus-visible:outline-none sm:hidden"
+            title={subject.name}
+          >
+            {acronym}
+          </a>
+          <a
+            href={langPath(lang, `/${subject.id}`)}
+            class="bg-accent-light text-accent-fg focus-visible:ring-accent hidden max-w-56 truncate rounded-md px-3 py-1.5 transition-colors focus-visible:ring-2 focus-visible:outline-none sm:block"
+            title={subject.name}
+          >
+            {subject.name}
+          </a>
+        </>
+      )}
+      <a
+        href="https://github.com/TeenBiscuits/Pasame-Examenes"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="border-border hover:bg-surface focus-visible:ring-accent text-fg-secondary inline-flex h-10 items-center gap-1.5 rounded-lg border px-2.5 font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
+        aria-label={t.header.starOnGithub}
+      >
+        <Reicon name="Star" size={16} weight="Filled" aria-hidden="true" />
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+      <button
+        type="button"
+        data-dialog-open="settings-dialog"
+        class="border-border hover:bg-surface focus-visible:ring-accent text-fg-secondary inline-flex size-10 cursor-pointer items-center justify-center rounded-lg border transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+        aria-label={t.settings.open}
+        aria-haspopup="dialog"
+        title={t.settings.title}
+      >
+        <Reicon name="Settings" size={20} aria-hidden="true" />
+      </button>
+    </nav>
+  </div>
+</header>
+
+<dialog id="settings-dialog" closedby="any" class="modal-dialog modal-dialog--settings p-6" aria-labelledby="settings-dialog-title">
+  <form method="dialog" class="relative">
+    <div class="mb-5 flex items-center justify-between gap-4">
+      <h2 id="settings-dialog-title" class="text-fg flex items-center gap-2 text-xl font-semibold"><Reicon name="Settings" size={20} aria-hidden="true" /> {t.settings.title}</h2>
+      <button type="submit" class="text-fg-muted hover:text-fg focus-visible:ring-accent inline-flex size-9 items-center justify-center rounded-lg focus-visible:ring-2 focus-visible:outline-none" aria-label={t.settings.close}><Reicon name="XSquare" size={20} aria-hidden="true" /></button>
+    </div>
+    <div class="space-y-6">
+      <div class="space-y-2">
+        <label for="settings-language" class="text-fg flex items-center gap-2 text-sm font-semibold"><Reicon name="Global" size={16} aria-hidden="true" /> {t.settings.language}</label>
+        <select id="settings-language" name="language" class="border-border bg-surface text-fg focus-visible:ring-accent min-h-11 w-full cursor-pointer rounded-lg border-2 px-3 text-base focus-visible:ring-2 focus-visible:outline-none">
+          <option value="es" selected={lang === "es"}>🇪🇸 Español</option>
+          <option value="en" selected={lang === "en"}>🇬🇧 English</option>
+          <option value="gl" selected={lang === "gl"}>🧜🏻‍♀️ Galego</option>
+        </select>
+      </div>
+      <div class="space-y-2">
+        <label for="settings-theme" class="text-fg flex items-center gap-2 text-sm font-semibold"><Reicon name="Palette" size={16} aria-hidden="true" /> {t.settings.theme}</label>
+        <select id="settings-theme" name="theme" class="border-border bg-surface text-fg focus-visible:ring-accent min-h-11 w-full cursor-pointer rounded-lg border-2 px-3 text-base focus-visible:ring-2 focus-visible:outline-none">
+          {themeOrder.map((theme) => <option value={theme}>{t.theme[theme]}</option>)}
+        </select>
+      </div>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between gap-4">
+          <label for="settings-volume" class="text-fg flex items-center gap-2 text-sm font-semibold"><Reicon name="VolumeHigh" size={16} aria-hidden="true" /> {t.settings.volume}</label>
+          <output id="settings-volume-output" for="settings-volume" class="bg-code text-fg-secondary min-w-12 rounded-md px-2 py-1 text-center font-mono text-xs tabular-nums">70%</output>
+        </div>
+        <input id="settings-volume" name="sound-volume" type="range" min="0" max="100" step="10" value="70" class="accent-accent w-full" />
+      </div>
+    </div>
+  </form>
+</dialog>

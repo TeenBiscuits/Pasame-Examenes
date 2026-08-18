@@ -3,3 +3,4 @@ vercel.template.json
 vercel.json
 src/seo/pageMetaMap.generated.ts
 temp
+reference

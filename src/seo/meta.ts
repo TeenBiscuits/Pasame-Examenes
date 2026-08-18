@@ -2,7 +2,7 @@ import type { SubjectMeta, Topic, Exam } from "../data/types";
 import { en } from "../i18n/en";
 import { es } from "../i18n/es";
 import { gl } from "../i18n/gl";
-import type { Lang } from "../i18n/context";
+import type { Lang } from "../lib/i18n";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { isPublicSubject } from "../subjects/visibility";
 

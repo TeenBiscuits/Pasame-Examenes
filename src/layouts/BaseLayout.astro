@@ -1,0 +1,145 @@
+---
+import "@fontsource-variable/onest";
+import "@fontsource-variable/cascadia-code";
+import "../styles/global.css";
+import { themeScript } from "../theme/theme-script";
+import { themeSurfaceAlt } from "../theme/types";
+import type { SubjectMeta } from "../data/types";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import type { Lang } from "../lib/i18n";
+
+interface Alternate { lang: string; href: string }
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  alternates?: Alternate[];
+  ogImage?: string;
+  ogImageType?: string;
+  locale?: string;
+  jsonLd?: string;
+  noindex?: boolean;
+  subject?: SubjectMeta;
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonicalUrl,
+  alternates = [],
+  ogImage = "https://pe.pablopl.dev/og.jpg",
+  ogImageType = "image/jpeg",
+  locale = lang === "en" ? "en_US" : lang === "es" ? "es_ES" : "gl_ES",
+  jsonLd,
+  noindex = false,
+  subject,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} data-theme="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />)}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Pásame Exámenes" />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content={ogImageType} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png?v=20260620" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260620" />
+    <link rel="shortcut icon" href="/favicon.ico?v=20260620" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260620" />
+    <link rel="manifest" href="/site.webmanifest?v=20260620" />
+    <meta name="apple-mobile-web-app-title" content="Pásame Exámenes" />
+    <meta id="theme-color" name="theme-color" content={themeSurfaceAlt.light} />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline set:html={themeScript}></script>
+    {jsonLd && <script type="application/ld+json" is:inline set:html={jsonLd}></script>}
+    <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="41AHUOkOrsmT26f+Ow8zaQ" async></script>
+    <script is:inline defer src="https://analytics.pablopl.dev/script.js" data-website-id="63168f0e-a1cf-4ec6-a0c4-58fc7d57a0f4" data-performance="true" data-domains="pe.pablopl.dev" data-do-not-track="true"></script>
+    <script is:inline defer src="https://analytics.pablopl.dev/recorder.js" data-website-id="63168f0e-a1cf-4ec6-a0c4-58fc7d57a0f4"></script>
+    <link rel="preconnect" href="https://analytics.pablopl.dev" />
+  </head>
+  <body>
+    <div class="bg-surface text-fg flex min-h-screen min-h-svh min-h-dvh flex-col font-sans">
+      <Header {lang} {subject} />
+      <main class="flex-grow"><slot /></main>
+      <Footer {lang} />
+    </div>
+    <script>
+      const themeColors: Record<string, string> = {
+        light: "#ffffff", dark: "#1f2937", princess: "#fefbfb", latte: "#dce0e8",
+        frappe: "#232634", macchiato: "#181926", mocha: "#11111b",
+      };
+      const appearances: Record<string, string> = {
+        light: "light", dark: "dark", princess: "light", latte: "light",
+        frappe: "dark", macchiato: "dark", mocha: "dark",
+      };
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const opener = target.closest<HTMLElement>("[data-dialog-open]");
+        if (!opener) return;
+        const dialog = document.getElementById(opener.dataset.dialogOpen ?? "");
+        if (dialog instanceof HTMLDialogElement && !dialog.open) dialog.showModal();
+      });
+
+      const language = document.querySelector<HTMLSelectElement>("#settings-language");
+      language?.addEventListener("change", () => {
+        localStorage.setItem("lang", language.value);
+        const parts = window.location.pathname.split("/").filter(Boolean);
+        if (parts.length === 0) parts.push(language.value);
+        else parts[0] = language.value;
+        window.location.assign(`/${parts.join("/")}${window.location.search}${window.location.hash}`);
+      });
+
+      const theme = document.querySelector<HTMLSelectElement>("#settings-theme");
+      const storedTheme = localStorage.getItem("theme") ?? "system";
+      if (theme) theme.value = storedTheme;
+      theme?.addEventListener("change", () => {
+        const next = theme.value;
+        localStorage.setItem("theme", next);
+        document.documentElement.dataset.theme = next;
+        const resolved = next === "system"
+          ? window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+          : next;
+        const color = themeColors[resolved];
+        document.documentElement.style.setProperty("--browser-chrome-color", color);
+        document.querySelector<HTMLMetaElement>("#theme-color")?.setAttribute("content", color);
+        document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]')?.setAttribute(
+          "content",
+          next === "system" ? "light dark" : appearances[next] ?? "light dark",
+        );
+      });
+
+      const volume = document.querySelector<HTMLInputElement>("#settings-volume");
+      const output = document.querySelector<HTMLOutputElement>("#settings-volume-output");
+      const storedVolume = localStorage.getItem("sound-volume") ?? "70";
+      if (volume) volume.value = storedVolume;
+      if (output) output.value = `${storedVolume}%`;
+      volume?.addEventListener("input", () => {
+        localStorage.setItem("sound-volume", volume.value);
+        localStorage.setItem("sound-enabled", String(Number(volume.value) > 0));
+        if (Number(volume.value) > 0) localStorage.setItem("sound-last-audible-volume", volume.value);
+        if (output) output.value = `${volume.value}%`;
+      });
+    </script>
+  </body>
+</html>
