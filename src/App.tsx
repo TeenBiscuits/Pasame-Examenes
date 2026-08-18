@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode, type RefObject } from "react";
 import { bind as bindCuelume } from "cuelume";
-import { useLocation, Outlet } from "react-router";
+import { useLocation, useNavigation, Outlet } from "react-router";
 import { Measurer } from "mesurer";
 import Header from "./components/Header";
 import StarPopup from "./components/StarPopup";
@@ -23,27 +23,9 @@ import {
 } from "./components/LoadingSkeletons";
 
 export function PageLoader() {
-  const { pathname } = useLocation();
-  const parts = pathname.split("/").filter(Boolean);
-  const lang = parts[0] === "en" || parts[0] === "gl" ? parts[0] : "es";
-  const subject = parts.length === 2 ? getSubject(parts[1]) : undefined;
-  const copy = {
-    en: {
-      subtitle:
-        "Open-source platform for practicing FIC exam questions. Choose a subject below to get started.",
-      loading: "Loading content…",
-    },
-    es: {
-      subtitle:
-        "Plataforma de código abierto para practicar preguntas de exámenes de la FIC. Elige una asignatura para empezar.",
-      loading: "Cargando contenido…",
-    },
-    gl: {
-      subtitle:
-        "Plataforma de código aberto para practicar preguntas de exames da FIC. Elixe unha materia para comezar.",
-      loading: "Cargando contido…",
-    },
-  }[lang];
+  const location = useLocation();
+  const navigation = useNavigation();
+  const pathname = navigation.location?.pathname ?? location.pathname;
 
   return (
     <div
@@ -69,47 +51,76 @@ export function PageLoader() {
         </div>
       </header>
       <main>
-        <section className="px-4 py-16 text-center sm:py-20">
-          {subject ? (
-            <>
-              <p className="text-fg-muted mb-3 font-mono text-xs tracking-widest uppercase">
-                {subject.courseCode} &middot; {subject.degree}
-              </p>
-              <h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
-                {subject.name}
-              </h1>
-              <div
-                className="bg-border mx-auto mt-5 h-5 max-w-xl rounded-full opacity-70"
-                aria-hidden="true"
-              />
-            </>
-          ) : (
-            <>
-              <h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
-                Pásame Exámenes
-              </h1>
-              <p className="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl">
-                {copy.subtitle}
-              </p>
-            </>
-          )}
-        </section>
-        <div className="mx-auto max-w-6xl px-4 pb-14">
-          {subject ? (
-            <SubjectContentSkeleton loading>
-              <SubjectContentSkeletonFixture />
-            </SubjectContentSkeleton>
-          ) : (
-            <HomeCardsSkeleton loading>
-              <HomeCardsSkeletonFixture count={subjects.length + 1} />
-            </HomeCardsSkeleton>
-          )}
-        </div>
-        <span className="sr-only" role="status">
-          {copy.loading}
-        </span>
+        <PendingPageContent pathname={pathname} />
       </main>
     </div>
+  );
+}
+
+function PendingPageContent({ pathname }: { pathname: string }) {
+  const parts = pathname.split("/").filter(Boolean);
+  const lang = parts[0] === "en" || parts[0] === "gl" ? parts[0] : "es";
+  const subject = parts.length >= 2 ? getSubject(parts[1]) : undefined;
+  const copy = {
+    en: {
+      subtitle:
+        "Open-source platform for practicing FIC exam questions. Choose a subject below to get started.",
+      loading: "Loading content…",
+    },
+    es: {
+      subtitle:
+        "Plataforma de código abierto para practicar preguntas de exámenes de la FIC. Elige una asignatura para empezar.",
+      loading: "Cargando contenido…",
+    },
+    gl: {
+      subtitle:
+        "Plataforma de código aberto para practicar preguntas de exames da FIC. Elixe unha materia para comezar.",
+      loading: "Cargando contido…",
+    },
+  }[lang];
+
+  return (
+    <>
+      <section className="px-4 py-16 text-center sm:py-20">
+        {subject ? (
+          <>
+            <p className="text-fg-muted mb-3 text-xs tracking-widest uppercase">
+              {subject.courseCode} &middot; {subject.degree}
+            </p>
+            <h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+              {subject.name}
+            </h1>
+            <div
+              className="bg-border mx-auto mt-5 h-5 max-w-xl rounded-full opacity-70"
+              aria-hidden="true"
+            />
+          </>
+        ) : (
+          <>
+            <h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+              Pásame Exámenes
+            </h1>
+            <p className="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl">
+              {copy.subtitle}
+            </p>
+          </>
+        )}
+      </section>
+      <div className="mx-auto max-w-6xl px-4 pb-14">
+        {subject ? (
+          <SubjectContentSkeleton loading>
+            <SubjectContentSkeletonFixture />
+          </SubjectContentSkeleton>
+        ) : (
+          <HomeCardsSkeleton loading>
+            <HomeCardsSkeletonFixture count={subjects.length + 1} />
+          </HomeCardsSkeleton>
+        )}
+      </div>
+      <span className="sr-only" role="status">
+        {copy.loading}
+      </span>
+    </>
   );
 }
 
@@ -385,6 +396,9 @@ function Footer() {
 }
 
 export default function App() {
+  const navigation = useNavigation();
+  const pendingPathname = navigation.location?.pathname;
+
   useEffect(() => {
     bindCuelume();
   }, []);
@@ -395,8 +409,18 @@ export default function App() {
       <ScrollToTop />
       <Header />
       <StarPopup />
-      <main className="flex-grow">
-        <Outlet />
+      <main
+        className="flex-grow"
+        aria-busy={pendingPathname ? true : undefined}
+      >
+        {pendingPathname ? (
+          <PendingPageContent
+            key={pendingPathname}
+            pathname={pendingPathname}
+          />
+        ) : (
+          <Outlet />
+        )}
       </main>
       <Footer />
       {import.meta.env.DEV ? <Measurer /> : null}

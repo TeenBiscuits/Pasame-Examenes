@@ -2,16 +2,14 @@ import { useParams, type MetaFunction } from "react-router";
 import SubjectHome from "../pages/SubjectHome";
 import { isLang } from "../i18n/context-value";
 import { getSubject } from "../subjects";
-import { questionSummariesBySubject } from "../subjects/questionSummaries.generated";
+import { questionOverviewsBySubject } from "../subjects/questionOverviews.generated";
 import { buildSubjectMeta } from "../seo/meta";
 import { pageMetaDescriptors } from "../seo/route-meta";
 
-function getQuestionSummaries(subjectId: string) {
-  return (
-    questionSummariesBySubject[
-      subjectId as keyof typeof questionSummariesBySubject
-    ] ?? []
-  );
+function getQuestionOverview(subjectId: string) {
+  return questionOverviewsBySubject[
+    subjectId as keyof typeof questionOverviewsBySubject
+  ];
 }
 
 export const meta: MetaFunction = ({ params }) => {
@@ -30,9 +28,14 @@ export const meta: MetaFunction = ({ params }) => {
   for (const exam of subject.exams) {
     if (!exam.deleteRights) availableExamIds.add(exam.id);
   }
-  const questionCount = getQuestionSummaries(subject.id).filter((question) =>
-    availableExamIds.has(question.examId),
-  ).length;
+  const overview = getQuestionOverview(subject.id);
+  const questionCount = overview
+    ? Object.entries(overview.exams).reduce(
+        (total, [examId, exam]) =>
+          availableExamIds.has(examId) ? total + exam.questionCount : total,
+        0,
+      )
+    : 0;
   const page = buildSubjectMeta(params.lang, subject, {
     questionCount,
   });
@@ -41,6 +44,6 @@ export const meta: MetaFunction = ({ params }) => {
 
 export default function SubjectRoute() {
   const { subjectId } = useParams<{ subjectId: string }>();
-  const questionSummaries = subjectId ? getQuestionSummaries(subjectId) : [];
-  return <SubjectHome initialQuestions={[...questionSummaries]} />;
+  const overview = subjectId ? getQuestionOverview(subjectId) : undefined;
+  return <SubjectHome overview={overview} />;
 }

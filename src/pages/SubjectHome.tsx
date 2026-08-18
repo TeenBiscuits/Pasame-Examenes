@@ -9,7 +9,7 @@ import {
 } from "react";
 import { useParams } from "react-router";
 import { LangLink as Link } from "../lib/lang-link";
-import { getSubject, getAllQuestions } from "../subjects";
+import { getAllQuestions, getSubject } from "../subjects";
 import { clearTopicProgress, getTopicProgress } from "../data/store";
 import TopicCard from "../components/TopicCard";
 import ExamSourceSelector from "../components/ExamSourceSelector";
@@ -21,7 +21,12 @@ import CopyrightReportModal, {
 } from "../components/CopyrightReportModal";
 import ContentPolicyIcon from "../components/ContentPolicyIcon";
 import Hero from "../components/Hero";
-import type { QuestionSummary, SubjectMeta, Topic } from "../data/types";
+import type {
+  QuestionAggregate,
+  SubjectMeta,
+  SubjectQuestionOverview,
+  Topic,
+} from "../data/types";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
@@ -30,15 +35,11 @@ import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { isPublicSubject } from "../subjects/visibility";
-import { getExamQuestionStats } from "../lib/exam-stats";
 import type { ExamQuestionStats } from "../lib/exam-stats";
 import { formatPoints } from "../lib/points";
 import { closeDialog, showDialog, useDialogDismiss } from "../lib/dialog";
 import { playSound } from "../lib/sound";
-import {
-  filterQuestionsByExamSelection,
-  useExamSelection,
-} from "../hooks/useExamSelection";
+import { useExamSelection } from "../hooks/useExamSelection";
 import {
   ArrowRightUp,
   Copyright,
@@ -50,13 +51,53 @@ import {
 } from "reicon-react";
 import { compactModalDialogClass, ModalHeader } from "../components/Modal";
 import { SubjectContentSkeleton } from "../components/LoadingSkeletons";
+import { recordSubjectClick } from "../lib/recent";
 
 const subscribeToHydration = () => () => {};
 
+interface SelectedQuestionOverview extends QuestionAggregate {
+  topics: Record<string, QuestionAggregate>;
+}
+
+function selectQuestionOverview(
+  overview: SubjectQuestionOverview | undefined,
+  selectedExamIds: string[],
+): SelectedQuestionOverview {
+  const selected: SelectedQuestionOverview = {
+    questionCount: 0,
+    points: 0,
+    repeatedCount: 0,
+    topics: {},
+  };
+
+  if (!overview) return selected;
+
+  for (const examId of selectedExamIds) {
+    const exam = overview.exams[examId];
+    if (!exam) continue;
+    selected.questionCount += exam.questionCount;
+    selected.points += exam.points;
+    selected.repeatedCount += exam.repeatedCount;
+
+    for (const [topicKey, topic] of Object.entries(exam.topics)) {
+      const aggregate = (selected.topics[topicKey] ??= {
+        questionCount: 0,
+        points: 0,
+        repeatedCount: 0,
+      });
+      aggregate.questionCount += topic.questionCount;
+      aggregate.points += topic.points;
+      aggregate.repeatedCount += topic.repeatedCount;
+    }
+  }
+
+  return selected;
+}
+
 export default function SubjectHome({
-  initialQuestions = [],
+  overview,
 }: {
-  initialQuestions?: QuestionSummary[];
+  overview?: SubjectQuestionOverview;
 }) {
   const { subjectId } = useParams<{ subjectId: string }>();
   const t = useT();
@@ -67,61 +108,52 @@ export default function SubjectHome({
   const examSourceDialogRef = useRef<HTMLDialogElement>(null);
   const subject = subjectId ? getSubject(subjectId) : undefined;
   const { selectedExamIds, setSelectedExamIds } = useExamSelection(subject);
-  const [allQuestions, setAllQuestions] =
-    useState<QuestionSummary[]>(initialQuestions);
-  const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-    initialQuestions.length > 0 && subject ? subject.id : null,
-  );
-  const questionsLoaded = !!subject && questionsLoadedFor === subject.id;
   const [, setProgressRevision] = useState(0);
   const storageReady = useSyncExternalStore(
     subscribeToHydration,
     () => true,
     () => false,
   );
-  const selectedQuestions = useMemo(
-    () => filterQuestionsByExamSelection(allQuestions, selectedExamIds),
-    [allQuestions, selectedExamIds],
+  const selectedOverview = useMemo(
+    () => selectQuestionOverview(overview, selectedExamIds),
+    [overview, selectedExamIds],
   );
-  const examStats = useMemo(
-    () =>
-      subject ? getExamQuestionStats(subject.exams, allQuestions) : new Map(),
-    [subject, allQuestions],
-  );
+  const examStats = useMemo(() => {
+    const stats = new Map<string, ExamQuestionStats>();
+    if (!subject || !overview) return stats;
+    for (const exam of subject.exams) {
+      const examOverview = overview.exams[exam.id];
+      stats.set(exam.id, {
+        questionCount: examOverview?.questionCount ?? 0,
+        points: examOverview?.points ?? 0,
+      });
+    }
+    return stats;
+  }, [subject, overview]);
   const progress =
-    subject && questionsLoaded && storageReady
+    subject && storageReady
       ? getTopicProgress(
           subject.id,
-          selectedQuestions.map((q) => ({ topic: q.topic, points: q.points })),
+          Object.entries(selectedOverview.topics).map(([topic, aggregate]) => ({
+            topic,
+            points: aggregate.points,
+          })),
         )
       : {};
   const seoMeta = useMemo(
     () =>
       subject
         ? buildSubjectMeta(lang, subject, {
-            questionCount: selectedQuestions.length,
+            questionCount: selectedOverview.questionCount,
           })
         : undefined,
-    [subject, lang, selectedQuestions.length],
+    [subject, lang, selectedOverview.questionCount],
   );
   useDocumentTitle(seoMeta?.title ?? t.home.title);
 
   useEffect(() => {
-    if (subject && questionsLoadedFor !== subject.id) {
-      getAllQuestions(subject.id).then((questions) => {
-        setAllQuestions(
-          questions.map(({ id, examId, topic, points, repeated }) => ({
-            id,
-            examId,
-            topic,
-            points,
-            repeated,
-          })),
-        );
-        setQuestionsLoadedFor(subject.id);
-      });
-    }
-  }, [subject, questionsLoadedFor]);
+    if (subject) recordSubjectClick(subject.id);
+  }, [subject]);
 
   useSeoHead({
     title: seoMeta?.title ?? t.home.title,
@@ -130,14 +162,14 @@ export default function SubjectHome({
     ogImage: subject ? `/og/${subject.id}.png` : undefined,
     jsonLd: seoMeta?.jsonLd,
     indexable: Boolean(subject && isPublicSubject(subject.id)),
-    enabled: !subject || questionsLoaded,
+    enabled: true,
   });
 
   if (!subject) {
     return <SubjectNotFound />;
   }
 
-  const repeatedCount = selectedQuestions.filter((q) => q.repeated).length;
+  const repeatedCount = selectedOverview.repeatedCount;
   const hasAuthorizedExams = hasAuthorizedExamContent(subject);
   const currentSubjectId = subject.id;
   const allExamSourcesSelected =
@@ -152,7 +184,7 @@ export default function SubjectHome({
     ? t.subjectHome.description
     : t.subjectHome.communityDescription;
   const description = descriptionTemplate
-    .replace("{count}", String(selectedQuestions.length))
+    .replace("{count}", String(selectedOverview.questionCount))
     .replace("{repeated}", repeatedText)
     .replace("{exams}", String(selectedExamIds.length));
 
@@ -170,7 +202,6 @@ export default function SubjectHome({
 
   return (
     <div className="animate-fade-in animate-duration-fast">
-      {questionsLoaded && null}
       <SubjectHeader subject={subject} description={description} />
       <div className="mx-auto max-w-6xl px-4 pb-8">
         <SubjectContentSkeleton loading={false}>
@@ -184,7 +215,7 @@ export default function SubjectHome({
             />
             <TopicsSection
               subject={subject}
-              questions={selectedQuestions}
+              topicStats={selectedOverview.topics}
               progress={progress}
               allExamSourcesSelected={allExamSourcesSelected}
               onOpenExamSources={() => showDialog(examSourceDialogRef.current)}
@@ -323,7 +354,7 @@ function SubjectHeader({
 
   return (
     <Hero emojis={subject.topics.map((tp) => tp.icon)} compact>
-      <p className="text-fg-muted mb-3 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
+      <p className="text-fg-muted mb-3 flex items-center justify-center gap-2 text-xs tracking-widest uppercase">
         <ContentPolicyIcon subject={subject} className="size-4" svgOnly />
         <span>
           {subject.courseCode} &middot; {subject.degree} &middot;{" "}
@@ -342,23 +373,21 @@ function SubjectHeader({
 
 function TopicsSection({
   subject,
-  questions,
+  topicStats,
   progress,
   allExamSourcesSelected,
   onOpenExamSources,
   onResetProgress,
 }: {
   subject: SubjectMeta;
-  questions: QuestionSummary[];
+  topicStats: Record<string, QuestionAggregate>;
   progress: ReturnType<typeof getTopicProgress>;
   allExamSourcesSelected: boolean;
   onOpenExamSources: () => void;
   onResetProgress: () => void;
 }) {
   const t = useT();
-  const topicKeysWithQuestions = new Set(
-    questions.map((question) => question.topic),
-  );
+  const topicKeysWithQuestions = new Set(Object.keys(topicStats));
   const topicIndices = new Map(
     subject.topics.map((topic, index) => [topic.key, index]),
   );
@@ -367,7 +396,7 @@ function TopicsSection({
       ? subject.topics
       : subject.topics.filter((topic) => topicKeysWithQuestions.has(topic.key));
   const renderTopicCard = (topic: Topic) => {
-    const topicQuestions = questions.filter((q) => q.topic === topic.key);
+    const stats = topicStats[topic.key];
     const topicProgress = progress[topic.key];
     const progressPct =
       topicProgress && topicProgress.total > 0
@@ -380,8 +409,8 @@ function TopicsSection({
         subjectId={subject.id}
         topic={topic}
         topicIndex={topicIndices.get(topic.key) ?? 0}
-        questionCount={topicQuestions.length}
-        pointsCount={topicQuestions.reduce((sum, q) => sum + q.points, 0)}
+        questionCount={stats?.questionCount ?? 0}
+        pointsCount={stats?.points ?? 0}
         progress={progressPct}
       />
     );

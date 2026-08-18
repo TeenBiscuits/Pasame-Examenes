@@ -117,6 +117,8 @@ export function SubjectContentSkeletonFixture() {
   );
 }
 
+const subjectContentSkeletonFixture = <SubjectContentSkeletonFixture />;
+
 export function SubjectContentSkeleton({
   loading,
   children,
@@ -124,14 +126,13 @@ export function SubjectContentSkeleton({
   loading: boolean;
   children: ReactNode;
 }) {
-  const fixture = <SubjectContentSkeletonFixture />;
   return (
     <Skeleton
       {...skeletonProps}
       name="subject-content"
       loading={loading}
-      fixture={fixture}
-      fallback={fixture}
+      fixture={subjectContentSkeletonFixture}
+      fallback={subjectContentSkeletonFixture}
     >
       {children}
     </Skeleton>

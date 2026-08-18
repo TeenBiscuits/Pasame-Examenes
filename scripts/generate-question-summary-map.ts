@@ -3,17 +3,30 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
 
-interface QuestionSummary {
-  id: string;
+interface QuestionData {
   examId: string;
   topic: string;
   points: number;
   repeated?: boolean;
 }
 
+interface QuestionAggregate {
+  questionCount: number;
+  points: number;
+  repeatedCount: number;
+}
+
+interface ExamQuestionOverview extends QuestionAggregate {
+  topics: Record<string, QuestionAggregate>;
+}
+
+interface SubjectQuestionOverview extends QuestionAggregate {
+  exams: Record<string, ExamQuestionOverview>;
+}
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const subjectsDir = resolve(root, "src", "subjects");
-const outPath = resolve(subjectsDir, "questionSummaries.generated.ts");
+const outPath = resolve(subjectsDir, "questionOverviews.generated.ts");
 const countsOutPath = resolve(subjectsDir, "questionCounts.generated.ts");
 
 function propertyName(node: ts.PropertyName): string | undefined {
@@ -41,10 +54,7 @@ function numberValue(node: ts.Expression): number | undefined {
   return undefined;
 }
 
-function parseQuestion(
-  node: ts.Expression,
-  sourcePath: string,
-): QuestionSummary {
+function parseQuestion(node: ts.Expression, sourcePath: string): QuestionData {
   if (!ts.isObjectLiteralExpression(node)) {
     throw new Error(`Expected a question object in ${sourcePath}`);
   }
@@ -56,25 +66,24 @@ function parseQuestion(
     if (name) values.set(name, property.initializer);
   }
 
-  const id = values.get("id") && stringValue(values.get("id")!);
   const examId = values.get("examId") && stringValue(values.get("examId")!);
   const topic = values.get("topic") && stringValue(values.get("topic")!);
   const points = values.get("points") && numberValue(values.get("points")!);
   const repeatedNode = values.get("repeated");
   const repeated = repeatedNode?.kind === ts.SyntaxKind.TrueKeyword;
 
-  if (!id || !examId || !topic || points === undefined) {
+  if (!examId || !topic || points === undefined) {
     throw new Error(
       `Question summary fields must be literals in ${sourcePath}`,
     );
   }
 
   return repeated
-    ? { id, examId, topic, points, repeated }
-    : { id, examId, topic, points };
+    ? { examId, topic, points, repeated }
+    : { examId, topic, points };
 }
 
-function parseQuestions(sourcePath: string): QuestionSummary[] {
+function parseQuestions(sourcePath: string): QuestionData[] {
   const source = ts.createSourceFile(
     sourcePath,
     readFileSync(sourcePath, "utf-8"),
@@ -102,17 +111,52 @@ function parseQuestions(sourcePath: string): QuestionSummary[] {
   throw new Error(`Could not find the questions array in ${sourcePath}`);
 }
 
-const summaries: Record<string, QuestionSummary[]> = {};
+function emptyAggregate(): QuestionAggregate {
+  return { questionCount: 0, points: 0, repeatedCount: 0 };
+}
+
+function buildOverview(questions: QuestionData[]): SubjectQuestionOverview {
+  const overview: SubjectQuestionOverview = {
+    ...emptyAggregate(),
+    exams: {},
+  };
+
+  for (const question of questions) {
+    overview.questionCount += 1;
+    overview.points += question.points;
+    if (question.repeated) overview.repeatedCount += 1;
+
+    const exam = (overview.exams[question.examId] ??= {
+      ...emptyAggregate(),
+      topics: {},
+    });
+    exam.questionCount += 1;
+    exam.points += question.points;
+    if (question.repeated) exam.repeatedCount += 1;
+
+    const topic = (exam.topics[question.topic] ??= emptyAggregate());
+    topic.questionCount += 1;
+    topic.points += question.points;
+    if (question.repeated) topic.repeatedCount += 1;
+  }
+
+  return overview;
+}
+
+const questionData: Record<string, QuestionData[]> = {};
+const overviews: Record<string, SubjectQuestionOverview> = {};
 for (const entry of readdirSync(subjectsDir, { withFileTypes: true })) {
   if (!entry.isDirectory() || entry.name === "_template") continue;
   const questionsPath = resolve(subjectsDir, entry.name, "questions.ts");
-  summaries[entry.name] = parseQuestions(questionsPath);
+  const questions = parseQuestions(questionsPath);
+  questionData[entry.name] = questions;
+  overviews[entry.name] = buildOverview(questions);
 }
 
 const output = [
-  'import type { QuestionSummary } from "../data/types";',
+  'import type { SubjectQuestionOverview } from "../data/types";',
   "",
-  `export const questionSummariesBySubject = ${JSON.stringify(summaries, null, 2)} as const satisfies Record<string, readonly QuestionSummary[]>;`,
+  `export const questionOverviewsBySubject = ${JSON.stringify(overviews, null, 2)} as const satisfies Record<string, SubjectQuestionOverview>;`,
   "",
 ].join("\n");
 
@@ -122,7 +166,7 @@ writeFileSync(
   [
     `export const questionCountsBySubject = ${JSON.stringify(
       Object.fromEntries(
-        Object.entries(summaries).map(([subjectId, questions]) => [
+        Object.entries(questionData).map(([subjectId, questions]) => [
           subjectId,
           questions.length,
         ]),
@@ -134,5 +178,5 @@ writeFileSync(
   ].join("\n"),
 );
 console.log(
-  `✓ Generated question summaries and counts for ${Object.keys(summaries).length} subjects`,
+  `✓ Generated question overviews and counts for ${Object.keys(questionData).length} subjects`,
 );

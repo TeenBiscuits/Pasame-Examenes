@@ -1,4 +1,10 @@
-import { useRef, useState, type ChangeEvent, type KeyboardEvent } from "react";
+import {
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ChangeEvent,
+  type KeyboardEvent,
+} from "react";
 import { useLocation, useNavigate } from "react-router";
 import {
   Gear,
@@ -16,6 +22,7 @@ import {
   getStoredLastAudibleVolume,
   getStoredSoundVolume,
   playSound,
+  subscribeToSoundVolume,
   updateSoundVolume,
 } from "../lib/sound";
 import {
@@ -63,6 +70,10 @@ function handleVolumeKeyUp(event: KeyboardEvent<HTMLInputElement>) {
   }
 }
 
+function handleVolumeChange(event: ChangeEvent<HTMLInputElement>) {
+  updateSoundVolume(Number(event.target.value));
+}
+
 export default function SettingsModal() {
   const t = useT();
   const { lang, setLang } = useLang();
@@ -72,7 +83,11 @@ export default function SettingsModal() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeMethodRef = useRef<"x" | "backdrop" | "esc">("x");
   const [open, setOpen] = useState(false);
-  const [volume, setVolumeState] = useState(getStoredSoundVolume);
+  const volume = useSyncExternalStore(
+    subscribeToSoundVolume,
+    getStoredSoundVolume,
+    () => DEFAULT_SOUND_VOLUME,
+  );
 
   useDialogDismiss(dialogRef, (method) => {
     closeMethodRef.current = method;
@@ -119,21 +134,16 @@ export default function SettingsModal() {
     track("theme_toggle", { theme: nextTheme, source: "settings" });
   }
 
-  function handleVolumeChange(event: ChangeEvent<HTMLInputElement>) {
-    const nextVolume = updateSoundVolume(Number(event.target.value));
-    setVolumeState(nextVolume);
-  }
-
   function toggleMuted() {
     if (volume > 0) {
       playSound("droplet");
-      setVolumeState(updateSoundVolume(0));
+      updateSoundVolume(0);
       track("sound_volume_change", { volume: 0, muted: true });
       return;
     }
 
     const restoredVolume = getStoredLastAudibleVolume() || DEFAULT_SOUND_VOLUME;
-    setVolumeState(updateSoundVolume(restoredVolume));
+    updateSoundVolume(restoredVolume);
     playSound("toggle");
     track("sound_volume_change", {
       volume: restoredVolume,

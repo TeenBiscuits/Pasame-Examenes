@@ -3,7 +3,6 @@ import type { SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
-import { recordSubjectClick } from "../lib/recent";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import ContentPolicyIcon from "./ContentPolicyIcon";
 
@@ -37,7 +36,6 @@ export default function SubjectCard({
           subjectId: subject.id,
           location: "grid",
         });
-        recordSubjectClick(subject.id);
       }}
     >
       <div className="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-5 pt-5 pb-2">
@@ -47,7 +45,7 @@ export default function SubjectCard({
           </span>
           <div className="flex items-center gap-2">
             <ContentPolicyIcon subject={subject} />
-            <span className="bg-code text-fg-secondary inline-flex h-6 items-center rounded px-2 font-mono text-xs font-semibold">
+            <span className="bg-code text-fg-secondary inline-flex h-6 items-center rounded px-2 text-xs font-semibold tracking-wide">
               {subject.courseCode}
             </span>
           </div>

@@ -7,7 +7,6 @@ import {
   useLocation,
 } from "react-router";
 import "@fontsource-variable/onest";
-import "@fontsource-variable/cascadia-code";
 import "./index.css";
 import "./bones/registry";
 import App, { PageLoader } from "./App";

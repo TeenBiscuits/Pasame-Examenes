@@ -3,6 +3,7 @@ import { play, setEnabled, setVolume as setCuelumeVolume } from "cuelume";
 const SOUND_ENABLED_KEY = "sound-enabled";
 const SOUND_VOLUME_KEY = "sound-volume";
 const LAST_AUDIBLE_VOLUME_KEY = "sound-last-audible-volume";
+const soundVolumeListeners = new Set<() => void>();
 
 export const DEFAULT_SOUND_VOLUME = 70;
 
@@ -42,6 +43,13 @@ export function getStoredLastAudibleVolume(): number {
   return DEFAULT_SOUND_VOLUME;
 }
 
+export function subscribeToSoundVolume(onChange: () => void) {
+  soundVolumeListeners.add(onChange);
+  return () => {
+    soundVolumeListeners.delete(onChange);
+  };
+}
+
 export function initializeSound() {
   applySoundVolume(getStoredSoundVolume());
 }
@@ -60,6 +68,7 @@ export function updateSoundVolume(volume: number): number {
   } catch {
     /* localStorage unavailable */
   }
+  for (const listener of soundVolumeListeners) listener();
 
   return nextVolume;
 }

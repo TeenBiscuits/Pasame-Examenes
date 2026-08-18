@@ -14,7 +14,6 @@ import { buildHomeMeta } from "../seo/meta";
 import {
   getRecentSubjects,
   getServerRecentSubjects,
-  recordSubjectClick,
   clearRecentSubjects,
   subscribeToRecentSubjects,
 } from "../lib/recent";
@@ -138,7 +137,6 @@ export default function Home() {
                       data-cuelume-hover="tick"
                       data-cuelume-press
                       onClick={() => {
-                        recordSubjectClick(slot.subject.id);
                         track("subject_card_click", {
                           subjectId: slot.subject.id,
                           location: "recent",

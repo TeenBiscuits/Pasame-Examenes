@@ -61,6 +61,20 @@ export type QuestionSummary = Pick<
   "id" | "examId" | "topic" | "points" | "repeated"
 >;
 
+export interface QuestionAggregate {
+  questionCount: number;
+  points: number;
+  repeatedCount: number;
+}
+
+export interface ExamQuestionOverview extends QuestionAggregate {
+  topics: Record<string, QuestionAggregate>;
+}
+
+export interface SubjectQuestionOverview extends QuestionAggregate {
+  exams: Record<string, ExamQuestionOverview>;
+}
+
 export interface Topic {
   key: string;
   label: string;
