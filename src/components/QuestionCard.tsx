@@ -11,12 +11,6 @@ import {
 } from "../lib/grading";
 import { track } from "../lib/umami";
 import { formatPoints } from "../lib/points";
-import {
-  triggerLight,
-  triggerSuccess,
-  triggerError,
-  triggerSelection,
-} from "../lib/haptics";
 import { playSuccess, playError } from "../lib/sound";
 import {
   BookOpen,
@@ -143,10 +137,8 @@ function SelfGradeControls({
 
   const handleGrade = (nextGrade: SelfGrade) => {
     if (nextGrade === "correct") {
-      triggerSuccess();
       playSuccess();
     } else {
-      triggerError();
       playError();
     }
     onSelfGrade(questionId, nextGrade);
@@ -217,7 +209,6 @@ function DevelopmentDisclosure({
         data-cuelume-press={isOpen ? "droplet" : "bloom"}
         className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
         onClick={() => {
-          triggerLight();
           const next = !isOpen;
           track("solution_toggle", {
             questionId,
@@ -291,7 +282,6 @@ function MCQuestion({
         const optionIndex = selectedLetter.charCodeAt(0) - 97;
         if (optionIndex < question.options!.length) {
           e.preventDefault();
-          triggerSelection();
           track("question_answer", {
             questionId: question.id,
             type: "mc",
@@ -348,7 +338,6 @@ function MCQuestion({
             className={className}
             onClick={() => {
               if (showResult) return;
-              triggerSelection();
               track("question_answer", {
                 questionId: question.id,
                 type: "mc",
@@ -383,7 +372,6 @@ function MCQuestion({
               data-cuelume-press={isOpen ? "droplet" : "bloom"}
               className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
-                triggerLight();
                 const next = !isOpen;
                 track("solution_toggle", {
                   questionId: question.id,
@@ -480,7 +468,6 @@ function TextQuestion({
             data-cuelume-press={isOpen ? "droplet" : "bloom"}
             className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
             onClick={() => {
-              triggerLight();
               const next = !isOpen;
               track("solution_toggle", {
                 questionId: question.id,
@@ -627,7 +614,6 @@ function MultipleTextQuestion({
                   data-cuelume-press={isOpen ? "droplet" : "bloom"}
                   className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
                   onClick={() => {
-                    triggerLight();
                     const next = !isOpen;
                     track("solution_toggle", {
                       questionId: question.id,
@@ -1034,7 +1020,6 @@ function MatchingQuestion({
                     data-cuelume-press
                     className={cls}
                     onClick={() => {
-                      triggerSelection();
                       track("question_answer", {
                         questionId: question.id,
                         type: "matching",
@@ -1068,7 +1053,6 @@ function MatchingQuestion({
               data-cuelume-press={isOpen ? "droplet" : "bloom"}
               className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
               onClick={() => {
-                triggerLight();
                 const next = !isOpen;
                 track("solution_toggle", {
                   questionId: question.id,
@@ -1217,7 +1201,6 @@ export default function QuestionCard(props: QuestionCardProps) {
             rel="noopener noreferrer"
             className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg inline-flex shrink-0 items-center gap-1 rounded px-2 py-1 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
             onClick={() => {
-              triggerLight();
               track("report_issue", {
                 questionId: question.id,
                 subjectId: questionProps.subjectId,

@@ -1,7 +1,6 @@
 import type { Ref } from "react";
 import type { Question } from "../data/types";
 import { track } from "../lib/umami";
-import { triggerLight } from "../lib/haptics";
 import type { QuestionResult } from "../lib/grading";
 
 type NavEventName = "practice_navigate" | "exam_navigate";
@@ -82,7 +81,6 @@ export default function QuestionNavChips({
             className={cls}
             onPointerUp={(event) => event.currentTarget.blur()}
             onClick={() => {
-              triggerLight();
               if (direction !== undefined) {
                 const data =
                   typeof eventData === "function" ? eventData() : eventData;

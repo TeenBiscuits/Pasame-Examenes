@@ -2,7 +2,6 @@ import { useReducer, useCallback, useEffect, useRef } from "react";
 import type { Question } from "../data/types";
 import { saveAttempt } from "../data/store";
 import { track } from "../lib/umami";
-import { triggerMedium } from "../lib/haptics";
 import { playSuccess, playError, playSound } from "../lib/sound";
 import { getQuestionScore, isSelfGradedQuestion } from "../lib/grading";
 
@@ -93,7 +92,6 @@ export function usePracticeSession(
   }, []);
 
   const handleSubmit = useCallback(() => {
-    triggerMedium();
     const id = getNow().toString();
     attemptIdRef.current = id;
     let score = 0;

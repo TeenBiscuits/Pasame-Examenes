@@ -1,6 +1,5 @@
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { triggerLight } from "../lib/haptics";
 import { FilePdf, LinkSquare, TriangleWarning } from "reicon-react";
 
 import type { Exam, QuestionType } from "../data/types";
@@ -84,7 +83,6 @@ export default function Disclaimer({
           rel="noopener noreferrer"
           className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-incorrect-fg rounded text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
-            triggerLight();
             track("report_issue", {
               subjectId,
               source: "disclaimer",

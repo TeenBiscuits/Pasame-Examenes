@@ -2,7 +2,6 @@ import { useLocation, useParams } from "@tanstack/react-router";
 import { getSubject } from "../subjects";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { triggerLight } from "../lib/haptics";
 import { LangLink as Link } from "../lib/lang-link";
 import GitHubStarButton from "./GitHubStarButton";
 import SettingsModal from "./SettingsModal";
@@ -41,7 +40,6 @@ export default function Header() {
           data-cuelume-press
           className="text-fg hover:text-accent-fg focus-visible:ring-accent group flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
           onClick={() => {
-            triggerLight();
             track("nav_click", { target: "home" });
           }}
         >
@@ -63,7 +61,6 @@ export default function Header() {
                 data-cuelume-press
                 className={`sm:hidden ${acronymLinkClasses}`}
                 onClick={() => {
-                  triggerLight();
                   track("nav_click", {
                     target: "subject_home",
                     subjectId: subjectId || "",
@@ -79,7 +76,6 @@ export default function Header() {
                 data-cuelume-press
                 className={`hidden max-w-56 truncate sm:block ${subjectLinkClasses}`}
                 onClick={() => {
-                  triggerLight();
                   track("nav_click", {
                     target: "subject_home",
                     subjectId: subjectId || "",

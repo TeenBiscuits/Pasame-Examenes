@@ -350,7 +350,6 @@ src/
 │   └── gl.ts
 ├── lib/
 │   ├── markdown.tsx          # Renderizado de código inline y bloques
-│   ├── haptics.ts            # Feedback háptico
 │   └── umami.ts              # Analytics wrapper
 └── App.tsx                   # Shell compartido de la aplicación
 

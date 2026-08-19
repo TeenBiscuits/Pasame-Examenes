@@ -20,7 +20,6 @@ import QuestionNavChips from "../components/QuestionNavChips";
 import Disclaimer from "../components/Disclaimer";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildTopicMeta } from "../seo/meta";
@@ -329,7 +328,6 @@ function PracticeControls({
   const nextBtnRef = useRef<HTMLButtonElement>(null);
 
   const navigateQuestion = (dir: "prev" | "next") => {
-    triggerLight();
     const nextIndex =
       dir === "prev"
         ? Math.max(0, currentIndex - 1)
@@ -404,7 +402,6 @@ function PracticeControls({
                         dispatchHover({ type: "leave", control: "clear" });
                     }}
                     onClick={() => {
-                      triggerLight();
                       track("practice_clear_answer", {
                         questionId: currentQuestion.id,
                         subjectId: subject.id,
@@ -975,7 +972,6 @@ export default function PracticeTopic() {
           data-cuelume-press
           className="text-accent-fg mt-4 inline-block hover:underline"
           onClick={() => {
-            triggerLight();
             track("nav_click", { target: "home", from: "practice_empty" });
           }}
         >

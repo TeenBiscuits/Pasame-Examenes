@@ -3,7 +3,6 @@ import { LangLink as Link } from "../lib/lang-link";
 import type { SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { triggerLight } from "../lib/haptics";
 import { recordSubjectClick } from "../lib/recent";
 import { getAllQuestions } from "../subjects";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
@@ -40,7 +39,6 @@ export default function SubjectCard({ subject }: SubjectCardProps) {
       data-cuelume-press
       className="interactive-card focus-visible:ring-accent flex min-h-[160px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
-        triggerLight();
         track("subject_card_click", {
           subjectId: subject.id,
           location: "grid",

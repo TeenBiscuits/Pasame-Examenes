@@ -1,7 +1,6 @@
 import { useReducer, useCallback, useRef, useEffect } from "react";
 import type { Question } from "../data/types";
 import { track } from "../lib/umami";
-import { triggerMedium } from "../lib/haptics";
 import { getQuestionScore } from "../lib/grading";
 
 const getNow = () => Date.now();
@@ -81,7 +80,6 @@ export function useExamSession(
   }, []);
 
   const handleStart = useCallback(() => {
-    triggerMedium();
     track("exam_start", {
       subjectId,
       examId,
@@ -96,7 +94,6 @@ export function useExamSession(
     (skipConfirm = false) => {
       if (!skipConfirm && !window.confirm(t.exam.submitConfirm)) return;
 
-      triggerMedium();
       const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
       let score = 0;
       for (const q of questions) {

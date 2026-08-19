@@ -2,7 +2,6 @@ import { LangLink as Link } from "../lib/lang-link";
 import type { Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { triggerLight } from "../lib/haptics";
 import { formatPoints } from "../lib/points";
 
 interface TopicCardProps {
@@ -96,7 +95,6 @@ export default function TopicCard({
       data-cuelume-press
       className="interactive-card focus-visible:ring-accent flex h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
-        triggerLight();
         track("topic_card_click", { subjectId, topic: topic.key });
       }}
     >
