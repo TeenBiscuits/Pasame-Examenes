@@ -10,7 +10,7 @@ interface QuestionsModule {
 }
 
 // Auto-discover subjects using Vite's import.meta.glob.
-// _template is loaded for static analysis but is never a navigable subject.
+// _template is loaded but is never a navigable subject.
 const metaModules = import.meta.glob<MetaModule>(["./*/meta.ts"], {
   eager: true,
 });
