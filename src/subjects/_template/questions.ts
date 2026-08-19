@@ -36,10 +36,8 @@ export const questions: Question[] = [
     correctAnswer: "b",
   },
 
-  // === Text question (deprecated explanation) ===
+  // === Text question ===
   // For text questions, the model solution goes in `correctAnswer`.
-  // The `explanation` field is **deprecated for text** — merge any extra
-  // guidance into `correctAnswer` itself.
   {
     id: "2024_q2",
     examId: "2024",
@@ -144,7 +142,7 @@ Calculation: $5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$.`,
   },
 
   // === Text question with inline markdown table ===
-  // Use GFM pipe tables instead of the deprecated `table` field.
+  // Use GFM pipe tables inside the question text.
   {
     id: "2025-01_q3",
     examId: "2025-01",
@@ -189,7 +187,7 @@ Weighted mean: multiply each value by its frequency, sum, divide by total. For S
   },
 
   // === Text question with table ===
-  // Another example of inline markdown tables replacing the deprecated `table` field.
+  // Another example of an inline Markdown table.
   {
     id: "2025-01_q5",
     examId: "2025-01",

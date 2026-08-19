@@ -1160,15 +1160,6 @@ export default function QuestionCard(props: QuestionCardProps) {
           <Markdown className="text-fg mb-4 text-sm font-medium">
             {question.question}
           </Markdown>
-          {question.subquestions && (
-            <ul className="text-fg-secondary mb-4 list-inside list-disc space-y-1 text-sm">
-              {question.subquestions.map((sq) => (
-                <li key={sq}>
-                  <InlineMarkdown>{sq}</InlineMarkdown>
-                </li>
-              ))}
-            </ul>
-          )}
           {question.image && (
             <div className="mb-4">
               <QuestionImage
@@ -1176,42 +1167,6 @@ export default function QuestionCard(props: QuestionCardProps) {
                 alt={`Illustration for ${question.id}`}
                 maxHeight="400px"
               />
-            </div>
-          )}
-          {question.table && (
-            <div className="border-border mb-4 overflow-x-auto rounded-lg border">
-              <table className="divide-border min-w-full divide-y text-sm">
-                <thead className="bg-surface">
-                  <tr>
-                    {question.table.headers.map((h) => (
-                      <th
-                        key={h}
-                        scope="col"
-                        className="text-fg px-4 py-2 text-left font-semibold whitespace-nowrap"
-                      >
-                        <InlineMarkdown>{h}</InlineMarkdown>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-border bg-surface-alt divide-y">
-                  {question.table.rows.map((row, ri) => (
-                    <tr
-                      key={`${question.id}-row-${ri}`}
-                      className="hover:bg-surface/50 transition-colors"
-                    >
-                      {row.map((cell, ci) => (
-                        <td
-                          key={`${question.id}-cell-${ri}-${ci}`}
-                          className="text-fg-secondary px-4 py-2 whitespace-nowrap"
-                        >
-                          <InlineMarkdown>{cell}</InlineMarkdown>
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
           )}
         </div>
