@@ -73,7 +73,7 @@ Practica con temporizador, puntuación en directo y auto-entrega opcional. En as
 
 ```bash
 pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
-pnpm build     # tsc -b + sitemap + IndexNow + OG images + build producción + páginas estáticas
+pnpm build     # tsc -b + mapas + sitemap + IndexNow opcional + rewrites/OG + build + páginas SEO estáticas
 pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
 pnpm readme    # Actualiza la tabla de asignaturas del README
 pnpm format    # Prettier --write
@@ -82,6 +82,12 @@ pnpm doctor    # React Doctor
 ```
 
 No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación de tipos.
+
+### Routing y SEO
+
+La navegación usa TanStack Router con rutas basadas en archivos dentro de `src/routes/`. El árbol se genera en `src/routeTree.gen.ts` y la instancia del router está en `src/router.tsx`; `src/App.tsx` contiene el shell compartido de la aplicación.
+
+Durante el build, `scripts/generate-static-seo-pages.ts` genera HTML específico para las rutas indexables de inicio y asignatura. `vercel.json` dirige esas URLs a sus documentos estáticos y mantiene el fallback SPA para las rutas de práctica, exámenes y demás rutas no indexables.
 
 ### i18n y temas
 

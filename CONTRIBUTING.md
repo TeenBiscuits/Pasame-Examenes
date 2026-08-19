@@ -287,6 +287,13 @@ La asignatura debe aparecer en la pantalla principal y todas las funcionalidades
 
 ```
 src/
+├── routes/                  # Rutas basadas en archivos de TanStack Router
+│   ├── __root.tsx           # Root route y providers globales
+│   ├── $lang.tsx            # Layout y validación del idioma
+│   ├── $lang.index.tsx      # Página de inicio por idioma
+│   └── ...                  # Asignaturas, práctica, exámenes y redirects
+├── router.tsx               # Instancia del router y registro de tipos
+├── routeTree.gen.ts         # Árbol generado; no editar manualmente
 ├── subjects/
 │   ├── index.ts              # Auto-descubrimiento (no editar)
 │   ├── _visibility.ts        # Registro de visibilidad para análisis estático (editar al añadir asignatura)
@@ -345,7 +352,7 @@ src/
 │   ├── markdown.tsx          # Renderizado de código inline y bloques
 │   ├── haptics.ts            # Feedback háptico
 │   └── umami.ts              # Analytics wrapper
-└── App.tsx                   # Componente raíz con rutas
+└── App.tsx                   # Shell compartido de la aplicación
 
 public/
 ├── favicon.svg
@@ -357,11 +364,17 @@ public/
     └── eseo/
 ```
 
+### Rutas y prerenderizado SEO
+
+Las rutas se definen como módulos en `src/routes/` y el plugin de TanStack Router mantiene actualizado `src/routeTree.gen.ts`. No edites el árbol generado: añade o modifica el módulo de ruta correspondiente y deja que `pnpm dev` o `pnpm build` lo regenere.
+
+El build produce HTML estático para las rutas indexables de inicio y asignatura mediante `scripts/generate-static-seo-pages.ts`. Las reglas generadas en `vercel.json` sirven esos documentos antes del fallback SPA; las rutas de práctica, exámenes, privacidad y redirects continúan resolviéndose en el cliente.
+
 ## Comandos
 
 ```bash
 pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
-pnpm build     # tsc -b + sitemap + IndexNow opcional + build de producción
+pnpm build     # tsc -b + mapas + sitemap + rewrites/OG + build + páginas SEO estáticas
 pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
 pnpm format    # Prettier --write
 pnpm preview   # Preview del build de producción

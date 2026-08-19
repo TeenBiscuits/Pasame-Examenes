@@ -3,8 +3,8 @@
 ## Commands
 
 ```bash
-pnpm dev       # Vite dev server; src/main.tsx loads react-grab only in DEV
-pnpm build     # tsc -b, generate sitemap, optional IndexNow key, then vite build
+pnpm dev       # Vite dev server; the root route loads react-grab only in DEV
+pnpm build     # tsc -b, generate sitemap/OG/rewrites, vite build, then static SEO pages
 pnpm lint      # ESLint flat config for TS/TSX; scripts/ is ignored
 pnpm readme    # Update the subject table in README.md
 pnpm format    # Prettier write
@@ -21,7 +21,7 @@ pnpm doctor    # React Doctor via npx
 - TypeScript 6 uses `verbatimModuleSyntax`, `erasableSyntaxOnly`, `noUnusedLocals`, and `noUnusedParameters`; use `import type` for type-only imports and avoid enums/namespaces/non-erasable TS syntax.
 - Tailwind CSS v4 is configured in CSS, not `tailwind.config.js`: `src/index.css` imports `tailwindcss` and `tailwind-animations`, defines theme tokens in `@theme`, and uses `html[data-theme=...]` overrides.
 - Vite plugins are React, Tailwind, and `vite-imagetools`; image glob queries should request `w=400;800;1200` and `format=avif;webp;png` unless there is a reason to differ.
-- Vercel serves this as an SPA: `vercel.json` rewrites `/en/*`, `/es/*`, `/gl/*`, and all other paths to `/index.html`.
+- Vercel deploys `dist/`: generated `vercel.json` first rewrites indexable `/:lang` and `/:lang/:subjectId` paths to their route-specific static HTML, then sends all other paths to `/index.html` as the TanStack Router SPA fallback. `scripts/generate-static-seo-pages.ts` creates those static documents after `vite build`.
 
 ## Architecture
 
