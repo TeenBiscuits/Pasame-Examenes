@@ -20,7 +20,6 @@
     "@tanstack/react-router": "1.170.29",
     "cuelume": "^0.2.2",
     "driver.js": "^1.8.0",
-    "isbot": "^5",
     "katex": "^0.18.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

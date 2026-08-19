@@ -15,17 +15,6 @@ import { closeDialog, showDialog, useDialogDismiss } from "./lib/dialog";
 import { ModalHeader, wideModalDialogClass } from "./components/Modal";
 import { LangLink } from "./lib/lang-link";
 
-export function PageLoader() {
-  return (
-    <div
-      className="flex items-center justify-center py-16"
-      style={{ minHeight: "60svh" }}
-    >
-      <div className="border-accent size-8 animate-spin rounded-full border-2 border-t-transparent" />
-    </div>
-  );
-}
-
 function ScrollToTop() {
   const { pathname } = useLocation();
 

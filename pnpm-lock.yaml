@@ -29,9 +29,6 @@ importers:
       driver.js:
         specifier: ^1.8.0
         version: 1.8.0
-      isbot:
-        specifier: ^5
-        version: 5.2.1
       katex:
         specifier: ^0.18.4
         version: 0.18.4
