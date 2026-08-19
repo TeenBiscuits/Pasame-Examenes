@@ -153,17 +153,14 @@ export const questions: Question[] = [
     topic: "t4",
     type: "mc",
     points: 1,
-    question:
-      "Con las mismas reglas del ejercicio anterior, y sabiendo que tenemos la manifestación M(1), ¿cuál es el conjunto de interpretaciones más probable? Ten en cuenta las siguientes probabilidades:",
-    table: {
-      headers: ["Expresión", "Probabilidad"],
-      rows: [
-        ["p(¬I1∧¬I2)", "0.2"],
-        ["p(¬I1∧I2)", "0.08"],
-        ["p(I1∧¬I2)", "0.34"],
-        ["p(I1∧I2)", "0.38"],
-      ],
-    },
+    question: `Con las mismas reglas del ejercicio anterior, y sabiendo que tenemos la manifestación M(1), ¿cuál es el conjunto de interpretaciones más probable? Ten en cuenta las siguientes probabilidades:
+
+| Expresión | Probabilidad |
+| --- | --- |
+| p(¬I1∧¬I2) | 0.2 |
+| p(¬I1∧I2) | 0.08 |
+| p(I1∧¬I2) | 0.34 |
+| p(I1∧I2) | 0.38 |`,
     options: ["¬I(1) ∧ ¬I(2)", "¬I(1) ∧ I(2)", "I(1) ∧ ¬I(2)", "I(1) ∧ I(2)"],
     correctAnswer: "c",
     explanation: `

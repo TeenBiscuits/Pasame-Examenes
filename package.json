@@ -20,7 +20,6 @@
     "@tanstack/react-router": "1.170.29",
     "cuelume": "^0.2.2",
     "driver.js": "^1.8.0",
-    "isbot": "^5",
     "katex": "^0.18.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -31,8 +30,7 @@
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
-    "tailwind-animations": "^1.0.2",
-    "web-haptics": "^0.0.6"
+    "tailwind-animations": "^1.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -32,8 +32,6 @@ export interface Question {
   type: QuestionType;
   points: number;
   question: string;
-  /** @deprecated Inline subquestions as markdown lists in `question` instead. */
-  subquestions?: string[];
   options?: string[];
   correctAnswer: string | string[] | Record<string, string>;
   /** Sentences for `fill` questions. Use `{{blank}}` for each input. */
@@ -44,15 +42,10 @@ export interface Question {
   tableFill?: QuestionTable;
   /** Optional worked solution shown in a collapsible panel for fill questions. */
   development?: string;
-  /**
-   * For mc/matching: an extra note shown in the solution panel.
-   * @deprecated For text questions, use `correctAnswer` as the model solution instead.
-   */
+  /** Extra note shown in the solution panel for mc/matching questions. */
   explanation?: string;
   image?: Picture | string | (Picture | string)[];
   explanationImage?: Picture | string | (Picture | string)[];
-  /** @deprecated Use markdown pipe tables inside `question` instead. */
-  table?: QuestionTable;
   repeated?: boolean;
 }
 

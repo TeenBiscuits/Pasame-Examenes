@@ -250,21 +250,7 @@ const imageMap = import.meta.glob<{ default: Picture }>(
 - `explanationImage`: se muestra dentro del panel de solución colapsable (disponible para todos los tipos de pregunta: mc, text, matching).
 - Las imágenes se optimizan automáticamente (múltiples tamaños y formatos: AVIF, WebP, PNG).
 
-#### 6. Registra la asignatura en `_visibility.ts`
-
-Edita `src/subjects/_visibility.ts` y añade dos líneas para tu asignatura:
-
-```ts
-import { meta as tuAsignaturaMeta } from "./tu-asignatura/meta";
-import { questions as tuAsignaturaQuestions } from "./tu-asignatura/questions";
-// ... y añade los void correspondientes:
-void tuAsignaturaMeta;
-void tuAsignaturaQuestions;
-```
-
-Este archivo existe para que herramientas de análisis estático como React Doctor vean que los exports de cada asignatura se consumen. La carga real en tiempo de ejecución la hace `import.meta.glob` en `index.ts`.
-
-#### 7. Verifica
+#### 6. Verifica
 
 ```bash
 pnpm dev
@@ -296,7 +282,6 @@ src/
 ├── routeTree.gen.ts         # Árbol generado; no editar manualmente
 ├── subjects/
 │   ├── index.ts              # Auto-descubrimiento (no editar)
-│   ├── _visibility.ts        # Registro de visibilidad para análisis estático (editar al añadir asignatura)
 │   ├── _template/            # Plantilla para nuevas asignaturas
 │   │   ├── meta.ts
 │   │   └── questions.ts
@@ -350,7 +335,6 @@ src/
 │   └── gl.ts
 ├── lib/
 │   ├── markdown.tsx          # Renderizado de código inline y bloques
-│   ├── haptics.ts            # Feedback háptico
 │   └── umami.ts              # Analytics wrapper
 └── App.tsx                   # Shell compartido de la aplicación
 
@@ -394,7 +378,6 @@ No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación d
 - [ ] Los PDFs autorizados están en `public/exams/{subject-id}/` o los elementos sin PDF tienen `hasPdf: false`
 - [ ] Las imágenes están en `src/subjects/{subject-id}/assets/` e importadas correctamente (usa `image` para el enunciado y `explanationImage` para la solución)
 - [ ] Las preguntas repetidas están marcadas con `repeated: true`
-- [ ] Si añadiste una asignatura, sus exports están registrados en `src/subjects/_visibility.ts`
 - [ ] `pnpm build` compila sin errores
 - [ ] `pnpm lint` pasa
 - [ ] `pnpm doctor` (React Doctor) no reporta nuevos problemas

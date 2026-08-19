@@ -24,7 +24,6 @@ import Hero from "../components/Hero";
 import type { QuestionSummary, SubjectMeta, Topic } from "../data/types";
 import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
-import { triggerLight } from "../lib/haptics";
 import { useDocumentTitle } from "../lib/title";
 import { useSeoHead } from "../lib/seo";
 import { buildSubjectMeta } from "../seo/meta";
@@ -297,7 +296,6 @@ function SubjectNotFound() {
         data-cuelume-press
         className="text-accent-fg hover:underline"
         onClick={() => {
-          triggerLight();
           track("nav_click", { target: "home", reason: "subject_not_found" });
         }}
       >
@@ -560,7 +558,6 @@ function ExamCard({
       data-cuelume-press
       className="interactive-card focus-visible:ring-accent flex min-h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
       onClick={() => {
-        triggerLight();
         track("exam_card_click", {
           subjectId: subject.id,
           examId: exam.id,
@@ -612,7 +609,6 @@ function ExamActionButtons({
         data-cuelume-hover="tick"
         data-cuelume-press="bloom"
         onClick={() => {
-          triggerLight();
           onAddExam();
           track("add_exam_modal_open", { subjectId });
         }}
@@ -628,7 +624,6 @@ function ExamActionButtons({
         data-cuelume-hover="tick"
         data-cuelume-press="bloom"
         onClick={() => {
-          triggerLight();
           onReportCopyright();
           track("copyright_report_modal_open", { subjectId });
         }}
@@ -682,7 +677,6 @@ function PdfLinksSection({
           rel="noopener noreferrer"
           className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
-            triggerLight();
             track("file_download", {
               file: `Exam-${exam.id}.pdf`,
               subjectId: subject.id,
@@ -722,7 +716,6 @@ function OriginalContentLinksSection({ subject }: { subject: SubjectMeta }) {
           rel="noopener noreferrer"
           className="text-accent-fg bg-accent-light border-accent-border hover:bg-accent-light focus-visible:ring-accent inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-95"
           onClick={() => {
-            triggerLight();
             track("original_content_open", {
               subjectId: subject.id,
               examId: exam.id,
