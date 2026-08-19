@@ -3,6 +3,10 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+        "source": "/",
+        "destination": "/es/index.html"
+    },
+    {
         "source": "/en",
         "destination": "/en/index.html"
     },
@@ -340,7 +344,7 @@
     },
     {
         "source": "/(.*)",
-        "destination": "/index.html"
+        "destination": "/_spa-fallback.html"
     }
 ],
   "headers": [

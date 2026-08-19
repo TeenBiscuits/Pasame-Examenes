@@ -1,7 +1,11 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { isIndexablePagePath, buildCanonicalPath } from "../src/seo/meta";
+import {
+  DEFAULT_LANG,
+  buildCanonicalPath,
+  isIndexablePagePath,
+} from "../src/seo/meta";
 import { pages } from "../src/seo/pageMetaMap.generated";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -20,8 +24,9 @@ function main() {
       ];
     });
   const rewrites = [
+    { source: "/", destination: `/${DEFAULT_LANG}/index.html` },
     ...staticSeoRewrites,
-    { source: "/(.*)", destination: "/index.html" },
+    { source: "/(.*)", destination: "/_spa-fallback.html" },
   ];
 
   const template = readFileSync(templatePath, "utf-8");

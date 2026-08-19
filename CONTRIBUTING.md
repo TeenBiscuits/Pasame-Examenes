@@ -368,7 +368,7 @@ public/
 
 Las rutas se definen como módulos en `src/routes/` y el plugin de TanStack Router mantiene actualizado `src/routeTree.gen.ts`. No edites el árbol generado: añade o modifica el módulo de ruta correspondiente y deja que `pnpm dev` o `pnpm build` lo regenere.
 
-El build produce HTML estático para las rutas indexables de inicio y asignatura mediante `scripts/generate-static-seo-pages.ts`. Las reglas generadas en `vercel.json` sirven esos documentos antes del fallback SPA; las rutas de práctica, exámenes, privacidad y redirects continúan resolviéndose en el cliente.
+El build produce HTML estático prerenderizado —contenido y metadatos— para las rutas indexables de inicio y asignatura mediante `scripts/generate-static-seo-pages.ts`. El script ejecuta el bundle cliente en un DOM de build, genera además la Home por defecto en `dist/index.html` y deja `dist/_spa-fallback.html` como shell vacío; por tanto, no añade SSR en runtime. Las reglas generadas en `vercel.json` sirven los documentos prerenderizados antes del fallback SPA; las rutas de práctica, exámenes, privacidad y redirects continúan resolviéndose en el cliente.
 
 ## Comandos
 

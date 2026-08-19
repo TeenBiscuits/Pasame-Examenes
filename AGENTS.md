@@ -21,7 +21,7 @@ pnpm doctor    # React Doctor via npx
 - TypeScript 6 uses `verbatimModuleSyntax`, `erasableSyntaxOnly`, `noUnusedLocals`, and `noUnusedParameters`; use `import type` for type-only imports and avoid enums/namespaces/non-erasable TS syntax.
 - Tailwind CSS v4 is configured in CSS, not `tailwind.config.js`: `src/index.css` imports `tailwindcss` and `tailwind-animations`, defines theme tokens in `@theme`, and uses `html[data-theme=...]` overrides.
 - Vite plugins are React, Tailwind, and `vite-imagetools`; image glob queries should request `w=400;800;1200` and `format=avif;webp;png` unless there is a reason to differ.
-- Vercel deploys `dist/`: generated `vercel.json` first rewrites indexable `/:lang` and `/:lang/:subjectId` paths to their route-specific static HTML, then sends all other paths to `/index.html` as the TanStack Router SPA fallback. `scripts/generate-static-seo-pages.ts` creates those static documents after `vite build`.
+- Vercel deploys `dist/`: generated `vercel.json` rewrites `/` to the default-language Home, then rewrites indexable `/:lang` and `/:lang/:subjectId` paths to their route-specific static HTML, including prerendered React content and metadata. All other paths go to `/_spa-fallback.html`, a separate empty shell for the TanStack Router SPA fallback. `scripts/generate-static-seo-pages.ts` runs the built client bundle in a build-time DOM after `vite build`; it must remain a static prerender step, not a runtime SSR entry.
 
 ## Architecture
 

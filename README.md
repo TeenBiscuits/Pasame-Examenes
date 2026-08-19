@@ -87,7 +87,7 @@ No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación d
 
 La navegación usa TanStack Router con rutas basadas en archivos dentro de `src/routes/`. El árbol se genera en `src/routeTree.gen.ts` y la instancia del router está en `src/router.tsx`; `src/App.tsx` contiene el shell compartido de la aplicación.
 
-Durante el build, `scripts/generate-static-seo-pages.ts` genera HTML específico para las rutas indexables de inicio y asignatura. `vercel.json` dirige esas URLs a sus documentos estáticos y mantiene el fallback SPA para las rutas de práctica, exámenes y demás rutas no indexables.
+Durante el build, `scripts/generate-static-seo-pages.ts` ejecuta el bundle cliente sobre un DOM de build, navega por las rutas indexables de inicio y asignatura y serializa su contenido React junto con los metadatos. También genera la Home por defecto en `dist/index.html` y conserva `dist/_spa-fallback.html` como shell vacío. No hay SSR en runtime: `vercel.json` dirige `/` y las URLs indexables a sus documentos estáticos, y las rutas de práctica, exámenes y demás rutas no indexables al fallback SPA.
 
 ### i18n y temas
 
