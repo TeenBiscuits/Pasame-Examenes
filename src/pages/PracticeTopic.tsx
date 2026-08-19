@@ -6,7 +6,7 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 import { LangLink as Link } from "../lib/lang-link";
 import { useLangTo } from "../lib/useLangTo";
 import {
@@ -738,10 +738,7 @@ function PracticePlayer({
 }
 
 export default function PracticeTopic() {
-  const { subjectId, topic } = useParams<{
-    subjectId: string;
-    topic: string;
-  }>();
+  const { subjectId, topic } = useParams({ strict: false });
   const navigate = useNavigate();
   const t = useT();
   const { lang } = useLang();
@@ -870,7 +867,7 @@ export default function PracticeTopic() {
 
   useEffect(() => {
     if (!subject || !topicInfo) {
-      navigate(langTo("/"), { replace: true });
+      navigate({ to: langTo("/") as never, replace: true });
     }
   }, [subject, topicInfo, navigate, langTo]);
 

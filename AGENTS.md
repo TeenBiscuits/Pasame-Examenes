@@ -3,8 +3,8 @@
 ## Commands
 
 ```bash
-pnpm dev       # Vite dev server; src/main.tsx loads react-grab only in DEV
-pnpm build     # tsc -b, generate sitemap, optional IndexNow key, then vite build
+pnpm dev       # Vite dev server; the root route loads react-grab only in DEV
+pnpm build     # tsc -b, generate sitemap/OG/rewrites, vite build, then static SEO pages
 pnpm lint      # ESLint flat config for TS/TSX; scripts/ is ignored
 pnpm readme    # Update the subject table in README.md
 pnpm format    # Prettier write
@@ -21,14 +21,14 @@ pnpm doctor    # React Doctor via npx
 - TypeScript 6 uses `verbatimModuleSyntax`, `erasableSyntaxOnly`, `noUnusedLocals`, and `noUnusedParameters`; use `import type` for type-only imports and avoid enums/namespaces/non-erasable TS syntax.
 - Tailwind CSS v4 is configured in CSS, not `tailwind.config.js`: `src/index.css` imports `tailwindcss` and `tailwind-animations`, defines theme tokens in `@theme`, and uses `html[data-theme=...]` overrides.
 - Vite plugins are React, Tailwind, and `vite-imagetools`; image glob queries should request `w=400;800;1200` and `format=avif;webp;png` unless there is a reason to differ.
-- Vercel serves this as an SPA: `vercel.json` rewrites `/en/*`, `/es/*`, `/gl/*`, and all other paths to `/index.html`.
+- Vercel deploys `dist/`: generated `vercel.json` rewrites `/` to the default-language Home, then rewrites indexable `/:lang` and `/:lang/:subjectId` paths to their route-specific static HTML, including prerendered React content and metadata. All other paths go to `/_spa-fallback.html`, a separate empty shell for the TanStack Router SPA fallback. `scripts/generate-static-seo-pages.ts` runs the built client bundle in a build-time DOM after `vite build`; it must remain a static prerender step, not a runtime SSR entry.
 
 ## Architecture
 
 - No backend: subjects/questions are static TypeScript under `src/subjects/`; attempts/progress, language, and theme are persisted in `localStorage`.
 - Runtime subject discovery is in `src/subjects/index.ts`: eager `import.meta.glob` loads every `*/meta.ts`, lazy glob loads `*/questions.ts`, and `_template` is excluded.
 - `src/subjects/_visibility.ts` is still required when adding a subject so React Doctor/static analysis sees named `meta` and `questions` exports as consumed.
-- The React Router framework hierarchy lives in `src/routes.ts`, with route modules under `src/routes/`; `src/App.tsx` is the shared application shell. Language-prefixed routes support `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:examId`. `/:lang/:subjectId/practice` redirects back to the subject page.
+- The TanStack Router file-based hierarchy lives in `src/routes/`, with the generated tree in `src/routeTree.gen.ts` and the router instance in `src/router.tsx`; `src/App.tsx` is the shared application shell. Language-prefixed routes support `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:examId`. `/:lang/:subjectId/practice` redirects back to the subject page.
 - i18n is a custom context in `src/i18n/`; adding a string means updating the `Translations` shape in `en.ts` and adding matching values in `es.ts` and `gl.ts`.
 - Theme state is in `src/theme/`; valid themes come from `themeOrder` in `src/theme/types.ts` and are applied with `data-theme` on `<html>`.
 - Analytics scripts are in `index.html`; app code should use `src/lib/umami.ts`, which no-ops when analytics is unavailable.

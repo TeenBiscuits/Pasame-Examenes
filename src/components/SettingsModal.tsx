@@ -1,5 +1,5 @@
 import { useRef, useState, type ChangeEvent, type KeyboardEvent } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 import {
   Gear,
   Language,
@@ -106,7 +106,11 @@ export default function SettingsModal() {
     playSound("toggle");
     setLang(nextLang);
     track("lang_toggle", { lang: nextLang, source: "settings" });
-    navigate(replaceLangInPath(location.pathname, nextLang), {
+    const nextPath = replaceLangInPath(location.pathname, nextLang);
+    navigate({
+      to: nextPath as never,
+      search: location.search as never,
+      hash: location.hash,
       replace: true,
     });
   }

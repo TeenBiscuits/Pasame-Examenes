@@ -1,10 +1,350 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "dist/client",
+  "outputDirectory": "dist",
   "rewrites": [
     {
+        "source": "/",
+        "destination": "/es/index.html"
+    },
+    {
+        "source": "/en",
+        "destination": "/en/index.html"
+    },
+    {
+        "source": "/en/",
+        "destination": "/en/index.html"
+    },
+    {
+        "source": "/en/bede",
+        "destination": "/en/bede/index.html"
+    },
+    {
+        "source": "/en/bede/",
+        "destination": "/en/bede/index.html"
+    },
+    {
+        "source": "/en/calculo",
+        "destination": "/en/calculo/index.html"
+    },
+    {
+        "source": "/en/calculo/",
+        "destination": "/en/calculo/index.html"
+    },
+    {
+        "source": "/en/cepe",
+        "destination": "/en/cepe/index.html"
+    },
+    {
+        "source": "/en/cepe/",
+        "destination": "/en/cepe/index.html"
+    },
+    {
+        "source": "/en/deese",
+        "destination": "/en/deese/index.html"
+    },
+    {
+        "source": "/en/deese/",
+        "destination": "/en/deese/index.html"
+    },
+    {
+        "source": "/en/ece",
+        "destination": "/en/ece/index.html"
+    },
+    {
+        "source": "/en/ece/",
+        "destination": "/en/ece/index.html"
+    },
+    {
+        "source": "/en/equisi",
+        "destination": "/en/equisi/index.html"
+    },
+    {
+        "source": "/en/equisi/",
+        "destination": "/en/equisi/index.html"
+    },
+    {
+        "source": "/en/equispe",
+        "destination": "/en/equispe/index.html"
+    },
+    {
+        "source": "/en/equispe/",
+        "destination": "/en/equispe/index.html"
+    },
+    {
+        "source": "/en/esei",
+        "destination": "/en/esei/index.html"
+    },
+    {
+        "source": "/en/esei/",
+        "destination": "/en/esei/index.html"
+    },
+    {
+        "source": "/en/eseo",
+        "destination": "/en/eseo/index.html"
+    },
+    {
+        "source": "/en/eseo/",
+        "destination": "/en/eseo/index.html"
+    },
+    {
+        "source": "/en/iesede",
+        "destination": "/en/iesede/index.html"
+    },
+    {
+        "source": "/en/iesede/",
+        "destination": "/en/iesede/index.html"
+    },
+    {
+        "source": "/en/peese",
+        "destination": "/en/peese/index.html"
+    },
+    {
+        "source": "/en/peese/",
+        "destination": "/en/peese/index.html"
+    },
+    {
+        "source": "/en/pei",
+        "destination": "/en/pei/index.html"
+    },
+    {
+        "source": "/en/pei/",
+        "destination": "/en/pei/index.html"
+    },
+    {
+        "source": "/en/redes",
+        "destination": "/en/redes/index.html"
+    },
+    {
+        "source": "/en/redes/",
+        "destination": "/en/redes/index.html"
+    },
+    {
+        "source": "/es",
+        "destination": "/es/index.html"
+    },
+    {
+        "source": "/es/",
+        "destination": "/es/index.html"
+    },
+    {
+        "source": "/es/bede",
+        "destination": "/es/bede/index.html"
+    },
+    {
+        "source": "/es/bede/",
+        "destination": "/es/bede/index.html"
+    },
+    {
+        "source": "/es/calculo",
+        "destination": "/es/calculo/index.html"
+    },
+    {
+        "source": "/es/calculo/",
+        "destination": "/es/calculo/index.html"
+    },
+    {
+        "source": "/es/cepe",
+        "destination": "/es/cepe/index.html"
+    },
+    {
+        "source": "/es/cepe/",
+        "destination": "/es/cepe/index.html"
+    },
+    {
+        "source": "/es/deese",
+        "destination": "/es/deese/index.html"
+    },
+    {
+        "source": "/es/deese/",
+        "destination": "/es/deese/index.html"
+    },
+    {
+        "source": "/es/ece",
+        "destination": "/es/ece/index.html"
+    },
+    {
+        "source": "/es/ece/",
+        "destination": "/es/ece/index.html"
+    },
+    {
+        "source": "/es/equisi",
+        "destination": "/es/equisi/index.html"
+    },
+    {
+        "source": "/es/equisi/",
+        "destination": "/es/equisi/index.html"
+    },
+    {
+        "source": "/es/equispe",
+        "destination": "/es/equispe/index.html"
+    },
+    {
+        "source": "/es/equispe/",
+        "destination": "/es/equispe/index.html"
+    },
+    {
+        "source": "/es/esei",
+        "destination": "/es/esei/index.html"
+    },
+    {
+        "source": "/es/esei/",
+        "destination": "/es/esei/index.html"
+    },
+    {
+        "source": "/es/eseo",
+        "destination": "/es/eseo/index.html"
+    },
+    {
+        "source": "/es/eseo/",
+        "destination": "/es/eseo/index.html"
+    },
+    {
+        "source": "/es/iesede",
+        "destination": "/es/iesede/index.html"
+    },
+    {
+        "source": "/es/iesede/",
+        "destination": "/es/iesede/index.html"
+    },
+    {
+        "source": "/es/peese",
+        "destination": "/es/peese/index.html"
+    },
+    {
+        "source": "/es/peese/",
+        "destination": "/es/peese/index.html"
+    },
+    {
+        "source": "/es/pei",
+        "destination": "/es/pei/index.html"
+    },
+    {
+        "source": "/es/pei/",
+        "destination": "/es/pei/index.html"
+    },
+    {
+        "source": "/es/redes",
+        "destination": "/es/redes/index.html"
+    },
+    {
+        "source": "/es/redes/",
+        "destination": "/es/redes/index.html"
+    },
+    {
+        "source": "/gl",
+        "destination": "/gl/index.html"
+    },
+    {
+        "source": "/gl/",
+        "destination": "/gl/index.html"
+    },
+    {
+        "source": "/gl/bede",
+        "destination": "/gl/bede/index.html"
+    },
+    {
+        "source": "/gl/bede/",
+        "destination": "/gl/bede/index.html"
+    },
+    {
+        "source": "/gl/calculo",
+        "destination": "/gl/calculo/index.html"
+    },
+    {
+        "source": "/gl/calculo/",
+        "destination": "/gl/calculo/index.html"
+    },
+    {
+        "source": "/gl/cepe",
+        "destination": "/gl/cepe/index.html"
+    },
+    {
+        "source": "/gl/cepe/",
+        "destination": "/gl/cepe/index.html"
+    },
+    {
+        "source": "/gl/deese",
+        "destination": "/gl/deese/index.html"
+    },
+    {
+        "source": "/gl/deese/",
+        "destination": "/gl/deese/index.html"
+    },
+    {
+        "source": "/gl/ece",
+        "destination": "/gl/ece/index.html"
+    },
+    {
+        "source": "/gl/ece/",
+        "destination": "/gl/ece/index.html"
+    },
+    {
+        "source": "/gl/equisi",
+        "destination": "/gl/equisi/index.html"
+    },
+    {
+        "source": "/gl/equisi/",
+        "destination": "/gl/equisi/index.html"
+    },
+    {
+        "source": "/gl/equispe",
+        "destination": "/gl/equispe/index.html"
+    },
+    {
+        "source": "/gl/equispe/",
+        "destination": "/gl/equispe/index.html"
+    },
+    {
+        "source": "/gl/esei",
+        "destination": "/gl/esei/index.html"
+    },
+    {
+        "source": "/gl/esei/",
+        "destination": "/gl/esei/index.html"
+    },
+    {
+        "source": "/gl/eseo",
+        "destination": "/gl/eseo/index.html"
+    },
+    {
+        "source": "/gl/eseo/",
+        "destination": "/gl/eseo/index.html"
+    },
+    {
+        "source": "/gl/iesede",
+        "destination": "/gl/iesede/index.html"
+    },
+    {
+        "source": "/gl/iesede/",
+        "destination": "/gl/iesede/index.html"
+    },
+    {
+        "source": "/gl/peese",
+        "destination": "/gl/peese/index.html"
+    },
+    {
+        "source": "/gl/peese/",
+        "destination": "/gl/peese/index.html"
+    },
+    {
+        "source": "/gl/pei",
+        "destination": "/gl/pei/index.html"
+    },
+    {
+        "source": "/gl/pei/",
+        "destination": "/gl/pei/index.html"
+    },
+    {
+        "source": "/gl/redes",
+        "destination": "/gl/redes/index.html"
+    },
+    {
+        "source": "/gl/redes/",
+        "destination": "/gl/redes/index.html"
+    },
+    {
         "source": "/(.*)",
-        "destination": "/index.html"
+        "destination": "/_spa-fallback.html"
     }
 ],
   "headers": [

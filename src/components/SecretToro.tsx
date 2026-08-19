@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { useLang } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { playSound } from "../lib/sound";
@@ -96,7 +96,7 @@ export default function SecretToro() {
     if (wasRunning) playSound("tick");
     track("secret_toro_click", { count: nextClickCount });
     if (nextClickCount >= 3) {
-      navigate(`/${lang}/espain`);
+      navigate({ to: `/${lang}/espain` as never });
     }
   }
 

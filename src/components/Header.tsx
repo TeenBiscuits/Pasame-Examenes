@@ -1,6 +1,6 @@
-import { useLocation, useMatch } from "react-router";
+import { useLocation, useParams } from "@tanstack/react-router";
 import { getSubject } from "../subjects";
-import { useT } from "../i18n/hooks";
+import { useLang, useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 import { triggerLight } from "../lib/haptics";
 import { LangLink as Link } from "../lib/lang-link";
@@ -14,16 +14,18 @@ function acronym(name: string): string {
 
 export default function Header() {
   const location = useLocation();
-  const match = useMatch("/:lang/:subjectId/*");
-  const subjectId = match?.params.subjectId;
+  const { subjectId } = useParams({ strict: false });
+  const { lang } = useLang();
   const t = useT();
   const subject = subjectId ? getSubject(subjectId) : null;
 
   const abbr = subject ? acronym(subject.name) : "";
 
+  const subjectPath = subjectId ? `/${lang}/${subjectId}` : "";
   const subjectLinkBase = `rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
-    location.pathname === `/${subjectId}` ||
-    location.pathname.startsWith(`/${subjectId}/`)
+    subjectId &&
+    (location.pathname === subjectPath ||
+      location.pathname.startsWith(`${subjectPath}/`))
       ? "bg-accent-light text-accent-fg"
       : "text-fg-secondary hover:text-fg"
   }`;

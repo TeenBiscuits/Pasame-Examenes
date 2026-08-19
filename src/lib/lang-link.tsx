@@ -1,8 +1,13 @@
-import { Link, type LinkProps } from "react-router";
+import { Link } from "@tanstack/react-router";
+import type { AnchorHTMLAttributes } from "react";
 import { useLang } from "../i18n/hooks";
 
-export function LangLink(props: LinkProps) {
+type LangLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
+  to: string;
+};
+
+export function LangLink({ to: path, ...props }: LangLinkProps) {
   const { lang } = useLang();
-  const to = typeof props.to === "string" ? `/${lang}${props.to}` : props.to;
-  return <Link {...props} to={to} />;
+  const to = `/${lang}${path}`;
+  return <Link {...props} to={to as never} />;
 }

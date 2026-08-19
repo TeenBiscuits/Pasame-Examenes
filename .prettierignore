@@ -2,4 +2,5 @@ pnpm-lock.yaml
 vercel.template.json
 vercel.json
 src/seo/pageMetaMap.generated.ts
+src/routeTree.gen.ts
 temp

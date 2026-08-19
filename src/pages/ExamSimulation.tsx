@@ -1,5 +1,5 @@
 import { use, useState, useCallback, useEffect, useRef, useMemo } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 import { LangLink as Link } from "../lib/lang-link";
 import { useLangTo } from "../lib/useLangTo";
 import {
@@ -1047,10 +1047,7 @@ function useExamData(subject: ExamSubject | undefined, examId?: string) {
 }
 
 export default function ExamSimulation() {
-  const { subjectId, examId } = useParams<{
-    subjectId: string;
-    examId: string;
-  }>();
+  const { subjectId, examId } = useParams({ strict: false });
   const navigate = useNavigate();
   const t = useT();
   const { lang } = useLang();
@@ -1206,9 +1203,12 @@ export default function ExamSimulation() {
 
   useEffect(() => {
     if (!subject) {
-      navigate(langTo("/"), { replace: true });
+      navigate({ to: langTo("/") as never, replace: true });
     } else if (!examInfo) {
-      navigate(langTo(`/${subject.id}`), { replace: true });
+      navigate({
+        to: langTo(`/${subject.id}`) as never,
+        replace: true,
+      });
     }
   }, [subject, examInfo, navigate, langTo]);
 
@@ -1320,7 +1320,7 @@ export default function ExamSimulation() {
         onAnswer={handleAnswer}
         onSelfGrade={handleSelfGrade}
         onSubmit={handleSubmitConfirm}
-        onExit={() => navigate(langTo(`/${subject.id}`))}
+        onExit={() => navigate({ to: langTo(`/${subject.id}`) as never })}
         scrollToHeaderRef={scrollToHeaderRef}
       />
     </>

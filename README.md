@@ -8,7 +8,7 @@
 [![TypeScript 6](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite 8](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![React Router v8](https://img.shields.io/badge/React_Router_v8-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
+[![TanStack Router](https://img.shields.io/badge/TanStack_Router-FF4154?logo=react&logoColor=white)](https://tanstack.com/router)
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
 [![i18n](https://img.shields.io/badge/i18n-en_|_es_|_gl-34d399)](https://github.com/TeenBiscuits/Pasame-Examenes)
 [![driver.js](https://img.shields.io/badge/driver.js-FF5722)](https://driverjs.com)
@@ -73,7 +73,7 @@ Practica con temporizador, puntuación en directo y auto-entrega opcional. En as
 
 ```bash
 pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
-pnpm build     # tsc -b + sitemap + IndexNow + OG images + build producción + páginas estáticas
+pnpm build     # tsc -b + mapas + sitemap + IndexNow opcional + rewrites/OG + build + páginas SEO estáticas
 pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
 pnpm readme    # Actualiza la tabla de asignaturas del README
 pnpm format    # Prettier --write
@@ -82,6 +82,12 @@ pnpm doctor    # React Doctor
 ```
 
 No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación de tipos.
+
+### Routing y SEO
+
+La navegación usa TanStack Router con rutas basadas en archivos dentro de `src/routes/`. El árbol se genera en `src/routeTree.gen.ts` y la instancia del router está en `src/router.tsx`; `src/App.tsx` contiene el shell compartido de la aplicación.
+
+Durante el build, `scripts/generate-static-seo-pages.ts` ejecuta el bundle cliente sobre un DOM de build, navega por las rutas indexables de inicio y asignatura y serializa su contenido React junto con los metadatos. También genera la Home por defecto en `dist/index.html` y conserva `dist/_spa-fallback.html` como shell vacío. No hay SSR en runtime: `vercel.json` dirige `/` y las URLs indexables a sus documentos estáticos, y las rutas de práctica, exámenes y demás rutas no indexables al fallback SPA.
 
 ### i18n y temas
 
