@@ -29,11 +29,22 @@ export const Route = createFileRoute("/$")({
 			});
 		}
 
-		if (subjectId) {
+		if (subjectId && !section) {
 			throw redirect({
 				...shared,
 				to: "/$lang/$subjectId",
 				params: { lang, subjectId },
+			});
+		}
+
+		if (subjectId) {
+			throw redirect({
+				...shared,
+				to: "/$lang/$",
+				params: {
+					lang,
+					_splat: location.pathname.replace(/^\/+/, ""),
+				},
 			});
 		}
 
