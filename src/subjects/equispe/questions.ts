@@ -1,44 +1,43 @@
-import type { Question } from "../../data/types";
 import type { Picture } from "vite-imagetools";
-import { getImage } from "../../lib/image";
+import type { Question } from "../../data/types";
 import type { ImageMap } from "../../lib/image";
+import { getImage } from "../../lib/image";
 
 const imageMap = import.meta.glob<{ default: Picture }>(
-  "./assets/*.{png,jpeg,jpg}",
-  {
-    query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
-    eager: true,
-  },
+	"./assets/*.{png,jpeg,jpg}",
+	{
+		query: { w: "400;800;1200", format: "avif;webp;png", as: "picture" },
+		eager: true,
+	},
 ) as ImageMap;
 
 export const questions: Question[] = [
+	// ============================================================
+	// Exam Xaneiro 2026
+	// ============================================================
 
-  // ============================================================
-  // Exam Xaneiro 2026
-  // ============================================================
-
-  // --- Tema 9: Optimización e Programación Lineal ---
-  {
-    id: "2026-01_q1",
-    examId: "2026-01",
-    topic: "teoria",
-    type: "text",
-    points: 3,
-    question:
-      "Estase decidindo cantos consultores junior (x₁) e cantos consultores senior (x₂) se poden contratar para un novo proxecto, co fin de obter un estándar de calidade máximo (z). Os primeiros supoñen menor coste pero teñen menos experiencia. O orzamento do proxecto está limitado.\n\nEstá a solución óptima no seguinte desenvolvemento? Por que? (En caso afirmativo, indíquese cal é e, en caso contrario, indíquese como continuaría o algoritmo)",
-    image: getImage(imageMap, "simplex-2026.jpeg"),
-    correctAnswer:
-      "Para determinar se a táboa actual é óptima, hai que comprobar se todos os coeficientes da fila z (custos reducidos) son ≤ 0 nun problema de maximización (ou ≥ 0 en minimización). Se hai algún coeficiente positivo na fila z, a solución non é óptima. Nese caso, a variable con coeficiente máis positivo entra na base, e aplícase a regra do cociente mínimo para determinar a variable saínte. Se todos os coeficientes da fila z son ≤ 0, a solución actual é óptima e lese directamente da columna de valores das variables básicas.",
-    explanation:
-      "O método Simplex determina a optimalidade verificando os custos reducidos. Se existe algún custo reducido positivo (maximización), a solución pode mellorarse introducindo esa variable na base.",
-  },
-  {
-    id: "2026-01_q2",
-    examId: "2026-01",
-    topic: "teoria",
-    type: "text",
-    points: 2,
-    question: `Escribe a forma estándar do seguinte problema:
+	// --- Tema 9: Optimización e Programación Lineal ---
+	{
+		id: "2026-01_q1",
+		examId: "2026-01",
+		topic: "teoria",
+		type: "text",
+		points: 3,
+		question:
+			"Estase decidindo cantos consultores junior (x₁) e cantos consultores senior (x₂) se poden contratar para un novo proxecto, co fin de obter un estándar de calidade máximo (z). Os primeiros supoñen menor coste pero teñen menos experiencia. O orzamento do proxecto está limitado.\n\nEstá a solución óptima no seguinte desenvolvemento? Por que? (En caso afirmativo, indíquese cal é e, en caso contrario, indíquese como continuaría o algoritmo)",
+		image: getImage(imageMap, "simplex-2026.jpeg"),
+		correctAnswer:
+			"Para determinar se a táboa actual é óptima, hai que comprobar se todos os coeficientes da fila z (custos reducidos) son ≤ 0 nun problema de maximización (ou ≥ 0 en minimización). Se hai algún coeficiente positivo na fila z, a solución non é óptima. Nese caso, a variable con coeficiente máis positivo entra na base, e aplícase a regra do cociente mínimo para determinar a variable saínte. Se todos os coeficientes da fila z son ≤ 0, a solución actual é óptima e lese directamente da columna de valores das variables básicas.",
+		explanation:
+			"O método Simplex determina a optimalidade verificando os custos reducidos. Se existe algún custo reducido positivo (maximización), a solución pode mellorarse introducindo esa variable na base.",
+	},
+	{
+		id: "2026-01_q2",
+		examId: "2026-01",
+		topic: "teoria",
+		type: "text",
+		points: 2,
+		question: `Escribe a forma estándar do seguinte problema:
 
 \`\`\`
 min  6x₁ − 5x₂
@@ -47,7 +46,7 @@ s.a. −x₁ + x₂ = −4
      3x₁ − x₂ ≤ 3
      x₁ ≥ 0, x₂ ≥ 0
 \`\`\``,
-    correctAnswer: `Forma estándar (con variables de exceso e folgura):
+		correctAnswer: `Forma estándar (con variables de exceso e folgura):
 
 \`\`\`
 min  6x₁ − 5x₂ + 0s₁ + 0s₂ + 0a₁ + 0a₂
@@ -58,2344 +57,2344 @@ s.a.  x₁ − x₂ + a₁ = 4        (multiplicando a primeira restrición por 
 \`\`\`
 
 A primeira ecuación multiplícase por −1 para ter o lado dereito positivo: x₁ − x₂ = 4. Engádese variable artificial a₁. A segunda restrición leva variable de exceso −s₁ por ser ≥ e artificial a₂. A terceira leva variable de folgura s₂ por ser ≤.`,
-    explanation:
-      "Na forma estándar, todas as restricións deben ser igualdades con lado dereito ≥ 0. As restricións ≥ requiren variables de exceso e artificiais. As ≤ requiren variables de folgura. As de igualdade requiren artificiais se o lado dereito é positivo.",
-  },
+		explanation:
+			"Na forma estándar, todas as restricións deben ser igualdades con lado dereito ≥ 0. As restricións ≥ requiren variables de exceso e artificiais. As ≤ requiren variables de folgura. As de igualdade requiren artificiais se o lado dereito é positivo.",
+	},
 
-  // --- V/F Teoría ---
-  {
-    id: "2026-01_vf_teoria",
-    examId: "2026-01",
-    topic: "teoria",
-    type: "matching",
-    points: 3,
-    question: "Indique se as seguintes afirmacións son verdadeiras ou falsas:",
-    correctAnswer: {
-      "É altamente recomendable establecer unha clasificación de proxectos de cara a Xestión de Proxectos e de Riscos e empregala tamén para segmentar os históricos para Estimación.":
-        "V",
-      "En notación ADM as relacións de precedencia entre as actividades son do tipo acabar-para-empezar.":
-        "V",
-      "Para calcular as datas early e late en CPM non se necesitan coñecer as asignacións dos recursos.":
-        "V",
-      "A FC B é equivalente a A CC+2d B se a duración estimada de A é 2 días.":
-        "V",
-      "Se para un risco se calculou a súa ER e é baixa, o Xefe de Proxecto non pode tratar ese risco como relevante (ER alta).":
-        "F",
-      "A GCS é unha disciplina dentro da Enxeñaría do Software cuxa única misión é a de controlar a evolución dun sistema software durante o seu ciclo de desenvolvemento.":
-        "F",
-    },
-    explanation:
-      "A clasificación de proxectos é útil para xestión e estimación. ADM só usa relacións FC. CPM non necesita asignacións de recursos. FC e CC+2d son equivalentes con A duración 2 días. O Xefe de Proxecto pode elevar a prioridade dun risco con ER baixa. GCS ten funcións máis alá do control de evolución (identificación, auditoría, rexistro).",
-  },
+	// --- V/F Teoría ---
+	{
+		id: "2026-01_vf_teoria",
+		examId: "2026-01",
+		topic: "teoria",
+		type: "matching",
+		points: 3,
+		question: "Indique se as seguintes afirmacións son verdadeiras ou falsas:",
+		correctAnswer: {
+			"É altamente recomendable establecer unha clasificación de proxectos de cara a Xestión de Proxectos e de Riscos e empregala tamén para segmentar os históricos para Estimación.":
+				"V",
+			"En notación ADM as relacións de precedencia entre as actividades son do tipo acabar-para-empezar.":
+				"V",
+			"Para calcular as datas early e late en CPM non se necesitan coñecer as asignacións dos recursos.":
+				"V",
+			"A FC B é equivalente a A CC+2d B se a duración estimada de A é 2 días.":
+				"V",
+			"Se para un risco se calculou a súa ER e é baixa, o Xefe de Proxecto non pode tratar ese risco como relevante (ER alta).":
+				"F",
+			"A GCS é unha disciplina dentro da Enxeñaría do Software cuxa única misión é a de controlar a evolución dun sistema software durante o seu ciclo de desenvolvemento.":
+				"F",
+		},
+		explanation:
+			"A clasificación de proxectos é útil para xestión e estimación. ADM só usa relacións FC. CPM non necesita asignacións de recursos. FC e CC+2d son equivalentes con A duración 2 días. O Xefe de Proxecto pode elevar a prioridade dun risco con ER baixa. GCS ten funcións máis alá do control de evolución (identificación, auditoría, rexistro).",
+	},
 
-  // --- V/F Práctica ---
-  {
-    id: "2026-01_vf_practica",
-    examId: "2026-01",
-    topic: "practica",
-    type: "matching",
-    points: 2,
-    question:
-      "Indique se as seguintes afirmacións sobre MS-Project son verdadeiras ou falsas:",
-    correctAnswer: {
-      "Se MS-Project identifica unha sobrecarga, non é seguro que ese recurso realice máis esforzo do posible.":
-        "V",
-      "MS-Project sempre pintará o Camiño Crítico como un camiño continuo desde o principio ao final do proxecto.":
-        "F",
-      "Unha boa estratexia é usar as modalidades de seguimento que ofrece MS-Project en función da folgura da tarefa sobre a que se fai seguimento.":
-        "V",
-      "Ao establecer liña base en MS-Project, os datos reais 'copianse' nos datos previstos.":
-        "F",
-    },
-    explanation:
-      "MS-Project pode marcar sobrecargas ficticias. O camiño crítico non sempre é continuo. O seguimento debe adaptarse á folgura da tarefa. A liña base copia os previstos, non os reais.",
-  },
+	// --- V/F Práctica ---
+	{
+		id: "2026-01_vf_practica",
+		examId: "2026-01",
+		topic: "practica",
+		type: "matching",
+		points: 2,
+		question:
+			"Indique se as seguintes afirmacións sobre MS-Project son verdadeiras ou falsas:",
+		correctAnswer: {
+			"Se MS-Project identifica unha sobrecarga, non é seguro que ese recurso realice máis esforzo do posible.":
+				"V",
+			"MS-Project sempre pintará o Camiño Crítico como un camiño continuo desde o principio ao final do proxecto.":
+				"F",
+			"Unha boa estratexia é usar as modalidades de seguimento que ofrece MS-Project en función da folgura da tarefa sobre a que se fai seguimento.":
+				"V",
+			"Ao establecer liña base en MS-Project, os datos reais 'copianse' nos datos previstos.":
+				"F",
+		},
+		explanation:
+			"MS-Project pode marcar sobrecargas ficticias. O camiño crítico non sempre é continuo. O seguimento debe adaptarse á folgura da tarefa. A liña base copia os previstos, non os reais.",
+	},
 
-  // --- Tema 1: Introdución ---
-  {
-    id: "2026-01_q4",
-    examId: "2026-01",
-    topic: "teoria",
-    type: "text",
-    points: 1,
-    question:
-      "Indique cales son as tres características xenéricas que presenta un proxecto.",
-    correctAnswer:
-      "As tres características xenéricas dun proxecto son:\n\n1. **Temporal**: Todo proxecto ten un inicio e un fin definidos. Non é unha operación continua.\n2. **Único**: O resultado do proxecto é singular; non se trata dun produto ou servizo repetitivo.\n3. **Elaboración progresiva**: O proxecto desenvólvese por etapas e se refina gradualmente a medida que se obtén máis información.",
-    explanation:
-      "Estas tres características (temporalidade, singularidade e elaboración progresiva) distinguen un proxecto das operacións rutineiras dunha organización.",
-  },
+	// --- Tema 1: Introdución ---
+	{
+		id: "2026-01_q4",
+		examId: "2026-01",
+		topic: "teoria",
+		type: "text",
+		points: 1,
+		question:
+			"Indique cales son as tres características xenéricas que presenta un proxecto.",
+		correctAnswer:
+			"As tres características xenéricas dun proxecto son:\n\n1. **Temporal**: Todo proxecto ten un inicio e un fin definidos. Non é unha operación continua.\n2. **Único**: O resultado do proxecto é singular; non se trata dun produto ou servizo repetitivo.\n3. **Elaboración progresiva**: O proxecto desenvólvese por etapas e se refina gradualmente a medida que se obtén máis información.",
+		explanation:
+			"Estas tres características (temporalidade, singularidade e elaboración progresiva) distinguen un proxecto das operacións rutineiras dunha organización.",
+	},
 
-  // --- Tema 5: Xestión da Configuración do Software ---
-  {
-    id: "2026-01_q5",
-    examId: "2026-01",
-    topic: "teoria",
-    type: "text",
-    points: 1,
-    question:
-      "Indique e xustifique que produtos de saída (entregables) das actividades de Xestión de Proxectos deberían someterse a control de versións en GCS.",
-    correctAnswer:
-      "Os principais entregables de GP que deben someterse a GCS son:\n\n- **Plan de Proxecto**: evoluciona ao longo do proxecto con revisións e actualizacións.\n- **Plan de Riscos**: os riscos identificados e as súas estratexias de resposta cambian.\n- **Plan de Calidade**: os estándares e métricas poden axustarse.\n- **EDT/WBS**: a descomposición do traballo refínase progresivamente.\n- **Calendario do proxecto**: as datas e fitos actualízanse continuamente.\n\nXustificación: calquera documento que evolucione durante o ciclo de vida do proxecto e cuxas versións intermedias sexan necesarias para trazabilidade e auditoría debe estar baixo control de versións.",
-    explanation:
-      "A GCS aplícase a todos os elementos que cambian durante o proxecto e cuxo historial de cambios é relevante para a xestión, auditoría ou recuperación ante erros.",
-  },
+	// --- Tema 5: Xestión da Configuración do Software ---
+	{
+		id: "2026-01_q5",
+		examId: "2026-01",
+		topic: "teoria",
+		type: "text",
+		points: 1,
+		question:
+			"Indique e xustifique que produtos de saída (entregables) das actividades de Xestión de Proxectos deberían someterse a control de versións en GCS.",
+		correctAnswer:
+			"Os principais entregables de GP que deben someterse a GCS son:\n\n- **Plan de Proxecto**: evoluciona ao longo do proxecto con revisións e actualizacións.\n- **Plan de Riscos**: os riscos identificados e as súas estratexias de resposta cambian.\n- **Plan de Calidade**: os estándares e métricas poden axustarse.\n- **EDT/WBS**: a descomposición do traballo refínase progresivamente.\n- **Calendario do proxecto**: as datas e fitos actualízanse continuamente.\n\nXustificación: calquera documento que evolucione durante o ciclo de vida do proxecto e cuxas versións intermedias sexan necesarias para trazabilidade e auditoría debe estar baixo control de versións.",
+		explanation:
+			"A GCS aplícase a todos os elementos que cambian durante o proxecto e cuxo historial de cambios é relevante para a xestión, auditoría ou recuperación ante erros.",
+	},
 
-  // --- Tema 7: Negociación ---
-  {
-    id: "2026-01_q6",
-    examId: "2026-01",
-    topic: "teoria",
-    type: "text",
-    points: 1,
-    question:
-      "Indique tres opcións técnicas que se poderían aplicar, en xeral, na 'parte de opcións' nunha estratexia de negociación conveniente en planificación de proxectos software.",
-    correctAnswer:
-      "Tres opcións técnicas habituais son:\n\n1. **Entregas incrementais**: dividir o desenvolvemento en entregas parciais para achegar valor antes e reducir o risco global.\n2. **Redución/eliminación de prestacións**: recortar funcionalidades non críticas para axustarse a prazos ou orzamento.\n3. **Aumento do prazo de entrega**: ampliar o calendario para garantir a calidade ou incluír máis funcionalidades, a cambio de axustes no orzamento.",
-    explanation:
-      "A 'parte de opcións' nunha negociación presenta alternativas viables que permiten flexibilizar os termos do proxecto sen comprometer a súa viabilidade.",
-  },
+	// --- Tema 7: Negociación ---
+	{
+		id: "2026-01_q6",
+		examId: "2026-01",
+		topic: "teoria",
+		type: "text",
+		points: 1,
+		question:
+			"Indique tres opcións técnicas que se poderían aplicar, en xeral, na 'parte de opcións' nunha estratexia de negociación conveniente en planificación de proxectos software.",
+		correctAnswer:
+			"Tres opcións técnicas habituais son:\n\n1. **Entregas incrementais**: dividir o desenvolvemento en entregas parciais para achegar valor antes e reducir o risco global.\n2. **Redución/eliminación de prestacións**: recortar funcionalidades non críticas para axustarse a prazos ou orzamento.\n3. **Aumento do prazo de entrega**: ampliar o calendario para garantir a calidade ou incluír máis funcionalidades, a cambio de axustes no orzamento.",
+		explanation:
+			"A 'parte de opcións' nunha negociación presenta alternativas viables que permiten flexibilizar os termos do proxecto sen comprometer a súa viabilidade.",
+	},
 
-  // --- Tema 6: Seguimento e Control ---
-  {
-    id: "2026-01_q7",
-    examId: "2026-01",
-    topic: "practica",
-    type: "text",
-    points: 1,
-    question:
-      "O segundo día da tarefa T, o recurso R1 que a estaba realizando inicia unha baixa laboral. Estímase que tardará 2 meses en volver, un prazo demasiado longo para esperalo. Polo tanto, o seu traballo restante é asumido polo recurso R2, que se incorpora á tarefa o seguinte día á baixa de R1. Indique como actualizaría Project con esta información nunha sesión de seguimento.",
-    correctAnswer:
-      "Pasos para actualizar MS-Project:\n\n1. Marcar a tarefa T co progreso real ata o momento da baixa (1 día de traballo de R1).\n2. Rexistrar as horas reais traballadas por R1 nese primeiro día.\n3. Editar a asignación de recursos da tarefa T: eliminar a R1 (ou marcar como inactivo) e engadir a R2.\n4. O traballo restante da tarefa asígnase a R2, que comeza o día seguinte á baixa.\n5. MS-Project recalculará automaticamente a nova data de finalización en función da capacidade de R2.",
-    explanation:
-      "O seguimento en MS-Project require rexistrar o traballo real e redistribuír o traballo restante entre os recursos dispoñibles, respectando as dependencias e o calendario.",
-  },
+	// --- Tema 6: Seguimento e Control ---
+	{
+		id: "2026-01_q7",
+		examId: "2026-01",
+		topic: "practica",
+		type: "text",
+		points: 1,
+		question:
+			"O segundo día da tarefa T, o recurso R1 que a estaba realizando inicia unha baixa laboral. Estímase que tardará 2 meses en volver, un prazo demasiado longo para esperalo. Polo tanto, o seu traballo restante é asumido polo recurso R2, que se incorpora á tarefa o seguinte día á baixa de R1. Indique como actualizaría Project con esta información nunha sesión de seguimento.",
+		correctAnswer:
+			"Pasos para actualizar MS-Project:\n\n1. Marcar a tarefa T co progreso real ata o momento da baixa (1 día de traballo de R1).\n2. Rexistrar as horas reais traballadas por R1 nese primeiro día.\n3. Editar a asignación de recursos da tarefa T: eliminar a R1 (ou marcar como inactivo) e engadir a R2.\n4. O traballo restante da tarefa asígnase a R2, que comeza o día seguinte á baixa.\n5. MS-Project recalculará automaticamente a nova data de finalización en función da capacidade de R2.",
+		explanation:
+			"O seguimento en MS-Project require rexistrar o traballo real e redistribuír o traballo restante entre os recursos dispoñibles, respectando as dependencias e o calendario.",
+	},
 
-  // --- Tema 3: MS-Project ---
-  {
-    id: "2026-01_q8",
-    examId: "2026-01",
-    topic: "practica",
-    type: "text",
-    points: 1,
-    question:
-      "Para a realización completa dun proxecto alúgase unha supercomputadora a LeaderGPU por un prezo de 13000 euros ao mes. Como modelaría este coste no proxecto?",
-    correctAnswer:
-      "Para modelar este coste en MS-Project:\n\n1. Crear un recurso de tipo **Coste** chamado 'LeaderGPU'.\n2. Asignar este recurso ás tarefas do proxecto ou a unha tarefa resumo que abarque todo o proxecto.\n3. Configurar o coste do recurso como 13000€/mes.\n4. MS-Project calculará automaticamente o coste total multiplicando a taxa mensual pola duración en meses das tarefas ás que está asignado o recurso.\n\nAlternativamente, se o custo é fixo independentemente da duración exacta, pódese configurar como custo fixo da tarefa principal do proxecto.",
-    explanation:
-      "Os recursos de tipo Coste son idóneos para gastos que se acumulan por tempo (alugueiros, servizos) sen afectar á programación nin á carga de traballo.",
-  },
+	// --- Tema 3: MS-Project ---
+	{
+		id: "2026-01_q8",
+		examId: "2026-01",
+		topic: "practica",
+		type: "text",
+		points: 1,
+		question:
+			"Para a realización completa dun proxecto alúgase unha supercomputadora a LeaderGPU por un prezo de 13000 euros ao mes. Como modelaría este coste no proxecto?",
+		correctAnswer:
+			"Para modelar este coste en MS-Project:\n\n1. Crear un recurso de tipo **Coste** chamado 'LeaderGPU'.\n2. Asignar este recurso ás tarefas do proxecto ou a unha tarefa resumo que abarque todo o proxecto.\n3. Configurar o coste do recurso como 13000€/mes.\n4. MS-Project calculará automaticamente o coste total multiplicando a taxa mensual pola duración en meses das tarefas ás que está asignado o recurso.\n\nAlternativamente, se o custo é fixo independentemente da duración exacta, pódese configurar como custo fixo da tarefa principal do proxecto.",
+		explanation:
+			"Os recursos de tipo Coste son idóneos para gastos que se acumulan por tempo (alugueiros, servizos) sen afectar á programación nin á carga de traballo.",
+	},
 
-  // --- Tema 3: MS-Project (Práctica 1) ---
-  {
-    id: "2026-01_q9a",
-    examId: "2026-01",
-    topic: "practica",
-    type: "text",
-    points: 2.5,
-    question:
-      "Unha vez finalizado o Doc. Usuario v1, pódense iniciar o modelo de datos e o modelo de arquitectura do sistema. Ambas tarefas son realizadas por D1 e D2 e ambas teñen unha estimación de 80h·h. Cal sería a mellor forma de eliminar a sobrecarga de D1 e D2 nestas tarefas?",
-    correctAnswer:
-      "A mellor forma de eliminar a sobrecarga de D1 e D2 é **secuenciar as tarefas** en lugar de executalas en paralelo:\n\n1. Establecer unha dependencia FC (Finish-to-Start) entre o modelo de datos e o modelo de arquitectura.\n2. Deste xeito, D1 e D2 traballan primeiro xuntos no modelo de datos (80h·h ÷ 2 = 40h por persoa).\n3. Ao finalizar, traballan xuntos no modelo de arquitectura (outras 40h por persoa).\n4. Así, en ningún momento D1 ou D2 teñen que estar en dúas tarefas simultaneamente.\n\nAlternativa: dividir cada modelo en subtarefas e asignar D1 ao modelo de datos e D2 ao de arquitectura, executándose en paralelo pero con recursos diferenciados.",
-    explanation:
-      "A sobrecarga (overallocation) prodúcese cando un recurso está asignado a máis dunha tarefa ao mesmo tempo. Secuenciar as tarefas ou dividir os recursos son as estratexias principais para nivelar.",
-  },
-  {
-    id: "2026-01_q9b",
-    examId: "2026-01",
-    topic: "practica",
-    type: "text",
-    points: 2.5,
-    question:
-      "Os 2 modelos anteriores (datos e arquitectura) deben documentarse no Doc. Usuario v2 mediante un capítulo dedicado a cada un. Esta documentación implica 40h·h de traballo (20h·h cada capítulo). Ademais, débena realizar os propios recursos que construíron os modelos e ao mesmo tempo que os constrúen. Modifique/complete o modelo do apartado anterior (a) para representar esta situación. O modelo final debe estar nivelado.",
-    correctAnswer:
-      "Para modelar esta situación co modelo nivelado:\n\n1. Crear dúas tarefas de documentación: 'Doc. modelo datos v2' (20h·h) e 'Doc. modelo arquitectura v2' (20h·h).\n2. Vincular cada tarefa de documentación en paralelo (SS, Start-to-Start) coa súa correspondente tarefa de construción de modelo.\n3. Asignar D1 e D2 a ambas tarefas de documentación.\n4. Dado que agora D1 e D2 teñen 4 tarefas (2 de modelo + 2 de documentación) executándose en paralelo, haberá sobrecarga.\n5. Para nivelar: dividir D1 e D2 por especialidade. D1 fai o modelo de datos + a súa documentación (80+20=100h·h), D2 fai o modelo de arquitectura + a súa documentación (80+20=100h·h).\n6. Ambas ramas (datos e arquitectura) execútanse en paralelo pero con recursos independentes, eliminando a sobrecarga.\n\nModelo final nivelado: D1 → [Modelo datos (80h) || Doc. datos (20h)] en paralelo con D2 → [Modelo arq. (80h) || Doc. arq. (20h)].",
-    explanation:
-      "A clave é separar os recursos por modelo para que cada persoa se centre nunha rama completa (modelo + documentación), evitando así o solapamento de asignacións.",
-  },
-  {
-    id: "2026-01_q9c",
-    examId: "2026-01",
-    topic: "practica",
-    type: "text",
-    points: 2.5,
-    question:
-      "Unha vez elaborado o Plan de Instalación e Formación, este debe ser aprobado polo cliente nun prazo de 3 días. Tras a súa aprobación, o cliente disporá de 4 días para preparar as súas oficinas como o indica o plan. Unha vez feitos estes preparativos, poderase realizar a instalación e tras ela a formación.",
-    correctAnswer:
-      "Modelado en MS-Project:\n\n1. **Tarefa 'Plan de Instalación e Formación'** (duración estimada)\n2. **Fito 'Plan aprobado'**: dependencia FC + 3 días desde a tarefa anterior. Os 3 días representan o prazo máximo de aprobación do cliente.\n3. **Tarefa 'Preparación oficinas'**: dependencia FC desde o fito 'Plan aprobado'. Duración: 4 días (realizada polo cliente).\n4. **Tarefa 'Instalación'**: dependencia FC desde 'Preparación oficinas'.\n5. **Tarefa 'Formación'**: dependencia FC desde 'Instalación'.",
-    explanation:
-      "O uso de fitos (milestones) para representar aprobacións externas é unha práctica estándar en MS-Project. As dependencias FC (Finish-to-Start) aseguran a secuencia correcta de eventos.",
-  },
-  {
-    id: "2026-01_q9d",
-    examId: "2026-01",
-    topic: "practica",
-    type: "text",
-    points: 2.5,
-    question:
-      "A instalación en cliente estaba programada para realizarse os días 26, 27 e 28 de xaneiro de 2026. Tras iso, realizaríase a formación do cliente os días 29 e 30 de xaneiro de 2026. Por alerta climatolóxica, os nosos traballadores non puideron desprazarse ás oficinas do cliente nesas datas. O que ocorreu realmente foi o seguinte: DS1 formou ao cliente online os días 29 e 30 de xaneiro de 2026. DS2-5 realizaron a instalación nas oficinas do cliente os días 2, 3 e 4 de febreiro de 2026, unha vez que a climatoloxía lles permitiu desprazarse.",
-    correctAnswer:
-      "Actualización no seguimento de MS-Project:\n\n1. **Formación**:\n   - Rexistrar as datas reais de inicio (29/01/2026) e fin (30/01/2026).\n   - Cambiar o recurso asignado: só DS1 (non todos os DS como estaba planificado).\n   - Anotar que se realizou en modalidade online.\n\n2. **Instalación**:\n   - Modificar as datas de inicio (02/02/2026) e fin (04/02/2026).\n   - Actualizar os recursos: DS2, DS3, DS4, DS5.\n   - MS-Project recalculará automaticamente as dependencias.\n\n3. **Xustificación do atraso**:\n   - A alerta climatolóxica impuxo un atraso de 5 días na instalación (do 28/01 ao 04/02).\n   - A formación, con todo, puido manterse nas datas previstas ao realizarse online, pero cun recurso reducido (DS1 en solitario).",
-    explanation:
-      "O seguimento en MS-Project require rexistrar as datas reais de inicio e fin, así como o traballo real realizado por cada recurso. As desviacións respecto á liña base quedarán reflectidas automaticamente.",
-  },
-  // ============================================================
-  // Exam Xaneiro 2024
-  // ============================================================
+	// --- Tema 3: MS-Project (Práctica 1) ---
+	{
+		id: "2026-01_q9a",
+		examId: "2026-01",
+		topic: "practica",
+		type: "text",
+		points: 2.5,
+		question:
+			"Unha vez finalizado o Doc. Usuario v1, pódense iniciar o modelo de datos e o modelo de arquitectura do sistema. Ambas tarefas son realizadas por D1 e D2 e ambas teñen unha estimación de 80h·h. Cal sería a mellor forma de eliminar a sobrecarga de D1 e D2 nestas tarefas?",
+		correctAnswer:
+			"A mellor forma de eliminar a sobrecarga de D1 e D2 é **secuenciar as tarefas** en lugar de executalas en paralelo:\n\n1. Establecer unha dependencia FC (Finish-to-Start) entre o modelo de datos e o modelo de arquitectura.\n2. Deste xeito, D1 e D2 traballan primeiro xuntos no modelo de datos (80h·h ÷ 2 = 40h por persoa).\n3. Ao finalizar, traballan xuntos no modelo de arquitectura (outras 40h por persoa).\n4. Así, en ningún momento D1 ou D2 teñen que estar en dúas tarefas simultaneamente.\n\nAlternativa: dividir cada modelo en subtarefas e asignar D1 ao modelo de datos e D2 ao de arquitectura, executándose en paralelo pero con recursos diferenciados.",
+		explanation:
+			"A sobrecarga (overallocation) prodúcese cando un recurso está asignado a máis dunha tarefa ao mesmo tempo. Secuenciar as tarefas ou dividir os recursos son as estratexias principais para nivelar.",
+	},
+	{
+		id: "2026-01_q9b",
+		examId: "2026-01",
+		topic: "practica",
+		type: "text",
+		points: 2.5,
+		question:
+			"Os 2 modelos anteriores (datos e arquitectura) deben documentarse no Doc. Usuario v2 mediante un capítulo dedicado a cada un. Esta documentación implica 40h·h de traballo (20h·h cada capítulo). Ademais, débena realizar os propios recursos que construíron os modelos e ao mesmo tempo que os constrúen. Modifique/complete o modelo do apartado anterior (a) para representar esta situación. O modelo final debe estar nivelado.",
+		correctAnswer:
+			"Para modelar esta situación co modelo nivelado:\n\n1. Crear dúas tarefas de documentación: 'Doc. modelo datos v2' (20h·h) e 'Doc. modelo arquitectura v2' (20h·h).\n2. Vincular cada tarefa de documentación en paralelo (SS, Start-to-Start) coa súa correspondente tarefa de construción de modelo.\n3. Asignar D1 e D2 a ambas tarefas de documentación.\n4. Dado que agora D1 e D2 teñen 4 tarefas (2 de modelo + 2 de documentación) executándose en paralelo, haberá sobrecarga.\n5. Para nivelar: dividir D1 e D2 por especialidade. D1 fai o modelo de datos + a súa documentación (80+20=100h·h), D2 fai o modelo de arquitectura + a súa documentación (80+20=100h·h).\n6. Ambas ramas (datos e arquitectura) execútanse en paralelo pero con recursos independentes, eliminando a sobrecarga.\n\nModelo final nivelado: D1 → [Modelo datos (80h) || Doc. datos (20h)] en paralelo con D2 → [Modelo arq. (80h) || Doc. arq. (20h)].",
+		explanation:
+			"A clave é separar os recursos por modelo para que cada persoa se centre nunha rama completa (modelo + documentación), evitando así o solapamento de asignacións.",
+	},
+	{
+		id: "2026-01_q9c",
+		examId: "2026-01",
+		topic: "practica",
+		type: "text",
+		points: 2.5,
+		question:
+			"Unha vez elaborado o Plan de Instalación e Formación, este debe ser aprobado polo cliente nun prazo de 3 días. Tras a súa aprobación, o cliente disporá de 4 días para preparar as súas oficinas como o indica o plan. Unha vez feitos estes preparativos, poderase realizar a instalación e tras ela a formación.",
+		correctAnswer:
+			"Modelado en MS-Project:\n\n1. **Tarefa 'Plan de Instalación e Formación'** (duración estimada)\n2. **Fito 'Plan aprobado'**: dependencia FC + 3 días desde a tarefa anterior. Os 3 días representan o prazo máximo de aprobación do cliente.\n3. **Tarefa 'Preparación oficinas'**: dependencia FC desde o fito 'Plan aprobado'. Duración: 4 días (realizada polo cliente).\n4. **Tarefa 'Instalación'**: dependencia FC desde 'Preparación oficinas'.\n5. **Tarefa 'Formación'**: dependencia FC desde 'Instalación'.",
+		explanation:
+			"O uso de fitos (milestones) para representar aprobacións externas é unha práctica estándar en MS-Project. As dependencias FC (Finish-to-Start) aseguran a secuencia correcta de eventos.",
+	},
+	{
+		id: "2026-01_q9d",
+		examId: "2026-01",
+		topic: "practica",
+		type: "text",
+		points: 2.5,
+		question:
+			"A instalación en cliente estaba programada para realizarse os días 26, 27 e 28 de xaneiro de 2026. Tras iso, realizaríase a formación do cliente os días 29 e 30 de xaneiro de 2026. Por alerta climatolóxica, os nosos traballadores non puideron desprazarse ás oficinas do cliente nesas datas. O que ocorreu realmente foi o seguinte: DS1 formou ao cliente online os días 29 e 30 de xaneiro de 2026. DS2-5 realizaron a instalación nas oficinas do cliente os días 2, 3 e 4 de febreiro de 2026, unha vez que a climatoloxía lles permitiu desprazarse.",
+		correctAnswer:
+			"Actualización no seguimento de MS-Project:\n\n1. **Formación**:\n   - Rexistrar as datas reais de inicio (29/01/2026) e fin (30/01/2026).\n   - Cambiar o recurso asignado: só DS1 (non todos os DS como estaba planificado).\n   - Anotar que se realizou en modalidade online.\n\n2. **Instalación**:\n   - Modificar as datas de inicio (02/02/2026) e fin (04/02/2026).\n   - Actualizar os recursos: DS2, DS3, DS4, DS5.\n   - MS-Project recalculará automaticamente as dependencias.\n\n3. **Xustificación do atraso**:\n   - A alerta climatolóxica impuxo un atraso de 5 días na instalación (do 28/01 ao 04/02).\n   - A formación, con todo, puido manterse nas datas previstas ao realizarse online, pero cun recurso reducido (DS1 en solitario).",
+		explanation:
+			"O seguimento en MS-Project require rexistrar as datas reais de inicio e fin, así como o traballo real realizado por cada recurso. As desviacións respecto á liña base quedarán reflectidas automaticamente.",
+	},
+	// ============================================================
+	// Exam Xaneiro 2024
+	// ============================================================
 
-  // --- V/F Teoría ---
-  {
-    id: "2024-01_vf_teoria",
-    examId: "2024-01",
-    topic: "teoria",
-    type: "matching",
-    points: 3,
-    question: "Indique se as seguintes afirmacións son verdadeiras ou falsas:",
-    correctAnswer: {
-      "O Diagrama de Gantt ten unha estreita relación coas Redes de Precedencia, pois é unha representación simplificada destas.":
-        "V",
-      "Para aplicar CPM e calcular as datas early e late é imprescindible coñecer as asignacións dos recursos.":
-        "F",
-      "A FC B é equivalente a A CC+2d B se A dura 2 días.": "V",
-      "Aínda que haxa unha forma de priorizar riscos, ás veces o Xefe de Proxecto pode e debe tratar como relevantes riscos que non o son atendendo á súa priorización.":
-        "V",
-      "Un Plan de Proxecto é o único produto de saída (entregable) das actividades de Xestión de Proxectos que habería que someter a Xestión da Configuración do Software.":
-        "F",
-      "Hai polo menos 3 razóns que xustifican, en Xestión da Configuración do Software, a necesidade de ter dispoñibles as versións intermedias dun ECS.":
-        "V",
-    },
-    explanation:
-      "O Diagrama de Gantt representa visualmente as relacións de precedencia (PERT/CPM). CPM non necesita asignacións de recursos. FC e CC+2d son equivalentes cando A dura 2 días. O Xefe de Proxecto pode priorizar riscos fóra da fórmula. GCS aplica a múltiples entregables, non só ao Plan. As versións intermedias en GCS son necesarias para trazabilidade, recuperación e traballo paralelo.",
-  },
+	// --- V/F Teoría ---
+	{
+		id: "2024-01_vf_teoria",
+		examId: "2024-01",
+		topic: "teoria",
+		type: "matching",
+		points: 3,
+		question: "Indique se as seguintes afirmacións son verdadeiras ou falsas:",
+		correctAnswer: {
+			"O Diagrama de Gantt ten unha estreita relación coas Redes de Precedencia, pois é unha representación simplificada destas.":
+				"V",
+			"Para aplicar CPM e calcular as datas early e late é imprescindible coñecer as asignacións dos recursos.":
+				"F",
+			"A FC B é equivalente a A CC+2d B se A dura 2 días.": "V",
+			"Aínda que haxa unha forma de priorizar riscos, ás veces o Xefe de Proxecto pode e debe tratar como relevantes riscos que non o son atendendo á súa priorización.":
+				"V",
+			"Un Plan de Proxecto é o único produto de saída (entregable) das actividades de Xestión de Proxectos que habería que someter a Xestión da Configuración do Software.":
+				"F",
+			"Hai polo menos 3 razóns que xustifican, en Xestión da Configuración do Software, a necesidade de ter dispoñibles as versións intermedias dun ECS.":
+				"V",
+		},
+		explanation:
+			"O Diagrama de Gantt representa visualmente as relacións de precedencia (PERT/CPM). CPM non necesita asignacións de recursos. FC e CC+2d son equivalentes cando A dura 2 días. O Xefe de Proxecto pode priorizar riscos fóra da fórmula. GCS aplica a múltiples entregables, non só ao Plan. As versións intermedias en GCS son necesarias para trazabilidade, recuperación e traballo paralelo.",
+	},
 
-  // --- V/F Práctica ---
-  {
-    id: "2024-01_vf_practica",
-    examId: "2024-01",
-    topic: "practica",
-    type: "matching",
-    points: 2,
-    question:
-      "Indique se as seguintes afirmacións sobre MS-Project son verdadeiras ou falsas:",
-    correctAnswer: {
-      "MS-Project pode identificar sobrecargas que sexan 'ficticias', pero tamén permite confirmar se realmente son sobrecargas ou non.":
-        "V",
-      "MS-Project non controla a correcta aplicación en seguimento das restricións lóxicas.":
-        "F",
-      "Ao establecer liña de base en MS-Project, os datos previstos 'copianse' nos datos actuais.":
-        "V",
-      "En MS-Project, o camiño crítico sempre será un camiño continuo desde o principio ao final do proxecto.":
-        "F",
-    },
-    explanation:
-      "MS-Project distingue sobrecargas reais e ficticias. Si controla restricións lóxicas. A liña base copia os previstos, non ao revés. O camiño crítico non ten por que ser continuo.",
-  },
+	// --- V/F Práctica ---
+	{
+		id: "2024-01_vf_practica",
+		examId: "2024-01",
+		topic: "practica",
+		type: "matching",
+		points: 2,
+		question:
+			"Indique se as seguintes afirmacións sobre MS-Project son verdadeiras ou falsas:",
+		correctAnswer: {
+			"MS-Project pode identificar sobrecargas que sexan 'ficticias', pero tamén permite confirmar se realmente son sobrecargas ou non.":
+				"V",
+			"MS-Project non controla a correcta aplicación en seguimento das restricións lóxicas.":
+				"F",
+			"Ao establecer liña de base en MS-Project, os datos previstos 'copianse' nos datos actuais.":
+				"V",
+			"En MS-Project, o camiño crítico sempre será un camiño continuo desde o principio ao final do proxecto.":
+				"F",
+		},
+		explanation:
+			"MS-Project distingue sobrecargas reais e ficticias. Si controla restricións lóxicas. A liña base copia os previstos, non ao revés. O camiño crítico non ten por que ser continuo.",
+	},
 
-  // --- Tema 8: Calidade ---
-  {
-    id: "2024-01_q2",
-    examId: "2024-01",
-    topic: "teoria",
-    type: "text",
-    points: 1,
-    question:
-      "Indique que sentido ten un apartado titulado 'Desviacións ao Sistema de Calidade' nun Plan de Proxecto. Razoe a súa resposta cun exemplo.",
-    correctAnswer:
-      "Ten o propósito de identificar, documentar e xestionar calquera desviación que poida ocorrer respecto aos estándares de calidade establecidos para o proxecto. Por exemplo, se o estándar esixe revisións de código semanais e unha semana non se pode realizar por sobrecarga, débese documentar a desviación, xustificala e indicar como se compensará.",
-    explanation:
-      "O apartado serve para manter a trazabilidade dos incumprimentos do sistema de calidade, permitindo accións correctoras e demostrando transparencia na xestión da calidade.",
-  },
+	// --- Tema 8: Calidade ---
+	{
+		id: "2024-01_q2",
+		examId: "2024-01",
+		topic: "teoria",
+		type: "text",
+		points: 1,
+		question:
+			"Indique que sentido ten un apartado titulado 'Desviacións ao Sistema de Calidade' nun Plan de Proxecto. Razoe a súa resposta cun exemplo.",
+		correctAnswer:
+			"Ten o propósito de identificar, documentar e xestionar calquera desviación que poida ocorrer respecto aos estándares de calidade establecidos para o proxecto. Por exemplo, se o estándar esixe revisións de código semanais e unha semana non se pode realizar por sobrecarga, débese documentar a desviación, xustificala e indicar como se compensará.",
+		explanation:
+			"O apartado serve para manter a trazabilidade dos incumprimentos do sistema de calidade, permitindo accións correctoras e demostrando transparencia na xestión da calidade.",
+	},
 
-  // --- Tema 4: Riscos ---
-  {
-    id: "2024-01_q3",
-    examId: "2024-01",
-    topic: "teoria",
-    type: "text",
-    points: 1,
-    question:
-      "Indique que finalidade última ten realmente a fórmula de cuantificación de riscos ER = P · I. Razoe a súa resposta.",
-    correctAnswer:
-      "A finalidade última da cuantificación de riscos (ER = P · I) é estimar o retraso total do proxecto ao sumar todas as exposicións ao risco (ER). Ademais, pódese empregar para axustar a planificación cunha marxe de retraso que absorba os riscos identificados.",
-    explanation:
-      "P (probabilidade) × I (impacto) dá a Exposición ao Risco, que permite cuantificar economicamente ou temporalmente o efecto esperado dos riscos sobre o proxecto.",
-  },
+	// --- Tema 4: Riscos ---
+	{
+		id: "2024-01_q3",
+		examId: "2024-01",
+		topic: "teoria",
+		type: "text",
+		points: 1,
+		question:
+			"Indique que finalidade última ten realmente a fórmula de cuantificación de riscos ER = P · I. Razoe a súa resposta.",
+		correctAnswer:
+			"A finalidade última da cuantificación de riscos (ER = P · I) é estimar o retraso total do proxecto ao sumar todas as exposicións ao risco (ER). Ademais, pódese empregar para axustar a planificación cunha marxe de retraso que absorba os riscos identificados.",
+		explanation:
+			"P (probabilidade) × I (impacto) dá a Exposición ao Risco, que permite cuantificar economicamente ou temporalmente o efecto esperado dos riscos sobre o proxecto.",
+	},
 
-  // --- Tema 7: Negociación ---
-  {
-    id: "2024-01_q4",
-    examId: "2024-01",
-    topic: "teoria",
-    type: "text",
-    points: 1,
-    question:
-      "Indique dúas opcións técnicas que inicialmente se poidan aplicar, en xeral, na 'parte de opcións' nunha estratexia de negociación conveniente en planificación de proxectos software.",
-    correctAnswer:
-      "Dúas opcións técnicas habituais son: (1) Entregas incrementais: dividir o produto en entregas parciais para reducir o risco e obter feedback temperán. (2) Redución ou eliminación de prestacións: axustar o alcance funcional para cumprir con prazos ou orzamentos limitados.",
-    explanation:
-      "A 'parte de opcións' da estratexia de negociación presenta alternativas técnicas viables que permiten chegar a un acordo sen comprometer a calidade esencial do produto.",
-  },
+	// --- Tema 7: Negociación ---
+	{
+		id: "2024-01_q4",
+		examId: "2024-01",
+		topic: "teoria",
+		type: "text",
+		points: 1,
+		question:
+			"Indique dúas opcións técnicas que inicialmente se poidan aplicar, en xeral, na 'parte de opcións' nunha estratexia de negociación conveniente en planificación de proxectos software.",
+		correctAnswer:
+			"Dúas opcións técnicas habituais son: (1) Entregas incrementais: dividir o produto en entregas parciais para reducir o risco e obter feedback temperán. (2) Redución ou eliminación de prestacións: axustar o alcance funcional para cumprir con prazos ou orzamentos limitados.",
+		explanation:
+			"A 'parte de opcións' da estratexia de negociación presenta alternativas técnicas viables que permiten chegar a un acordo sen comprometer a calidade esencial do produto.",
+	},
 
-  // --- Tema 3: MS-Project ---
-  {
-    id: "2024-01_q5",
-    examId: "2024-01",
-    topic: "practica",
-    type: "text",
-    points: 1,
-    question:
-      "Indique como modelaría en MS-Project a utilización dun servizo de cómputo na nube (MS Azure) en varias tarefas, tendo en conta que non hai limitación no uso por varias tarefas (servizo baixo demanda) e que ten un coste de 0.25€/h.",
-    correctAnswer:
-      "Habería que definir un recurso de tipo 'Coste', ao ser un servizo baixo demanda e con coste por hora. Despois de engadir o novo recurso de tipo Coste (MS Azure), asignaríase este recurso ás tarefas correspondentes. O número de horas dependerá da duración da tarefa. Por último, establécese o coste de 0.25€/h para o recurso e MS-Project calcula automaticamente o coste total en función do tempo que se utilice o recurso.",
-    explanation:
-      "Os recursos de tipo Coste en MS-Project non afectan á programación nin á carga de traballo. Simplemente acumulan custos en función da duración das tarefas ás que se asignan.",
-  },
-  {
-    id: "2024-01_q6",
-    examId: "2024-01",
-    topic: "practica",
-    type: "text",
-    points: 1,
-    question:
-      "Indique como modelaría en MS-Project a supervisión de 4h sobre unha determinada tarefa todos os martes e xoves mentres dita tarefa teña lugar.",
-    correctAnswer:
-      "Asígnase un novo recurso de tipo Traballo que se encargará de facer a supervisión. Despois créase a tarefa de supervisión e asígnaselle o recurso engadido. Por último, configúrase o calendario do recurso para que traballe todos os martes e xoves durante 4 horas.",
-    explanation:
-      "A configuración do calendario do recurso permite establecer patróns de dispoñibilidade recorrentes, o que fai que MS-Project programe automaticamente as horas de supervisión nos días indicados.",
-  },
-  // ============================================================
-  // Daypo Tipo UDC (63 preguntas V/F)
-  // ============================================================
-  {
-    id: "daypo-tipo-udc_01",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Los Chaos Report señalan la mejora en gestión de proyectos como una responsable de la mejoría que recogen en el desarrollo del software.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Los Chaos Report señalan la mejora en gestión de proyectos como una responsable de la mejoría que recogen en el desarrollo del software.   Las mejoras deben centrarse en : Desarrollo ( a través de la elección de un ciclo de vida ), Gestión ( Gestión de proyectos  y proyectos de desarrollo software)  y Calidad (Aseguramiento de la calidad)",
-  },
-  {
-    id: "daypo-tipo-udc_02",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "El incremento del grado de cumplimiento en los proyectos de desarrollo se debe a la mejora de la gestión de proyectos.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-tipo-udc_03",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Para definir calidad es suficiente con establecer con anticipación parámetros cuantificables y verificables enfocados desde un punto de vista concreto",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "A la hora de definir calidad se deberán respetar unas limitaciones para alcanzar un resultado válido: (1) se deberá establecer por anticipado parámetros que midan la calidad desde el punto de vista escogido, (2) los parámetros deben de ser cuantificables y (3) también verificables.",
-  },
-  {
-    id: "daypo-tipo-udc_04",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Los objetivos que busca la Gestión de Proyectos son la finalización en plazo dentro del presupuesto y la consecución del nivel de calidad deseado.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Gestión del proyecto: esfuerzo, tiempo y coste estimado\nProducto: calidad",
-  },
-  {
-    id: "daypo-tipo-udc_05",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Se recomienda escoger el ciclo de desarrollo a seguir en un proyecto de software atendiendo a parámetros de gestión.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "La elección del ciclo de desarrollo en un proyecto de software a menudo se basa en consideraciones de gestión, entre otros factores. El ciclo de desarrollo es un concepto orientado al proceso de desarrollo. No incorpora mantenimiento en ningún caso.",
-  },
-  {
-    id: "daypo-tipo-udc_06",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En notación ADM, la longitud del arco no tiene relación con la duración de la actividad.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "En la notación ADM (Arrow Diagramming Method), la longitud del arco no tiene una relación directa con la duración de la actividad. La duración de cada actividad se especifica por separado y no se representa visualmente por la longitud de las flechas en el diagrama.",
-  },
-  {
-    id: "daypo-tipo-udc_07",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En el análisis de un proyecto solo interesa el esfuerzo que deben hacer o han hecho los recursos, ya que este determina todos los demás parámetros.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Si bien el esfuerzo que deben hacer o han hecho los recursos es un aspecto crítico en el análisis de un proyecto, no es el único parámetro que determina todos los demás aspectos. El esfuerzo de los recursos (tiempo, habilidades, costos, etc.) es esencial, pero otros factores también son cruciales en el análisis de proyectos. ",
-  },
-  {
-    id: "daypo-tipo-udc_08",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Para aplicar CPM y calcular las fechas early y las late se necesitan conocer las asignaciones de los recursos.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "En el método de la ruta crítica (CPM), no es necesario conocer las asignaciones específicas de recursos para calcular las fechas early (tempranas) y late (tardías). CPM se basa principalmente en las dependencias entre las actividades y en las duraciones de estas actividades.",
-  },
-  {
-    id: "daypo-tipo-udc_09",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si A y B tiene sendas relaciones SS con C, C empezará en cuanto empiecen A y B",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "C podrá empezar una vez A y B hayan empezado, pero no tiene que ser al mismo momento que ellos.",
-  },
-  {
-    id: "daypo-tipo-udc_10",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si las actividades A y B tienen una relacion SS con C, C puede empezar si A tiene el 50% de realización.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "C puede comenzar tan pronto como A inicie, independientemente del progreso específico de A. SIEMPRE QUE B HAYA EMPEZADO TAMBIÉN !!",
-  },
-  {
-    id: "daypo-tipo-udc_11",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una tarea CC debe empezar al mismo tiempo que la otra tarea.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Una tarea CC podrá comenzar una vez haya comenzado la tarea anterior. (Al mismo tiempo o 3 días más tarde.)",
-  },
-  {
-    id: "daypo-tipo-udc_12",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una holgura no puede ser negativa",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Una holgura puede ser positiva (tengo ciertos días de margen si se retrasa) , 0 (actividad crítica, no se puede retrasar) o negativa (ya vas retrasado)",
-  },
-  {
-    id: "daypo-tipo-udc_13",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una línea base puede tener sobrecargas",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Una línea base de proyecto puede tener sobrecargas si durante la ejecución del proyecto se identifican necesidades adicionales, cambios o ajustes que no estaban contemplados en la planificación original.",
-  },
-  {
-    id: "daypo-tipo-udc_14",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La negociación conveniente consta de 4 partes: personas, intereses, opciones y criterios.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_15",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La cuantificación no es imprescindible para priorizar los riesgos",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Para la priorización de los riesgos es imprescindible un método de cuantificación, ya que una vez se ha cuantificado un resgo ya es comparable con otros para estudiar la prioridad que posee dentro de todo el proyecto",
-  },
-  {
-    id: "daypo-tipo-udc_16",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En la gestión de riesgos para cuantificar los riesgos no tienen porque tomarse las mismas medidas en todos",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "En la gestión de riesgos, no todos los riesgos necesitan o pueden ser cuantificados de la misma manera. La cuantificación de riesgos implica asignar valores numéricos a diversos aspectos del riesgo, como la probabilidad de ocurrencia, el impacto financiero y otros factores relevantes.",
-  },
-  {
-    id: "daypo-tipo-udc_17",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La GCS se limita a considerar los elementos que constituyen el producto software, como por ejemplo el código, los documentos, ...",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "La GCS tiene en cuenta tanto los productos que se generan en el proceso software como los que se utilizan en el proceso del mismo.",
-  },
-  {
-    id: "daypo-tipo-udc_18",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Verificación del software es garantizar que el sistema es correcto y validación que el sistema se ha hecho correctamente",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Verificación: conjunto de actividades que garantizan que el resultado de cada fase se corresponde con las entradas a dicha fase, es decir que este se ha construido correctamente.\nValidación : conjunto de actividades que aseguran que el software construido corresponde con los requisitos del cliente.",
-  },
-  {
-    id: "daypo-tipo-udc_19",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Bootstrap es la respuesta europea a CMM debido a que la adaptación de CMM a Europa era dudosa",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Algunos autores discutieron la aplicación de CMM en el ámbito europeo, dando origen a Bootstrap",
-  },
-  {
-    id: "daypo-tipo-udc_20",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Bootstrap no se encuentra alineado con la norma ISO 9000",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation: "Bootstrap se encuentra alineado con ISO-9000",
-  },
-  {
-    id: "daypo-tipo-udc_21",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "El prototipado no es utilizado en proyectos reales porque ...",
-    options: ["A. Verdadero ", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "El prototipado es una técnica comunmente utilizada. Se considera una gran ventaja y es que es un mecanismo ideal para extraer requisitos cuando no están claros por parte del usuario.",
-  },
-  {
-    id: "daypo-tipo-udc_22",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Incremental, espiral y DRA son ciclos de vida que generan entregas paulatinas",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "DRA :  adaptación de alta velocidad al modelo en cascada. Es un modelo no evolutivo y estos obligan a desarrollar todo el producto de golpe.",
-  },
-  {
-    id: "daypo-tipo-udc_23",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En el ciclo de vida incremental si un incremento está mal, afectará a incrementos anteriores y posteriores",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-tipo-udc_24",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Un ciclo de vida en espiral siempre pasa por las 4 fases de determinar alternativas, evaluar alternativas, desarrollo del siguiente nivel y planificación de la siguiente fase",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_25",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Ciclos de vida y gestion de proyectos son fundamentales en el buen desarrollo del proceso software",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Tanto los ciclos de vida como la gestión de proyectos son fundamentales en el buen desarrollo del proceso de software. Estos proporcionan estructuras, procesos y herramientas necesarios para planificar, ejecutar, controlar y cerrar proyectos de desarrollo de software de manera exitosa.",
-  },
-  {
-    id: "daypo-tipo-udc_26",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "La estimación afecta al ciclo de vida",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Dependiendo del proyecto a realizar se tendrán que escoger diferentes ciclos de vida",
-  },
-  {
-    id: "daypo-tipo-udc_27",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "El ciclo de vida solo es aplicable cuando se está desarrollando el proyecto",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      " El ciclo de vida de un proyecto abarca todas las fases, desde la concepción hasta la finalización",
-  },
-  {
-    id: "daypo-tipo-udc_28",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una demora es proporcional al tiempo de retraso entre tareas",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "La relación entre demoras y tiempos de retraso no siempre es directamente proporcional y puede depender de varios factores, incluidas las dependencias entre tareas, la estructura del proyecto y la presencia de la ruta crítica",
-  },
-  {
-    id: "daypo-tipo-udc_29",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "En Proyect no se puede poner coste a los hitos",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Aunque los hitos en sí mismos no tienen una duración medible, sí se les puede asignar costos asociados.",
-  },
-  {
-    id: "daypo-tipo-udc_30",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Para crear una tarea hamaca en Project es necesario crearla como tarea resumen",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "En Microsoft Project, para crear una tarea hamaca, generalmente se crea una tarea de resumen y se le quita la duración. ",
-  },
-  {
-    id: "daypo-tipo-udc_31",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una hamaca puede tener relaciones",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-tipo-udc_32",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Un hito tiene esfuerzo y duración 0",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Además de esfuerzo y duración 0, no pueden tener asignados recursos.",
-  },
-  {
-    id: "daypo-tipo-udc_33",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Si acortamos los caminos críticos dura menos el proyecto",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Acortar los caminos críticos, que son las secuencias de actividades que determinan la duración mínima del proyecto, puede ayudar a reducir la duración total del proyecto.",
-  },
-  {
-    id: "daypo-tipo-udc_34",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Un trabajador solo necesita saber dónde tiene que trabajar, cuando, con qué esfuerzo y que tiene que hacer",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Necesita saber el tiempo de duración de la tarea, esfuerzo a aplicar, el coste (su sueldo + otros gastos) y la calidad que debe tener el producto o servicio.",
-  },
-  {
-    id: "daypo-tipo-udc_35",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "COCOMO considera tres variables: tamaño del software a desarrollar medido en KLOC, esfuerzo del equipo medido en personas/mes y duración del proyecto medido en meses",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_36",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      'Los puntos objeto son una estimación del esfuerzo que se base en "conteo" de pantallas (interfaces de usuario), informas y componenetes que se prevee que hay que construir para el sistema.',
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_37",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La estimación de orden uno de Capers Jones es una variante de los puntos de función",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      ' La "estimación de orden uno" de Capers Jones es una técnica más simple y rápida que se basa en factores como el tamaño del software, la experiencia del equipo y otros factores históricos.',
-  },
-  {
-    id: "daypo-tipo-udc_38",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Delphi es la técnica más conocida de aproximación por juicio de los expertos para estimación",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Juicio de expertos es una técnica en la que varios miembros identifican los riesgos y les asignan una probabilidad de que ocurran y su impacto. Es la técnica más utilizada dentro de esta categoría, donde un coordinador proporciona a cada experto una especificación del proyecto considerado.",
-  },
-  {
-    id: "daypo-tipo-udc_39",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En tipo de cambio con un nivel de control semi-formal necesita seguimiento y aprobación",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      " En un nivel de control semi-formal, aunque no es tan estructurado como un sistema de control formal, aún implica la necesidad de seguimiento y aprobación.",
-  },
-  {
-    id: "daypo-tipo-udc_40",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Una variante/release se ve en un grafo de evolución como una ramificación",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_41",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una variante implica una configuración alternativa",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Una variante no es más que una ramificación en el grafo de evolución, y cuando tenemos varias ramificaciones en el grafo es cuando tengo varias configuraciones alternativas.",
-  },
-  {
-    id: "daypo-tipo-udc_42",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si haces gestión de riesgos no es necesario hacer gestión de problemas",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "La gestión de problemas se necesita aparte de la gestión de riesgos, para hacer un seguimiento de la evolución de los problemas",
-  },
-  {
-    id: "daypo-tipo-udc_43",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La gestión de la configuración del software se encarga de la evolución del software",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Por definición la GCS se encarga de identificar, organizar y controlar las modificaciones que sufre el software. Sus objetivos son facilitar la visibilidad sobre el estado y evolución del producto y establecer y mantener la integridad",
-  },
-  {
-    id: "daypo-tipo-udc_44",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La GCS está dentro de las disciplinas de control de la integridad de los productos",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "LA GCS ayuda a mantener la integridad del producto y con ella su calidad",
-  },
-  {
-    id: "daypo-tipo-udc_45",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En la GCS, la visibilidad se define en la fase de identificación de la configuración",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_46",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si no se hace seguimiento se pierde el control de proyecto sin importar lo buena que sea tu planificación",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_47",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Una efectiva gestión de proyectos solo requiere poner en ejecución buenas prácticas de desarrollo",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Poner en práctica buenas prácticas de desarrollo es una parte importante, pero no única, de la gestión integral de proyectos.",
-  },
-  {
-    id: "daypo-tipo-udc_48",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una línea base puede tener sobrecargas",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_49",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La gestión de la configuración del software se encarga de la evolución del software",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_50",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La gestión de la configuración del software está dentro de las disciplinas de control de la integridad de los productos",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_51",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En la gestión de la condiguración del software, la visibilidad se define en la fase de identificación de la configuración",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_52",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una variante implica una configuración alternativa",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_53",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Es bueno hacer seguiento del riesgo al mismo tiempo que el seguimiento del proyecto",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_54",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En GCS, la visibilidad del producto se consigue en la fase de Identificación de la configuración",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_55",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "La GCS se ocupa de la evolución del software",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_56",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La GCS está dentro de la disciplina de control de la integridad de los productos",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_57",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si el comité de seguimiento asigna unos recursos a 1 proyecto, no se pueden cambiar para otro",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-tipo-udc_58",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "La estimación afecta al ciclo de vida",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_59",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una tarea CC debe empezar al mismo tiempo que la otra tarea",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-tipo-udc_60",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "AENOR no emite certificados, sólo normaliza",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      " AENOR, la Asociación Española de Normalización y Certificación, trabaja tanto en el ámbito de la normalización como en la certificación. No solo se dedica a establecer normas técnicas, sino que también emite certificados de conformidad con esas normas, respaldando así la conformidad de organizaciones, productos o servicios con los estándares establecidos.",
-  },
-  {
-    id: "daypo-tipo-udc_61",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "El único requisito exigido en CMM nivel 1 es tener implantado un ciclo de vida",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_62",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Los cambios en la configuración se controlan en GCS a través de Auditorías de configuración",
-    options: ["A.  Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-tipo-udc_63",
-    examId: "daypo-tipo-udc",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La integridad del producto es gestionada en su fase de control mediante la GCS",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-teoria_01",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Para definir calidad es suficiente con establecer con anticipación parámetros cuantificables y verificables enfocados desde un punto de vista concreto.\n",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "A la hora de definir calidad se deberán respetar una limitaciones para alcanzar  un resultado válido: (1) se deberá establecer por anticipado parámetros que midan la calidad desde el punto de vista escogido, (2) los parámetros deben de \nser cuantificables y (3) también verificables.",
-  },
-  {
-    id: "daypo-teoria_02",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Los objetivos que busca la Gestión de Proyectos son la finalización en plazo, dentro del presupuesto y la consecución del nivel de calidad deseado.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Gestión del proyecto: cumplir con el esfuerzo, tiempo y coste estimado.\nCon respecto al producto se pretende siempre lograr una alta calidad.",
-  },
-  {
-    id: "daypo-teoria_03",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En notación ADM, la longitud del arco no tiene relación con la duración de la actividad. ",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "ADM utiliza vectores para representar actividades, y los nodos son las dependencias entre ellas. Obliga al manejo de hitos. El módulo vector no tiene por que tener nada que ver con la duración de una tarea.\nMientras que en PDM, las actividades se representan como nodos del grafo que se conectan mediante vectores que representan las dependencias entre ellas.",
-  },
-  {
-    id: "daypo-teoria_04",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En CPM, para medir los tiempos early y last de las actividades es necesario saber la asignación de recursos.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      'La afirmación "En CPM, para medir los tiempos early y last de las actividades es necesario saber la asignación de recursos" es falsa. En el método de la Ruta Crítica (CPM), los tiempos tempranos y tardíos se calculan principalmente en función de las dependencias de las actividades y sus duraciones estimadas, sin necesidad de conocer la asignación específica de recursos. La asignación de recursos puede ser considerada en el análisis, pero no es un requisito fundamental para determinar los tiempos tempranos y tardíos.',
-  },
-  {
-    id: "daypo-teoria_05",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si A y B tiene sendas relaciones CC con C, C empezará en cuanto empiecen A y B.\n",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "C podrá empezar una vez A y B hayan empezado, pero no tiene que se al momento que ellos.\n",
-  },
-  {
-    id: "daypo-teoria_06",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si las actividades A y B tienen una relación CC con C, C puede empezar si A tiene el 50% de realización.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Eso sería si además de la relación CC existiese una demora entre A y C.",
-  },
-  {
-    id: "daypo-teoria_07",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una tarea CC debe empezar al mismo tiempo que la otra tarea. ",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Una tarea CC podrá comenzar una vez haya comenzado la tarea anterior. O al mismo tiempo o 3 días más tarde.",
-  },
-  {
-    id: "daypo-teoria_08",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una holgura no puede ser negativa.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "La mínima holgura que hay es la del camino crítico (0). Esta predice cuanto puede retrasarse una tarea, pero no cuanto va retrasada (NO CONFUNDIR).",
-  },
-  {
-    id: "daypo-teoria_09",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una línea base puede tener sobrecargas.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "La afirmación es verdadera. En Microsoft Project, una línea base (baseline) puede contener sobrecargas (overallocations). La sobrecarga ocurre cuando se ha asignado más trabajo de lo que los recursos disponibles pueden realizar en un período dado. Al establecer una línea base en Microsoft Project, se capturan los datos planificados, incluidas las asignaciones de recursos y las duraciones de las tareas. Si durante la planificación inicial hay asignaciones que generan sobrecargas, esta información se reflejará en la línea base.",
-  },
-  {
-    id: "daypo-teoria_10",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La negociación conveniente consta de cuatro partes: personas, intereses, opciones y criterios. ",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-teoria_11",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La cuantificación no es imprescindible para priorizar los riesgos.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Para la priorización de los riesgos es imprescindible un método de cuantificación, ya que una vez se ha cuantificado un riesgo ya es comparable con otros para estudiar la prioridad que posee dentro de todo el proyecto,",
-  },
-  {
-    id: "daypo-teoria_12",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En la gestión de riesgos para cuantificar los riesgos no tienen porque tomarse las mismas medidas en todos.",
-    options: ["A. Verdadera", "B. Falsa"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-teoria_13",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La GCS se limita a considerar los elementos que constituyen el producto software, como por ejemplo el código, los documentos, ...",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "La GCS tiene en cuenta tanto los productos que se generan en el proceso de sw como los que se utilizan en el proceso del mismo.\n",
-  },
-  {
-    id: "daypo-teoria_14",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Verificación del sw es garantizar que el sistema es correcto y validación que el sistema se ha hecho correctamente",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Verificación, conjunto de actividades que garantizan que el resultado de cada fase se corresponde con las entradas a dicha fase, es decir que este se ha construido correctamente.\nValidación, conjunto de actividades que aseguran que el sw construido corresponde con los requisitos del cliente. ",
-  },
-  {
-    id: "daypo-teoria_15",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "El prototipado no es utilizado en proyectos reales porque....",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "El prototipado considera una gran ventaja, y es que es un mecanismo ideal para extraer requisitos cuando no están claros por parte del usuario.",
-  },
-  {
-    id: "daypo-teoria_16",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Incremental, espiral y DRA son ciclos de vida que generan entregas paulatinas.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Incremental → propone construir una implementación parcial del sistema global, y después ir incrementando su funcionalidad. Permite la obtención de incrementos operativos a lo largo del proceso de desarrollo.\nEspiral → se basa en que cada fase se establecen una serie de pasos, al acabarlos se revisan y se determina como mejorar las características. \nDRA → adaptación de alta velocidad al modelo en cascada. Es un modelo no evolutivo y estos obligan a desarrollar todo el producto de golpe.\n",
-  },
-  {
-    id: "daypo-teoria_17",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "En el ciclo de vida incremental si un incremento está mal, afectará a incrementos anteriores y posteriores.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Las soluciones de incrementos anteriores pueden no ser válidas para incrementos posteriores, pero no afectan a los anteriores.",
-  },
-  {
-    id: "daypo-teoria_18",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Un ciclo de vida en espiral siempre pasa por las 4 fases de determinar alternativas, evaluar alternativas, desarrollo del siguiente nivel y planificación de la siguiente fase.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Esas son 4 de las posibles, aunque existen variaciones de tres o incluso cinco.",
-  },
-  {
-    id: "daypo-teoria_19",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "La estimación afecta al ciclo de vida. ",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Dependiendo del proyecto a realizar se tendrán que escoger diferentes ciclos de vida.",
-  },
-  {
-    id: "daypo-teoria_20",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "El ciclo de vida solo es aplicable cuando se está desarrollando el proyecto.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "El ciclo de vida es un concepto orientado al producto, porque incorpora puesta en operación y mantenimiento. Abarca desde el momento en el que nace el sw hasta que se retira.",
-  },
-  {
-    id: "daypo-teoria_21",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "En Project no se puede poner coste a los hitos.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation: "Sí que se puede para costes puntuales.",
-  },
-  {
-    id: "daypo-teoria_22",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Para crear una tarea hamaca en Project es necesario crearla como tarea resumen.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-teoria_23",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una hamaca puede tener relaciones.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-teoria_24",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Un hito tiene esfuerzo y duración 0.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Además de esfuerzo y duración 0, no pueden tener asignados recursos.",
-  },
-  {
-    id: "daypo-teoria_25",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Si acortamos los caminos críticos dura menos el proyecto.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-teoria_26",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Un trabajador solo necesita saber dónde tiene que trabajar, cuando, con qué esfuerzo y que tiene que hacer.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "Necesita saber el tiempo de duración de la tarea, esfuerzo a aplicar, el coste (su sueldo + otros gastos) y la calidad que debe tener el producto o servicio.",
-  },
-  {
-    id: "daypo-teoria_27",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La estimación de orden uno de Capers Jones es una variante de los puntos de función.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Estimación de primer orden de Jones, es un método desarrollado por Capers Jones. Es una de las variantes a la técnica de os puntos de función.",
-  },
-  {
-    id: "daypo-teoria_28",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Delphi es la técnica más conocida de aproximación por juicio de expertos para estimación.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Juicio de expertos es una técnica en la que varios miembros identifican los riesgos y les asignan una probabilidad de que ocurran y su impacto.\nDelphi es la técnica más utilizada dentro de esta categoría, donde un coordinador proporciona a cada experto una especificación del proyecto considerado.\n",
-  },
-  {
-    id: "daypo-teoria_29",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Una variante/ release se ve en un grafo de evolución como una ramificación.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Se le llama release a una configuración alternativa del sistema que se va a poder comercializar o entregar al cliente. ",
-  },
-  {
-    id: "daypo-teoria_30",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question: "Una variante implica una configuración alternativa.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Una variante no es más que una ramificación en el grafo de evolución, y cuando tenemos varias ramificaciones en el grafo es cuando tengo varias configuraciones alternativas.\nNo confundir variantes con versiones (las versiones reemplazan a las anteriores, cada vez mejores, mientras que en las variantes no hay una mejor que otra, solo distintas configuraciones, a lo mejor una en inglés y otra en español).",
-  },
-  {
-    id: "daypo-teoria_31",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si haces gestión de riesgos no es necesario hacer gestión de problemas.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "b",
-    explanation:
-      "La gestión de problemas se necesita aparte de la gestión de riesgos, para hacer un seguimiento de la evolución de los problemas.",
-  },
-  {
-    id: "daypo-teoria_32",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La gestión de la configuración del sw se encarga de la evolución del sw.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Por definición la GCS se encarga de identificar, organizar y controlar las modificaciones que sufre el sw. Y sus objetivos son facilitar la visibilidad sobre el estado y evolución del producto y establecer y mantener la integridad.",
-  },
-  {
-    id: "daypo-teoria_33",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "La GCS está dentro de las disciplinas de control de la integridad de los productos.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "La GCS ayuda a mantener la integridad del producto y con ella su calidad.",
-  },
-  {
-    id: "daypo-teoria_34",
-    examId: "daypo-teoria",
-    topic: "teoria",
-    type: "mc",
-    points: 1,
-    question:
-      "Si no se hace seguimiento se pierde el control de proyecto sin importar lo buena que sea tu planificación.",
-    options: ["A. Verdadero", "B. Falso"],
-    correctAnswer: "a",
-    explanation:
-      "Los datos actuales se convierten en los datos previstos cuando se establece la linea base. Una vez hecho esto, los datos actuales de deben seguir monitorizando con el seguimiento del proyecto. No hay seguimiento, no hay control.",
-  },
-  {
-    id: "daypo-practica_01",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "El recurso D1 debe supervisar la elaboración de las pruebas de integración desarrolladas por los testers, realizando 3 comprobaciones, cuando el desarrollo de las pruebas vayan por el 33%, 66% y cuando se hayan completado. ¿De qué manera puedo modelar este escenario? (1)",
-    options: [
-      "A. Definiendo tres hitos para representar cada una de las revisiones, donde D1 estará asignado como recurso de trabajo. Es necesario crear relaciones CC con una demora entre la tarea de trabajo y los hitos de supervisión al 33% y 66%, así como una relación FC entre la tarea de trabajo y el hito de supervisión final.",
-      "B. Estableciendo una hamaca sobre la tarea a supervisar y asignando a D1 como recurso de trabajo al 33%.",
-      "C. Creando tres tareas de supervisión que tendrán a D1 como recurso de trabajo asignado. Para las supervisiones al 33% y 66% se define una dependencia CC con la correspondiente demora entre la tarea de trabajo y la tarea de supervisión. Para la revisión final se establece una dependencia FC entre la tarea de trabajo y la supervisión.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_02",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "Una hamaca se modela como: (1)",
-    options: [
-      "A. Una tarea CT cuya duración se corresponda con la de aquellas tareas que engloba, estableciendo dependencias CC y FF con ellas.",
-      "B. Dos hitos, uno de inicio y otro de fin, con una dependencia FC y una demora igual a la duración de aquellas tareas que engloba.",
-      "C. Un tipo especial de tarea que engloba otras tareas y proporciona información agregada acerca de las mismas.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_03",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Para establecer la dependencia entre las fases de análisis y diseño sería correcto: (1)",
-    options: [
-      "A. Crear una hamaca para la fase de análisis y otra hamaca para la fase de diseño, estableciendo las dependencias necesarias entre las tareas elementales pertenecientes a cada hamaca.",
-      "B. Crear una hamaca para la fase de análisis y otra hamaca para la fase de diseño. Además, se crea un hito que determina el fin de la fase de análisis relacionada con ambas hamacas a través de sendas dependencias FC.",
-      "C. Crear una hamaca para la fase de análisis y otra hamaca para la fase de diseño, estableciendo una dependencia FC entre ambas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_04",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Durante la instalación, DS1 se ocupa de supervisar el trabajo del resto de desarrolladores durante 2h al día todos los días que dure el proceso de instalación. Señale la opción que mejor modele esta situación. (1)",
-    options: [
-      "A. Es necesario asignar a DS1 a la tarea de Instalación con una dedicación del 25% para que ésta incluya el trabajo de supervisión realizado por el recurso.",
-      "B. Es necesario crear una hamaca que tenga Instalación como tarea miembro. La hamaca tendrá a DS1 asignado al 25%.",
-      "C. Es necesario crear una nueva tarea Supervisión con DS1 asignado al 25%. La tarea de Instalación tendrá una doble relación CC y FF con Supervisión, que se simulará añadiendo un hito que rompa la doble relación.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_05",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Para realizar la instalación de la infraestructura para realizar las tareas de la fase Implementación y Pruebas de Unidad del proyecto se subcontrata a una empresa que realizará el trabajo en 40 horas: (1)",
-    options: [
-      "A. Crear una tarea CT con duración de 40 horas, que representa la subcontrata. Se añaden relaciones FC entre el hito de fin de subcontrata y las tareas de la fase Implementar Unidades y Pruebas de Unidad.",
-      "B. Se crean dos hitos, uno de inicio de subcontrata y otro de fin. Entre ellos se crea una relación FC+40h. Se añaden relaciones FC entre el hito de fin de subcontrata y las tareas de la fase Implementar Unidades y Pruebas de Unidad.",
-      "C. Se crean dos hitos, uno de inicio de subcontrata y otro de fin. Entre ellos se crea una relación FC+40h. Se añaden una relación FC entre el hito de fin de subcontrata y una hamaca Implementación u Pruebas de Unidad que contiene a todas las tareas de esta fase.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_06",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Para la base de datos de este proyecto, se compra una licencia de Oracle por valor de 7000 euros: (1)",
-    options: [
-      "A. Se crea un recurso de tipo costo y al asignarlo a la tarea se establece un valor de 7000 euros de coste.",
-      'B. Se crea un recurso de tipo costo en la hoja de recursos y se le asignan 7000 euros en la columna "tasa".',
-      "C. Se crea un recurso de tipo trabajo y al asignarlo a la tarea se establece un coste de 7000 euros.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_07",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      'En la hamaca "Fase 0. Adquisición", DS1 realiza una revisión del progreso del trabajo de instalación y configuración (que dura 4d) cuando vaya al menos la mitad hecho (a los 2d): (1)',
-    options: [
-      'A. Se crea una tarea "Revisión" con DS1 asignado y con relación FC+2d con predecesora el hito de inicio de instalación.',
-      'B. Se crea una tarea "Revisión" con DS1 asignado y con relación FC+50% con predecesora el hito de inicio de instalación.',
-      'C. Se crea un nuevo hito "Revisión" con relación FC+2d con predecesora el hito de inicio de instalación.',
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_08",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Considerad que la Documentación de Usuario (60 horas de trabajo) puede empezar cuando el ERS (100 horas de trabajo) está al menos al 50%. (1)",
-    options: [
-      "A. ERS FC+50% Documentación de Usuario.",
-      "B. ERS CC+50% Documentación de Usuario.",
-      "C. ERS CF+50% Documentación de Usuario.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_09",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "La supervisión de la elaboración del ERS por parte del experto LOPD se debe realizar periódicamente los martes y los jueves. ¿De qué manera se puede modelar este escenario? (1)",
-    options: [
-      "A. Se crea una hamaca y se establece la dedicación del experto LOPD al 40%.",
-      "B. Se crea una tarea periódica indicando las fechas de comienzo y fin de dicha tarea, así como la periodicidad deseada. Además se asigna al experto LOPD con dedicación del 100%.",
-      "C. Se crean manualmente tantos hitos como martes y jueves abarque la elaboración del ERS y se establecen las dependencias oportunas. El experto LOPD se asignará al 100% a cada hito de revisión.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_10",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Tras haber completado la fase de implementación y antes de comenzar la ejecución de los planes de prueba en la rama ascendente del ciclo de vida en V, el director técnico debe de dar su visto bueno. (1)",
-    options: [
-      "A. Se crea un hito, que tendrá relación FC más una demora desde la(s) última(s) tarea(s) de la fase de implementación y otra FC hacia la tarea Ejecutar Plan Pruebas Integración.",
-      "B. Se crea una nueva tarea CT con el director técnico asignado. Esta tarea tendrá relación FF desde la(s) última(s) tarea(s) de la fase de implementación.",
-      "C. Se crea una hamaca sobre las tareas de la fase de implementación y se establece al director técnico como recurso. Se establece una relación FC entre la hamaca y la tarea Ejecutar Plan de Pruebas de Integración.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_11",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "En análisis, el documento de usuario (60h de trabajo) tiene que ir realizándose a la vez que el ERS (140h de trabajo) desde el primer momento y sin demora, para garantizar su calidad y evitar errores y omisiones. (2)",
-    options: [
-      "A. Se asignan a los analistas a las 2 tareas: al 30% para realizar el ERS y al 70% para realizar la documentación de usuario.",
-      "B. Se crea una doble relación CC y FF (rota con el correspondiente hito) entre las 2 tareas.",
-      "C. Se asignan a los analistas a las 2 tareas: al 70% para realizar el ERS y al 30% para realizar la documentación de usuario.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_12",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "El camino crítico de un proyecto: (2)",
-    options: [
-      "A. Sólo existe si el proyecto presenta tareas críticas y, de ser así, está formado por el conjunto de todas las tareas críticas.",
-      "B. Ninguna es correcta.",
-      "C. Es único y está formado por el conjunto de todas las tareas críticas del proyecto.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_13",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Los desarrolladores se encuentran sobreasignados por tener que implementar la BBDD y realizar las actividades de implementación, documentación y pruebas de unidad. No sería una buena opción de nivelación aquella que: (2)",
-    options: [
-      "A. Implicase redistribuir recursos entre las tareas.",
-      "B. Implicase usar porcentajes de dedicación para dividir la jornada de los desarrolladores entre las 4 tareas.",
-      "C. Implicase establecer relaciones FC.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_14",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Para Elaborar ERS se usa la herramienta Rational Requisite Pro, con un coste de 850€/mes: (2)",
-    options: [
-      "A. Se representa como un recurso tipo Costo de 850€, pues la tarea dura menos de 1 mes.",
-      "B. Se representa como un recurso tipo Material con tasa 850€ y se asignar a la tarea con unidades [1/mes].",
-      "C. Se representa con un recurso tipo Trabajo con capacidad máxima 1% y asignado a las tareas al 1%. La tasa debe multiplicarse por 100 en la hoja de recursos.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_15",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Las pruebas de unidad son realizadas por DS1. Por lo tanto, el método de trabajo queda como sigue:\n-Implementar unidades (80 horas de trabajo), documentar unidades (80 horas de trabajo) y ejecutar pruebas de unidad (40 horas de trabajo).\n-Cada desarrollador (DS2 - 5) implementa y documenta sus clases. \n-Hasta que una clase está implementada y documentada no se sube al repositorio de pruebas y se pasa a la siguiente. \n-DS1 realiza las pruebas de unidad de las clases en repositorio de pruebas. (2)",
-    options: [
-      "A. El modelo correcto sería: desarrolladores (excepto DS1) asignados al 50% a Implementar Unidades y a Documentar Unidades. Además, se establecen relaciones FC entre estas tareas y Ejecutar pruebas de unidad, que tendría a DS1 asignado al 100%.",
-      "B. El modelo correcto sería: desarrolladores (excepto DS1) asignados al 50% a Implementar Unidades y al 50% a Documentar Unidades. Ejecutar pruebas de unidad tendría a DS1 asignado al 100%.",
-      "C. El modelo correcto sería: desarrolladores (excepto DS1) asignados al 40% a Implementar unidades, al 40% a Documentar unidades. DS1 al 20% a Ejecutar pruebas de unidad.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_16",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Indique cuál de las siguientes opciones de nivelación sería más adecuada para el siguiente escenario:\n-Dos tareas T1 (esfuerzo estimado: 40h*h) y T2 (esfuerzo estimado: 10h*h) que tienen asignados a R1 y R2.\n-La tarea T2 se ocupa de la documentación del trabajo realizado en T1 y, por tanto, no sería conveniente posponerlo hasta el último momento.\nSeleccione una: (2)",
-    options: [
-      "A. R1 y R2 asignados al 50% a las tareas T1 y T2.",
-      "B. T1 con R1 y R2 asignados al 80%; T2 con R1 y R2 asignados al 20%.",
-      "C. Secuenciar T1 y T2 mediante una relación FC; T1 y T2 con R1 y R2 asignados ambos al 100%.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_17",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "DS1 elabora el Doc. de Usuario v3 y también prepara el paquete de instalación. Si ambas tareas coincidiesen parcialmente en el tiempo, DS1 estaría sobreasignado. Es una buena opción de nivelación: (2)",
-    options: [
-      "A. Ninguna es correcta.",
-      "B. Establecer una relación FC entre las dos tareas.",
-      "C. Aplicar porcentajes de dedicación para que DS1 realice las dos tareas simultáneamente.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_18",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "DS1 está asignado a las tareas de Instalación en cliente junto con el resto de desarrolladores. Además, es el único recurso encargado de realizar la Formación. La configuración actual del proyecto permite que estas tareas se realicen juntas, por lo que DS1 se encuentra sobreasignado. No sería una buena solución aquella que implique: (2)",
-    options: [
-      "A. Asignar a DS1 a menos del 100% a la tarea de Instalación en cliente.",
-      "B. Asignar a DS1 a menos del 100% a la tarea de Formación.",
-      "C. Secuenciar las tareas.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_19",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "Los datos previstos de un proyecto: (2)",
-    options: [
-      "A. Se crean al establecer línea base y no se modifican según avance el proyecto.",
-      "B. Existen desde la creación del proyecto y mantienen las estimaciones iniciales.",
-      "C. Se crean al establecer línea base y se modifican según avance el proyecto.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_20",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Debido a su elevada carga computacional, se decide contratar los servicios del Centro de Supercomputación de Galicia (CESGA) para las pruebas de integración (40h de trabajo), con un coste de 0,02€/h. (2)",
-    options: [
-      "A. Se utiliza un recurso de tipo material cuya tasa es 0,02€/h.",
-      "B. Se utiliza un recurso de tipo trabajo, definido al 1% de capacidad máxima, cuya tasa es 2€/h y asignado al 1% a las pruebas de integración.",
-      "C. Se utiliza un recurso de tipo costo cuyo valor es 0,8€.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_21",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Durante una revisión puntual realizada por el Experto una vez finalizado el ERS, la oficina donde se debería llevar a cabo esta tarea sufre una inundación y no es posible desarrollar el trabajo previsto durante 2 días: (3)",
-    options: [
-      "A. Se establece la dedicación del Experto al 80% en la tarea de supervisión.",
-      "B. Se define una excepción en el calendario del Experto, indicando como no laborables los días en los que no se puede trabajar.",
-      "C. Se define una excepción en el calendario de la tarea de supervisión del ERS, indicando como no laborables los días en los que no se puede trabajar.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_22",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Los recursos DS1 y DS2 acuden a un curso de formación durante 15 días, que se solapa parcialmente con los días en los que estaba previsto llevar a cabo la implementación de unidades, su documentación y la ejecución de las pruebas de unidad. Dada la urgencia por avanzar en el proyecto, se decide que el resto de los desarrolladores asuman el trabajo que inicialmente estaba previsto para DS1 y DS2: (3)",
-    options: [
-      "A. Se define una excepción en los calendarios de DS1 y DS2, indicando como no laborables los días en los que asisten al curso. Además, será necesario reasignar manualmente las horas en las que DS1 y DS2 están en el curso al resto de desarrolladores en las tareas afectadas.",
-      "B. Se reduce la dedicación DS1 y DS2 al 0% en las tareas afectadas y el resto se mantienen al 100%.",
-      "C. Se define una excepción en los calendarios de DS1 y DS2, indicando como no laborables los días en los que no pueden trabajar. Automáticamente, MS Project reasignará el trabajo de los días en los que DS1 y DS2 asisten al curso entre el resto de los desarrolladores asignados a las tareas afectadas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_23",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Durante la ejecución de la revisión técnica del diseño software (RDS) se detectan errores en la arquitectura. Corregirlos implica 14 horas de (4 en la corrección del modelo de la arquitectura y 10 en la corrección del detalle de sus componentes). (3)",
-    options: [
-      "A. Se crean dos tareas Corregir arquitectura (4h de trabajo real) y Corregir detalle arquitectura (10h de trabajo real) y se establecen sus fechas de comienzo reales.",
-      "B. Se crean dos tareas Corregir arquitectura (4h de trabajo real) y Corregir detalle arquitectura (10h de trabajo real). Se establecen relaciones FC entre la revisión técnica del diseño (RDS) y estas tareas.",
-      "C. Se crean dos tareas Corregir arquitectura (4h de trabajo real) y Corregir detalle arquitectura (10h de trabajo real). Se establece una FC entre Corregir arquitectura y Elaborar arquitectura y otra relación FC entre Detalle Componentes y Corregir detalle arquitectura.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_24",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Para la tarea de elaboración del ERS se ha subestimado el esfuerzo inicial (100h) en 40h. Además, el recurso A1 promociona a analista jefe y su salario pasa a ser de 40€/h (inicialmente era de 30€/h): (3)",
-    options: [
-      "A. Disminuye el esfuerzo, aumenta la duración y aumenta el coste de la tarea.",
-      "B. Aumenta el esfuerzo, aumenta la duración (T) y aumenta el coste de la tarea.",
-      "C. Aumenta el esfuerzo, disminuye la duración y disminuye el coste de la tarea.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_25",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Durante el período en que estaba previsto que T1 y T2 elaborasen el plan de pruebas de sistema, éstos asisten a un curso durante las mañanas, por lo que únicamente pueden trabajar por las tardes: (3)",
-    options: [
-      "A. Se define una excepción en los calendarios de T1 y T2, indicando que los días en que asisten al curso únicamente las tardes son laborables.",
-      "B. Se define una excepción en el calendario de la tarea de elaboración del plan de pruebas de sistema, indicando que los días en que asisten al curso únicamente las tardes son laborables.",
-      "C. Se reduce la dedicación de T1 y T2 al 50%.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_26",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Para la tarea de análisis de presupuestos en la fase de adquisición, que es CT, se ha sobreestimado la duración inicial (8h) en 2h. Además, aunque inicialmente se había planteado que DS1 se encargase de la tarea, se decide también incorporar a DS2 para que, entre ambos, puedan discutir los presupuestos recibidos y tomar la mejor decisión. (3)",
-    options: [
-      "A. Aumenta el esfuerzo, disminuye la duración y aumentan los costes. ",
-      "B. Disminuye el esfuerzo, disminuye la duración y aumentan los costes.",
-      "C. Disminuye el esfuerzo, disminuye la duración y disminuyen los costes.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_27",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Como parte de la replanificación, se decide subcontratar la implementación de la base de datos. (3)",
-    options: [
-      "A. Se sustituye la tarea Implementar BBDD por 2 hitos con fechas reales aquellas en las que la subcontrata debe iniciar y finalizar la tarea. ",
-      "B. Se sustituye la tarea Implementar BBDD por 2 hitos con relación FC entre ellos más una demora equivalente al tiempo que tiene la subcontrata para realizar la tarea. ",
-      "C. Se sustituyen los recursos asignados a la tarea Implementar BBDD por un nuevo recurso que representa a la subcontrata.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_28",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Al introducir los valores reales de esfuerzo y duración durante el seguimiento:  (3)",
-    options: [
-      "A. Es necesario introducir también manualmente los costes reales.",
-      "B. MS-Project calcula los costes reales.",
-      "C. Si no se indica lo contrario, MS-Project asume como costes reales los costes de línea base.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_29",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Debido al incremento de casos de COVID, se decreta un confinamiento total durante un mes y nuestros trabajadores no disponen de medios para poder cumplir con sus tareas desde sus casas: (3)",
-    options: [
-      "A. Se define una excepción en el calendario de las tareas, indicando que los días en los que se ha decretado el confinamiento no son laborables.",
-      "B. Se define una excepción en el calendario de los recursos, indicando que los días en los que se ha decretado el confinamiento no son laborables.",
-      "C. Se define una excepción en el calendario del proyecto, indicando que los días en los que se ha decretado el confinamiento no son laborables.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_30",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "A medida que se realiza el seguimiento, el camino crítico: (3)",
-    options: [
-      "A. No se ve afectado.",
-      "B. Es recalculado automáticamente.",
-      "C. No es recalculado a no ser que se solicite explícitamente en la herramienta.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_31",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Tras la Peer Review de Requisitos, el Director Técnico tiene que aprobar el resultado de la revisión, para lo que se estima que tardará\n2d. Una vez aprobado, se podrá comenzar a elaborar la arquitectura. (1)",
-    options: [
-      "A. Peer Review de Requisitos FC Hito ERS Aprobado FC Elaborar Arquitectura.",
-      "B. Peer Review de Requisitos FC+2d Elaborar Arquitectura.",
-      "C. Elaborar Arquitectura CF-2d Peer Review de Requisitos.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_32",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "Las tareas periódicas: (1)",
-    options: [
-      "A. Representan un trabajo que se repite periódicamente en el tiempo según un patrón establecido. Project crea tantas\ntareas como sean necesarias, que se organizan en el Gantt mediante fechas fijas.",
-      "B. Representan un trabajo que se repite periódicamente en el tiempo según un patrón establecido. Project crea tantas tareas como sean necesarias entre dos fechas variables establecidas durante su creación.",
-      "C. Representan un trabajo que se repite periódicamente en el tiempo según un patrón establecido. Project crea tantas tareas como sean necesarias, que se organizan en el Gantt mediante relaciones con el resto de tareas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_33",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "La implementación de uno de los subsistemas del proyecto se subcontrata a una empresa externa, que nos lo debe entregar a tiempo para ejecutar las pruebas de integración: (1)",
-    options: [
-      "A. Un hito de inicio de subcontrata y otro de fin, con una relación FC más demora entre ellos. La tarea Ejecutar pruebas de integración tendría como predecesora al hito de fin en una relación FC.",
-      "B. Una tarea de duración el tiempo que tiene la subcontrata para hacer el subsistema. La tarea Ejecutar pruebas de integración tendría como predecesora a esta tarea en una relación FC.",
-      "C. Un hito, que representa el trabajo de la subcontrata. La tarea Ejecutar pruebas de integración tendría como predecesora al hito en una relación FC.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_34",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "El recurso DS1 no participa como desarrollador en las tareas de implementación de unidades, documentación de unidades y ejecución de pruebas de unidad, sino que realiza una supervisión de dicha tarea los viernes durante 2h. ¿De qué manera se puede modelar este escenario? (1)",
-    options: [
-      "A. Se crea una tarea periódica de duración 2h con patrón repetición semanal de viernes y fechas de comienzo y fin las estimadas para ese conjunto de actividades. Esto genera tantas actividades como viernes haya en ese período, a las que hay que asignar a DS1",
-      "B. Se crean tantas actividades como viernes abarquen las tareas a supervisar y se establecen relaciones CC con las demoras oportunas con las tareas a supervisar. DS1 se asigna con una dedicación del 25% a cada una de estas actividades de supervisión.",
-      "C. Se crea una hamaca que englobe las tres tareas a supervisar y se asigna a DS1 con dedicación del 25%.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_35",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "El recurso DS1 debe supervisar el proceso de instalación en el cliente, realizando 2 comprobaciones, cuando la instalación vaya por el 50% y cuando se haya completado. ¿Cuál de las siguientes opciones NO es correcta? (1)",
-    options: [
-      "A. Creando dos tareas de supervisión que tendrán a DS1 como recurso de trabajo asignado. Para la supervisión al 50% se define una dependencia CC con la correspondiente demora entre la tarea de trabajo y la tarea de supervisión. Para la revisión final se establece una dependencia FC entre la tarea de trabajo y la supervisión.",
-      "B. Dividiendo la tarea de instalación en dos partes y creando otras dos tareas de supervisión que tendrán a DS1 como recurso de trabajo asignado. Se establecen relaciones FC entre cada bloque de trabajo y su correspondiente supervisión. Además, también será necesario establecer una relación FC entre los bloques de trabajo consecutivos.",
-      "C. Estableciendo una hamaca sobre la tarea a supervisar y asignando a DS1 como recurso de trabajo al 50%.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_36",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Para realizar la formación en el cliente es necesario pagar el coste del viaje de nuestros trabajadores. Hemos decidido enviar a un analista y a DS1 a realizar la formación y el coste de enviar a una persona asciende a 200€ (1)",
-    options: [
-      "A. Debemos definir un recurso de tipo costo con una tasa de 400€ y asignarlo a la tarea de Formación.",
-      "B. Debemos definir un recurso tipo trabajo con tasa 400€ y asignarlo a la tarea Formación.",
-      "C. Debemos definir un recurso de tipo costo y al asignarlo a la tarea de Formación definir su valor en 400€.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_37",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Se desea conocer el esfuerzo, tiempo y coste de nuestros diseñadores en el proyecto. (1)",
-    options: [
-      "A. Ninguna es correcta.",
-      "B. Habría que calcularlo a mano, pues las tareas en las que trabajan los diseñadores se encuentran en hamacas diferentes\ndel proyecto.",
-      "C. Habría que crear una nueva hamaca con todas las tareas en las que participan los diseñadores.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_38",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "El recurso DS1 no participa como desarrollador en las tareas de implementación de unidades, documentación de unidades y ejecución de pruebas de unidad, sino supervisa dicha tarea ¿Cuál de las siguientes opciones NO es correcta? (1)",
-    options: [
-      "A. Se crea una tarea periódica indicando las fechas de comienzo y fin de dicha tarea (en función de las tres tareas a supervisar), así como la periodicidad deseada. Se le asigna a DS1.",
-      "B. Se crea una hamaca que englobe las tres tareas a supervisar y se asigna a DS1 como recurso de la hamaca.",
-      "C. Se crea una hamaca con las tareas a supervisar. Se crea una tarea de supervisión con DS1 asignado y relaciones CC y FF con la hamaca (simuladas usando un hito).",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_39",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Tras el Peer Review de Requisitos se puede comenzar con el diseño de alto nivel (arquitectura y diseño de la base de datos) (1)",
-    options: [
-      "A. No hay relación entre Elaborar arquitectura y Diseño BBDD.",
-      "B. Hay que crear una relación CC con Elaborar Arquitectura como predecesora y Diseñar BBDD como sucesora.",
-      "C. Hay que crear una relación FC entre estas 2 tareas de diseño, para marcar el orden de realización de las mismas.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_40",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Durante la instalación en el cliente, DS1 se ocupa de revisar el trabajo del resto de desarrolladores cuando lleven al menos la mitad hecho y cuando hayan terminado. ¿De qué manera puedo modelar este escenario? (1)",
-    options: [
-      "A. Se crea una nueva tarea Supervisión con DS1 asignado. Se crean dos relaciones: una CC+50% y una FF, ambas con Instalación como predecesora y Supervisión como sucesora, que se simulará añadiendo un hito que rompa la doble relación.",
-      "B. Es necesario crear dos hitos, uno que represente el comienzo y otro el fin de la supervisión, estableciendo una demora entre ellos para representar el tiempo de supervisión. DS1 se asigna a cada uno de los hitos.",
-      "C. Creando dos nuevas tareas de Supervisión con DS1 asignado. Se crean dos relaciones: una CC+50% entre Instalación y la primera supervisión y una FC entre Instalación y la segunda supervisión.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_41",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "En análisis, los documentos que se somenten a Peer Review de Requisitos son el ERS, el Doc. de usuario y el Plan de Pruebas de\nAceptación elaborado (1)",
-    options: [
-      "A. Es necesario definir un a hamaca con ERS, Doc. usuario y Elaboración de pruebas de aceptación como tareas miembro.\nAdemás, se establece una dependencia FC entre la hamaca y el Peer Review de requisitos.",
-      "B. Es necesario añadir a los dos tester a la tarea Peer Review de Requisitos y una relación FC entre Elaborar Plan de Pruebas de Aceptación y Peer Review de Requisitos.",
-      "C. Es necesario establecer una doble relación CC y FF entre Elaborar ERS y Elaborar Plan de Pruebas de Aceptación, con un hito\nque rompa la doble relación.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_42",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "La ejecución de las pruebas de sistema tiene a T1 asignado y el test de usabilidad a T2. Por lo tanto, coinciden parcialmente en el tiempo. Ambas usan el apero servidor de Amazon, que se encuentra sobreasignado. Para solucionarlo: (2)",
-    options: [
-      "A. Se crea una relación FC entre las tareas.",
-      "B. No hay que hacer nada, pues el recurso sobreasignado no es un trabajador.",
-      "C. Se asigna al servidor de Amazon a la mitad de su capacidad cada tarea.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_43",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "En la Fase 0, los proveedores nos cobran 2000€ en instalación y configuración (500€ por cada día de trabajo). (2)",
-    options: [
-      "A. Se crea un recurso tipo Costo y se indica el coste total al asignarlo a los hitos que representan la instalación y\nconfiguración.",
-      "B. Se crea un recurso tipo Material con tasa 500€. Se asigna a los hitos que representan la instalación y configuración con\nconsumo [1/d].",
-      "C. No es posible representar este coste, pues el trabajo de los proveedores está representado mediante hitos.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_44",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Las pruebas de unidad son realizadas por DS3. Por lo tanto, el método de trabajo queda como sigue:\n-Implementar unidades (140 horas de trabajo), documentar unidades (60 horas de trabajo) y ejecutar pruebas de unidad (50 horas\nde trabajo).\n-Cada desarrollador (DS2, DS4 y DS5) implementa y documenta sus clases.\n-Hasta que una clase está implementada y documentada no se sube al repositorio de pruebas y se pasa a la siguiente.\n-DS3 realiza las pruebas de unidad de las clases en el repositorio de pruebas. (2)",
-    options: [
-      "A. El modelo correcto sería: desarrolladores (excepto DS3) asignados al 70% a Implementar Unidades y al 30% Documentar Unidades, y Ejecutar pruebas de unidad tendría a DS3 asignado al 100%.",
-      "B. El modelo correcto sería: desarrolladores (excepto DS3) asignados al 50% a Implementar Unidades y a Documentar Unidades, y una relación FC entre estas tareas y Ejecutar pruebas de unidad, que tendría a DS3 asignado al 100%.",
-      "C. El modelo correcto sería: desarrolladores (excepto DS3) asignados al 56% a Implementar unidades, al 24% a Documentar unidades y DS3 al 20% a Ejecutar pruebas de unidad.",
-    ],
-    correctAnswer: "a",
-  },
-  {
-    id: "daypo-practica_45",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "Si un proyecto tiene varios caminos críticos: (2)",
-    options: [
-      "A. Debemos acortar el mayor número posible de ellos para acortar la duración del proyecto.",
-      "B. Es necesario acortarlos todos para acortar la duración del proyecto.",
-      "C. Con acortar uno es suficiente para acortar la duración del proyecto.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_46",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "D1 y D2 están sobreasignados por trabajar simultáneamente en Elaborar arquitectura y Diseño BBDD. Se desea mantenerlos a ambos en las dos tareas, pues son críticas y no se quiere correr el riesgo de depender de un único recurso para su realización. La peor solución de nivelación sería: (2)",
-    options: [
-      "A. Establecer una relación FC entre las tareas.",
-      "B. Asignar a los diseñadores al 50% a cada tarea.",
-      "C. Asignar un diseñador a cada tarea.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_47",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Si en una tarea CE se disminuye el número de recursos asociados: (1)",
-    options: [
-      "A. Disminuye el esfuerzo y aumenta el tiempo",
-      "B. Se mantiene el esfuerzo y aumenta el tiempo",
-      "C. Aumenta el esfuerzo y se mantiene el tiempo",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_48",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "La implementación de la base de datos se subcontrata a una empresa externa, que la realiza en 7d. Tras la entrega, DS1 revisa el\ntrabajo realizado. Seleccione una: (1)",
-    options: [
-      "A. Se mantiene la tarea Implementar BBDD y se crean 2 hitos, el primero con relación CC con la tarea y el segundo con relación FF. Se crea una nueva tarea con DS1 asignado y relación FC con la tarea Implementar BBDD.",
-      "B. Se elimina la tarea Implementar BBDD y se sustituye por 2 hitos con relación FC+7d entre ellos. Se crea una nueva tarea\ncon DS1 asignado y relación FC con predecesora el hito de fin de subcontrata",
-      "C. Se eliminan a los desarrolladores de la tarea Implementar BBDD, salvo a DS1 que se mantiene para representar el trabajo de revisión",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_49",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "El camino crítico se acorta: (2)",
-    options: [
-      "A. Antes de establecer línea base, con el objetivo de nivelar el trabajo de los recursos.",
-      "B. Antes de establecer línea base, con el objetivo de optimizar el proyecto en tiempo.",
-      "C. Tras establecer línea base, con el objetivo de optimizar el proyecto en tiempo.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_50",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Indique cuál de las siguientes opciones de nivelación sería más adecuada para el siguiente escenario:\n-Dos tareas independientes, T1 (esfuerzo estimado: 40h*h) y T2 (esfuerzo estimado: 60h*h)\n-Una tercera tarea T3 (tiempo estimado: 20h) que no puede comenzar hasta que T1 y T2 hayan finalizado\n-T1 y T3 con R1 y R2 asignados\n-T2 con R1, R2 y R3 asignados\n-R3 sólo puede participar en T2\nSeleccione una: (2)",
-    options: [
-      "A. T1 con R1 y R2 al 100%, T2 con R3 al 100%, T3 con R1 y R2 al 100%.",
-      "B. Relación FC entre T1 y T2.",
-      "C. T1 con R1 y R2 al 50%, T2 con R1 y R2 al 50% y R3 al 100%.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_51",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "Cuando se establece la línea base: (2)",
-    options: [
-      "A. Los datos previstos se copian en los datos actuales, los actuales seguirán evolucionando y los previstos se usarán como referencia.",
-      "B. Los datos actuales se copian en los datos previstos, los previstos seguirán evolucionando y los actuales se usarán como referencia.",
-      "C. Los datos actuales se copian en los datos previstos, los actuales seguirán evolucionando y los previstos se usarán como referencia.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_52",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Para realizar la formación del cliente se alquila un espacio de trabajo con un coste de 100€/d, pues nos informa de que no será posible realizarla en sus oficinas (2)",
-    options: [
-      "A. Es necesario modelar un recurso apero, pues mientras ese espacio de trabajo esté ocupado con la formación no puede destinarse a otro uso.",
-      "B. Se crea un recurso tipo Material para representar al espacio de trabajo.",
-      "C. No es necesario añadir nada al proyecto, pues no es un coste imputable al mismo.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_53",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question: "Durante el seguimiento, las tareas deben actualizarse: (3)",
-    options: [
-      "A. Por bloques o hamacas.",
-      "B. Por orden cronológico.",
-      "C. En cualquier orden.",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_54",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Durante una revisión puntual realizada por el Experto una vez finalizado el ERS, el experto sufre un accidente y solicita una baja de 2 días: (3)",
-    options: [
-      "A. Se reduce la dedicación del Experto al 80% en la tarea de supervisión.",
-      "B. Se define una excepción en el calendario de la tarea de supervisión del ERS, indicando como no laborables los días en los que no puede trabajar.",
-      "C. Se define una excepción en el calendario del Experto, indicando como no laborables los días en los que no puede trabajar.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_55",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Durante las pruebas de aceptación el cliente pide una serie de cambios en la interfaz de usuario de los que se encarga DS2 y completa en 20 horas de trabajo. (3)",
-    options: [
-      "A. Se crea una nueva tarea con DS2 asignado, trabajo real 20h y una relación FC con Ejecutar Plan Pruebas Aceptación.",
-      "B. Se crea una nueva tarea con DS2 asignado, trabajo real 20h y fecha de comienzo real el día siguiente al fin real de la tarea Ejecutar Plan Pruebas Aceptación.",
-      "C. El trabajo real de la tarea Ejecutar Plan Pruebas Aceptación se incrementa en 20 horas. Como son realizadas por DS2 es\nnecesario añadir el recurso a la tarea y asignarle manualmente esas 20 horas en una vista detallada (Uso de tareas o Uso de\nrecursos).",
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: "daypo-practica_56",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "En la peer review de requisitos, A1 sólo ha podido dedicar las mañanas a la tarea, por asistencia a un curso de formación por la tarde. (3)",
-    options: [
-      "A. Aumenta el esfuerzo, se mantiene la duración y se mantiene el coste.",
-      "B. Disminuye el esfuerzo, disminuye la duración y disminuye el coste.",
-      "C. Disminuye el esfuerzo, se mantiene la duración y disminuye el coste.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_57",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Como parte de la replanificación se decide realizar el test de usabilidad mediante una herramienta automática. Esto reduce el trabajo\nde los tester a 4h en total. (3)",
-    options: [
-      "A. Se establece 4h como trabajo real de la tarea.",
-      "B. Se establece 4h como nuevo trabajo previsto de la tarea.",
-      "C. Se establece 4h como nuevo trabajo actual de la tarea.",
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: "daypo-practica_58",
-    examId: "daypo-practica",
-    topic: "practica",
-    type: "mc",
-    points: 1,
-    question:
-      "Durante el período en que estaba previsto que D1 y D2 llevasen a cabo el diseño de la BBDD, D1 asiste a un curso de formación, por lo que se decide contratar a un tercer diseñador, D3, que asuma su trabajo: (3)",
-    options: [
-      "A. Se define una excepción en el calendario de D1, indicando que los días en que asiste al curso no son laborables. Además, se\nasignará a D3 a la tarea afectada. Automáticamente, MS Project reasignará las horas de la tarea al sustituto.",
-      "B. Se define una excepción en el calendario de D1, indicando que los días en que asiste al curso no son laborables. Además,\nse asignará a D3 a la tarea afectada. También será necesario reasignar manualmente las horas de la tarea al sustituto.",
-      "C. Se reduce la dedicación de D1 al 0%, se mantiene D2 al 100% y se asigna a D3 al 100%.",
-    ],
-    correctAnswer: "b",
-  },
+	// --- Tema 3: MS-Project ---
+	{
+		id: "2024-01_q5",
+		examId: "2024-01",
+		topic: "practica",
+		type: "text",
+		points: 1,
+		question:
+			"Indique como modelaría en MS-Project a utilización dun servizo de cómputo na nube (MS Azure) en varias tarefas, tendo en conta que non hai limitación no uso por varias tarefas (servizo baixo demanda) e que ten un coste de 0.25€/h.",
+		correctAnswer:
+			"Habería que definir un recurso de tipo 'Coste', ao ser un servizo baixo demanda e con coste por hora. Despois de engadir o novo recurso de tipo Coste (MS Azure), asignaríase este recurso ás tarefas correspondentes. O número de horas dependerá da duración da tarefa. Por último, establécese o coste de 0.25€/h para o recurso e MS-Project calcula automaticamente o coste total en función do tempo que se utilice o recurso.",
+		explanation:
+			"Os recursos de tipo Coste en MS-Project non afectan á programación nin á carga de traballo. Simplemente acumulan custos en función da duración das tarefas ás que se asignan.",
+	},
+	{
+		id: "2024-01_q6",
+		examId: "2024-01",
+		topic: "practica",
+		type: "text",
+		points: 1,
+		question:
+			"Indique como modelaría en MS-Project a supervisión de 4h sobre unha determinada tarefa todos os martes e xoves mentres dita tarefa teña lugar.",
+		correctAnswer:
+			"Asígnase un novo recurso de tipo Traballo que se encargará de facer a supervisión. Despois créase a tarefa de supervisión e asígnaselle o recurso engadido. Por último, configúrase o calendario do recurso para que traballe todos os martes e xoves durante 4 horas.",
+		explanation:
+			"A configuración do calendario do recurso permite establecer patróns de dispoñibilidade recorrentes, o que fai que MS-Project programe automaticamente as horas de supervisión nos días indicados.",
+	},
+	// ============================================================
+	// Daypo Tipo UDC (63 preguntas V/F)
+	// ============================================================
+	{
+		id: "daypo-tipo-udc_01",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Los Chaos Report señalan la mejora en gestión de proyectos como una responsable de la mejoría que recogen en el desarrollo del software.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Los Chaos Report señalan la mejora en gestión de proyectos como una responsable de la mejoría que recogen en el desarrollo del software.   Las mejoras deben centrarse en : Desarrollo ( a través de la elección de un ciclo de vida ), Gestión ( Gestión de proyectos  y proyectos de desarrollo software)  y Calidad (Aseguramiento de la calidad)",
+	},
+	{
+		id: "daypo-tipo-udc_02",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"El incremento del grado de cumplimiento en los proyectos de desarrollo se debe a la mejora de la gestión de proyectos.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-tipo-udc_03",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Para definir calidad es suficiente con establecer con anticipación parámetros cuantificables y verificables enfocados desde un punto de vista concreto",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"A la hora de definir calidad se deberán respetar unas limitaciones para alcanzar un resultado válido: (1) se deberá establecer por anticipado parámetros que midan la calidad desde el punto de vista escogido, (2) los parámetros deben de ser cuantificables y (3) también verificables.",
+	},
+	{
+		id: "daypo-tipo-udc_04",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Los objetivos que busca la Gestión de Proyectos son la finalización en plazo dentro del presupuesto y la consecución del nivel de calidad deseado.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Gestión del proyecto: esfuerzo, tiempo y coste estimado\nProducto: calidad",
+	},
+	{
+		id: "daypo-tipo-udc_05",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Se recomienda escoger el ciclo de desarrollo a seguir en un proyecto de software atendiendo a parámetros de gestión.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"La elección del ciclo de desarrollo en un proyecto de software a menudo se basa en consideraciones de gestión, entre otros factores. El ciclo de desarrollo es un concepto orientado al proceso de desarrollo. No incorpora mantenimiento en ningún caso.",
+	},
+	{
+		id: "daypo-tipo-udc_06",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En notación ADM, la longitud del arco no tiene relación con la duración de la actividad.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"En la notación ADM (Arrow Diagramming Method), la longitud del arco no tiene una relación directa con la duración de la actividad. La duración de cada actividad se especifica por separado y no se representa visualmente por la longitud de las flechas en el diagrama.",
+	},
+	{
+		id: "daypo-tipo-udc_07",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En el análisis de un proyecto solo interesa el esfuerzo que deben hacer o han hecho los recursos, ya que este determina todos los demás parámetros.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Si bien el esfuerzo que deben hacer o han hecho los recursos es un aspecto crítico en el análisis de un proyecto, no es el único parámetro que determina todos los demás aspectos. El esfuerzo de los recursos (tiempo, habilidades, costos, etc.) es esencial, pero otros factores también son cruciales en el análisis de proyectos. ",
+	},
+	{
+		id: "daypo-tipo-udc_08",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Para aplicar CPM y calcular las fechas early y las late se necesitan conocer las asignaciones de los recursos.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"En el método de la ruta crítica (CPM), no es necesario conocer las asignaciones específicas de recursos para calcular las fechas early (tempranas) y late (tardías). CPM se basa principalmente en las dependencias entre las actividades y en las duraciones de estas actividades.",
+	},
+	{
+		id: "daypo-tipo-udc_09",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si A y B tiene sendas relaciones SS con C, C empezará en cuanto empiecen A y B",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"C podrá empezar una vez A y B hayan empezado, pero no tiene que ser al mismo momento que ellos.",
+	},
+	{
+		id: "daypo-tipo-udc_10",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si las actividades A y B tienen una relacion SS con C, C puede empezar si A tiene el 50% de realización.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"C puede comenzar tan pronto como A inicie, independientemente del progreso específico de A. SIEMPRE QUE B HAYA EMPEZADO TAMBIÉN !!",
+	},
+	{
+		id: "daypo-tipo-udc_11",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una tarea CC debe empezar al mismo tiempo que la otra tarea.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Una tarea CC podrá comenzar una vez haya comenzado la tarea anterior. (Al mismo tiempo o 3 días más tarde.)",
+	},
+	{
+		id: "daypo-tipo-udc_12",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una holgura no puede ser negativa",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Una holgura puede ser positiva (tengo ciertos días de margen si se retrasa) , 0 (actividad crítica, no se puede retrasar) o negativa (ya vas retrasado)",
+	},
+	{
+		id: "daypo-tipo-udc_13",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una línea base puede tener sobrecargas",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Una línea base de proyecto puede tener sobrecargas si durante la ejecución del proyecto se identifican necesidades adicionales, cambios o ajustes que no estaban contemplados en la planificación original.",
+	},
+	{
+		id: "daypo-tipo-udc_14",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La negociación conveniente consta de 4 partes: personas, intereses, opciones y criterios.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_15",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La cuantificación no es imprescindible para priorizar los riesgos",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Para la priorización de los riesgos es imprescindible un método de cuantificación, ya que una vez se ha cuantificado un resgo ya es comparable con otros para estudiar la prioridad que posee dentro de todo el proyecto",
+	},
+	{
+		id: "daypo-tipo-udc_16",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En la gestión de riesgos para cuantificar los riesgos no tienen porque tomarse las mismas medidas en todos",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"En la gestión de riesgos, no todos los riesgos necesitan o pueden ser cuantificados de la misma manera. La cuantificación de riesgos implica asignar valores numéricos a diversos aspectos del riesgo, como la probabilidad de ocurrencia, el impacto financiero y otros factores relevantes.",
+	},
+	{
+		id: "daypo-tipo-udc_17",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La GCS se limita a considerar los elementos que constituyen el producto software, como por ejemplo el código, los documentos, ...",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"La GCS tiene en cuenta tanto los productos que se generan en el proceso software como los que se utilizan en el proceso del mismo.",
+	},
+	{
+		id: "daypo-tipo-udc_18",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Verificación del software es garantizar que el sistema es correcto y validación que el sistema se ha hecho correctamente",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Verificación: conjunto de actividades que garantizan que el resultado de cada fase se corresponde con las entradas a dicha fase, es decir que este se ha construido correctamente.\nValidación : conjunto de actividades que aseguran que el software construido corresponde con los requisitos del cliente.",
+	},
+	{
+		id: "daypo-tipo-udc_19",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Bootstrap es la respuesta europea a CMM debido a que la adaptación de CMM a Europa era dudosa",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Algunos autores discutieron la aplicación de CMM en el ámbito europeo, dando origen a Bootstrap",
+	},
+	{
+		id: "daypo-tipo-udc_20",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Bootstrap no se encuentra alineado con la norma ISO 9000",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation: "Bootstrap se encuentra alineado con ISO-9000",
+	},
+	{
+		id: "daypo-tipo-udc_21",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "El prototipado no es utilizado en proyectos reales porque ...",
+		options: ["A. Verdadero ", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"El prototipado es una técnica comunmente utilizada. Se considera una gran ventaja y es que es un mecanismo ideal para extraer requisitos cuando no están claros por parte del usuario.",
+	},
+	{
+		id: "daypo-tipo-udc_22",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Incremental, espiral y DRA son ciclos de vida que generan entregas paulatinas",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"DRA :  adaptación de alta velocidad al modelo en cascada. Es un modelo no evolutivo y estos obligan a desarrollar todo el producto de golpe.",
+	},
+	{
+		id: "daypo-tipo-udc_23",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En el ciclo de vida incremental si un incremento está mal, afectará a incrementos anteriores y posteriores",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-tipo-udc_24",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Un ciclo de vida en espiral siempre pasa por las 4 fases de determinar alternativas, evaluar alternativas, desarrollo del siguiente nivel y planificación de la siguiente fase",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_25",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Ciclos de vida y gestion de proyectos son fundamentales en el buen desarrollo del proceso software",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Tanto los ciclos de vida como la gestión de proyectos son fundamentales en el buen desarrollo del proceso de software. Estos proporcionan estructuras, procesos y herramientas necesarios para planificar, ejecutar, controlar y cerrar proyectos de desarrollo de software de manera exitosa.",
+	},
+	{
+		id: "daypo-tipo-udc_26",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "La estimación afecta al ciclo de vida",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Dependiendo del proyecto a realizar se tendrán que escoger diferentes ciclos de vida",
+	},
+	{
+		id: "daypo-tipo-udc_27",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"El ciclo de vida solo es aplicable cuando se está desarrollando el proyecto",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			" El ciclo de vida de un proyecto abarca todas las fases, desde la concepción hasta la finalización",
+	},
+	{
+		id: "daypo-tipo-udc_28",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una demora es proporcional al tiempo de retraso entre tareas",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"La relación entre demoras y tiempos de retraso no siempre es directamente proporcional y puede depender de varios factores, incluidas las dependencias entre tareas, la estructura del proyecto y la presencia de la ruta crítica",
+	},
+	{
+		id: "daypo-tipo-udc_29",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "En Proyect no se puede poner coste a los hitos",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Aunque los hitos en sí mismos no tienen una duración medible, sí se les puede asignar costos asociados.",
+	},
+	{
+		id: "daypo-tipo-udc_30",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Para crear una tarea hamaca en Project es necesario crearla como tarea resumen",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"En Microsoft Project, para crear una tarea hamaca, generalmente se crea una tarea de resumen y se le quita la duración. ",
+	},
+	{
+		id: "daypo-tipo-udc_31",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una hamaca puede tener relaciones",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-tipo-udc_32",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Un hito tiene esfuerzo y duración 0",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Además de esfuerzo y duración 0, no pueden tener asignados recursos.",
+	},
+	{
+		id: "daypo-tipo-udc_33",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Si acortamos los caminos críticos dura menos el proyecto",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Acortar los caminos críticos, que son las secuencias de actividades que determinan la duración mínima del proyecto, puede ayudar a reducir la duración total del proyecto.",
+	},
+	{
+		id: "daypo-tipo-udc_34",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Un trabajador solo necesita saber dónde tiene que trabajar, cuando, con qué esfuerzo y que tiene que hacer",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Necesita saber el tiempo de duración de la tarea, esfuerzo a aplicar, el coste (su sueldo + otros gastos) y la calidad que debe tener el producto o servicio.",
+	},
+	{
+		id: "daypo-tipo-udc_35",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"COCOMO considera tres variables: tamaño del software a desarrollar medido en KLOC, esfuerzo del equipo medido en personas/mes y duración del proyecto medido en meses",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_36",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			'Los puntos objeto son una estimación del esfuerzo que se base en "conteo" de pantallas (interfaces de usuario), informas y componenetes que se prevee que hay que construir para el sistema.',
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_37",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La estimación de orden uno de Capers Jones es una variante de los puntos de función",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			' La "estimación de orden uno" de Capers Jones es una técnica más simple y rápida que se basa en factores como el tamaño del software, la experiencia del equipo y otros factores históricos.',
+	},
+	{
+		id: "daypo-tipo-udc_38",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Delphi es la técnica más conocida de aproximación por juicio de los expertos para estimación",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Juicio de expertos es una técnica en la que varios miembros identifican los riesgos y les asignan una probabilidad de que ocurran y su impacto. Es la técnica más utilizada dentro de esta categoría, donde un coordinador proporciona a cada experto una especificación del proyecto considerado.",
+	},
+	{
+		id: "daypo-tipo-udc_39",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En tipo de cambio con un nivel de control semi-formal necesita seguimiento y aprobación",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			" En un nivel de control semi-formal, aunque no es tan estructurado como un sistema de control formal, aún implica la necesidad de seguimiento y aprobación.",
+	},
+	{
+		id: "daypo-tipo-udc_40",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Una variante/release se ve en un grafo de evolución como una ramificación",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_41",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una variante implica una configuración alternativa",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Una variante no es más que una ramificación en el grafo de evolución, y cuando tenemos varias ramificaciones en el grafo es cuando tengo varias configuraciones alternativas.",
+	},
+	{
+		id: "daypo-tipo-udc_42",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si haces gestión de riesgos no es necesario hacer gestión de problemas",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"La gestión de problemas se necesita aparte de la gestión de riesgos, para hacer un seguimiento de la evolución de los problemas",
+	},
+	{
+		id: "daypo-tipo-udc_43",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La gestión de la configuración del software se encarga de la evolución del software",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Por definición la GCS se encarga de identificar, organizar y controlar las modificaciones que sufre el software. Sus objetivos son facilitar la visibilidad sobre el estado y evolución del producto y establecer y mantener la integridad",
+	},
+	{
+		id: "daypo-tipo-udc_44",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La GCS está dentro de las disciplinas de control de la integridad de los productos",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"LA GCS ayuda a mantener la integridad del producto y con ella su calidad",
+	},
+	{
+		id: "daypo-tipo-udc_45",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En la GCS, la visibilidad se define en la fase de identificación de la configuración",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_46",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si no se hace seguimiento se pierde el control de proyecto sin importar lo buena que sea tu planificación",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_47",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Una efectiva gestión de proyectos solo requiere poner en ejecución buenas prácticas de desarrollo",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Poner en práctica buenas prácticas de desarrollo es una parte importante, pero no única, de la gestión integral de proyectos.",
+	},
+	{
+		id: "daypo-tipo-udc_48",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una línea base puede tener sobrecargas",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_49",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La gestión de la configuración del software se encarga de la evolución del software",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_50",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La gestión de la configuración del software está dentro de las disciplinas de control de la integridad de los productos",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_51",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En la gestión de la condiguración del software, la visibilidad se define en la fase de identificación de la configuración",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_52",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una variante implica una configuración alternativa",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_53",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Es bueno hacer seguiento del riesgo al mismo tiempo que el seguimiento del proyecto",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_54",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En GCS, la visibilidad del producto se consigue en la fase de Identificación de la configuración",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_55",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "La GCS se ocupa de la evolución del software",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_56",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La GCS está dentro de la disciplina de control de la integridad de los productos",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_57",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si el comité de seguimiento asigna unos recursos a 1 proyecto, no se pueden cambiar para otro",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-tipo-udc_58",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "La estimación afecta al ciclo de vida",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_59",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una tarea CC debe empezar al mismo tiempo que la otra tarea",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-tipo-udc_60",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "AENOR no emite certificados, sólo normaliza",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			" AENOR, la Asociación Española de Normalización y Certificación, trabaja tanto en el ámbito de la normalización como en la certificación. No solo se dedica a establecer normas técnicas, sino que también emite certificados de conformidad con esas normas, respaldando así la conformidad de organizaciones, productos o servicios con los estándares establecidos.",
+	},
+	{
+		id: "daypo-tipo-udc_61",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"El único requisito exigido en CMM nivel 1 es tener implantado un ciclo de vida",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_62",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Los cambios en la configuración se controlan en GCS a través de Auditorías de configuración",
+		options: ["A.  Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-tipo-udc_63",
+		examId: "daypo-tipo-udc",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La integridad del producto es gestionada en su fase de control mediante la GCS",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-teoria_01",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Para definir calidad es suficiente con establecer con anticipación parámetros cuantificables y verificables enfocados desde un punto de vista concreto.\n",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"A la hora de definir calidad se deberán respetar una limitaciones para alcanzar  un resultado válido: (1) se deberá establecer por anticipado parámetros que midan la calidad desde el punto de vista escogido, (2) los parámetros deben de \nser cuantificables y (3) también verificables.",
+	},
+	{
+		id: "daypo-teoria_02",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Los objetivos que busca la Gestión de Proyectos son la finalización en plazo, dentro del presupuesto y la consecución del nivel de calidad deseado.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Gestión del proyecto: cumplir con el esfuerzo, tiempo y coste estimado.\nCon respecto al producto se pretende siempre lograr una alta calidad.",
+	},
+	{
+		id: "daypo-teoria_03",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En notación ADM, la longitud del arco no tiene relación con la duración de la actividad. ",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"ADM utiliza vectores para representar actividades, y los nodos son las dependencias entre ellas. Obliga al manejo de hitos. El módulo vector no tiene por que tener nada que ver con la duración de una tarea.\nMientras que en PDM, las actividades se representan como nodos del grafo que se conectan mediante vectores que representan las dependencias entre ellas.",
+	},
+	{
+		id: "daypo-teoria_04",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En CPM, para medir los tiempos early y last de las actividades es necesario saber la asignación de recursos.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			'La afirmación "En CPM, para medir los tiempos early y last de las actividades es necesario saber la asignación de recursos" es falsa. En el método de la Ruta Crítica (CPM), los tiempos tempranos y tardíos se calculan principalmente en función de las dependencias de las actividades y sus duraciones estimadas, sin necesidad de conocer la asignación específica de recursos. La asignación de recursos puede ser considerada en el análisis, pero no es un requisito fundamental para determinar los tiempos tempranos y tardíos.',
+	},
+	{
+		id: "daypo-teoria_05",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si A y B tiene sendas relaciones CC con C, C empezará en cuanto empiecen A y B.\n",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"C podrá empezar una vez A y B hayan empezado, pero no tiene que se al momento que ellos.\n",
+	},
+	{
+		id: "daypo-teoria_06",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si las actividades A y B tienen una relación CC con C, C puede empezar si A tiene el 50% de realización.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Eso sería si además de la relación CC existiese una demora entre A y C.",
+	},
+	{
+		id: "daypo-teoria_07",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una tarea CC debe empezar al mismo tiempo que la otra tarea. ",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Una tarea CC podrá comenzar una vez haya comenzado la tarea anterior. O al mismo tiempo o 3 días más tarde.",
+	},
+	{
+		id: "daypo-teoria_08",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una holgura no puede ser negativa.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"La mínima holgura que hay es la del camino crítico (0). Esta predice cuanto puede retrasarse una tarea, pero no cuanto va retrasada (NO CONFUNDIR).",
+	},
+	{
+		id: "daypo-teoria_09",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una línea base puede tener sobrecargas.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"La afirmación es verdadera. En Microsoft Project, una línea base (baseline) puede contener sobrecargas (overallocations). La sobrecarga ocurre cuando se ha asignado más trabajo de lo que los recursos disponibles pueden realizar en un período dado. Al establecer una línea base en Microsoft Project, se capturan los datos planificados, incluidas las asignaciones de recursos y las duraciones de las tareas. Si durante la planificación inicial hay asignaciones que generan sobrecargas, esta información se reflejará en la línea base.",
+	},
+	{
+		id: "daypo-teoria_10",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La negociación conveniente consta de cuatro partes: personas, intereses, opciones y criterios. ",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-teoria_11",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La cuantificación no es imprescindible para priorizar los riesgos.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Para la priorización de los riesgos es imprescindible un método de cuantificación, ya que una vez se ha cuantificado un riesgo ya es comparable con otros para estudiar la prioridad que posee dentro de todo el proyecto,",
+	},
+	{
+		id: "daypo-teoria_12",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En la gestión de riesgos para cuantificar los riesgos no tienen porque tomarse las mismas medidas en todos.",
+		options: ["A. Verdadera", "B. Falsa"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-teoria_13",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La GCS se limita a considerar los elementos que constituyen el producto software, como por ejemplo el código, los documentos, ...",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"La GCS tiene en cuenta tanto los productos que se generan en el proceso de sw como los que se utilizan en el proceso del mismo.\n",
+	},
+	{
+		id: "daypo-teoria_14",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Verificación del sw es garantizar que el sistema es correcto y validación que el sistema se ha hecho correctamente",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Verificación, conjunto de actividades que garantizan que el resultado de cada fase se corresponde con las entradas a dicha fase, es decir que este se ha construido correctamente.\nValidación, conjunto de actividades que aseguran que el sw construido corresponde con los requisitos del cliente. ",
+	},
+	{
+		id: "daypo-teoria_15",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "El prototipado no es utilizado en proyectos reales porque....",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"El prototipado considera una gran ventaja, y es que es un mecanismo ideal para extraer requisitos cuando no están claros por parte del usuario.",
+	},
+	{
+		id: "daypo-teoria_16",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Incremental, espiral y DRA son ciclos de vida que generan entregas paulatinas.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Incremental → propone construir una implementación parcial del sistema global, y después ir incrementando su funcionalidad. Permite la obtención de incrementos operativos a lo largo del proceso de desarrollo.\nEspiral → se basa en que cada fase se establecen una serie de pasos, al acabarlos se revisan y se determina como mejorar las características. \nDRA → adaptación de alta velocidad al modelo en cascada. Es un modelo no evolutivo y estos obligan a desarrollar todo el producto de golpe.\n",
+	},
+	{
+		id: "daypo-teoria_17",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"En el ciclo de vida incremental si un incremento está mal, afectará a incrementos anteriores y posteriores.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Las soluciones de incrementos anteriores pueden no ser válidas para incrementos posteriores, pero no afectan a los anteriores.",
+	},
+	{
+		id: "daypo-teoria_18",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Un ciclo de vida en espiral siempre pasa por las 4 fases de determinar alternativas, evaluar alternativas, desarrollo del siguiente nivel y planificación de la siguiente fase.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Esas son 4 de las posibles, aunque existen variaciones de tres o incluso cinco.",
+	},
+	{
+		id: "daypo-teoria_19",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "La estimación afecta al ciclo de vida. ",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Dependiendo del proyecto a realizar se tendrán que escoger diferentes ciclos de vida.",
+	},
+	{
+		id: "daypo-teoria_20",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"El ciclo de vida solo es aplicable cuando se está desarrollando el proyecto.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"El ciclo de vida es un concepto orientado al producto, porque incorpora puesta en operación y mantenimiento. Abarca desde el momento en el que nace el sw hasta que se retira.",
+	},
+	{
+		id: "daypo-teoria_21",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "En Project no se puede poner coste a los hitos.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation: "Sí que se puede para costes puntuales.",
+	},
+	{
+		id: "daypo-teoria_22",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Para crear una tarea hamaca en Project es necesario crearla como tarea resumen.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-teoria_23",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una hamaca puede tener relaciones.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-teoria_24",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Un hito tiene esfuerzo y duración 0.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Además de esfuerzo y duración 0, no pueden tener asignados recursos.",
+	},
+	{
+		id: "daypo-teoria_25",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Si acortamos los caminos críticos dura menos el proyecto.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-teoria_26",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Un trabajador solo necesita saber dónde tiene que trabajar, cuando, con qué esfuerzo y que tiene que hacer.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"Necesita saber el tiempo de duración de la tarea, esfuerzo a aplicar, el coste (su sueldo + otros gastos) y la calidad que debe tener el producto o servicio.",
+	},
+	{
+		id: "daypo-teoria_27",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La estimación de orden uno de Capers Jones es una variante de los puntos de función.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Estimación de primer orden de Jones, es un método desarrollado por Capers Jones. Es una de las variantes a la técnica de os puntos de función.",
+	},
+	{
+		id: "daypo-teoria_28",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Delphi es la técnica más conocida de aproximación por juicio de expertos para estimación.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Juicio de expertos es una técnica en la que varios miembros identifican los riesgos y les asignan una probabilidad de que ocurran y su impacto.\nDelphi es la técnica más utilizada dentro de esta categoría, donde un coordinador proporciona a cada experto una especificación del proyecto considerado.\n",
+	},
+	{
+		id: "daypo-teoria_29",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Una variante/ release se ve en un grafo de evolución como una ramificación.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Se le llama release a una configuración alternativa del sistema que se va a poder comercializar o entregar al cliente. ",
+	},
+	{
+		id: "daypo-teoria_30",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question: "Una variante implica una configuración alternativa.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Una variante no es más que una ramificación en el grafo de evolución, y cuando tenemos varias ramificaciones en el grafo es cuando tengo varias configuraciones alternativas.\nNo confundir variantes con versiones (las versiones reemplazan a las anteriores, cada vez mejores, mientras que en las variantes no hay una mejor que otra, solo distintas configuraciones, a lo mejor una en inglés y otra en español).",
+	},
+	{
+		id: "daypo-teoria_31",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si haces gestión de riesgos no es necesario hacer gestión de problemas.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "b",
+		explanation:
+			"La gestión de problemas se necesita aparte de la gestión de riesgos, para hacer un seguimiento de la evolución de los problemas.",
+	},
+	{
+		id: "daypo-teoria_32",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La gestión de la configuración del sw se encarga de la evolución del sw.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Por definición la GCS se encarga de identificar, organizar y controlar las modificaciones que sufre el sw. Y sus objetivos son facilitar la visibilidad sobre el estado y evolución del producto y establecer y mantener la integridad.",
+	},
+	{
+		id: "daypo-teoria_33",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"La GCS está dentro de las disciplinas de control de la integridad de los productos.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"La GCS ayuda a mantener la integridad del producto y con ella su calidad.",
+	},
+	{
+		id: "daypo-teoria_34",
+		examId: "daypo-teoria",
+		topic: "teoria",
+		type: "mc",
+		points: 1,
+		question:
+			"Si no se hace seguimiento se pierde el control de proyecto sin importar lo buena que sea tu planificación.",
+		options: ["A. Verdadero", "B. Falso"],
+		correctAnswer: "a",
+		explanation:
+			"Los datos actuales se convierten en los datos previstos cuando se establece la linea base. Una vez hecho esto, los datos actuales de deben seguir monitorizando con el seguimiento del proyecto. No hay seguimiento, no hay control.",
+	},
+	{
+		id: "daypo-practica_01",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"El recurso D1 debe supervisar la elaboración de las pruebas de integración desarrolladas por los testers, realizando 3 comprobaciones, cuando el desarrollo de las pruebas vayan por el 33%, 66% y cuando se hayan completado. ¿De qué manera puedo modelar este escenario? (1)",
+		options: [
+			"A. Definiendo tres hitos para representar cada una de las revisiones, donde D1 estará asignado como recurso de trabajo. Es necesario crear relaciones CC con una demora entre la tarea de trabajo y los hitos de supervisión al 33% y 66%, así como una relación FC entre la tarea de trabajo y el hito de supervisión final.",
+			"B. Estableciendo una hamaca sobre la tarea a supervisar y asignando a D1 como recurso de trabajo al 33%.",
+			"C. Creando tres tareas de supervisión que tendrán a D1 como recurso de trabajo asignado. Para las supervisiones al 33% y 66% se define una dependencia CC con la correspondiente demora entre la tarea de trabajo y la tarea de supervisión. Para la revisión final se establece una dependencia FC entre la tarea de trabajo y la supervisión.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_02",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "Una hamaca se modela como: (1)",
+		options: [
+			"A. Una tarea CT cuya duración se corresponda con la de aquellas tareas que engloba, estableciendo dependencias CC y FF con ellas.",
+			"B. Dos hitos, uno de inicio y otro de fin, con una dependencia FC y una demora igual a la duración de aquellas tareas que engloba.",
+			"C. Un tipo especial de tarea que engloba otras tareas y proporciona información agregada acerca de las mismas.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_03",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Para establecer la dependencia entre las fases de análisis y diseño sería correcto: (1)",
+		options: [
+			"A. Crear una hamaca para la fase de análisis y otra hamaca para la fase de diseño, estableciendo las dependencias necesarias entre las tareas elementales pertenecientes a cada hamaca.",
+			"B. Crear una hamaca para la fase de análisis y otra hamaca para la fase de diseño. Además, se crea un hito que determina el fin de la fase de análisis relacionada con ambas hamacas a través de sendas dependencias FC.",
+			"C. Crear una hamaca para la fase de análisis y otra hamaca para la fase de diseño, estableciendo una dependencia FC entre ambas.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_04",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Durante la instalación, DS1 se ocupa de supervisar el trabajo del resto de desarrolladores durante 2h al día todos los días que dure el proceso de instalación. Señale la opción que mejor modele esta situación. (1)",
+		options: [
+			"A. Es necesario asignar a DS1 a la tarea de Instalación con una dedicación del 25% para que ésta incluya el trabajo de supervisión realizado por el recurso.",
+			"B. Es necesario crear una hamaca que tenga Instalación como tarea miembro. La hamaca tendrá a DS1 asignado al 25%.",
+			"C. Es necesario crear una nueva tarea Supervisión con DS1 asignado al 25%. La tarea de Instalación tendrá una doble relación CC y FF con Supervisión, que se simulará añadiendo un hito que rompa la doble relación.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_05",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Para realizar la instalación de la infraestructura para realizar las tareas de la fase Implementación y Pruebas de Unidad del proyecto se subcontrata a una empresa que realizará el trabajo en 40 horas: (1)",
+		options: [
+			"A. Crear una tarea CT con duración de 40 horas, que representa la subcontrata. Se añaden relaciones FC entre el hito de fin de subcontrata y las tareas de la fase Implementar Unidades y Pruebas de Unidad.",
+			"B. Se crean dos hitos, uno de inicio de subcontrata y otro de fin. Entre ellos se crea una relación FC+40h. Se añaden relaciones FC entre el hito de fin de subcontrata y las tareas de la fase Implementar Unidades y Pruebas de Unidad.",
+			"C. Se crean dos hitos, uno de inicio de subcontrata y otro de fin. Entre ellos se crea una relación FC+40h. Se añaden una relación FC entre el hito de fin de subcontrata y una hamaca Implementación u Pruebas de Unidad que contiene a todas las tareas de esta fase.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_06",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Para la base de datos de este proyecto, se compra una licencia de Oracle por valor de 7000 euros: (1)",
+		options: [
+			"A. Se crea un recurso de tipo costo y al asignarlo a la tarea se establece un valor de 7000 euros de coste.",
+			'B. Se crea un recurso de tipo costo en la hoja de recursos y se le asignan 7000 euros en la columna "tasa".',
+			"C. Se crea un recurso de tipo trabajo y al asignarlo a la tarea se establece un coste de 7000 euros.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_07",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			'En la hamaca "Fase 0. Adquisición", DS1 realiza una revisión del progreso del trabajo de instalación y configuración (que dura 4d) cuando vaya al menos la mitad hecho (a los 2d): (1)',
+		options: [
+			'A. Se crea una tarea "Revisión" con DS1 asignado y con relación FC+2d con predecesora el hito de inicio de instalación.',
+			'B. Se crea una tarea "Revisión" con DS1 asignado y con relación FC+50% con predecesora el hito de inicio de instalación.',
+			'C. Se crea un nuevo hito "Revisión" con relación FC+2d con predecesora el hito de inicio de instalación.',
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_08",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Considerad que la Documentación de Usuario (60 horas de trabajo) puede empezar cuando el ERS (100 horas de trabajo) está al menos al 50%. (1)",
+		options: [
+			"A. ERS FC+50% Documentación de Usuario.",
+			"B. ERS CC+50% Documentación de Usuario.",
+			"C. ERS CF+50% Documentación de Usuario.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_09",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"La supervisión de la elaboración del ERS por parte del experto LOPD se debe realizar periódicamente los martes y los jueves. ¿De qué manera se puede modelar este escenario? (1)",
+		options: [
+			"A. Se crea una hamaca y se establece la dedicación del experto LOPD al 40%.",
+			"B. Se crea una tarea periódica indicando las fechas de comienzo y fin de dicha tarea, así como la periodicidad deseada. Además se asigna al experto LOPD con dedicación del 100%.",
+			"C. Se crean manualmente tantos hitos como martes y jueves abarque la elaboración del ERS y se establecen las dependencias oportunas. El experto LOPD se asignará al 100% a cada hito de revisión.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_10",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Tras haber completado la fase de implementación y antes de comenzar la ejecución de los planes de prueba en la rama ascendente del ciclo de vida en V, el director técnico debe de dar su visto bueno. (1)",
+		options: [
+			"A. Se crea un hito, que tendrá relación FC más una demora desde la(s) última(s) tarea(s) de la fase de implementación y otra FC hacia la tarea Ejecutar Plan Pruebas Integración.",
+			"B. Se crea una nueva tarea CT con el director técnico asignado. Esta tarea tendrá relación FF desde la(s) última(s) tarea(s) de la fase de implementación.",
+			"C. Se crea una hamaca sobre las tareas de la fase de implementación y se establece al director técnico como recurso. Se establece una relación FC entre la hamaca y la tarea Ejecutar Plan de Pruebas de Integración.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_11",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"En análisis, el documento de usuario (60h de trabajo) tiene que ir realizándose a la vez que el ERS (140h de trabajo) desde el primer momento y sin demora, para garantizar su calidad y evitar errores y omisiones. (2)",
+		options: [
+			"A. Se asignan a los analistas a las 2 tareas: al 30% para realizar el ERS y al 70% para realizar la documentación de usuario.",
+			"B. Se crea una doble relación CC y FF (rota con el correspondiente hito) entre las 2 tareas.",
+			"C. Se asignan a los analistas a las 2 tareas: al 70% para realizar el ERS y al 30% para realizar la documentación de usuario.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_12",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "El camino crítico de un proyecto: (2)",
+		options: [
+			"A. Sólo existe si el proyecto presenta tareas críticas y, de ser así, está formado por el conjunto de todas las tareas críticas.",
+			"B. Ninguna es correcta.",
+			"C. Es único y está formado por el conjunto de todas las tareas críticas del proyecto.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_13",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Los desarrolladores se encuentran sobreasignados por tener que implementar la BBDD y realizar las actividades de implementación, documentación y pruebas de unidad. No sería una buena opción de nivelación aquella que: (2)",
+		options: [
+			"A. Implicase redistribuir recursos entre las tareas.",
+			"B. Implicase usar porcentajes de dedicación para dividir la jornada de los desarrolladores entre las 4 tareas.",
+			"C. Implicase establecer relaciones FC.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_14",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Para Elaborar ERS se usa la herramienta Rational Requisite Pro, con un coste de 850€/mes: (2)",
+		options: [
+			"A. Se representa como un recurso tipo Costo de 850€, pues la tarea dura menos de 1 mes.",
+			"B. Se representa como un recurso tipo Material con tasa 850€ y se asignar a la tarea con unidades [1/mes].",
+			"C. Se representa con un recurso tipo Trabajo con capacidad máxima 1% y asignado a las tareas al 1%. La tasa debe multiplicarse por 100 en la hoja de recursos.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_15",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Las pruebas de unidad son realizadas por DS1. Por lo tanto, el método de trabajo queda como sigue:\n-Implementar unidades (80 horas de trabajo), documentar unidades (80 horas de trabajo) y ejecutar pruebas de unidad (40 horas de trabajo).\n-Cada desarrollador (DS2 - 5) implementa y documenta sus clases. \n-Hasta que una clase está implementada y documentada no se sube al repositorio de pruebas y se pasa a la siguiente. \n-DS1 realiza las pruebas de unidad de las clases en repositorio de pruebas. (2)",
+		options: [
+			"A. El modelo correcto sería: desarrolladores (excepto DS1) asignados al 50% a Implementar Unidades y a Documentar Unidades. Además, se establecen relaciones FC entre estas tareas y Ejecutar pruebas de unidad, que tendría a DS1 asignado al 100%.",
+			"B. El modelo correcto sería: desarrolladores (excepto DS1) asignados al 50% a Implementar Unidades y al 50% a Documentar Unidades. Ejecutar pruebas de unidad tendría a DS1 asignado al 100%.",
+			"C. El modelo correcto sería: desarrolladores (excepto DS1) asignados al 40% a Implementar unidades, al 40% a Documentar unidades. DS1 al 20% a Ejecutar pruebas de unidad.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_16",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Indique cuál de las siguientes opciones de nivelación sería más adecuada para el siguiente escenario:\n-Dos tareas T1 (esfuerzo estimado: 40h*h) y T2 (esfuerzo estimado: 10h*h) que tienen asignados a R1 y R2.\n-La tarea T2 se ocupa de la documentación del trabajo realizado en T1 y, por tanto, no sería conveniente posponerlo hasta el último momento.\nSeleccione una: (2)",
+		options: [
+			"A. R1 y R2 asignados al 50% a las tareas T1 y T2.",
+			"B. T1 con R1 y R2 asignados al 80%; T2 con R1 y R2 asignados al 20%.",
+			"C. Secuenciar T1 y T2 mediante una relación FC; T1 y T2 con R1 y R2 asignados ambos al 100%.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_17",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"DS1 elabora el Doc. de Usuario v3 y también prepara el paquete de instalación. Si ambas tareas coincidiesen parcialmente en el tiempo, DS1 estaría sobreasignado. Es una buena opción de nivelación: (2)",
+		options: [
+			"A. Ninguna es correcta.",
+			"B. Establecer una relación FC entre las dos tareas.",
+			"C. Aplicar porcentajes de dedicación para que DS1 realice las dos tareas simultáneamente.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_18",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"DS1 está asignado a las tareas de Instalación en cliente junto con el resto de desarrolladores. Además, es el único recurso encargado de realizar la Formación. La configuración actual del proyecto permite que estas tareas se realicen juntas, por lo que DS1 se encuentra sobreasignado. No sería una buena solución aquella que implique: (2)",
+		options: [
+			"A. Asignar a DS1 a menos del 100% a la tarea de Instalación en cliente.",
+			"B. Asignar a DS1 a menos del 100% a la tarea de Formación.",
+			"C. Secuenciar las tareas.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_19",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "Los datos previstos de un proyecto: (2)",
+		options: [
+			"A. Se crean al establecer línea base y no se modifican según avance el proyecto.",
+			"B. Existen desde la creación del proyecto y mantienen las estimaciones iniciales.",
+			"C. Se crean al establecer línea base y se modifican según avance el proyecto.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_20",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Debido a su elevada carga computacional, se decide contratar los servicios del Centro de Supercomputación de Galicia (CESGA) para las pruebas de integración (40h de trabajo), con un coste de 0,02€/h. (2)",
+		options: [
+			"A. Se utiliza un recurso de tipo material cuya tasa es 0,02€/h.",
+			"B. Se utiliza un recurso de tipo trabajo, definido al 1% de capacidad máxima, cuya tasa es 2€/h y asignado al 1% a las pruebas de integración.",
+			"C. Se utiliza un recurso de tipo costo cuyo valor es 0,8€.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_21",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Durante una revisión puntual realizada por el Experto una vez finalizado el ERS, la oficina donde se debería llevar a cabo esta tarea sufre una inundación y no es posible desarrollar el trabajo previsto durante 2 días: (3)",
+		options: [
+			"A. Se establece la dedicación del Experto al 80% en la tarea de supervisión.",
+			"B. Se define una excepción en el calendario del Experto, indicando como no laborables los días en los que no se puede trabajar.",
+			"C. Se define una excepción en el calendario de la tarea de supervisión del ERS, indicando como no laborables los días en los que no se puede trabajar.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_22",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Los recursos DS1 y DS2 acuden a un curso de formación durante 15 días, que se solapa parcialmente con los días en los que estaba previsto llevar a cabo la implementación de unidades, su documentación y la ejecución de las pruebas de unidad. Dada la urgencia por avanzar en el proyecto, se decide que el resto de los desarrolladores asuman el trabajo que inicialmente estaba previsto para DS1 y DS2: (3)",
+		options: [
+			"A. Se define una excepción en los calendarios de DS1 y DS2, indicando como no laborables los días en los que asisten al curso. Además, será necesario reasignar manualmente las horas en las que DS1 y DS2 están en el curso al resto de desarrolladores en las tareas afectadas.",
+			"B. Se reduce la dedicación DS1 y DS2 al 0% en las tareas afectadas y el resto se mantienen al 100%.",
+			"C. Se define una excepción en los calendarios de DS1 y DS2, indicando como no laborables los días en los que no pueden trabajar. Automáticamente, MS Project reasignará el trabajo de los días en los que DS1 y DS2 asisten al curso entre el resto de los desarrolladores asignados a las tareas afectadas.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_23",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Durante la ejecución de la revisión técnica del diseño software (RDS) se detectan errores en la arquitectura. Corregirlos implica 14 horas de (4 en la corrección del modelo de la arquitectura y 10 en la corrección del detalle de sus componentes). (3)",
+		options: [
+			"A. Se crean dos tareas Corregir arquitectura (4h de trabajo real) y Corregir detalle arquitectura (10h de trabajo real) y se establecen sus fechas de comienzo reales.",
+			"B. Se crean dos tareas Corregir arquitectura (4h de trabajo real) y Corregir detalle arquitectura (10h de trabajo real). Se establecen relaciones FC entre la revisión técnica del diseño (RDS) y estas tareas.",
+			"C. Se crean dos tareas Corregir arquitectura (4h de trabajo real) y Corregir detalle arquitectura (10h de trabajo real). Se establece una FC entre Corregir arquitectura y Elaborar arquitectura y otra relación FC entre Detalle Componentes y Corregir detalle arquitectura.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_24",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Para la tarea de elaboración del ERS se ha subestimado el esfuerzo inicial (100h) en 40h. Además, el recurso A1 promociona a analista jefe y su salario pasa a ser de 40€/h (inicialmente era de 30€/h): (3)",
+		options: [
+			"A. Disminuye el esfuerzo, aumenta la duración y aumenta el coste de la tarea.",
+			"B. Aumenta el esfuerzo, aumenta la duración (T) y aumenta el coste de la tarea.",
+			"C. Aumenta el esfuerzo, disminuye la duración y disminuye el coste de la tarea.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_25",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Durante el período en que estaba previsto que T1 y T2 elaborasen el plan de pruebas de sistema, éstos asisten a un curso durante las mañanas, por lo que únicamente pueden trabajar por las tardes: (3)",
+		options: [
+			"A. Se define una excepción en los calendarios de T1 y T2, indicando que los días en que asisten al curso únicamente las tardes son laborables.",
+			"B. Se define una excepción en el calendario de la tarea de elaboración del plan de pruebas de sistema, indicando que los días en que asisten al curso únicamente las tardes son laborables.",
+			"C. Se reduce la dedicación de T1 y T2 al 50%.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_26",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Para la tarea de análisis de presupuestos en la fase de adquisición, que es CT, se ha sobreestimado la duración inicial (8h) en 2h. Además, aunque inicialmente se había planteado que DS1 se encargase de la tarea, se decide también incorporar a DS2 para que, entre ambos, puedan discutir los presupuestos recibidos y tomar la mejor decisión. (3)",
+		options: [
+			"A. Aumenta el esfuerzo, disminuye la duración y aumentan los costes. ",
+			"B. Disminuye el esfuerzo, disminuye la duración y aumentan los costes.",
+			"C. Disminuye el esfuerzo, disminuye la duración y disminuyen los costes.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_27",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Como parte de la replanificación, se decide subcontratar la implementación de la base de datos. (3)",
+		options: [
+			"A. Se sustituye la tarea Implementar BBDD por 2 hitos con fechas reales aquellas en las que la subcontrata debe iniciar y finalizar la tarea. ",
+			"B. Se sustituye la tarea Implementar BBDD por 2 hitos con relación FC entre ellos más una demora equivalente al tiempo que tiene la subcontrata para realizar la tarea. ",
+			"C. Se sustituyen los recursos asignados a la tarea Implementar BBDD por un nuevo recurso que representa a la subcontrata.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_28",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Al introducir los valores reales de esfuerzo y duración durante el seguimiento:  (3)",
+		options: [
+			"A. Es necesario introducir también manualmente los costes reales.",
+			"B. MS-Project calcula los costes reales.",
+			"C. Si no se indica lo contrario, MS-Project asume como costes reales los costes de línea base.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_29",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Debido al incremento de casos de COVID, se decreta un confinamiento total durante un mes y nuestros trabajadores no disponen de medios para poder cumplir con sus tareas desde sus casas: (3)",
+		options: [
+			"A. Se define una excepción en el calendario de las tareas, indicando que los días en los que se ha decretado el confinamiento no son laborables.",
+			"B. Se define una excepción en el calendario de los recursos, indicando que los días en los que se ha decretado el confinamiento no son laborables.",
+			"C. Se define una excepción en el calendario del proyecto, indicando que los días en los que se ha decretado el confinamiento no son laborables.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_30",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "A medida que se realiza el seguimiento, el camino crítico: (3)",
+		options: [
+			"A. No se ve afectado.",
+			"B. Es recalculado automáticamente.",
+			"C. No es recalculado a no ser que se solicite explícitamente en la herramienta.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_31",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Tras la Peer Review de Requisitos, el Director Técnico tiene que aprobar el resultado de la revisión, para lo que se estima que tardará\n2d. Una vez aprobado, se podrá comenzar a elaborar la arquitectura. (1)",
+		options: [
+			"A. Peer Review de Requisitos FC Hito ERS Aprobado FC Elaborar Arquitectura.",
+			"B. Peer Review de Requisitos FC+2d Elaborar Arquitectura.",
+			"C. Elaborar Arquitectura CF-2d Peer Review de Requisitos.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_32",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "Las tareas periódicas: (1)",
+		options: [
+			"A. Representan un trabajo que se repite periódicamente en el tiempo según un patrón establecido. Project crea tantas\ntareas como sean necesarias, que se organizan en el Gantt mediante fechas fijas.",
+			"B. Representan un trabajo que se repite periódicamente en el tiempo según un patrón establecido. Project crea tantas tareas como sean necesarias entre dos fechas variables establecidas durante su creación.",
+			"C. Representan un trabajo que se repite periódicamente en el tiempo según un patrón establecido. Project crea tantas tareas como sean necesarias, que se organizan en el Gantt mediante relaciones con el resto de tareas.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_33",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"La implementación de uno de los subsistemas del proyecto se subcontrata a una empresa externa, que nos lo debe entregar a tiempo para ejecutar las pruebas de integración: (1)",
+		options: [
+			"A. Un hito de inicio de subcontrata y otro de fin, con una relación FC más demora entre ellos. La tarea Ejecutar pruebas de integración tendría como predecesora al hito de fin en una relación FC.",
+			"B. Una tarea de duración el tiempo que tiene la subcontrata para hacer el subsistema. La tarea Ejecutar pruebas de integración tendría como predecesora a esta tarea en una relación FC.",
+			"C. Un hito, que representa el trabajo de la subcontrata. La tarea Ejecutar pruebas de integración tendría como predecesora al hito en una relación FC.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_34",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"El recurso DS1 no participa como desarrollador en las tareas de implementación de unidades, documentación de unidades y ejecución de pruebas de unidad, sino que realiza una supervisión de dicha tarea los viernes durante 2h. ¿De qué manera se puede modelar este escenario? (1)",
+		options: [
+			"A. Se crea una tarea periódica de duración 2h con patrón repetición semanal de viernes y fechas de comienzo y fin las estimadas para ese conjunto de actividades. Esto genera tantas actividades como viernes haya en ese período, a las que hay que asignar a DS1",
+			"B. Se crean tantas actividades como viernes abarquen las tareas a supervisar y se establecen relaciones CC con las demoras oportunas con las tareas a supervisar. DS1 se asigna con una dedicación del 25% a cada una de estas actividades de supervisión.",
+			"C. Se crea una hamaca que englobe las tres tareas a supervisar y se asigna a DS1 con dedicación del 25%.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_35",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"El recurso DS1 debe supervisar el proceso de instalación en el cliente, realizando 2 comprobaciones, cuando la instalación vaya por el 50% y cuando se haya completado. ¿Cuál de las siguientes opciones NO es correcta? (1)",
+		options: [
+			"A. Creando dos tareas de supervisión que tendrán a DS1 como recurso de trabajo asignado. Para la supervisión al 50% se define una dependencia CC con la correspondiente demora entre la tarea de trabajo y la tarea de supervisión. Para la revisión final se establece una dependencia FC entre la tarea de trabajo y la supervisión.",
+			"B. Dividiendo la tarea de instalación en dos partes y creando otras dos tareas de supervisión que tendrán a DS1 como recurso de trabajo asignado. Se establecen relaciones FC entre cada bloque de trabajo y su correspondiente supervisión. Además, también será necesario establecer una relación FC entre los bloques de trabajo consecutivos.",
+			"C. Estableciendo una hamaca sobre la tarea a supervisar y asignando a DS1 como recurso de trabajo al 50%.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_36",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Para realizar la formación en el cliente es necesario pagar el coste del viaje de nuestros trabajadores. Hemos decidido enviar a un analista y a DS1 a realizar la formación y el coste de enviar a una persona asciende a 200€ (1)",
+		options: [
+			"A. Debemos definir un recurso de tipo costo con una tasa de 400€ y asignarlo a la tarea de Formación.",
+			"B. Debemos definir un recurso tipo trabajo con tasa 400€ y asignarlo a la tarea Formación.",
+			"C. Debemos definir un recurso de tipo costo y al asignarlo a la tarea de Formación definir su valor en 400€.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_37",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Se desea conocer el esfuerzo, tiempo y coste de nuestros diseñadores en el proyecto. (1)",
+		options: [
+			"A. Ninguna es correcta.",
+			"B. Habría que calcularlo a mano, pues las tareas en las que trabajan los diseñadores se encuentran en hamacas diferentes\ndel proyecto.",
+			"C. Habría que crear una nueva hamaca con todas las tareas en las que participan los diseñadores.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_38",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"El recurso DS1 no participa como desarrollador en las tareas de implementación de unidades, documentación de unidades y ejecución de pruebas de unidad, sino supervisa dicha tarea ¿Cuál de las siguientes opciones NO es correcta? (1)",
+		options: [
+			"A. Se crea una tarea periódica indicando las fechas de comienzo y fin de dicha tarea (en función de las tres tareas a supervisar), así como la periodicidad deseada. Se le asigna a DS1.",
+			"B. Se crea una hamaca que englobe las tres tareas a supervisar y se asigna a DS1 como recurso de la hamaca.",
+			"C. Se crea una hamaca con las tareas a supervisar. Se crea una tarea de supervisión con DS1 asignado y relaciones CC y FF con la hamaca (simuladas usando un hito).",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_39",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Tras el Peer Review de Requisitos se puede comenzar con el diseño de alto nivel (arquitectura y diseño de la base de datos) (1)",
+		options: [
+			"A. No hay relación entre Elaborar arquitectura y Diseño BBDD.",
+			"B. Hay que crear una relación CC con Elaborar Arquitectura como predecesora y Diseñar BBDD como sucesora.",
+			"C. Hay que crear una relación FC entre estas 2 tareas de diseño, para marcar el orden de realización de las mismas.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_40",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Durante la instalación en el cliente, DS1 se ocupa de revisar el trabajo del resto de desarrolladores cuando lleven al menos la mitad hecho y cuando hayan terminado. ¿De qué manera puedo modelar este escenario? (1)",
+		options: [
+			"A. Se crea una nueva tarea Supervisión con DS1 asignado. Se crean dos relaciones: una CC+50% y una FF, ambas con Instalación como predecesora y Supervisión como sucesora, que se simulará añadiendo un hito que rompa la doble relación.",
+			"B. Es necesario crear dos hitos, uno que represente el comienzo y otro el fin de la supervisión, estableciendo una demora entre ellos para representar el tiempo de supervisión. DS1 se asigna a cada uno de los hitos.",
+			"C. Creando dos nuevas tareas de Supervisión con DS1 asignado. Se crean dos relaciones: una CC+50% entre Instalación y la primera supervisión y una FC entre Instalación y la segunda supervisión.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_41",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"En análisis, los documentos que se somenten a Peer Review de Requisitos son el ERS, el Doc. de usuario y el Plan de Pruebas de\nAceptación elaborado (1)",
+		options: [
+			"A. Es necesario definir un a hamaca con ERS, Doc. usuario y Elaboración de pruebas de aceptación como tareas miembro.\nAdemás, se establece una dependencia FC entre la hamaca y el Peer Review de requisitos.",
+			"B. Es necesario añadir a los dos tester a la tarea Peer Review de Requisitos y una relación FC entre Elaborar Plan de Pruebas de Aceptación y Peer Review de Requisitos.",
+			"C. Es necesario establecer una doble relación CC y FF entre Elaborar ERS y Elaborar Plan de Pruebas de Aceptación, con un hito\nque rompa la doble relación.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_42",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"La ejecución de las pruebas de sistema tiene a T1 asignado y el test de usabilidad a T2. Por lo tanto, coinciden parcialmente en el tiempo. Ambas usan el apero servidor de Amazon, que se encuentra sobreasignado. Para solucionarlo: (2)",
+		options: [
+			"A. Se crea una relación FC entre las tareas.",
+			"B. No hay que hacer nada, pues el recurso sobreasignado no es un trabajador.",
+			"C. Se asigna al servidor de Amazon a la mitad de su capacidad cada tarea.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_43",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"En la Fase 0, los proveedores nos cobran 2000€ en instalación y configuración (500€ por cada día de trabajo). (2)",
+		options: [
+			"A. Se crea un recurso tipo Costo y se indica el coste total al asignarlo a los hitos que representan la instalación y\nconfiguración.",
+			"B. Se crea un recurso tipo Material con tasa 500€. Se asigna a los hitos que representan la instalación y configuración con\nconsumo [1/d].",
+			"C. No es posible representar este coste, pues el trabajo de los proveedores está representado mediante hitos.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_44",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Las pruebas de unidad son realizadas por DS3. Por lo tanto, el método de trabajo queda como sigue:\n-Implementar unidades (140 horas de trabajo), documentar unidades (60 horas de trabajo) y ejecutar pruebas de unidad (50 horas\nde trabajo).\n-Cada desarrollador (DS2, DS4 y DS5) implementa y documenta sus clases.\n-Hasta que una clase está implementada y documentada no se sube al repositorio de pruebas y se pasa a la siguiente.\n-DS3 realiza las pruebas de unidad de las clases en el repositorio de pruebas. (2)",
+		options: [
+			"A. El modelo correcto sería: desarrolladores (excepto DS3) asignados al 70% a Implementar Unidades y al 30% Documentar Unidades, y Ejecutar pruebas de unidad tendría a DS3 asignado al 100%.",
+			"B. El modelo correcto sería: desarrolladores (excepto DS3) asignados al 50% a Implementar Unidades y a Documentar Unidades, y una relación FC entre estas tareas y Ejecutar pruebas de unidad, que tendría a DS3 asignado al 100%.",
+			"C. El modelo correcto sería: desarrolladores (excepto DS3) asignados al 56% a Implementar unidades, al 24% a Documentar unidades y DS3 al 20% a Ejecutar pruebas de unidad.",
+		],
+		correctAnswer: "a",
+	},
+	{
+		id: "daypo-practica_45",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "Si un proyecto tiene varios caminos críticos: (2)",
+		options: [
+			"A. Debemos acortar el mayor número posible de ellos para acortar la duración del proyecto.",
+			"B. Es necesario acortarlos todos para acortar la duración del proyecto.",
+			"C. Con acortar uno es suficiente para acortar la duración del proyecto.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_46",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"D1 y D2 están sobreasignados por trabajar simultáneamente en Elaborar arquitectura y Diseño BBDD. Se desea mantenerlos a ambos en las dos tareas, pues son críticas y no se quiere correr el riesgo de depender de un único recurso para su realización. La peor solución de nivelación sería: (2)",
+		options: [
+			"A. Establecer una relación FC entre las tareas.",
+			"B. Asignar a los diseñadores al 50% a cada tarea.",
+			"C. Asignar un diseñador a cada tarea.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_47",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Si en una tarea CE se disminuye el número de recursos asociados: (1)",
+		options: [
+			"A. Disminuye el esfuerzo y aumenta el tiempo",
+			"B. Se mantiene el esfuerzo y aumenta el tiempo",
+			"C. Aumenta el esfuerzo y se mantiene el tiempo",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_48",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"La implementación de la base de datos se subcontrata a una empresa externa, que la realiza en 7d. Tras la entrega, DS1 revisa el\ntrabajo realizado. Seleccione una: (1)",
+		options: [
+			"A. Se mantiene la tarea Implementar BBDD y se crean 2 hitos, el primero con relación CC con la tarea y el segundo con relación FF. Se crea una nueva tarea con DS1 asignado y relación FC con la tarea Implementar BBDD.",
+			"B. Se elimina la tarea Implementar BBDD y se sustituye por 2 hitos con relación FC+7d entre ellos. Se crea una nueva tarea\ncon DS1 asignado y relación FC con predecesora el hito de fin de subcontrata",
+			"C. Se eliminan a los desarrolladores de la tarea Implementar BBDD, salvo a DS1 que se mantiene para representar el trabajo de revisión",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_49",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "El camino crítico se acorta: (2)",
+		options: [
+			"A. Antes de establecer línea base, con el objetivo de nivelar el trabajo de los recursos.",
+			"B. Antes de establecer línea base, con el objetivo de optimizar el proyecto en tiempo.",
+			"C. Tras establecer línea base, con el objetivo de optimizar el proyecto en tiempo.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_50",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Indique cuál de las siguientes opciones de nivelación sería más adecuada para el siguiente escenario:\n-Dos tareas independientes, T1 (esfuerzo estimado: 40h*h) y T2 (esfuerzo estimado: 60h*h)\n-Una tercera tarea T3 (tiempo estimado: 20h) que no puede comenzar hasta que T1 y T2 hayan finalizado\n-T1 y T3 con R1 y R2 asignados\n-T2 con R1, R2 y R3 asignados\n-R3 sólo puede participar en T2\nSeleccione una: (2)",
+		options: [
+			"A. T1 con R1 y R2 al 100%, T2 con R3 al 100%, T3 con R1 y R2 al 100%.",
+			"B. Relación FC entre T1 y T2.",
+			"C. T1 con R1 y R2 al 50%, T2 con R1 y R2 al 50% y R3 al 100%.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_51",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "Cuando se establece la línea base: (2)",
+		options: [
+			"A. Los datos previstos se copian en los datos actuales, los actuales seguirán evolucionando y los previstos se usarán como referencia.",
+			"B. Los datos actuales se copian en los datos previstos, los previstos seguirán evolucionando y los actuales se usarán como referencia.",
+			"C. Los datos actuales se copian en los datos previstos, los actuales seguirán evolucionando y los previstos se usarán como referencia.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_52",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Para realizar la formación del cliente se alquila un espacio de trabajo con un coste de 100€/d, pues nos informa de que no será posible realizarla en sus oficinas (2)",
+		options: [
+			"A. Es necesario modelar un recurso apero, pues mientras ese espacio de trabajo esté ocupado con la formación no puede destinarse a otro uso.",
+			"B. Se crea un recurso tipo Material para representar al espacio de trabajo.",
+			"C. No es necesario añadir nada al proyecto, pues no es un coste imputable al mismo.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_53",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question: "Durante el seguimiento, las tareas deben actualizarse: (3)",
+		options: [
+			"A. Por bloques o hamacas.",
+			"B. Por orden cronológico.",
+			"C. En cualquier orden.",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_54",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Durante una revisión puntual realizada por el Experto una vez finalizado el ERS, el experto sufre un accidente y solicita una baja de 2 días: (3)",
+		options: [
+			"A. Se reduce la dedicación del Experto al 80% en la tarea de supervisión.",
+			"B. Se define una excepción en el calendario de la tarea de supervisión del ERS, indicando como no laborables los días en los que no puede trabajar.",
+			"C. Se define una excepción en el calendario del Experto, indicando como no laborables los días en los que no puede trabajar.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_55",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Durante las pruebas de aceptación el cliente pide una serie de cambios en la interfaz de usuario de los que se encarga DS2 y completa en 20 horas de trabajo. (3)",
+		options: [
+			"A. Se crea una nueva tarea con DS2 asignado, trabajo real 20h y una relación FC con Ejecutar Plan Pruebas Aceptación.",
+			"B. Se crea una nueva tarea con DS2 asignado, trabajo real 20h y fecha de comienzo real el día siguiente al fin real de la tarea Ejecutar Plan Pruebas Aceptación.",
+			"C. El trabajo real de la tarea Ejecutar Plan Pruebas Aceptación se incrementa en 20 horas. Como son realizadas por DS2 es\nnecesario añadir el recurso a la tarea y asignarle manualmente esas 20 horas en una vista detallada (Uso de tareas o Uso de\nrecursos).",
+		],
+		correctAnswer: "b",
+	},
+	{
+		id: "daypo-practica_56",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"En la peer review de requisitos, A1 sólo ha podido dedicar las mañanas a la tarea, por asistencia a un curso de formación por la tarde. (3)",
+		options: [
+			"A. Aumenta el esfuerzo, se mantiene la duración y se mantiene el coste.",
+			"B. Disminuye el esfuerzo, disminuye la duración y disminuye el coste.",
+			"C. Disminuye el esfuerzo, se mantiene la duración y disminuye el coste.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_57",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Como parte de la replanificación se decide realizar el test de usabilidad mediante una herramienta automática. Esto reduce el trabajo\nde los tester a 4h en total. (3)",
+		options: [
+			"A. Se establece 4h como trabajo real de la tarea.",
+			"B. Se establece 4h como nuevo trabajo previsto de la tarea.",
+			"C. Se establece 4h como nuevo trabajo actual de la tarea.",
+		],
+		correctAnswer: "c",
+	},
+	{
+		id: "daypo-practica_58",
+		examId: "daypo-practica",
+		topic: "practica",
+		type: "mc",
+		points: 1,
+		question:
+			"Durante el período en que estaba previsto que D1 y D2 llevasen a cabo el diseño de la BBDD, D1 asiste a un curso de formación, por lo que se decide contratar a un tercer diseñador, D3, que asuma su trabajo: (3)",
+		options: [
+			"A. Se define una excepción en el calendario de D1, indicando que los días en que asiste al curso no son laborables. Además, se\nasignará a D3 a la tarea afectada. Automáticamente, MS Project reasignará las horas de la tarea al sustituto.",
+			"B. Se define una excepción en el calendario de D1, indicando que los días en que asiste al curso no son laborables. Además,\nse asignará a D3 a la tarea afectada. También será necesario reasignar manualmente las horas de la tarea al sustituto.",
+			"C. Se reduce la dedicación de D1 al 0%, se mantiene D2 al 100% y se asigna a D3 al 100%.",
+		],
+		correctAnswer: "b",
+	},
 ];

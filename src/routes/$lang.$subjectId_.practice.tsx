@@ -1,13 +1,12 @@
-import { Navigate, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/$lang/$subjectId_/practice")({
-  component: SubjectPracticeRedirect,
+	beforeLoad: ({ params }) => {
+		throw redirect({
+			to: "/$lang/$subjectId",
+			params,
+			replace: true,
+		});
+	},
+	component: () => null,
 });
-
-function SubjectPracticeRedirect() {
-  const { lang, subjectId } = Route.useParams();
-
-  return (
-    <Navigate to="/$lang/$subjectId" params={{ lang, subjectId }} replace />
-  );
-}

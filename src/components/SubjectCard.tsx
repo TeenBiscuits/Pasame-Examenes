@@ -1,90 +1,75 @@
-import { useState, useEffect } from "react";
-import { LangLink as Link } from "../lib/lang-link";
 import type { SubjectMeta } from "../data/types";
 import { useT } from "../i18n/hooks";
-import { track } from "../lib/umami";
-import { recordSubjectClick } from "../lib/recent";
-import { getAllQuestions } from "../subjects";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
+import type { HomeSubjectBuildStats } from "../lib/content-stats";
+import { LangLink as Link } from "../lib/lang-link";
+import { recordSubjectClick } from "../lib/recent";
+import { track } from "../lib/umami";
 import ContentPolicyIcon from "./ContentPolicyIcon";
 
 interface SubjectCardProps {
-  subject: SubjectMeta;
+	subject: SubjectMeta;
+	stats: HomeSubjectBuildStats;
 }
 
-export default function SubjectCard({ subject }: SubjectCardProps) {
-  const t = useT();
-  const [questionCount, setQuestionCount] = useState<number | null>(null);
-  const availableExamCount = subject.exams.filter(
-    (exam) => !exam.deleteRights,
-  ).length;
-  const examCountLabel = hasAuthorizedExamContent(subject)
-    ? t.subjectCard.exams
-    : t.subjectCard.practiceSets;
+export default function SubjectCard({ subject, stats }: SubjectCardProps) {
+	const t = useT();
+	const examCountLabel = hasAuthorizedExamContent(subject)
+		? t.subjectCard.exams
+		: t.subjectCard.practiceSets;
 
-  useEffect(() => {
-    let mounted = true;
-    getAllQuestions(subject.id).then((qs) => {
-      if (mounted) setQuestionCount(qs.length);
-    });
-    return () => {
-      mounted = false;
-    };
-  }, [subject.id]);
-
-  return (
-    <Link
-      to={`/${subject.id}`}
-      data-cuelume-hover="tick"
-      data-cuelume-press
-      className="interactive-card focus-visible:ring-accent flex min-h-[160px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
-      onClick={() => {
-        track("subject_card_click", {
-          subjectId: subject.id,
-          location: "grid",
-        });
-        recordSubjectClick(subject.id);
-      }}
-    >
-      <div className="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-5 pt-5 pb-2">
-        <div className="mb-2 flex items-start justify-between">
-          <span className="text-4xl leading-none" aria-hidden="true">
-            {subject.icon}
-          </span>
-          <div className="flex items-center gap-2">
-            <ContentPolicyIcon subject={subject} />
-            <span className="bg-code text-fg-secondary inline-flex h-6 items-center rounded px-2 font-mono text-xs font-semibold">
-              {subject.courseCode}
-            </span>
-          </div>
-        </div>
-        <h2 className="text-fg mb-0.5 text-base font-semibold">
-          {subject.name}
-        </h2>
-        <div className="text-fg-muted flex min-w-0 items-center justify-between gap-2 text-sm">
-          <span className="min-w-0 truncate" title={subject.degree}>
-            {subject.degree}
-          </span>
-          <span className="shrink-0">
-            {t.subjectCard.course.replace("{course}", String(subject.course))}
-          </span>
-        </div>
-      </div>
-      <div className="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-5 py-1 text-xs">
-        <span>
-          {questionCount !== null ? questionCount : "..."}{" "}
-          {t.subjectCard.questions}
-        </span>
-        <div className="flex shrink-0 items-center gap-2">
-          <span>
-            {subject.topics.length} {t.subjectCard.topics}
-          </span>
-          <span aria-hidden="true">&middot;</span>
-          <span>
-            {availableExamCount} {examCountLabel}
-          </span>
-        </div>
-      </div>
-    </Link>
-  );
+	return (
+		<Link
+			to={`/${subject.id}`}
+			data-cuelume-hover="tick"
+			data-cuelume-press
+			className="interactive-card focus-visible:ring-accent flex min-h-[160px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+			onClick={() => {
+				track("subject_card_click", {
+					subjectId: subject.id,
+					location: "grid",
+				});
+				recordSubjectClick(subject.id);
+			}}
+		>
+			<div className="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-5 pt-5 pb-2">
+				<div className="mb-2 flex items-start justify-between">
+					<span className="text-4xl leading-none" aria-hidden="true">
+						{subject.icon}
+					</span>
+					<div className="flex items-center gap-2">
+						<ContentPolicyIcon subject={subject} />
+						<span className="bg-code text-fg-secondary inline-flex h-6 items-center rounded px-2 font-mono text-xs font-semibold">
+							{subject.courseCode}
+						</span>
+					</div>
+				</div>
+				<h2 className="text-fg mb-0.5 text-base font-semibold">
+					{subject.name}
+				</h2>
+				<div className="text-fg-muted flex min-w-0 items-center justify-between gap-2 text-sm">
+					<span className="min-w-0 truncate" title={subject.degree}>
+						{subject.degree}
+					</span>
+					<span className="shrink-0">
+						{t.subjectCard.course.replace("{course}", String(subject.course))}
+					</span>
+				</div>
+			</div>
+			<div className="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-5 py-1 text-xs">
+				<span>
+					{stats.questionCount} {t.subjectCard.questions}
+				</span>
+				<div className="flex shrink-0 items-center gap-2">
+					<span>
+						{stats.topicCount} {t.subjectCard.topics}
+					</span>
+					<span aria-hidden="true">&middot;</span>
+					<span>
+						{stats.examCount} {examCountLabel}
+					</span>
+				</div>
+			</div>
+		</Link>
+	);
 }

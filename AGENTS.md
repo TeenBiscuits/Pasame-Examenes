@@ -1,57 +1,101 @@
-# AGENTS.md - Pasame Examenes
+<!-- intent-skills:start -->
 
-## Commands
+# TanStack Intent - before editing files, run the matching guidance command.
 
-```bash
-pnpm dev       # Vite dev server; the root route loads react-grab only in DEV
-pnpm build     # tsc -b, generate sitemap/OG/rewrites, vite build, then static SEO pages
-pnpm lint      # ESLint flat config for TS/TSX; scripts/ is ignored
-pnpm readme    # Update the subject table in README.md
-pnpm format    # Prettier write
-pnpm preview   # Preview production build
-pnpm doctor    # React Doctor via npx
-```
+tanstackIntent:
 
-- Use `pnpm`; this repo has `pnpm-lock.yaml` and an empty `pnpm-workspace.yaml` (`packages: []`), so it is a single app, not a monorepo.
-- There is no `test` or standalone `typecheck` script. `pnpm build` is the typecheck source of truth.
-- `pnpm build` rewrites `public/sitemap.xml` and writes `public/${INDEXNOW_KEY}.txt` only when `INDEXNOW_KEY` is set. `SITE_URL` overrides the sitemap base URL; otherwise it uses `https://pe.pablopl.dev`.
+- id: "@tanstack/devtools#devtools-app-setup"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/devtools#devtools-app-setup"
+  for: "Install TanStack Devtools, pick framework adapter (React/Vue/Solid/Preact), register plugins via plugins prop, configure shell (position, hotkeys, theme, hideUntilHover, requireUrlFlag, eventBusConfig). TanStackDevtools component, defaultOpen, localStorage persistence."
+- id: "@tanstack/devtools#devtools-marketplace"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/devtools#devtools-marketplace"
+  for: "Publish plugin to npm and submit to TanStack Devtools Marketplace. PluginMetadata registry format, plugin-registry.ts, pluginImport (importName, type), requires (packageName, minVersion), framework tagging, multi-framework submissions, featured plugins."
+- id: "@tanstack/devtools#devtools-plugin-panel"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/devtools#devtools-plugin-panel"
+  for: "Build devtools panel components that display emitted event data. Listen via EventClient.on(), handle theme (light/dark), use @tanstack/devtools-ui components. Plugin registration (name, render, id, defaultOpen), lifecycle (mount, activate, destroy), max 3 active plugins. Two paths: Solid.js core with devtools-ui for multi-framework support, or framework-specific panels."
+- id: "@tanstack/devtools#devtools-production"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/devtools#devtools-production"
+  for: "Handle devtools in production vs development. removeDevtoolsOnBuild, devDependency vs regular dependency, conditional imports, NoOp plugin variants for tree-shaking, non-Vite production exclusion patterns."
+- id: "@tanstack/devtools-event-client#devtools-bidirectional"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/devtools-event-client#devtools-bidirectional"
+  for: "Two-way event patterns between devtools panel and application. App-to-devtools observation, devtools-to-app commands, time-travel debugging with snapshots and revert. structuredClone for snapshot safety, distinct event suffixes for observation vs commands, serializable payloads only."
+- id: "@tanstack/devtools-event-client#devtools-event-client"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/devtools-event-client#devtools-event-client"
+  for: "Create typed EventClient for a library. Define event maps with typed payloads, pluginId auto-prepend namespacing, emit()/on()/onAll()/onAllPluginEvents() API. Connection lifecycle (5 retries, 300ms), event queuing, enabled/disabled state, SSR fallbacks, singleton pattern. Unique pluginId requirement to avoid event collisions."
+- id: "@tanstack/devtools-event-client#devtools-instrumentation"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/devtools-event-client#devtools-instrumentation"
+  for: "Analyze library codebase for critical architecture and debugging points, add strategic event emissions. Identify middleware boundaries, state transitions, lifecycle hooks. Consolidate events (1 not 15), debounce high-frequency updates, DRY shared payload fields, guard emit() for production. Transparent server/client event bridging."
+- id: "@tanstack/devtools-vite#devtools-vite-plugin"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/devtools-vite#devtools-vite-plugin"
+  for: "Configure @tanstack/devtools-vite for source inspection (data-tsd-source, inspectHotkey, ignore patterns), console piping (client-to-server, server-to-client, levels), enhanced logging, server event bus (port, host, HTTPS), production stripping (removeDevtoolsOnBuild), editor integration (launch-editor, custom editor.open). Must be FIRST plugin in Vite config. Vite ^6 || ^7 only."
+- id: "@tanstack/react-start#lifecycle/migrate-from-nextjs"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/react-start#lifecycle/migrate-from-nextjs"
+  for: "Step-by-step migration from Next.js App Router to TanStack Start: route definition conversion, API mapping, server function conversion from Server Actions, middleware conversion, data fetching pattern changes."
+- id: "@tanstack/react-start#react-start"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/react-start#react-start"
+  for: "React bindings for TanStack Start: createStart, StartClient, StartServer, React-specific imports, re-exports from @tanstack/react-router, full project setup with React, useServerFn hook."
+- id: "@tanstack/react-start#react-start/server-components"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/react-start#react-start/server-components"
+  for: "Implement, review, debug, and refactor TanStack Start React Server Components in React 19 apps. Use when tasks mention @tanstack/react-start/rsc, renderServerComponent, createCompositeComponent, CompositeComponent, renderToReadableStream, createFromReadableStream, createFromFetch, Composite Components, React Flight streams, loader or query owned RSC caching, router.invalidate, structuralSharing: false, selective SSR, stale names like renderRsc or .validator, or migration from Next App Router RSC patterns. Do not use for generic SSR or non-TanStack RSC frameworks except brief comparison."
+- id: "@tanstack/router-core#router-core"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core"
+  for: "Framework-agnostic core concepts for TanStack Router: route trees, createRouter, createRoute, createRootRoute, createRootRouteWithContext, addChildren, Register type declaration, route matching, route sorting, file naming conventions. Entry point for all router skills."
+- id: "@tanstack/router-core#router-core/auth-and-guards"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/auth-and-guards"
+  for: "Route protection with beforeLoad, redirect()/throw redirect(), isRedirect helper, authenticated layout routes (_authenticated), non-redirect auth (inline login), RBAC with roles and permissions, auth provider integration (Auth0, Clerk, Supabase), router context for auth state."
+- id: "@tanstack/router-core#router-core/code-splitting"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/code-splitting"
+  for: "Automatic code splitting (autoCodeSplitting), .lazy.tsx convention, createLazyFileRoute, createLazyRoute, lazyRouteComponent, getRouteApi for typed hooks in split files, codeSplitGroupings per-route override, splitBehavior programmatic config, critical vs non-critical properties."
+- id: "@tanstack/router-core#router-core/data-loading"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/data-loading"
+  for: "Route loader option, loaderDeps for cache keys, staleTime/gcTime/ defaultPreloadStaleTime SWR caching, pendingComponent/pendingMs/ pendingMinMs, errorComponent/onError/onCatch, beforeLoad, router context and createRootRouteWithContext DI pattern, router.invalidate, Await component, deferred data loading with unawaited promises."
+- id: "@tanstack/router-core#router-core/navigation"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/navigation"
+  for: "Link component, useNavigate, Navigate component, router.navigate, ToOptions/NavigateOptions/LinkOptions, from/to relative navigation, activeOptions/activeProps, preloading (intent/viewport/render), preloadDelay, navigation blocking (useBlocker, Block), createLink, linkOptions helper, scroll restoration, MatchRoute."
+- id: "@tanstack/router-core#router-core/not-found-and-errors"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/not-found-and-errors"
+  for: "notFound() function, notFoundComponent, defaultNotFoundComponent, notFoundMode (fuzzy/root), errorComponent, CatchBoundary, CatchNotFound, isNotFound, NotFoundRoute (deprecated), route masking (mask option, createRouteMask, unmaskOnReload)."
+- id: "@tanstack/router-core#router-core/path-params"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/path-params"
+  for: "Dynamic path segments ($paramName), splat routes ($ / _splat), optional params ({-$paramName}), prefix/suffix patterns ({$param}.ext), useParams, params.parse/stringify, pathParamsAllowedCharacters, i18n locale patterns."
+- id: "@tanstack/router-core#router-core/search-params"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/search-params"
+  for: "validateSearch, search param validation with Zod/Valibot/ArkType adapters, fallback(), search middlewares (retainSearchParams, stripSearchParams), custom serialization (parseSearch, stringifySearch), search param inheritance, loaderDeps for cache keys, reading and writing search params."
+- id: "@tanstack/router-core#router-core/ssr"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/ssr"
+  for: "Non-streaming and streaming SSR, RouterClient/RouterServer, renderRouterToString/renderRouterToStream, createRequestHandler, defaultRenderHandler/defaultStreamHandler, HeadContent/Scripts components, head route option (meta/links/styles/scripts), ScriptOnce, automatic loader dehydration/hydration, memory history on server, data serialization, document head management."
+- id: "@tanstack/router-core#router-core/type-safety"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-core#router-core/type-safety"
+  for: "Full type inference philosophy (never cast, never annotate inferred values), Register module declaration, from narrowing on hooks and Link, strict:false for shared components, getRouteApi for code-split typed access, addChildren with object syntax for TS perf, LinkProps and ValidateLinkOptions type utilities, as const satisfies pattern."
+- id: "@tanstack/router-plugin#router-plugin"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/router-plugin#router-plugin"
+  for: "TanStack Router bundler plugin for route generation and automatic code splitting. Supports Vite, Webpack, Rspack, and esbuild. Configures autoCodeSplitting, routesDirectory, target framework, and code split groupings."
+- id: "@tanstack/start-client-core#start-core"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/start-client-core#start-core"
+  for: "Core overview for TanStack Start: tanstackStart() Vite plugin, getRouter() factory, root route document shell (HeadContent, Scripts, Outlet), client/server entry points, routeTree.gen.ts, tsconfig configuration. Entry point for all Start skills."
+- id: "@tanstack/start-client-core#start-core/auth-server-primitives"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/start-client-core#start-core/auth-server-primitives"
+  for: "Server-side authentication primitives for TanStack Start: session cookies (HttpOnly, Secure, SameSite, __Host- prefix), session read/issue/destroy via createServerFn and middleware, OAuth authorization-code flow with state and PKCE, password-reset enumeration defense, CSRF for non-GET RPCs, rate limiting auth endpoints, session rotation on privilege change. Pairs with router-core/auth-and-guards for the routing side."
+- id: "@tanstack/start-client-core#start-core/deployment"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/start-client-core#start-core/deployment"
+  for: "Deploy to Cloudflare Workers, Netlify, Vercel, Node.js/Docker, Bun, Railway. Selective SSR (ssr option per route), SPA mode, static prerendering, ISR with Cache-Control headers, SEO and head management."
+- id: "@tanstack/start-client-core#start-core/execution-model"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/start-client-core#start-core/execution-model"
+  for: "Isomorphic-by-default principle, environment boundary functions (createServerFn, createServerOnlyFn, createClientOnlyFn, createIsomorphicFn), ClientOnly component, useHydrated hook, import protection, dead code elimination, environment variable safety (VITE_ prefix, process.env)."
+- id: "@tanstack/start-client-core#start-core/middleware"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/start-client-core#start-core/middleware"
+  for: "createMiddleware, request middleware (.server only), server function middleware (.client + .server), context passing via next({ context }), sendContext for client-server transfer, global middleware via createStart in src/start.ts, middleware factories, method order enforcement, fetch override precedence."
+- id: "@tanstack/start-client-core#start-core/server-functions"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/start-client-core#start-core/server-functions"
+  for: "createServerFn (GET/POST), validator (Zod or function), useServerFn hook, server context utilities (getRequest, getRequestHeader, setResponseHeader, setResponseStatus), error handling (throw errors, redirect, notFound), streaming, FormData handling, file organization (.functions.ts, .server.ts)."
+- id: "@tanstack/start-client-core#start-core/server-routes"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/start-client-core#start-core/server-routes"
+  for: "Server-side API endpoints using the server property on createFileRoute, HTTP method handlers (GET, POST, PUT, DELETE), createHandlers for per-handler middleware, handler context (request, params, context), request body parsing, response helpers, file naming for API routes."
+- id: "@tanstack/start-server-core#start-server-core"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/start-server-core#start-server-core"
+  for: "Server-side runtime for TanStack Start: createStartHandler, request/response utilities (getRequest, setResponseHeader, setCookie, getCookie, useSession), three-phase request handling, AsyncLocalStorage context."
+- id: "@tanstack/virtual-file-routes#virtual-file-routes"
+  run: "pnpm dlx @tanstack/intent@latest load @tanstack/virtual-file-routes#virtual-file-routes"
+  for: "Programmatic route tree building as an alternative to filesystem conventions: rootRoute, index, route, layout, physical, defineVirtualSubtreeConfig. Use with TanStack Router plugin's virtualRouteConfig option."
 
-## Toolchain Gotchas
-
-- TypeScript 6 uses `verbatimModuleSyntax`, `erasableSyntaxOnly`, `noUnusedLocals`, and `noUnusedParameters`; use `import type` for type-only imports and avoid enums/namespaces/non-erasable TS syntax.
-- Tailwind CSS v4 is configured in CSS, not `tailwind.config.js`: `src/index.css` imports `tailwindcss` and `tailwind-animations`, defines theme tokens in `@theme`, and uses `html[data-theme=...]` overrides.
-- Vite plugins are React, Tailwind, and `vite-imagetools`; image glob queries should request `w=400;800;1200` and `format=avif;webp;png` unless there is a reason to differ.
-- Vercel deploys `dist/`: generated `vercel.json` rewrites `/` to the default-language Home, then rewrites indexable `/:lang` and `/:lang/:subjectId` paths to their route-specific static HTML, including prerendered React content and metadata. All other paths go to `/_spa-fallback.html`, a separate empty shell for the TanStack Router SPA fallback. `scripts/generate-static-seo-pages.ts` runs the built client bundle in a build-time DOM after `vite build`; it must remain a static prerender step, not a runtime SSR entry.
-
-## Architecture
-
-- No backend: subjects/questions are static TypeScript under `src/subjects/`; attempts/progress, language, and theme are persisted in `localStorage`.
-- Runtime subject discovery is in `src/subjects/index.ts`: eager `import.meta.glob` loads every `*/meta.ts`, lazy glob loads `*/questions.ts`, and `_template` is excluded.
-- `src/subjects/_visibility.ts` is still required when adding a subject so React Doctor/static analysis sees named `meta` and `questions` exports as consumed.
-- The TanStack Router file-based hierarchy lives in `src/routes/`, with the generated tree in `src/routeTree.gen.ts` and the router instance in `src/router.tsx`; `src/App.tsx` is the shared application shell. Language-prefixed routes support `/:lang`, `/:lang/:subjectId`, `/:lang/:subjectId/practice/:topic`, and `/:lang/:subjectId/exam/:examId`. `/:lang/:subjectId/practice` redirects back to the subject page.
-- i18n is a custom context in `src/i18n/`; adding a string means updating the `Translations` shape in `en.ts` and adding matching values in `es.ts` and `gl.ts`.
-- Theme state is in `src/theme/`; valid themes come from `themeOrder` in `src/theme/types.ts` and are applied with `data-theme` on `<html>`.
-- Analytics scripts are in `index.html`; app code should use `src/lib/umami.ts`, which no-ops when analytics is unavailable.
-
-## Subject Data
-
-- To add a subject, copy `src/subjects/_template/`, then create exported `meta` and `questions` from `src/data/types.ts`; see `CONTRIBUTING.md` for full examples.
-- Subject folder names and `meta.id` must match. Use lowercase kebab-case unless preserving the existing short-code convention (`eseo`, `cepe`, etc.).
-- Topic keys referenced by `questions.ts` must exist in `meta.topics`; topic colors must have matching CSS variables in `src/index.css` (`blue`, `indigo`, `green`, `purple`, `pink`, `amber`, `red`, `cyan`, `orange`).
-- `Exam.id` is a slug string used directly in URLs and PDF filenames. PDFs are linked as `public/exams/{subject-id}/Exam-{id}.pdf`; set `hasPdf: false` for exams without a PDF.
-- Every question must have an `examId` string matching exactly one `Exam.id`; there is no shared-exam sentinel. Mark repeated or near-duplicate questions with `repeated: true` only to show the visual repeated marker.
-- Question counts and point totals shown for an exam are derived from the questions assigned to that exam in `src/lib/exam-stats.ts`; do not hardcode an exam description summary.
-- `mc` answers are stored as lowercase letters (`"a"`-`"e"`); `text` questions show `correctAnswer` as the model solution for self-grading; `matching` uses `Record<string, string>`.
-- Optional `explanation` only controls the extra solution panel for `mc`/`matching`; `text` always opens a model solution and can also show `explanation`.
-- Markdown-style inline code and fenced code blocks are rendered in question text, explanations, model answers, options, subquestions, and table cells via `src/lib/markdown.tsx`.
-
-## Images
-
-- Put question images in `src/subjects/{subject-id}/assets/` and reference them with `getImage(imageMap, "filename.png")`.
-- The standard import block is in `src/subjects/_template/questions.ts`; keep `Picture`/`ImageMap` as type-only imports.
-- Use `image` for the question body and `explanationImage` for the solution panel.
-
-## Verification
-
-- For code changes, run `pnpm build` and `pnpm lint` unless the change is docs-only.
-- For subject additions/large subject edits, also run `pnpm doctor` and manually check the subject page, each topic route, each exam route, images, grading, and PDF links in `pnpm dev`.
+<!-- intent-skills:end -->

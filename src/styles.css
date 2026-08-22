@@ -1,3 +1,7 @@
+/* Fontsource emits the @font-face rules with font-display: swap. Keep the
+   font CSS in the application stylesheet so it follows the same load path. */
+@import "@fontsource-variable/cascadia-code";
+@import "@fontsource-variable/onest";
 @import "tailwindcss";
 @import "tailwind-animations";
 @plugin "@tailwindcss/typography";
@@ -41,6 +45,16 @@ html[data-theme="system"] {
 .question-card-brand-mark {
   mask: url("/mono-favicon.svg") center / contain no-repeat;
   -webkit-mask: url("/mono-favicon.svg") center / contain no-repeat;
+}
+
+.footer-github-icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask: url("/github-icon.svg") center / contain no-repeat;
+  -webkit-mask: url("/github-icon.svg") center / contain no-repeat;
 }
 
 /* ── iOS safe-area / overscroll helpers ── */

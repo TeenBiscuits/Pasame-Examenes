@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { SubjectMeta } from "../src/data/types";
-import { isPublicSubject } from "../src/subjects/visibility";
+import { isIndexableSubject } from "../src/subjects/visibility";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
@@ -24,7 +24,7 @@ function examSummary(subject: SubjectMeta): string {
 
   if (years.length === 0) return String(exams.length);
   if (years.length === 1) return `${exams.length} (${years[0]})`;
-  return `${exams.length} (${years[0]}–${years.at(-1)})`;
+  return `${exams.length} (${years[0]} a ${years.at(-1)})`;
 }
 
 async function loadSubjects(): Promise<SubjectMeta[]> {
@@ -33,8 +33,7 @@ async function loadSubjects(): Promise<SubjectMeta[]> {
     .filter(
       (entry) =>
         entry.isDirectory() &&
-        entry.name !== "_template" &&
-        isPublicSubject(entry.name) &&
+        isIndexableSubject(entry.name) &&
         existsSync(resolve(subjectsDir, entry.name, "meta.ts")),
     )
     .map((entry) => entry.name)
@@ -59,7 +58,7 @@ function buildTable(subjects: SubjectMeta[]): string {
 
   return [
     START_MARKER,
-    "| Asignatura | Grao | Curso | Exámenes/etc |",
+    "| Asignatura | Grado | Curso | Exámenes |",
     "| --- | --- | ---: | ---: |",
     ...rows,
     END_MARKER,

@@ -1,37 +1,24 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
+# Tanstack Start .gitignore
 node_modules
+.DS_Store
 dist
 dist-ssr
 *.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Project Ignores
-public/sitemap.xml
-public/subjects-meta.json
-public/og
-src/seo/pageMetaMap.generated.ts
-src/subjects/questionSummaries.generated.ts
-
-# Env
 .env
+.nitro
+.tanstack
+.wrangler
+.output
+.vinxi
+__unconfig*
+todos.json
 
+# Pásame Exámenes .gitignore
+.vercel
 temp
 reference
+src/subjects/contentStats.generated.ts
+src/subjects/questionSummaries.generated.ts
+public/og
+public/subjects-meta.json
+.env*

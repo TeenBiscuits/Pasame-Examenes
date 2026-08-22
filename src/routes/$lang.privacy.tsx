@@ -1,30 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { isLang } from "../i18n/context-value";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
-import { useLang } from "../i18n/hooks";
-import { en } from "../i18n/en";
-import { es } from "../i18n/es";
-import { gl } from "../i18n/gl";
-import { useSeoHead } from "../lib/seo";
-import { useDocumentTitle } from "../lib/title";
-
-const translations = { en, es, gl } as const;
+import { createPageHead } from "../seo/head";
+import { buildPrivacyMeta } from "../seo/meta";
 
 export const Route = createFileRoute("/$lang/privacy")({
-  component: PrivacyRoute,
+	head: ({ params }) => {
+		const lang = isLang(params.lang) ? params.lang : "es";
+		return createPageHead(buildPrivacyMeta(lang), false);
+	},
+	component: PrivacyPolicy,
 });
-
-function PrivacyRoute() {
-  const { lang } = useLang();
-  const t = translations[lang];
-  const title = `${t.footer.privacyTitle} | ${t.seo.siteName}`;
-
-  useDocumentTitle(title);
-  useSeoHead({
-    title,
-    description: t.footer.privacySummary,
-    pathWithoutLang: "/privacy",
-    indexable: false,
-  });
-
-  return <PrivacyPolicy />;
-}
