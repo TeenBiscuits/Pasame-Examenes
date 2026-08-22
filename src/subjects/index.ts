@@ -1,65 +1,63 @@
-import type { SubjectMeta, Question } from "../data/types";
-import { isPublicSubject } from "./visibility";
+import type { Question, SubjectMeta } from "../data/types";
+import { isHomepageSubject, isNavigableSubject } from "./visibility";
 
 interface MetaModule {
-  meta: SubjectMeta;
+	meta: SubjectMeta;
 }
 
 interface QuestionsModule {
-  questions: Question[];
+	questions: Question[];
 }
 
 // Auto-discover subjects using Vite's import.meta.glob.
-// _template is loaded but is never a navigable subject.
 const metaModules = import.meta.glob<MetaModule>(["./*/meta.ts"], {
-  eager: true,
+	eager: true,
 });
 const questionsModules = import.meta.glob<QuestionsModule>([
-  "./*/questions.ts",
+	"./*/questions.ts",
 ]);
 
 const discoveredSubjects: SubjectMeta[] = [];
 for (const m of Object.values(metaModules)) {
-  if (m.meta.id === "_template") continue;
-  discoveredSubjects.push(m.meta);
+	discoveredSubjects.push(m.meta);
 }
 
 export const subjects = discoveredSubjects.filter((subject) =>
-  isPublicSubject(subject.id),
+	isHomepageSubject(subject.id),
 );
 
 export function getSubject(id: string): SubjectMeta | undefined {
-  if (id === "_template") return undefined;
-  return discoveredSubjects.find((s) => s.id === id);
+	const subject = discoveredSubjects.find((s) => s.id === id);
+	return subject && isNavigableSubject(subject.id) ? subject : undefined;
 }
 
 export async function getAllQuestions(subjectId: string): Promise<Question[]> {
-  const modulePath = `./${subjectId}/questions.ts`;
-  const mod = await questionsModules[modulePath]?.();
-  return mod?.questions ?? [];
+	const modulePath = `./${subjectId}/questions.ts`;
+	const mod = await questionsModules[modulePath]?.();
+	return mod?.questions ?? [];
 }
 
 export async function getQuestionsByTopic(
-  subjectId: string,
-  topic: string,
+	subjectId: string,
+	topic: string,
 ): Promise<Question[]> {
-  const qs = await getAllQuestions(subjectId);
-  return qs.filter((q) => q.topic === topic);
+	const qs = await getAllQuestions(subjectId);
+	return qs.filter((q) => q.topic === topic);
 }
 
 export async function getQuestionsByExam(
-  subjectId: string,
-  examId: string,
+	subjectId: string,
+	examId: string,
 ): Promise<Question[]> {
-  const qs = await getAllQuestions(subjectId);
-  return qs.filter((q) => q.examId === examId);
+	const qs = await getAllQuestions(subjectId);
+	return qs.filter((q) => q.examId === examId);
 }
 
 export async function getTopicMegaTopicLabel(
-  subjectId: string,
-  topicKey: string,
+	subjectId: string,
+	topicKey: string,
 ): Promise<string | undefined> {
-  const subject = getSubject(subjectId);
-  if (!subject?.megatopics) return undefined;
-  return subject.megatopics.find((mt) => mt.topics.includes(topicKey))?.label;
+	const subject = getSubject(subjectId);
+	if (!subject?.megatopics) return undefined;
+	return subject.megatopics.find((mt) => mt.topics.includes(topicKey))?.label;
 }

@@ -7,109 +7,126 @@
 [![React 19](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black)](https://react.dev)
 [![TypeScript 6](https://img.shields.io/badge/TypeScript_6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite 8](https://img.shields.io/badge/Vite_8-646CFF?logo=vite&logoColor=white)](https://vite.dev)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![TanStack Router](https://img.shields.io/badge/TanStack_Router-FF4154?logo=react&logoColor=white)](https://tanstack.com/router)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![TanStack Start](https://img.shields.io/badge/TanStack_Start-FF4154?logo=react&logoColor=white)](https://tanstack.com/start/latest)
+[![Biome 2](https://img.shields.io/badge/Biome_2-60A5FA?logo=biome&logoColor=white)](https://biomejs.dev/)
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
-[![i18n](https://img.shields.io/badge/i18n-en_|_es_|_gl-34d399)](https://github.com/TeenBiscuits/Pasame-Examenes)
+<br />
+[![i18n](https://img.shields.io/badge/i18n-es_|_gl_|_en-34d399)](#arquitectura)
 [![driver.js](https://img.shields.io/badge/driver.js-FF5722)](https://driverjs.com)
-[![Vercel](https://img.shields.io/badge/Vercel-black?logo=vercel&logoColor=white)](https://vercel.com)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com)
 [![Greptile: The War on Bugs](https://www.greptile.com/badge.svg)](https://www.greptile.com/?utm_source=oss_badge&utm_medium=readme&utm_campaign=greptile_for_open_source)
-[![Pull Request](https://img.shields.io/github/issues-pr-closed/TeenBiscuits/Pasame-Examenes.svg?label=Pull%20Request)](https://github.com/TeenBiscuits/Pasame-Examenes/pulls)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![Pull requests](https://img.shields.io/github/issues-pr-closed/TeenBiscuits/Pasame-Examenes?label=Pull%20requests)](https://github.com/TeenBiscuits/Pasame-Examenes/pulls)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE.md)
 [![Stars](https://img.shields.io/github/stars/TeenBiscuits/Pasame-Examenes.svg)](https://github.com/TeenBiscuits/Pasame-Examenes)
 
 </div>
 
 <div align="center">
-<br/>
-<b>Pásame Exámenes</b> es una plataforma de código abierto para practicar exámenes de la FIC por tema o en modo cronometrado, con respuestas modelo y autocorrección.
-<br/>
+    <br/>
+    <b>Pásame Exámenes</b> es una plataforma para practicar preguntas de exámenes y recopilatorios de las asignaturas de la Facultade de Informática da Coruña (FIC).
+    <br/>
 </div>
 
 <div align="center">
 <h3><a  href="https://pe.pablopl.dev/?utm_source=github-readme&utm_medium=social&utm_campaign=public-launch">👉 pe.pablopl.dev 🌐</a></h3>
 </div>
 
-## Cómo funciona
+La aplicación permite:
 
-Cada asignatura es una carpeta autónoma dentro de `src/subjects/`. Solo necesitas crear la carpeta con dos archivos (`meta.ts` y `questions.ts`) y la asignatura aparece automáticamente en la web. No hay backend: todos los datos son archivos TypeScript y el progreso se guarda en `localStorage`.
+- practicar por tema o por examen;
+- revisar respuestas, puntuación y progreso;
+- estudiar en español, galego o inglés;
+- consultar preguntas con Markdown, fórmulas y contenido multimedia.
 
-### Modo Práctica
+## Arquitectura
 
-Elige un tema y practica pregunta a pregunta. Cada pregunta se corrige individualmente, con explicaciones detalladas y posibilidad de auto-evaluarte en las preguntas abiertas. Tu progreso por tema se guarda automáticamente.
+La aplicación usa React, TanStack Start, TanStack Router, Vite y TypeScript.
 
-### Modo cronometrado
+Home y las páginas públicas de asignatura generan su HTML durante el build para que los buscadores puedan leer su contenido. Las rutas de práctica y examen se cargan de forma interactiva en el navegador.
 
-Practica con temporizador, puntuación en directo y auto-entrega opcional. En asignaturas con exámenes autorizados puede reflejar el formato real; en el resto usa recopilatorios o ejercicios originales con estructura orientativa.
+## Desarrollo local
 
-### Tipos de pregunta
+### Requisitos
 
-- **Opción múltiple** — 5 opciones, corrección automática
-- **Texto / Cálculo** — Respuesta libre, auto-evaluación contra la solución modelo
-- **Emparejamiento** — Relaciona conceptos con letras, corrección automática
+- Node.js
+- pnpm
 
-## Asignaturas
-
-<!-- SUBJECTS_TABLE:START -->
-| Asignatura | Grao | Curso | Exámenes/etc |
-| --- | --- | ---: | ---: |
-| 🧮 Cálculo | Grao en Enxeñaría informática | 1º | 8 (2022–2025) |
-| 🗃️ Bases de Datos | Grao en Enxeñaría informática | 2º | 3 (2022–2026) |
-| ⚡ Concorrencia e Paralelismo | Grao en Enxeñaría informática | 2º | 4 (2024–2025) |
-| 🎨 Deseño de Software | Grao en Enxeñaría informática | 2º | 2 (2020–2022) |
-| 💻 Estrutura de Computadores | Grao en Enxeñaría informática | 2º | 1 (2026) |
-| 🗓️ Proceso Software | Grao en Enxeñaría informática | 2º | 1 (2026) |
-| 🕸️ Redes | Grao en Enxeñaría informática | 2º | 4 (2008–2026) |
-| 🧠 Sistemas Intelixentes | Grao en Enxeñaría informática | 2º | 5 (2023–2026) |
-| 💽 Sistemas Operativos | Grao en Enxeñaría informática | 2º | 4 (2023–2024) |
-| 🌐 Internet y Sistemas Distribuidos | Grao en Enxeñaría informática | 3º | 1 |
-| 🔗 Programación Integrativa | Grao en Enxeñaría informática | 3º | 1 |
-| 🏗️ Xestión de Infraestruturas | Grao en Enxeñaría informática | 3º | 4 (2024) |
-| 📋 Xestión de Proxectos | Grao en Enxeñaría informática | 3º | 5 (2024–2026) |
-<!-- SUBJECTS_TABLE:END -->
-
-## Desarrollo
+### Instalar y arrancar
 
 ```bash
-pnpm dev       # Servidor Vite con HMR; carga react-grab solo en desarrollo
-pnpm build     # tsc -b + mapas + sitemap + IndexNow opcional + rewrites/OG + build + páginas SEO estáticas
-pnpm lint      # ESLint flat config para TS/TSX; ignora scripts/
-pnpm readme    # Actualiza la tabla de asignaturas del README
-pnpm format    # Prettier --write
-pnpm preview   # Preview del build de producción
-pnpm doctor    # React Doctor
+pnpm install
+pnpm dev
 ```
 
-No hay script `test` ni `typecheck` separado: `pnpm build` es la verificación de tipos.
+La aplicación queda disponible en [http://localhost:3000](http://localhost:3000).
 
-### Routing y SEO
+`pnpm dev` genera antes las estadísticas de contenido y las imágenes OG necesarias para la aplicación.
 
-La navegación usa TanStack Router con rutas basadas en archivos dentro de `src/routes/`. El árbol se genera en `src/routeTree.gen.ts` y la instancia del router está en `src/router.tsx`; `src/App.tsx` contiene el shell compartido de la aplicación.
+## Comandos
 
-Durante el build, `scripts/generate-static-seo-pages.ts` ejecuta el bundle cliente sobre un DOM de build, navega por las rutas indexables de inicio y asignatura y serializa su contenido React junto con los metadatos. También genera la Home por defecto en `dist/index.html` y conserva `dist/_spa-fallback.html` como shell vacío. No hay SSR en runtime: `vercel.json` dirige `/` y las URLs indexables a sus documentos estáticos, y las rutas de práctica, exámenes y demás rutas no indexables al fallback SPA.
+| Comando           | Uso                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| `pnpm dev`        | Arranca el servidor de desarrollo.                                                  |
+| `pnpm build`      | Genera los assets, crea el build de producción y prerenderiza las páginas públicas. |
+| `pnpm preview`    | Sirve localmente el build de producción.                                            |
+| `pnpm check`      | Ejecuta las comprobaciones de Biome.                                                |
+| `pnpm typecheck`  | Comprueba los tipos de TypeScript.                                                  |
+| `pnpm lint`       | Ejecuta el linter de Biome.                                                         |
+| `pnpm format`     | Comprueba el formato de los archivos.                                               |
+| `pnpm run doctor` | Ejecuta React Doctor sin sustituir a Biome.                                         |
+| `pnpm readme`     | Actualiza la tabla de asignaturas de este README.                                   |
 
-### i18n y temas
+## Contenido
 
-La plataforma es trilingüe (español, inglés, gallego) con un sistema de i18n propio en `src/i18n/`. Incluye apariencias clara y oscura, el tema claro Princesa, los cuatro sabores de Catppuccin y un modo sistema, conmutables desde la interfaz y aplicadas mediante `data-theme` en `<html>`.
+Las asignaturas viven en `src/subjects`. Cada una tiene un `meta.ts` con sus temas y exámenes y un `questions.ts` con las preguntas. Las preguntas usan objetos TypeScript y pueden incluir Markdown, fórmulas y referencias a imágenes en la carpeta `assets` de la asignatura.
 
-### Generación de OG images
+Para añadir una asignatura:
 
-El build genera automáticamente imágenes Open Graph por asignatura y página principal usando `@napi-rs/canvas`, que los crawlers usan para previsualizaciones en redes sociales.
+1. Crea `src/subjects/<id>/meta.ts`.
+2. Crea `src/subjects/<id>/questions.ts`.
+3. Añade las imágenes en `src/subjects/<id>/assets` si las necesita.
+4. Ejecuta `pnpm typecheck` y `pnpm build`.
 
-## Contribuye ✨
+La lista siguiente se genera con `pnpm readme`. No edites sus filas a mano.
 
-¡Toda contribución es bienvenida! Puedes:
+<!-- SUBJECTS_TABLE:START -->
 
-- Añadir **nuevas asignaturas** con exámenes autorizados, pruebas, recopilatorios o ejercicios originales
-- Corregir **errores** en preguntas existentes
-- Reportar **issues** directamente desde cualquier pregunta
-- Mejorar la **web** (features, diseño, accesibilidad)
+| Asignatura                          | Grado                         | Curso |        Exámenes |
+| ----------------------------------- | ----------------------------- | ----: | --------------: |
+| 🧮 Cálculo                          | Grao en Enxeñaría informática |    1º | 8 (2022 a 2025) |
+| 🗃️ Bases de Datos                   | Grao en Enxeñaría informática |    2º | 3 (2022 a 2026) |
+| ⚡ Concorrencia e Paralelismo       | Grao en Enxeñaría informática |    2º | 4 (2024 a 2025) |
+| 🎨 Deseño de Software               | Grao en Enxeñaría informática |    2º | 2 (2020 a 2022) |
+| 💻 Estrutura de Computadores        | Grao en Enxeñaría informática |    2º |        1 (2026) |
+| 🗓️ Proceso Software                 | Grao en Enxeñaría informática |    2º |        1 (2026) |
+| 🕸️ Redes                            | Grao en Enxeñaría informática |    2º | 4 (2008 a 2026) |
+| 🧠 Sistemas Intelixentes            | Grao en Enxeñaría informática |    2º | 5 (2023 a 2026) |
+| 💽 Sistemas Operativos              | Grao en Enxeñaría informática |    2º | 4 (2023 a 2024) |
+| 🌐 Internet y Sistemas Distribuidos | Grao en Enxeñaría informática |    3º |               1 |
+| 🔗 Programación Integrativa         | Grao en Enxeñaría informática |    3º |               1 |
+| 🏗️ Xestión de Infraestruturas       | Grao en Enxeñaría informática |    3º |        4 (2024) |
+| 📋 Xestión de Proxectos             | Grao en Enxeñaría informática |    3º | 5 (2024 a 2026) |
 
-> [!IMPORTANT]  
-> Lee la [guía de contribución](./CONTRIBUTING.md) para empezar.
+<!-- SUBJECTS_TABLE:END -->
 
 > [!CAUTION]
 > No se aceptan enunciados, PDFs o materiales docentes protegidos sin autorización para compartirlos.
+
+## Estructura principal
+
+```text
+src/
+├── components/   Componentes compartidos de la interfaz
+├── i18n/         Traducciones y selección de idioma
+├── lib/          Lógica común
+├── routes/       Rutas de TanStack Router
+├── subjects/     Metadatos, temas, exámenes y preguntas
+└── styles.css    Estilos globales
+public/           Assets públicos e imágenes OG
+scripts/          Generadores de build y herramientas auxiliares
+```
 
 ## Licencia
 
@@ -117,26 +134,6 @@ El código de la plataforma se distribuye bajo la licencia **Apache 2.0**. Consu
 
 El contenido subido a la web, incluyendo preguntas y soluciones, se considera licenciado bajo **CC BY-SA 4.0** salvo que se indique otra licencia específica en la página de la asignatura correspondiente. Consulta [LICENSE-CONTENT.md](./LICENSE-CONTENT.md) para el texto completo.
 
-<p>El contenido de <a href="https://pe.pablopl.dev">Pásame Exámenes</a> © 2026 por <a href="https://pablopl.dev">Pablo Portas López</a> está licenciado bajo <a href="https://creativecommons.org/licenses/BY-SA/4.0/">CC BY-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"></p>
-
-```text
-Copyright 2026 Pablo Portas López
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-```
-
-Las preguntas y soluciones son contribuciones de la comunidad, pueden cometer errores de los que no nos hacemos responsables, nuestro objetivo es corregir todos los errores posibles, si ves un error [repórtalo](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=report-question.yml).
-
-```js
+```ts
 // Made with love by Pablo Portas López
 ```

@@ -1,104 +1,104 @@
 import type { Ref } from "react";
 import type { Question } from "../data/types";
-import { track } from "../lib/umami";
 import type { QuestionResult } from "../lib/grading";
+import { track } from "../lib/umami";
 
 type NavEventName = "practice_navigate" | "exam_navigate";
 
 interface QuestionNavChipsProps {
-  questions: Question[];
-  answers: Record<string, string>;
-  currentIndex: number;
-  navRef: Ref<HTMLDivElement>;
-  showLeftFade: boolean;
-  showRightFade: boolean;
-  onSelectIndex: (i: number, direction: "next" | "prev" | undefined) => void;
-  eventData:
-    | Record<string, string | number | boolean | undefined | null>
-    | (() => Record<string, string | number | boolean | undefined | null>);
-  eventName: NavEventName;
-  checkedQuestions?: Record<string, boolean>;
-  questionResults?: Record<string, QuestionResult>;
-  dataTour?: string;
-  className?: string;
+	questions: Question[];
+	answers: Record<string, string>;
+	currentIndex: number;
+	navRef: Ref<HTMLDivElement>;
+	showLeftFade: boolean;
+	showRightFade: boolean;
+	onSelectIndex: (i: number, direction: "next" | "prev" | undefined) => void;
+	eventData:
+		| Record<string, string | number | boolean | undefined | null>
+		| (() => Record<string, string | number | boolean | undefined | null>);
+	eventName: NavEventName;
+	checkedQuestions?: Record<string, boolean>;
+	questionResults?: Record<string, QuestionResult>;
+	dataTour?: string;
+	className?: string;
 }
 
 export default function QuestionNavChips({
-  questions,
-  answers,
-  currentIndex,
-  navRef,
-  showLeftFade,
-  showRightFade,
-  onSelectIndex,
-  eventData,
-  eventName,
-  checkedQuestions,
-  questionResults,
-  dataTour,
-  className = "mb-4",
+	questions,
+	answers,
+	currentIndex,
+	navRef,
+	showLeftFade,
+	showRightFade,
+	onSelectIndex,
+	eventData,
+	eventName,
+	checkedQuestions,
+	questionResults,
+	dataTour,
+	className = "mb-4",
 }: QuestionNavChipsProps) {
-  return (
-    <div
-      ref={navRef}
-      className={`question-nav-scroll flex gap-2 overflow-x-auto overflow-y-hidden pb-0 sm:pb-2 ${className}`}
-      data-tour={dataTour}
-      style={{
-        maskImage:
-          showLeftFade && showRightFade
-            ? "linear-gradient(to right, transparent 0%, var(--color-mask) 8%, var(--color-mask) 92%, transparent 100%)"
-            : showLeftFade
-              ? "linear-gradient(to right, transparent 0%, var(--color-mask) 8%, var(--color-mask) 100%)"
-              : showRightFade
-                ? "linear-gradient(to right, var(--color-mask) 0%, var(--color-mask) 92%, transparent 100%)"
-                : undefined,
-      }}
-    >
-      {questions.map((q, i) => {
-        const result = questionResults?.[q.id];
-        const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
-        const isChecked = !!checkedQuestions?.[q.id];
-        const isCurrent = i === currentIndex;
-        let cls =
-          "size-[42px] rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
-        if (isCurrent) cls += " bg-accent text-on-accent border-accent";
-        else if (result === "correct")
-          cls += " bg-correct-bg border-correct-border text-correct-fg";
-        else if (result === "incorrect")
-          cls += " bg-incorrect-bg border-incorrect-border text-incorrect-fg";
-        else if (result === "pending" || isChecked)
-          cls += " bg-pending-bg border-pending-border text-pending-fg";
-        else if (isAnswered)
-          cls += " bg-pending-bg border-pending-border text-pending-fg";
-        else cls += " border-border text-fg-muted hover:border-fg-muted";
-        const direction =
-          i > currentIndex ? "next" : i < currentIndex ? "prev" : undefined;
-        return (
-          <button
-            type="button"
-            key={q.id}
-            data-cuelume-toggle="page"
-            className={cls}
-            onPointerUp={(event) => event.currentTarget.blur()}
-            onClick={() => {
-              if (direction !== undefined) {
-                const data =
-                  typeof eventData === "function" ? eventData() : eventData;
-                track(eventName, {
-                  ...data,
-                  direction,
-                  fromIndex: currentIndex,
-                  toIndex: i,
-                  source: "chip",
-                });
-              }
-              onSelectIndex(i, direction);
-            }}
-          >
-            {i + 1}
-          </button>
-        );
-      })}
-    </div>
-  );
+	return (
+		<div
+			ref={navRef}
+			className={`question-nav-scroll flex gap-2 overflow-x-auto overflow-y-hidden pb-0 sm:pb-2 ${className}`}
+			data-tour={dataTour}
+			style={{
+				maskImage:
+					showLeftFade && showRightFade
+						? "linear-gradient(to right, transparent 0%, var(--color-mask) 8%, var(--color-mask) 92%, transparent 100%)"
+						: showLeftFade
+							? "linear-gradient(to right, transparent 0%, var(--color-mask) 8%, var(--color-mask) 100%)"
+							: showRightFade
+								? "linear-gradient(to right, var(--color-mask) 0%, var(--color-mask) 92%, transparent 100%)"
+								: undefined,
+			}}
+		>
+			{questions.map((q, i) => {
+				const result = questionResults?.[q.id];
+				const isAnswered = answers[q.id] && answers[q.id].trim() !== "";
+				const isChecked = !!checkedQuestions?.[q.id];
+				const isCurrent = i === currentIndex;
+				let cls =
+					"size-[42px] rounded-md text-xs font-mono flex items-center justify-center border shrink-0 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition cursor-pointer";
+				if (isCurrent) cls += " bg-accent text-on-accent border-accent";
+				else if (result === "correct")
+					cls += " bg-correct-bg border-correct-border text-correct-fg";
+				else if (result === "incorrect")
+					cls += " bg-incorrect-bg border-incorrect-border text-incorrect-fg";
+				else if (result === "pending" || isChecked)
+					cls += " bg-pending-bg border-pending-border text-pending-fg";
+				else if (isAnswered)
+					cls += " bg-pending-bg border-pending-border text-pending-fg";
+				else cls += " border-border text-fg-muted hover:border-fg-muted";
+				const direction =
+					i > currentIndex ? "next" : i < currentIndex ? "prev" : undefined;
+				return (
+					<button
+						type="button"
+						key={q.id}
+						data-cuelume-toggle="page"
+						className={cls}
+						onPointerUp={(event) => event.currentTarget.blur()}
+						onClick={() => {
+							if (direction !== undefined) {
+								const data =
+									typeof eventData === "function" ? eventData() : eventData;
+								track(eventName, {
+									...data,
+									direction,
+									fromIndex: currentIndex,
+									toIndex: i,
+									source: "chip",
+								});
+							}
+							onSelectIndex(i, direction);
+						}}
+					>
+						{i + 1}
+					</button>
+				);
+			})}
+		</div>
+	);
 }

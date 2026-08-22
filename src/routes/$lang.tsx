@@ -1,37 +1,92 @@
-import { useEffect } from "react";
 import {
-  Navigate,
-  Outlet,
-  createFileRoute,
-  useLocation,
+	createFileRoute,
+	getRouteApi,
+	Outlet,
+	redirect,
 } from "@tanstack/react-router";
-import { useLang } from "../i18n/hooks";
+import { useEffect } from "react";
+import AppChrome from "../components/AppChrome";
+import LangNotFound from "../components/LangNotFound";
+import { I18nProvider } from "../i18n/context";
 import { isLang } from "../i18n/context-value";
 import { detectPreferredLang } from "../i18n/detect-lang";
-import { buildLocationSuffix } from "../lib/lang-link-utils";
+import { ssrDuringBuildPrerender } from "../lib/ssr";
+import { createNoIndexHead } from "../seo/head";
+import { buildNotFoundMeta } from "../seo/meta";
+import { ThemeProvider } from "../theme/context";
 
 export const Route = createFileRoute("/$lang")({
-  component: LangLayout,
+	ssr: ssrDuringBuildPrerender,
+	beforeLoad: ({ location, params }) => {
+		if (isLang(params.lang)) return;
+
+		const segments = location.pathname.split("/").filter(Boolean);
+		const [subjectId, section, value] = segments;
+		const lang = detectPreferredLang();
+
+		if (subjectId && segments.length === 1) {
+			throw redirect({
+				to: "/$lang/$subjectId",
+				params: { lang, subjectId },
+				search: location.search,
+				hash: location.hash,
+				replace: true,
+			});
+		}
+
+		if (subjectId && section === "practice" && value) {
+			throw redirect({
+				to: "/$lang/$subjectId/practice/$topic",
+				params: { lang, subjectId, topic: value },
+				search: location.search,
+				hash: location.hash,
+				replace: true,
+			});
+		}
+
+		if (subjectId && section === "exam" && value) {
+			throw redirect({
+				to: "/$lang/$subjectId/exam/$examId",
+				params: { lang, subjectId, examId: value },
+				search: location.search,
+				hash: location.hash,
+				replace: true,
+			});
+		}
+
+		throw redirect({
+			to: "/$lang/$",
+			params: { lang, _splat: segments.join("/") },
+			search: location.search,
+			hash: location.hash,
+			replace: true,
+		});
+	},
+	head: ({ params }) => {
+		const lang = isLang(params.lang) ? params.lang : "es";
+		return createNoIndexHead(buildNotFoundMeta(lang));
+	},
+	component: LangLayout,
+	notFoundComponent: LangNotFound,
 });
 
+const langRouteApi = getRouteApi("/$lang");
+
 function LangLayout() {
-  const { lang: paramLang } = Route.useParams();
-  const location = useLocation();
-  const { setLang } = useLang();
-  const validLang = isLang(paramLang) ? paramLang : null;
+	const { lang: rawLang } = langRouteApi.useParams();
+	const lang = isLang(rawLang) ? rawLang : "es";
 
-  useEffect(() => {
-    if (validLang) setLang(validLang);
-  }, [validLang, setLang]);
+	useEffect(() => {
+		document.documentElement.lang = lang;
+	}, [lang]);
 
-  if (!validLang) {
-    const destination = `/${detectPreferredLang()}${location.pathname}${buildLocationSuffix(
-      location.searchStr,
-      location.hash,
-    )}`;
-
-    return <Navigate to={destination as never} replace />;
-  }
-
-  return <Outlet />;
+	return (
+		<ThemeProvider>
+			<I18nProvider initialLang={lang}>
+				<AppChrome>
+					<Outlet />
+				</AppChrome>
+			</I18nProvider>
+		</ThemeProvider>
+	);
 }

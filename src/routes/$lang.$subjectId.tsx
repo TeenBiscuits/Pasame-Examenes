@@ -1,22 +1,40 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { isLang } from "../i18n/context-value";
+import { ssrDuringBuildPrerender } from "../lib/ssr";
 import SubjectHome from "../pages/SubjectHome";
-import { questionSummariesBySubject } from "../subjects/questionSummaries.generated";
-
-function getQuestionSummaries(subjectId: string) {
-  return (
-    questionSummariesBySubject[
-      subjectId as keyof typeof questionSummariesBySubject
-    ] ?? []
-  );
-}
+import { createPageHead } from "../seo/head";
+import { buildSubjectMeta } from "../seo/meta";
+import { getSubject } from "../subjects";
+import { isIndexableSubject } from "../subjects/visibility";
+import { subjectBuildStats, subjectRouteData } from "./-route-data";
 
 export const Route = createFileRoute("/$lang/$subjectId")({
-  component: SubjectRoute,
+	ssr: ssrDuringBuildPrerender,
+	loader: ({ params }) => {
+		const subject = subjectRouteData(params.subjectId);
+		return {
+			stats: subjectBuildStats(subject),
+		};
+	},
+	staleTime: Infinity,
+	head: ({ params, loaderData }) => {
+		const subject = getSubject(params.subjectId);
+		if (!subject) return {};
+
+		const lang = isLang(params.lang) ? params.lang : "es";
+		return createPageHead(
+			buildSubjectMeta(lang, subject, {
+				questionCount: loaderData?.stats.questionCount ?? 0,
+			}),
+			isIndexableSubject(subject.id),
+		);
+	},
+	component: SubjectRoute,
 });
 
-function SubjectRoute() {
-  const { subjectId } = Route.useParams();
-  const questionSummaries = getQuestionSummaries(subjectId);
+const subjectRouteApi = getRouteApi("/$lang/$subjectId");
 
-  return <SubjectHome initialQuestions={[...questionSummaries]} />;
+function SubjectRoute() {
+	const loaderData = subjectRouteApi.useLoaderData();
+	return <SubjectHome buildStats={loaderData.stats} />;
 }

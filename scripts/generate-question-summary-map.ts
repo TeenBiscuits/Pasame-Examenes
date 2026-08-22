@@ -11,6 +11,20 @@ interface QuestionSummary {
   repeated?: boolean;
 }
 
+interface TopicStats {
+	questionCount: number;
+	points: number;
+}
+
+interface GeneratedSubjectBuildStats {
+	questionCount: number;
+	repeatedQuestionCount: number;
+	topicStats: Record<string, TopicStats>;
+	examStats: Record<string, TopicStats>;
+	topicStatsByExam: Record<string, Record<string, TopicStats>>;
+	repeatedQuestionCountByExam: Record<string, number>;
+}
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const subjectsDir = resolve(root, "src", "subjects");
 const outPath = resolve(subjectsDir, "questionSummaries.generated.ts");
@@ -101,21 +115,82 @@ function parseQuestions(sourcePath: string): QuestionSummary[] {
   throw new Error(`Could not find the questions array in ${sourcePath}`);
 }
 
+function addPoints(
+	stats: Record<string, TopicStats>,
+	key: string,
+	points: number,
+) {
+	let current = stats[key];
+	if (!current) {
+		current = { questionCount: 0, points: 0 };
+		stats[key] = current;
+	}
+	current.questionCount += 1;
+	current.points += points;
+}
+
+function buildStats(questions: QuestionSummary[]): GeneratedSubjectBuildStats {
+	const topicStats: Record<string, TopicStats> = {};
+	const examStats: Record<string, TopicStats> = {};
+	const topicStatsByExam: Record<string, Record<string, TopicStats>> = {};
+	const repeatedQuestionCountByExam: Record<string, number> = {};
+
+	for (const question of questions) {
+		addPoints(topicStats, question.topic, question.points);
+		addPoints(examStats, question.examId, question.points);
+		const examTopics = (topicStatsByExam[question.examId] ??= {});
+		addPoints(examTopics, question.topic, question.points);
+		if (question.repeated) {
+			repeatedQuestionCountByExam[question.examId] =
+				(repeatedQuestionCountByExam[question.examId] ?? 0) + 1;
+		}
+	}
+
+	return {
+		questionCount: questions.length,
+		repeatedQuestionCount: questions.filter((question) => question.repeated)
+			.length,
+		topicStats,
+		examStats,
+		topicStatsByExam,
+		repeatedQuestionCountByExam,
+	};
+}
+
 const summaries: Record<string, QuestionSummary[]> = {};
 for (const entry of readdirSync(subjectsDir, { withFileTypes: true })) {
-  if (!entry.isDirectory() || entry.name === "_template") continue;
+	if (!entry.isDirectory()) continue;
   const questionsPath = resolve(subjectsDir, entry.name, "questions.ts");
   summaries[entry.name] = parseQuestions(questionsPath);
 }
 
+const contentStats: Record<string, GeneratedSubjectBuildStats> = {};
+for (const [subjectId, questions] of Object.entries(summaries)) {
+	contentStats[subjectId] = buildStats(questions);
+}
+
 const output = [
-  'import type { QuestionSummary } from "../data/types";',
-  "",
-  `export const questionSummariesBySubject = ${JSON.stringify(summaries, null, 2)} as const satisfies Record<string, readonly QuestionSummary[]>;`,
-  "",
+	'import type { QuestionSummary } from "../data/types";',
+	"",
+	`export const questionSummariesBySubject = ${JSON.stringify(summaries, null, 2)} as const satisfies Record<string, readonly QuestionSummary[]>;`,
+	"",
+	"const questionSummaryMap = new Map(Object.entries(questionSummariesBySubject));",
+	"",
+	"export function getQuestionSummaries(subjectId: string) {",
+	"\treturn questionSummaryMap.get(subjectId) ?? [];",
+	"}",
 ].join("\n");
 
 writeFileSync(outPath, output);
+
+const statsPath = resolve(subjectsDir, "contentStats.generated.ts");
+const statsOutput = [
+	'import type { GeneratedSubjectBuildStats } from "../lib/content-stats";',
+	"",
+	`export const contentStatsBySubject: Record<string, GeneratedSubjectBuildStats> = ${JSON.stringify(contentStats, null, 2)};`,
+	"",
+].join("\n");
+writeFileSync(statsPath, statsOutput);
 console.log(
-  `✓ Generated question summaries for ${Object.keys(summaries).length} subjects → ${outPath}`,
+	`✓ Generated question summaries and compact content stats for ${Object.keys(summaries).length} subjects → ${outPath}`,
 );

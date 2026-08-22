@@ -8,233 +8,354 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root';
-import { Route as LangRouteImport } from './routes/$lang';
-import { Route as SplatRouteImport } from './routes/$';
-import { Route as IndexRouteImport } from './routes/index';
-import { Route as LangIndexRouteImport } from './routes/$lang.index';
-import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy';
-import { Route as LangSubjectIdRouteImport } from './routes/$lang.$subjectId';
-import { Route as LangSplatRouteImport } from './routes/$lang.$';
-import { Route as LangSubjectIdPracticeRouteImport } from './routes/$lang.$subjectId_.practice';
-import { Route as LangSubjectIdPracticeTopicRouteImport } from './routes/$lang.$subjectId_.practice_.$topic';
-import { Route as LangSubjectIdExamExamIdRouteImport } from './routes/$lang.$subjectId_.exam.$examId';
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as SplatRouteImport } from './routes/$'
+import { Route as LangRouteImport } from './routes/$lang'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as Char123INDEXNOW_KEYChar125DottxtRouteImport } from './routes/{$INDEXNOW_KEY}[.]txt'
+import { Route as LangIndexRouteImport } from './routes/$lang.index'
+import { Route as LangSplatRouteImport } from './routes/$lang.$'
+import { Route as LangSubjectIdRouteImport } from './routes/$lang.$subjectId'
+import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
+import { Route as SubjectIdPracticeRouteImport } from './routes/$subjectId_.practice'
+import { Route as LangSubjectIdPracticeRouteImport } from './routes/$lang.$subjectId_.practice'
+import { Route as SubjectIdExamExamIdRouteImport } from './routes/$subjectId_.exam.$examId'
+import { Route as SubjectIdPracticeTopicRouteImport } from './routes/$subjectId_.practice_.$topic'
+import { Route as LangSubjectIdExamExamIdRouteImport } from './routes/$lang.$subjectId_.exam.$examId'
+import { Route as LangSubjectIdPracticeTopicRouteImport } from './routes/$lang.$subjectId_.practice_.$topic'
 
-const LangRoute = LangRouteImport.update({
-  id: '/$lang',
-  path: '/$lang',
-  getParentRoute: () => rootRouteImport,
-} as any);
-const SplatRoute = SplatRouteImport.update({
-  id: '/$',
-  path: '/$',
-  getParentRoute: () => rootRouteImport,
-} as any);
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Char123INDEXNOW_KEYChar125DottxtRoute =
+  Char123INDEXNOW_KEYChar125DottxtRouteImport.update({
+    id: '/{$INDEXNOW_KEY}.txt',
+    path: '/{$INDEXNOW_KEY}.txt',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LangIndexRoute = LangIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => LangRoute,
-} as any);
-const LangPrivacyRoute = LangPrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => LangRoute,
-} as any);
-const LangSubjectIdRoute = LangSubjectIdRouteImport.update({
-  id: '/$subjectId',
-  path: '/$subjectId',
-  getParentRoute: () => LangRoute,
-} as any);
+} as any)
 const LangSplatRoute = LangSplatRouteImport.update({
   id: '/$',
   path: '/$',
   getParentRoute: () => LangRoute,
-} as any);
+} as any)
+const LangSubjectIdRoute = LangSubjectIdRouteImport.update({
+  id: '/$subjectId',
+  path: '/$subjectId',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangPrivacyRoute = LangPrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => LangRoute,
+} as any)
+const SubjectIdPracticeRoute = SubjectIdPracticeRouteImport.update({
+  id: '/$subjectId_/practice',
+  path: '/$subjectId/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LangSubjectIdPracticeRoute = LangSubjectIdPracticeRouteImport.update({
   id: '/$subjectId_/practice',
   path: '/$subjectId/practice',
   getParentRoute: () => LangRoute,
-} as any);
+} as any)
+const SubjectIdExamExamIdRoute = SubjectIdExamExamIdRouteImport.update({
+  id: '/$subjectId_/exam/$examId',
+  path: '/$subjectId/exam/$examId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubjectIdPracticeTopicRoute = SubjectIdPracticeTopicRouteImport.update({
+  id: '/$subjectId_/practice_/$topic',
+  path: '/$subjectId/practice/$topic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangSubjectIdExamExamIdRoute = LangSubjectIdExamExamIdRouteImport.update({
+  id: '/$subjectId_/exam/$examId',
+  path: '/$subjectId/exam/$examId',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangSubjectIdPracticeTopicRoute =
   LangSubjectIdPracticeTopicRouteImport.update({
     id: '/$subjectId_/practice_/$topic',
     path: '/$subjectId/practice/$topic',
     getParentRoute: () => LangRoute,
-  } as any);
-const LangSubjectIdExamExamIdRoute = LangSubjectIdExamExamIdRouteImport.update({
-  id: '/$subjectId_/exam/$examId',
-  path: '/$subjectId/exam/$examId',
-  getParentRoute: () => LangRoute,
-} as any);
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/$': typeof SplatRoute;
-  '/$lang': typeof LangRouteWithChildren;
-  '/$lang/$': typeof LangSplatRoute;
-  '/$lang/$subjectId': typeof LangSubjectIdRoute;
-  '/$lang/privacy': typeof LangPrivacyRoute;
-  '/$lang/': typeof LangIndexRoute;
-  '/$lang/$subjectId/practice': typeof LangSubjectIdPracticeRoute;
-  '/$lang/$subjectId/exam/$examId': typeof LangSubjectIdExamExamIdRoute;
-  '/$lang/$subjectId/practice/$topic': typeof LangSubjectIdPracticeTopicRoute;
+  '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{$INDEXNOW_KEY}.txt': typeof Char123INDEXNOW_KEYChar125DottxtRoute
+  '/$lang/$': typeof LangSplatRoute
+  '/$lang/$subjectId': typeof LangSubjectIdRoute
+  '/$lang/privacy': typeof LangPrivacyRoute
+  '/$subjectId/practice': typeof SubjectIdPracticeRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/$subjectId/practice': typeof LangSubjectIdPracticeRoute
+  '/$subjectId/exam/$examId': typeof SubjectIdExamExamIdRoute
+  '/$subjectId/practice/$topic': typeof SubjectIdPracticeTopicRoute
+  '/$lang/$subjectId/exam/$examId': typeof LangSubjectIdExamExamIdRoute
+  '/$lang/$subjectId/practice/$topic': typeof LangSubjectIdPracticeTopicRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/$': typeof SplatRoute;
-  '/$lang/$': typeof LangSplatRoute;
-  '/$lang/$subjectId': typeof LangSubjectIdRoute;
-  '/$lang/privacy': typeof LangPrivacyRoute;
-  '/$lang': typeof LangIndexRoute;
-  '/$lang/$subjectId/practice': typeof LangSubjectIdPracticeRoute;
-  '/$lang/$subjectId/exam/$examId': typeof LangSubjectIdExamExamIdRoute;
-  '/$lang/$subjectId/practice/$topic': typeof LangSubjectIdPracticeTopicRoute;
+  '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{$INDEXNOW_KEY}.txt': typeof Char123INDEXNOW_KEYChar125DottxtRoute
+  '/$lang/$': typeof LangSplatRoute
+  '/$lang/$subjectId': typeof LangSubjectIdRoute
+  '/$lang/privacy': typeof LangPrivacyRoute
+  '/$subjectId/practice': typeof SubjectIdPracticeRoute
+  '/$lang': typeof LangIndexRoute
+  '/$lang/$subjectId/practice': typeof LangSubjectIdPracticeRoute
+  '/$subjectId/exam/$examId': typeof SubjectIdExamExamIdRoute
+  '/$subjectId/practice/$topic': typeof SubjectIdPracticeTopicRoute
+  '/$lang/$subjectId/exam/$examId': typeof LangSubjectIdExamExamIdRoute
+  '/$lang/$subjectId/practice/$topic': typeof LangSubjectIdPracticeTopicRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  '/': typeof IndexRoute;
-  '/$': typeof SplatRoute;
-  '/$lang': typeof LangRouteWithChildren;
-  '/$lang/$': typeof LangSplatRoute;
-  '/$lang/$subjectId': typeof LangSubjectIdRoute;
-  '/$lang/privacy': typeof LangPrivacyRoute;
-  '/$lang/': typeof LangIndexRoute;
-  '/$lang/$subjectId_/practice': typeof LangSubjectIdPracticeRoute;
-  '/$lang/$subjectId_/exam/$examId': typeof LangSubjectIdExamExamIdRoute;
-  '/$lang/$subjectId_/practice_/$topic': typeof LangSubjectIdPracticeTopicRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/$lang': typeof LangRouteWithChildren
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{$INDEXNOW_KEY}.txt': typeof Char123INDEXNOW_KEYChar125DottxtRoute
+  '/$lang/$': typeof LangSplatRoute
+  '/$lang/$subjectId': typeof LangSubjectIdRoute
+  '/$lang/privacy': typeof LangPrivacyRoute
+  '/$subjectId_/practice': typeof SubjectIdPracticeRoute
+  '/$lang/': typeof LangIndexRoute
+  '/$lang/$subjectId_/practice': typeof LangSubjectIdPracticeRoute
+  '/$subjectId_/exam/$examId': typeof SubjectIdExamExamIdRoute
+  '/$subjectId_/practice_/$topic': typeof SubjectIdPracticeTopicRoute
+  '/$lang/$subjectId_/exam/$examId': typeof LangSubjectIdExamExamIdRoute
+  '/$lang/$subjectId_/practice_/$topic': typeof LangSubjectIdPracticeTopicRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/$'
     | '/$lang'
+    | '/llms.txt'
+    | '/sitemap.xml'
+    | '/{$INDEXNOW_KEY}.txt'
     | '/$lang/$'
     | '/$lang/$subjectId'
     | '/$lang/privacy'
+    | '/$subjectId/practice'
     | '/$lang/'
     | '/$lang/$subjectId/practice'
+    | '/$subjectId/exam/$examId'
+    | '/$subjectId/practice/$topic'
     | '/$lang/$subjectId/exam/$examId'
-    | '/$lang/$subjectId/practice/$topic';
-  fileRoutesByTo: FileRoutesByTo;
+    | '/$lang/$subjectId/practice/$topic'
+  fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/$'
+    | '/llms.txt'
+    | '/sitemap.xml'
+    | '/{$INDEXNOW_KEY}.txt'
     | '/$lang/$'
     | '/$lang/$subjectId'
     | '/$lang/privacy'
+    | '/$subjectId/practice'
     | '/$lang'
     | '/$lang/$subjectId/practice'
+    | '/$subjectId/exam/$examId'
+    | '/$subjectId/practice/$topic'
     | '/$lang/$subjectId/exam/$examId'
-    | '/$lang/$subjectId/practice/$topic';
+    | '/$lang/$subjectId/practice/$topic'
   id:
     | '__root__'
     | '/'
     | '/$'
     | '/$lang'
+    | '/llms.txt'
+    | '/sitemap.xml'
+    | '/{$INDEXNOW_KEY}.txt'
     | '/$lang/$'
     | '/$lang/$subjectId'
     | '/$lang/privacy'
+    | '/$subjectId_/practice'
     | '/$lang/'
     | '/$lang/$subjectId_/practice'
+    | '/$subjectId_/exam/$examId'
+    | '/$subjectId_/practice_/$topic'
     | '/$lang/$subjectId_/exam/$examId'
-    | '/$lang/$subjectId_/practice_/$topic';
-  fileRoutesById: FileRoutesById;
+    | '/$lang/$subjectId_/practice_/$topic'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  SplatRoute: typeof SplatRoute;
-  LangRoute: typeof LangRouteWithChildren;
+  IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
+  LangRoute: typeof LangRouteWithChildren
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  Char123INDEXNOW_KEYChar125DottxtRoute: typeof Char123INDEXNOW_KEYChar125DottxtRoute
+  SubjectIdPracticeRoute: typeof SubjectIdPracticeRoute
+  SubjectIdExamExamIdRoute: typeof SubjectIdExamExamIdRoute
+  SubjectIdPracticeTopicRoute: typeof SubjectIdPracticeTopicRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/$lang': {
-      id: '/$lang';
-      path: '/$lang';
-      fullPath: '/$lang';
-      preLoaderRoute: typeof LangRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    '/$': {
-      id: '/$';
-      path: '/$';
-      fullPath: '/$';
-      preLoaderRoute: typeof SplatRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
     '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/{$INDEXNOW_KEY}.txt': {
+      id: '/{$INDEXNOW_KEY}.txt'
+      path: '/{$INDEXNOW_KEY}.txt'
+      fullPath: '/{$INDEXNOW_KEY}.txt'
+      preLoaderRoute: typeof Char123INDEXNOW_KEYChar125DottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$lang/': {
-      id: '/$lang/';
-      path: '/';
-      fullPath: '/$lang/';
-      preLoaderRoute: typeof LangIndexRouteImport;
-      parentRoute: typeof LangRoute;
-    };
-    '/$lang/privacy': {
-      id: '/$lang/privacy';
-      path: '/privacy';
-      fullPath: '/$lang/privacy';
-      preLoaderRoute: typeof LangPrivacyRouteImport;
-      parentRoute: typeof LangRoute;
-    };
-    '/$lang/$subjectId': {
-      id: '/$lang/$subjectId';
-      path: '/$subjectId';
-      fullPath: '/$lang/$subjectId';
-      preLoaderRoute: typeof LangSubjectIdRouteImport;
-      parentRoute: typeof LangRoute;
-    };
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/$': {
-      id: '/$lang/$';
-      path: '/$';
-      fullPath: '/$lang/$';
-      preLoaderRoute: typeof LangSplatRouteImport;
-      parentRoute: typeof LangRoute;
-    };
+      id: '/$lang/$'
+      path: '/$'
+      fullPath: '/$lang/$'
+      preLoaderRoute: typeof LangSplatRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/$subjectId': {
+      id: '/$lang/$subjectId'
+      path: '/$subjectId'
+      fullPath: '/$lang/$subjectId'
+      preLoaderRoute: typeof LangSubjectIdRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/privacy': {
+      id: '/$lang/privacy'
+      path: '/privacy'
+      fullPath: '/$lang/privacy'
+      preLoaderRoute: typeof LangPrivacyRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$subjectId_/practice': {
+      id: '/$subjectId_/practice'
+      path: '/$subjectId/practice'
+      fullPath: '/$subjectId/practice'
+      preLoaderRoute: typeof SubjectIdPracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$lang/$subjectId_/practice': {
-      id: '/$lang/$subjectId_/practice';
-      path: '/$subjectId/practice';
-      fullPath: '/$lang/$subjectId/practice';
-      preLoaderRoute: typeof LangSubjectIdPracticeRouteImport;
-      parentRoute: typeof LangRoute;
-    };
-    '/$lang/$subjectId_/practice_/$topic': {
-      id: '/$lang/$subjectId_/practice_/$topic';
-      path: '/$subjectId/practice/$topic';
-      fullPath: '/$lang/$subjectId/practice/$topic';
-      preLoaderRoute: typeof LangSubjectIdPracticeTopicRouteImport;
-      parentRoute: typeof LangRoute;
-    };
+      id: '/$lang/$subjectId_/practice'
+      path: '/$subjectId/practice'
+      fullPath: '/$lang/$subjectId/practice'
+      preLoaderRoute: typeof LangSubjectIdPracticeRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$subjectId_/exam/$examId': {
+      id: '/$subjectId_/exam/$examId'
+      path: '/$subjectId/exam/$examId'
+      fullPath: '/$subjectId/exam/$examId'
+      preLoaderRoute: typeof SubjectIdExamExamIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$subjectId_/practice_/$topic': {
+      id: '/$subjectId_/practice_/$topic'
+      path: '/$subjectId/practice/$topic'
+      fullPath: '/$subjectId/practice/$topic'
+      preLoaderRoute: typeof SubjectIdPracticeTopicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$lang/$subjectId_/exam/$examId': {
-      id: '/$lang/$subjectId_/exam/$examId';
-      path: '/$subjectId/exam/$examId';
-      fullPath: '/$lang/$subjectId/exam/$examId';
-      preLoaderRoute: typeof LangSubjectIdExamExamIdRouteImport;
-      parentRoute: typeof LangRoute;
-    };
+      id: '/$lang/$subjectId_/exam/$examId'
+      path: '/$subjectId/exam/$examId'
+      fullPath: '/$lang/$subjectId/exam/$examId'
+      preLoaderRoute: typeof LangSubjectIdExamExamIdRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/$subjectId_/practice_/$topic': {
+      id: '/$lang/$subjectId_/practice_/$topic'
+      path: '/$subjectId/practice/$topic'
+      fullPath: '/$lang/$subjectId/practice/$topic'
+      preLoaderRoute: typeof LangSubjectIdPracticeTopicRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
 interface LangRouteChildren {
-  LangSplatRoute: typeof LangSplatRoute;
-  LangSubjectIdRoute: typeof LangSubjectIdRoute;
-  LangPrivacyRoute: typeof LangPrivacyRoute;
-  LangIndexRoute: typeof LangIndexRoute;
-  LangSubjectIdPracticeRoute: typeof LangSubjectIdPracticeRoute;
-  LangSubjectIdExamExamIdRoute: typeof LangSubjectIdExamExamIdRoute;
-  LangSubjectIdPracticeTopicRoute: typeof LangSubjectIdPracticeTopicRoute;
+  LangSplatRoute: typeof LangSplatRoute
+  LangSubjectIdRoute: typeof LangSubjectIdRoute
+  LangPrivacyRoute: typeof LangPrivacyRoute
+  LangIndexRoute: typeof LangIndexRoute
+  LangSubjectIdPracticeRoute: typeof LangSubjectIdPracticeRoute
+  LangSubjectIdExamExamIdRoute: typeof LangSubjectIdExamExamIdRoute
+  LangSubjectIdPracticeTopicRoute: typeof LangSubjectIdPracticeTopicRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
@@ -245,15 +366,31 @@ const LangRouteChildren: LangRouteChildren = {
   LangSubjectIdPracticeRoute: LangSubjectIdPracticeRoute,
   LangSubjectIdExamExamIdRoute: LangSubjectIdExamExamIdRoute,
   LangSubjectIdPracticeTopicRoute: LangSubjectIdPracticeTopicRoute,
-};
+}
 
-const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren);
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
   LangRoute: LangRouteWithChildren,
-};
+  LlmsDottxtRoute: LlmsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  Char123INDEXNOW_KEYChar125DottxtRoute: Char123INDEXNOW_KEYChar125DottxtRoute,
+  SubjectIdPracticeRoute: SubjectIdPracticeRoute,
+  SubjectIdExamExamIdRoute: SubjectIdExamExamIdRoute,
+  SubjectIdPracticeTopicRoute: SubjectIdPracticeTopicRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
