@@ -41,6 +41,30 @@ export function createPageHead(meta: PageMetaData, indexable = true) {
 	};
 }
 
+export function createRedirectFallbackHead(meta: PageMetaData) {
+	return {
+		meta: [
+			{ title: meta.title },
+			{ name: "description", content: meta.description },
+			{ name: "robots", content: "noindex, follow" },
+			{ property: "og:title", content: meta.socialTitle },
+			{ property: "og:description", content: meta.socialDescription },
+			{ property: "og:image", content: meta.ogImage },
+			{ property: "og:image:type", content: meta.ogImageType },
+			{ property: "og:image:width", content: "1200" },
+			{ property: "og:image:height", content: "630" },
+			{ property: "og:url", content: meta.canonicalUrl },
+			{ property: "og:site_name", content: meta.siteName },
+			{ property: "og:type", content: "website" },
+			{ property: "og:locale", content: meta.locale },
+			{ name: "twitter:title", content: meta.socialTitle },
+			{ name: "twitter:description", content: meta.socialDescription },
+			{ name: "twitter:card", content: "summary_large_image" },
+			{ name: "twitter:image", content: meta.ogImage },
+		],
+	};
+}
+
 export function createNoIndexHead(
 	meta: Pick<PageMetaData, "title" | "description">,
 ) {

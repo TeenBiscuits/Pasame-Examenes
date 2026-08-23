@@ -11,7 +11,7 @@ export const LANGS = ["en", "es", "gl"] as const;
 export const DEFAULT_LANG: Lang = "es";
 export const BUNDLE_ENTRY_POINT = "/src/main.tsx";
 export const SITEMAP_LASTMOD = {
-	global: "2026-08-16",
+	global: "2026-08-23",
 	home: "2026-08-16",
 } as const;
 
@@ -229,7 +229,7 @@ export function buildHomeMeta(lang: Lang): PageMetaData {
 export function buildPrivacyMeta(lang: Lang): PageMetaData {
 	const tr = t(lang);
 	const title = appendBrand(tr.footer.privacyTitle, tr.seo.siteName);
-	const description = tr.footer.privacySummary;
+	const description = tr.seo.privacyMetaDescription;
 	const pathWithoutLang = "/privacy";
 	const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
 

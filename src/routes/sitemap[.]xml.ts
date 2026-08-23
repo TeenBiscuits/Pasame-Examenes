@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const DEFAULT_BASE_URL = "https://pe.pablopl.dev";
 const LANGS = ["en", "es", "gl"] as const;
-const SITEMAP_GLOBAL_LASTMOD = "2026-08-16";
+const SITEMAP_GLOBAL_LASTMOD = "2026-08-23";
 
 function escapeXml(value: string): string {
 	return value

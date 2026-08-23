@@ -1,7 +1,13 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+	createRootRoute,
+	HeadContent,
+	Scripts,
+	useRouterState,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import { isLang, type Lang } from "../i18n/context-value";
 import { ssrDuringBuildPrerender } from "../lib/ssr";
 import appCss from "../styles.css?url";
 
@@ -97,8 +103,13 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	const pathname = useRouterState({
+		select: (state) => state.location.pathname,
+	});
+	const documentLang = getDocumentLang(pathname);
+
 	return (
-		<html lang="es" suppressHydrationWarning>
+		<html lang={documentLang} suppressHydrationWarning>
 			<head>
 				<script>{THEME_INIT_SCRIPT}</script>
 				<HeadContent />
@@ -120,4 +131,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</body>
 		</html>
 	);
+}
+
+function getDocumentLang(pathname: string): Lang {
+	const [rawLang] = pathname.split("/").filter(Boolean);
+	return isLang(rawLang) ? rawLang : "es";
 }
