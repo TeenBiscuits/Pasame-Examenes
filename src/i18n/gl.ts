@@ -508,6 +508,12 @@ export const gl: Translations = {
 	seo: {
 		siteName: "Pásame Exámenes",
 		locale: "gl_ES",
+		examSingular: "exame",
+		examPlural: "exames",
+		compilationSingular: "recompilación",
+		compilationPlural: "recompilacións",
+		questionSingular: "pregunta",
+		questionPlural: "preguntas",
 		privacyMetaDescription:
 			"Aquí descríbense os tipos de datos que Pásame Exámenes recompila e a forma e o lugar do tratamento destes datos.",
 		homeTitle: "Practica preguntas de exames da FIC",
@@ -515,37 +521,36 @@ export const gl: Translations = {
 			"Practica preguntas de exames da FIC por tema ou con simulacións cronometradas. Comproba as túas respostas e consulta solucións modelo.",
 		homeMetaDescription:
 			"Practica preguntas de exames da FIC por tema ou con simulacións cronometradas. Comproba as túas respostas e consulta solucións modelo.",
-		socialHomeTitle: "Practica exames da FIC con Pásame Exámenes",
-		socialHomeDescription:
-			"Atopa preguntas por tema e simulacións cronometradas para preparar as túas materias. Comproba as túas respostas e consulta solucións modelo.",
 		defaultDescription:
 			"Practica preguntas de exames da FIC con autocorrección e solucións modelo. Escolle un tema ou unha simulación e comeza a estudar.",
-		subjectAuthorizedTitle: "{subjectName}: preguntas de exame resoltas",
-		subjectCommunityTitle: "{subjectName}: preguntas e recompilacións",
+		subjectAuthorizedTitle: "{subjectName}: preguntas de exame",
+		subjectCommunityTitle: "{subjectName}: recompilacións",
 		subjectAuthorizedDescription:
-			"Practica {count}preguntas de {subjectName} de {examCount} exames. Comproba as túas respostas e consulta solucións modelo. {degree}, {course}º curso.",
+			"Practica {count}{questionLabel} de {subjectName} de {examCount} {examLabel}. Comproba as túas respostas e consulta solucións modelo.",
 		subjectCommunityDescription:
-			"Practica {count}preguntas de {subjectName} de {examCount} recompilacións. Comproba as túas respostas e consulta solucións modelo. {degree}, {course}º curso.",
-		socialSubjectAuthorizedTitle:
-			"Practica {subjectName}: exames e preguntas resoltas",
-		socialSubjectCommunityTitle:
-			"Practica {subjectName}: recompilacións e preguntas resoltas",
-		socialSubjectAuthorizedDescription:
-			"Practica {count}preguntas de {subjectName} de {examCount} exames. Comproba as túas respostas e consulta solucións modelo.",
-		socialSubjectCommunityDescription:
-			"Practica {count}preguntas de {subjectName} de {examCount} recompilacións. Comproba as túas respostas e consulta solucións modelo.",
-		topicAuthorizedTitle: "{topicName}: preguntas de {subjectName}",
-		topicCommunityTitle: "{topicName}: preguntas de {subjectName}",
+			"Practica {count}{questionLabel} de {subjectName} de {examCount} {compilationLabel}. Comproba as túas respostas e consulta solucións modelo.",
+		topicAuthorizedTitle: "{topicName}: {subjectName}",
+		topicCommunityTitle: "{topicName}: {subjectName}",
 		topicAuthorizedDescription:
-			"Practica {count}preguntas de {topicName} de exames de {subjectName}, con respostas modelo e autocorrección. {courseCode}, {degree}, {course}º curso.",
+			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Consulta respostas modelo.",
 		topicCommunityDescription:
-			"Practica {count}preguntas de {topicName} de recompilacións de {subjectName}, con respostas modelo e autocorrección. {courseCode}, {degree}, {course}º curso.",
-		examAuthorizedTitle: "{examName} de {subjectName}: simulador",
-		examPracticeTitle: "{examName} de {subjectName}: práctica cronometrada",
+			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Consulta respostas modelo.",
+		topicAuthorizedDescriptionShort:
+			"Practica {count}{questionLabel} de {topicName}. Consulta respostas modelo.",
+		topicCommunityDescriptionShort:
+			"Practica {count}{questionLabel} de {topicName}. Consulta respostas modelo.",
+		examAuthorizedTitle: "{examName}: {subjectName} | simulador",
+		examPracticeTitle: "{examName}: {subjectName} | práctica",
+		examAuthorizedShortTitle: "{examName}: simulador",
+		examPracticeShortTitle: "{examName}: práctica",
 		examAuthorizedDescription:
-			"Simula o exame {examName} de {subjectName}{questionCount}. {totalPoints} puntos, {durationMinutes} minutos, respostas modelo e autocorrección.",
+			"Practica o exame {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e inclúe respostas modelo.",
 		examPracticeDescription:
-			"Practica a recompilación cronometrada {examName} de {subjectName}{questionCount}. {totalPoints} puntos, {durationMinutes} minutos, respostas modelo e autocorrección.",
-		questionCountSuffix: " con {count} preguntas",
+			"Practica a recompilación {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e inclúe respostas modelo.",
+		examAuthorizedDescriptionShort:
+			"Practica o exame {examName}{questionCount}. Dura {durationMinutes} minutos e inclúe respostas modelo.",
+		examPracticeDescriptionShort:
+			"Practica a recompilación {examName}{questionCount}. Dura {durationMinutes} minutos e inclúe respostas modelo.",
+		questionCountSuffix: " con {count} {questionLabel}",
 	},
 };

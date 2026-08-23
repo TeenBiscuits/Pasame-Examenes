@@ -504,6 +504,12 @@ export const en = {
 	seo: {
 		siteName: "Pásame Exámenes",
 		locale: "en_US",
+		examSingular: "exam",
+		examPlural: "exams",
+		compilationSingular: "compilation",
+		compilationPlural: "compilations",
+		questionSingular: "question",
+		questionPlural: "questions",
 		privacyMetaDescription:
 			"This page describes the types of data Pásame Exámenes collects and how and where that data is processed.",
 		homeTitle: "Practice FIC Exam Questions by Topic",
@@ -511,38 +517,37 @@ export const en = {
 			"Practice FIC exam questions by topic or in timed sets. Check your answers, review model solutions, and prepare for exams.",
 		homeMetaDescription:
 			"Practice FIC exam questions by topic or in timed sets. Check your answers, review model solutions, and prepare for exams.",
-		socialHomeTitle: "Practice FIC Exam Questions with Pásame Exámenes",
-		socialHomeDescription:
-			"Find topic-based questions and timed sets to prepare for your subjects. Check your answers and review model solutions.",
 		defaultDescription:
 			"Practice FIC exam questions with self-grading and model solutions. Choose a topic or timed set and start studying.",
-		subjectAuthorizedTitle: "{subjectName}: solved exam questions",
-		subjectCommunityTitle: "{subjectName}: practice questions and compilations",
+		subjectAuthorizedTitle: "{subjectName}: exam questions",
+		subjectCommunityTitle: "{subjectName}: compilations",
 		subjectAuthorizedDescription:
-			"Practice {count}{subjectName} questions from {examCount} exams. Check your answers and review model solutions. {degree}, Year {course}.",
+			"Practice {count}{subjectName} {questionLabel} from {examCount} {examLabel}. Check your answers and review model solutions.",
 		subjectCommunityDescription:
-			"Practice {count}{subjectName} questions from {examCount} compilations. Check your answers and review model solutions. {degree}, Year {course}.",
-		socialSubjectAuthorizedTitle:
-			"Practice {subjectName}: exams and solved questions",
-		socialSubjectCommunityTitle:
-			"Practice {subjectName}: practice questions and compilations",
-		socialSubjectAuthorizedDescription:
-			"Practice {count}{subjectName} questions from {examCount} exams. Check your answers and review model solutions.",
-		socialSubjectCommunityDescription:
-			"Practice {count}{subjectName} questions from {examCount} compilations. Check your answers and review model solutions.",
-		topicAuthorizedTitle: "{topicName}: {subjectName} exam questions",
-		topicCommunityTitle: "{topicName}: {subjectName} practice questions",
+			"Practice {count}{subjectName} {questionLabel} from {examCount} {compilationLabel}. Check your answers and review model solutions.",
+		topicAuthorizedTitle: "{topicName}: {subjectName}",
+		topicCommunityTitle: "{topicName}: {subjectName}",
 		topicAuthorizedDescription:
-			"Practice {count}{topicName} questions from {subjectName} exams with model answers and self-grading. {courseCode}, {degree}, Year {course}.",
+			"Practice {count}{topicName} {questionLabel} from {subjectName}. Review model answers.",
 		topicCommunityDescription:
-			"Practice {count}{topicName} questions from {subjectName} compilations with model answers and self-grading. {courseCode}, {degree}, Year {course}.",
-		examAuthorizedTitle: "{examName} {subjectName}: exam simulator",
-		examPracticeTitle: "{examName} {subjectName}: timed practice",
+			"Practice {count}{topicName} {questionLabel} from {subjectName}. Review model answers.",
+		topicAuthorizedDescriptionShort:
+			"Practice {count}{topicName} {questionLabel}. Review model answers.",
+		topicCommunityDescriptionShort:
+			"Practice {count}{topicName} {questionLabel}. Review model answers.",
+		examAuthorizedTitle: "{examName}: {subjectName} | simulator",
+		examPracticeTitle: "{examName}: {subjectName} | practice",
+		examAuthorizedShortTitle: "{examName}: simulator",
+		examPracticeShortTitle: "{examName}: practice",
 		examAuthorizedDescription:
-			"Simulate the {examName} {subjectName} exam{questionCount}. {totalPoints} points, {durationMinutes} minutes, model answers and self-grading.",
+			"Practice the {examName} {subjectName} exam{questionCount}. It lasts {durationMinutes} minutes and includes model answers.",
 		examPracticeDescription:
-			"Practice the {examName} {subjectName} timed set{questionCount}. {totalPoints} points, {durationMinutes} minutes, model answers and self-grading.",
-		questionCountSuffix: " with {count} questions",
+			"Practice the {examName} {subjectName} compilation{questionCount}. It lasts {durationMinutes} minutes and includes model answers.",
+		examAuthorizedDescriptionShort:
+			"Practice the {examName} exam{questionCount}. It lasts {durationMinutes} minutes and includes model answers.",
+		examPracticeDescriptionShort:
+			"Practice the {examName} compilation{questionCount}. It lasts {durationMinutes} minutes and includes model answers.",
+		questionCountSuffix: " with {count} {questionLabel}",
 	},
 };
 

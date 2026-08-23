@@ -511,42 +511,47 @@ export const es: Translations = {
 		locale: "es_ES",
 		privacyMetaDescription:
 			"Aquí se describen los tipos de datos que Pásame Exámenes recopila y la forma y el lugar del tratamiento de dichos datos.",
+		examSingular: "examen",
+		examPlural: "exámenes",
+		compilationSingular: "recopilatorio",
+		compilationPlural: "recopilatorios",
+		questionSingular: "pregunta",
+		questionPlural: "preguntas",
 		homeTitle: "Practica preguntas de exámenes de la FIC",
 		homeDescription:
 			"Practica preguntas de exámenes de la FIC por tema o con simulacros cronometrados. Comprueba tus respuestas y consulta soluciones modelo.",
 		homeMetaDescription:
 			"Practica preguntas de exámenes de la FIC por tema o con simulacros cronometrados. Comprueba tus respuestas y consulta soluciones modelo.",
-		socialHomeTitle: "Practica exámenes de la FIC con Pásame Exámenes",
-		socialHomeDescription:
-			"Encuentra preguntas por tema y simulacros cronometrados para preparar tus asignaturas. Comprueba tus respuestas y consulta soluciones modelo.",
 		defaultDescription:
 			"Practica preguntas de exámenes de la FIC con autocorrección y soluciones modelo. Elige un tema o un simulacro y empieza a estudiar.",
-		subjectAuthorizedTitle: "{subjectName}: preguntas de examen resueltas",
-		subjectCommunityTitle: "{subjectName}: preguntas y recopilatorios",
+		subjectAuthorizedTitle: "{subjectName}: preguntas de examen",
+		subjectCommunityTitle: "{subjectName}: recopilatorios",
 		subjectAuthorizedDescription:
-			"Practica {count}preguntas de {subjectName} de {examCount} exámenes. Comprueba tus respuestas y consulta soluciones modelo. {degree}, {course}º curso.",
+			"Practica {count}{questionLabel} de {subjectName} de {examCount} {examLabel}. Comprueba tus respuestas y consulta soluciones modelo.",
 		subjectCommunityDescription:
-			"Practica {count}preguntas de {subjectName} de {examCount} recopilatorios. Comprueba tus respuestas y consulta soluciones modelo. {degree}, {course}º curso.",
-		socialSubjectAuthorizedTitle:
-			"Practica {subjectName}: exámenes y preguntas resueltas",
-		socialSubjectCommunityTitle:
-			"Practica {subjectName}: recopilatorios y preguntas resueltas",
-		socialSubjectAuthorizedDescription:
-			"Practica {count}preguntas de {subjectName} de {examCount} exámenes. Comprueba tus respuestas y consulta soluciones modelo.",
-		socialSubjectCommunityDescription:
-			"Practica {count}preguntas de {subjectName} de {examCount} recopilatorios. Comprueba tus respuestas y consulta soluciones modelo.",
-		topicAuthorizedTitle: "{topicName}: preguntas de {subjectName}",
-		topicCommunityTitle: "{topicName}: preguntas de {subjectName}",
+			"Practica {count}{questionLabel} de {subjectName} de {examCount} {compilationLabel}. Comprueba tus respuestas y consulta soluciones modelo.",
+		topicAuthorizedTitle: "{topicName}: {subjectName}",
+		topicCommunityTitle: "{topicName}: {subjectName}",
 		topicAuthorizedDescription:
-			"Practica {count}preguntas de {topicName} de exámenes de {subjectName}, con respuestas modelo y autocorrección. {courseCode}, {degree}, {course}º curso.",
+			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Revisa las respuestas modelo.",
 		topicCommunityDescription:
-			"Practica {count}preguntas de {topicName} de recopilatorios de {subjectName}, con respuestas modelo y autocorrección. {courseCode}, {degree}, {course}º curso.",
-		examAuthorizedTitle: "{examName} de {subjectName}: simulador",
-		examPracticeTitle: "{examName} de {subjectName}: práctica cronometrada",
+			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Revisa las respuestas modelo.",
+		topicAuthorizedDescriptionShort:
+			"Practica {count}{questionLabel} de {topicName}. Revisa las respuestas modelo.",
+		topicCommunityDescriptionShort:
+			"Practica {count}{questionLabel} de {topicName}. Revisa las respuestas modelo.",
+		examAuthorizedTitle: "{examName}: {subjectName} | simulador",
+		examPracticeTitle: "{examName}: {subjectName} | práctica",
+		examAuthorizedShortTitle: "{examName}: simulador",
+		examPracticeShortTitle: "{examName}: práctica",
 		examAuthorizedDescription:
-			"Simula el examen {examName} de {subjectName}{questionCount}. {totalPoints} puntos, {durationMinutes} minutos, respuestas modelo y autocorrección.",
+			"Practica el examen {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e incluye respuestas modelo.",
 		examPracticeDescription:
-			"Practica el recopilatorio cronometrado {examName} de {subjectName}{questionCount}. {totalPoints} puntos, {durationMinutes} minutos, respuestas modelo y autocorrección.",
-		questionCountSuffix: " con {count} preguntas",
+			"Practica el recopilatorio {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e incluye respuestas modelo.",
+		examAuthorizedDescriptionShort:
+			"Practica el examen {examName}{questionCount}. Dura {durationMinutes} minutos e incluye respuestas modelo.",
+		examPracticeDescriptionShort:
+			"Practica el recopilatorio {examName}{questionCount}. Dura {durationMinutes} minutos e incluye respuestas modelo.",
+		questionCountSuffix: " con {count} {questionLabel}",
 	},
 };

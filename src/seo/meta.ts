@@ -10,6 +10,8 @@ export const BASE_URL = "https://pe.pablopl.dev";
 export const LANGS = ["en", "es", "gl"] as const;
 export const DEFAULT_LANG: Lang = "es";
 export const BUNDLE_ENTRY_POINT = "/src/main.tsx";
+export const MAX_TITLE_LENGTH = 59;
+export const MAX_DESCRIPTION_LENGTH = 157;
 export const SITEMAP_LASTMOD = {
 	global: "2026-08-23",
 	home: "2026-08-16",
@@ -50,11 +52,6 @@ export interface SubjectStats {
 	examTotalPoints?: Record<string, number>;
 }
 
-interface SocialMetaOverrides {
-	title?: string;
-	description?: string;
-}
-
 const translations = { en, es, gl } as const;
 
 function t(lang: Lang) {
@@ -84,9 +81,21 @@ export function isIndexablePagePath(pathWithoutLang: string): boolean {
 	);
 }
 
+function trimToWordBoundary(value: string, maxLength: number): string {
+	if (value.length <= maxLength) return value;
+
+	const withEllipsis = value.slice(0, maxLength - 1).trimEnd();
+	const withoutPartialWord = withEllipsis.replace(/\s+\S*$/, "");
+	return `${withoutPartialWord || withEllipsis}…`;
+}
+
+function pickWithinLimit(candidates: string[], maxLength: number): string {
+	const candidate = candidates.find((value) => value.length <= maxLength);
+	return candidate ?? trimToWordBoundary(candidates.at(-1) ?? "", maxLength);
+}
+
 function appendBrand(title: string, siteName: string): string {
-	const branded = `${title} | ${siteName}`;
-	return branded.length <= 62 ? branded : title;
+	return pickWithinLimit([`${title} | ${siteName}`, title], MAX_TITLE_LENGTH);
 }
 
 function interpolate(
@@ -149,7 +158,6 @@ function makePageMeta(
 	ogImage: string,
 	graph: unknown[],
 	lastmod: string = SITEMAP_LASTMOD.global,
-	social: SocialMetaOverrides = {},
 ): PageMetaData {
 	const meta = langMeta[lang];
 	const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
@@ -160,8 +168,8 @@ function makePageMeta(
 		pathWithoutLang,
 		title,
 		description,
-		socialTitle: social.title ?? title,
-		socialDescription: social.description ?? description,
+		socialTitle: title,
+		socialDescription: description,
 		siteName: t(lang).seo.siteName,
 		canonicalUrl,
 		ogImage: fullUrl(ogImage),
@@ -181,8 +189,6 @@ export function buildHomeMeta(lang: Lang): PageMetaData {
 	const tr = t(lang);
 	const title = appendBrand(tr.seo.homeTitle, tr.seo.siteName);
 	const description = tr.seo.homeMetaDescription;
-	const socialTitle = tr.seo.socialHomeTitle;
-	const socialDescription = tr.seo.socialHomeDescription;
 	const canonicalUrl = fullUrl(buildCanonicalPath(lang, "/"));
 
 	return makePageMeta(
@@ -222,7 +228,6 @@ export function buildHomeMeta(lang: Lang): PageMetaData {
 			},
 		],
 		SITEMAP_LASTMOD.home,
-		{ title: socialTitle, description: socialDescription },
 	);
 }
 
@@ -270,6 +275,14 @@ export function buildSubjectMeta(
 		{ subjectName: subject.name },
 	);
 	const count = stats.questionCount;
+	const questionLabel =
+		count === 1 ? tr.seo.questionSingular : tr.seo.questionPlural;
+	const examLabel =
+		availableExamCount === 1 ? tr.seo.examSingular : tr.seo.examPlural;
+	const compilationLabel =
+		availableExamCount === 1
+			? tr.seo.compilationSingular
+			: tr.seo.compilationPlural;
 	const description = interpolate(
 		hasAuthorizedExams
 			? tr.seo.subjectAuthorizedDescription
@@ -278,28 +291,12 @@ export function buildSubjectMeta(
 			count: count ? `${count} ` : "",
 			subjectName: subject.name,
 			examCount: availableExamCount,
-			courseCode: subject.courseCode,
-			degree: subject.degree,
-			course: subject.course,
+			examLabel,
+			compilationLabel,
+			questionLabel,
 		},
 	);
 	const title = appendBrand(titleStem, tr.seo.siteName);
-	const socialTitle = interpolate(
-		hasAuthorizedExams
-			? tr.seo.socialSubjectAuthorizedTitle
-			: tr.seo.socialSubjectCommunityTitle,
-		{ subjectName: subject.name },
-	);
-	const socialDescription = interpolate(
-		hasAuthorizedExams
-			? tr.seo.socialSubjectAuthorizedDescription
-			: tr.seo.socialSubjectCommunityDescription,
-		{
-			count: count ? `${count} ` : "",
-			subjectName: subject.name,
-			examCount: availableExamCount,
-		},
-	);
 	const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
 
 	return makePageMeta(
@@ -327,7 +324,6 @@ export function buildSubjectMeta(
 			]),
 		],
 		subject.lastmod,
-		{ title: socialTitle, description: socialDescription },
 	);
 }
 
@@ -340,6 +336,8 @@ export function buildTopicMeta(
 	const tr = t(lang);
 	const pathWithoutLang = `/${subject.id}/practice/${topic.key}`;
 	const count = stats.topicQuestionCounts?.[topic.key];
+	const questionLabel =
+		count === 1 ? tr.seo.questionSingular : tr.seo.questionPlural;
 	const hasAuthorizedExams = hasAuthorizedExamContent(subject);
 	const titleStem = interpolate(
 		hasAuthorizedExams
@@ -347,20 +345,39 @@ export function buildTopicMeta(
 			: tr.seo.topicCommunityTitle,
 		{ topicName: topic.label, subjectName: subject.name },
 	);
-	const description = interpolate(
-		hasAuthorizedExams
-			? tr.seo.topicAuthorizedDescription
-			: tr.seo.topicCommunityDescription,
-		{
-			count: count ? `${count} ` : "",
-			topicName: topic.label,
-			subjectName: subject.name,
-			courseCode: subject.courseCode,
-			degree: subject.degree,
-			course: subject.course,
-		},
+	const shortTopicName = topic.label.includes(":")
+		? topic.label.slice(0, topic.label.lastIndexOf(":")).trim()
+		: topic.label;
+	const description = pickWithinLimit(
+		[
+			interpolate(
+				hasAuthorizedExams
+					? tr.seo.topicAuthorizedDescription
+					: tr.seo.topicCommunityDescription,
+				{
+					count: count ? `${count} ` : "",
+					topicName: topic.label,
+					subjectName: subject.name,
+					questionLabel,
+				},
+			),
+			interpolate(
+				hasAuthorizedExams
+					? tr.seo.topicAuthorizedDescriptionShort
+					: tr.seo.topicCommunityDescriptionShort,
+				{
+					count: count ? `${count} ` : "",
+					topicName: topic.label,
+					questionLabel,
+				},
+			),
+		],
+		MAX_DESCRIPTION_LENGTH,
 	);
-	const title = appendBrand(titleStem, tr.seo.siteName);
+	const title = appendBrand(
+		pickWithinLimit([titleStem, shortTopicName, topic.label], MAX_TITLE_LENGTH),
+		tr.seo.siteName,
+	);
 	const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
 
 	return makePageMeta(
@@ -409,21 +426,52 @@ export function buildExamMeta(
 		hasAuthorizedExams ? tr.seo.examAuthorizedTitle : tr.seo.examPracticeTitle,
 		{ examName: exam.title, subjectName: subject.name },
 	);
-	const description = interpolate(
-		hasAuthorizedExams
-			? tr.seo.examAuthorizedDescription
-			: tr.seo.examPracticeDescription,
-		{
-			examName: exam.title,
-			subjectName: subject.name,
-			questionCount: count
-				? interpolate(tr.seo.questionCountSuffix, { count })
-				: "",
-			totalPoints: stats.examTotalPoints?.[exam.id] ?? 0,
-			durationMinutes: exam.durationMinutes,
-		},
+	const questionCount = count
+		? interpolate(tr.seo.questionCountSuffix, {
+				count,
+				questionLabel:
+					count === 1 ? tr.seo.questionSingular : tr.seo.questionPlural,
+			})
+		: "";
+	const descriptionValues = {
+		examName: exam.title,
+		subjectName: subject.name,
+		questionCount,
+		durationMinutes: exam.durationMinutes,
+	};
+	const description = pickWithinLimit(
+		[
+			interpolate(
+				hasAuthorizedExams
+					? tr.seo.examAuthorizedDescription
+					: tr.seo.examPracticeDescription,
+				descriptionValues,
+			),
+			interpolate(
+				hasAuthorizedExams
+					? tr.seo.examAuthorizedDescriptionShort
+					: tr.seo.examPracticeDescriptionShort,
+				descriptionValues,
+			),
+		],
+		MAX_DESCRIPTION_LENGTH,
 	);
-	const title = appendBrand(titleStem, tr.seo.siteName);
+	const title = appendBrand(
+		pickWithinLimit(
+			[
+				titleStem,
+				interpolate(
+					hasAuthorizedExams
+						? tr.seo.examAuthorizedShortTitle
+						: tr.seo.examPracticeShortTitle,
+					{ examName: exam.title },
+				),
+				exam.title,
+			],
+			MAX_TITLE_LENGTH,
+		),
+		tr.seo.siteName,
+	);
 	const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
 
 	return makePageMeta(
