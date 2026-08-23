@@ -504,6 +504,8 @@ export const en = {
 	seo: {
 		siteName: "Pásame Exámenes",
 		locale: "en_US",
+		privacyMetaDescription:
+			"This page describes the types of data Pásame Exámenes collects and how and where that data is processed.",
 		homeTitle: "Practice FIC Exam Questions by Topic",
 		homeDescription:
 			"Practice FIC exam questions by topic or in timed sets. Check your answers, review model solutions, and prepare for exams.",

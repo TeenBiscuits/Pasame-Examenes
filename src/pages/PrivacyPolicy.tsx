@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
 	const t = useT();
 
 	return (
-		<article className="mx-auto w-full max-w-4xl px-4 py-10 sm:py-14">
+		<article className="mx-auto w-full max-w-prose px-4 py-10 sm:py-14">
 			<header className="border-border mb-8 space-y-3 border-b pb-6">
 				<p className="text-accent-fg text-xs font-semibold tracking-[0.18em] uppercase">
 					{t.footer.privacyLastUpdated}

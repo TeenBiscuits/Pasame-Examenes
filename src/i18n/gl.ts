@@ -508,6 +508,8 @@ export const gl: Translations = {
 	seo: {
 		siteName: "Pásame Exámenes",
 		locale: "gl_ES",
+		privacyMetaDescription:
+			"Aquí descríbense os tipos de datos que Pásame Exámenes recompila e a forma e o lugar do tratamento destes datos.",
 		homeTitle: "Practica preguntas de exames da FIC",
 		homeDescription:
 			"Practica preguntas de exames da FIC por tema ou con simulacións cronometradas. Comproba as túas respostas e consulta solucións modelo.",

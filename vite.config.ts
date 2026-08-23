@@ -39,7 +39,9 @@ const indexableSubjectIds = readdirSync(subjectsDirectory, {
 	.map((entry) => entry.name)
 	.sort();
 const prerenderPages = [
+	{ path: "/" },
 	...LANGS.map((lang) => ({ path: `/${lang}` })),
+	...LANGS.map((lang) => ({ path: `/${lang}/privacy` })),
 	...LANGS.flatMap((lang) =>
 		indexableSubjectIds.map((subjectId) => ({
 			path: `/${lang}/${subjectId}`,
