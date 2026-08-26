@@ -4,24 +4,17 @@ import type { SubjectMeta, Topic } from "../data/types";
 import { useT } from "../i18n/hooks";
 import { startPracticeTour } from "../lib/tour";
 import { useLangTo } from "../lib/useLangTo";
-import { useKeyboardNav } from "./useKeyboardNav";
 
 interface UsePracticeTopicNavigationOptions {
 	subject: SubjectMeta | undefined;
-	topic: string | undefined;
 	topicInfo: Topic | undefined;
 	questionsLength: number;
-	currentIndex: number;
-	setCurrentIndex: (index: number) => void;
 }
 
 export function usePracticeTopicNavigation({
 	subject,
-	topic,
 	topicInfo,
 	questionsLength,
-	currentIndex,
-	setCurrentIndex,
 }: UsePracticeTopicNavigationOptions) {
 	const navigate = useNavigate();
 	const t = useT();
@@ -38,7 +31,6 @@ export function usePracticeTopicNavigation({
 		[],
 	);
 	const navRef = useRef<HTMLDivElement>(null);
-	const currentIndexRef = useRef(currentIndex);
 
 	const scrollToNav = useCallback((index: number) => {
 		const container = navRef.current;
@@ -57,34 +49,7 @@ export function usePracticeTopicNavigation({
 		});
 	}, []);
 
-	useEffect(() => {
-		currentIndexRef.current = currentIndex;
-	});
-
-	const subjectReadyRef = useRef(false);
 	const scrollToHeaderRef = useRef<() => void>(() => {});
-	useEffect(() => {
-		subjectReadyRef.current = !!subject;
-	}, [subject]);
-
-	const navEventData = useCallback(
-		() => ({ subjectId: subject?.id || "", topic: topic || "" }),
-		[subject?.id, topic],
-	);
-
-	useKeyboardNav({
-		enabledRef: subjectReadyRef,
-		questionsLength,
-		currentIndexRef,
-		setCurrentIndex,
-		scrollToNav,
-		setDirection,
-		eventName: "practice_navigate",
-		eventData: navEventData,
-		onKeyPress: () => {
-			scrollToHeaderRef.current();
-		},
-	});
 
 	useEffect(() => {
 		if (!subject || !topicInfo) {

@@ -1,4 +1,5 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
+import { hotkeysDevtoolsPlugin } from "@tanstack/react-hotkeys-devtools";
 import {
 	createRootRoute,
 	HeadContent,
@@ -126,6 +127,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 							name: "Tanstack Router",
 							render: <TanStackRouterDevtoolsPanel />,
 						},
+						hotkeysDevtoolsPlugin(),
 					]}
 				/>
 				<Scripts />

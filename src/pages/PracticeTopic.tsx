@@ -38,6 +38,7 @@ import {
 	isFullySelfGraded,
 	isSelfGradedQuestion,
 } from "../lib/grading";
+import { useCommandHandlers } from "../lib/keyboard-commands";
 import { LangLink as Link } from "../lib/lang-link";
 import { formatPoints, roundPoints } from "../lib/points";
 import { track } from "../lib/umami";
@@ -327,11 +328,15 @@ function PracticeControls({
 	const prevBtnRef = useRef<HTMLButtonElement>(null);
 	const nextBtnRef = useRef<HTMLButtonElement>(null);
 
-	const navigateQuestion = (dir: "prev" | "next") => {
+	const navigateQuestion = (
+		dir: "prev" | "next",
+		source: "arrow" | "keyboard" = "arrow",
+	) => {
 		const nextIndex =
 			dir === "prev"
 				? Math.max(0, currentIndex - 1)
 				: Math.min(questions.length - 1, currentIndex + 1);
+		if (nextIndex === currentIndex) return;
 		setDirection(dir);
 		track("practice_navigate", {
 			subjectId: subject.id,
@@ -339,12 +344,77 @@ function PracticeControls({
 			direction: dir,
 			fromIndex: currentIndex,
 			toIndex: nextIndex,
-			source: "arrow",
+			source,
 		});
 		setCurrentIndex(nextIndex);
 		scrollToNav(nextIndex);
 		scrollToHeader();
 	};
+
+	const navigateToBoundary = (boundary: "first" | "last") => {
+		const nextIndex = boundary === "first" ? 0 : questions.length - 1;
+		if (nextIndex === currentIndex) return;
+		const direction = nextIndex > currentIndex ? "next" : "prev";
+		setDirection(direction);
+		track("practice_navigate", {
+			subjectId: subject.id,
+			topic: topic || "",
+			direction,
+			fromIndex: currentIndex,
+			toIndex: nextIndex,
+			source: "keyboard",
+		});
+		setCurrentIndex(nextIndex);
+		scrollToNav(nextIndex);
+		scrollToHeader();
+	};
+
+	const canCheckQuestion =
+		!!(
+			answers[currentQuestion.id] ||
+			currentQuestion.type === "text" ||
+			currentQuestion.type === "multiple-text"
+		) &&
+		!submitted &&
+		!checkedQuestions[currentQuestion.id];
+	const canClearAnswer =
+		!!answers[currentQuestion.id] &&
+		!submitted &&
+		!checkedQuestions[currentQuestion.id];
+
+	useCommandHandlers("practice-controls", {
+		"previous-question":
+			currentIndex > 0 ? () => navigateQuestion("prev", "keyboard") : undefined,
+		"next-question":
+			currentIndex < questions.length - 1
+				? () => navigateQuestion("next", "keyboard")
+				: undefined,
+		"first-question":
+			currentIndex > 0 ? () => navigateToBoundary("first") : undefined,
+		"last-question":
+			currentIndex < questions.length - 1
+				? () => navigateToBoundary("last")
+				: undefined,
+		"check-question": canCheckQuestion
+			? () => onCheckQuestion(currentQuestion.id)
+			: undefined,
+		"clear-answer": canClearAnswer
+			? () => {
+					track("practice_clear_answer", {
+						questionId: currentQuestion.id,
+						subjectId: subject.id,
+						topic: topic || "",
+					});
+					onClearAnswer(currentQuestion.id);
+				}
+			: undefined,
+		"submit-session": !submitted
+			? () => {
+					onSubmit();
+					scrollToHeader();
+				}
+			: undefined,
+	});
 
 	return (
 		<div
@@ -895,11 +965,8 @@ export default function PracticeTopic() {
 	const session = usePracticeSession(questions, subject?.id || "", topic || "");
 	const navigation = usePracticeTopicNavigation({
 		subject,
-		topic,
 		topicInfo,
 		questionsLength: questions.length,
-		currentIndex: session.currentIndex,
-		setCurrentIndex: session.setCurrentIndex,
 	});
 
 	return (

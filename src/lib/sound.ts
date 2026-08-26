@@ -75,7 +75,3 @@ export function playSuccess() {
 export function playError() {
 	playSound("error");
 }
-
-export function playPage() {
-	playSound("page");
-}

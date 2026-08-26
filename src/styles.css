@@ -1321,7 +1321,18 @@ html[data-theme="mocha"] {
 }
 
 .modal-dialog--settings {
-  width: min(28rem, calc(100% - 2rem));
+  width: min(58rem, calc(100% - 2rem));
+  height: min(44rem, calc(100dvh - 2rem));
+  max-height: min(44rem, calc(100dvh - 2rem));
+  overflow: hidden;
+  padding: 0;
+}
+
+.settings-menu__scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 
 .modal-dialog__scroll {
@@ -1335,6 +1346,13 @@ html[data-theme="mocha"] {
   .modal-dialog {
     border-radius: 1.25rem;
     padding: 1.25rem;
+  }
+
+  .modal-dialog--settings {
+    width: calc(100% - 1rem);
+    height: min(44rem, calc(100dvh - 1rem));
+    max-height: calc(100dvh - 1rem);
+    padding: 0;
   }
 }
 

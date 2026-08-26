@@ -17,6 +17,7 @@ import {
 	isAutomaticallyCorrect,
 	isFillAnswerCorrect,
 } from "../lib/grading";
+import { useCommandHandlers } from "../lib/keyboard-commands";
 import { InlineMarkdown, Markdown } from "../lib/markdown";
 import { formatPoints } from "../lib/points";
 import { playError, playSuccess } from "../lib/sound";
@@ -262,52 +263,31 @@ function MCQuestion({
 	const [isOpen, setIsOpen] = useState(false);
 	const t = useT();
 
-	useEffect(() => {
+	function answerWithShortcut(letter: string) {
 		if (showResult || !question.options) return;
+		const optionIndex = letter.charCodeAt(0) - 97;
+		if (optionIndex >= question.options.length) return;
+		track("question_answer", {
+			questionId: question.id,
+			type: "mc",
+			answer: letter,
+			subjectId,
+			topic: topicKey,
+			examId: examId,
+			mode,
+			source: "keyboard",
+		});
+		onAnswer(question.id, letter);
+	}
 
-		const handleKeyDown = (e: KeyboardEvent) => {
-			const tag = document.activeElement?.tagName.toLowerCase();
-			if (tag === "input" || tag === "textarea" || tag === "select") return;
-
-			const key = e.key.toLowerCase();
-			let selectedLetter: string | undefined;
-
-			if (["a", "b", "c", "d", "e"].includes(key)) {
-				selectedLetter = key;
-			} else if (["1", "2", "3", "4", "5"].includes(key)) {
-				selectedLetter = String.fromCharCode(96 + parseInt(key, 10)); // '1' -> 'a'
-			}
-
-			if (selectedLetter) {
-				const optionIndex = selectedLetter.charCodeAt(0) - 97;
-				if (optionIndex < (question.options?.length ?? 0)) {
-					e.preventDefault();
-					track("question_answer", {
-						questionId: question.id,
-						type: "mc",
-						answer: selectedLetter,
-						subjectId,
-						topic: topicKey,
-						examId: examId,
-						mode,
-					});
-					onAnswer(question.id, selectedLetter);
-				}
-			}
-		};
-
-		window.addEventListener("keydown", handleKeyDown);
-		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, [
-		showResult,
-		question.id,
-		question.options,
-		onAnswer,
-		subjectId,
-		topicKey,
-		examId,
-		mode,
-	]);
+	const canAnswer = !showResult && !!question.options;
+	useCommandHandlers("question-card", {
+		"answer-a": canAnswer ? () => answerWithShortcut("a") : undefined,
+		"answer-b": canAnswer ? () => answerWithShortcut("b") : undefined,
+		"answer-c": canAnswer ? () => answerWithShortcut("c") : undefined,
+		"answer-d": canAnswer ? () => answerWithShortcut("d") : undefined,
+		"answer-e": canAnswer ? () => answerWithShortcut("e") : undefined,
+	});
 
 	if (!question.options) return null;
 
