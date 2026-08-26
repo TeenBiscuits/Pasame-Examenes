@@ -31,6 +31,7 @@
     "@tanstack/react-router": "latest",
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-start": "latest",
+    "boneyard-js": "^1.9.0",
     "cuelume": "^0.2.2",
     "driver.js": "^1.8.0",
     "katex": "^0.18.4",

@@ -1,0 +1,10 @@
+{
+  "breakpoints": [375, 768, 1280],
+  "out": "./src/bones",
+  "wait": 800,
+  "animate": "shimmer",
+  "routes": [
+    "/es/ece/practice/rendimiento",
+    "/es/ece/exam/2026-01"
+  ]
+}

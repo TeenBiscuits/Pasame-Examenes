@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "@tanstack/react-router";
+import { useParams } from "@tanstack/react-router";
 import {
 	useCallback,
 	useEffect,
@@ -20,13 +20,15 @@ import Disclaimer from "../components/Disclaimer";
 import QuestionCard from "../components/QuestionCard";
 import QuestionNavChips from "../components/QuestionNavChips";
 import ScoreProgress from "../components/ScoreProgress";
+import SimulatorSkeleton from "../components/SimulatorSkeleton";
 import type { Question } from "../data/types";
 import {
 	filterQuestionsByExamSelection,
 	useExamSelection,
 } from "../hooks/useExamSelection";
-import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { usePracticeSession } from "../hooks/usePracticeSession";
+import { usePracticeTopicNavigation } from "../hooks/usePracticeTopicNavigation";
+import { useTopicQuestions } from "../hooks/useTopicQuestions";
 import { useT } from "../i18n/hooks";
 import {
 	computeQuestionResults,
@@ -38,14 +40,8 @@ import {
 } from "../lib/grading";
 import { LangLink as Link } from "../lib/lang-link";
 import { formatPoints, roundPoints } from "../lib/points";
-import { startPracticeTour } from "../lib/tour";
 import { track } from "../lib/umami";
-import { useLangTo } from "../lib/useLangTo";
-import {
-	getQuestionsByTopic,
-	getSubject,
-	getTopicMegaTopicLabel,
-} from "../subjects";
+import { getSubject } from "../subjects";
 
 const minScrollRangeForCompactScore = 256;
 
@@ -743,38 +739,33 @@ function PracticePlayer({
 	);
 }
 
-export default function PracticeTopic() {
-	const { subjectId, topic } = useParams({ strict: false });
-	const navigate = useNavigate();
-	const t = useT();
-	const langTo = useLangTo();
+type PracticeSession = ReturnType<typeof usePracticeSession>;
+type PracticeTopicNavigation = ReturnType<typeof usePracticeTopicNavigation>;
 
-	const subject = subjectId ? getSubject(subjectId) : undefined;
-	const { selectedExamIds } = useExamSelection(subject);
-	const [allTopicQuestions, setAllTopicQuestions] = useState<Question[]>([]);
-	const [questionsLoadedFor, setQuestionsLoadedFor] = useState<string | null>(
-		null,
-	);
-	const [megatopicLabel, setMegatopicLabel] = useState<string | undefined>();
-	const topicInfo = useMemo(
-		() => subject?.topics.find((tp) => tp.key === topic),
-		[subject, topic],
-	);
-	const questions = useMemo(
-		() => filterQuestionsByExamSelection(allTopicQuestions, selectedExamIds),
-		[allTopicQuestions, selectedExamIds],
-	);
-	useEffect(() => {
-		if (subject && topic) {
-			getQuestionsByTopic(subject.id, topic).then((topicQuestions) => {
-				setAllTopicQuestions(topicQuestions);
-				setQuestionsLoadedFor(`${subject.id}/${topic}`);
-			});
-			getTopicMegaTopicLabel(subject.id, topic).then(setMegatopicLabel);
-		}
-	}, [subject, topic]);
-	const questionsLoaded =
-		!!subject && !!topic && questionsLoadedFor === `${subject.id}/${topic}`;
+interface PracticeTopicContentProps {
+	subject: PracticeSubject | undefined;
+	topic: string | undefined;
+	topicInfo: PracticePlayerProps["topicInfo"];
+	questions: Question[];
+	megatopicLabel: string | undefined;
+	status: ReturnType<typeof useTopicQuestions>["status"];
+	retry: () => void;
+	session: PracticeSession;
+	navigation: PracticeTopicNavigation;
+}
+
+function PracticeTopicContent({
+	subject,
+	topic,
+	topicInfo,
+	questions,
+	megatopicLabel,
+	status,
+	retry,
+	session,
+	navigation,
+}: PracticeTopicContentProps) {
+	const t = useT();
 	const {
 		currentIndex,
 		setCurrentIndex,
@@ -786,161 +777,16 @@ export default function PracticeTopic() {
 		handleSubmit,
 		handleSelfGrade,
 		handleCheckQuestion,
-	} = usePracticeSession(questions, subject?.id || "", topic || "");
-
-	const [navState, setNavState] = useState({
-		direction: undefined as "next" | "prev" | undefined,
-		showLeftFade: false,
-		showRightFade: false,
-	});
-	const { direction, showLeftFade, showRightFade } = navState;
-	const setDirection = useCallback(
-		(d: typeof navState.direction) =>
-			setNavState((prev) => ({ ...prev, direction: d })),
-		// setNavState is stable from useState
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[],
-	);
-	const navRef = useRef<HTMLDivElement>(null);
-	const currentIndexRef = useRef(currentIndex);
-
-	const scrollToNav = useCallback((index: number) => {
-		const container = navRef.current;
-		if (!container) return;
-		const btn = container.children[index] as HTMLElement | undefined;
-		if (!btn) return;
-		requestAnimationFrame(() => {
-			const cr = container.getBoundingClientRect();
-			const br = btn.getBoundingClientRect();
-			const step = 108;
-			if (br.right > cr.right - 84)
-				container.scrollBy({ left: step, behavior: "smooth" });
-			else if (br.left < cr.left + 84)
-				container.scrollBy({ left: -step, behavior: "smooth" });
-		});
-	}, []);
-
-	useEffect(() => {
-		currentIndexRef.current = currentIndex;
-	});
-
-	const subjectReadyRef = useRef(false);
-	const scrollToHeaderRef = useRef<() => void>(() => {});
-	useEffect(() => {
-		subjectReadyRef.current = !!subject;
-	}, [subject]);
-
-	const navEventData = useCallback(
-		() => ({ subjectId: subject?.id || "", topic: topic || "" }),
-		[subject?.id, topic],
-	);
-
-	useKeyboardNav({
-		enabledRef: subjectReadyRef,
-		questionsLength: questions.length,
-		currentIndexRef,
-		setCurrentIndex,
-		scrollToNav,
+	} = session;
+	const {
+		direction,
+		showLeftFade,
+		showRightFade,
 		setDirection,
-		eventName: "practice_navigate",
-		eventData: navEventData,
-		onKeyPress: () => {
-			scrollToHeaderRef.current();
-		},
-	});
-
-	useEffect(() => {
-		if (!subject || !topicInfo) {
-			navigate({ to: langTo("/") as never, replace: true });
-		}
-	}, [subject, topicInfo, navigate, langTo]);
-
-	useEffect(() => {
-		const el = navRef.current;
-		if (!el) return;
-		const check = () => {
-			setNavState((prev) => ({
-				...prev,
-				showLeftFade: el.scrollLeft > 4,
-				showRightFade: el.scrollLeft + el.clientWidth < el.scrollWidth - 4,
-			}));
-		};
-		check();
-		el.addEventListener("scroll", check, { passive: true });
-		const ro = new ResizeObserver(check);
-		ro.observe(el);
-		return () => {
-			el.removeEventListener("scroll", check);
-			ro.disconnect();
-		};
-	}, []);
-
-	useEffect(() => {
-		if (questions.length === 0) return;
-		const timer = setTimeout(() => {
-			startPracticeTour(
-				[
-					{
-						element: '[data-tour="practice-back"]',
-						popover: {
-							title: t.tour.practice.step1Title,
-							description: t.tour.practice.step1Desc,
-							side: "bottom",
-						},
-					},
-					{
-						element: '[data-tour="practice-nav"]',
-						popover: {
-							title: t.tour.practice.step2Title,
-							description: t.tour.practice.step2Desc,
-							side: "bottom",
-						},
-					},
-					{
-						element: '[data-tour="practice-card"]',
-						popover: {
-							title: t.tour.practice.step3Title,
-							description: t.tour.practice.step3Desc,
-							side: "top",
-						},
-					},
-					{
-						element: '[data-tour="practice-actions"]',
-						popover: {
-							title: t.tour.practice.step4Title,
-							description: t.tour.practice.step4Desc,
-							side: "top",
-						},
-					},
-					{
-						element: '[data-tour="practice-nav-btns"]',
-						popover: {
-							title: t.tour.practice.step5Title,
-							description: t.tour.practice.step5Desc,
-							side: "top",
-						},
-					},
-					{
-						element: '[data-tour="report-issue"]',
-						popover: {
-							title: t.tour.reportIssueTitle,
-							description: t.tour.reportIssueDesc,
-							side: "top",
-						},
-					},
-				],
-				{
-					next: t.tour.next,
-					previous: t.tour.previous,
-					done: t.tour.done,
-				},
-			);
-		}, 500);
-		return () => clearTimeout(timer);
-	}, [questions.length, t]);
-
-	const totalPoints = roundPoints(questions.reduce((s, q) => s + q.points, 0));
-
+		navRef,
+		scrollToNav,
+		scrollToHeaderRef,
+	} = navigation;
 	const handleClearAnswer = useCallback(
 		(questionId: string) => {
 			handleAnswer(questionId, "");
@@ -948,29 +794,41 @@ export default function PracticeTopic() {
 		[handleAnswer],
 	);
 
-	if (questions.length === 0 || !subject) {
-		return (
-			<div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
-				{questionsLoaded && null}
-				<p className="text-fg-muted">{t.practice.noQuestions}</p>
-				<Link
-					to={subject ? `/${subject.id}` : "/"}
-					data-cuelume-hover
-					data-cuelume-press
-					className="text-accent-fg mt-4 inline-block hover:underline"
-					onClick={() => {
-						track("nav_click", { target: "home", from: "practice_empty" });
-					}}
-				>
-					{t.practice.backToHome}
-				</Link>
-			</div>
-		);
-	}
-
-	return (
-		<>
-			{questionsLoaded && null}
+	const isLoading = status === "loading";
+	const isReady = status === "ready";
+	const isError = status === "error";
+	const emptyState = (
+		<div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
+			<p className="text-fg-muted">{t.practice.noQuestions}</p>
+			<Link
+				to={subject ? `/${subject.id}` : "/"}
+				data-cuelume-hover
+				data-cuelume-press
+				className="text-accent-fg mt-4 inline-block hover:underline"
+				onClick={() => {
+					track("nav_click", { target: "home", from: "practice_empty" });
+				}}
+			>
+				{t.practice.backToHome}
+			</Link>
+		</div>
+	);
+	const errorState = (
+		<div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
+			<p role="alert" className="text-fg-muted">
+				{t.practice.loadError}
+			</p>
+			<button
+				type="button"
+				className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent mt-4 rounded-lg px-4 py-2 font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+				onClick={retry}
+			>
+				{t.practice.retry}
+			</button>
+		</div>
+	);
+	const player =
+		isReady && questions.length > 0 && subject ? (
 			<PracticePlayer
 				subject={subject}
 				topic={topic || ""}
@@ -983,7 +841,9 @@ export default function PracticeTopic() {
 				selfGrades={selfGrades}
 				submitted={submitted}
 				checkedQuestions={checkedQuestions}
-				totalPoints={totalPoints}
+				totalPoints={roundPoints(
+					questions.reduce((sum, question) => sum + question.points, 0),
+				)}
 				direction={direction}
 				setDirection={setDirection}
 				showLeftFade={showLeftFade}
@@ -997,6 +857,74 @@ export default function PracticeTopic() {
 				onClearAnswer={handleClearAnswer}
 				scrollToHeaderRef={scrollToHeaderRef}
 			/>
-		</>
+		) : isError ? (
+			errorState
+		) : isReady || !subject ? (
+			emptyState
+		) : null;
+
+	return (
+		<SimulatorSkeleton
+			kind="practice"
+			loading={isLoading}
+			loadingLabel={t.practice.loadingQuestions}
+		>
+			{player}
+		</SimulatorSkeleton>
+	);
+}
+
+export default function PracticeTopic() {
+	const { subjectId, topic } = useParams({ strict: false });
+	const subject = subjectId ? getSubject(subjectId) : undefined;
+	const { selectedExamIds } = useExamSelection(subject);
+	const topicInfo = useMemo(
+		() => subject?.topics.find((currentTopic) => currentTopic.key === topic),
+		[subject, topic],
+	);
+	const {
+		questions: allTopicQuestions,
+		megatopicLabel,
+		status,
+		retry,
+	} = useTopicQuestions(subject, topic);
+	const questions = useMemo(
+		() => filterQuestionsByExamSelection(allTopicQuestions, selectedExamIds),
+		[allTopicQuestions, selectedExamIds],
+	);
+	const session = usePracticeSession(questions, subject?.id || "", topic || "");
+	const navigation = usePracticeTopicNavigation({
+		subject,
+		topic,
+		topicInfo,
+		questionsLength: questions.length,
+		currentIndex: session.currentIndex,
+		setCurrentIndex: session.setCurrentIndex,
+	});
+
+	return (
+		<PracticeTopicContent
+			subject={subject}
+			topic={topic}
+			topicInfo={topicInfo}
+			questions={questions}
+			megatopicLabel={megatopicLabel}
+			status={status}
+			retry={retry}
+			session={session}
+			navigation={navigation}
+		/>
+	);
+}
+
+export function PracticeTopicPending() {
+	const t = useT();
+
+	return (
+		<SimulatorSkeleton
+			kind="practice"
+			loading
+			loadingLabel={t.practice.loadingQuestions}
+		/>
 	);
 }
