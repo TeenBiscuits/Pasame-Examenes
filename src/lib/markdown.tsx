@@ -1,5 +1,5 @@
 import type { ComponentProps, ReactNode } from "react";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { Component, lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { ExtraProps } from "react-markdown";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
@@ -150,6 +150,14 @@ function ScrollableTable({ children }: { children: ReactNode }) {
 	);
 }
 
+function PlainCodeContent({ code }: { code: string }) {
+	return (
+		<pre className="text-code-block-fg m-0 max-w-full overflow-x-auto p-4 font-mono text-sm leading-relaxed whitespace-pre">
+			<code>{code}</code>
+		</pre>
+	);
+}
+
 function PlainCodeBlock({
 	code,
 	language,
@@ -166,11 +174,29 @@ function PlainCodeBlock({
 					</span>
 				</div>
 			)}
-			<pre className="text-code-block-fg m-0 max-w-full overflow-x-auto p-4 font-mono text-sm leading-relaxed whitespace-pre">
-				<code>{code}</code>
-			</pre>
+			<PlainCodeContent code={code} />
 		</div>
 	);
+}
+
+type CodeHighlightErrorBoundaryProps = {
+	children: ReactNode;
+	fallback: ReactNode;
+};
+
+class CodeHighlightErrorBoundary extends Component<
+	CodeHighlightErrorBoundaryProps,
+	{ hasError: boolean }
+> {
+	state = { hasError: false };
+
+	static getDerivedStateFromError() {
+		return { hasError: true };
+	}
+
+	render() {
+		return this.state.hasError ? this.props.fallback : this.props.children;
+	}
 }
 
 function getCodeLanguage(node: ExtraProps["node"]): string | undefined {
@@ -260,27 +286,23 @@ function CodeRenderer({ className, children }: ComponentProps<"code">) {
 				</span>
 			</div>
 			<div className="overflow-x-auto text-sm leading-relaxed">
-				<Suspense
-					fallback={
-						<pre className="text-code-block-fg m-0 max-w-full overflow-x-auto p-4 font-mono text-sm leading-relaxed whitespace-pre">
-							<code>{code}</code>
-						</pre>
-					}
-				>
-					<SyntaxHighlighter
-						PreTag="pre"
-						language={prismLanguage}
-						style={codeStyle}
-						customStyle={{
-							margin: 0,
-							padding: "1rem",
-							borderRadius: 0,
-							background: "transparent",
-						}}
-					>
-						{code}
-					</SyntaxHighlighter>
-				</Suspense>
+				<CodeHighlightErrorBoundary fallback={<PlainCodeContent code={code} />}>
+					<Suspense fallback={<PlainCodeContent code={code} />}>
+						<SyntaxHighlighter
+							PreTag="pre"
+							language={prismLanguage}
+							style={codeStyle}
+							customStyle={{
+								margin: 0,
+								padding: "1rem",
+								borderRadius: 0,
+								background: "transparent",
+							}}
+						>
+							{code}
+						</SyntaxHighlighter>
+					</Suspense>
+				</CodeHighlightErrorBoundary>
 			</div>
 		</div>
 	);
