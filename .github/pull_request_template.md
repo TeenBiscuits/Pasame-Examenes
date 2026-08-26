@@ -1,4 +1,4 @@
-# Pull request
+# Resumen
 
 <!-- Resume el cambio y explica por qué hace falta. -->
 
@@ -25,6 +25,7 @@
 - [ ] `pnpm build`
 - [ ] `pnpm run doctor`
 - [ ] He probado el preview si el cambio afecta al comportamiento o al aspecto de la app.
+- [ ] He ejecutado `pnpm readme` si he añadido o modificado una asignatura, o no aplica.
 
 ## Revisión específica
 

@@ -1,16 +1,16 @@
 # Contribuir a Pásame Exámenes
 
-Pásame Exámenes es una plataforma de práctica para las asignaturas de la Facultade de Informática da Coruña. Se aceptan mejoras de contenido, interfaz, accesibilidad, rendimiento, SEO, documentación y herramientas del proyecto.
+Pásame Exámenes es una plataforma de estudio para que estudiantes de la FIC preparen sus asignaturas con preguntas de exámenes y ejercicios de práctica. Puedes contribuir con contenido, código, diseño, accesibilidad, rendimiento, SEO, documentación o herramientas.
 
 ## Antes de empezar
 
-Busca primero si ya existe una issue relacionada. Si no encuentras una, abre una nueva usando la plantilla que mejor encaje:
+Busca primero si ya existe una issue relacionada. Si no encuentras una, abre una nueva:
 
-- [Reportar un error en una pregunta](.github/ISSUE_TEMPLATE/report-question.yml)
-- [Añadir material de práctica autorizado](.github/ISSUE_TEMPLATE/add-exam.yml)
-- [Sugerir una asignatura](.github/ISSUE_TEMPLATE/suggest-subject.yml)
+- [Reportar un error en una pregunta](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=report-question.yml)
+- [Añadir material de estudio](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=add-exam.yml)
+- [Sugerir una asignatura](https://github.com/TeenBiscuits/Pasame-Examenes/issues/new?template=suggest-subject.yml)
 
-Para cambios grandes de arquitectura, rutas o modelo de contenido, abre una issue antes de preparar la implementación. Así podemos acordar el alcance antes de invertir tiempo en una solución que no encaje con la aplicación.
+Para cambios grandes de arquitectura, rutas o reglas del producto, abre una issue antes de implementarlos.
 
 ## Preparar el entorno
 
@@ -22,34 +22,21 @@ git switch -c mi-cambio
 pnpm dev
 ```
 
-La aplicación estará disponible en [http://localhost:3000](http://localhost:3000). El comando `pnpm dev` genera antes las estadísticas de contenido y las imágenes Open Graph necesarias para el entorno local.
+La aplicación estará disponible en [http://localhost:3000](http://localhost:3000). Consulta el [README](./README.md) si necesitas conocer la estructura del proyecto o el resto de comandos.
 
-Consulta el [README](./README.md) para conocer la arquitectura y el resto de comandos disponibles.
+Si usas un agente de programación, puedes consultar las [skills de Matt Pocock](https://www.aihero.dev/skills) para añadir flujos de trabajo guiados a tu agente.
 
-## Contenido y derechos de uso
+> [!TIP]
+> Pide a tu agente que te ponga al día con el proyecto antes de proponer cambios:
+> ```txt
+> Lee AGENTS.md, CONTEXT.md, README.md y CONTRIBUTING.md. Según la tarea, lee también docs/agents/domain.md, docs/content/question-types.md y los ADRs de docs/adr/.
+>
+> Resume en español la arquitectura, el modelo de dominio, la estructura del contenido y las convenciones que afectan a mi tarea. Indica qué archivos debería revisar y qué comprobaciones serían aplicables. No edites archivos todavía.
+> ```
 
-Solo se pueden añadir preguntas, soluciones, imágenes y documentos que cumplan una de estas condiciones:
+## Añadir una asignatura
 
-- son originales de quien contribuye;
-- tienen autorización para compartirse;
-- proceden de una fuente pública compatible con su redistribución;
-- los ha proporcionado el profesorado o la institución con permiso suficiente.
-
-No subas enunciados, PDFs, soluciones ni otros materiales protegidos si no tienes permiso para compartirlos. Si no puedes verificar los derechos de un examen, aporta ejercicios originales basados en el temario.
-
-El contenido usa CC BY-SA 4.0 por defecto. El código, la configuración y la documentación usan Apache 2.0. La asignación concreta se mantiene en [`REUSE.toml`](./REUSE.toml) y el texto de la licencia de contenido está en [`LICENSE-CONTENT.md`](./LICENSE-CONTENT.md).
-
-Si una asignatura necesita una licencia distinta, añade el texto correspondiente en `LICENSES/`, configura la anotación de la ruta en `REUSE.toml` y declara `contentLicense` en su `meta.ts`. No marques como autorizado un examen que no pueda compartirse legalmente.
-
-## Añadir o actualizar una asignatura
-
-Las asignaturas viven en `src/subjects/<subject-id>/` y normalmente contienen:
-
-- `meta.ts`, con la información de la asignatura, temas y exámenes;
-- `questions.ts`, con las preguntas;
-- `assets/`, con imágenes usadas por las preguntas.
-
-Para crear una asignatura nueva, copia la plantilla y sustituye el identificador:
+Las asignaturas viven en `src/subjects/<subject-id>/`. Para crear una:
 
 ```bash
 cp -R src/subjects/_template src/subjects/mi-asignatura
@@ -57,28 +44,59 @@ cp -R src/subjects/_template src/subjects/mi-asignatura
 
 Después:
 
-1. Actualiza `meta.ts`. El campo `id` debe coincidir con el nombre de la carpeta y `lastmod` debe usar una fecha ISO.
-2. Define los temas y los exámenes disponibles.
-3. Añade las preguntas en `questions.ts` como un array `Question[]`.
-4. Comprueba que cada pregunta tiene un `examId` que coincide con un examen de `meta.ts` y un `topic` válido.
-5. Añade solo PDFs autorizados en `public/exams/<subject-id>/` y usa `hasPdf: false` cuando un examen no tenga un PDF compartible.
-6. Guarda las imágenes de las preguntas en `assets/` y referencia sus versiones optimizadas con las utilidades existentes.
-7. Ejecuta `pnpm readme` para regenerar la tabla de asignaturas del README.
+1. Actualiza `meta.ts` con el nombre, grado, curso, código oficial, temas y fuentes de la asignatura.
+2. Indica si el profesorado comparte sus exámenes. Si los comparte, el contenido puede presentarse como `Examen`; si no, usa `Recopilatorio` para no sugerir una relación oficial con la facultad.
+3. Añade las preguntas en `questions.ts` y sus imágenes en `assets/`.
+4. Usa solo materiales que puedan publicarse legalmente.
+5. Ejecuta `pnpm readme` para regenerar la tabla de asignaturas del README.
 
-Los tipos de pregunta disponibles son `mc`, `text`, `multiple-text`, `matching`, `fill` y `table-fill`. Los campos de texto admiten Markdown, fórmulas y bloques de código. Consulta [`src/data/types.ts`](./src/data/types.ts) y una asignatura existente antes de añadir una estructura nueva.
+La plantilla `_template` es una asignatura de pruebas y solo debe aparecer en desarrollo y en previews de Vercel. `espain` es una asignatura secreta y no debe aparecer en la homepage ni en el sitemap.
 
-La plantilla `_template` sirve como asignatura de pruebas. Solo debe aparecer en desarrollo y en previews de Vercel. No la conviertas en una asignatura pública ni la incluyas en el sitemap. `espain` es una asignatura secreta: se accede por URL directa o mediante SecretToro y no debe aparecer en la homepage ni en el sitemap.
+> [!TIP]
+> Pide a tu agente que cree una nueva asignatura siguiendo las convenciones del repositorio:
+> ```txt
+> Quiero añadir la asignatura <nombre> con el identificador <subject-id>.
+>
+> Lee AGENTS.md, CONTEXT.md, CONTRIBUTING.md, la plantilla src/subjects/_template/ y al menos una asignatura existente parecida. Inspecciona cómo se definen meta.ts, topics, exams y questions.ts.
+>
+> Usa la información que te proporcione sobre si el profesorado comparte sus exámenes y aplica la distinción entre Examen y Recopilatorio. Si falta esa información, pregúntamela antes de elegir. Implementa la asignatura, añade los temas y fuentes que te proporcione, genera el README con pnpm readme y ejecuta las comprobaciones aplicables. Termina indicando los archivos modificados, los comandos ejecutados y cualquier dato que falte.
+> ```
+
+## Añadir contenido a una asignatura
+
+Para añadir preguntas o fuentes a una asignatura existente:
+
+1. Modifica el `meta.ts` de la asignatura si añades una fuente, un tema o una imagen de asignatura.
+2. Añade las preguntas en `questions.ts`. Cada pregunta debe tener un `examId` y un `topic` válidos.
+3. Consulta la [guía de tipos de pregunta](./docs/content/question-types.md) para elegir la estructura adecuada. Si una pregunta no encaja en ningún tipo, crea un tipo nuevo siguiendo esa guía.
+4. Guarda las imágenes de las preguntas en `assets/` y los PDFs autorizados en `public/exams/<subject-id>/`.
+5. Ejecuta `pnpm readme` si has añadido o modificado una asignatura.
+
+> [!CAUTION]
+> Comparte únicamente material que puedas publicar legalmente. No adjuntes ni solicites enunciados, PDFs o materiales docentes protegidos sin autorización.
+
+> [!TIP]
+> Pide a tu agente que añada contenido a una asignatura existente:
+> ```txt
+> Quiero añadir contenido a src/subjects/<subject-id> a partir de estos archivos o enlaces: <archivos o enlaces>.
+>
+> Lee AGENTS.md, CONTEXT.md, CONTRIBUTING.md, docs/content/question-types.md y los archivos de la asignatura. Comprueba que el material puede publicarse, usa la información disponible para identificar si corresponde a un Examen o a un Recopilatorio y pregúntame si no es suficiente. Revisa los temas y tipos de pregunta disponibles.
+>
+> Implementa el contenido respetando las estructuras existentes, añade las imágenes necesarias, actualiza los metadatos y ejecuta pnpm readme si corresponde. Ejecuta las comprobaciones aplicables y termina indicando qué material has añadido, qué comandos has ejecutado y cualquier duda que deba revisar una persona.
+> ```
 
 ## Cambios en la aplicación
 
-Ten en cuenta estas reglas al modificar la interfaz o las rutas:
-
 - Mantén los tres idiomas disponibles: español, galego e inglés.
-- Usa los componentes y utilidades existentes antes de crear una variante nueva.
-- Conserva los nombres accesibles de botones, enlaces, iconos y controles, también cuando el texto se oculte en mobile.
-- Si cambias una página pública, revisa `title`, `description`, canonical, Open Graph, datos estructurados y sitemap.
-- Si cambias el flujo de práctica o examen, prueba navegación por teclado, estados de error y tamaños de pantalla pequeños.
-- No edites a mano las filas de asignaturas generadas entre `SUBJECTS_TABLE:START` y `SUBJECTS_TABLE:END`.
+- Usa los componentes y utilidades existentes antes de crear variantes nuevas.
+- Conserva la accesibilidad de botones, enlaces, iconos y controles.
+- Si cambias una página pública, revisa sus metadatos SEO.
+- Si cambias la práctica o la simulación de examen, prueba los estados relevantes en teclado y en pantallas pequeñas.
+- No edites manualmente la tabla de asignaturas entre `SUBJECTS_TABLE:START` y `SUBJECTS_TABLE:END`.
+
+## Documentación y decisiones del proyecto
+
+`CONTEXT.md` contiene el vocabulario del dominio y los ADRs de `docs/adr/` explican decisiones importantes. Si una contribución cambia una regla del producto, actualiza la documentación correspondiente. Si el código no coincide con la documentación, adapta el código al comportamiento documentado salvo que haya cambiado la decisión del dominio.
 
 ## Comprobaciones
 
@@ -98,9 +116,7 @@ pnpm run doctor
 pnpm preview
 ```
 
-`pnpm check` y `pnpm lint` usan Biome. `pnpm run doctor` ejecuta React Doctor sin su linter integrado. Los scripts `scripts/daypo_scraper.ts` y `scripts/mistral_ocr.ts` son herramientas auxiliares para desarrolladores y no forman parte de la comprobación normal de la aplicación.
-
-Si el cambio afecta a la interfaz, prueba al menos una pantalla móvil, los tres idiomas y los temas claro y oscuro. Si afecta a contenido o prerender, comprueba también el build y las rutas públicas generadas.
+Si el cambio afecta a la interfaz, prueba al menos una pantalla móvil, los tres idiomas y los temas claro y oscuro. Si afecta al contenido o al prerenderizado, comprueba también el build y las rutas públicas generadas.
 
 ## Pull requests
 
