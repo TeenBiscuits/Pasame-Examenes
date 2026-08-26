@@ -1,14 +1,14 @@
-name: Añadir material de práctica autorizado
-description: Solicitar añadir exámenes autorizados, pruebas, recopilatorios o ejercicios originales a una asignatura existente
-title: "[Nuevo Examen]"
+name: Añadir material de estudio
+description: Enviar archivos o enlaces para valorar añadir material a una asignatura existente
+title: "[Nuevo Material]"
 labels: ["new-exam", "enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        ¡Gracias por ayudar a ampliar Pásame Exámenes! Usa esta plantilla para solicitar que se añadan exámenes autorizados, pruebas, recopilatorios o ejercicios originales a una asignatura que ya existe en la plataforma.
+        ¡Gracias por ayudar a ampliar Pásame Exámenes! Usa esta plantilla para enviar archivos o enlaces relacionados con una asignatura que ya existe en la plataforma.
 
-        No envíes enunciados, PDFs o materiales docentes protegidos si no tienes permiso para compartirlos.
+        Comparte únicamente material que puedas publicar legalmente. No adjuntes ni solicites enunciados, PDFs o materiales docentes protegidos sin autorización.
 
   - type: checkboxes
     id: rights-confirmation
@@ -23,58 +23,29 @@ body:
     id: subject
     attributes:
       label: Asignatura
-      description: ¿A qué asignatura pertenece este material? (ej. "eseo", "bede")
+      description: ¿A qué asignatura pertenece este material? Usa su identificador si lo conoces (ej. "eseo", "bede")
       placeholder: "ej: eseo"
     validations:
       required: true
 
-  - type: input
-    id: exam-year
+  - type: textarea
+    id: material
     attributes:
-      label: Año o identificador
-      description: El año, mes o identificador del examen/prueba/recopilatorio a añadir
-      placeholder: "ej: 2025 o 2024-06"
+      label: Material o enlaces
+      description: Adjunta los archivos aquí o pega enlaces a los materiales que quieres compartir
+      placeholder: Arrastra aquí los archivos autorizados o pega sus enlaces...
     validations:
       required: true
 
-  - type: input
-    id: total-points
+  - type: textarea
+    id: description
     attributes:
-      label: Puntuación total
-      description: Puntuación máxima del examen
-      placeholder: "ej: 60"
-
-  - type: input
-    id: pass-points
-    attributes:
-      label: Puntuación para aprobar
-      description: Puntuación mínima necesaria para aprobar
-      placeholder: "ej: 30"
-
-  - type: input
-    id: duration
-    attributes:
-      label: Duración (minutos)
-      description: Duración del examen en minutos
-      placeholder: "ej: 180"
+      label: Descripción breve (opcional)
+      description: Explica qué material estás enviando y cualquier contexto que pueda ayudar a revisarlo
+      placeholder: Es un recopilatorio de la asignatura...
 
   - type: textarea
-    id: exam-details
+    id: additional-info
     attributes:
-      label: Información extra sobre el examen (opcional)
-
-  - type: checkboxes
-    id: has-pdf
-    attributes:
-      label: ¿Tienes un PDF autorizado?
-      description: Marca esta casilla solo si dispones de un PDF que puede compartirse públicamente o con autorización.
-      options:
-        - label: Tengo un PDF autorizado o público que puede compartirse
-
-  - type: textarea
-    id: questions
-    attributes:
-      label: Preguntas y soluciones (opcional)
-      description: |
-        Si dispones de preguntas y soluciones originales o autorizadas, puedes detallarlas aquí.
-        Cuanta más información proporciones, más rápido se podrá revisar y añadir el material.
+      label: Información adicional (opcional)
+      description: Añade cualquier otro detalle relevante

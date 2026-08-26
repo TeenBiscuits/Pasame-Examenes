@@ -26,6 +26,15 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: exam-id
+    attributes:
+      label: Examen o Recopilatorio
+      description: Identificador de la fuente en la que aparece la pregunta
+      placeholder: "ej: 2024 o recopilatorio-mayo-2026"
+    validations:
+      required: true
+
   - type: dropdown
     id: question-type
     attributes:
@@ -33,9 +42,11 @@ body:
       description: Opcionalmente, ¿de qué tipo es esta pregunta?
       options:
         - Opción múltiple (mc)
-        - Texto libre (text)
-        - Cálculo (calculation)
+        - Texto (text)
+        - Texto con varias partes (multiple-text)
         - Emparejamiento (matching)
+        - Rellenar huecos (fill)
+        - Rellenar tablas (table-fill)
     validations:
       required: false
 
