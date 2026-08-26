@@ -51,6 +51,11 @@ const prerenderPages = [
 
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
+	build: {
+		// The shared Markdown runtime stays below this threshold after the
+		// syntax highlighter is split into its own on-demand chunk.
+		chunkSizeWarningLimit: 550,
+	},
 	define: {
 		"import.meta.env.VITE_APP_VERSION": JSON.stringify(getAppVersion()),
 		"import.meta.env.VERCEL_ENV": JSON.stringify(process.env.VERCEL_ENV ?? ""),

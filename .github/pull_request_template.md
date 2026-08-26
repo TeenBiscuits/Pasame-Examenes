@@ -14,8 +14,7 @@
 
 - [ ] Contenido o preguntas
 - [ ] Interfaz o accesibilidad
-- [ ] Rutas, SEO o prerender
-- [ ] Rendimiento
+- [ ] Rendimiento, SEO, Optimizaciones
 - [ ] Herramientas o documentación
 
 ## Comprobaciones

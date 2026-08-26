@@ -1,13 +1,14 @@
 import type { ComponentProps, ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { Component, lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { ExtraProps } from "react-markdown";
 import ReactMarkdown from "react-markdown";
-import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeKatex from "rehype-katex";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import "katex/dist/katex.min.css";
+
+const SyntaxHighlighter = lazy(() => import("./MarkdownSyntaxHighlighter"));
 
 // A single newline is an intentional line break in question data. Markdown's
 // default soft-break behavior would otherwise make it depend on the field or
@@ -149,6 +150,14 @@ function ScrollableTable({ children }: { children: ReactNode }) {
 	);
 }
 
+function PlainCodeContent({ code }: { code: string }) {
+	return (
+		<pre className="text-code-block-fg m-0 max-w-full overflow-x-auto p-4 font-mono text-sm leading-relaxed whitespace-pre">
+			<code>{code}</code>
+		</pre>
+	);
+}
+
 function PlainCodeBlock({
 	code,
 	language,
@@ -165,16 +174,34 @@ function PlainCodeBlock({
 					</span>
 				</div>
 			)}
-			<pre className="text-code-block-fg m-0 max-w-full overflow-x-auto p-4 font-mono text-sm leading-relaxed whitespace-pre">
-				<code>{code}</code>
-			</pre>
+			<PlainCodeContent code={code} />
 		</div>
 	);
 }
 
+type CodeHighlightErrorBoundaryProps = {
+	children: ReactNode;
+	fallback: ReactNode;
+};
+
+class CodeHighlightErrorBoundary extends Component<
+	CodeHighlightErrorBoundaryProps,
+	{ hasError: boolean }
+> {
+	state = { hasError: false };
+
+	static getDerivedStateFromError() {
+		return { hasError: true };
+	}
+
+	render() {
+		return this.state.hasError ? this.props.fallback : this.props.children;
+	}
+}
+
 function getCodeLanguage(node: ExtraProps["node"]): string | undefined {
 	const child = node?.children[0];
-	if (!child || child.type !== "element" || child.tagName !== "code") {
+	if (child?.type !== "element" || child.tagName !== "code") {
 		return undefined;
 	}
 
@@ -187,7 +214,7 @@ function getCodeLanguage(node: ExtraProps["node"]): string | undefined {
 
 function getCodeText(node: ExtraProps["node"]): string {
 	const child = node?.children[0];
-	if (!child || child.type !== "element" || child.tagName !== "code") {
+	if (child?.type !== "element" || child.tagName !== "code") {
 		return "";
 	}
 
@@ -259,19 +286,23 @@ function CodeRenderer({ className, children }: ComponentProps<"code">) {
 				</span>
 			</div>
 			<div className="overflow-x-auto text-sm leading-relaxed">
-				<SyntaxHighlighter
-					PreTag="pre"
-					language={prismLanguage}
-					style={codeStyle}
-					customStyle={{
-						margin: 0,
-						padding: "1rem",
-						borderRadius: 0,
-						background: "transparent",
-					}}
-				>
-					{code}
-				</SyntaxHighlighter>
+				<CodeHighlightErrorBoundary fallback={<PlainCodeContent code={code} />}>
+					<Suspense fallback={<PlainCodeContent code={code} />}>
+						<SyntaxHighlighter
+							PreTag="pre"
+							language={prismLanguage}
+							style={codeStyle}
+							customStyle={{
+								margin: 0,
+								padding: "1rem",
+								borderRadius: 0,
+								background: "transparent",
+							}}
+						>
+							{code}
+						</SyntaxHighlighter>
+					</Suspense>
+				</CodeHighlightErrorBoundary>
 			</div>
 		</div>
 	);

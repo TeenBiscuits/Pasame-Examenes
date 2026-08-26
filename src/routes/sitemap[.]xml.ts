@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { subjects } from "../subjects";
+import { isIndexableSubject } from "../subjects/visibility";
 
 const DEFAULT_BASE_URL = "https://pe.pablopl.dev";
 const LANGS = ["en", "es", "gl"] as const;
@@ -37,19 +39,15 @@ function withSitemapBase(url: string, baseUrl: string, defaultBaseUrl: string) {
 		: url;
 }
 
-async function buildSitemapXml(): Promise<string> {
-	const [subjectData, visibility] = await Promise.all([
-		import("../subjects"),
-		import("../subjects/visibility"),
-	]);
+function buildSitemapXml(): string {
 	const defaultBaseUrl = DEFAULT_BASE_URL;
 	const configuredBaseUrl =
 		typeof process !== "undefined"
 			? process.env.SITE_URL?.trim() || defaultBaseUrl
 			: defaultBaseUrl;
 	const baseUrl = configuredBaseUrl.replace(/\/+$/, "");
-	const indexableSubjects = subjectData.subjects.filter((subject) =>
-		visibility.isIndexableSubject(subject.id),
+	const indexableSubjects = subjects.filter((subject) =>
+		isIndexableSubject(subject.id),
 	);
 	const sitemapPages = LANGS.flatMap((lang) => [
 		{
@@ -117,8 +115,8 @@ async function buildSitemapXml(): Promise<string> {
 export const Route = createFileRoute("/sitemap.xml")({
 	server: {
 		handlers: {
-			GET: async () =>
-				new Response(await buildSitemapXml(), {
+			GET: () =>
+				new Response(buildSitemapXml(), {
 					headers: {
 						"Cache-Control": "public, max-age=3600",
 						"Content-Type": "application/xml; charset=utf-8",
