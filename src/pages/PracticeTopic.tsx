@@ -965,11 +965,8 @@ export default function PracticeTopic() {
 	const session = usePracticeSession(questions, subject?.id || "", topic || "");
 	const navigation = usePracticeTopicNavigation({
 		subject,
-		topic,
 		topicInfo,
 		questionsLength: questions.length,
-		currentIndex: session.currentIndex,
-		setCurrentIndex: session.setCurrentIndex,
 	});
 
 	return (
