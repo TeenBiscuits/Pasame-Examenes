@@ -87,15 +87,15 @@ Conserva en `question` el contexto necesario, incluidos Markdown, fórmulas y c�
 
 ## Emparejamiento
 
-Usa `matching` para relacionar cada elemento con una opción. Las claves de `correctAnswer` son los elementos que aparecen en la pregunta y sus valores son las letras de las opciones correctas.
+Usa `matching` para relacionar cada elemento con una respuesta. Las claves de `correctAnswer` son los elementos que aparecen en la pregunta y sus valores son las respuestas correctas. Para afirmaciones de verdadero o falso, usa `V` para Verdadero y `F` para Falso.
 
 Markdown de origen:
 
 ```md
-4. [4 puntos] Relaciona cada algoritmo con su complejidad.
-- Ordenación burbuja: A. O(n²)
-- Búsqueda binaria: B. O(log n)
-- Búsqueda lineal: C. O(n)
+4. [4 puntos] Marca V si la afirmación es verdadera y F si es falsa.
+- La búsqueda binaria necesita que los datos estén ordenados: V o F
+- La búsqueda lineal tiene complejidad O(log n): V o F
+- La ordenación burbuja puede tener complejidad O(n²): V o F
 ```
 
 Conversión:
@@ -107,11 +107,11 @@ Conversión:
 	topic: "algoritmos",
 	type: "matching",
 	points: 4,
-	question: "Relaciona cada algoritmo con su complejidad.",
+	question: "Marca V si la afirmación es verdadera y F si es falsa.",
 	correctAnswer: {
-		"Ordenación burbuja": "A",
-		"Búsqueda binaria": "B",
-		"Búsqueda lineal": "C",
+		"La búsqueda binaria necesita que los datos estén ordenados": "V",
+		"La búsqueda lineal tiene complejidad O(log n)": "F",
+		"La ordenación burbuja puede tener complejidad O(n²)": "V",
 	},
 }
 ```
