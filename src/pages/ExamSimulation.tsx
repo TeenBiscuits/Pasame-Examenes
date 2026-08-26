@@ -18,7 +18,6 @@ import ScoreProgress from "../components/ScoreProgress";
 import SimulatorSkeleton from "../components/SimulatorSkeleton";
 import type { Exam, Question } from "../data/types";
 import { useExamSession } from "../hooks/useExamSession";
-import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { useT } from "../i18n/hooks";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
 import { getSubjectBuildStats } from "../lib/content-stats";
@@ -37,6 +36,7 @@ import {
 	isFullySelfGraded,
 	isSelfGradedQuestion,
 } from "../lib/grading";
+import { useCommandHandlers } from "../lib/keyboard-commands";
 import { LangLink as Link } from "../lib/lang-link";
 import { formatPoints, roundPoints } from "../lib/points";
 import { playError, playSound } from "../lib/sound";
@@ -561,11 +561,15 @@ function ExamControls({
 	const prevBtnRef = useRef<HTMLButtonElement>(null);
 	const nextBtnRef = useRef<HTMLButtonElement>(null);
 
-	const navigateQuestion = (dir: "prev" | "next") => {
+	const navigateQuestion = (
+		dir: "prev" | "next",
+		source: "arrow" | "keyboard" = "arrow",
+	) => {
 		const nextIndex =
 			dir === "prev"
 				? Math.max(0, currentIndex - 1)
 				: Math.min(questions.length - 1, currentIndex + 1);
+		if (nextIndex === currentIndex) return;
 		setDirection(dir);
 		track("exam_navigate", {
 			subjectId: subject.id,
@@ -573,12 +577,48 @@ function ExamControls({
 			direction: dir,
 			fromIndex: currentIndex,
 			toIndex: nextIndex,
-			source: "arrow",
+			source,
 		});
 		setCurrentIndex(nextIndex);
 		scrollToNav(nextIndex);
 		scrollToHeader();
 	};
+
+	const navigateToBoundary = (boundary: "first" | "last") => {
+		const nextIndex = boundary === "first" ? 0 : questions.length - 1;
+		if (nextIndex === currentIndex) return;
+		const direction = nextIndex > currentIndex ? "next" : "prev";
+		setDirection(direction);
+		track("exam_navigate", {
+			subjectId: subject.id,
+			examId: examInfo.id,
+			direction,
+			fromIndex: currentIndex,
+			toIndex: nextIndex,
+			source: "keyboard",
+		});
+		setCurrentIndex(nextIndex);
+		scrollToNav(nextIndex);
+		scrollToHeader();
+	};
+
+	useCommandHandlers("exam-controls", {
+		"previous-question":
+			currentIndex > 0 ? () => navigateQuestion("prev", "keyboard") : undefined,
+		"next-question":
+			currentIndex < questions.length - 1
+				? () => navigateQuestion("next", "keyboard")
+				: undefined,
+		"first-question":
+			currentIndex > 0 ? () => navigateToBoundary("first") : undefined,
+		"last-question":
+			currentIndex < questions.length - 1
+				? () => navigateToBoundary("last")
+				: undefined,
+		"submit-session": !submitted
+			? () => showDialog(submitDialogRef.current)
+			: undefined,
+	});
 
 	return (
 		<div className="mt-4 flex items-center gap-2 sm:mt-6 sm:justify-between sm:gap-3">
@@ -1202,6 +1242,13 @@ export default function ExamSimulation() {
 		}
 	}, [handleStart, questions.length, startRequested, started, status]);
 
+	useCommandHandlers("exam-start", {
+		"start-exam":
+			!started && questions.length > 0 && subject && examInfo
+				? handleStart
+				: undefined,
+	});
+
 	const [navState, setNavState] = useState({
 		direction: undefined as "next" | "prev" | undefined,
 		showLeftFade: false,
@@ -1243,8 +1290,6 @@ export default function ExamSimulation() {
 			mutationObserver.disconnect();
 		};
 	}, []);
-	const currentIndexRef = useRef(currentIndex);
-	const startedRef = useRef(started);
 	const scrollToHeaderRef = useRef<() => void>(() => {});
 
 	const scrollToNav = useCallback((index: number) => {
@@ -1262,30 +1307,6 @@ export default function ExamSimulation() {
 				container.scrollBy({ left: -step, behavior: "smooth" });
 		});
 	}, []);
-
-	useEffect(() => {
-		currentIndexRef.current = currentIndex;
-		startedRef.current = started;
-	});
-
-	const navEventData = useCallback(
-		() => ({ subjectId: subjectId || "", examId: examId || "" }),
-		[subjectId, examId],
-	);
-
-	useKeyboardNav({
-		enabledRef: startedRef,
-		questionsLength: questions.length,
-		currentIndexRef,
-		setCurrentIndex,
-		scrollToNav,
-		setDirection,
-		eventName: "exam_navigate",
-		eventData: navEventData,
-		onKeyPress: () => {
-			scrollToHeaderRef.current();
-		},
-	});
 
 	useEffect(() => {
 		if (!subject) {
