@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import "../bones/registry";
 import { isLang, type Lang } from "../i18n/context-value";
 import { ssrDuringBuildPrerender } from "../lib/ssr";
 import appCss from "../styles.css?url";

@@ -1,5 +1,5 @@
-import { useNavigate, useParams } from "@tanstack/react-router";
-import { use, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { getRouteApi, useNavigate, useParams } from "@tanstack/react-router";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	Alarm,
 	AngleLeftSquare,
@@ -15,11 +15,13 @@ import { compactModalDialogClass, ModalHeader } from "../components/Modal";
 import QuestionCard from "../components/QuestionCard";
 import QuestionNavChips from "../components/QuestionNavChips";
 import ScoreProgress from "../components/ScoreProgress";
+import SimulatorSkeleton from "../components/SimulatorSkeleton";
 import type { Exam, Question } from "../data/types";
 import { useExamSession } from "../hooks/useExamSession";
 import { useKeyboardNav } from "../hooks/useKeyboardNav";
 import { useT } from "../i18n/hooks";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
+import { getSubjectBuildStats } from "../lib/content-stats";
 import {
 	closeDialog,
 	showDialog,
@@ -46,8 +48,10 @@ import {
 	getSubject,
 	getTopicMegaTopicLabel,
 } from "../subjects";
+import { contentStatsBySubject } from "../subjects/contentStats.generated";
 
 const minScrollRangeForCompactScore = 256;
+const examRouteApi = getRouteApi("/$lang/$subjectId_/exam/$examId");
 
 function formatTime(seconds: number) {
 	const m = Math.floor(seconds / 60);
@@ -58,19 +62,25 @@ function formatTime(seconds: number) {
 interface ExamStartScreenProps {
 	subject: NonNullable<ReturnType<typeof getSubject>>;
 	examInfo: Exam;
-	questions: Question[];
+	questionCount: number;
 	totalPoints: number;
 	passPoints: number;
+	loading: boolean;
+	loadError: boolean;
 	onStart: () => void;
+	onRetry: () => void;
 }
 
 function ExamStartScreen({
 	subject,
 	examInfo,
-	questions,
+	questionCount,
 	totalPoints,
 	passPoints,
+	loading,
+	loadError,
 	onStart,
+	onRetry,
 }: ExamStartScreenProps) {
 	const t = useT();
 	const isAuthorized = hasAuthorizedExamContent(subject);
@@ -125,7 +135,7 @@ function ExamStartScreen({
 				<div className="grid grid-cols-2 gap-4 text-sm">
 					<div>
 						<span className="text-fg-muted">{t.exam.questions}</span>
-						<p className="font-semibold">{questions.length}</p>
+						<p className="font-semibold">{questionCount}</p>
 					</div>
 					<div>
 						<span className="text-fg-muted">{t.exam.totalPoints}</span>
@@ -150,11 +160,29 @@ function ExamStartScreen({
 					<Bulb size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
 					{scoringNote}
 				</div>
+				{loading && (
+					<p role="status" className="text-fg-muted text-sm">
+						{t.exam.loadingQuestions}
+					</p>
+				)}
+				{loadError && (
+					<div className="border-incorrect-border bg-incorrect-bg text-incorrect-fg flex items-center justify-between gap-3 rounded-lg border p-3 text-sm">
+						<p role="alert">{t.exam.loadError}</p>
+						<button
+							type="button"
+							className="border-incorrect-border bg-surface text-incorrect-fg hover:bg-incorrect-bg focus-visible:ring-incorrect-fg shrink-0 rounded-lg border px-3 py-2 font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+							onClick={onRetry}
+						>
+							{t.exam.retry}
+						</button>
+					</div>
+				)}
 				<button
 					type="button"
 					data-cuelume-press="ready"
-					className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg py-3 font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
+					className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg py-3 font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
 					onClick={onStart}
+					disabled={loadError}
 				>
 					{t.exam.startExam}
 				</button>
@@ -949,18 +977,11 @@ function ExamPlayer({
 	);
 }
 
-function ExamEmptyState({
-	subject,
-	questionsLoaded,
-}: {
-	subject: ExamSubject | undefined;
-	questionsLoaded: boolean;
-}) {
+function ExamEmptyState({ subject }: { subject: ExamSubject | undefined }) {
 	const t = useT();
 
 	return (
 		<div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
-			{questionsLoaded && null}
 			<p className="text-fg-muted">{t.exam.noQuestions}</p>
 			<Link
 				to={subject ? `/${subject.id}` : "/"}
@@ -977,11 +998,54 @@ function ExamEmptyState({
 	);
 }
 
+function ExamLoadError({
+	subject,
+	onRetry,
+}: {
+	subject: ExamSubject;
+	onRetry: () => void;
+}) {
+	const t = useT();
+
+	return (
+		<div className="mx-auto max-w-3xl px-4 py-8 text-center sm:py-16">
+			<p role="alert" className="text-fg-muted">
+				{t.exam.loadError}
+			</p>
+			<div className="mt-4 flex justify-center gap-3">
+				<button
+					type="button"
+					className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent rounded-lg px-4 py-2 font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+					onClick={onRetry}
+				>
+					{t.exam.retry}
+				</button>
+				<Link
+					to={`/${subject.id}`}
+					className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent rounded-lg border px-4 py-2 font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+				>
+					{t.exam.backToHome}
+				</Link>
+			</div>
+		</div>
+	);
+}
+
 interface LoadedExamData {
 	questions: Question[];
 	megatopicLabels: Record<string, string>;
-	loadFailed: boolean;
 }
+
+type ExamLoadState =
+	| { key: string; status: "loading" }
+	| {
+			key: string;
+			status: "ready";
+			questions: Question[];
+			megatopicLabels: Record<string, string>;
+	  }
+	| { key: string; status: "error" }
+	| { key: null; status: "idle" };
 
 const examDataCache = new Map<string, Promise<LoadedExamData>>();
 
@@ -990,60 +1054,84 @@ function loadExamData(subjectId: string, examId: string) {
 	const cached = examDataCache.get(cacheKey);
 	if (cached) return cached;
 
-	const promise: Promise<LoadedExamData> = getQuestionsByExam(subjectId, examId)
-		.then(async (questions) => {
-			const topics = [...new Set(questions.map((question) => question.topic))];
-			const entries = await Promise.all(
-				topics.map(async (topic) => {
-					const label = await getTopicMegaTopicLabel(subjectId, topic);
-					return [topic, label] as const;
-				}),
-			);
-			const megatopicLabels: Record<string, string> = {};
-			for (const [topic, label] of entries) {
-				if (label != null) megatopicLabels[topic] = label;
-			}
-			return { questions, megatopicLabels, loadFailed: false };
-		})
-		.catch(() => ({
-			questions: [],
-			megatopicLabels: {},
-			loadFailed: true,
-		}));
+	const promise: Promise<LoadedExamData> = getQuestionsByExam(
+		subjectId,
+		examId,
+	).then(async (questions) => {
+		const topics = [...new Set(questions.map((question) => question.topic))];
+		const entries = await Promise.all(
+			topics.map(async (topic) => {
+				const label = await getTopicMegaTopicLabel(subjectId, topic);
+				return [topic, label] as const;
+			}),
+		);
+		const megatopicLabels: Record<string, string> = {};
+		for (const [topic, label] of entries) {
+			if (label != null) megatopicLabels[topic] = label;
+		}
+		return { questions, megatopicLabels };
+	});
 	examDataCache.set(cacheKey, promise);
 	return promise;
 }
 
 function useExamData(subject: ExamSubject | undefined, examId?: string) {
-	const examInfo = useMemo(
-		() =>
-			subject?.exams.find((exam) => exam.id === examId && !exam.deleteRights),
-		[subject, examId],
-	);
-	const loadedData =
-		subject && examId
-			? use(loadExamData(subject.id, examId))
-			: { questions: [], megatopicLabels: {}, loadFailed: false };
-	const { questions, megatopicLabels } = loadedData;
-	useEffect(() => {
-		if (loadedData.loadFailed && subject && examId) {
-			examDataCache.delete(`${subject.id}/${examId}`);
-		}
-	}, [loadedData.loadFailed, subject, examId]);
-	const totalPoints = roundPoints(
-		questions.reduce((sum, q) => sum + q.points, 0),
-	);
-	const passPoints = examInfo ? getExamPassPoints(examInfo, totalPoints) : 0;
+	const requestKey = subject && examId ? `${subject.id}/${examId}` : null;
+	const [loadState, setLoadState] = useState<ExamLoadState>({
+		key: null,
+		status: "idle",
+	});
+	const [retryToken, setRetryToken] = useState(0);
+	const currentLoadState =
+		loadState.key === requestKey
+			? loadState
+			: requestKey
+				? { key: requestKey, status: "loading" as const }
+				: { key: null, status: "idle" as const };
+	const loadAttemptKey = requestKey ? `${requestKey}:${retryToken}` : null;
 
-	const questionsLoaded = !!subject && !!examId;
+	useEffect(() => {
+		if (!subject || !examId || !requestKey || !loadAttemptKey) return;
+
+		let cancelled = false;
+		setLoadState({ key: requestKey, status: "loading" });
+		loadExamData(subject.id, examId)
+			.then((loadedData) => {
+				if (cancelled) return;
+				setLoadState({
+					key: requestKey,
+					status: "ready",
+					questions: loadedData.questions,
+					megatopicLabels: loadedData.megatopicLabels,
+				});
+			})
+			.catch(() => {
+				if (cancelled) return;
+				examDataCache.delete(requestKey);
+				setLoadState({ key: requestKey, status: "error" });
+			});
+
+		return () => {
+			cancelled = true;
+		};
+	}, [examId, loadAttemptKey, requestKey, subject]);
+
+	const retry = useCallback(() => {
+		if (!requestKey) return;
+		setLoadState({ key: requestKey, status: "loading" });
+		setRetryToken((current) => current + 1);
+	}, [requestKey]);
+
+	const questions =
+		currentLoadState.status === "ready" ? currentLoadState.questions : [];
+	const megatopicLabels =
+		currentLoadState.status === "ready" ? currentLoadState.megatopicLabels : {};
 
 	return {
 		questions,
-		questionsLoaded,
+		status: currentLoadState.status,
 		megatopicLabels,
-		examInfo,
-		totalPoints,
-		passPoints,
+		retry,
 	};
 }
 
@@ -1052,16 +1140,18 @@ export default function ExamSimulation() {
 	const navigate = useNavigate();
 	const t = useT();
 	const langTo = useLangTo();
+	const { exam: routeExam, stats } = examRouteApi.useLoaderData();
 
 	const subject = subjectId ? getSubject(subjectId) : undefined;
-	const {
-		questions,
-		questionsLoaded,
-		megatopicLabels,
-		examInfo,
-		totalPoints,
-		passPoints,
-	} = useExamData(subject, examId);
+	const { questions, status, megatopicLabels, retry } = useExamData(
+		subject,
+		examId,
+	);
+	const examInfo = routeExam;
+	const questionCount = stats.examQuestionCounts[examId || ""] ?? 0;
+	const totalPoints = stats.examTotalPoints[examId || ""] ?? 0;
+	const passPoints = getExamPassPoints(examInfo, totalPoints);
+	const [startRequested, setStartRequested] = useState(false);
 	const timeUpDialogRef = useRef<HTMLDialogElement>(null);
 	const showTimeUpDialog = useCallback(() => {
 		playError();
@@ -1093,6 +1183,24 @@ export default function ExamSimulation() {
 		() => handleSubmit(true),
 		[handleSubmit],
 	);
+	const handleStartRequest = useCallback(() => {
+		setStartRequested(true);
+	}, []);
+
+	useEffect(() => {
+		if (subjectId || examId) setStartRequested(false);
+	}, [subjectId, examId]);
+
+	useEffect(() => {
+		if (
+			startRequested &&
+			!started &&
+			status === "ready" &&
+			questions.length > 0
+		) {
+			handleStart();
+		}
+	}, [handleStart, questions.length, startRequested, started, status]);
 
 	const [navState, setNavState] = useState({
 		direction: undefined as "next" | "prev" | undefined,
@@ -1250,57 +1358,111 @@ export default function ExamSimulation() {
 		return () => clearTimeout(timer);
 	}, [started, questions.length, subject, t]);
 
-	if (questions.length === 0 || !subject || !examInfo) {
-		return (
-			<ExamEmptyState subject={subject} questionsLoaded={questionsLoaded} />
-		);
+	if (!subject || !examInfo) {
+		return <ExamEmptyState subject={subject} />;
 	}
 
-	if (!started) {
-		return (
-			<>
-				{questionsLoaded && null}
-				<ExamStartScreen
-					subject={subject}
-					examInfo={examInfo}
-					questions={questions}
-					totalPoints={totalPoints}
-					passPoints={passPoints}
-					onStart={handleStart}
-				/>
-			</>
-		);
+	if (status === "ready" && questions.length === 0) {
+		return <ExamEmptyState subject={subject} />;
 	}
+
+	const player = (
+		<ExamPlayer
+			subject={subject}
+			examInfo={examInfo}
+			questions={questions}
+			megatopicLabels={megatopicLabels}
+			currentIndex={currentIndex}
+			setCurrentIndex={setCurrentIndex}
+			answers={answers}
+			selfGrades={selfGrades}
+			submitted={submitted}
+			timeLeft={timeLeft}
+			totalPoints={totalPoints}
+			passPoints={passPoints}
+			direction={direction}
+			setDirection={setDirection}
+			showLeftFade={showLeftFade}
+			showRightFade={showRightFade}
+			navRef={setNavRef}
+			timeUpDialogRef={timeUpDialogRef}
+			scrollToNav={scrollToNav}
+			onAnswer={handleAnswer}
+			onSelfGrade={handleSelfGrade}
+			onSubmit={handleSubmitConfirm}
+			onExit={() => navigate({ to: langTo(`/${subject.id}`) as never })}
+			scrollToHeaderRef={scrollToHeaderRef}
+		/>
+	);
+	const startScreen = (
+		<ExamStartScreen
+			subject={subject}
+			examInfo={examInfo}
+			questionCount={questionCount}
+			totalPoints={totalPoints}
+			passPoints={passPoints}
+			loading={status === "loading"}
+			loadError={status === "error"}
+			onStart={handleStartRequest}
+			onRetry={retry}
+		/>
+	);
+	const loadError = <ExamLoadError subject={subject} onRetry={retry} />;
+	const loadingSimulator =
+		startRequested && !started && (status === "loading" || status === "ready");
+	const content = started
+		? player
+		: startRequested
+			? status === "error"
+				? loadError
+				: null
+			: startScreen;
 
 	return (
-		<>
-			{questionsLoaded && null}
-			<ExamPlayer
-				subject={subject}
-				examInfo={examInfo}
-				questions={questions}
-				megatopicLabels={megatopicLabels}
-				currentIndex={currentIndex}
-				setCurrentIndex={setCurrentIndex}
-				answers={answers}
-				selfGrades={selfGrades}
-				submitted={submitted}
-				timeLeft={timeLeft}
-				totalPoints={totalPoints}
-				passPoints={passPoints}
-				direction={direction}
-				setDirection={setDirection}
-				showLeftFade={showLeftFade}
-				showRightFade={showRightFade}
-				navRef={setNavRef}
-				timeUpDialogRef={timeUpDialogRef}
-				scrollToNav={scrollToNav}
-				onAnswer={handleAnswer}
-				onSelfGrade={handleSelfGrade}
-				onSubmit={handleSubmitConfirm}
-				onExit={() => navigate({ to: langTo(`/${subject.id}`) as never })}
-				scrollToHeaderRef={scrollToHeaderRef}
+		<SimulatorSkeleton
+			kind="exam"
+			loading={loadingSimulator}
+			loadingLabel={t.exam.loadingQuestions}
+		>
+			{content}
+		</SimulatorSkeleton>
+	);
+}
+
+export function ExamSimulationPending() {
+	const { subjectId, examId } = useParams({ strict: false });
+	const t = useT();
+	const subject = subjectId ? getSubject(subjectId) : undefined;
+	const examInfo = subject?.exams.find((exam) => exam.id === examId);
+	const generatedStats = subject
+		? contentStatsBySubject[subject.id]
+		: undefined;
+
+	if (!subject || !examInfo || !generatedStats) {
+		return (
+			<SimulatorSkeleton
+				kind="exam"
+				loading
+				loadingLabel={t.exam.loadingQuestions}
 			/>
-		</>
+		);
+	}
+
+	const stats = getSubjectBuildStats(subject, generatedStats);
+	const totalPoints = roundPoints(stats.examStats[examInfo.id]?.points ?? 0);
+	const questionCount = stats.examStats[examInfo.id]?.questionCount ?? 0;
+
+	return (
+		<ExamStartScreen
+			subject={subject}
+			examInfo={examInfo}
+			questionCount={questionCount}
+			totalPoints={totalPoints}
+			passPoints={getExamPassPoints(examInfo, totalPoints)}
+			loading
+			loadError={false}
+			onStart={() => {}}
+			onRetry={() => {}}
+		/>
 	);
 }

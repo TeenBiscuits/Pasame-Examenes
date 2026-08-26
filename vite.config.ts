@@ -8,6 +8,7 @@ import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 
 import viteReact from "@vitejs/plugin-react";
+import { boneyardPlugin } from "boneyard-js/vite";
 import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
@@ -62,6 +63,7 @@ const config = defineConfig({
 	},
 	plugins: [
 		devtools(),
+		boneyardPlugin({ framework: "react" }),
 		nitro({ preset: "vercel", rollupConfig: { external: [/^@sentry\//] } }),
 		tailwindcss(),
 		imagetools({

@@ -6,6 +6,8 @@ import { useLang } from "../i18n/hooks";
 type LangLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
 	to: string;
 	activeOptions?: ActiveOptions;
+	preload?: false | "intent" | "viewport" | "render";
+	preloadDelay?: number;
 };
 
 export function LangLink({ to: path, ...props }: LangLinkProps) {

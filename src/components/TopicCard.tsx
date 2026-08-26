@@ -90,6 +90,7 @@ export default function TopicCard({
 	return (
 		<Link
 			to={`/${subjectId}/practice/${topic.key}`}
+			preload={false}
 			rel="nofollow"
 			data-cuelume-hover="tick"
 			data-cuelume-press
