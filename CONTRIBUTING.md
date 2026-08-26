@@ -65,7 +65,7 @@ Después:
 6. Guarda las imágenes de las preguntas en `assets/` y referencia sus versiones optimizadas con las utilidades existentes.
 7. Ejecuta `pnpm readme` para regenerar la tabla de asignaturas del README.
 
-Los tipos de pregunta disponibles son `mc`, `text`, `multiple-text`, `matching`, `fill` y `table-fill`. Los campos de texto admiten Markdown, fórmulas y bloques de código. Consulta [`src/data/types.ts`](./src/data/types.ts) y una asignatura existente antes de añadir una estructura nueva.
+Los tipos de pregunta disponibles son `mc`, `text`, `multiple-text`, `matching`, `fill` y `table-fill`. Los campos de texto admiten Markdown, fórmulas y bloques de código. Consulta la [guía de tipos de pregunta](./docs/content/question-types.md), [`src/data/types.ts`](./src/data/types.ts) y una asignatura existente antes de añadir una estructura nueva.
 
 La plantilla `_template` sirve como asignatura de pruebas. Solo debe aparecer en desarrollo y en previews de Vercel. No la conviertas en una asignatura pública ni la incluyas en el sitemap. `espain` es una asignatura secreta: se accede por URL directa o mediante SecretToro y no debe aparecer en la homepage ni en el sitemap.
 

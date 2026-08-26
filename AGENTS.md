@@ -1,3 +1,17 @@
+## Agent skills
+
+### Issue tracker
+
+Los issues y las especificaciones viven en GitHub Issues y se gestionan con `gh`. Consulta `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Se usan las cinco etiquetas predeterminadas de triage. Consulta `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+El repositorio usa un diseño `single-context`, con `CONTEXT.md` en la raíz y ADRs en `docs/adr/`. Consulta `docs/agents/domain.md`.
+
 <!-- intent-skills:start -->
 
 # TanStack Intent - before editing files, run the matching guidance command.
