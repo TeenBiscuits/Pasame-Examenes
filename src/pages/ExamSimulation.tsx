@@ -824,6 +824,15 @@ function ExamPlayer({
 	const headerAnchorRef = useRef<HTMLDivElement>(null);
 	const [scoreCompact, setScoreCompact] = useState(false);
 
+	useCommandHandlers("exam-exit", {
+		"go-home": !submitted
+			? () => {
+					track("keyboard_command", { commandId: "go-home" });
+					showDialog(exitDialogRef.current);
+				}
+			: undefined,
+	});
+
 	const scrollToHeader = useCallback(() => {
 		const anchor = headerAnchorRef.current;
 		if (!anchor) return;

@@ -325,7 +325,9 @@ export function KeyboardCommandProvider({ children }: { children: ReactNode }) {
 	);
 
 	const getCommandHandler = useCallback((commandId: CommandId) => {
-		for (const module of modulesRef.current.values()) {
+		const modules = [...modulesRef.current.values()];
+		for (let index = modules.length - 1; index >= 0; index -= 1) {
+			const module = modules[index];
 			if (!module.availableCommandIds.has(commandId)) continue;
 			const handler = module.getHandlers()[commandId];
 			if (handler) return handler;
