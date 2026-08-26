@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BASE_URL } from "../seo/meta";
+import { subjects } from "../subjects";
+import { isIndexableSubject } from "../subjects/visibility";
 
 const PUBLIC_LANGUAGES = [
 	{ code: "es", label: "Español" },
@@ -7,11 +9,7 @@ const PUBLIC_LANGUAGES = [
 	{ code: "gl", label: "Galego" },
 ] as const;
 
-async function buildLlmsContent() {
-	const [{ subjects }, { isIndexableSubject }] = await Promise.all([
-		import("../subjects"),
-		import("../subjects/visibility"),
-	]);
+function buildLlmsContent() {
 	const publicSubjects = subjects
 		.filter((subject) => isIndexableSubject(subject.id))
 		.slice()
@@ -51,8 +49,8 @@ async function buildLlmsContent() {
 export const Route = createFileRoute("/llms.txt")({
 	server: {
 		handlers: {
-			GET: async () =>
-				new Response(await buildLlmsContent(), {
+			GET: () =>
+				new Response(buildLlmsContent(), {
 					headers: {
 						"Cache-Control": "public, max-age=3600",
 						"Content-Type": "text/plain; charset=utf-8",

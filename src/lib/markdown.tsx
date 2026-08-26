@@ -1,13 +1,14 @@
 import type { ComponentProps, ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { ExtraProps } from "react-markdown";
 import ReactMarkdown from "react-markdown";
-import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeKatex from "rehype-katex";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import "katex/dist/katex.min.css";
+
+const SyntaxHighlighter = lazy(() => import("./MarkdownSyntaxHighlighter"));
 
 // A single newline is an intentional line break in question data. Markdown's
 // default soft-break behavior would otherwise make it depend on the field or
@@ -174,7 +175,7 @@ function PlainCodeBlock({
 
 function getCodeLanguage(node: ExtraProps["node"]): string | undefined {
 	const child = node?.children[0];
-	if (!child || child.type !== "element" || child.tagName !== "code") {
+	if (child?.type !== "element" || child.tagName !== "code") {
 		return undefined;
 	}
 
@@ -187,7 +188,7 @@ function getCodeLanguage(node: ExtraProps["node"]): string | undefined {
 
 function getCodeText(node: ExtraProps["node"]): string {
 	const child = node?.children[0];
-	if (!child || child.type !== "element" || child.tagName !== "code") {
+	if (child?.type !== "element" || child.tagName !== "code") {
 		return "";
 	}
 
@@ -259,19 +260,27 @@ function CodeRenderer({ className, children }: ComponentProps<"code">) {
 				</span>
 			</div>
 			<div className="overflow-x-auto text-sm leading-relaxed">
-				<SyntaxHighlighter
-					PreTag="pre"
-					language={prismLanguage}
-					style={codeStyle}
-					customStyle={{
-						margin: 0,
-						padding: "1rem",
-						borderRadius: 0,
-						background: "transparent",
-					}}
+				<Suspense
+					fallback={
+						<pre className="text-code-block-fg m-0 max-w-full overflow-x-auto p-4 font-mono text-sm leading-relaxed whitespace-pre">
+							<code>{code}</code>
+						</pre>
+					}
 				>
-					{code}
-				</SyntaxHighlighter>
+					<SyntaxHighlighter
+						PreTag="pre"
+						language={prismLanguage}
+						style={codeStyle}
+						customStyle={{
+							margin: 0,
+							padding: "1rem",
+							borderRadius: 0,
+							background: "transparent",
+						}}
+					>
+						{code}
+					</SyntaxHighlighter>
+				</Suspense>
 			</div>
 		</div>
 	);

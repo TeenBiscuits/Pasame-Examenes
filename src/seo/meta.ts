@@ -4,7 +4,6 @@ import { en } from "../i18n/en";
 import { es } from "../i18n/es";
 import { gl } from "../i18n/gl";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
-import { isIndexableSubject } from "../subjects/visibility";
 
 export const BASE_URL = "https://pe.pablopl.dev";
 export const LANGS = ["en", "es", "gl"] as const;
@@ -70,15 +69,6 @@ export function buildCanonicalPath(
 					.map((segment) => (segment ? encodeURIComponent(segment) : segment))
 					.join("/");
 	return `/${lang}${base}`;
-}
-
-export function isIndexablePagePath(pathWithoutLang: string): boolean {
-	const segments = pathWithoutLang.split("/").filter(Boolean);
-
-	return (
-		segments.length === 0 ||
-		(segments.length === 1 && isIndexableSubject(segments[0]))
-	);
 }
 
 function trimToWordBoundary(value: string, maxLength: number): string {
