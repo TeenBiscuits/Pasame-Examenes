@@ -2,6 +2,7 @@ import { defineUnlighthouseConfig } from "unlighthouse/config";
 
 const site =
 	process.env.UNLIGHTHOUSE_SITE?.trim() || "http://127.0.0.1:4173";
+const benchmarkTimestamp = "4102444800000";
 
 export default defineUnlighthouseConfig({
 	site,
@@ -9,11 +10,11 @@ export default defineUnlighthouseConfig({
 	// Keep optional promotional and repository requests out of the benchmark.
 	// These values affect only the isolated Unlighthouse browser context.
 	localStorage: {
-		star_popup_dismissed: String(Date.now()),
+		star_popup_dismissed: benchmarkTimestamp,
 	},
 	sessionStorage: {
 		gh_star_count: "0",
-		gh_star_count_ts: String(Date.now()),
+		gh_star_count_ts: benchmarkTimestamp,
 	},
 	// Each run should produce fresh Lighthouse data instead of restoring a
 	// previous report from Unlighthouse's cache.
