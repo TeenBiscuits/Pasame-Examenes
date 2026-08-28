@@ -1,9 +1,7 @@
 import type { Exam, SubjectMeta, Topic } from "../data/types";
 import type { Lang } from "../i18n/context";
-import { en } from "../i18n/en";
-import { es } from "../i18n/es";
-import { gl } from "../i18n/gl";
 import { hasAuthorizedExamContent } from "../lib/content-policy";
+import { loadSeoTranslations } from "./translations";
 
 export const BASE_URL = "https://pe.pablopl.dev";
 export const LANGS = ["en", "es", "gl"] as const;
@@ -51,10 +49,8 @@ export interface SubjectStats {
 	examTotalPoints?: Record<string, number>;
 }
 
-const translations = { en, es, gl } as const;
-
 function t(lang: Lang) {
-	return translations[lang];
+	return loadSeoTranslations(lang);
 }
 
 export function buildCanonicalPath(
@@ -140,7 +136,7 @@ function breadcrumbJsonLd(
 	};
 }
 
-function makePageMeta(
+async function makePageMeta(
 	lang: Lang,
 	pathWithoutLang: string,
 	title: string,
@@ -148,7 +144,8 @@ function makePageMeta(
 	ogImage: string,
 	graph: unknown[],
 	lastmod: string = SITEMAP_LASTMOD.global,
-): PageMetaData {
+): Promise<PageMetaData> {
+	const tr = await t(lang);
 	const meta = langMeta[lang];
 	const canonicalUrl = fullUrl(buildCanonicalPath(lang, pathWithoutLang));
 	return {
@@ -160,7 +157,7 @@ function makePageMeta(
 		description,
 		socialTitle: title,
 		socialDescription: description,
-		siteName: t(lang).seo.siteName,
+		siteName: tr.seo.siteName,
 		canonicalUrl,
 		ogImage: fullUrl(ogImage),
 		ogImageType: imageType(ogImage),
@@ -175,8 +172,8 @@ function makePageMeta(
 	};
 }
 
-export function buildHomeMeta(lang: Lang): PageMetaData {
-	const tr = t(lang);
+export async function buildHomeMeta(lang: Lang): Promise<PageMetaData> {
+	const tr = await t(lang);
 	const title = appendBrand(tr.seo.homeTitle, tr.seo.siteName);
 	const description = tr.seo.homeMetaDescription;
 	const canonicalUrl = fullUrl(buildCanonicalPath(lang, "/"));
@@ -221,8 +218,8 @@ export function buildHomeMeta(lang: Lang): PageMetaData {
 	);
 }
 
-export function buildPrivacyMeta(lang: Lang): PageMetaData {
-	const tr = t(lang);
+export async function buildPrivacyMeta(lang: Lang): Promise<PageMetaData> {
+	const tr = await t(lang);
 	const title = appendBrand(tr.footer.privacyTitle, tr.seo.siteName);
 	const description = tr.seo.privacyMetaDescription;
 	const pathWithoutLang = "/privacy";
@@ -239,20 +236,20 @@ export function buildPrivacyMeta(lang: Lang): PageMetaData {
 	]);
 }
 
-export function buildNotFoundMeta(lang: Lang) {
-	const tr = t(lang);
+export async function buildNotFoundMeta(lang: Lang) {
+	const tr = await t(lang);
 	return {
 		title: appendBrand(tr.subjectHome.notFound, tr.seo.siteName),
 		description: tr.seo.defaultDescription,
 	};
 }
 
-export function buildSubjectMeta(
+export async function buildSubjectMeta(
 	lang: Lang,
 	subject: SubjectMeta,
 	stats: SubjectStats = {},
-): PageMetaData {
-	const tr = t(lang);
+): Promise<PageMetaData> {
+	const tr = await t(lang);
 	const pathWithoutLang = `/${subject.id}`;
 	const availableExamCount = subject.exams.filter(
 		(exam) => !exam.deleteRights,
@@ -317,13 +314,13 @@ export function buildSubjectMeta(
 	);
 }
 
-export function buildTopicMeta(
+export async function buildTopicMeta(
 	lang: Lang,
 	subject: SubjectMeta,
 	topic: Topic,
 	stats: SubjectStats = {},
-): PageMetaData {
-	const tr = t(lang);
+): Promise<PageMetaData> {
+	const tr = await t(lang);
 	const pathWithoutLang = `/${subject.id}/practice/${topic.key}`;
 	const count = stats.topicQuestionCounts?.[topic.key];
 	const questionLabel =
@@ -402,13 +399,13 @@ export function buildTopicMeta(
 	);
 }
 
-export function buildExamMeta(
+export async function buildExamMeta(
 	lang: Lang,
 	subject: SubjectMeta,
 	exam: Exam,
 	stats: SubjectStats = {},
-): PageMetaData {
-	const tr = t(lang);
+): Promise<PageMetaData> {
+	const tr = await t(lang);
 	const pathWithoutLang = `/${subject.id}/exam/${exam.id}`;
 	const count = stats.examQuestionCounts?.[exam.id];
 	const hasAuthorizedExams = hasAuthorizedExamContent(subject);

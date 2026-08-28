@@ -101,13 +101,19 @@ const LangSubjectIdExamExamIdRoute = LangSubjectIdExamExamIdRouteImport.update({
   id: '/$subjectId_/exam/$examId',
   path: '/$subjectId/exam/$examId',
   getParentRoute: () => LangRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/$lang.$subjectId_.exam.$examId.lazy').then((d) => d.Route),
+)
 const LangSubjectIdPracticeTopicRoute =
   LangSubjectIdPracticeTopicRouteImport.update({
     id: '/$subjectId_/practice_/$topic',
     path: '/$subjectId/practice/$topic',
     getParentRoute: () => LangRoute,
-  } as any)
+  } as any).lazy(() =>
+    import('./routes/$lang.$subjectId_.practice_.$topic.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute

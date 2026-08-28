@@ -7,9 +7,9 @@ import { buildPrivacyMeta } from "../seo/meta";
 
 export const Route = createFileRoute("/$lang/privacy")({
 	ssr: ssrDuringBuildPrerender,
-	head: ({ params }) => {
+	head: async ({ params }) => {
 		const lang = isLang(params.lang) ? params.lang : "es";
-		return createPageHead(buildPrivacyMeta(lang), false);
+		return createPageHead(await buildPrivacyMeta(lang), false);
 	},
 	component: PrivacyPolicy,
 });

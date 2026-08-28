@@ -14,9 +14,9 @@ export const Route = createFileRoute("/$lang/")({
 	ssr: ssrDuringBuildPrerender,
 	loader: homepageRouteData,
 	staleTime: Infinity,
-	head: ({ params }) => {
+	head: async ({ params }) => {
 		const lang = isLang(params.lang) ? params.lang : "es";
-		return createPageHead(buildHomeMeta(lang));
+		return createPageHead(await buildHomeMeta(lang));
 	},
 	component: HomeRoute,
 });

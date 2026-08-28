@@ -517,7 +517,6 @@ function ExamCard({
 	return (
 		<Link
 			to={`/${subject.id}/exam/${exam.id}`}
-			preload={false}
 			rel="nofollow"
 			data-cuelume-hover="tick"
 			data-cuelume-press

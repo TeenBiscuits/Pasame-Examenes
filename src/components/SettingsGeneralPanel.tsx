@@ -64,11 +64,11 @@ export default function SettingsGeneralPanel() {
 	const navigate = useNavigate();
 	const [volume, setVolumeState] = useState(getStoredSoundVolume);
 
-	function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
+	async function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
 		const nextLang = event.target.value as Lang;
 		if (nextLang === lang) return;
 		playSound("toggle");
-		setLang(nextLang);
+		await setLang(nextLang);
 		trackEvent("lang_toggle", { lang: nextLang, source: "settings" });
 		const nextPath = replaceLangInPath(location.pathname, nextLang);
 		navigate({

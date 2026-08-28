@@ -7,7 +7,8 @@ import { buildHomeMeta, DEFAULT_LANG } from "../seo/meta";
 
 export const Route = createFileRoute("/")({
 	ssr: ssrDuringBuildPrerender,
-	head: () => createRedirectFallbackHead(buildHomeMeta(DEFAULT_LANG)),
+	head: async () =>
+		createRedirectFallbackHead(await buildHomeMeta(DEFAULT_LANG)),
 	component: RootFallback,
 });
 

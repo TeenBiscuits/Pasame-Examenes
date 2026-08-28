@@ -1124,23 +1124,42 @@ function loadExamData(subjectId: string, examId: string) {
 	return promise;
 }
 
-function useExamData(subject: ExamSubject | undefined, examId?: string) {
+function useExamData(
+	subject: ExamSubject | undefined,
+	examId?: string,
+	initialData?: LoadedExamData,
+) {
 	const requestKey = subject && examId ? `${subject.id}/${examId}` : null;
-	const [loadState, setLoadState] = useState<ExamLoadState>({
-		key: null,
-		status: "idle",
-	});
+	const [loadState, setLoadState] = useState<ExamLoadState>(() =>
+		requestKey && initialData
+			? {
+					key: requestKey,
+					status: "ready",
+					questions: initialData.questions,
+					megatopicLabels: initialData.megatopicLabels,
+				}
+			: { key: null, status: "idle" },
+	);
 	const [retryToken, setRetryToken] = useState(0);
+	const hasInitialData = Boolean(requestKey && initialData);
 	const currentLoadState =
 		loadState.key === requestKey
 			? loadState
-			: requestKey
-				? { key: requestKey, status: "loading" as const }
-				: { key: null, status: "idle" as const };
+			: hasInitialData && initialData
+				? {
+						key: requestKey,
+						status: "ready" as const,
+						questions: initialData.questions,
+						megatopicLabels: initialData.megatopicLabels,
+					}
+				: requestKey
+					? { key: requestKey, status: "loading" as const }
+					: { key: null, status: "idle" as const };
 	const loadAttemptKey = requestKey ? `${requestKey}:${retryToken}` : null;
 
 	useEffect(() => {
 		if (!subject || !examId || !requestKey || !loadAttemptKey) return;
+		if (initialData && retryToken === 0) return;
 
 		let cancelled = false;
 		setLoadState({ key: requestKey, status: "loading" });
@@ -1163,7 +1182,7 @@ function useExamData(subject: ExamSubject | undefined, examId?: string) {
 		return () => {
 			cancelled = true;
 		};
-	}, [examId, loadAttemptKey, requestKey, subject]);
+	}, [examId, initialData, loadAttemptKey, requestKey, retryToken, subject]);
 
 	const retry = useCallback(() => {
 		if (!requestKey) return;
@@ -1189,12 +1208,25 @@ export default function ExamSimulation() {
 	const navigate = useNavigate();
 	const t = useT();
 	const langTo = useLangTo();
-	const { exam: routeExam, stats } = examRouteApi.useLoaderData();
+	const {
+		exam: routeExam,
+		stats,
+		questions: initialQuestions,
+		megatopicLabels: initialMegatopicLabels,
+	} = examRouteApi.useLoaderData();
+	const initialExamData = useMemo(
+		() => ({
+			questions: initialQuestions,
+			megatopicLabels: initialMegatopicLabels,
+		}),
+		[initialMegatopicLabels, initialQuestions],
+	);
 
 	const subject = subjectId ? getSubject(subjectId) : undefined;
 	const { questions, status, megatopicLabels, retry } = useExamData(
 		subject,
 		examId,
+		initialExamData,
 	);
 	const examInfo = routeExam;
 	const questionCount = stats.examQuestionCounts[examId || ""] ?? 0;

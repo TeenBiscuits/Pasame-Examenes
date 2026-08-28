@@ -2,21 +2,47 @@ import type { ComponentProps, ReactNode } from "react";
 import { Component, lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { ExtraProps } from "react-markdown";
 import ReactMarkdown from "react-markdown";
-import rehypeKatex from "rehype-katex";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import "katex/dist/katex.min.css";
+import "../markdown.css";
+import type { MathPlugins } from "./markdown-preload";
+import {
+	containsMathSyntax,
+	getLoadedMathPlugins,
+	isSyntaxHighlighterLoaded,
+	loadMathPlugins,
+	loadSyntaxHighlighter,
+} from "./markdown-preload";
 
-const SyntaxHighlighter = lazy(() => import("./MarkdownSyntaxHighlighter"));
+const SyntaxHighlighter = lazy(() => loadSyntaxHighlighter());
 
 // A single newline is an intentional line break in question data. Markdown's
 // default soft-break behavior would otherwise make it depend on the field or
 // its surrounding CSS whether the line break is visible.
-const fullRemarkPlugins = [remarkGfm, remarkMath, remarkBreaks];
-const inlineRemarkPlugins = [remarkGfm, remarkMath, remarkBreaks];
-const rehypePlugins = [rehypeKatex];
-const inlineRehypePlugins = [rehypeKatex];
+const basicRemarkPlugins = [remarkGfm, remarkBreaks];
+const basicRehypePlugins: [] = [];
+
+function useMathPlugins(children: string): MathPlugins | null {
+	const needsMath = containsMathSyntax(children);
+	const [mathPlugins, setMathPlugins] = useState<MathPlugins | null>(() =>
+		needsMath ? getLoadedMathPlugins() : null,
+	);
+
+	useEffect(() => {
+		if (!needsMath) return;
+
+		let mounted = true;
+		loadMathPlugins().then((plugins) => {
+			if (mounted) setMathPlugins(plugins);
+		});
+
+		return () => {
+			mounted = false;
+		};
+	}, [needsMath]);
+
+	return needsMath ? mathPlugins : null;
+}
 
 const codeFont =
 	'"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace';
@@ -199,6 +225,44 @@ class CodeHighlightErrorBoundary extends Component<
 	}
 }
 
+function DeferredCodeHighlight({
+	code,
+	language,
+}: {
+	code: string;
+	language: string;
+}) {
+	const [isReady, setIsReady] = useState(isSyntaxHighlighterLoaded);
+
+	useEffect(() => {
+		if (isSyntaxHighlighterLoaded()) return;
+		const timeoutId = window.setTimeout(() => setIsReady(true), 1000);
+		return () => window.clearTimeout(timeoutId);
+	}, []);
+
+	if (!isReady) return <PlainCodeContent code={code} />;
+
+	return (
+		<CodeHighlightErrorBoundary fallback={<PlainCodeContent code={code} />}>
+			<Suspense fallback={<PlainCodeContent code={code} />}>
+				<SyntaxHighlighter
+					PreTag="pre"
+					language={language}
+					style={codeStyle}
+					customStyle={{
+						margin: 0,
+						padding: "1rem",
+						borderRadius: 0,
+						background: "transparent",
+					}}
+				>
+					{code}
+				</SyntaxHighlighter>
+			</Suspense>
+		</CodeHighlightErrorBoundary>
+	);
+}
+
 function getCodeLanguage(node: ExtraProps["node"]): string | undefined {
 	const child = node?.children[0];
 	if (child?.type !== "element" || child.tagName !== "code") {
@@ -286,23 +350,7 @@ function CodeRenderer({ className, children }: ComponentProps<"code">) {
 				</span>
 			</div>
 			<div className="overflow-x-auto text-sm leading-relaxed">
-				<CodeHighlightErrorBoundary fallback={<PlainCodeContent code={code} />}>
-					<Suspense fallback={<PlainCodeContent code={code} />}>
-						<SyntaxHighlighter
-							PreTag="pre"
-							language={prismLanguage}
-							style={codeStyle}
-							customStyle={{
-								margin: 0,
-								padding: "1rem",
-								borderRadius: 0,
-								background: "transparent",
-							}}
-						>
-							{code}
-						</SyntaxHighlighter>
-					</Suspense>
-				</CodeHighlightErrorBoundary>
+				<DeferredCodeHighlight code={code} language={prismLanguage} />
 			</div>
 		</div>
 	);
@@ -315,13 +363,18 @@ export function Markdown({
 	children: string;
 	className?: string;
 }) {
+	const mathPlugins = useMathPlugins(children);
 	if (!children) return null;
+	const remarkPlugins = mathPlugins
+		? [...basicRemarkPlugins, mathPlugins.remark]
+		: basicRemarkPlugins;
+	const rehypePlugins = mathPlugins ? [mathPlugins.rehype] : basicRehypePlugins;
 	return (
 		<div
 			className={`markdown-body prose prose-sm max-w-none ${className ?? ""}`}
 		>
 			<ReactMarkdown
-				remarkPlugins={fullRemarkPlugins}
+				remarkPlugins={remarkPlugins}
 				rehypePlugins={rehypePlugins}
 				components={{
 					pre: MarkdownPre,
@@ -354,11 +407,16 @@ export function Markdown({
 }
 
 export function InlineMarkdown({ children }: { children: string }) {
+	const mathPlugins = useMathPlugins(children);
 	if (!children) return null;
+	const remarkPlugins = mathPlugins
+		? [...basicRemarkPlugins, mathPlugins.remark]
+		: basicRemarkPlugins;
+	const rehypePlugins = mathPlugins ? [mathPlugins.rehype] : basicRehypePlugins;
 	return (
 		<ReactMarkdown
-			remarkPlugins={inlineRemarkPlugins}
-			rehypePlugins={inlineRehypePlugins}
+			remarkPlugins={remarkPlugins}
+			rehypePlugins={rehypePlugins}
 			allowedElements={[
 				"a",
 				"code",

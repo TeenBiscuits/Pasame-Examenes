@@ -1,5 +1,4 @@
-import { type DriveStep, driver, type PopoverDOM } from "driver.js";
-import "driver.js/dist/driver.css";
+import type { DriveStep, PopoverDOM } from "driver.js";
 
 const PRACTICE_TOUR_KEY = "has-seen-practice-tour";
 const EXAM_TOUR_KEY = "has-seen-exam-tour";
@@ -8,6 +7,18 @@ export interface TourButtonTexts {
 	next: string;
 	previous: string;
 	done: string;
+}
+
+async function loadDriver() {
+	const [{ driver }] = await Promise.all([
+		import("driver.js"),
+		import("driver.js/dist/driver.css"),
+	]);
+	return driver;
+}
+
+export async function preloadTour(): Promise<void> {
+	await loadDriver();
 }
 
 function hasSeenTour(key: string): boolean {
@@ -48,11 +59,14 @@ function cleanDriverTargetAria(element: Element | undefined): void {
 	window.setTimeout(() => removeDriverTargetAria(element), 0);
 }
 
-export function startPracticeTour(
+async function startTour(
+	key: string,
 	steps: DriveStep[],
 	buttonTexts: TourButtonTexts,
-): boolean {
-	if (hasSeenTour(PRACTICE_TOUR_KEY)) return false;
+): Promise<boolean> {
+	if (hasSeenTour(key)) return false;
+	const driver = await loadDriver();
+	if (hasSeenTour(key)) return false;
 	const driverObj = driver({
 		showProgress: true,
 		animate: !prefersReducedMotion(),
@@ -64,30 +78,22 @@ export function startPracticeTour(
 		onHighlighted: cleanDriverTargetAria,
 		onPopoverRender: (popover, { driver: driverObj }) =>
 			addTourSounds(popover, driverObj.isLastStep()),
-		onDestroyed: () => markTourSeen(PRACTICE_TOUR_KEY),
+		onDestroyed: () => markTourSeen(key),
 	});
 	driverObj.drive();
 	return true;
 }
 
+export function startPracticeTour(
+	steps: DriveStep[],
+	buttonTexts: TourButtonTexts,
+): Promise<boolean> {
+	return startTour(PRACTICE_TOUR_KEY, steps, buttonTexts);
+}
+
 export function startExamTour(
 	steps: DriveStep[],
 	buttonTexts: TourButtonTexts,
-): boolean {
-	if (hasSeenTour(EXAM_TOUR_KEY)) return false;
-	const driverObj = driver({
-		showProgress: true,
-		animate: !prefersReducedMotion(),
-		popoverClass: "tour-popover",
-		nextBtnText: buttonTexts.next,
-		prevBtnText: buttonTexts.previous,
-		doneBtnText: buttonTexts.done,
-		steps,
-		onHighlighted: cleanDriverTargetAria,
-		onPopoverRender: (popover, { driver: driverObj }) =>
-			addTourSounds(popover, driverObj.isLastStep()),
-		onDestroyed: () => markTourSeen(EXAM_TOUR_KEY),
-	});
-	driverObj.drive();
-	return true;
+): Promise<boolean> {
+	return startTour(EXAM_TOUR_KEY, steps, buttonTexts);
 }

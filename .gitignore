@@ -15,6 +15,7 @@ todos.json
 
 # Pásame Exámenes .gitignore
 .vercel
+/unlighthouse/
 temp
 reference
 src/subjects/contentStats.generated.ts
