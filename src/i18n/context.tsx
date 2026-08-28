@@ -38,7 +38,10 @@ export function I18nProvider({
 	children: ReactNode;
 	initialLang?: Lang;
 }) {
-	const initialTranslations = use(loadTranslations(initialLang));
+	const [initialTranslationsPromise] = useState(() =>
+		loadTranslations(initialLang),
+	);
+	const initialTranslations = use(initialTranslationsPromise);
 	const [state, setState] = useState(() => ({
 		lang: initialLang,
 		translations: initialTranslations,

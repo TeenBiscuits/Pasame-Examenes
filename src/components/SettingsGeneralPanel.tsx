@@ -9,6 +9,7 @@ import {
 } from "reicon-react";
 import type { Lang } from "../i18n/context";
 import { useLang, useT } from "../i18n/hooks";
+import { getLanguageDownloadMessage } from "../i18n/language-download";
 import { replaceLangInPath } from "../lib/lang-link-utils";
 import {
 	DEFAULT_SOUND_VOLUME,
@@ -27,6 +28,56 @@ const languageOptions: ReadonlyArray<{ value: Lang; label: string }> = [
 	{ value: "en", label: "🇬🇧 Inglés" },
 	{ value: "gl", label: "🧜🏻‍♀️ Galego" },
 ];
+
+const LANGUAGE_PROGRESS_MAX = 69;
+const LANGUAGE_PROGRESS_DURATION_MS = 320;
+const LANGUAGE_PROGRESS_HOLD_MS = 80;
+const LANGUAGE_COMPLETION_DISPLAY_MS = 120;
+
+function animateLanguageDownload(setProgress: (progress: number) => void) {
+	let intervalId: number | undefined;
+	let resolveProgressMax: (() => void) | undefined;
+	let progressMaxReached = false;
+	const progressMax = new Promise<void>((resolve) => {
+		resolveProgressMax = resolve;
+	});
+	const startedAt = performance.now();
+
+	function finishProgressAnimation() {
+		if (progressMaxReached) return;
+		progressMaxReached = true;
+		resolveProgressMax?.();
+	}
+
+	function tick() {
+		const elapsed = performance.now() - startedAt;
+		const progress = Math.min(
+			LANGUAGE_PROGRESS_MAX,
+			Math.round(
+				(elapsed / LANGUAGE_PROGRESS_DURATION_MS) * LANGUAGE_PROGRESS_MAX,
+			),
+		);
+		setProgress(progress);
+
+		if (progress >= LANGUAGE_PROGRESS_MAX) {
+			if (intervalId !== undefined) window.clearInterval(intervalId);
+			intervalId = undefined;
+			finishProgressAnimation();
+		}
+	}
+
+	tick();
+	intervalId = window.setInterval(tick, 16);
+
+	return {
+		progressMax,
+		stop() {
+			if (intervalId !== undefined) window.clearInterval(intervalId);
+			intervalId = undefined;
+			finishProgressAnimation();
+		},
+	};
+}
 
 function isTheme(value: string): value is Theme {
 	return themeOrder.some((theme) => theme === value);
@@ -63,15 +114,46 @@ export default function SettingsGeneralPanel() {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [volume, setVolumeState] = useState(getStoredSoundVolume);
+	const [isChangingLanguage, setIsChangingLanguage] = useState(false);
+	const [languageDownload, setLanguageDownload] = useState<{
+		lang: Lang;
+		progress: number;
+	} | null>(null);
 
 	async function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
 		const nextLang = event.target.value as Lang;
-		if (nextLang === lang) return;
+		if (nextLang === lang || isChangingLanguage) return;
 		playSound("toggle");
-		await setLang(nextLang);
+		setIsChangingLanguage(true);
+		setLanguageDownload({ lang: nextLang, progress: 0 });
+		const progressAnimation = animateLanguageDownload((progress) =>
+			setLanguageDownload((current) =>
+				current ? { ...current, progress } : current,
+			),
+		);
+
+		try {
+			await Promise.all([setLang(nextLang), progressAnimation.progressMax]);
+		} catch {
+			progressAnimation.stop();
+			setLanguageDownload(null);
+			setIsChangingLanguage(false);
+			return;
+		}
+
+		progressAnimation.stop();
+		await new Promise<void>((resolve) =>
+			window.setTimeout(resolve, LANGUAGE_PROGRESS_HOLD_MS),
+		);
+		setLanguageDownload({ lang: nextLang, progress: 100 });
+		await new Promise<void>((resolve) =>
+			window.setTimeout(resolve, LANGUAGE_COMPLETION_DISPLAY_MS),
+		);
+		setLanguageDownload(null);
+		setIsChangingLanguage(false);
 		trackEvent("lang_toggle", { lang: nextLang, source: "settings" });
 		const nextPath = replaceLangInPath(location.pathname, nextLang);
-		navigate({
+		await navigate({
 			to: nextPath as never,
 			search: location.search as never,
 			hash: location.hash,
@@ -111,6 +193,18 @@ export default function SettingsGeneralPanel() {
 
 	return (
 		<div className="space-y-8">
+			{languageDownload && (
+				<output
+					aria-atomic="true"
+					aria-live="polite"
+					className="border-accent bg-accent/10 text-accent-fg animate-fade-in block rounded-xl border-2 px-3 py-2 text-sm font-semibold"
+				>
+					{getLanguageDownloadMessage(
+						languageDownload.lang,
+						languageDownload.progress,
+					)}
+				</output>
+			)}
 			<div>
 				<h2
 					id="settings-general-title"
@@ -136,6 +230,7 @@ export default function SettingsGeneralPanel() {
 						id="settings-language"
 						name="language"
 						value={lang}
+						disabled={isChangingLanguage}
 						onChange={handleLanguageChange}
 						className="border-border bg-surface text-fg focus-visible:ring-accent min-h-11 w-full cursor-pointer rounded-lg border-2 px-3 text-base transition-[border-color,box-shadow,background-color] focus-visible:ring-2 focus-visible:outline-none"
 					>
