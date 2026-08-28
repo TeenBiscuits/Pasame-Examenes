@@ -4,6 +4,7 @@ import {
 	useCallback,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from "react";
 import { I18nContext, type Lang } from "./context-value";
@@ -42,9 +43,35 @@ export function I18nProvider({
 		lang: initialLang,
 		translations: initialTranslations,
 	}));
+	const pendingLanguageRef = useRef<{
+		lang: Lang;
+		routeLang: Lang;
+	} | null>(null);
+	const activeState = useMemo(() => {
+		const pendingLanguage = pendingLanguageRef.current;
+		const canUseState =
+			state.lang === initialLang ||
+			(pendingLanguage?.lang === state.lang &&
+				pendingLanguage.routeLang === initialLang);
+
+		return canUseState
+			? state
+			: { lang: initialLang, translations: initialTranslations };
+	}, [initialLang, initialTranslations, state]);
 
 	useEffect(() => {
-		if (state.lang === initialLang) return;
+		if (state.lang === initialLang) {
+			pendingLanguageRef.current = null;
+			return;
+		}
+
+		const pendingLanguage = pendingLanguageRef.current;
+		if (
+			pendingLanguage?.lang === state.lang &&
+			pendingLanguage.routeLang === initialLang
+		) {
+			return;
+		}
 
 		let active = true;
 		void loadTranslations(initialLang).then((translations) => {
@@ -56,19 +83,27 @@ export function I18nProvider({
 		};
 	}, [initialLang, state.lang]);
 
-	const setLang = useCallback(async (l: Lang) => {
-		const translations = await loadTranslations(l);
-		setState({ lang: l, translations });
-		try {
-			localStorage.setItem("lang", l);
-		} catch {
-			/* localStorage unavailable */
-		}
-	}, []);
+	const setLang = useCallback(
+		async (l: Lang) => {
+			const translations = await loadTranslations(l);
+			pendingLanguageRef.current = { lang: l, routeLang: initialLang };
+			setState({ lang: l, translations });
+			try {
+				localStorage.setItem("lang", l);
+			} catch {
+				/* localStorage unavailable */
+			}
+		},
+		[initialLang],
+	);
 
 	const value = useMemo(
-		() => ({ t: state.translations, lang: state.lang, setLang }),
-		[state, setLang],
+		() => ({
+			t: activeState.translations,
+			lang: activeState.lang,
+			setLang,
+		}),
+		[activeState, setLang],
 	);
 
 	return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
