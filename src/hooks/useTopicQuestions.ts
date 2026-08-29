@@ -17,26 +17,47 @@ type TopicLoadState =
 
 const EMPTY_QUESTIONS: Question[] = [];
 
+export interface InitialTopicQuestions {
+	questions: Question[];
+	megatopicLabel: string | undefined;
+}
+
 export function useTopicQuestions(
 	subject: SubjectMeta | undefined,
 	topic: string | undefined,
+	initialData?: InitialTopicQuestions,
 ) {
 	const requestKey = subject && topic ? `${subject.id}/${topic}` : null;
-	const [loadState, setLoadState] = useState<TopicLoadState>({
-		key: null,
-		status: "idle",
-	});
+	const [loadState, setLoadState] = useState<TopicLoadState>(() =>
+		requestKey && initialData
+			? {
+					key: requestKey,
+					status: "ready",
+					questions: initialData.questions,
+					megatopicLabel: initialData.megatopicLabel,
+				}
+			: { key: null, status: "idle" },
+	);
 	const [retryToken, setRetryToken] = useState(0);
+	const hasInitialData = Boolean(requestKey && initialData);
 	const currentLoadState =
 		loadState.key === requestKey
 			? loadState
-			: requestKey
-				? { key: requestKey, status: "loading" as const }
-				: { key: null, status: "idle" as const };
+			: hasInitialData && initialData
+				? {
+						key: requestKey,
+						status: "ready" as const,
+						questions: initialData.questions,
+						megatopicLabel: initialData.megatopicLabel,
+					}
+				: requestKey
+					? { key: requestKey, status: "loading" as const }
+					: { key: null, status: "idle" as const };
 	const loadAttemptKey = requestKey ? `${requestKey}:${retryToken}` : null;
 
 	useEffect(() => {
 		if (!subject || !topic || !requestKey || !loadAttemptKey) return;
+		if (initialData && retryToken === 0) return;
 
 		let cancelled = false;
 		setLoadState({ key: requestKey, status: "loading" });
@@ -60,7 +81,7 @@ export function useTopicQuestions(
 		return () => {
 			cancelled = true;
 		};
-	}, [loadAttemptKey, requestKey, subject, topic]);
+	}, [initialData, loadAttemptKey, requestKey, retryToken, subject, topic]);
 
 	const retry = useCallback(() => {
 		if (!requestKey) return;

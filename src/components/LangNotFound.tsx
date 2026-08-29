@@ -1,5 +1,5 @@
 import { getRouteApi } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { I18nProvider } from "../i18n/context";
 import { isLang } from "../i18n/context-value";
 import { ThemeProvider } from "../theme/context";
@@ -18,11 +18,13 @@ export default function LangNotFound() {
 
 	return (
 		<ThemeProvider>
-			<I18nProvider initialLang={lang}>
-				<AppChrome>
-					<NotFoundPage />
-				</AppChrome>
-			</I18nProvider>
+			<Suspense fallback={<div aria-busy="true" />}>
+				<I18nProvider initialLang={lang}>
+					<AppChrome>
+						<NotFoundPage />
+					</AppChrome>
+				</I18nProvider>
+			</Suspense>
 		</ThemeProvider>
 	);
 }

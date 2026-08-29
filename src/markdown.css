@@ -1,0 +1,140 @@
+@reference "./styles.css";
+@plugin "@tailwindcss/typography";
+
+.prose {
+	--tw-prose-body: var(--color-fg-secondary);
+	--tw-prose-headings: var(--color-fg);
+	--tw-prose-lead: var(--color-fg-secondary);
+	--tw-prose-links: var(--color-accent-fg);
+	--tw-prose-bold: var(--color-fg);
+	--tw-prose-counters: var(--color-fg-muted);
+	--tw-prose-bullets: var(--color-border);
+	--tw-prose-hr: var(--color-border);
+	--tw-prose-quotes: var(--color-fg-secondary);
+	--tw-prose-quote-borders: var(--color-border);
+	--tw-prose-captions: var(--color-fg-muted);
+	--tw-prose-code: var(--color-code-fg);
+	--tw-prose-pre-code: var(--color-code-block-fg);
+	--tw-prose-pre-bg: var(--color-code-block);
+	--tw-prose-th-borders: var(--color-border);
+	--tw-prose-td-borders: var(--color-border);
+}
+
+/* ── Question-card Markdown ──
+   The typography plugin is tuned for article-length prose. Question content
+   is denser and mixes prompts, lists, formulas, and code blocks, so keep its
+   rhythm explicit and shared across every Markdown field. */
+.markdown-body {
+	overflow-wrap: break-word;
+	line-height: 1.5;
+}
+
+.markdown-body > :first-child {
+	margin-block-start: 0;
+}
+
+.markdown-body > :last-child {
+	margin-block-end: 0;
+}
+
+.markdown-body :where(p) {
+	margin-block: 0;
+	text-wrap: pretty;
+}
+
+.markdown-body :where(p + p) {
+	margin-block-start: 0.75em;
+}
+
+.markdown-body :where(h1, h2, h3, h4) {
+	font-weight: 700;
+	text-wrap: balance;
+}
+
+.markdown-body :where(h1) {
+	margin-block: 0 0.5em;
+	font-size: 1.5em;
+	line-height: 1.2;
+}
+
+.markdown-body :where(h2) {
+	margin-block: 1em 0.45em;
+	font-size: 1.25em;
+	line-height: 1.25;
+}
+
+.markdown-body :where(h3) {
+	margin-block: 0.9em 0.35em;
+	font-size: 1.125em;
+	line-height: 1.3;
+}
+
+.markdown-body :where(h4) {
+	margin-block: 0.8em 0.3em;
+	font-size: 1em;
+	line-height: 1.35;
+}
+
+.markdown-body :where(ul, ol) {
+	margin-block: 0.75em;
+	padding-inline-start: 1.5em;
+}
+
+.markdown-body :where(li) {
+	margin-block: 0.25em;
+}
+
+.markdown-body :where(li > ul, li > ol) {
+	margin-block: 0.35em;
+}
+
+.markdown-body :where(blockquote) {
+	margin-block: 0.75em;
+	border-inline-start: 0.2em solid var(--color-border);
+	padding-inline-start: 1em;
+	color: var(--color-fg-secondary);
+}
+
+.markdown-body :where(hr) {
+	margin-block: 1.25em;
+	border: 0;
+	border-block-start: 1px solid var(--color-border);
+}
+
+.markdown-body :where(a) {
+	text-decoration-thickness: from-font;
+	text-underline-offset: 0.15em;
+	text-underline-position: from-font;
+}
+
+.markdown-body :where(.markdown-code-block) {
+	max-inline-size: 100%;
+	margin-block: 0.75em;
+}
+
+.markdown-body :where(.markdown-table) {
+	margin-block: 0.75em;
+}
+
+.markdown-body :where(.markdown-code-block pre) {
+	max-inline-size: 100%;
+}
+
+.markdown-body :where(.footnotes) {
+	margin-block-start: 1em;
+	font-size: 0.9em;
+}
+
+.markdown-body :where(.footnotes ol) {
+	margin-block: 0.5em 0;
+}
+
+.markdown-body :where(.footnotes li) {
+	margin-block: 0.35em;
+}
+
+.markdown-body :where(input[type="checkbox"]) {
+	margin-inline-end: 0.5em;
+	vertical-align: middle;
+	accent-color: var(--color-accent);
+}

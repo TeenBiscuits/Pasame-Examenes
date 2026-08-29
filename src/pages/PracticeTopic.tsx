@@ -1,4 +1,4 @@
-import { useParams } from "@tanstack/react-router";
+import { getRouteApi, useParams } from "@tanstack/react-router";
 import {
 	useCallback,
 	useEffect,
@@ -45,6 +45,7 @@ import { track } from "../lib/umami";
 import { getSubject } from "../subjects";
 
 const minScrollRangeForCompactScore = 256;
+const practiceRouteApi = getRouteApi("/$lang/$subjectId_/practice_/$topic");
 
 interface PracticePlayerProps {
 	subject: NonNullable<ReturnType<typeof getSubject>>;
@@ -946,6 +947,15 @@ function PracticeTopicContent({
 
 export default function PracticeTopic() {
 	const { subjectId, topic } = useParams({ strict: false });
+	const { questions: initialQuestions, megatopicLabel: initialMegatopicLabel } =
+		practiceRouteApi.useLoaderData();
+	const initialTopicData = useMemo(
+		() => ({
+			questions: initialQuestions,
+			megatopicLabel: initialMegatopicLabel,
+		}),
+		[initialMegatopicLabel, initialQuestions],
+	);
 	const subject = subjectId ? getSubject(subjectId) : undefined;
 	const { selectedExamIds } = useExamSelection(subject);
 	const topicInfo = useMemo(
@@ -957,7 +967,7 @@ export default function PracticeTopic() {
 		megatopicLabel,
 		status,
 		retry,
-	} = useTopicQuestions(subject, topic);
+	} = useTopicQuestions(subject, topic, initialTopicData);
 	const questions = useMemo(
 		() => filterQuestionsByExamSelection(allTopicQuestions, selectedExamIds),
 		[allTopicQuestions, selectedExamIds],

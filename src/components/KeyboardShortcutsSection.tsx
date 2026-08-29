@@ -42,7 +42,7 @@ function HotkeyKeycaps({ hotkey }: { hotkey: string }) {
 		<span className="inline-flex items-center gap-1">
 			{displayKeys.map(({ id, value: key }, displayKeyIndex) => (
 				<span key={id} className="inline-flex items-center gap-1">
-					<kbd className="border-border bg-code text-fg-secondary inline-flex min-h-8 items-center rounded-md border px-2 font-mono text-xs leading-none font-medium shadow-[0_1px_0_var(--color-border)]">
+					<kbd className="border-border bg-code text-fg-secondary inline-flex min-h-8 items-center rounded-md border px-2 font-mono text-s leading-none font-medium shadow-[0_1px_0_var(--color-border)]">
 						{key}
 					</kbd>
 					{displayKeyIndex < displayKeys.length - 1 && (

@@ -1,4 +1,6 @@
 allowBuilds:
   esbuild: true
   lightningcss: true
+  puppeteer: true
+  vue-demi: true
 minimumReleaseAge: 1440

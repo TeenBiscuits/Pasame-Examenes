@@ -15,6 +15,11 @@
     "prebuild": "pnpm run generate-build-assets",
     "build": "vite build",
     "preview": "vite preview",
+    "perf:preview": "SITE_URL=http://127.0.0.1:4173 pnpm preview --host 127.0.0.1 --port 4173",
+    "perf:baseline": "unlighthouse --urls /es,/es/bede,/es/calculo/exam/2023-01,/es/deese/practice/intro-y-objetos,/es/esei/exam/2025-07,/es/iesede,/es/privacy",
+    "perf:baseline:json": "unlighthouse-ci --urls /es,/es/bede,/es/calculo/exam/2023-01,/es/deese/practice/intro-y-objetos,/es/esei/exam/2025-07,/es/iesede,/es/privacy --reporter jsonExpanded",
+    "perf:full": "unlighthouse --disable-dynamic-sampling",
+    "perf:full:json": "unlighthouse-ci --disable-dynamic-sampling --reporter jsonExpanded",
     "pretypecheck": "pnpm run generate-content-stats",
     "typecheck": "tsc --noEmit",
     "readme": "tsx scripts/update-readme-subjects.ts",
@@ -63,6 +68,7 @@
     "@vitejs/plugin-react": "^6.1.0",
     "tsx": "^4.23.12",
     "typescript": "^6.0.3",
+    "unlighthouse": "0.18.0",
     "vite": "^8.2.2",
     "vite-imagetools": "^12.0.0"
   }

@@ -4,7 +4,7 @@ import {
 	Outlet,
 	redirect,
 } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import AppChrome from "../components/AppChrome";
 import LangNotFound from "../components/LangNotFound";
 import { I18nProvider } from "../i18n/context";
@@ -62,9 +62,9 @@ export const Route = createFileRoute("/$lang")({
 			replace: true,
 		});
 	},
-	head: ({ params }) => {
+	head: async ({ params }) => {
 		const lang = isLang(params.lang) ? params.lang : "es";
-		return createNoIndexHead(buildNotFoundMeta(lang));
+		return createNoIndexHead(await buildNotFoundMeta(lang));
 	},
 	component: LangLayout,
 	notFoundComponent: LangNotFound,
@@ -82,11 +82,24 @@ function LangLayout() {
 
 	return (
 		<ThemeProvider>
-			<I18nProvider initialLang={lang}>
-				<AppChrome>
-					<Outlet />
-				</AppChrome>
-			</I18nProvider>
+			<Suspense fallback={<LanguageLoadingFallback />}>
+				<I18nProvider initialLang={lang}>
+					<AppChrome>
+						<Outlet />
+					</AppChrome>
+				</I18nProvider>
+			</Suspense>
 		</ThemeProvider>
+	);
+}
+
+function LanguageLoadingFallback() {
+	return (
+		<main
+			className="bg-surface text-fg flex min-h-screen min-h-svh min-h-dvh items-center justify-center font-sans"
+			aria-busy="true"
+		>
+			<div className="text-fg-muted text-sm">…</div>
+		</main>
 	);
 }

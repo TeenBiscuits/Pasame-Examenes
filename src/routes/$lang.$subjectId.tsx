@@ -17,13 +17,13 @@ export const Route = createFileRoute("/$lang/$subjectId")({
 		};
 	},
 	staleTime: Infinity,
-	head: ({ params, loaderData }) => {
+	head: async ({ params, loaderData }) => {
 		const subject = getSubject(params.subjectId);
 		if (!subject) return {};
 
 		const lang = isLang(params.lang) ? params.lang : "es";
 		return createPageHead(
-			buildSubjectMeta(lang, subject, {
+			await buildSubjectMeta(lang, subject, {
 				questionCount: loaderData?.stats.questionCount ?? 0,
 			}),
 			isIndexableSubject(subject.id),

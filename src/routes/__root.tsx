@@ -9,6 +9,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import "../bones/registry";
+import onestFontUrl from "@fontsource-variable/onest/files/onest-latin-wght-normal.woff2?url";
 import { isLang, type Lang } from "../i18n/context-value";
 import { ssrDuringBuildPrerender } from "../lib/ssr";
 import appCss from "../styles.css?url";
@@ -47,6 +48,13 @@ export const Route = createRootRoute({
 			{
 				rel: "stylesheet",
 				href: appCss,
+			},
+			{
+				rel: "preload",
+				as: "font",
+				type: "font/woff2",
+				href: onestFontUrl,
+				crossOrigin: "anonymous",
 			},
 			{
 				rel: "preconnect",
@@ -91,12 +99,6 @@ export const Route = createRootRoute({
 				"data-performance": "true",
 				"data-domains": "pe.pablopl.dev",
 				"data-do-not-track": "true",
-				defer: true,
-			},
-			{
-				id: "umami-recorder",
-				src: "https://analytics.pablopl.dev/recorder.js",
-				"data-website-id": "63168f0e-a1cf-4ec6-a0c4-58fc7d57a0f4",
 				defer: true,
 			},
 		],
