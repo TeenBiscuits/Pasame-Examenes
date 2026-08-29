@@ -10,6 +10,7 @@ import {
 import type { Lang } from "../i18n/context";
 import { useLang, useT } from "../i18n/hooks";
 import { getLanguageDownloadMessage } from "../i18n/language-download";
+import { isLanguageCached } from "../i18n/translation-loader";
 import { replaceLangInPath } from "../lib/lang-link-utils";
 import {
 	DEFAULT_SOUND_VOLUME,
@@ -125,31 +126,42 @@ export default function SettingsGeneralPanel() {
 		if (nextLang === lang || isChangingLanguage) return;
 		playSound("toggle");
 		setIsChangingLanguage(true);
-		setLanguageDownload({ lang: nextLang, progress: 0 });
-		const progressAnimation = animateLanguageDownload((progress) =>
-			setLanguageDownload((current) =>
-				current ? { ...current, progress } : current,
-			),
-		);
+		const languagePromise = setLang(nextLang);
 
-		try {
-			await Promise.all([setLang(nextLang), progressAnimation.progressMax]);
-		} catch {
+		if (isLanguageCached(nextLang)) {
+			try {
+				await languagePromise;
+			} catch {
+				setIsChangingLanguage(false);
+				return;
+			}
+		} else {
+			setLanguageDownload({ lang: nextLang, progress: 0 });
+			const progressAnimation = animateLanguageDownload((progress) =>
+				setLanguageDownload((current) =>
+					current ? { ...current, progress } : current,
+				),
+			);
+
+			try {
+				await Promise.all([languagePromise, progressAnimation.progressMax]);
+			} catch {
+				progressAnimation.stop();
+				setLanguageDownload(null);
+				setIsChangingLanguage(false);
+				return;
+			}
+
 			progressAnimation.stop();
+			await new Promise<void>((resolve) =>
+				window.setTimeout(resolve, LANGUAGE_PROGRESS_HOLD_MS),
+			);
+			setLanguageDownload({ lang: nextLang, progress: 100 });
+			await new Promise<void>((resolve) =>
+				window.setTimeout(resolve, LANGUAGE_COMPLETION_DISPLAY_MS),
+			);
 			setLanguageDownload(null);
-			setIsChangingLanguage(false);
-			return;
 		}
-
-		progressAnimation.stop();
-		await new Promise<void>((resolve) =>
-			window.setTimeout(resolve, LANGUAGE_PROGRESS_HOLD_MS),
-		);
-		setLanguageDownload({ lang: nextLang, progress: 100 });
-		await new Promise<void>((resolve) =>
-			window.setTimeout(resolve, LANGUAGE_COMPLETION_DISPLAY_MS),
-		);
-		setLanguageDownload(null);
 		setIsChangingLanguage(false);
 		trackEvent("lang_toggle", { lang: nextLang, source: "settings" });
 		const nextPath = replaceLangInPath(location.pathname, nextLang);

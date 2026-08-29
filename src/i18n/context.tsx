@@ -8,28 +8,9 @@ import {
 	useState,
 } from "react";
 import { I18nContext, type Lang } from "./context-value";
-import type { Translations } from "./en";
+import { loadTranslations } from "./translation-loader";
 
 export type { Lang } from "./context-value";
-
-type TranslationLoader = () => Promise<Translations>;
-
-const translationLoaders: Record<Lang, TranslationLoader> = {
-	en: () => import("./en").then(({ en }) => en),
-	es: () => import("./es").then(({ es }) => es),
-	gl: () => import("./gl").then(({ gl }) => gl),
-};
-
-const translationPromises = new Map<Lang, Promise<Translations>>();
-
-function loadTranslations(lang: Lang) {
-	const existingPromise = translationPromises.get(lang);
-	if (existingPromise) return existingPromise;
-
-	const promise = translationLoaders[lang]();
-	translationPromises.set(lang, promise);
-	return promise;
-}
 
 export function I18nProvider({
 	children,
