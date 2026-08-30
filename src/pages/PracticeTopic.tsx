@@ -972,7 +972,12 @@ export default function PracticeTopic() {
 		() => filterQuestionsByExamSelection(allTopicQuestions, selectedExamIds),
 		[allTopicQuestions, selectedExamIds],
 	);
-	const session = usePracticeSession(questions, subject?.id || "", topic || "");
+	const session = usePracticeSession(
+		questions,
+		subject?.id || "",
+		topic || "",
+		selectedExamIds,
+	);
 	const navigation = usePracticeTopicNavigation({
 		subject,
 		topicInfo,
