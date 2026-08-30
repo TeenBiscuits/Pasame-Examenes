@@ -1,5 +1,5 @@
 import { type ReactNode, useRef, useState } from "react";
-import { Gear, Keyboard, Sliders, XSquare } from "reicon-react";
+import { Gear, Keyboard, Palette, Sliders, XSquare } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import {
 	closeDialog,
@@ -13,12 +13,14 @@ import { track } from "../lib/umami";
 import { APP_VERSION } from "../lib/version";
 import KeyboardShortcutsSection from "./KeyboardShortcutsSection";
 import { settingsModalDialogClass } from "./Modal";
+import SettingsAppearancePanel from "./SettingsAppearancePanel";
 import SettingsGeneralPanel from "./SettingsGeneralPanel";
 
-type SettingsTab = "general" | "shortcuts";
+type SettingsTab = "general" | "appearance" | "shortcuts";
 type TabPlacement = "desktop" | "mobile";
 
-const tabOrder: readonly SettingsTab[] = ["general", "shortcuts"];
+const GITHUB_REPOSITORY_URL = "https://github.com/TeenBiscuits/Pasame-Examenes";
+const tabOrder: readonly SettingsTab[] = ["general", "appearance", "shortcuts"];
 
 function TabButton({
 	tab,
@@ -59,7 +61,7 @@ function TabButton({
 			tabIndex={active ? 0 : -1}
 			onClick={() => onSelect(tab)}
 			onKeyDown={handleKeyDown}
-			className={`focus-visible:ring-accent flex min-h-11 items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-[background-color,color,scale] duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] ${active ? "bg-accent-light text-accent-fg font-semibold" : "text-fg-secondary hover:bg-surface hover:text-fg"}`}
+			className={`focus-visible:ring-accent flex min-h-11 items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-[background-color,color,scale] duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] ${placement === "mobile" ? "min-w-0 flex-1 justify-center" : ""} ${active ? "bg-accent-light text-accent-fg font-semibold" : "text-fg-secondary hover:bg-surface hover:text-fg"}`}
 		>
 			<span className="shrink-0" aria-hidden="true">
 				{icon}
@@ -133,7 +135,7 @@ export default function SettingsMenu() {
 				aria-labelledby="settings-modal-title"
 			>
 				<div className="flex h-full min-h-0 flex-col">
-					<header className="border-border flex shrink-0 items-center justify-between gap-4 border-b px-5 py-4 sm:px-7 sm:py-5">
+					<header className="border-border flex shrink-0 items-center justify-between gap-4 border-b p-4 sm:p-5">
 						<div
 							id="settings-modal-title"
 							className="text-fg flex min-w-0 items-center gap-2 text-balance text-lg leading-tight font-semibold"
@@ -169,6 +171,14 @@ export default function SettingsMenu() {
 									onSelect={selectTab}
 								/>
 								<TabButton
+									tab="appearance"
+									placement="desktop"
+									active={activeTab === "appearance"}
+									icon={<Palette size={18} />}
+									label={t.settings.appearance}
+									onSelect={selectTab}
+								/>
+								<TabButton
 									tab="shortcuts"
 									placement="desktop"
 									active={activeTab === "shortcuts"}
@@ -177,13 +187,23 @@ export default function SettingsMenu() {
 									onSelect={selectTab}
 								/>
 							</div>
-							<div className="border-border mt-auto flex items-center justify-between gap-3 border-t px-4 py-3">
-								<p className="text-fg-muted min-w-0 truncate whitespace-nowrap text-[0.68rem] font-semibold tracking-wide uppercase">
+							<div className="border-border mt-auto flex items-center justify-between gap-3 border-t p-3">
+								<p className="text-center text-fg-muted min-w-0 truncate whitespace-nowrap text-[0.68rem] font-semibold tracking-wide uppercase">
 									{t.settings.version}
 								</p>
-								<code className="bg-code text-fg-secondary shrink-0 rounded-md px-2 py-1 font-mono text-xs">
+								<a
+									href={GITHUB_REPOSITORY_URL}
+									target="_blank"
+									rel="noopener noreferrer"
+									data-cuelume-hover="whisper"
+									data-cuelume-press="sparkle"
+									className="bg-code text-fg-secondary hover:bg-surface hover:text-fg focus-visible:ring-accent inline-flex shrink-0 cursor-pointer items-center rounded-md px-2 py-1 font-mono text-xs transition-[background-color,color,scale] duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+									aria-label={`${t.settings.openRepository}: ${APP_VERSION}`}
+									title={t.settings.openRepository}
+									onClick={() => track("version_repository_open")}
+								>
 									{APP_VERSION}
-								</code>
+								</a>
 							</div>
 						</aside>
 
@@ -194,12 +214,16 @@ export default function SettingsMenu() {
 								aria-labelledby={
 									activeTab === "general"
 										? "settings-general-title"
-										: "settings-shortcuts-title"
+										: activeTab === "appearance"
+											? "settings-appearance-title"
+											: "settings-shortcuts-title"
 								}
 								className="min-h-full p-5 outline-none sm:p-8"
 							>
 								{activeTab === "general" ? (
 									<SettingsGeneralPanel />
+								) : activeTab === "appearance" ? (
+									<SettingsAppearancePanel />
 								) : (
 									<KeyboardShortcutsSection />
 								)}
@@ -217,6 +241,14 @@ export default function SettingsMenu() {
 								active={activeTab === "general"}
 								icon={<Sliders size={18} />}
 								label={t.settings.general}
+								onSelect={selectTab}
+							/>
+							<TabButton
+								tab="appearance"
+								placement="mobile"
+								active={activeTab === "appearance"}
+								icon={<Palette size={18} />}
+								label={t.settings.appearance}
 								onSelect={selectTab}
 							/>
 							<TabButton
