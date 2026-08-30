@@ -206,7 +206,7 @@ function PracticePreview({
 				/>
 				<span
 					className="ms-auto h-3.5 w-9 rounded-md"
-					style={{ backgroundColor: palette.faint }}
+					style={{ backgroundColor: palette.accentSoft }}
 				/>
 				<span
 					className="h-3.5 w-7 rounded-md"
