@@ -164,6 +164,20 @@ export function getQuestionScore(
 	return 0;
 }
 
+export function getTotalScore(
+	questions: Question[],
+	answers: Record<string, string>,
+	selfGrades: Record<string, "correct" | "incorrect"> = {},
+): number {
+	return roundPoints(
+		questions.reduce(
+			(score, question) =>
+				score + getQuestionScore(question, answers[question.id], selfGrades),
+			0,
+		),
+	);
+}
+
 export function computeQuestionResults(
 	questions: Question[],
 	answers: Record<string, string>,

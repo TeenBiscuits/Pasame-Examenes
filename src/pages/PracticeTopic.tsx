@@ -33,7 +33,7 @@ import { useT } from "../i18n/hooks";
 import {
 	computeQuestionResults,
 	getPendingSelfGradePoints,
-	getQuestionScore,
+	getTotalScore,
 	isAutomaticallyCorrect,
 	isFullySelfGraded,
 	isSelfGradedQuestion,
@@ -686,12 +686,11 @@ function PracticePlayer({
 		pendingTextCount === 0;
 
 	const getScore = (onlyGraded = false) => {
-		let score = 0;
-		for (const q of questions) {
-			if (onlyGraded && !submitted && !checkedQuestions[q.id]) continue;
-			score += getQuestionScore(q, answers[q.id], selfGrades);
-		}
-		return roundPoints(score);
+		const scoredQuestions =
+			onlyGraded && !submitted
+				? questions.filter((question) => checkedQuestions[question.id])
+				: questions;
+		return getTotalScore(scoredQuestions, answers, selfGrades);
 	};
 
 	const gradedScore = getScore(true);
@@ -972,7 +971,12 @@ export default function PracticeTopic() {
 		() => filterQuestionsByExamSelection(allTopicQuestions, selectedExamIds),
 		[allTopicQuestions, selectedExamIds],
 	);
-	const session = usePracticeSession(questions, subject?.id || "", topic || "");
+	const session = usePracticeSession(
+		questions,
+		subject?.id || "",
+		topic || "",
+		selectedExamIds,
+	);
 	const navigation = usePracticeTopicNavigation({
 		subject,
 		topicInfo,

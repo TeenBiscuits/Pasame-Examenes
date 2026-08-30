@@ -115,14 +115,24 @@ export interface SubjectMeta {
 	exams: Exam[];
 }
 
+export type SelfGrade = "correct" | "incorrect";
+
 export interface ExamAttempt {
 	id: string;
 	examId: string;
 	mode: "practice" | "exam";
 	topic?: string;
+	/** Exam sources selected when the practice was started. */
+	selectedExamIds: string[];
+	/** Questions included in this attempt, kept stable if the catalogue changes. */
+	questionIds: string[];
 	date: string;
 	score: number;
 	maxScore: number;
 	answers: Record<string, string>;
+	/** Self-evaluations, including the composite keys used by multiple-text questions. */
+	selfGrades: Record<string, SelfGrade>;
 	timeSpent?: number;
+	durationSeconds?: number;
+	passPercentage?: number;
 }
