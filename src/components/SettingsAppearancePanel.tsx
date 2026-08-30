@@ -36,11 +36,11 @@ const choiceCardLayoutClass = {
 const themePreviewGradients: Record<ConcreteTheme, string> = {
 	light: "linear-gradient(110deg, #ffffff 0%, #f6f7f9 52%, #dce5ff 100%)",
 	dark: "linear-gradient(110deg, #09090b 0%, #1f2024 52%, #4d556d 100%)",
-	princess: "linear-gradient(110deg, #fff8fb 0%, #f6b8d1 52%, #8f174c 100%)",
-	latte: "linear-gradient(110deg, #eff1f5 0%, #cdd6f4 52%, #45475a 100%)",
-	frappe: "linear-gradient(110deg, #c6d0e8 0%, #8caaee 52%, #303446 100%)",
-	macchiato: "linear-gradient(110deg, #cad4e7 0%, #a6da95 52%, #24273a 100%)",
-	mocha: "linear-gradient(110deg, #f5e9dc 0%, #f9e2af 52%, #1e1e2e 100%)",
+	princess: "linear-gradient(110deg, #fff8fb 0%, #f6b8d1 52%, #eb8eb4 100%)",
+	latte: "linear-gradient(110deg, #eff1f5 0%, #cdd6f4 52%, #aeb9dc 100%)",
+	frappe: "linear-gradient(110deg, #292c3c 0%, #414559 52%, #51576d 100%)",
+	macchiato: "linear-gradient(110deg, #24273a 0%, #363a4f 52%, #494d64 100%)",
+	mocha: "linear-gradient(110deg, #1e1e2e 0%, #313244 52%, #45475a 100%)",
 };
 
 type PreviewPalette = {
