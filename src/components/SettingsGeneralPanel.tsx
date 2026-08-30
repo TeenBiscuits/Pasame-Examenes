@@ -1,12 +1,6 @@
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import { type ChangeEvent, type KeyboardEvent, useState } from "react";
-import {
-	Language,
-	Palette,
-	VolumeDown,
-	VolumeMute,
-	VolumeUp,
-} from "reicon-react";
+import { Language, VolumeDown, VolumeMute, VolumeUp } from "reicon-react";
 import type { Lang } from "../i18n/context";
 import { useLang, useT } from "../i18n/hooks";
 import { getLanguageDownloadMessage } from "../i18n/language-download";
@@ -21,8 +15,6 @@ import {
 } from "../lib/sound";
 import { track as trackEvent } from "../lib/umami";
 import { APP_VERSION } from "../lib/version";
-import { useTheme } from "../theme/hooks";
-import { type Theme, themeOrder } from "../theme/types";
 
 const languageOptions: ReadonlyArray<{ value: Lang; label: string }> = [
 	{ value: "es", label: "🇪🇸 Español" },
@@ -80,10 +72,6 @@ function animateLanguageDownload(setProgress: (progress: number) => void) {
 	};
 }
 
-function isTheme(value: string): value is Theme {
-	return themeOrder.some((theme) => theme === value);
-}
-
 function VolumeIcon({ volume }: { volume: number }) {
 	if (volume === 0) return <VolumeMute size={20} aria-hidden="true" />;
 	if (volume < 50) return <VolumeDown size={20} aria-hidden="true" />;
@@ -111,7 +99,6 @@ function handleVolumeKeyUp(event: KeyboardEvent<HTMLInputElement>) {
 export default function SettingsGeneralPanel() {
 	const t = useT();
 	const { lang, setLang } = useLang();
-	const { theme, setTheme } = useTheme();
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [volume, setVolumeState] = useState(getStoredSoundVolume);
@@ -173,14 +160,6 @@ export default function SettingsGeneralPanel() {
 		});
 	}
 
-	function handleThemeChange(event: ChangeEvent<HTMLSelectElement>) {
-		const nextTheme = event.target.value;
-		if (!isTheme(nextTheme) || nextTheme === theme) return;
-		playSound("toggle");
-		setTheme(nextTheme);
-		trackEvent("theme_toggle", { theme: nextTheme, source: "settings" });
-	}
-
 	function handleVolumeChange(event: ChangeEvent<HTMLInputElement>) {
 		const nextVolume = updateSoundVolume(Number(event.target.value));
 		setVolumeState(nextVolume);
@@ -229,53 +208,28 @@ export default function SettingsGeneralPanel() {
 				</p>
 			</div>
 
-			<div className="grid gap-6 md:grid-cols-2">
-				<div className="space-y-2">
-					<label
-						htmlFor="settings-language"
-						className="text-fg inline-flex items-center gap-2 text-sm font-semibold"
-					>
-						<Language size={18} aria-hidden="true" />
-						{t.settings.language}
-					</label>
-					<select
-						id="settings-language"
-						name="language"
-						value={lang}
-						disabled={isChangingLanguage}
-						onChange={handleLanguageChange}
-						className="border-border bg-surface text-fg focus-visible:ring-accent min-h-11 w-full cursor-pointer rounded-lg border-2 px-3 text-base transition-[border-color,box-shadow,background-color] focus-visible:ring-2 focus-visible:outline-none"
-					>
-						{languageOptions.map((option) => (
-							<option key={option.value} value={option.value}>
-								{option.label}
-							</option>
-						))}
-					</select>
-				</div>
-
-				<div className="space-y-2">
-					<label
-						htmlFor="settings-theme"
-						className="text-fg inline-flex items-center gap-2 text-sm font-semibold"
-					>
-						<Palette size={18} aria-hidden="true" />
-						{t.settings.theme}
-					</label>
-					<select
-						id="settings-theme"
-						name="theme"
-						value={theme}
-						onChange={handleThemeChange}
-						className="border-border bg-surface text-fg focus-visible:ring-accent min-h-11 w-full cursor-pointer rounded-lg border-2 px-3 text-base transition-[border-color,box-shadow,background-color] focus-visible:ring-2 focus-visible:outline-none"
-					>
-						{themeOrder.map((option) => (
-							<option key={option} value={option}>
-								{t.theme[option]}
-							</option>
-						))}
-					</select>
-				</div>
+			<div className="max-w-sm space-y-2">
+				<label
+					htmlFor="settings-language"
+					className="text-fg inline-flex items-center gap-2 text-sm font-semibold"
+				>
+					<Language size={18} aria-hidden="true" />
+					{t.settings.language}
+				</label>
+				<select
+					id="settings-language"
+					name="language"
+					value={lang}
+					disabled={isChangingLanguage}
+					onChange={handleLanguageChange}
+					className="border-border bg-surface text-fg focus-visible:ring-accent min-h-11 w-full cursor-pointer rounded-lg border-2 px-3 text-base transition-[border-color,box-shadow,background-color] focus-visible:ring-2 focus-visible:outline-none"
+				>
+					{languageOptions.map((option) => (
+						<option key={option.value} value={option.value}>
+							{option.label}
+						</option>
+					))}
+				</select>
 			</div>
 
 			<div className="space-y-3">

@@ -124,3 +124,17 @@ _Evitar_: Idioma de la asignatura
 
 **Idioma del contenido**: Idioma en el que está escrita una pregunta o solución. Puede ser el idioma en el que se imparte la asignatura o el idioma del material del que procede.
 _Evitar_: Traducción de la interfaz
+
+### Apariencia
+
+**Paleta**: Conjunto de colores y roles visuales que define la apariencia de la interfaz en un esquema claro u oscuro. La aplicación dispone de varias paletas claras y varias paletas oscuras.
+_Evitar_: Tema de color, tema visual
+
+**Esquema de color**: Preferencia que determina si la interfaz usa siempre una paleta clara, siempre una paleta oscura o alterna entre ambas según el sistema operativo, incluso cuando este cambia mientras la aplicación está abierta.
+_Evitar_: Modo de tema, modo visual
+
+**Paleta clara**: Cualquier paleta de la colección clara, aplicable cuando el esquema de color está en claro o cuando el sistema operativo indica una apariencia clara. La paleta predeterminada es Sol; si una preferencia no es válida, se usa Sol.
+_Evitar_: Tema claro
+
+**Paleta oscura**: Cualquier paleta de la colección oscura, aplicable cuando el esquema de color está en oscuro o cuando el sistema operativo indica una apariencia oscura. La paleta predeterminada es Luna; si una preferencia no es válida, se usa Luna.
+_Evitar_: Tema oscuro
