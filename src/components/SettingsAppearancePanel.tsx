@@ -35,7 +35,7 @@ const choiceCardLayoutClass = {
 
 const themePreviewGradients: Record<ConcreteTheme, string> = {
 	light: "linear-gradient(110deg, #ffffff 0%, #dcfce7 52%, #15803d 100%)",
-	dark: "linear-gradient(110deg, #09090b 0%, #312e81 52%, #818cf8 100%)",
+	dark: "linear-gradient(110deg, #09090b 0%, #166534 52%, #22c55e 100%)",
 	princess: "linear-gradient(110deg, #fff8fb 0%, #f6b8d1 52%, #eb8eb4 100%)",
 	latte: "linear-gradient(110deg, #eff1f5 0%, #cdd6f4 52%, #aeb9dc 100%)",
 	frappe: "linear-gradient(110deg, #292c3c 0%, #414559 52%, #8caaee 100%)",
@@ -102,8 +102,8 @@ const previewPalettes: Record<ConcreteTheme, PreviewPalette> = {
 		faint: "#27272a",
 		card: "#121214",
 		option: "#161618",
-		accent: "#818cf8",
-		accentSoft: "#312e81",
+		accent: "#22c55e",
+		accentSoft: "#052e16",
 	},
 	frappe: {
 		page: "#303446",
