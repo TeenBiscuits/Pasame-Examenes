@@ -136,6 +136,8 @@ export const en = {
 		volume: "Sound volume",
 		volumeDescription: "Adjust the volume of interface feedback sounds.",
 		version: "App version",
+		openRepository: "Open repository on GitHub",
+		addTheme: "Add palette",
 		mute: "Mute sounds",
 		unmute: "Turn sounds on",
 		keyboardShortcuts: "Keyboard shortcuts",

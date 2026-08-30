@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Monitor, Moon, Sun } from "reicon-react";
+import { Monitor, Moon, Palette, Sun } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import { playSound } from "../lib/sound";
 import { track as trackEvent } from "../lib/umami";
@@ -14,6 +14,7 @@ import {
 
 const colorSchemeOptions: ColorScheme[] = ["system", "light", "dark"];
 const themeOptions: ConcreteTheme[] = [...lightThemeOrder, ...darkThemeOrder];
+const GITHUB_REPOSITORY_URL = "https://github.com/TeenBiscuits/Pasame-Examenes";
 const previewChips = [
 	{ color: "accent", id: "active" },
 	{ color: "faint", id: "second" },
@@ -35,12 +36,12 @@ const choiceCardLayoutClass = {
 
 const themePreviewGradients: Record<ConcreteTheme, string> = {
 	light: "linear-gradient(110deg, #ffffff 0%, #dcfce7 52%, #15803d 100%)",
-	dark: "linear-gradient(110deg, #09090b 0%, #166534 52%, #22c55e 100%)",
+	dark: "linear-gradient(110deg, #111827 0%, #1f2937 52%, #22c55e 100%)",
 	princess: "linear-gradient(110deg, #fff8fb 0%, #f6b8d1 52%, #eb8eb4 100%)",
 	latte: "linear-gradient(110deg, #eff1f5 0%, #cdd6f4 52%, #aeb9dc 100%)",
-	frappe: "linear-gradient(110deg, #292c3c 0%, #414559 52%, #8caaee 100%)",
-	macchiato: "linear-gradient(110deg, #24273a 0%, #363a4f 52%, #8aadf4 100%)",
-	mocha: "linear-gradient(110deg, #1e1e2e 0%, #313244 52%, #89b4fa 100%)",
+	frappe: "linear-gradient(110deg, #303446 0%, #51576d 52%, #ca9ee6 100%)",
+	macchiato: "linear-gradient(110deg, #24273a 0%, #494d64 52%, #c6a0f6 100%)",
+	mocha: "linear-gradient(110deg, #1e1e2e 0%, #45475a 52%, #cba6f7 100%)",
 };
 
 type PreviewPalette = {
@@ -94,14 +95,14 @@ const previewPalettes: Record<ConcreteTheme, PreviewPalette> = {
 		accentSoft: "#ede9fe",
 	},
 	dark: {
-		page: "#09090b",
-		header: "#111113",
-		text: "#f4f4f5",
-		border: "#2a2a2f",
-		muted: "#52525b",
-		faint: "#27272a",
-		card: "#121214",
-		option: "#161618",
+		page: "#111827",
+		header: "#1f2937",
+		text: "#f9fafb",
+		border: "#374151",
+		muted: "#9ca3af",
+		faint: "#1f2937",
+		card: "#1f2937",
+		option: "#111827",
 		accent: "#22c55e",
 		accentSoft: "#052e16",
 	},
@@ -114,7 +115,7 @@ const previewPalettes: Record<ConcreteTheme, PreviewPalette> = {
 		faint: "#414559",
 		card: "#292c3c",
 		option: "#303446",
-		accent: "#8caaee",
+		accent: "#ca9ee6",
 		accentSoft: "#414559",
 	},
 	macchiato: {
@@ -126,7 +127,7 @@ const previewPalettes: Record<ConcreteTheme, PreviewPalette> = {
 		faint: "#363a4f",
 		card: "#1e2030",
 		option: "#24273a",
-		accent: "#8aadf4",
+		accent: "#c6a0f6",
 		accentSoft: "#363a4f",
 	},
 	mocha: {
@@ -138,7 +139,7 @@ const previewPalettes: Record<ConcreteTheme, PreviewPalette> = {
 		faint: "#313244",
 		card: "#181825",
 		option: "#1e1e2e",
-		accent: "#89b4fa",
+		accent: "#cba6f7",
 		accentSoft: "#313244",
 	},
 };
@@ -317,7 +318,7 @@ function ColorSchemePreview({
 function ThemeGradient({ theme }: { theme: ConcreteTheme }) {
 	return (
 		<div
-			className="relative shrink-0 overflow-hidden border-s border-white/70 shadow-inner"
+			className="relative shrink-0 overflow-hidden shadow-inner"
 			style={{
 				backgroundImage: themePreviewGradients[theme],
 				height: "5rem",
@@ -503,6 +504,18 @@ export default function SettingsAppearancePanel() {
 							/>
 						);
 					})}
+					<a
+						href={GITHUB_REPOSITORY_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						data-cuelume-hover="tick"
+						data-cuelume-press="bloom"
+						className="interactive-card border-border text-fg-muted hover:border-accent hover:bg-accent-light/30 hover:text-accent-fg focus-visible:ring-accent flex min-h-20 min-w-0 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed p-4 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+						onClick={() => trackEvent("add_theme_repository_open")}
+					>
+						<Palette className="size-7" aria-hidden="true" />
+						<span className="text-sm font-medium">{t.settings.addTheme}</span>
+					</a>
 				</div>
 			</fieldset>
 		</div>

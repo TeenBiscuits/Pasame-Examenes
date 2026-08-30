@@ -139,6 +139,8 @@ export const es: Translations = {
 		volumeDescription:
 			"Ajusta el volumen de los sonidos de interacción de la interfaz.",
 		version: "Versión de la app",
+		openRepository: "Abrir repositorio en GitHub",
+		addTheme: "Añadir paleta",
 		mute: "Silenciar sonidos",
 		unmute: "Activar sonidos",
 		keyboardShortcuts: "Atajos de teclado",

@@ -139,6 +139,8 @@ export const gl: Translations = {
 		volume: "Volume dos sons",
 		volumeDescription: "Axusta o volume dos sons de interacción da interface.",
 		version: "Versión da app",
+		openRepository: "Abrir o repositorio en GitHub",
+		addTheme: "Engadir paleta",
 		mute: "Silenciar os sons",
 		unmute: "Activar os sons",
 		keyboardShortcuts: "Atallos de teclado",
