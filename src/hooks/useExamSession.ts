@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from "react";
-import type { Question } from "../data/types";
-import { getQuestionScore } from "../lib/grading";
+import { createAttempt, saveAttempt } from "../data/store";
+import type { Question, SelfGrade } from "../data/types";
+import { getTotalScore } from "../lib/grading";
 import { track } from "../lib/umami";
 
 const getNow = () => Date.now();
@@ -8,7 +9,7 @@ const getNow = () => Date.now();
 interface ExamState {
 	currentIndex: number;
 	answers: Record<string, string>;
-	selfGrades: Record<string, "correct" | "incorrect">;
+	selfGrades: Record<string, SelfGrade>;
 	submitted: boolean;
 	timeLeft: number;
 	started: boolean;
@@ -17,7 +18,7 @@ interface ExamState {
 type ExamAction =
 	| { type: "SET_CURRENT_INDEX"; index: number }
 	| { type: "ANSWER"; questionId: string; answer: string }
-	| { type: "SELF_GRADE"; questionId: string; grade: "correct" | "incorrect" }
+	| { type: "SELF_GRADE"; questionId: string; grade: SelfGrade }
 	| { type: "SUBMIT"; elapsed: number }
 	| { type: "START" }
 	| { type: "TICK" }
@@ -55,6 +56,7 @@ export function useExamSession(
 	initialTimeLeft: number,
 	t: { exam: { submitConfirm: string } },
 	onTimeUp: () => void,
+	passPercentage?: number,
 ) {
 	const [state, dispatch] = useReducer(reducer, {
 		currentIndex: 0,
@@ -69,6 +71,41 @@ export function useExamSession(
 
 	const startTimeRef = useRef(0);
 	const timeUpTrackedRef = useRef(false);
+	const attemptIdRef = useRef("");
+	const attemptDateRef = useRef("");
+	const attemptQuestionsRef = useRef<Question[]>([]);
+	const attemptTimeSpentRef = useRef(0);
+
+	const persistAttempt = useCallback(
+		(
+			id: string,
+			attemptQuestions: Question[],
+			date: string,
+			answers: Record<string, string>,
+			selfGrades: Record<string, SelfGrade>,
+			score: number,
+			timeSpent: number,
+		) => {
+			saveAttempt(
+				subjectId,
+				createAttempt({
+					id,
+					examId,
+					mode: "exam",
+					selectedExamIds: [examId],
+					questions: attemptQuestions,
+					date,
+					score,
+					answers,
+					selfGrades,
+					timeSpent,
+					durationSeconds: initialTimeLeft,
+					...(passPercentage == null ? {} : { passPercentage }),
+				}),
+			);
+		},
+		[subjectId, examId, initialTimeLeft, passPercentage],
+	);
 
 	const setCurrentIndex = useCallback(
 		(index: number) => dispatch({ type: "SET_CURRENT_INDEX", index }),
@@ -80,6 +117,8 @@ export function useExamSession(
 	}, []);
 
 	const handleStart = useCallback(() => {
+		if (state.started) return;
+
 		track("exam_start", {
 			subjectId,
 			examId,
@@ -88,21 +127,23 @@ export function useExamSession(
 		});
 		dispatch({ type: "START" });
 		startTimeRef.current = getNow();
-	}, [subjectId, examId, questions]);
+	}, [subjectId, examId, questions, state.started]);
 
 	const handleSubmit = useCallback(
 		(skipConfirm = false) => {
-			if (!skipConfirm && !window.confirm(t.exam.submitConfirm)) return;
+			if (state.submitted || attemptIdRef.current || !state.started)
+				return false;
+			if (!skipConfirm && !window.confirm(t.exam.submitConfirm)) return false;
 
 			const elapsed = Math.floor((getNow() - startTimeRef.current) / 1000);
-			let score = 0;
-			for (const q of questions) {
-				score += getQuestionScore(
-					q,
-					state.answers[q.id] || "",
-					state.selfGrades,
-				);
-			}
+			const id = getNow().toString();
+			const date = new Date().toISOString();
+			const maxScore = questions.reduce((s, q) => s + q.points, 0);
+			const score = getTotalScore(questions, state.answers, state.selfGrades);
+			attemptIdRef.current = id;
+			attemptDateRef.current = date;
+			attemptQuestionsRef.current = questions;
+			attemptTimeSpentRef.current = elapsed;
 			const answeredCount = Object.values(state.answers).filter(
 				(a) => a && a.trim() !== "",
 			).length;
@@ -110,48 +151,86 @@ export function useExamSession(
 				subjectId,
 				examId,
 				score,
-				maxScore: questions.reduce((s, q) => s + q.points, 0),
+				maxScore,
 				timeSpent: elapsed,
 				questionsCount: questions.length,
 				answered: answeredCount,
 			});
+			persistAttempt(
+				id,
+				questions,
+				date,
+				state.answers,
+				state.selfGrades,
+				score,
+				elapsed,
+			);
 			dispatch({ type: "SUBMIT", elapsed });
+			return true;
 		},
-		[subjectId, examId, questions, state.answers, state.selfGrades, t],
+		[
+			subjectId,
+			examId,
+			questions,
+			state.answers,
+			state.selfGrades,
+			state.started,
+			state.submitted,
+			t,
+			persistAttempt,
+		],
 	);
 
 	const handleSelfGrade = useCallback(
-		(questionId: string, grade: "correct" | "incorrect") => {
+		(questionId: string, grade: SelfGrade) => {
 			track("exam_self_grade", { subjectId, examId, questionId, grade });
 			dispatch({ type: "SELF_GRADE", questionId, grade });
+			if (!state.submitted || !attemptIdRef.current) return;
+
+			const nextGrades = { ...state.selfGrades, [questionId]: grade };
+			const attemptQuestions = attemptQuestionsRef.current;
+			persistAttempt(
+				attemptIdRef.current,
+				attemptQuestions,
+				attemptDateRef.current,
+				state.answers,
+				nextGrades,
+				getTotalScore(attemptQuestions, state.answers, nextGrades),
+				attemptTimeSpentRef.current,
+			);
 		},
-		[subjectId, examId],
+		[
+			subjectId,
+			examId,
+			state.answers,
+			state.selfGrades,
+			state.submitted,
+			persistAttempt,
+		],
 	);
 
 	// Timer
 	useEffect(() => {
-		if (!state.started || state.submitted || timeUp) return;
+		if (!state.started || state.submitted || state.timeLeft <= 0) return;
 		const timer = setInterval(() => {
-			if (state.timeLeft === 1) onTimeUp();
 			dispatch({ type: "TICK" });
 		}, 1000);
 		return () => clearInterval(timer);
-	}, [state.started, state.submitted, state.timeLeft, timeUp, onTimeUp]);
+	}, [state.started, state.submitted, state.timeLeft]);
 
-	// Time up tracking
+	// Time up submits the attempt before notifying the page so the timeout is not lost.
 	useEffect(() => {
-		if (
-			state.timeLeft === 0 &&
-			state.started &&
-			!state.submitted &&
-			!timeUpTrackedRef.current
-		) {
-			timeUpTrackedRef.current = true;
-			track("exam_time_up", {
-				subjectId,
-				examId,
-				questionsCount: questions.length,
-			});
+		if (state.timeLeft <= 0 && state.started && !state.submitted) {
+			if (!timeUpTrackedRef.current) {
+				timeUpTrackedRef.current = true;
+				track("exam_time_up", {
+					subjectId,
+					examId,
+					questionsCount: questions.length,
+				});
+			}
+			handleSubmit(true);
+			onTimeUp();
 		}
 	}, [
 		state.timeLeft,
@@ -160,6 +239,8 @@ export function useExamSession(
 		subjectId,
 		examId,
 		questions.length,
+		handleSubmit,
+		onTimeUp,
 	]);
 
 	return {

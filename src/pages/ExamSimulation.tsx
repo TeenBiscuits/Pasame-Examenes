@@ -31,7 +31,7 @@ import { getExamPassPoints } from "../lib/exam-stats";
 import {
 	computeQuestionResults,
 	getPendingSelfGradePoints,
-	getQuestionScore,
+	getTotalScore,
 	isAutomaticallyCorrect,
 	isFullySelfGraded,
 	isSelfGradedQuestion,
@@ -863,13 +863,7 @@ function ExamPlayer({
 		};
 	}, [scrollToHeaderRef, scrollToHeader]);
 
-	const getScore = () => {
-		let score = 0;
-		for (const q of questions) {
-			score += getQuestionScore(q, answers[q.id], selfGrades);
-		}
-		return roundPoints(score);
-	};
+	const getScore = () => getTotalScore(questions, answers, selfGrades);
 
 	const score = getScore();
 
@@ -1255,9 +1249,10 @@ export default function ExamSimulation() {
 		questions,
 		subject?.id || "",
 		examId || "",
-		(examInfo?.durationMinutes || 120) * 60,
+		(examInfo?.durationMinutes ?? 120) * 60,
 		t,
 		showTimeUpDialog,
+		examInfo?.passPercentage,
 	);
 
 	const handleSubmitConfirm = useCallback(
