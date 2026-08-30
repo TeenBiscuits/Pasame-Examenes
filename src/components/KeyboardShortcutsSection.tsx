@@ -5,7 +5,7 @@ import {
   useHotkeySequenceRecorder,
 } from "@tanstack/react-hotkeys";
 import { useRef, useState } from "react";
-import { Keyboard, Restart, TriangleWarning } from "reicon-react";
+import { Restart, TriangleWarning } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import {
   COMMAND_MODULES,
