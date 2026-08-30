@@ -20,6 +20,7 @@ import { Route as LangSplatRouteImport } from './routes/$lang.$'
 import { Route as LangSubjectIdRouteImport } from './routes/$lang.$subjectId'
 import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
 import { Route as SubjectIdPracticeRouteImport } from './routes/$subjectId_.practice'
+import { Route as ApiMatchStatusRouteImport } from './routes/api.match-status'
 import { Route as LangSubjectIdPracticeRouteImport } from './routes/$lang.$subjectId_.practice'
 import { Route as SubjectIdExamExamIdRouteImport } from './routes/$subjectId_.exam.$examId'
 import { Route as SubjectIdPracticeTopicRouteImport } from './routes/$subjectId_.practice_.$topic'
@@ -82,6 +83,11 @@ const SubjectIdPracticeRoute = SubjectIdPracticeRouteImport.update({
   path: '/$subjectId/practice',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMatchStatusRoute = ApiMatchStatusRouteImport.update({
+  id: '/api/match-status',
+  path: '/api/match-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LangSubjectIdPracticeRoute = LangSubjectIdPracticeRouteImport.update({
   id: '/$subjectId_/practice',
   path: '/$subjectId/practice',
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/$lang/$subjectId': typeof LangSubjectIdRoute
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$subjectId/practice': typeof SubjectIdPracticeRoute
+  '/api/match-status': typeof ApiMatchStatusRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/$subjectId/practice': typeof LangSubjectIdPracticeRoute
   '/$subjectId/exam/$examId': typeof SubjectIdExamExamIdRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/$lang/$subjectId': typeof LangSubjectIdRoute
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$subjectId/practice': typeof SubjectIdPracticeRoute
+  '/api/match-status': typeof ApiMatchStatusRoute
   '/$lang': typeof LangIndexRoute
   '/$lang/$subjectId/practice': typeof LangSubjectIdPracticeRoute
   '/$subjectId/exam/$examId': typeof SubjectIdExamExamIdRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/$lang/$subjectId': typeof LangSubjectIdRoute
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$subjectId_/practice': typeof SubjectIdPracticeRoute
+  '/api/match-status': typeof ApiMatchStatusRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/$subjectId_/practice': typeof LangSubjectIdPracticeRoute
   '/$subjectId_/exam/$examId': typeof SubjectIdExamExamIdRoute
@@ -182,6 +191,7 @@ export interface FileRouteTypes {
     | '/$lang/$subjectId'
     | '/$lang/privacy'
     | '/$subjectId/practice'
+    | '/api/match-status'
     | '/$lang/'
     | '/$lang/$subjectId/practice'
     | '/$subjectId/exam/$examId'
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/$lang/$subjectId'
     | '/$lang/privacy'
     | '/$subjectId/practice'
+    | '/api/match-status'
     | '/$lang'
     | '/$lang/$subjectId/practice'
     | '/$subjectId/exam/$examId'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/$lang/$subjectId'
     | '/$lang/privacy'
     | '/$subjectId_/practice'
+    | '/api/match-status'
     | '/$lang/'
     | '/$lang/$subjectId_/practice'
     | '/$subjectId_/exam/$examId'
@@ -233,6 +245,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   Char123INDEXNOW_KEYChar125DottxtRoute: typeof Char123INDEXNOW_KEYChar125DottxtRoute
   SubjectIdPracticeRoute: typeof SubjectIdPracticeRoute
+  ApiMatchStatusRoute: typeof ApiMatchStatusRoute
   SubjectIdExamExamIdRoute: typeof SubjectIdExamExamIdRoute
   SubjectIdPracticeTopicRoute: typeof SubjectIdPracticeTopicRoute
 }
@@ -316,6 +329,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SubjectIdPracticeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/match-status': {
+      id: '/api/match-status'
+      path: '/api/match-status'
+      fullPath: '/api/match-status'
+      preLoaderRoute: typeof ApiMatchStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$lang/$subjectId_/practice': {
       id: '/$lang/$subjectId_/practice'
       path: '/$subjectId/practice'
@@ -384,6 +404,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   Char123INDEXNOW_KEYChar125DottxtRoute: Char123INDEXNOW_KEYChar125DottxtRoute,
   SubjectIdPracticeRoute: SubjectIdPracticeRoute,
+  ApiMatchStatusRoute: ApiMatchStatusRoute,
   SubjectIdExamExamIdRoute: SubjectIdExamExamIdRoute,
   SubjectIdPracticeTopicRoute: SubjectIdPracticeTopicRoute,
 }

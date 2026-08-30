@@ -113,6 +113,9 @@ export const es: Translations = {
 		star: "Estrella",
 		starOnGithub: "Dar una estrella en GitHub",
 		skipToContent: "Ir al contenido principal",
+		matchWarning:
+			"¡Hoy se juega un partido de fútbol, así que esta web es más lenta por culpa de La Liga!",
+		matchWarningMore: "Más información",
 	},
 	settings: {
 		title: "Ajustes",

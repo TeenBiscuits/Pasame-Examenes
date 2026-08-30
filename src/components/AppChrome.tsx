@@ -14,6 +14,7 @@ import { useTheme } from "../theme/hooks";
 import AppUpdateToast from "./AppUpdateToast";
 import Footer from "./Footer";
 import Header from "./Header";
+import MatchWarningBanner from "./MatchWarningBanner";
 import SessionTracker from "./SessionTracker";
 import StarPopup from "./StarPopup";
 
@@ -36,6 +37,7 @@ export default function AppChrome({ children }: { children: ReactNode }) {
 				>
 					{t.header.skipToContent}
 				</a>
+				<MatchWarningBanner />
 				<Header />
 				<main id="main-content" tabIndex={-1} className="flex-grow">
 					{children}

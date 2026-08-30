@@ -111,6 +111,9 @@ export const en = {
 		star: "Star",
 		starOnGithub: "Star on GitHub",
 		skipToContent: "Skip to main content",
+		matchWarning:
+			"A football match is being played today, so this site may be slower because of La Liga!",
+		matchWarningMore: "More information",
 	},
 	settings: {
 		title: "Settings",
