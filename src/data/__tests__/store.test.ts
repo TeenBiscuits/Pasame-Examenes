@@ -161,4 +161,23 @@ describe("getTopicProgress", () => {
 			0,
 		);
 	});
+
+	it("preserves legacy progress only when all sources are selected", () => {
+		const legacyAttempt = makeAttempt({ score: 12, topic: "topic-a" });
+		delete legacyAttempt.examIds;
+		delete legacyAttempt.questionScores;
+		saveAttempt("subject-6", legacyAttempt);
+
+		assert.deepEqual(
+			getTopicProgress("subject-6", questions, ["source-a", "source-b"]),
+			{
+				"topic-a": { attempted: 12, total: 15 },
+				"topic-b": { attempted: 0, total: 20 },
+			},
+		);
+		assert.deepEqual(getTopicProgress("subject-6", questions, ["source-a"]), {
+			"topic-a": { attempted: 0, total: 10 },
+			"topic-b": { attempted: 0, total: 8 },
+		});
+	});
 });

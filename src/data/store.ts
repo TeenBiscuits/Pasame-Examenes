@@ -48,6 +48,10 @@ export function getTopicProgress(
 	const selectedQuestions = questions.filter((question) =>
 		selectedExams.has(question.examId),
 	);
+	const questionExamIds = new Set(questions.map((question) => question.examId));
+	const allSourcesSelected =
+		questionExamIds.size > 0 &&
+		[...questionExamIds].every((examId) => selectedExams.has(examId));
 	const attempts = getAttempts(subjectId).filter((a) => a.mode === "practice");
 	const progress: Record<string, { attempted: number; total: number }> = {};
 
@@ -61,10 +65,25 @@ export function getTopicProgress(
 
 	// Keep the best known result for each concrete question across attempts.
 	const questionScores: Record<string, number> = {};
+	const legacyTopicScores: Record<string, number> = {};
 	for (const a of attempts) {
-		// Old attempts have no source or per-question data, so they cannot be
-		// attributed to the selected sources without inventing progress.
-		if (!Array.isArray(a.examIds) || !a.questionScores) continue;
+		if (!Array.isArray(a.examIds) || !a.questionScores) {
+			// Legacy attempts predate source-aware scores. Preserve their old
+			// aggregate progress only when every source is selected, since that is
+			// the only view where their score can be shown without misattribution.
+			if (
+				allSourcesSelected &&
+				a.topic &&
+				typeof a.score === "number" &&
+				Number.isFinite(a.score)
+			) {
+				legacyTopicScores[a.topic] = Math.max(
+					legacyTopicScores[a.topic] ?? 0,
+					Math.max(0, a.score),
+				);
+			}
+			continue;
+		}
 		const attemptExams = new Set(
 			a.examIds.filter(
 				(examId): examId is string => typeof examId === "string",
@@ -83,6 +102,12 @@ export function getTopicProgress(
 
 	for (const question of selectedQuestions) {
 		progress[question.topic].attempted += questionScores[question.id] ?? 0;
+	}
+
+	for (const [topic, score] of Object.entries(legacyTopicScores)) {
+		if (progress[topic]) {
+			progress[topic].attempted = Math.max(progress[topic].attempted, score);
+		}
 	}
 
 	return progress;
