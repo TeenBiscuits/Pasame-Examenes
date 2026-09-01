@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { XSquare } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import { playSound } from "../lib/sound";
@@ -25,6 +25,7 @@ export default function ProfileWelcomePrompt() {
 		setNameShared,
 	} = useProfile();
 	const { shareUsername } = usePresence();
+	const dialogRef = useRef<HTMLDialogElement>(null);
 	const [isOpen, setIsOpen] = useState(false);
 	const [usernameDraft, setUsernameDraft] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -70,6 +71,13 @@ export default function ProfileWelcomePrompt() {
 		return () => window.removeEventListener("keydown", handleKeyDown);
 	});
 
+	useEffect(() => {
+		const dialog = dialogRef.current;
+		if (!dialog) return;
+		if (isOpen && !dialog.open) dialog.show();
+		if (!isOpen && dialog.open) dialog.close();
+	}, [isOpen]);
+
 	function dismiss() {
 		dismissNamePrompt();
 		setIsOpen(false);
@@ -96,12 +104,11 @@ export default function ProfileWelcomePrompt() {
 		}
 	}
 
-	if (!isReady || !isOpen) return null;
+	if (!isReady) return null;
 
 	return (
-		<section
-			role="dialog"
-			aria-modal="false"
+		<dialog
+			ref={dialogRef}
 			aria-labelledby="profile-welcome-title"
 			className="border-border bg-surface-alt fixed right-4 bottom-22 left-4 z-50 mx-auto w-auto max-w-md rounded-2xl border p-4 shadow-xl sm:right-auto sm:bottom-4 sm:left-4 sm:mx-0 sm:w-[26rem] sm:p-5"
 		>
@@ -209,6 +216,6 @@ export default function ProfileWelcomePrompt() {
 					{t.profileWelcome.notCookieBanner}
 				</p>
 			</form>
-		</section>
+		</dialog>
 	);
 }

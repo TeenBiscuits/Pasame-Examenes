@@ -1,6 +1,5 @@
 import { useLocation } from "@tanstack/react-router";
 import {
-	createContext,
 	type ReactNode,
 	useCallback,
 	useEffect,
@@ -10,26 +9,14 @@ import {
 } from "react";
 import { useProfile } from "../profile/hooks";
 import { containsProfanity } from "../profile/profanity";
-import type { PresenceUpdate } from "./appwrite-client";
 import { getWeeklyPresence, recordWeeklyVisit } from "./appwrite-client";
 import { getAppwritePresenceConfig } from "./config";
+import { PresenceContext, type PresenceState } from "./context-value";
 import { MOCK_WEEKLY_STUDENTS } from "./mock-weekly-students";
 import { isPresencePage } from "./pages";
-import type { WeeklyPresence } from "./types";
 
 const HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000;
 const SUMMARY_REFRESH_INTERVAL_MS = 15 * 60 * 1000;
-
-type PresenceState = WeeklyPresence & {
-	isUsingMockData: boolean;
-};
-
-type PresenceContextValue = PresenceState & {
-	shareUsername: (username: string) => Promise<PresenceUpdate | null>;
-	stopSharingUsername: () => Promise<boolean>;
-};
-
-export const PresenceContext = createContext<PresenceContextValue | null>(null);
 
 function createMockPresence(
 	username: string,

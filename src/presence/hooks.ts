@@ -1,5 +1,5 @@
 import { use } from "react";
-import { PresenceContext } from "./context";
+import { PresenceContext } from "./context-value";
 
 export function usePresence() {
 	const context = use(PresenceContext);
