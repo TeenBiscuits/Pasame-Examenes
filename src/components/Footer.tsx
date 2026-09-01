@@ -6,6 +6,7 @@ import { LangLink } from "../lib/lang-link";
 import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
 import { ModalHeader, wideModalDialogClass } from "./Modal";
+import SecretToro from "./SecretToro";
 
 const footerTextLinkClass =
 	"inline-flex cursor-pointer items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium text-fg-muted underline-offset-4 hover:bg-surface hover:text-fg focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors";
@@ -185,7 +186,8 @@ export default function Footer() {
 	const licensesDialogRef = useRef<HTMLDialogElement>(null);
 
 	return (
-		<footer className="border-border bg-surface-alt text-fg-muted border-t pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] text-sm">
+		<footer className="border-border bg-surface-alt text-fg-muted border-t pb-[calc(1.25rem+env(safe-area-inset-bottom))] text-sm">
+			<SecretToro />
 			<div className="mx-auto max-w-6xl px-4">
 				<div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
 					<p className="max-w-3xl leading-relaxed text-pretty">

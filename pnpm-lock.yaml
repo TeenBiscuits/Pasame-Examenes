@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@2toad/profanity':
+        specifier: ^3.3.0
+        version: 3.3.0
+      '@blobatar/react':
+        specifier: ^2.7.0
+        version: 2.7.0(blobatar@2.7.0(react@19.2.8)(vue@3.5.41(typescript@6.0.3)))(react@19.2.8)
       '@fontsource-variable/cascadia-code':
         specifier: ^5.3.0
         version: 5.3.0
@@ -32,6 +38,12 @@ importers:
       '@tanstack/react-start':
         specifier: latest
         version: 1.168.49(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.5)(vite@8.2.2(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12))
+      appwrite:
+        specifier: ^26.2.0
+        version: 26.2.0
+      blobatar:
+        specifier: ^2.7.0
+        version: 2.7.0(react@19.2.8)(vue@3.5.41(typescript@6.0.3))
       boneyard-js:
         specifier: ^1.9.0
         version: 1.9.0(react@19.2.8)(vite@8.2.2(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12))(vue@3.5.41(typescript@6.0.3))
@@ -131,6 +143,10 @@ importers:
         version: 12.0.0(@types/node@22.20.1)(vite@8.2.2(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12))
 
 packages:
+
+  '@2toad/profanity@3.3.0':
+    resolution: {integrity: sha512-hBptHbB6Regs5AgtHiLr/WfgHRh6ZGdA9EexOWU14n2eNjQekvK9/gg18iFUYvL2WrNb4X3Ci0bzgzJXhzmpNQ==}
+    engines: {node: '>=12'}
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -281,6 +297,12 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@blobatar/react@2.7.0':
+    resolution: {integrity: sha512-rysDM1+2qoeIwIezVw/em+ZxOMyqqjqJOGNEvtOOU1nFp0jmzyEjlXtJTDM6xPKamq59pq6wcG9+mHIUZV572A==}
+    peerDependencies:
+      blobatar: 2.x
+      react: '>=18'
 
   '@capsizecss/unpack@4.0.1':
     resolution: {integrity: sha512-CuNiSqg7+e1cO/GjffyMOm5Tt2jUF9CWHHnvQ/UkqvtkGfHdgwEC0wpmq7fkN3gxwpRnrAN0WzO3vREKmNolMQ==}
@@ -2356,6 +2378,10 @@ packages:
   anynum@1.0.1:
     resolution: {integrity: sha512-N6//FLET/tXYNM/F6ABca1oH6fWB+KlTt909Le28WMDBk8oaT4vY17DCrwg2MvmuqUKt3Ni4N5dGJ/EoBgcO6A==}
 
+  appwrite@26.2.0:
+    resolution: {integrity: sha512-8TCd4mMKhhUxGF9sjZ6W2V1gesnj43v1SFZoeAue/0O0ikMXIU92p96PiRn0D4nAVvFM/92bluTTb/PoXH5mnQ==}
+    engines: {node: '>=18.0.0'}
+
   argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
 
@@ -2440,6 +2466,20 @@ packages:
   basic-ftp@5.3.1:
     resolution: {integrity: sha512-bopVNp6ugyA150DDuZfPFdt1KZ5a94ZDiwX4hMgZDzF+GttD80lEy8kj98kbyhLXnPvhtIo93mdnLIjpCAeeOw==}
     engines: {node: '>=10.0.0'}
+
+  bignumber.js@9.3.1:
+    resolution: {integrity: sha512-Ko0uX15oIUS7wJ3Rb30Fs6SkVbLmPBAKdlm7q9+ak9bbIeFf0MwuBsQV6z7+X768/cHsfg+WlysDWJcmthjsjQ==}
+
+  blobatar@2.7.0:
+    resolution: {integrity: sha512-tL1p2J3dXE/Z9U/ITwHqU7HBHmTH+Am+hif1J1hWAhvFT1VYC2HG+eXtN7081yuY+L2lrp9bs/VaF7dVH3S2jw==}
+    peerDependencies:
+      react: '>=18'
+      vue: '>=3'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      vue:
+        optional: true
 
   boneyard-js@1.9.0:
     resolution: {integrity: sha512-FlIHm7YyQ6GMBPaNY6um5ESHNyZGONoSZ0IMhayuyemBsCUhhDl4nC/gMTOi/25ojtrlnRInTWKqFKb7hGK6Cg==}
@@ -3285,6 +3325,9 @@ packages:
     resolution: {integrity: sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==}
     engines: {node: '>=6'}
     hasBin: true
+
+  json-bigint@1.0.0:
+    resolution: {integrity: sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==}
 
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
@@ -5049,6 +5092,8 @@ packages:
 
 snapshots:
 
+  '@2toad/profanity@3.3.0': {}
+
   '@alloc/quick-lru@5.2.0': {}
 
   '@antfu/install-pkg@1.1.0':
@@ -5222,6 +5267,11 @@ snapshots:
 
   '@biomejs/cli-win32-x64@2.5.10':
     optional: true
+
+  '@blobatar/react@2.7.0(blobatar@2.7.0(react@19.2.8)(vue@3.5.41(typescript@6.0.3)))(react@19.2.8)':
+    dependencies:
+      blobatar: 2.7.0(react@19.2.8)(vue@3.5.41(typescript@6.0.3))
+      react: 19.2.8
 
   '@capsizecss/unpack@4.0.1':
     dependencies:
@@ -7657,6 +7707,10 @@ snapshots:
 
   anynum@1.0.1: {}
 
+  appwrite@26.2.0:
+    dependencies:
+      json-bigint: 1.0.0
+
   argparse@1.0.10:
     dependencies:
       sprintf-js: 1.0.3
@@ -7725,6 +7779,13 @@ snapshots:
   baseline-browser-mapping@2.11.19: {}
 
   basic-ftp@5.3.1: {}
+
+  bignumber.js@9.3.1: {}
+
+  blobatar@2.7.0(react@19.2.8)(vue@3.5.41(typescript@6.0.3)):
+    optionalDependencies:
+      react: 19.2.8
+      vue: 3.5.41(typescript@6.0.3)
 
   boneyard-js@1.9.0(react@19.2.8)(vite@8.2.2(@types/node@22.20.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12))(vue@3.5.41(typescript@6.0.3)):
     dependencies:
@@ -8569,6 +8630,10 @@ snapshots:
       argparse: 2.0.1
 
   jsesc@3.1.0: {}
+
+  json-bigint@1.0.0:
+    dependencies:
+      bignumber.js: 9.3.1
 
   json-buffer@3.0.1: {}
 

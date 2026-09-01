@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Star } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
@@ -7,6 +7,7 @@ const REPO = "TeenBiscuits/Pasame-Examenes";
 const CACHE_KEY = "gh_star_count";
 const CACHE_TS_KEY = "gh_star_count_ts";
 const CACHE_TTL = 60 * 60 * 1000;
+const COUNT_ANIMATION_DURATION_MS = 1_200;
 
 let cachedCount: number | null = null;
 let fetchPromise: Promise<void> | null = null;
@@ -82,6 +83,75 @@ function formatCount(n: number): string {
 	return String(n);
 }
 
+function bezierPoint(
+	progress: number,
+	firstControlPoint: number,
+	secondControlPoint: number,
+) {
+	const inverseProgress = 1 - progress;
+	return (
+		3 * inverseProgress * inverseProgress * progress * firstControlPoint +
+		3 * inverseProgress * progress * progress * secondControlPoint +
+		progress * progress * progress
+	);
+}
+
+function easeStarCount(progress: number) {
+	let lowerBound = 0;
+	let upperBound = 1;
+
+	for (let index = 0; index < 8; index += 1) {
+		const estimate = (lowerBound + upperBound) / 2;
+		if (bezierPoint(estimate, 0.16, 0.3) < progress) {
+			lowerBound = estimate;
+		} else {
+			upperBound = estimate;
+		}
+	}
+
+	return bezierPoint((lowerBound + upperBound) / 2, 1, 1);
+}
+
+function AnimatedStarCount({ count }: { count: number }) {
+	const [displayedCount, setDisplayedCount] = useState(0);
+	const displayedCountRef = useRef(0);
+
+	useEffect(() => {
+		const from = displayedCountRef.current;
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			displayedCountRef.current = count;
+			setDisplayedCount(count);
+			return;
+		}
+
+		const startedAt = performance.now();
+		let animationFrameId = 0;
+
+		function animate(now: number) {
+			const progress = Math.min(
+				(now - startedAt) / COUNT_ANIMATION_DURATION_MS,
+				1,
+			);
+			const nextCount = Math.round(
+				from + (count - from) * easeStarCount(progress),
+			);
+			displayedCountRef.current = nextCount;
+			setDisplayedCount(nextCount);
+
+			if (progress < 1) animationFrameId = requestAnimationFrame(animate);
+		}
+
+		animationFrameId = requestAnimationFrame(animate);
+		return () => cancelAnimationFrame(animationFrameId);
+	}, [count]);
+
+	return (
+		<span className="hidden tabular-nums sm:inline">
+			{formatCount(displayedCount)}
+		</span>
+	);
+}
+
 function StarIcon({ className }: { className?: string }) {
 	return (
 		<Star
@@ -117,11 +187,7 @@ export default function GitHubStarButton() {
 		>
 			<StarIcon className="text-github-star" />
 			<span className="hidden sm:inline">{t.header.star}</span>
-			{count !== null && (
-				<span className="hidden tabular-nums sm:inline">
-					{formatCount(count)}
-				</span>
-			)}
+			{count !== null && <AnimatedStarCount count={count} />}
 		</a>
 	);
 }

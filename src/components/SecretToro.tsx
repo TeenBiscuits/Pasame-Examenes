@@ -109,7 +109,7 @@ export default function SecretToro() {
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-none absolute inset-x-0 bottom-[-1.25rem] z-10 h-16 overflow-hidden"
+			className="pointer-events-none relative z-10 h-12 overflow-hidden"
 			aria-hidden="false"
 		>
 			<button

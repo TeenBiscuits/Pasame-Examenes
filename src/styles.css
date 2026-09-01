@@ -2,6 +2,8 @@
    their selected Latin files with the same load path as the rest of the CSS. */
 @import "tailwindcss";
 @import "tailwind-animations";
+@import "blobatar/motion.css";
+@import "blobatar/gaze.css";
 
 /* The app uses Western European Latin text in both families. Keep the
    variable fonts to one normal Latin face so the browser can select every
@@ -145,6 +147,16 @@ body {
     /* iOS zooms focused controls below 16px, even when the page is otherwise
      correctly configured. */
     font-size: 1rem;
+}
+
+.username-field__input {
+    font-size: 1.25rem !important;
+}
+
+@media (min-width: 640px) {
+    .username-field__input {
+        font-size: 1.5rem !important;
+    }
 }
 
 @media (pointer: coarse) {
@@ -1135,6 +1147,131 @@ html[data-theme="mocha"] {
     pointer-events: auto;
     touch-action: none;
     -webkit-user-select: none;
+}
+
+/* ── Study quote ── */
+.home-quote {
+    position: relative;
+    width: 100%;
+    margin: 3.5rem auto;
+}
+
+.home-quote__viewport {
+    position: relative;
+    display: grid;
+    min-height: 20rem;
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+    place-items: center;
+    isolation: isolate;
+}
+
+.home-quote-avatars {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.home-quote-avatar {
+    position: absolute;
+    left: clamp(5rem, var(--home-quote-x), calc(100% - 5rem));
+    top: clamp(4rem, var(--home-quote-y), calc(100% - 4rem));
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+}
+
+.home-quote-avatar__swim {
+    position: relative;
+    display: block;
+    filter: drop-shadow(0 5px 9px var(--color-shadow));
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.home-quote__text {
+    position: relative;
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .home-quote-avatar__swim {
+        animation: home-quote-school var(--home-quote-duration) cubic-bezier(0.77, 0, 0.175, 1) var(--home-quote-delay) infinite;
+    }
+
+    .presence-card-avatar {
+        animation: presence-card-avatar-in 0.48s cubic-bezier(0.23, 1, 0.32, 1) var(--presence-card-delay, 0ms) both;
+    }
+}
+
+@keyframes home-quote-school {
+    0% {
+        transform: translate(0, 0);
+    }
+    16% {
+        transform: translate(var(--home-quote-swim-x-one), var(--home-quote-swim-y-one));
+    }
+    32% {
+        transform: translate(var(--home-quote-swim-x-two), var(--home-quote-swim-y-two));
+    }
+    48% {
+        transform: translate(var(--home-quote-swim-x-three), var(--home-quote-swim-y-three));
+    }
+    62%,
+    84% {
+        transform: translate(var(--home-quote-swim-x-three), var(--home-quote-swim-y-three));
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.home-quote-avatar--dragging .home-quote-avatar__swim {
+    animation-play-state: paused;
+}
+
+.home-quote-avatar__tooltip {
+    opacity: 0;
+}
+
+.home-quote-avatar--tooltip-below .home-quote-avatar__tooltip {
+    top: 100%;
+    bottom: auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.home-quote-avatar:focus-within .home-quote-avatar__tooltip {
+    opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .home-quote-avatar:hover .home-quote-avatar__tooltip {
+        opacity: 1;
+    }
+}
+
+@keyframes presence-card-avatar-in {
+    from {
+        opacity: 0;
+        transform: translateX(-8px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@media (max-width: 639px) {
+    .home-quote-avatar {
+        left: clamp(4rem, var(--home-quote-mobile-x), calc(100% - 4rem));
+        top: clamp(3.5rem, var(--home-quote-mobile-y), calc(100% - 3.5rem));
+    }
+
+    .home-quote-avatar:nth-child(n + 7) {
+        display: none;
+    }
 }
 
 /* ── View transition animation ── */

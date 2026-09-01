@@ -1,5 +1,5 @@
 import { type ReactNode, useRef, useState } from "react";
-import { Gear, Keyboard, Palette, Sliders, XSquare } from "reicon-react";
+import { Gear, Keyboard, Palette, Sliders, Users, XSquare } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import {
 	closeDialog,
@@ -11,16 +11,30 @@ import { useCommandHandlers } from "../lib/keyboard-commands";
 import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
 import { APP_VERSION } from "../lib/version";
+import { usePresence } from "../presence/hooks";
+import { useProfile } from "../profile/hooks";
+import {
+	getBlobatarColor,
+	isValidUsername,
+	sanitizeUsername,
+} from "../profile/profile";
 import KeyboardShortcutsSection from "./KeyboardShortcutsSection";
 import { settingsModalDialogClass } from "./Modal";
+import ProfileAvatar from "./ProfileAvatar";
 import SettingsAppearancePanel from "./SettingsAppearancePanel";
 import SettingsGeneralPanel from "./SettingsGeneralPanel";
+import SettingsProfilePanel from "./SettingsProfilePanel";
 
-type SettingsTab = "general" | "appearance" | "shortcuts";
+type SettingsTab = "profile" | "general" | "appearance" | "shortcuts";
 type TabPlacement = "desktop" | "mobile";
 
 const GITHUB_REPOSITORY_URL = "https://github.com/TeenBiscuits/Pasame-Examenes";
-const tabOrder: readonly SettingsTab[] = ["general", "appearance", "shortcuts"];
+const tabOrder: readonly SettingsTab[] = [
+	"general",
+	"profile",
+	"appearance",
+	"shortcuts",
+];
 
 function TabButton({
 	tab,
@@ -73,18 +87,30 @@ function TabButton({
 
 export default function SettingsMenu() {
 	const t = useT();
+	const { profile, saveUsername, completeNamePrompt, setNameShared } =
+		useProfile();
+	const { shareUsername, stopSharingUsername } = usePresence();
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const closeMethodRef = useRef<"x" | "backdrop" | "esc">("x");
 	const [open, setOpen] = useState(false);
 	const [activeTab, setActiveTab] = useState<SettingsTab>("general");
+	const [usernameDraft, setUsernameDraft] = useState(profile.username);
+	const [profileStatus, setProfileStatus] = useState<
+		"idle" | "saved" | "error"
+	>("idle");
+	const [isSubmittingProfile, setIsSubmittingProfile] = useState(false);
 
 	useDialogDismiss(dialogRef, (method) => {
 		closeMethodRef.current = method;
 		setOpen(false);
+		setUsernameDraft(profile.username);
+		setProfileStatus("idle");
 		playSound("droplet");
 	});
 	useDialogClose(dialogRef, () => {
 		setOpen(false);
+		setUsernameDraft(profile.username);
+		setProfileStatus("idle");
 		track("modal_close", {
 			modal: "settings",
 			method: closeMethodRef.current,
@@ -92,6 +118,8 @@ export default function SettingsMenu() {
 	});
 
 	function openDialog() {
+		setUsernameDraft(profile.username);
+		setProfileStatus("idle");
 		closeMethodRef.current = "x";
 		setOpen(true);
 		showDialog(dialogRef.current);
@@ -112,20 +140,83 @@ export default function SettingsMenu() {
 		setActiveTab(tab);
 	}
 
+	function updateUsernameDraft(value: string) {
+		const sanitized = sanitizeUsername(value);
+		setUsernameDraft(sanitized);
+		setProfileStatus("idle");
+	}
+
+	async function shareUsernameDraft() {
+		const username = sanitizeUsername(usernameDraft);
+		if (!isValidUsername(username) || !saveUsername(username)) {
+			setProfileStatus("error");
+			return;
+		}
+
+		setIsSubmittingProfile(true);
+		setProfileStatus("idle");
+		try {
+			const result = await shareUsername(username);
+			if (!result || result.isRateLimited) {
+				setProfileStatus("error");
+				return;
+			}
+			setNameShared(result.isPublic);
+			completeNamePrompt();
+			setUsernameDraft(username);
+			setProfileStatus("saved");
+			playSound("chime");
+		} catch {
+			setProfileStatus("error");
+		} finally {
+			setIsSubmittingProfile(false);
+		}
+	}
+
+	async function stopSharingName() {
+		setIsSubmittingProfile(true);
+		setProfileStatus("idle");
+		try {
+			const didStopSharing = await stopSharingUsername();
+			if (!didStopSharing) {
+				setProfileStatus("error");
+				return;
+			}
+			setNameShared(false);
+			setProfileStatus("saved");
+			playSound("droplet");
+		} finally {
+			setIsSubmittingProfile(false);
+		}
+	}
+
+	const usernameColor = getBlobatarColor(profile.username);
+
 	return (
 		<>
 			<button
 				type="button"
 				data-cuelume-hover="whisper"
 				data-cuelume-toggle="bloom"
-				className="border-border hover:bg-surface focus-visible:ring-accent text-fg-secondary inline-flex size-10 cursor-pointer items-center justify-center rounded-lg border transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+				className="border-border hover:bg-surface group focus-visible:ring-accent relative inline-flex size-10 cursor-pointer items-center justify-center rounded-lg border transition-[background-color,scale] duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 				onClick={openDialog}
 				aria-label={t.settings.open}
 				aria-haspopup="dialog"
 				aria-expanded={open}
-				title={t.settings.title}
 			>
-				<Gear size={19} aria-hidden="true" />
+				<ProfileAvatar
+					username={profile.username}
+					size={32}
+					animated
+					className="rounded-md"
+				/>
+				<span
+					role="tooltip"
+					style={{ color: usernameColor }}
+					className="border-border bg-surface-alt pointer-events-none absolute top-full right-0 z-50 mt-2 rounded-md border px-2 py-1 font-mono text-xs font-semibold whitespace-nowrap opacity-0 shadow-md transition-opacity duration-100 group-hover:opacity-100 group-focus-visible:opacity-100"
+				>
+					@{profile.username}
+				</span>
 			</button>
 
 			<dialog
@@ -171,6 +262,14 @@ export default function SettingsMenu() {
 									onSelect={selectTab}
 								/>
 								<TabButton
+									tab="profile"
+									placement="desktop"
+									active={activeTab === "profile"}
+									icon={<Users size={18} />}
+									label={t.settings.profileSocial}
+									onSelect={selectTab}
+								/>
+								<TabButton
 									tab="appearance"
 									placement="desktop"
 									active={activeTab === "appearance"}
@@ -212,15 +311,27 @@ export default function SettingsMenu() {
 								id={`settings-panel-${activeTab}`}
 								role="tabpanel"
 								aria-labelledby={
-									activeTab === "general"
-										? "settings-general-title"
-										: activeTab === "appearance"
-											? "settings-appearance-title"
-											: "settings-shortcuts-title"
+									activeTab === "profile"
+										? "settings-profile-title"
+										: activeTab === "general"
+											? "settings-general-title"
+											: activeTab === "appearance"
+												? "settings-appearance-title"
+												: "settings-shortcuts-title"
 								}
 								className="min-h-full p-5 outline-none sm:p-8"
 							>
-								{activeTab === "general" ? (
+								{activeTab === "profile" ? (
+									<SettingsProfilePanel
+										username={usernameDraft}
+										onUsernameChange={updateUsernameDraft}
+										onShare={() => void shareUsernameDraft()}
+										onStopSharing={() => void stopSharingName()}
+										isNameShared={profile.isNameShared}
+										isSubmitting={isSubmittingProfile}
+										status={profileStatus}
+									/>
+								) : activeTab === "general" ? (
 									<SettingsGeneralPanel />
 								) : activeTab === "appearance" ? (
 									<SettingsAppearancePanel />
@@ -231,7 +342,7 @@ export default function SettingsMenu() {
 						</div>
 
 						<div
-							className="border-border flex shrink-0 gap-2 border-t bg-surface-alt p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] sm:hidden"
+							className="border-border flex shrink-0 gap-2 overflow-x-auto border-t bg-surface-alt p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] sm:hidden"
 							role="tablist"
 							aria-label={t.settings.menuNavigation}
 						>
@@ -241,6 +352,14 @@ export default function SettingsMenu() {
 								active={activeTab === "general"}
 								icon={<Sliders size={18} />}
 								label={t.settings.general}
+								onSelect={selectTab}
+							/>
+							<TabButton
+								tab="profile"
+								placement="mobile"
+								active={activeTab === "profile"}
+								icon={<Users size={18} />}
+								label={t.settings.profileSocial}
 								onSelect={selectTab}
 							/>
 							<TabButton

@@ -5,7 +5,7 @@ import AddSubjectModal, {
 } from "../components/AddSubjectModal";
 import FaqSection from "../components/FaqSection";
 import Hero from "../components/Hero";
-import SecretToro from "../components/SecretToro";
+import StudyQuote from "../components/StudyQuote";
 import SubjectCard from "../components/SubjectCard";
 import { useT } from "../i18n/hooks";
 import type { HomeSubjectBuildStats } from "../lib/content-stats";
@@ -90,7 +90,7 @@ export default function Home({
 					{t.home.subtitle}
 				</p>
 			</Hero>
-			<div className="animate-fade-in animate-duration-fast mx-auto max-w-6xl px-4 pb-14 text-center">
+			<div className="animate-fade-in animate-duration-fast mx-auto max-w-6xl px-4 text-center">
 				{recentSubjects.length > 0 && (
 					<div className="mb-6 text-left">
 						<div className="mb-3 flex items-center justify-between">
@@ -180,13 +180,9 @@ export default function Home({
 
 				<FaqSection />
 
-				<blockquote className="border-border text-fg-secondary mx-auto mt-14 max-w-2xl border-y py-8 text-center text-xl font-medium italic sm:text-2xl">
-					“{t.home.quote}”
-				</blockquote>
-
 				<AddSubjectModal ref={modalRef} onClose={() => {}} />
 			</div>
-			<SecretToro />
+			<StudyQuote quote={t.home.quote} />
 		</div>
 	);
 }

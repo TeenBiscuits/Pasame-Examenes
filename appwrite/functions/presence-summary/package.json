@@ -1,0 +1,8 @@
+{
+	"name": "presence-summary",
+	"private": true,
+	"type": "module",
+	"dependencies": {
+		"node-appwrite": "^28.0.0"
+	}
+}
