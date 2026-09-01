@@ -154,7 +154,7 @@ export default function ProfileWelcomePrompt() {
 					void submit();
 				}}
 			>
-				<label htmlFor="profile-welcome-username" className="sr-only">
+				<label htmlFor="profile-welcome-display-name" className="sr-only">
 					{t.profileWelcome.username}
 				</label>
 				<div className="border-border bg-surface focus-within:border-accent focus-within:ring-accent flex min-h-12 items-center rounded-xl border-2 px-3 focus-within:ring-2">
@@ -162,7 +162,8 @@ export default function ProfileWelcomePrompt() {
 						@
 					</span>
 					<input
-						id="profile-welcome-username"
+						id="profile-welcome-display-name"
+						name="student-display-name"
 						type="text"
 						value={usernameDraft}
 						placeholder={profile.username}
