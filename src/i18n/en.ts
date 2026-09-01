@@ -205,6 +205,7 @@ export const en = {
 		notCookieBanner: "This is not a cookie banner, by the way",
 		close: "Close name welcome",
 		invalidUsername: "Use 3 to 24 letters, numbers, or underscores.",
+		sharingFailed: "We couldn't share it. Try again later.",
 	},
 	appUpdate: {
 		message: "Updated to the latest version {version}",

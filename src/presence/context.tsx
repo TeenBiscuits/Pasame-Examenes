@@ -74,10 +74,10 @@ export function PresenceProvider({ children }: { children: ReactNode }) {
 			}
 			if (summaryPromiseRef.current) return summaryPromiseRef.current;
 
-			lastSummaryRef.current = now;
 			const summaryPromise = getWeeklyPresence()
 				.then((nextPresence) => {
 					if (!nextPresence) return false;
+					lastSummaryRef.current = Date.now();
 					setPresence({
 						...nextPresence,
 						hasSummary: true,

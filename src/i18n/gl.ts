@@ -209,6 +209,7 @@ export const gl: Translations = {
 		notCookieBanner: "Isto non é un banner de cookies, por certo",
 		close: "Pechar benvida do nome",
 		invalidUsername: "Usa entre 3 e 24 letras, números ou guións baixos.",
+		sharingFailed: "Non puidemos compartilo. Téntao de novo máis tarde.",
 	},
 	appUpdate: {
 		message: "Actualizado á última versión {version}",

@@ -7,6 +7,9 @@ const PROFILE_CHANGE_INTERVAL_IN_MS = 5 * 60 * 1000;
 const RETENTION_IN_MS = 8 * 24 * 60 * 60 * 1000;
 const WEEK_IN_MS = 7 * 24 * 60 * 60 * 1000;
 const MAX_PUBLIC_PROFILES = 50;
+const PUBLIC_PROFILE_LOCK_ROW_ID = "public-profile-cap-lock";
+const TRANSACTION_RETRY_LIMIT = 3;
+const LOCK_LAST_SEEN_AT = "1970-01-01T00:00:00.000Z";
 const profanity = new Profanity({
 	languages: ["en", "es"],
 	wholeWord: false,
@@ -66,7 +69,7 @@ function profileChangeRetryAfterSeconds(row, now) {
 	return remaining > 0 ? Math.ceil(remaining / 1000) : 0;
 }
 
-async function retainOnlyRecentPublicProfiles(tablesDB, now) {
+async function retainOnlyRecentPublicProfiles(tablesDB, now, transactionId) {
 	const recentProfiles = await tablesDB.listRows({
 		...tableParams(),
 		queries: [
@@ -77,6 +80,7 @@ async function retainOnlyRecentPublicProfiles(tablesDB, now) {
 			Query.orderAsc("lastPublicAt"),
 			Query.limit(1),
 		],
+		transactionId,
 		total: true,
 	});
 
@@ -87,7 +91,59 @@ async function retainOnlyRecentPublicProfiles(tablesDB, now) {
 		...tableParams(),
 		rowId: oldest.$id,
 		data: { publicUsername: null, lastPublicAt: null },
+		transactionId,
 	});
+}
+
+function isTransactionConflict(error) {
+	return error?.code === 409;
+}
+
+async function rollbackTransaction(tablesDB, transactionId) {
+	try {
+		await tablesDB.updateTransaction({ transactionId, rollback: true });
+	} catch {
+		// A failed commit can close the transaction before rollback is requested.
+	}
+}
+
+async function upsertPublicProfileWithinCap(tablesDB, userId, data, now) {
+	for (let attempt = 0; attempt < TRANSACTION_RETRY_LIMIT; attempt += 1) {
+		const transaction = await tablesDB.createTransaction();
+		try {
+			await tablesDB.upsertRow({
+				...tableParams(),
+				rowId: PUBLIC_PROFILE_LOCK_ROW_ID,
+				data: {
+					lastSeenAt: LOCK_LAST_SEEN_AT,
+					publicUsername: null,
+					lastPublicAt: null,
+					lastProfileChangedAt: null,
+				},
+				transactionId: transaction.$id,
+			});
+			await tablesDB.upsertRow({
+				...tableParams(),
+				rowId: userId,
+				data,
+				transactionId: transaction.$id,
+			});
+			await retainOnlyRecentPublicProfiles(tablesDB, now, transaction.$id);
+			await tablesDB.updateTransaction({
+				transactionId: transaction.$id,
+				commit: true,
+			});
+			return;
+		} catch (caughtError) {
+			await rollbackTransaction(tablesDB, transaction.$id);
+			if (
+				!isTransactionConflict(caughtError) ||
+				attempt === TRANSACTION_RETRY_LIMIT - 1
+			) {
+				throw caughtError;
+			}
+		}
+	}
 }
 
 export default async ({ req, res, error }) => {
@@ -163,8 +219,11 @@ export default async ({ req, res, error }) => {
 			}
 		}
 
-		await tablesDB.upsertRow({ ...tableParams(), rowId: userId, data });
-		if (isPublic) await retainOnlyRecentPublicProfiles(tablesDB, now);
+		if (isPublic) {
+			await upsertPublicProfileWithinCap(tablesDB, userId, data, now);
+		} else {
+			await tablesDB.upsertRow({ ...tableParams(), rowId: userId, data });
+		}
 
 		return res.json({ ok: true, isPublic });
 	} catch {

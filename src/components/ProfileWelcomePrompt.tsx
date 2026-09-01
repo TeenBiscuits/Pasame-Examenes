@@ -13,6 +13,7 @@ import {
 import ProfileAvatar from "./ProfileAvatar";
 
 const PROMPT_DELAY_MS = 2_000;
+type SubmitError = "invalid" | "sharing" | null;
 
 export default function ProfileWelcomePrompt() {
 	const t = useT();
@@ -29,7 +30,7 @@ export default function ProfileWelcomePrompt() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [usernameDraft, setUsernameDraft] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [hasError, setHasError] = useState(false);
+	const [submitError, setSubmitError] = useState<SubmitError>(null);
 
 	useEffect(() => {
 		if (!isReady || profile.hasCompletedNamePrompt) return;
@@ -87,18 +88,24 @@ export default function ProfileWelcomePrompt() {
 	async function submit() {
 		const username = sanitizeUsername(usernameDraft || profile.username);
 		if (!isValidUsername(username) || !saveUsername(username)) {
-			setHasError(true);
+			setSubmitError("invalid");
 			return;
 		}
 
 		setIsSubmitting(true);
-		setHasError(false);
+		setSubmitError(null);
 		try {
 			const result = await shareUsername(username);
-			setNameShared(result?.isPublic ?? false);
+			if (!result || result.isRateLimited) {
+				setSubmitError("sharing");
+				return;
+			}
+			setNameShared(result.isPublic);
 			completeNamePrompt();
 			setIsOpen(false);
 			playSound("chime");
+		} catch {
+			setSubmitError("sharing");
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -169,7 +176,7 @@ export default function ProfileWelcomePrompt() {
 						placeholder={profile.username}
 						onChange={(event) => {
 							setUsernameDraft(sanitizeUsername(event.target.value));
-							setHasError(false);
+							setSubmitError(null);
 						}}
 						minLength={MIN_USERNAME_LENGTH}
 						maxLength={MAX_USERNAME_LENGTH}
@@ -183,18 +190,20 @@ export default function ProfileWelcomePrompt() {
 						data-protonpass-ignore="true"
 						data-form-type="other"
 						spellCheck={false}
-						aria-invalid={hasError || undefined}
-						aria-describedby={hasError ? "profile-welcome-error" : undefined}
+						aria-invalid={submitError !== null || undefined}
+						aria-describedby={submitError ? "profile-welcome-error" : undefined}
 						className="text-fg placeholder:text-fg-secondary min-w-0 flex-1 bg-transparent py-2 font-mono text-xl outline-none"
 					/>
 				</div>
-				{hasError ? (
+				{submitError ? (
 					<p
 						id="profile-welcome-error"
 						className="text-incorrect-fg mt-2 text-sm"
 						role="alert"
 					>
-						{t.profileWelcome.invalidUsername}
+						{submitError === "invalid"
+							? t.profileWelcome.invalidUsername
+							: t.profileWelcome.sharingFailed}
 					</p>
 				) : null}
 				<div className="mt-3 flex items-center gap-3">

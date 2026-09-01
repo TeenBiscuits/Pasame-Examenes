@@ -210,6 +210,7 @@ export const es: Translations = {
 		notCookieBanner: "Esto no es un banner de Cookies por cierto",
 		close: "Cerrar bienvenida de nombre",
 		invalidUsername: "Usa entre 3 y 24 letras, números o guiones bajos.",
+		sharingFailed: "No hemos podido compartirlo. Inténtalo de nuevo más tarde.",
 	},
 	appUpdate: {
 		message: "Actualizado a la última versión {version}",
