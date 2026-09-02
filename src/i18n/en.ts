@@ -128,6 +128,9 @@ export const en = {
 		stopSharingUsername: "Stop sharing my name",
 		usernameSaved: "Name saved.",
 		usernameSaveError: "Could not save this name. Try again.",
+		showStudyPresenceBadge: "Show the student counter",
+		showStudyPresenceBadgeDescription:
+			'Shows "students this week" on every page.',
 		appearance: "Appearance",
 		appearanceDescription: "Choose how the app looks.",
 		menuNavigation: "Settings sections",

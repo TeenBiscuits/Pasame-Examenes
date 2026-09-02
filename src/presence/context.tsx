@@ -13,7 +13,7 @@ import { getWeeklyPresence, recordWeeklyVisit } from "./appwrite-client";
 import { getAppwritePresenceConfig } from "./config";
 import { PresenceContext, type PresenceState } from "./context-value";
 import { MOCK_WEEKLY_STUDENTS } from "./mock-weekly-students";
-import { isPresencePage } from "./pages";
+import { isHomepage } from "./pages";
 
 const HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000;
 const SUMMARY_REFRESH_INTERVAL_MS = 15 * 60 * 1000;
@@ -60,7 +60,8 @@ export function PresenceProvider({ children }: { children: ReactNode }) {
 	const summaryPromiseRef = useRef<Promise<boolean> | null>(null);
 	const isRemotePresenceEnabled =
 		!IS_MOCK_PRESENCE_ENABLED && getAppwritePresenceConfig() !== null;
-	const shouldShowSummary = isPresencePage(pathname);
+	const shouldShowSummary =
+		profile.isStudyPresenceBadgeVisible || isHomepage(pathname);
 
 	const refreshPresence = useCallback(
 		async (force = false) => {

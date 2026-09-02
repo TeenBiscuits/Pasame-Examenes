@@ -131,6 +131,9 @@ export const gl: Translations = {
 		stopSharingUsername: "Deixar de compartir o meu nome",
 		usernameSaved: "Nome gardado.",
 		usernameSaveError: "Non se puido gardar este nome. Téntao de novo.",
+		showStudyPresenceBadge: "Mostrar o contador de estudantes",
+		showStudyPresenceBadgeDescription:
+			'Mostra "estudantes esta semana" en todas as páxinas.',
 		appearance: "Aparencia",
 		appearanceDescription: "Escolle como se ve a aplicación.",
 		menuNavigation: "Seccións de axustes",

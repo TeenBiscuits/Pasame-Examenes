@@ -1,8 +1,6 @@
-import { useLocation } from "@tanstack/react-router";
 import { type CSSProperties, useEffect, useState } from "react";
 import { useT } from "../i18n/hooks";
 import { usePresence } from "../presence/hooks";
-import { isPresencePage } from "../presence/pages";
 import { useProfile } from "../profile/hooks";
 import { getBlobatarColor } from "../profile/profile";
 import ProfileAvatar from "./ProfileAvatar";
@@ -23,21 +21,16 @@ function UsernameTooltip({ username }: { username: string }) {
 }
 
 export default function StudyPresence() {
-	const { pathname } = useLocation();
 	const t = useT();
 	const { studentCount, students, hasSummary } = usePresence();
 	const { profile } = useProfile();
 	const [rotation, setRotation] = useState(0);
-	const isOnPresencePage = isPresencePage(pathname);
 	const visibleProfileStudents = students.filter(
 		(student) => !student.isCurrentStudent || profile.isNameShared,
 	);
 
 	useEffect(() => {
-		if (
-			!isOnPresencePage ||
-			visibleProfileStudents.length <= VISIBLE_STUDENTS
-		) {
+		if (visibleProfileStudents.length <= VISIBLE_STUDENTS) {
 			return;
 		}
 		const intervalId = window.setInterval(
@@ -49,9 +42,9 @@ export default function StudyPresence() {
 			ROTATION_INTERVAL_MS,
 		);
 		return () => window.clearInterval(intervalId);
-	}, [isOnPresencePage, visibleProfileStudents.length]);
+	}, [visibleProfileStudents.length]);
 
-	if (!isOnPresencePage || !hasSummary) return null;
+	if (!profile.isStudyPresenceBadgeVisible || !hasSummary) return null;
 
 	const visibleStudents = Array.from(
 		{ length: Math.min(VISIBLE_STUDENTS, visibleProfileStudents.length) },

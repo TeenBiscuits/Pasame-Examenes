@@ -131,6 +131,9 @@ export const es: Translations = {
 		usernameSaved: "Nombre guardado.",
 		usernameSaveError:
 			"No se ha podido guardar este nombre. Inténtalo de nuevo.",
+		showStudyPresenceBadge: "Mostrar el contador de estudiantes",
+		showStudyPresenceBadgeDescription:
+			'Muestra "estudiantes esta semana" en todas las páginas.',
 		appearance: "Apariencia",
 		appearanceDescription: "Elige cómo se ve la aplicación.",
 		menuNavigation: "Secciones de ajustes",

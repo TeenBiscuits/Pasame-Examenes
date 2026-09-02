@@ -8,6 +8,7 @@ export type ProfileContextValue = {
 	completeNamePrompt: () => void;
 	dismissNamePrompt: () => void;
 	setNameShared: (isNameShared: boolean) => void;
+	setStudyPresenceBadgeVisible: (isVisible: boolean) => void;
 };
 
 export const ProfileContext = createContext<ProfileContextValue | null>(null);

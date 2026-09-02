@@ -9,6 +9,8 @@ export default function SettingsProfilePanel({
 	isNameShared,
 	isSubmitting,
 	status,
+	isStudyPresenceBadgeVisible,
+	onStudyPresenceBadgeVisibilityChange,
 }: {
 	username: string;
 	onUsernameChange: (username: string) => void;
@@ -17,6 +19,8 @@ export default function SettingsProfilePanel({
 	isNameShared: boolean;
 	isSubmitting: boolean;
 	status: "idle" | "saved" | "error";
+	isStudyPresenceBadgeVisible: boolean;
+	onStudyPresenceBadgeVisibilityChange: (isVisible: boolean) => void;
 }) {
 	const t = useT();
 
@@ -66,6 +70,43 @@ export default function SettingsProfilePanel({
 						? t.settings.usernameSaveError
 						: null}
 			</p>
+
+			<div className="border-border mx-auto flex w-full max-w-xl items-center justify-between gap-4 border-t pt-6">
+				<div className="min-w-0">
+					<p
+						id="settings-show-presence-label"
+						className="text-fg text-sm font-medium"
+					>
+						{t.settings.showStudyPresenceBadge}
+					</p>
+					<p className="text-fg-muted mt-1 text-sm leading-relaxed">
+						{t.settings.showStudyPresenceBadgeDescription}
+					</p>
+				</div>
+				<button
+					type="button"
+					role="switch"
+					aria-checked={isStudyPresenceBadgeVisible}
+					aria-labelledby="settings-show-presence-label"
+					onClick={() =>
+						onStudyPresenceBadgeVisibilityChange(!isStudyPresenceBadgeVisible)
+					}
+					className={`focus-visible:ring-accent relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:outline-none ${
+						isStudyPresenceBadgeVisible
+							? "border-accent bg-accent"
+							: "border-border bg-surface-alt"
+					}`}
+				>
+					<span
+						aria-hidden="true"
+						className={`bg-surface absolute top-1 size-[1.125rem] rounded-full shadow-sm transition-transform duration-150 ${
+							isStudyPresenceBadgeVisible
+								? "translate-x-[1.625rem]"
+								: "translate-x-1"
+						}`}
+					/>
+				</button>
+			</div>
 		</div>
 	);
 }

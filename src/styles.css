@@ -1269,9 +1269,9 @@ html[data-theme="mocha"] {
         top: clamp(3.5rem, var(--home-quote-mobile-y), calc(100% - 3.5rem));
     }
 
-    .home-quote-avatar:nth-child(n + 7) {
-        display: none;
-    }
+	.home-quote-avatar:nth-child(n + 13) {
+		display: none;
+	}
 }
 
 /* ── View transition animation ── */

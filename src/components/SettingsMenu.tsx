@@ -87,8 +87,13 @@ function TabButton({
 
 export default function SettingsMenu() {
 	const t = useT();
-	const { profile, saveUsername, completeNamePrompt, setNameShared } =
-		useProfile();
+	const {
+		profile,
+		saveUsername,
+		completeNamePrompt,
+		setNameShared,
+		setStudyPresenceBadgeVisible,
+	} = useProfile();
 	const { shareUsername, stopSharingUsername } = usePresence();
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const closeMethodRef = useRef<"x" | "backdrop" | "esc">("x");
@@ -330,6 +335,12 @@ export default function SettingsMenu() {
 										isNameShared={profile.isNameShared}
 										isSubmitting={isSubmittingProfile}
 										status={profileStatus}
+										isStudyPresenceBadgeVisible={
+											profile.isStudyPresenceBadgeVisible
+										}
+										onStudyPresenceBadgeVisibilityChange={
+											setStudyPresenceBadgeVisible
+										}
 									/>
 								) : activeTab === "general" ? (
 									<SettingsGeneralPanel />

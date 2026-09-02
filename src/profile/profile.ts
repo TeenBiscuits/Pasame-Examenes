@@ -10,6 +10,7 @@ export type LocalProfile = {
 	fallbackUsername: string;
 	hasCompletedNamePrompt: boolean;
 	isNameShared: boolean;
+	isStudyPresenceBadgeVisible: boolean;
 };
 
 export const DEFAULT_PROFILE: LocalProfile = {
@@ -17,6 +18,7 @@ export const DEFAULT_PROFILE: LocalProfile = {
 	fallbackUsername: "lovelace000",
 	hasCompletedNamePrompt: true,
 	isNameShared: false,
+	isStudyPresenceBadgeVisible: true,
 };
 
 export const USERNAME_BASES = [
@@ -64,6 +66,7 @@ export function createInitialProfile(): LocalProfile {
 		fallbackUsername: username,
 		hasCompletedNamePrompt: false,
 		isNameShared: false,
+		isStudyPresenceBadgeVisible: true,
 	};
 }
 
@@ -110,6 +113,10 @@ export function parseStoredProfile(raw: string | null): LocalProfile | null {
 					: true,
 			isNameShared:
 				typeof parsed.isNameShared === "boolean" ? parsed.isNameShared : false,
+			isStudyPresenceBadgeVisible:
+				typeof parsed.isStudyPresenceBadgeVisible === "boolean"
+					? parsed.isStudyPresenceBadgeVisible
+					: true,
 		};
 	} catch {
 		return null;

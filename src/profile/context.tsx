@@ -54,6 +54,14 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
 		);
 	}, []);
 
+	const setStudyPresenceBadgeVisible = useCallback((isVisible: boolean) => {
+		updateStoredProfile((current) =>
+			current.isStudyPresenceBadgeVisible === isVisible
+				? current
+				: { ...current, isStudyPresenceBadgeVisible: isVisible },
+		);
+	}, []);
+
 	const value = useMemo(
 		() => ({
 			profile,
@@ -62,6 +70,7 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
 			completeNamePrompt,
 			dismissNamePrompt,
 			setNameShared,
+			setStudyPresenceBadgeVisible,
 		}),
 		[
 			completeNamePrompt,
@@ -70,6 +79,7 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
 			profile,
 			saveUsername,
 			setNameShared,
+			setStudyPresenceBadgeVisible,
 		],
 	);
 
