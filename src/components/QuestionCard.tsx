@@ -242,12 +242,144 @@ function DevelopmentDisclosure({
 	);
 }
 
+interface QuestionSolutionDisclosureProps {
+	isOpen: boolean;
+	onToggle: () => void;
+	openLabel: string;
+	closeLabel: string;
+	explanation?: string | null;
+	explanationImage?: Picture | string | (Picture | string)[];
+	imageAlt: string;
+}
+
+function QuestionSolutionDisclosure({
+	isOpen,
+	onToggle,
+	openLabel,
+	closeLabel,
+	explanation,
+	explanationImage,
+	imageAlt,
+}: QuestionSolutionDisclosureProps) {
+	return (
+		<div className="mt-3 space-y-3">
+			<button
+				type="button"
+				data-cuelume-press={isOpen ? "droplet" : "bloom"}
+				className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+				onClick={onToggle}
+			>
+				<BookOpen size={16} aria-hidden="true" />
+				{isOpen ? closeLabel : openLabel}
+			</button>
+			{isOpen && (
+				<div className={solutionPanelClass}>
+					{explanation != null && (
+						<Markdown className="text-fg-muted text-xs italic">
+							{explanation}
+						</Markdown>
+					)}
+					{explanationImage && (
+						<QuestionImage
+							image={explanationImage}
+							alt={imageAlt}
+							maxHeight="300px"
+						/>
+					)}
+				</div>
+			)}
+		</div>
+	);
+}
+
 function getFillInputWidth(answer: string): "w-16" | "w-24" | "w-36" | "w-52" {
 	const length = answer.trim().length;
 	if (length <= 4) return "w-16";
 	if (length <= 9) return "w-24";
 	if (length <= 18) return "w-36";
 	return "w-52";
+}
+
+interface MCOptionProps {
+	question: Question;
+	option: string;
+	index: number;
+	savedAnswer?: string;
+	showResult?: boolean;
+	subjectId: string;
+	topicKey?: string;
+	examId?: string;
+	mode?: "practice" | "exam";
+	onAnswer: (questionId: string, answer: string) => void;
+}
+
+function getMCOptionClassName(
+	showResult: boolean,
+	isSelected: boolean,
+	isCorrect: boolean,
+) {
+	let className =
+		"text-fg w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
+	if (showResult && isCorrect) {
+		className += " bg-correct-bg border-correct-border";
+	} else if (isSelected && showResult && !isCorrect) {
+		className += " bg-incorrect-bg border-incorrect-border";
+	} else if (isSelected && !showResult) {
+		className += " bg-accent-light border-accent";
+	} else {
+		className += " border-border hover:border-border bg-surface-alt";
+	}
+	return className;
+}
+
+function MCOption({
+	question,
+	option,
+	index,
+	savedAnswer,
+	showResult = false,
+	subjectId,
+	topicKey,
+	examId,
+	mode,
+	onAnswer,
+}: MCOptionProps) {
+	const letter = String.fromCharCode(97 + index);
+	const isSelected = savedAnswer === letter;
+	const isCorrect = question.correctAnswer === letter;
+
+	return (
+		<button
+			type="button"
+			data-cuelume-press
+			className={getMCOptionClassName(showResult, isSelected, isCorrect)}
+			onClick={() => {
+				if (showResult) return;
+				track("question_answer", {
+					questionId: question.id,
+					type: "mc",
+					answer: letter,
+					subjectId,
+					topic: topicKey,
+					examId,
+					mode,
+				});
+				onAnswer(question.id, letter);
+			}}
+			disabled={showResult}
+		>
+			<span
+				className={`bg-code mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full font-mono text-xs font-bold ${isSelected ? "animate-pop" : ""}`}
+			>
+				{letter}
+			</span>
+			<span className="flex-1">
+				<InlineMarkdown>
+					{option.replace(/^[a-eA-E][.)]\s*/, "")}
+				</InlineMarkdown>
+			</span>
+		</button>
+	);
 }
 
 function MCQuestion({
@@ -293,99 +425,43 @@ function MCQuestion({
 
 	return (
 		<div className="space-y-2">
-			{question.options.map((opt, i) => {
-				const letter = String.fromCharCode(97 + i);
-				const key = `${question.id}-opt-${letter}`;
-				const isSelected = savedAnswer === letter;
-				const isCorrect = question.correctAnswer === letter;
-				let className =
-					"text-fg w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
-				if (showResult && isCorrect) {
-					className += " bg-correct-bg border-correct-border";
-				} else if (isSelected && showResult && !isCorrect) {
-					className += " bg-incorrect-bg border-incorrect-border";
-				} else if (isSelected && !showResult) {
-					className += " bg-accent-light border-accent";
-				} else {
-					className += " border-border hover:border-border bg-surface-alt";
-				}
-
-				return (
-					<button
-						type="button"
-						key={key}
-						data-cuelume-press
-						className={className}
-						onClick={() => {
-							if (showResult) return;
-							track("question_answer", {
-								questionId: question.id,
-								type: "mc",
-								answer: letter,
-								subjectId,
-								topic: topicKey,
-								examId: examId,
-								mode,
-							});
-							onAnswer(question.id, letter);
-						}}
-						disabled={!!showResult}
-					>
-						<span
-							className={`bg-code mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full font-mono text-xs font-bold ${isSelected ? "animate-pop" : ""}`}
-						>
-							{letter}
-						</span>
-						<span className="flex-1">
-							<InlineMarkdown>
-								{opt.replace(/^[a-eA-E][.)]\s*/, "")}
-							</InlineMarkdown>
-						</span>
-					</button>
-				);
-			})}
+			{question.options.map((option, index) => (
+				<MCOption
+					key={`${question.id}-opt-${String.fromCharCode(97 + index)}`}
+					question={question}
+					option={option}
+					index={index}
+					savedAnswer={savedAnswer}
+					showResult={showResult}
+					subjectId={subjectId}
+					topicKey={topicKey}
+					examId={examId}
+					mode={mode}
+					onAnswer={onAnswer}
+				/>
+			))}
 			{showResult &&
 				(question.explanation != null || question.explanationImage) && (
-					<div className="mt-3 space-y-3">
-						<button
-							type="button"
-							data-cuelume-press={isOpen ? "droplet" : "bloom"}
-							className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
-							onClick={() => {
-								const next = !isOpen;
-								track("solution_toggle", {
-									questionId: question.id,
-									action: next ? "open" : "close",
-									subjectId,
-									topic: topicKey,
-									examId: examId,
-									mode,
-								});
-								setIsOpen(next);
-							}}
-						>
-							<BookOpen size={16} aria-hidden="true" />
-							{isOpen
-								? t.questionCard.closeSolution
-								: t.questionCard.openSolution}
-						</button>
-						{isOpen && (
-							<div className={solutionPanelClass}>
-								{question.explanation != null && (
-									<Markdown className="text-fg-muted text-xs italic">
-										{question.explanation}
-									</Markdown>
-								)}
-								{question.explanationImage && (
-									<QuestionImage
-										image={question.explanationImage}
-										alt={t.questionCard.solutionIllustration}
-										maxHeight="300px"
-									/>
-								)}
-							</div>
-						)}
-					</div>
+					<QuestionSolutionDisclosure
+						isOpen={isOpen}
+						onToggle={() => {
+							const next = !isOpen;
+							track("solution_toggle", {
+								questionId: question.id,
+								action: next ? "open" : "close",
+								subjectId,
+								topic: topicKey,
+								examId,
+								mode,
+							});
+							setIsOpen(next);
+						}}
+						openLabel={t.questionCard.openSolution}
+						closeLabel={t.questionCard.closeSolution}
+						explanation={question.explanation}
+						explanationImage={question.explanationImage}
+						imageAlt={t.questionCard.solutionIllustration}
+					/>
 				)}
 		</div>
 	);
@@ -1032,46 +1108,26 @@ function MatchingQuestion({
 			})}
 			{showResult &&
 				(question.explanation != null || question.explanationImage) && (
-					<div className="mt-3 space-y-3">
-						<button
-							type="button"
-							data-cuelume-press={isOpen ? "droplet" : "bloom"}
-							className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
-							onClick={() => {
-								const next = !isOpen;
-								track("solution_toggle", {
-									questionId: question.id,
-									action: next ? "open" : "close",
-									subjectId,
-									topic: topicKey,
-									examId: examId,
-									mode,
-								});
-								setIsOpen(next);
-							}}
-						>
-							<BookOpen size={16} aria-hidden="true" />
-							{isOpen
-								? t.questionCard.closeSolution
-								: t.questionCard.openSolution}
-						</button>
-						{isOpen && (
-							<div className={solutionPanelClass}>
-								{question.explanation != null && (
-									<Markdown className="text-fg-muted text-xs italic">
-										{question.explanation}
-									</Markdown>
-								)}
-								{question.explanationImage && (
-									<QuestionImage
-										image={question.explanationImage}
-										alt={t.questionCard.solutionIllustration}
-										maxHeight="300px"
-									/>
-								)}
-							</div>
-						)}
-					</div>
+					<QuestionSolutionDisclosure
+						isOpen={isOpen}
+						onToggle={() => {
+							const next = !isOpen;
+							track("solution_toggle", {
+								questionId: question.id,
+								action: next ? "open" : "close",
+								subjectId,
+								topic: topicKey,
+								examId,
+								mode,
+							});
+							setIsOpen(next);
+						}}
+						openLabel={t.questionCard.openSolution}
+						closeLabel={t.questionCard.closeSolution}
+						explanation={question.explanation}
+						explanationImage={question.explanationImage}
+						imageAlt={t.questionCard.solutionIllustration}
+					/>
 				)}
 		</div>
 	);

@@ -208,6 +208,100 @@ interface PracticeScoreSummaryProps {
 	compact: boolean;
 }
 
+function getPracticeScoreStatus({
+	submitted,
+	pendingTextCount,
+	checkedCount,
+	questionsLength,
+	selfGradeHint,
+	allSelfGraded,
+	outOf,
+	checked,
+}: {
+	submitted: boolean;
+	pendingTextCount: number;
+	checkedCount: number;
+	questionsLength: number;
+	selfGradeHint: string;
+	allSelfGraded: string;
+	outOf: string;
+	checked: string;
+}) {
+	if (submitted && pendingTextCount > 0) return selfGradeHint;
+	if (submitted) return allSelfGraded;
+	return `${checkedCount} ${outOf} ${questionsLength} ${checked}`;
+}
+
+interface PracticeScoreSummaryPanelProps {
+	completed: boolean;
+	submitted: boolean;
+	compact: boolean;
+	gradedScore: number;
+	totalPoints: number;
+	statusLabel: string;
+	pointsLabel: string;
+	scoreLabel: string;
+	runningScoreLabel: string;
+}
+
+function PracticeScoreSummaryPanel({
+	completed,
+	submitted,
+	compact,
+	gradedScore,
+	totalPoints,
+	statusLabel,
+	pointsLabel,
+	scoreLabel,
+	runningScoreLabel,
+}: PracticeScoreSummaryPanelProps) {
+	return (
+		<div
+			className={`relative rounded-lg border-2 transition-[background-color,border-color,padding] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-full overflow-hidden p-0" : "min-h-24 p-3 pb-7 sm:p-4 sm:pb-8"} ${completed ? "border-correct-border bg-correct-bg" : "border-pending-border bg-pending-bg"}`}
+		>
+			<div
+				className={`text-fg flex items-center gap-2 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "pointer-events-none -translate-y-1 opacity-0" : "translate-y-0 opacity-100"}`}
+			>
+				<Trophy
+					size={18}
+					weight={submitted ? "Filled" : "Outline"}
+					aria-hidden="true"
+					className="shrink-0"
+				/>
+				<p className="font-semibold">
+					{submitted ? scoreLabel : runningScoreLabel}
+				</p>
+				<p className="ml-auto text-lg font-bold whitespace-nowrap tabular-nums">
+					{formatPoints(gradedScore)}
+					<span className="text-fg-muted mx-1 text-sm font-medium">/</span>
+					{formatPoints(totalPoints)}
+					<span className="text-fg-muted ml-1 text-sm font-medium">
+						{pointsLabel}
+					</span>
+				</p>
+			</div>
+			<p
+				className={`mt-1 text-sm transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "pointer-events-none translate-y-1 opacity-0" : "translate-y-0 opacity-100"} ${completed ? "text-correct-fg" : "text-pending-fg"}`}
+			>
+				{statusLabel}
+			</p>
+			<div
+				className={`pointer-events-none absolute inset-0 z-10 flex items-center gap-2 px-3 transition-opacity duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "opacity-100" : "opacity-0"}`}
+				aria-hidden="true"
+			>
+				<Trophy
+					size={18}
+					weight={submitted ? "Filled" : "Outline"}
+					className={`shrink-0 transition-transform duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "translate-y-0" : "-translate-y-2"}`}
+				/>
+				<span className="text-fg ml-auto min-w-[3.5rem] text-right text-sm font-bold whitespace-nowrap tabular-nums">
+					{formatPoints(gradedScore)}/{formatPoints(totalPoints)}
+				</span>
+			</div>
+		</div>
+	);
+}
+
 function PracticeScoreSummary({
 	submitted,
 	allTextGraded,
@@ -221,6 +315,16 @@ function PracticeScoreSummary({
 }: PracticeScoreSummaryProps) {
 	const t = useT();
 	const completed = submitted && allTextGraded;
+	const statusLabel = getPracticeScoreStatus({
+		submitted,
+		pendingTextCount,
+		checkedCount,
+		questionsLength,
+		selfGradeHint: t.practice.selfGradeHint,
+		allSelfGraded: t.practice.allSelfGraded,
+		outOf: t.exam.outOf,
+		checked: t.practice.checked,
+	});
 
 	return (
 		<ScoreProgress
@@ -231,57 +335,17 @@ function PracticeScoreSummary({
 			progressClassName={`transition-[left,right,bottom] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "right-20 bottom-5 left-16" : "right-4 bottom-4 left-4"}`}
 			className={`animate-fade-in-up relative transition-[height] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-12 overflow-hidden" : "min-h-24"}`}
 		>
-			<div
-				className={`relative rounded-lg border-2 transition-[background-color,border-color,padding] duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "h-full overflow-hidden p-0" : "min-h-24 p-3 pb-7 sm:p-4 sm:pb-8"} ${
-					completed
-						? "border-correct-border bg-correct-bg"
-						: "border-pending-border bg-pending-bg"
-				}`}
-			>
-				<div
-					className={`text-fg flex items-center gap-2 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "pointer-events-none -translate-y-1 opacity-0" : "translate-y-0 opacity-100"}`}
-				>
-					<Trophy
-						size={18}
-						weight={submitted ? "Filled" : "Outline"}
-						aria-hidden="true"
-						className="shrink-0"
-					/>
-					<p className="font-semibold">
-						{submitted ? t.practice.score : t.practice.runningScore}
-					</p>
-					<p className="ml-auto text-lg font-bold whitespace-nowrap tabular-nums">
-						{formatPoints(gradedScore)}
-						<span className="text-fg-muted mx-1 text-sm font-medium">/</span>
-						{formatPoints(totalPoints)}
-						<span className="text-fg-muted ml-1 text-sm font-medium">
-							{t.practice.points}
-						</span>
-					</p>
-				</div>
-				<p
-					className={`mt-1 text-sm transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "pointer-events-none translate-y-1 opacity-0" : "translate-y-0 opacity-100"} ${completed ? "text-correct-fg" : "text-pending-fg"}`}
-				>
-					{submitted && pendingTextCount > 0
-						? t.practice.selfGradeHint
-						: submitted
-							? t.practice.allSelfGraded
-							: `${checkedCount} ${t.exam.outOf} ${questionsLength} ${t.practice.checked}`}
-				</p>
-				<div
-					className={`pointer-events-none absolute inset-0 z-10 flex items-center gap-2 px-3 transition-opacity duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "opacity-100" : "opacity-0"}`}
-					aria-hidden="true"
-				>
-					<Trophy
-						size={18}
-						weight={submitted ? "Filled" : "Outline"}
-						className={`shrink-0 transition-transform duration-[250ms] ease-[cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none ${compact ? "translate-y-0" : "-translate-y-2"}`}
-					/>
-					<span className="text-fg ml-auto min-w-[3.5rem] text-right text-sm font-bold whitespace-nowrap tabular-nums">
-						{formatPoints(gradedScore)}/{formatPoints(totalPoints)}
-					</span>
-				</div>
-			</div>
+			<PracticeScoreSummaryPanel
+				completed={completed}
+				submitted={submitted}
+				compact={compact}
+				gradedScore={gradedScore}
+				totalPoints={totalPoints}
+				statusLabel={statusLabel}
+				pointsLabel={t.practice.points}
+				scoreLabel={t.practice.score}
+				runningScoreLabel={t.practice.runningScore}
+			/>
 		</ScoreProgress>
 	);
 }
@@ -304,7 +368,15 @@ interface PracticeControlsProps {
 	onClearAnswer: (questionId: string) => void;
 }
 
-function PracticeControls({
+function dispatchPracticeHover(
+	event: React.PointerEvent<HTMLButtonElement>,
+	dispatchHover: (action: PracticeHoverAction) => void,
+	action: PracticeHoverAction,
+) {
+	if (event.pointerType === "mouse") dispatchHover(action);
+}
+
+function usePracticeControlsState({
 	subject,
 	topic,
 	questions,
@@ -326,8 +398,6 @@ function PracticeControls({
 		practiceHoverReducer,
 		null,
 	);
-	const prevBtnRef = useRef<HTMLButtonElement>(null);
-	const nextBtnRef = useRef<HTMLButtonElement>(null);
 
 	const navigateQuestion = (
 		dir: "prev" | "next",
@@ -382,6 +452,22 @@ function PracticeControls({
 		!!answers[currentQuestion.id] &&
 		!submitted &&
 		!checkedQuestions[currentQuestion.id];
+	const showActions = canCheckQuestion;
+	const answer = answers[currentQuestion.id];
+
+	const clearCurrentAnswer = () => {
+		track("practice_clear_answer", {
+			questionId: currentQuestion.id,
+			subjectId: subject.id,
+			topic: topic || "",
+		});
+		onClearAnswer(currentQuestion.id);
+	};
+	const checkCurrentQuestion = () => onCheckQuestion(currentQuestion.id);
+	const submitCurrentPractice = () => {
+		onSubmit();
+		scrollToHeader();
+	};
 
 	useCommandHandlers("practice-controls", {
 		"previous-question":
@@ -396,188 +482,284 @@ function PracticeControls({
 			currentIndex < questions.length - 1
 				? () => navigateToBoundary("last")
 				: undefined,
-		"check-question": canCheckQuestion
-			? () => onCheckQuestion(currentQuestion.id)
-			: undefined,
-		"clear-answer": canClearAnswer
-			? () => {
-					track("practice_clear_answer", {
-						questionId: currentQuestion.id,
-						subjectId: subject.id,
-						topic: topic || "",
-					});
-					onClearAnswer(currentQuestion.id);
-				}
-			: undefined,
-		"submit-session": !submitted
-			? () => {
-					onSubmit();
-					scrollToHeader();
-				}
-			: undefined,
+		"check-question": canCheckQuestion ? checkCurrentQuestion : undefined,
+		"clear-answer": canClearAnswer ? clearCurrentAnswer : undefined,
+		"submit-session": !submitted ? submitCurrentPractice : undefined,
 	});
+
+	return {
+		t,
+		hoveredControl,
+		dispatchHover,
+		currentIndex,
+		questions,
+		submitted,
+		answer,
+		showActions,
+		canClearAnswer,
+		navigateQuestion,
+		clearCurrentAnswer,
+		checkCurrentQuestion,
+		submitCurrentPractice,
+	};
+}
+
+interface PracticeNavigationButtonProps {
+	direction: "prev" | "next";
+	label: string;
+	disabled: boolean;
+	hovered: boolean;
+	dispatchHover: (action: PracticeHoverAction) => void;
+	onClick: () => void;
+	buttonRef: React.RefObject<HTMLButtonElement | null>;
+}
+
+function PracticeNavigationButton({
+	direction,
+	label,
+	disabled,
+	hovered,
+	dispatchHover,
+	onClick,
+	buttonRef,
+}: PracticeNavigationButtonProps) {
+	return (
+		<button
+			type="button"
+			ref={buttonRef}
+			aria-label={label}
+			data-cuelume-press="page"
+			className={`border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2 ${direction === "prev" ? "order-1" : "order-3"}`}
+			onPointerEnter={(event) =>
+				dispatchPracticeHover(event, dispatchHover, {
+					type: "enter",
+					control: direction,
+				})
+			}
+			onPointerLeave={(event) =>
+				dispatchPracticeHover(event, dispatchHover, {
+					type: "leave",
+					control: direction,
+				})
+			}
+			onClick={onClick}
+			disabled={disabled}
+		>
+			{direction === "next" && (
+				<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
+					{label}
+				</span>
+			)}
+			{direction === "prev" ? (
+				<AngleLeftSquare
+					size={18}
+					weight={hovered ? "Filled" : "Outline"}
+					aria-hidden="true"
+					className="shrink-0"
+				/>
+			) : (
+				<AngleRightSquare
+					size={18}
+					weight={hovered ? "Filled" : "Outline"}
+					aria-hidden="true"
+					className="shrink-0"
+				/>
+			)}
+			{direction === "prev" && (
+				<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
+					{label}
+				</span>
+			)}
+		</button>
+	);
+}
+
+interface PracticeActionButtonsProps {
+	answer?: string;
+	showActions: boolean;
+	canClearAnswer: boolean;
+	submitted: boolean;
+	hoveredControl: HoveredPracticeControl;
+	dispatchHover: (action: PracticeHoverAction) => void;
+	onClear: () => void;
+	onCheck: () => void;
+	onSubmit: () => void;
+	t: ReturnType<typeof useT>;
+}
+
+function PracticeActionButtons({
+	answer,
+	showActions,
+	canClearAnswer,
+	submitted,
+	hoveredControl,
+	dispatchHover,
+	onClear,
+	onCheck,
+	onSubmit,
+	t,
+}: PracticeActionButtonsProps) {
+	const canShowClear = canClearAnswer && Boolean(answer?.trim());
+
+	return (
+		<>
+			{showActions && (
+				<>
+					{canShowClear && (
+						<button
+							type="button"
+							aria-label={t.practice.clear}
+							data-cuelume-press="droplet"
+							className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+							onPointerEnter={(event) =>
+								dispatchPracticeHover(event, dispatchHover, {
+									type: "enter",
+									control: "clear",
+								})
+							}
+							onPointerLeave={(event) =>
+								dispatchPracticeHover(event, dispatchHover, {
+									type: "leave",
+									control: "clear",
+								})
+							}
+							onClick={onClear}
+						>
+							<Trash5
+								size={18}
+								weight={hoveredControl === "clear" ? "Filled" : "Outline"}
+								aria-hidden="true"
+								className="shrink-0"
+							/>
+							<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
+								{t.practice.clear}
+							</span>
+						</button>
+					)}
+					<button
+						type="button"
+						aria-label={t.practice.check}
+						className="bg-info text-on-info hover:bg-info-hover focus-visible:ring-info-fg flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+						onPointerEnter={(event) =>
+							dispatchPracticeHover(event, dispatchHover, {
+								type: "enter",
+								control: "check",
+							})
+						}
+						onPointerLeave={(event) =>
+							dispatchPracticeHover(event, dispatchHover, {
+								type: "leave",
+								control: "check",
+							})
+						}
+						onClick={onCheck}
+					>
+						<Eye
+							size={18}
+							weight={hoveredControl === "check" ? "Filled" : "Outline"}
+							aria-hidden="true"
+							className="shrink-0"
+						/>
+						<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
+							{t.practice.check}
+						</span>
+					</button>
+				</>
+			)}
+			{!submitted && (
+				<button
+					type="button"
+					aria-label={t.practice.submit}
+					data-cuelume-press="ready"
+					className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
+					onPointerEnter={(event) =>
+						dispatchPracticeHover(event, dispatchHover, {
+							type: "enter",
+							control: "submit",
+						})
+					}
+					onPointerLeave={(event) =>
+						dispatchPracticeHover(event, dispatchHover, {
+							type: "leave",
+							control: "submit",
+						})
+					}
+					onClick={onSubmit}
+				>
+					<Send
+						size={18}
+						weight={hoveredControl === "submit" ? "Filled" : "Outline"}
+						aria-hidden="true"
+						className="shrink-0"
+					/>
+					<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
+						{t.practice.submit}
+					</span>
+				</button>
+			)}
+		</>
+	);
+}
+
+function PracticeControls(props: PracticeControlsProps) {
+	const {
+		t,
+		hoveredControl,
+		dispatchHover,
+		currentIndex,
+		questions,
+		submitted,
+		answer,
+		showActions,
+		canClearAnswer,
+		navigateQuestion,
+		clearCurrentAnswer,
+		checkCurrentQuestion,
+		submitCurrentPractice,
+	} = usePracticeControlsState(props);
+	const prevBtnRef = useRef<HTMLButtonElement>(null);
+	const nextBtnRef = useRef<HTMLButtonElement>(null);
 
 	return (
 		<div
 			className="mt-4 flex items-center gap-2 sm:mt-6 sm:justify-between sm:gap-3"
 			data-tour="practice-nav-btns"
 		>
-			<button
-				type="button"
-				ref={prevBtnRef}
-				aria-label={t.practice.previous}
-				data-cuelume-press="page"
-				className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-				onPointerEnter={(event) => {
-					if (event.pointerType === "mouse")
-						dispatchHover({ type: "enter", control: "prev" });
-				}}
-				onPointerLeave={(event) => {
-					if (event.pointerType === "mouse")
-						dispatchHover({ type: "leave", control: "prev" });
-				}}
-				onClick={() => navigateQuestion("prev")}
+			<PracticeNavigationButton
+				direction="prev"
+				label={t.practice.previous}
 				disabled={currentIndex === 0}
-			>
-				<AngleLeftSquare
-					size={18}
-					weight={hoveredControl === "prev" ? "Filled" : "Outline"}
-					aria-hidden="true"
-					className="shrink-0"
-				/>
-				<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
-					{t.practice.previous}
-				</span>
-			</button>
+				hovered={hoveredControl === "prev"}
+				dispatchHover={dispatchHover}
+				onClick={() => navigateQuestion("prev")}
+				buttonRef={prevBtnRef}
+			/>
 			<div
 				className="order-2 flex min-w-0 flex-1 justify-center gap-2 sm:flex-none"
 				data-tour="practice-actions"
 			>
-				{(answers[currentQuestion.id] ||
-					currentQuestion.type === "text" ||
-					currentQuestion.type === "multiple-text") &&
-					!submitted &&
-					!checkedQuestions[currentQuestion.id] && (
-						<>
-							{answers[currentQuestion.id] &&
-								answers[currentQuestion.id].trim() !== "" && (
-									<button
-										type="button"
-										aria-label={t.practice.clear}
-										data-cuelume-press="droplet"
-										className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-										onPointerEnter={(event) => {
-											if (event.pointerType === "mouse")
-												dispatchHover({ type: "enter", control: "clear" });
-										}}
-										onPointerLeave={(event) => {
-											if (event.pointerType === "mouse")
-												dispatchHover({ type: "leave", control: "clear" });
-										}}
-										onClick={() => {
-											track("practice_clear_answer", {
-												questionId: currentQuestion.id,
-												subjectId: subject.id,
-												topic: topic || "",
-											});
-											onClearAnswer(currentQuestion.id);
-										}}
-									>
-										<Trash5
-											size={18}
-											weight={hoveredControl === "clear" ? "Filled" : "Outline"}
-											aria-hidden="true"
-											className="shrink-0"
-										/>
-										<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
-											{t.practice.clear}
-										</span>
-									</button>
-								)}
-							<button
-								type="button"
-								aria-label={t.practice.check}
-								className="bg-info text-on-info hover:bg-info-hover focus-visible:ring-info-fg flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-								onPointerEnter={(event) => {
-									if (event.pointerType === "mouse")
-										dispatchHover({ type: "enter", control: "check" });
-								}}
-								onPointerLeave={(event) => {
-									if (event.pointerType === "mouse")
-										dispatchHover({ type: "leave", control: "check" });
-								}}
-								onClick={() => onCheckQuestion(currentQuestion.id)}
-							>
-								<Eye
-									size={18}
-									weight={hoveredControl === "check" ? "Filled" : "Outline"}
-									aria-hidden="true"
-									className="shrink-0"
-								/>
-								<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
-									{t.practice.check}
-								</span>
-							</button>
-						</>
-					)}
-				{!submitted && (
-					<button
-						type="button"
-						aria-label={t.practice.submit}
-						data-cuelume-press="ready"
-						className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
-						onPointerEnter={(event) => {
-							if (event.pointerType === "mouse")
-								dispatchHover({ type: "enter", control: "submit" });
-						}}
-						onPointerLeave={(event) => {
-							if (event.pointerType === "mouse")
-								dispatchHover({ type: "leave", control: "submit" });
-						}}
-						onClick={() => {
-							onSubmit();
-							scrollToHeader();
-						}}
-					>
-						<Send
-							size={18}
-							weight={hoveredControl === "submit" ? "Filled" : "Outline"}
-							aria-hidden="true"
-							className="shrink-0"
-						/>
-						<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
-							{t.practice.submit}
-						</span>
-					</button>
-				)}
-			</div>
-			<button
-				type="button"
-				ref={nextBtnRef}
-				aria-label={t.practice.next}
-				data-cuelume-press="page"
-				className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
-				onPointerEnter={(event) => {
-					if (event.pointerType === "mouse")
-						dispatchHover({ type: "enter", control: "next" });
-				}}
-				onPointerLeave={(event) => {
-					if (event.pointerType === "mouse")
-						dispatchHover({ type: "leave", control: "next" });
-				}}
-				onClick={() => navigateQuestion("next")}
-				disabled={currentIndex === questions.length - 1}
-			>
-				<span className="sr-only sm:not-sr-only sm:inline sm:min-w-0 sm:truncate">
-					{t.practice.next}
-				</span>
-				<AngleRightSquare
-					size={18}
-					weight={hoveredControl === "next" ? "Filled" : "Outline"}
-					aria-hidden="true"
-					className="shrink-0"
+				<PracticeActionButtons
+					answer={answer}
+					showActions={showActions}
+					canClearAnswer={canClearAnswer}
+					submitted={submitted}
+					hoveredControl={hoveredControl}
+					dispatchHover={dispatchHover}
+					onClear={clearCurrentAnswer}
+					onCheck={checkCurrentQuestion}
+					onSubmit={submitCurrentPractice}
+					t={t}
 				/>
-			</button>
+			</div>
+			<PracticeNavigationButton
+				direction="next"
+				label={t.practice.next}
+				disabled={currentIndex === questions.length - 1}
+				hovered={hoveredControl === "next"}
+				dispatchHover={dispatchHover}
+				onClick={() => navigateQuestion("next")}
+				buttonRef={nextBtnRef}
+			/>
 		</div>
 	);
 }

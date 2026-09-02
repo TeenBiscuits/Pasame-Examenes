@@ -1203,74 +1203,33 @@ function useExamData(
 	};
 }
 
-export default function ExamSimulation() {
-	const { subjectId, examId } = useParams({ strict: false });
-	const navigate = useNavigate();
-	const t = useT();
-	const langTo = useLangTo();
-	const {
-		exam: routeExam,
-		stats,
-		questions: initialQuestions,
-		megatopicLabels: initialMegatopicLabels,
-	} = examRouteApi.useLoaderData();
-	const initialExamData = useMemo(
-		() => ({
-			questions: initialQuestions,
-			megatopicLabels: initialMegatopicLabels,
-		}),
-		[initialMegatopicLabels, initialQuestions],
-	);
-
-	const subject = subjectId ? getSubject(subjectId) : undefined;
-	const { questions, status, megatopicLabels, retry } = useExamData(
-		subject,
-		examId,
-		initialExamData,
-	);
-	const examInfo = routeExam;
-	const questionCount = stats.examQuestionCounts[examId || ""] ?? 0;
-	const totalPoints = stats.examTotalPoints[examId || ""] ?? 0;
-	const passPoints = getExamPassPoints(examInfo, totalPoints);
-	const [startRequested, setStartRequested] = useState(false);
-	const timeUpDialogRef = useRef<HTMLDialogElement>(null);
-	const showTimeUpDialog = useCallback(() => {
-		playError();
-		showDialog(timeUpDialogRef.current);
-	}, []);
-
-	const {
-		currentIndex,
-		setCurrentIndex,
-		answers,
-		selfGrades,
-		submitted,
-		timeLeft,
-		started,
-		handleAnswer,
-		handleStart,
-		handleSubmit,
-		handleSelfGrade,
-	} = useExamSession(
-		questions,
-		subject?.id || "",
-		examId || "",
-		(examInfo?.durationMinutes || 120) * 60,
-		t,
-		showTimeUpDialog,
-	);
-
-	const handleSubmitConfirm = useCallback(
-		() => handleSubmit(true),
-		[handleSubmit],
+function useExamStartFlow({
+	subject,
+	examInfo,
+	subjectId,
+	examId,
+	questions,
+	status,
+	started,
+	handleStart,
+}: {
+	subject: ExamSubject | undefined;
+	examInfo: Exam | undefined;
+	subjectId?: string;
+	examId?: string;
+	questions: Question[];
+	status: ReturnType<typeof useExamData>["status"];
+	started: boolean;
+	handleStart: () => void;
+}) {
+	const routeKey = `${subjectId || ""}/${examId || ""}`;
+	const [requestedRouteKey, setRequestedRouteKey] = useState<string | null>(
+		null,
 	);
 	const handleStartRequest = useCallback(() => {
-		setStartRequested(true);
-	}, []);
-
-	useEffect(() => {
-		if (subjectId || examId) setStartRequested(false);
-	}, [subjectId, examId]);
+		setRequestedRouteKey(routeKey);
+	}, [routeKey]);
+	const startRequested = requestedRouteKey === routeKey;
 
 	useEffect(() => {
 		if (
@@ -1290,17 +1249,18 @@ export default function ExamSimulation() {
 				: undefined,
 	});
 
+	return { startRequested, handleStartRequest };
+}
+
+function useExamNavigationState() {
 	const [navState, setNavState] = useState({
 		direction: undefined as "next" | "prev" | undefined,
 		showLeftFade: false,
 		showRightFade: false,
 	});
-	const { direction, showLeftFade, showRightFade } = navState;
 	const setDirection = useCallback(
-		(d: typeof navState.direction) =>
+		(d: "next" | "prev" | undefined) =>
 			setNavState((prev) => ({ ...prev, direction: d })),
-		// setNavState is stable from useState
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[],
 	);
 	const navRef = useRef<HTMLDivElement>(null);
@@ -1331,8 +1291,9 @@ export default function ExamSimulation() {
 			mutationObserver.disconnect();
 		};
 	}, []);
-	const scrollToHeaderRef = useRef<() => void>(() => {});
-
+	useEffect(() => {
+		return () => navCleanupRef.current();
+	}, []);
 	const scrollToNav = useCallback((index: number) => {
 		const container = navRef.current;
 		if (!container) return;
@@ -1349,19 +1310,29 @@ export default function ExamSimulation() {
 		});
 	}, []);
 
-	useEffect(() => {
-		if (!subject) {
-			navigate({ to: langTo("/") as never, replace: true });
-		} else if (!examInfo) {
-			navigate({
-				to: langTo(`/${subject.id}`) as never,
-				replace: true,
-			});
-		}
-	}, [subject, examInfo, navigate, langTo]);
+	return {
+		direction: navState.direction,
+		showLeftFade: navState.showLeftFade,
+		showRightFade: navState.showRightFade,
+		setDirection,
+		navRef: setNavRef,
+		scrollToNav,
+	};
+}
 
+function useExamTour({
+	started,
+	questionsLength,
+	subject,
+	t,
+}: {
+	started: boolean;
+	questionsLength: number;
+	subject: ExamSubject | undefined;
+	t: ReturnType<typeof useT>;
+}) {
 	useEffect(() => {
-		if (!started || questions.length === 0) return;
+		if (!started || questionsLength === 0) return;
 		const step1Description =
 			subject && hasAuthorizedExamContent(subject)
 				? t.tour.exam.step1Desc
@@ -1418,7 +1389,121 @@ export default function ExamSimulation() {
 			);
 		}, 500);
 		return () => clearTimeout(timer);
-	}, [started, questions.length, subject, t]);
+	}, [started, questionsLength, subject, t]);
+}
+
+function useExamRouteGuard({
+	subject,
+	examInfo,
+	navigate,
+	langTo,
+}: {
+	subject: ExamSubject | undefined;
+	examInfo: Exam | undefined;
+	navigate: ReturnType<typeof useNavigate>;
+	langTo: ReturnType<typeof useLangTo>;
+}) {
+	useEffect(() => {
+		if (!subject) {
+			navigate({ to: langTo("/") as never, replace: true });
+			return;
+		}
+		if (!examInfo) {
+			navigate({
+				to: langTo(`/${subject.id}`) as never,
+				replace: true,
+			});
+		}
+	}, [subject, examInfo, navigate, langTo]);
+}
+
+function getExamSimulationContent({
+	started,
+	startRequested,
+	status,
+	player,
+	loadError,
+	startScreen,
+}: {
+	started: boolean;
+	startRequested: boolean;
+	status: ReturnType<typeof useExamData>["status"];
+	player: React.ReactNode;
+	loadError: React.ReactNode;
+	startScreen: React.ReactNode;
+}) {
+	if (started) return player;
+	if (!startRequested) return startScreen;
+	if (status === "error") return loadError;
+	return null;
+}
+
+interface ExamSimulationContentProps {
+	subject: ExamSubject | undefined;
+	examInfo: Exam | undefined;
+	status: ReturnType<typeof useExamData>["status"];
+	questions: Question[];
+	megatopicLabels: Record<string, string>;
+	questionCount: number;
+	totalPoints: number;
+	passPoints: number;
+	retry: () => void;
+	startRequested: boolean;
+	started: boolean;
+	currentIndex: number;
+	setCurrentIndex: (index: number) => void;
+	answers: Record<string, string>;
+	selfGrades: Record<string, "correct" | "incorrect">;
+	submitted: boolean;
+	timeLeft: number;
+	direction: "next" | "prev" | undefined;
+	setDirection: (direction: "next" | "prev" | undefined) => void;
+	showLeftFade: boolean;
+	showRightFade: boolean;
+	navRef: React.Ref<HTMLDivElement>;
+	timeUpDialogRef: React.RefObject<HTMLDialogElement | null>;
+	scrollToNav: (index: number) => void;
+	onAnswer: (questionId: string, answer: string) => void;
+	onSelfGrade: (questionId: string, grade: "correct" | "incorrect") => void;
+	onSubmit: () => void;
+	onExit: () => void;
+	scrollToHeaderRef: React.MutableRefObject<() => void>;
+	onStartRequest: () => void;
+}
+
+function ExamSimulationContent({
+	subject,
+	examInfo,
+	status,
+	questions,
+	megatopicLabels,
+	questionCount,
+	totalPoints,
+	passPoints,
+	retry,
+	startRequested,
+	started,
+	currentIndex,
+	setCurrentIndex,
+	answers,
+	selfGrades,
+	submitted,
+	timeLeft,
+	direction,
+	setDirection,
+	showLeftFade,
+	showRightFade,
+	navRef,
+	timeUpDialogRef,
+	scrollToNav,
+	onAnswer,
+	onSelfGrade,
+	onSubmit,
+	onExit,
+	scrollToHeaderRef,
+	onStartRequest,
+}: ExamSimulationContentProps) {
+	const t = useT();
 
 	if (!subject || !examInfo) {
 		return <ExamEmptyState subject={subject} />;
@@ -1446,13 +1531,13 @@ export default function ExamSimulation() {
 			setDirection={setDirection}
 			showLeftFade={showLeftFade}
 			showRightFade={showRightFade}
-			navRef={setNavRef}
+			navRef={navRef}
 			timeUpDialogRef={timeUpDialogRef}
 			scrollToNav={scrollToNav}
-			onAnswer={handleAnswer}
-			onSelfGrade={handleSelfGrade}
-			onSubmit={handleSubmitConfirm}
-			onExit={() => navigate({ to: langTo(`/${subject.id}`) as never })}
+			onAnswer={onAnswer}
+			onSelfGrade={onSelfGrade}
+			onSubmit={onSubmit}
+			onExit={onExit}
 			scrollToHeaderRef={scrollToHeaderRef}
 		/>
 	);
@@ -1465,20 +1550,21 @@ export default function ExamSimulation() {
 			passPoints={passPoints}
 			loading={status === "loading"}
 			loadError={status === "error"}
-			onStart={handleStartRequest}
+			onStart={onStartRequest}
 			onRetry={retry}
 		/>
 	);
 	const loadError = <ExamLoadError subject={subject} onRetry={retry} />;
 	const loadingSimulator =
 		startRequested && !started && (status === "loading" || status === "ready");
-	const content = started
-		? player
-		: startRequested
-			? status === "error"
-				? loadError
-				: null
-			: startScreen;
+	const content = getExamSimulationContent({
+		started,
+		startRequested,
+		status,
+		player,
+		loadError,
+		startScreen,
+	});
 
 	return (
 		<SimulatorSkeleton
@@ -1488,6 +1574,132 @@ export default function ExamSimulation() {
 		>
 			{content}
 		</SimulatorSkeleton>
+	);
+}
+
+export default function ExamSimulation() {
+	const { subjectId, examId } = useParams({ strict: false });
+	const navigate = useNavigate();
+	const t = useT();
+	const langTo = useLangTo();
+	const {
+		exam: routeExam,
+		stats,
+		questions: initialQuestions,
+		megatopicLabels: initialMegatopicLabels,
+	} = examRouteApi.useLoaderData();
+	const initialExamData = useMemo(
+		() => ({
+			questions: initialQuestions,
+			megatopicLabels: initialMegatopicLabels,
+		}),
+		[initialMegatopicLabels, initialQuestions],
+	);
+
+	const subject = subjectId ? getSubject(subjectId) : undefined;
+	const { questions, status, megatopicLabels, retry } = useExamData(
+		subject,
+		examId,
+		initialExamData,
+	);
+	const examInfo = routeExam;
+	const questionCount = stats.examQuestionCounts[examId || ""] ?? 0;
+	const totalPoints = stats.examTotalPoints[examId || ""] ?? 0;
+	const passPoints = getExamPassPoints(examInfo, totalPoints);
+	const timeUpDialogRef = useRef<HTMLDialogElement>(null);
+	const showTimeUpDialog = useCallback(() => {
+		playError();
+		showDialog(timeUpDialogRef.current);
+	}, []);
+
+	const {
+		currentIndex,
+		setCurrentIndex,
+		answers,
+		selfGrades,
+		submitted,
+		timeLeft,
+		started,
+		handleAnswer,
+		handleStart,
+		handleSubmit,
+		handleSelfGrade,
+	} = useExamSession(
+		questions,
+		subject?.id || "",
+		examId || "",
+		(examInfo?.durationMinutes || 120) * 60,
+		t,
+		showTimeUpDialog,
+	);
+
+	const handleSubmitConfirm = useCallback(
+		() => handleSubmit(true),
+		[handleSubmit],
+	);
+	const { startRequested, handleStartRequest } = useExamStartFlow({
+		subject,
+		examInfo,
+		subjectId,
+		examId,
+		questions,
+		status,
+		started,
+		handleStart,
+	});
+
+	const {
+		direction,
+		showLeftFade,
+		showRightFade,
+		setDirection,
+		navRef: setNavRef,
+		scrollToNav,
+	} = useExamNavigationState();
+	const scrollToHeaderRef = useRef<() => void>(() => {});
+
+	useExamRouteGuard({ subject, examInfo, navigate, langTo });
+
+	useExamTour({
+		started,
+		questionsLength: questions.length,
+		subject,
+		t,
+	});
+
+	return (
+		<ExamSimulationContent
+			subject={subject}
+			examInfo={examInfo}
+			status={status}
+			questions={questions}
+			megatopicLabels={megatopicLabels}
+			questionCount={questionCount}
+			totalPoints={totalPoints}
+			passPoints={passPoints}
+			retry={retry}
+			startRequested={startRequested}
+			started={started}
+			currentIndex={currentIndex}
+			setCurrentIndex={setCurrentIndex}
+			answers={answers}
+			selfGrades={selfGrades}
+			submitted={submitted}
+			timeLeft={timeLeft}
+			direction={direction}
+			setDirection={setDirection}
+			showLeftFade={showLeftFade}
+			showRightFade={showRightFade}
+			navRef={setNavRef}
+			timeUpDialogRef={timeUpDialogRef}
+			scrollToNav={scrollToNav}
+			onAnswer={handleAnswer}
+			onSelfGrade={handleSelfGrade}
+			onSubmit={handleSubmitConfirm}
+			onExit={() => navigate({ to: langTo(`/${subject?.id || ""}`) as never })}
+			scrollToHeaderRef={scrollToHeaderRef}
+			onStartRequest={handleStartRequest}
+		/>
 	);
 }
 
