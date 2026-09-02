@@ -17,6 +17,8 @@ import { isPresencePage } from "./pages";
 
 const HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000;
 const SUMMARY_REFRESH_INTERVAL_MS = 15 * 60 * 1000;
+const IS_MOCK_PRESENCE_ENABLED =
+	import.meta.env.DEV || import.meta.env.VERCEL_ENV !== "production";
 
 function createMockPresence(
 	username: string,
@@ -57,7 +59,7 @@ export function PresenceProvider({ children }: { children: ReactNode }) {
 	const lastSummaryRef = useRef<number | null>(null);
 	const summaryPromiseRef = useRef<Promise<boolean> | null>(null);
 	const isRemotePresenceEnabled =
-		!import.meta.env.DEV && getAppwritePresenceConfig() !== null;
+		!IS_MOCK_PRESENCE_ENABLED && getAppwritePresenceConfig() !== null;
 	const shouldShowSummary = isPresencePage(pathname);
 
 	const refreshPresence = useCallback(
@@ -123,7 +125,7 @@ export function PresenceProvider({ children }: { children: ReactNode }) {
 
 	useEffect(() => {
 		if (!isReady) return;
-		if (import.meta.env.DEV) {
+		if (IS_MOCK_PRESENCE_ENABLED) {
 			setPresence(createMockPresence(profile.username, profile.isNameShared));
 			return;
 		}
@@ -187,7 +189,7 @@ export function PresenceProvider({ children }: { children: ReactNode }) {
 	const shareUsername = useCallback(
 		async (username: string) => {
 			const isProfane = await containsProfanity(username);
-			if (import.meta.env.DEV) {
+			if (IS_MOCK_PRESENCE_ENABLED) {
 				return { isPublic: !isProfane, isRateLimited: false };
 			}
 			if (!isRemotePresenceEnabled) return null;
@@ -208,7 +210,7 @@ export function PresenceProvider({ children }: { children: ReactNode }) {
 	);
 
 	const stopSharingUsername = useCallback(async () => {
-		if (import.meta.env.DEV) return true;
+		if (IS_MOCK_PRESENCE_ENABLED) return true;
 		if (!isRemotePresenceEnabled) return false;
 		try {
 			const result = await recordWeeklyVisit({ type: "unshare" });

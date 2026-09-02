@@ -186,7 +186,7 @@ export default function Footer() {
 	const licensesDialogRef = useRef<HTMLDialogElement>(null);
 
 	return (
-		<footer className="border-border bg-surface-alt text-fg-muted border-t pb-[calc(1.25rem+env(safe-area-inset-bottom))] text-sm">
+		<footer className="border-border bg-surface-alt text-fg-muted relative border-t pt-12 pb-[calc(1.25rem+env(safe-area-inset-bottom))] text-sm">
 			<SecretToro />
 			<div className="mx-auto max-w-6xl px-4">
 				<div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">

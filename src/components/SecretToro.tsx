@@ -109,7 +109,7 @@ export default function SecretToro() {
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-none relative z-10 h-12 overflow-hidden"
+			className="pointer-events-none absolute inset-x-0 top-0 z-10 h-7 -translate-y-full overflow-hidden"
 			aria-hidden="false"
 		>
 			<button
@@ -119,7 +119,7 @@ export default function SecretToro() {
 				title="Toro de Osborne"
 				onPointerEnter={handlePointerEnter}
 				onClick={handleToroClick}
-				className="focus-visible:ring-accent pointer-events-auto absolute bottom-5 left-0 h-7 w-9 cursor-pointer touch-none rounded-full p-0 select-none focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
+				className="focus-visible:ring-accent pointer-events-auto absolute inset-y-0 left-0 h-7 w-9 cursor-pointer touch-none rounded-full p-0 select-none focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
 			>
 				<span
 					aria-hidden="true"
