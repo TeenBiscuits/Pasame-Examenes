@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useLang } from "../i18n/hooks";
-import { getDistinctId, identify, setSessionData } from "../lib/umami";
+import { getDistinctId, identify } from "../lib/umami";
+import { useProfile } from "../profile/hooks";
 import { useTheme } from "../theme/hooks";
 
 const RECORDER_SCRIPT_ID = "umami-recorder";
 const RECORDER_SRC = "https://analytics.pablopl.dev/recorder.js";
+const UMAMI_SCRIPT_ID = "umami-analytics";
 const UMAMI_WEBSITE_ID = "63168f0e-a1cf-4ec6-a0c4-58fc7d57a0f4";
 const RECORDER_DELAY_MS = 5000;
 
@@ -37,16 +39,32 @@ function scheduleAfterIdle(callback: () => void): () => void {
 
 export default function SessionTracker() {
 	const { lang } = useLang();
-	const { theme } = useTheme();
+	const { profile, isReady: isProfileReady } = useProfile();
+	const { theme, colorScheme, lightTheme, darkTheme } = useTheme();
+	const sessionData = useMemo(
+		() => ({
+			"student-username": profile.username,
+			lang,
+			theme,
+			"theme-color-scheme": colorScheme,
+			"theme-light": lightTheme,
+			"theme-dark": darkTheme,
+		}),
+		[profile.username, lang, theme, colorScheme, lightTheme, darkTheme],
+	);
 
 	useEffect(() => {
+		if (!isProfileReady) return;
 		const id = getDistinctId();
-		if (id) identify({ id });
-	}, []);
+		if (!id) return;
 
-	useEffect(() => {
-		setSessionData({ lang, theme });
-	}, [lang, theme]);
+		const identifySession = () => identify({ id, ...sessionData });
+		identifySession();
+
+		const trackerScript = document.getElementById(UMAMI_SCRIPT_ID);
+		trackerScript?.addEventListener("load", identifySession);
+		return () => trackerScript?.removeEventListener("load", identifySession);
+	}, [isProfileReady, sessionData]);
 
 	useEffect(() => {
 		return scheduleAfterIdle(() => {

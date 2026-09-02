@@ -21,7 +21,7 @@ export default function Header() {
 	const abbr = subject ? acronym(subject.name) : "";
 
 	const subjectPath = subjectId ? `/${lang}/${subjectId}` : "";
-	const subjectLinkBase = `rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
+	const subjectLinkBase = `inline-flex h-10 items-center rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition-colors ${
 		subjectId &&
 		(
 			location.pathname === subjectPath ||
@@ -30,8 +30,8 @@ export default function Header() {
 			? "bg-accent-light text-accent-fg"
 			: "text-fg-secondary hover:text-fg"
 	}`;
-	const acronymLinkClasses = `px-1.5 py-1 sm:px-3 sm:py-1.5 ${subjectLinkBase}`;
-	const subjectLinkClasses = `px-3 py-1.5 ${subjectLinkBase}`;
+	const acronymLinkClasses = `px-1.5 sm:px-3 ${subjectLinkBase}`;
+	const subjectLinkClasses = `min-w-0 truncate px-3 ${subjectLinkBase}`;
 
 	return (
 		<header className="safe-area-top bg-surface-alt border-border border-b sm:sticky sm:top-0 sm:z-50">
@@ -61,7 +61,7 @@ export default function Header() {
 								to={`/${subjectId}`}
 								data-cuelume-hover="tick"
 								data-cuelume-press
-								className={`sm:hidden ${acronymLinkClasses}`}
+								className={`md:hidden ${acronymLinkClasses}`}
 								onClick={() => {
 									track("nav_click", {
 										target: "subject_home",
@@ -76,7 +76,7 @@ export default function Header() {
 								to={`/${subjectId}`}
 								data-cuelume-hover="tick"
 								data-cuelume-press
-								className={`hidden max-w-56 truncate sm:block ${subjectLinkClasses}`}
+								className={`hidden md:inline-flex ${subjectLinkClasses}`}
 								onClick={() => {
 									track("nav_click", {
 										target: "subject_home",

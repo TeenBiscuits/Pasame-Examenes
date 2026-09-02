@@ -9,6 +9,24 @@ Pásame Exámenes es una plataforma de estudio para que estudiantes de la FIC pr
 **Estudiante**: Persona que usa Pásame Exámenes para preparar una asignatura.
 _Evitar_: Usuario, cliente
 
+**Perfil local**: Alias local y Blobatar que se crean y guardan en el navegador de un estudiante. El alias local puede repetirse entre estudiantes y nunca es su identificador único.
+_Evitar_: Cuenta, identidad de estudiante
+
+**Alias local**: Nombre que un estudiante elige o recibe de forma aleatoria y que ve en su propio perfil. Puede contener contenido no apto para mostrarse a terceros.
+_Evitar_: Identificador de presencia, nombre público
+
+**Alias público de presencia**: Nombre que se comparte con otros estudiantes junto al Blobatar durante la presencia semanal. Solo existe cuando un estudiante pulsa `Continuar` o `Compartir este nombre` y el alias supera el filtro de contenido. No es único. El botón también guarda el alias local aunque el filtro rechace su publicación. Si un alias público pasa a ser no apto, el último alias público válido permanece hasta que caduque su presencia; `Dejar de compartir mi nombre` lo retira inmediatamente.
+_Evitar_: Alias local, identificador de estudiante
+
+**Perfil público de presencia**: Alias público de presencia y Blobatar que pueden mostrarse junto al recuento semanal. Un estudiante puede contar en el recuento sin tener un perfil público de presencia.
+_Evitar_: Perfil local, cuenta pública
+
+**Identificador anónimo de presencia**: Identificador técnico que Appwrite asigna al navegador para asociar sus visitas semanales. No se muestra, no se deriva del alias y no es el identificador de analítica.
+_Evitar_: Nombre de estudiante, identificador de Umami, cuenta visible
+
+**Estudiantes esta semana**: Recuento visible de estudiantes cuya última visita registrada ocurrió dentro de las 168 horas anteriores al momento de consulta. Es una ventana móvil; no equivale a los estudiantes que visitaron la web entre el lunes y el domingo de una semana natural, ni a los que están conectados ahora. Se calcula por sesión anónima de navegador, por lo que no garantiza personas únicas ni exige tener un perfil público de presencia.
+_Evitar_: Estudiantes conectados, estudiantes de la semana natural
+
 ### Catálogo académico
 
 **Asignatura**: Unidad académica de un grado que reúne sus temas, exámenes y preguntas. Su código oficial dentro del grado es su identidad académica; el identificador corto es una referencia de navegación.

@@ -116,8 +116,21 @@ export const en = {
 		title: "Settings",
 		open: "Open settings",
 		close: "Close settings",
+		profileSocial: "Profile & social",
+		profileSocialDescription: "Your student name.",
 		general: "General",
 		generalDescription: "Language and sound.",
+		username: "Student name",
+		playBlobatar: "Play your blobatar sound",
+		usernameDescription:
+			"Use 3 to 24 characters. Share it with the button when you are ready.",
+		shareUsername: "Share this name",
+		stopSharingUsername: "Stop sharing my name",
+		usernameSaved: "Name saved.",
+		usernameSaveError: "Could not save this name. Try again.",
+		showStudyPresenceBadge: "Show the student counter",
+		showStudyPresenceBadgeDescription:
+			'Shows "students this week" on every page.',
 		appearance: "Appearance",
 		appearanceDescription: "Choose how the app looks.",
 		menuNavigation: "Settings sections",
@@ -180,6 +193,23 @@ export const en = {
 			"answer-e": "Choose option E",
 		},
 	},
+	presence: {
+		studentsThisWeek: "students this week",
+		moveAvatar: "Move avatar",
+		moveAvatarHint:
+			"Drag an avatar to move it within the quote, or use the arrow keys to reposition it.",
+	},
+	profileWelcome: {
+		title: "What should we call you?",
+		description: "Choose a student name to join this week's group.",
+		username: "Student name",
+		continue: "Continue",
+		notNow: "Not for now…",
+		notCookieBanner: "This is not a cookie banner, by the way",
+		close: "Close name welcome",
+		invalidUsername: "Use 3 to 24 letters, numbers, or underscores.",
+		sharingFailed: "We couldn't share it. Try again later.",
+	},
 	appUpdate: {
 		message: "Updated to the latest version {version}",
 		dismiss: "Dismiss update notice",
@@ -215,9 +245,9 @@ export const en = {
 		legalText: "Legal text",
 		linksLabel: "Legal and project links",
 		privacyTitle: "Privacy Policy",
-		privacyLastUpdated: "Last updated: 8 July 2026",
+		privacyLastUpdated: "Last updated: August 31, 2026",
 		privacySummary:
-			"Pásame Exámenes is an educational, open-source website with no user accounts and no own backend. It uses local browser storage for preferences and study progress, and analytics to understand usage, performance, and errors.",
+			"Pásame Exámenes is an educational, open-source website with no sign-up or visible accounts. It keeps preferences and study progress in the browser, uses Appwrite for weekly presence, and analyses use to find errors and improve the website.",
 		privacySections: [
 			{
 				title: "Controller",
@@ -228,13 +258,14 @@ export const en = {
 			{
 				title: "Data We Process",
 				paragraphs: [
-					"The website may process technical access data, local preference data, local study progress, and analytics data.",
+					"The website may process technical access data, local preference data, local study progress, weekly presence, and analytics data.",
 				],
 				items: [
 					"Technical data: IP address, browser, device, requested URL, referrer, language, date and time, and similar server or CDN logs.",
-					"Local preferences: selected language, selected theme, interface sound volume, selected question sources, viewed tours, GitHub star popup state, and recently visited subjects.",
+					"Local preferences: student name, selected language, selected theme, interface sound volume, selected question sources, viewed tours, GitHub star popup state, and recently visited subjects.",
 					"Study progress stored locally: attempts, scores, topics, and subject progress saved in your browser.",
-					"Analytics data: page views, interaction events, performance data, approximate device/browser information, and an anonymous local identifier for Umami.",
+					"Weekly presence: last-visit time linked to an anonymous Appwrite technical identifier. The student name is only published when you choose to share it and it passes the content filter; the Umami identifier is not stored.",
+					"Analytics data: page views, interaction events, performance data, approximate device/browser information, the non-unique student name, appearance and language preferences, and an anonymous local identifier for Umami.",
 					"Session replays and heatmaps in the self-hosted Umami instance, enabled with a random 30% sample rate.",
 					"Temporary GitHub star-count cache stored in session storage after requesting public repository data from GitHub.",
 				],
@@ -248,6 +279,7 @@ export const en = {
 					"Provide the website and route requests through hosting and CDN infrastructure.",
 					"Remember your language, theme, recent subjects, tours, and dismissed prompts.",
 					"Save study progress locally so you can continue practicing on the same device.",
+					"Show the weekly student count and Blobatars.",
 					"Measure usage, performance, errors, navigation patterns, and feature interactions.",
 					"Improve content, usability, accessibility, and reliability.",
 					"Prevent abuse, diagnose technical issues, and maintain security.",
@@ -265,12 +297,14 @@ export const en = {
 				paragraphs: [
 					"Most study-related data is stored only in your browser through localStorage or sessionStorage. It is not part of a user account and may be deleted by clearing this website's data in your browser settings.",
 					"The anonymous Umami identifier is also stored locally as umami_uid. Deleting this site's local data resets that identifier and removes locally stored preferences and progress.",
+					"Appwrite creates an anonymous session to distinguish visits from the same browser. It does not require sign-up, but it cannot be recovered if the browser clears its data.",
 				],
 			},
 			{
 				title: "Analytics, Replays, and Heatmaps",
 				paragraphs: [
 					"Analytics are collected with a self-hosted Umami instance at analytics.pablopl.dev. Umami is operated by the controller for this website; data is not sent to Umami Software as a cloud analytics provider.",
+					"The student name is sent as a session attribute alongside the anonymous local Umami identifier; it is not used as a unique identifier. The active language and appearance preferences are also sent.",
 					"Umami is configured to respect Do Not Track for the standard analytics script. Session replays and heatmaps are used to understand usability problems and are sampled randomly at 30% of visits.",
 					"Ahrefs Analytics is also used to understand traffic and website performance. Ahrefs processes data according to its own privacy policy.",
 				],
@@ -278,7 +312,7 @@ export const en = {
 			{
 				title: "Retention",
 				paragraphs: [
-					"Local browser data is kept until you delete it or your browser removes it. Analytics and technical data are kept for the time necessary to produce statistics, improve the service, diagnose incidents, and maintain security. Aggregated or anonymized data may be kept longer where it no longer identifies a user.",
+					"Weekly presence data is deleted from Appwrite after eight days. Local browser data is kept until you delete it or your browser removes it. Analytics and technical data are kept for the time necessary to produce statistics, improve the service, diagnose incidents, and maintain security. Aggregated or anonymized data may be kept longer where it no longer identifies a user.",
 				],
 			},
 			{
@@ -318,6 +352,14 @@ export const en = {
 				href: "https://www.cloudflare.com/privacypolicy/",
 				linkLabel: "Privacy policy",
 				target: "cloudflare_privacy",
+			},
+			{
+				name: "Appwrite",
+				description:
+					"Weekly-presence backend that stores the last visit for each anonymous session and only shows names shared voluntarily.",
+				href: "https://appwrite.io/privacy",
+				linkLabel: "Privacy policy",
+				target: "appwrite_privacy",
 			},
 			{
 				name: "Umami",

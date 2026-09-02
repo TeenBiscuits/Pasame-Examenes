@@ -10,6 +10,43 @@ interface ContentPolicyIconProps {
 	variant?: "policy" | "verified";
 }
 
+function ContentPolicyGlyph({
+	isAuthorized,
+	isVerified,
+	className,
+	label,
+}: {
+	isAuthorized: boolean;
+	isVerified: boolean;
+	className: string;
+	label: string;
+}) {
+	if (isAuthorized && isVerified) {
+		return <Verified className={className} role="img" aria-label={label} />;
+	}
+
+	if (isAuthorized) {
+		return (
+			<GraduationCap
+				size={24}
+				weight="Filled"
+				className={className}
+				role="img"
+				aria-label={label}
+			/>
+		);
+	}
+
+	return (
+		<Users3
+			className={className}
+			role="img"
+			weight="Filled"
+			aria-label={label}
+		/>
+	);
+}
+
 export default function ContentPolicyIcon({
 	subject,
 	className = "",
@@ -24,28 +61,12 @@ export default function ContentPolicyIcon({
 		? t.contentPolicy.authorized
 		: t.contentPolicy.community;
 	const useVerifiedIcon = variant === "verified";
-	const icon = isAuthorized ? (
-		useVerifiedIcon ? (
-			<Verified
-				className={svgOnly ? className : "size-4"}
-				role="img"
-				aria-label={label}
-			/>
-		) : (
-			<GraduationCap
-				size={24}
-				weight="Filled"
-				className={svgOnly ? className : "size-4"}
-				role="img"
-				aria-label={label}
-			/>
-		)
-	) : (
-		<Users3
+	const icon = (
+		<ContentPolicyGlyph
+			isAuthorized={isAuthorized}
+			isVerified={useVerifiedIcon}
 			className={svgOnly ? className : "size-4"}
-			role="img"
-			weight="Filled"
-			aria-label={label}
+			label={label}
 		/>
 	);
 

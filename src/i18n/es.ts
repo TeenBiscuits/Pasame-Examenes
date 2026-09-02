@@ -118,8 +118,22 @@ export const es: Translations = {
 		title: "Ajustes",
 		open: "Abrir ajustes",
 		close: "Cerrar ajustes",
+		profileSocial: "Perfil y social",
+		profileSocialDescription: "Tu nombre de estudiante.",
 		general: "General",
 		generalDescription: "Idioma y sonido.",
+		username: "Nombre de estudiante",
+		playBlobatar: "Hacer sonar tu blobatar",
+		usernameDescription:
+			"Entre 3 y 24 caracteres. Compártelo con el botón cuando quieras.",
+		shareUsername: "Compartir este nombre",
+		stopSharingUsername: "Dejar de compartir mi nombre",
+		usernameSaved: "Nombre guardado.",
+		usernameSaveError:
+			"No se ha podido guardar este nombre. Inténtalo de nuevo.",
+		showStudyPresenceBadge: "Mostrar el contador de estudiantes",
+		showStudyPresenceBadgeDescription:
+			'Muestra "estudiantes esta semana" en todas las páginas.',
 		appearance: "Apariencia",
 		appearanceDescription: "Elige cómo se ve la aplicación.",
 		menuNavigation: "Secciones de ajustes",
@@ -183,6 +197,24 @@ export const es: Translations = {
 			"answer-e": "Elegir opción E",
 		},
 	},
+	presence: {
+		studentsThisWeek: "estudiantes esta semana",
+		moveAvatar: "Mover avatar",
+		moveAvatarHint:
+			"Arrastra un avatar para moverlo dentro de la cita, o usa las flechas para recolocarlo.",
+	},
+	profileWelcome: {
+		title: "¿Cómo quieres que te llamemos?",
+		description:
+			"Elige un nombre de estudiante para unirte al grupo de esta semana.",
+		username: "Nombre de estudiante",
+		continue: "Continuar",
+		notNow: "Por ahora no…",
+		notCookieBanner: "Esto no es un banner de Cookies por cierto",
+		close: "Cerrar bienvenida de nombre",
+		invalidUsername: "Usa entre 3 y 24 letras, números o guiones bajos.",
+		sharingFailed: "No hemos podido compartirlo. Inténtalo de nuevo más tarde.",
+	},
 	appUpdate: {
 		message: "Actualizado a la última versión {version}",
 		dismiss: "Cerrar aviso de actualización",
@@ -218,9 +250,9 @@ export const es: Translations = {
 		legalText: "Texto legal",
 		linksLabel: "Enlaces legales y del proyecto",
 		privacyTitle: "Política de privacidad",
-		privacyLastUpdated: "Última actualización: 8 de julio de 2026",
+		privacyLastUpdated: "Última actualización: 31 de agosto de 2026",
 		privacySummary:
-			"Pásame Exámenes es una web educativa y de código abierto, sin cuentas de usuario y sin backend propio. Usa almacenamiento local del navegador para preferencias y progreso de estudio, y analítica para entender uso, rendimiento y errores.",
+			"Pásame Exámenes es una web educativa y de código abierto, sin registro ni cuentas visibles. Guarda preferencias y progreso en el navegador, usa Appwrite para la presencia semanal y analiza el uso para detectar errores y mejorar la web.",
 		privacySections: [
 			{
 				title: "Responsable",
@@ -231,13 +263,14 @@ export const es: Translations = {
 			{
 				title: "Datos que tratamos",
 				paragraphs: [
-					"La web puede tratar datos técnicos de acceso, datos locales de preferencias, progreso local de estudio y datos de analítica.",
+					"La web puede tratar datos técnicos de acceso, datos locales de preferencias, progreso local de estudio, presencia semanal y datos de analítica.",
 				],
 				items: [
 					"Datos técnicos: dirección IP, navegador, dispositivo, URL solicitada, referrer, idioma, fecha y hora, y registros similares de servidor o CDN.",
-					"Preferencias locales: idioma seleccionado, apariencia seleccionada, volumen de los sonidos de la interfaz, fuentes de preguntas seleccionadas, tours vistos, estado del popup de GitHub y asignaturas visitadas recientemente.",
+					"Preferencias locales: nombre de estudiante, idioma seleccionado, apariencia seleccionada, volumen de los sonidos de la interfaz, fuentes de preguntas seleccionadas, tours vistos, estado del popup de GitHub y asignaturas visitadas recientemente.",
 					"Progreso de estudio almacenado localmente: intentos, puntuaciones, temas y progreso por asignatura guardados en tu navegador.",
-					"Datos de analítica: páginas vistas, eventos de interacción, rendimiento, información aproximada de dispositivo/navegador y un identificador anónimo local para Umami.",
+					"Presencia semanal: fecha de la última visita asociada a un identificador técnico anónimo de Appwrite. El nombre de estudiante solo se publica si eliges compartirlo y supera el filtro de contenido; no se guarda el identificador de Umami.",
+					"Datos de analítica: páginas vistas, eventos de interacción, rendimiento, información aproximada de dispositivo/navegador, el nombre de estudiante no único, las preferencias de apariencia e idioma y un identificador anónimo local para Umami.",
 					"Replays de sesión y heatmaps en la instancia self-hosted de Umami, activados con un muestreo aleatorio del 30%.",
 					"Caché temporal del contador de estrellas de GitHub en sessionStorage tras solicitar datos públicos del repositorio a GitHub.",
 				],
@@ -251,6 +284,7 @@ export const es: Translations = {
 					"Prestar la web y enrutar solicitudes mediante infraestructura de hosting y CDN.",
 					"Recordar tu idioma, apariencia, asignaturas recientes, tours y avisos descartados.",
 					"Guardar progreso de estudio localmente para que puedas continuar practicando en el mismo dispositivo.",
+					"Mostrar el recuento y los Blobatars de estudiantes esta semana.",
 					"Medir uso, rendimiento, errores, patrones de navegación e interacciones con funciones.",
 					"Mejorar contenido, usabilidad, accesibilidad y fiabilidad.",
 					"Prevenir abuso, diagnosticar problemas técnicos y mantener la seguridad.",
@@ -268,12 +302,14 @@ export const es: Translations = {
 				paragraphs: [
 					"La mayoría de datos relacionados con el estudio se almacenan solo en tu navegador mediante localStorage o sessionStorage. No forman parte de una cuenta de usuario y pueden eliminarse borrando los datos de este sitio en la configuración del navegador.",
 					"El identificador anónimo de Umami también se guarda localmente como umami_uid. Al borrar los datos locales de este sitio se reinicia ese identificador y se eliminan preferencias y progreso guardados localmente.",
+					"Appwrite crea una sesión anónima para distinguir visitas del mismo navegador. No requiere registro, pero no puede recuperarse si el navegador borra sus datos.",
 				],
 			},
 			{
 				title: "Analítica, replays y heatmaps",
 				paragraphs: [
 					"La analítica se recoge con una instancia self-hosted de Umami en analytics.pablopl.dev. Umami es operado por el responsable de esta web; los datos no se envían a Umami Software como proveedor cloud de analítica.",
+					"El nombre de estudiante se envía como atributo de sesión junto con el identificador anónimo local de Umami; no se usa como identificador único. También se envían el idioma y las preferencias de apariencia activas.",
 					"Umami está configurado para respetar Do Not Track en el script estándar de analítica. Los replays de sesión y heatmaps se usan para entender problemas de usabilidad y se muestrean aleatoriamente en el 30% de las visitas.",
 					"También se usa Ahrefs Analytics para entender tráfico y rendimiento de la web. Ahrefs trata datos conforme a su propia política de privacidad.",
 				],
@@ -281,7 +317,7 @@ export const es: Translations = {
 			{
 				title: "Conservación",
 				paragraphs: [
-					"Los datos locales del navegador se conservan hasta que los elimines o hasta que el navegador los borre. Los datos técnicos y de analítica se conservan durante el tiempo necesario para obtener estadísticas, mejorar el servicio, diagnosticar incidencias y mantener la seguridad. Los datos agregados o anonimizados pueden conservarse durante más tiempo cuando ya no identifican a una persona usuaria.",
+					"Los datos de presencia semanal se eliminan de Appwrite al superar ocho días. Los datos locales del navegador se conservan hasta que los elimines o hasta que el navegador los borre. Los datos técnicos y de analítica se conservan durante el tiempo necesario para obtener estadísticas, mejorar el servicio, diagnosticar incidencias y mantener la seguridad. Los datos agregados o anonimizados pueden conservarse durante más tiempo cuando ya no identifican a una persona usuaria.",
 				],
 			},
 			{
@@ -321,6 +357,14 @@ export const es: Translations = {
 				href: "https://www.cloudflare.com/privacypolicy/",
 				linkLabel: "Política de privacidad",
 				target: "cloudflare_privacy",
+			},
+			{
+				name: "Appwrite",
+				description:
+					"Backend de presencia semanal: almacena la última visita de cada sesión anónima y solo muestra los nombres que se han compartido voluntariamente.",
+				href: "https://appwrite.io/privacy",
+				linkLabel: "Política de privacidad",
+				target: "appwrite_privacy",
 			},
 			{
 				name: "Umami",
