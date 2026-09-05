@@ -128,6 +128,16 @@ public/           Assets públicos e imágenes OG
 scripts/          Generadores de build y herramientas auxiliares
 ```
 
+## Estrellitas!
+
+<a href="https://www.star-history.com/?repos=teenbiscuits%2Fpasame-examenes&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=teenbiscuits/pasame-examenes&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=teenbiscuits/pasame-examenes&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=teenbiscuits/pasame-examenes&type=date&legend=top-left" />
+ </picture>
+</a>
+
 ## Licencia
 
 El código de la plataforma se distribuye bajo la licencia **Apache 2.0**. Consulta [LICENSE.md](./LICENSE.md) para el texto completo.
