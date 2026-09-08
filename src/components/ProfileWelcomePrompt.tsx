@@ -62,6 +62,11 @@ export default function ProfileWelcomePrompt() {
 	}, [isReady, profile.hasCompletedNamePrompt]);
 
 	useEffect(() => {
+		if (!profile.hasCompletedNamePrompt || !isOpen) return;
+		setIsOpen(false);
+	}, [isOpen, profile.hasCompletedNamePrompt]);
+
+	useEffect(() => {
 		if (!isOpen) return;
 		function handleKeyDown(event: KeyboardEvent) {
 			if (event.key !== "Escape") return;
