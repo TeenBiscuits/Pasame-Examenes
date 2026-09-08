@@ -57,7 +57,11 @@ export default function StudyPresence() {
 	return (
 		<aside
 			className="border-border bg-surface-alt/95 fixed right-4 bottom-4 z-40 flex items-center gap-3 rounded-xl border px-3 py-2 shadow-lg backdrop-blur-sm"
-			aria-label={`${studentCount} ${t.presence.studentsThisWeek}`}
+			aria-label={
+				studentCount === null
+					? t.presence.studentsThisWeek
+					: `${studentCount} ${t.presence.studentsThisWeek}`
+			}
 		>
 			<div className="flex -space-x-2" aria-hidden="true">
 				{visibleStudents.map((student, index) => (
@@ -82,7 +86,7 @@ export default function StudyPresence() {
 			</div>
 			<p className="text-fg-secondary text-xs font-medium">
 				<span className="text-fg font-semibold tabular-nums">
-					{studentCount}
+					{studentCount ?? "—"}
 				</span>{" "}
 				{t.presence.studentsThisWeek}
 			</p>

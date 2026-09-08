@@ -5,7 +5,7 @@ export type WeeklyStudent = {
 };
 
 export type WeeklyPresence = {
-	studentCount: number;
+	studentCount: number | null;
 	students: readonly WeeklyStudent[];
 	hasSummary: boolean;
 };

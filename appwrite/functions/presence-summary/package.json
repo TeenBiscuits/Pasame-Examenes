@@ -3,6 +3,8 @@
 	"private": true,
 	"type": "module",
 	"dependencies": {
+		"@2toad/profanity": "^3.3.0",
+		"@umami/api-client": "^0.80.0",
 		"node-appwrite": "^28.0.0"
 	}
 }

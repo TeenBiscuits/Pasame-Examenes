@@ -21,10 +21,10 @@ _Evitar_: Alias local, identificador de estudiante
 **Perfil público de presencia**: Alias público de presencia y Blobatar que pueden mostrarse junto al recuento semanal. Un estudiante puede contar en el recuento sin tener un perfil público de presencia.
 _Evitar_: Perfil local, cuenta pública
 
-**Identificador anónimo de presencia**: Identificador técnico que Appwrite asigna al navegador para asociar sus visitas semanales. No se muestra, no se deriva del alias y no es el identificador de analítica.
+**Identificador anónimo de presencia**: Identificador técnico que Appwrite asigna al navegador para asociar su sesión de presencia y sus datos públicos de Blobatar. No se muestra, no se deriva del alias y no es el identificador de analítica.
 _Evitar_: Nombre de estudiante, identificador de Umami, cuenta visible
 
-**Estudiantes esta semana**: Recuento visible de estudiantes cuya última visita registrada ocurrió dentro de las 168 horas anteriores al momento de consulta. Es una ventana móvil; no equivale a los estudiantes que visitaron la web entre el lunes y el domingo de una semana natural, ni a los que están conectados ahora. Se calcula por sesión anónima de navegador, por lo que no garantiza personas únicas ni exige tener un perfil público de presencia.
+**Estudiantes esta semana**: Recuento visible de visitantes únicos que la analítica ha identificado dentro de las 168 horas anteriores al momento de consulta. Es una ventana móvil; no equivale a los estudiantes que visitaron la web entre el lunes y el domingo de una semana natural, ni a los que están conectados ahora. Es una aproximación basada en sesiones anónimas, por lo que no garantiza personas únicas ni exige tener un perfil público de presencia.
 _Evitar_: Estudiantes conectados, estudiantes de la semana natural
 
 ### Catálogo académico

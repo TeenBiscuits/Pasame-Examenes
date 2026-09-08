@@ -78,7 +78,10 @@ function parseStudent(
 function parseSummary(responseBody: string): WeeklyPresence | null {
 	try {
 		const value = JSON.parse(responseBody) as Record<string, unknown>;
-		if (!Array.isArray(value.students) || !Number.isInteger(value.count)) {
+		if (
+			!Array.isArray(value.students) ||
+			(value.count !== null && !Number.isInteger(value.count))
+		) {
 			return null;
 		}
 
@@ -91,9 +94,10 @@ function parseSummary(responseBody: string): WeeklyPresence | null {
 			sameAliasCount.set(student.username, occurrence + 1);
 			return [{ ...student, profileKey: `${student.username}-${occurrence}` }];
 		});
-		const studentCount = Math.max(0, Number(value.count));
+		const studentCount =
+			value.count === null ? null : Math.max(0, Number(value.count));
 		return {
-			studentCount: Math.max(studentCount, students.length),
+			studentCount,
 			students,
 			hasSummary: true,
 		};
@@ -151,7 +155,7 @@ export async function recordWeeklyVisit(
 			: JSON.stringify({ action: action.type });
 	if (!body) return null;
 
-	const execution = await execute(config.heartbeatFunctionId, body);
+	const execution = await execute(config.functionId, body);
 	if (!execution) return null;
 	if (
 		execution.responseStatusCode >= 200 &&
@@ -168,7 +172,7 @@ export async function getWeeklyPresence(): Promise<WeeklyPresence | null> {
 	const config = getAppwritePresenceConfig();
 	if (!config) return null;
 
-	const execution = await execute(config.summaryFunctionId, "{}");
+	const execution = await execute(config.functionId, '{"action":"summary"}');
 	if (
 		!execution ||
 		execution.responseStatusCode < 200 ||

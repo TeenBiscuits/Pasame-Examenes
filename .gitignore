@@ -12,6 +12,7 @@ dist-ssr
 .vinxi
 __unconfig*
 todos.json
+.firecrawl/
 
 # Pásame Exámenes .gitignore
 .vercel
