@@ -93,7 +93,7 @@ function parseSummary(responseBody: string): WeeklyPresence | null {
 		});
 		const studentCount = Math.max(0, Number(value.count));
 		return {
-			studentCount: Math.max(studentCount, students.length),
+			studentCount,
 			students,
 			hasSummary: true,
 		};
@@ -151,7 +151,7 @@ export async function recordWeeklyVisit(
 			: JSON.stringify({ action: action.type });
 	if (!body) return null;
 
-	const execution = await execute(config.heartbeatFunctionId, body);
+	const execution = await execute(config.functionId, body);
 	if (!execution) return null;
 	if (
 		execution.responseStatusCode >= 200 &&
@@ -168,7 +168,7 @@ export async function getWeeklyPresence(): Promise<WeeklyPresence | null> {
 	const config = getAppwritePresenceConfig();
 	if (!config) return null;
 
-	const execution = await execute(config.summaryFunctionId, "{}");
+	const execution = await execute(config.functionId, '{"action":"summary"}');
 	if (
 		!execution ||
 		execution.responseStatusCode < 200 ||

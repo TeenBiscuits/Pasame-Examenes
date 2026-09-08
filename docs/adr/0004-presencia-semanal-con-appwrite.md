@@ -1,8 +1,10 @@
 ---
-status: accepted
+status: superseded
 ---
 
 # Presencia semanal con Appwrite
+
+> El recuento agregado de visitantes fue sustituido por [ADR 0005](./0005-recuento-semanal-de-visitantes-con-umami.md). Appwrite sigue siendo la fuente de los alias públicos y de la sesión técnica que permite gestionarlos.
 
 Pásame Exámenes guarda la última visita y un identificador anónimo de presencia en una tabla privada de Appwrite. Un alias público solo se guarda tras una acción explícita del estudiante y si supera el filtro de contenido; el alias local puede ser distinto y no se comparte. Un alias que luego no supera el filtro conserva su última versión pública hasta que caduque, salvo que el estudiante el retire explícitamente. El navegador crea una sesión anónima de Appwrite y solo puede invocar Functions que registran una visita o devuelven el resumen semanal. El alias no es una clave y el identificador local de Umami no se envía a Appwrite.
 

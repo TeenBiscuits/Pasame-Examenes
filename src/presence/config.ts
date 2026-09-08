@@ -1,8 +1,7 @@
 type AppwritePresenceConfig = {
 	endpoint: string;
 	projectId: string;
-	heartbeatFunctionId: string;
-	summaryFunctionId: string;
+	functionId: string;
 };
 
 function getRequiredPublicEnv(name: keyof ImportMetaEnv) {
@@ -13,16 +12,13 @@ function getRequiredPublicEnv(name: keyof ImportMetaEnv) {
 export function getAppwritePresenceConfig(): AppwritePresenceConfig | null {
 	const endpoint = getRequiredPublicEnv("VITE_APPWRITE_ENDPOINT");
 	const projectId = getRequiredPublicEnv("VITE_APPWRITE_PROJECT_ID");
-	const heartbeatFunctionId = getRequiredPublicEnv(
-		"VITE_APPWRITE_PRESENCE_HEARTBEAT_FUNCTION_ID",
-	);
-	const summaryFunctionId = getRequiredPublicEnv(
-		"VITE_APPWRITE_PRESENCE_SUMMARY_FUNCTION_ID",
-	);
+	const functionId =
+		getRequiredPublicEnv("VITE_APPWRITE_PRESENCE_FUNCTION_ID") ??
+		getRequiredPublicEnv("VITE_APPWRITE_PRESENCE_SUMMARY_FUNCTION_ID");
 
-	if (!endpoint || !projectId || !heartbeatFunctionId || !summaryFunctionId) {
+	if (!endpoint || !projectId || !functionId) {
 		return null;
 	}
 
-	return { endpoint, projectId, heartbeatFunctionId, summaryFunctionId };
+	return { endpoint, projectId, functionId };
 }
