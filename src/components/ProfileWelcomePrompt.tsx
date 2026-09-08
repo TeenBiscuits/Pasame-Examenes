@@ -27,7 +27,6 @@ export default function ProfileWelcomePrompt() {
 	} = useProfile();
 	const { shareUsername } = usePresence();
 	const dialogRef = useRef<HTMLDialogElement>(null);
-	const [isOpen, setIsOpen] = useState(false);
 	const [usernameDraft, setUsernameDraft] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [submitError, setSubmitError] = useState<SubmitError>(null);
@@ -43,7 +42,8 @@ export default function ProfileWelcomePrompt() {
 					document.visibilityState === "visible" &&
 					!document.querySelector("dialog[open]")
 				) {
-					setIsOpen(true);
+					const dialog = dialogRef.current;
+					if (dialog && !dialog.open) dialog.show();
 				}
 			};
 			if ("requestIdleCallback" in window) {
@@ -62,9 +62,8 @@ export default function ProfileWelcomePrompt() {
 	}, [isReady, profile.hasCompletedNamePrompt]);
 
 	useEffect(() => {
-		if (!isOpen) return;
 		function handleKeyDown(event: KeyboardEvent) {
-			if (event.key !== "Escape") return;
+			if (event.key !== "Escape" || !dialogRef.current?.open) return;
 			event.preventDefault();
 			dismiss();
 		}
@@ -73,15 +72,15 @@ export default function ProfileWelcomePrompt() {
 	});
 
 	useEffect(() => {
+		if (!profile.hasCompletedNamePrompt) return;
 		const dialog = dialogRef.current;
-		if (!dialog) return;
-		if (isOpen && !dialog.open) dialog.show();
-		if (!isOpen && dialog.open) dialog.close();
-	}, [isOpen]);
+		if (dialog?.open) dialog.close();
+	}, [profile.hasCompletedNamePrompt]);
 
 	function dismiss() {
 		dismissNamePrompt();
-		setIsOpen(false);
+		const dialog = dialogRef.current;
+		if (dialog?.open) dialog.close();
 		playSound("droplet");
 	}
 
@@ -102,7 +101,8 @@ export default function ProfileWelcomePrompt() {
 			}
 			setNameShared(result.isPublic);
 			completeNamePrompt();
-			setIsOpen(false);
+			const dialog = dialogRef.current;
+			if (dialog?.open) dialog.close();
 			playSound("chime");
 		} catch {
 			setSubmitError("sharing");
