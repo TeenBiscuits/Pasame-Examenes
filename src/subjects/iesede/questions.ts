@@ -3,7 +3,7 @@ import type { Question } from "../../data/types";
 export const questions: Question[] = [
 	{
 		id: "q1",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -15,11 +15,11 @@ export const questions: Question[] = [
 			"c) Si se cambia la base de datos instalada en la capa 4, habr\u00eda que realizar las modificaciones pertinentes en el c\u00f3digo y reinstalar el software de las capas 2 y 3.",
 			"d) Ninguna de las anteriores.",
 		],
-		correctAnswer: "d", // Placeholder
+		correctAnswer: "d",
 	},
 	{
 		id: "q2",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -31,11 +31,11 @@ export const questions: Question[] = [
 			"c) JDBC y Servlets.",
 			"d) Apache Thrift y HTTPClient.",
 		],
-		correctAnswer: "a", // Placeholder
+		correctAnswer: "a",
 	},
 	{
 		id: "q3",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -47,11 +47,11 @@ export const questions: Question[] = [
 			"c) Todas las anteriores.",
 			"d) Ninguna de las anteriores.",
 		],
-		correctAnswer: "b", // Placeholder
+		correctAnswer: "b",
 	},
 	{
 		id: "q4",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -63,11 +63,11 @@ export const questions: Question[] = [
 			"c) El m\u00e9todo `getConnection` del `dataSource` (estrategia 2) lanzar\u00e1 siempre una excepci\u00f3n si no queda ninguna conexi\u00f3n libre en el pool.",
 			"d) La b) y la c) son correctas.",
 		],
-		correctAnswer: "b", // Placeholder
+		correctAnswer: "b",
 	},
 	{
 		id: "q5",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -79,11 +79,11 @@ export const questions: Question[] = [
 			"c) Todas las anteriores.",
 			"d) Ninguna de las anteriores.",
 		],
-		correctAnswer: "d", // Placeholder
+		correctAnswer: "d",
 	},
 	{
 		id: "q6",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -95,11 +95,11 @@ export const questions: Question[] = [
 			"c) Todas las anteriores.",
 			"d) Ninguna de las anteriores.",
 		],
-		correctAnswer: "c", // Placeholder
+		correctAnswer: "c",
 	},
 	{
 		id: "q7",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -111,11 +111,11 @@ export const questions: Question[] = [
 			"c) Todas las anteriores.",
 			"d) Ninguna de las anteriores.",
 		],
-		correctAnswer: "b", // Placeholder
+		correctAnswer: "d",
 	},
 	{
 		id: "q8",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -127,11 +127,11 @@ export const questions: Question[] = [
 			"c) Corresponde a la capa Servicios Thrift.",
 			"d) Corresponde a la capa Acceso a Servicios.",
 		],
-		correctAnswer: "a", // Placeholder
+		correctAnswer: "a",
 	},
 	{
 		id: "q9",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -143,11 +143,11 @@ export const questions: Question[] = [
 			"c) Durante la ejecuci\u00f3n de las pruebas es posible utilizar el `DataSource` proporcionado por Jetty o por Tomcat, a los que se accede por JNDI, dependiendo del valor de una propiedad del fichero de configuraci\u00f3n `ConfigurationParameters.properties` presente en `src/test/resources`.",
 			"d) Ninguna de las anteriores.",
 		],
-		correctAnswer: "d", // Placeholder
+		correctAnswer: "d",
 	},
 	{
 		id: "q10",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -159,11 +159,11 @@ export const questions: Question[] = [
 			"c) Todas las anteriores.",
 			"d) Ninguna de las anteriores.",
 		],
-		correctAnswer: "a", // Placeholder
+		correctAnswer: "a",
 	},
 	{
 		id: "q11",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -175,11 +175,11 @@ export const questions: Question[] = [
 			"c) Convierte un DTO (Data Transfer Object) utilizado en la capa Acceso a Servicios, a un \u00e1rbol Jackson (devuelve el nodo ra\u00edz del \u00e1rbol).",
 			"d) Convierte un \u00e1rbol Jackson (recibe su nodo ra\u00edz) a un DTO utilizado en la capa Modelo.",
 		],
-		correctAnswer: "b", // Placeholder
+		correctAnswer: "b",
 	},
 	{
 		id: "q12",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -191,11 +191,11 @@ export const questions: Question[] = [
 			"c) El servicio permitir\u00e1 reemplazar la representaci\u00f3n de un libro invocando el URL del recurso individual libro (e.g. `http://www.servicename.com/books/123`) con el m\u00e9todo PUT e incluyendo los nuevos datos del libro en un documento JSON incluido en el cuerpo de la petici\u00f3n.",
 			"d) El servicio permitir\u00e1 reemplazar la representaci\u00f3n de un libro invocando el URL del recurso colecci\u00f3n libros (e.g. `http://www.servicename.com/books/`) con el m\u00e9todo PUT e incluyendo el identificador y los nuevos datos del libro en un documento JSON incluido en el cuerpo de la petici\u00f3n.",
 		],
-		correctAnswer: "c", // Placeholder
+		correctAnswer: "c",
 	},
 	{
 		id: "q13",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -207,11 +207,11 @@ export const questions: Question[] = [
 			"c) En la respuesta HTTP se indicar\u00e1 el c\u00f3digo de respuesta `500 Internal Error` para indicar que la petici\u00f3n fall\u00f3 debido a un error interno.",
 			"d) En la respuesta HTTP se indicar\u00e1 el c\u00f3digo `404 Not Found` para indicar que no se encontr\u00f3 la base de datos.",
 		],
-		correctAnswer: "c", // Placeholder
+		correctAnswer: "c",
 	},
 	{
 		id: "q14",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -223,11 +223,11 @@ export const questions: Question[] = [
 			"c) El intermediario NO reintentar\u00e1 una petici\u00f3n `PUT http://www.servicename.com/books/1234` que ha devuelto el c\u00f3digo de respuesta `500 Internal Error`.",
 			"d) El intermediario NO reintentar\u00e1 una petici\u00f3n `DELETE http://www.servicename.com/books/1234` que ha devuelto el c\u00f3digo de respuesta `500 Internal Error`.",
 		],
-		correctAnswer: "a", // Placeholder
+		correctAnswer: "a",
 	},
 	{
 		id: "q15",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -239,11 +239,11 @@ export const questions: Question[] = [
 			"c) Es un fragmento de un Servlet de la capa Servicios REST que procesa una petici\u00f3n DELETE y env\u00eda un c\u00f3digo de respuesta 204 (`HttpStatus.SC_NO_CONTENT`) para indicar que no devuelve nada en el cuerpo de la respuesta.",
 			"d) Es un fragmento de un Servlet de la capa Servicios REST que procesa una petici\u00f3n DELETE cuyo cuerpo debe estar vac\u00edo (`HttpStatus.SC_NO_CONTENT`) para que se procese correctamente.",
 		],
-		correctAnswer: "b", // Placeholder
+		correctAnswer: "b",
 	},
 	{
 		id: "q16",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -255,11 +255,11 @@ export const questions: Question[] = [
 			"c) No hay que declarar en el fichero `web.xml` los servlets que heredan de `RestHttpServletTemplate`, puesto que ya est\u00e1 declarada su superclase.",
 			"d) Si un servlet hereda de `RestHttpServletTemplate` y no se desea que procese peticiones DELETE, no es necesario redefinir el m\u00e9todo `processDelete`, puesto que la implementaci\u00f3n por defecto de `processDelete` en `RestHttpServletTemplate` devuelve un c\u00f3digo de respuesta indicando que esa operaci\u00f3n no est\u00e1 implementada.",
 		],
-		correctAnswer: "c", // Placeholder
+		correctAnswer: "c",
 	},
 	{
 		id: "q17",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -271,11 +271,11 @@ export const questions: Question[] = [
 			"c) En cuanto a rendimiento, la invocaci\u00f3n de una operaci\u00f3n remota es similar a la invocaci\u00f3n de un m\u00e9todo de una librer\u00eda local.",
 			"d) Cambios en la implementaci\u00f3n del servidor no obligan a regenerar el stub si no cambia nada en la interfaz del servicio.",
 		],
-		correctAnswer: "d", // Placeholder
+		correctAnswer: "d",
 	},
 	{
 		id: "q18",
-		examId: "examen_recopilatorio",
+		examId: "recopilacion_012026",
 		topic: "general",
 		type: "mc",
 		points: 1,
@@ -287,6 +287,6 @@ export const questions: Question[] = [
 			"c) El tipo `ThriftInputValidationException` debe definirse con la palabra reservada `exception` (en lugar de `struct`).",
 			"d) La a) y la c) son correctas.",
 		],
-		correctAnswer: "d", // Placeholder
+		correctAnswer: "d",
 	},
 ];

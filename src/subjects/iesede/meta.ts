@@ -2,7 +2,7 @@ import type { SubjectMeta } from "../../data/types";
 
 export const meta: SubjectMeta = {
 	id: "iesede",
-	lastmod: "2026-07-25",
+	lastmod: "2026-09-08",
 	name: "Internet y Sistemas Distribuidos",
 	degree: "Grao en Enxeñaría informática",
 	course: 3,
@@ -20,8 +20,8 @@ export const meta: SubjectMeta = {
 	],
 	exams: [
 		{
-			id: "examen_recopilatorio",
-			title: "Recopilación",
+			id: "recopilacion_012026",
+			title: "Enero 2026",
 			durationMinutes: 120,
 			hasPdf: false,
 		},
