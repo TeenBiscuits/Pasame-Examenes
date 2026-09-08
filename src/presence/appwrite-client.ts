@@ -78,7 +78,10 @@ function parseStudent(
 function parseSummary(responseBody: string): WeeklyPresence | null {
 	try {
 		const value = JSON.parse(responseBody) as Record<string, unknown>;
-		if (!Array.isArray(value.students) || !Number.isInteger(value.count)) {
+		if (
+			!Array.isArray(value.students) ||
+			(value.count !== null && !Number.isInteger(value.count))
+		) {
 			return null;
 		}
 
@@ -91,7 +94,8 @@ function parseSummary(responseBody: string): WeeklyPresence | null {
 			sameAliasCount.set(student.username, occurrence + 1);
 			return [{ ...student, profileKey: `${student.username}-${occurrence}` }];
 		});
-		const studentCount = Math.max(0, Number(value.count));
+		const studentCount =
+			value.count === null ? null : Math.max(0, Number(value.count));
 		return {
 			studentCount,
 			students,

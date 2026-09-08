@@ -20,6 +20,7 @@ const profanity = new Profanity({
 	languages: ["en", "es"],
 	wholeWord: false,
 });
+let cachedUmamiVisitorCount = null;
 
 function getHeader(req, name) {
 	return req.headers[name] ?? req.headers[name.toLowerCase()] ?? null;
@@ -216,9 +217,9 @@ async function upsertPublicProfileWithinCap(tablesDB, userId, data, now) {
 	}
 }
 
-async function getWeeklySummary(tablesDB, currentUserId) {
+async function getWeeklySummary(tablesDB, currentUserId, logError) {
 	const cutoff = new Date(Date.now() - WEEK_IN_MS).toISOString();
-	const [publicProfiles, visitorCount] = await Promise.all([
+	const [profilesResult, visitorCountResult] = await Promise.allSettled([
 		tablesDB.listRows({
 			...tableParams(),
 			queries: [
@@ -231,8 +232,19 @@ async function getWeeklySummary(tablesDB, currentUserId) {
 		}),
 		getUmamiVisitorCount(),
 	]);
+	if (profilesResult.status !== "fulfilled") {
+		throw profilesResult.reason;
+	}
 
-	const students = publicProfiles.rows.flatMap((row) => {
+	let visitorCount = cachedUmamiVisitorCount;
+	if (visitorCountResult.status === "fulfilled") {
+		visitorCount = visitorCountResult.value;
+		cachedUmamiVisitorCount = visitorCount;
+	} else {
+		logError("Could not read Umami visitor count");
+	}
+
+	const students = profilesResult.value.rows.flatMap((row) => {
 		const username = row.publicUsername;
 		if (typeof username !== "string" || !USERNAME_PATTERN.test(username)) {
 			return [];
@@ -277,7 +289,7 @@ export default async ({ req, res, error }) => {
 
 		const tablesDB = getTablesDB(req);
 		if (action === "summary") {
-			return res.json(await getWeeklySummary(tablesDB, userId));
+			return res.json(await getWeeklySummary(tablesDB, userId, error));
 		}
 
 		const now = Date.now();
