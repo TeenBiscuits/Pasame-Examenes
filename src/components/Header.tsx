@@ -30,8 +30,8 @@ export default function Header() {
 			? "bg-accent-light text-accent-fg"
 			: "text-fg-secondary hover:text-fg"
 	}`;
-	const acronymLinkClasses = `inline-flex px-1.5 sm:px-3 ${subjectLinkBase}`;
-	const subjectLinkClasses = `hidden min-w-0 truncate px-3 md:inline-flex ${subjectLinkBase}`;
+	const acronymLinkClasses = `inline-flex px-1.5 sm:hidden ${subjectLinkBase}`;
+	const subjectLinkClasses = `hidden min-w-0 truncate px-3 sm:inline-flex ${subjectLinkBase}`;
 
 	return (
 		<header className="safe-area-top bg-surface-alt border-border border-b sm:sticky sm:top-0 sm:z-50">
