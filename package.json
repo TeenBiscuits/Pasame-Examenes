@@ -65,7 +65,7 @@
     "@tanstack/devtools-vite": "latest",
     "@tanstack/react-hotkeys-devtools": "^0.9.1",
     "@tanstack/router-cli": "^1.167.39",
-    "@types/node": "^22.20.4",
+    "@types/node": "^26.6.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/react-syntax-highlighter": "^15.5.13",
