@@ -124,5 +124,9 @@ export interface ExamAttempt {
 	score: number;
 	maxScore: number;
 	answers: Record<string, string>;
+	/** IDs of the sources included in a practice attempt. Optional only for legacy data. */
+	examIds?: string[];
+	/** Points awarded per question in a practice attempt. Optional only for legacy data. */
+	questionScores?: Record<string, number>;
 	timeSpent?: number;
 }

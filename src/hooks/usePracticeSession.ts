@@ -1,11 +1,52 @@
 import { useCallback, useEffect, useReducer, useRef } from "react";
 import { saveAttempt } from "../data/store";
-import type { Question } from "../data/types";
+import type { ExamAttempt, Question } from "../data/types";
 import { getQuestionScore, isSelfGradedQuestion } from "../lib/grading";
 import { playError, playSound, playSuccess } from "../lib/sound";
 import { track } from "../lib/umami";
 
 const getNow = () => Date.now();
+
+function getQuestionScores(
+	questions: Question[],
+	answers: Record<string, string>,
+	selfGrades: Record<string, "correct" | "incorrect">,
+) {
+	return Object.fromEntries(
+		questions.map((question) => [
+			question.id,
+			getQuestionScore(question, answers[question.id] || "", selfGrades),
+		]),
+	);
+}
+
+function createPracticeAttempt(
+	id: string,
+	topic: string,
+	questions: Question[],
+	answers: Record<string, string>,
+	selfGrades: Record<string, "correct" | "incorrect">,
+	examIds: readonly string[],
+): ExamAttempt {
+	const questionScores = getQuestionScores(questions, answers, selfGrades);
+	const score = Object.values(questionScores).reduce(
+		(total, questionScore) => total + questionScore,
+		0,
+	);
+
+	return {
+		id,
+		examId: "practice",
+		mode: "practice",
+		topic,
+		date: new Date().toISOString(),
+		score,
+		maxScore: questions.reduce((total, question) => total + question.points, 0),
+		answers,
+		examIds: [...examIds],
+		questionScores,
+	};
+}
 
 interface PracticeState {
 	currentIndex: number;
@@ -60,6 +101,7 @@ export function usePracticeSession(
 	questions: Question[],
 	subjectId: string,
 	topic: string,
+	selectedExamIds: readonly string[],
 ) {
 	const [state, dispatch] = useReducer(reducer, {
 		currentIndex: 0,
@@ -70,6 +112,8 @@ export function usePracticeSession(
 	});
 
 	const attemptIdRef = useRef("");
+	const submittedQuestionsRef = useRef<Question[] | null>(null);
+	const submittedExamIdsRef = useRef<string[] | null>(null);
 
 	useEffect(() => {
 		dispatch({
@@ -94,55 +138,66 @@ export function usePracticeSession(
 	const handleSubmit = useCallback(() => {
 		const id = getNow().toString();
 		attemptIdRef.current = id;
-		let score = 0;
-		for (const q of questions) {
-			score += getQuestionScore(q, state.answers[q.id] || "", state.selfGrades);
-		}
+		submittedQuestionsRef.current = [...questions];
+		submittedExamIdsRef.current = [...selectedExamIds];
+		const attempt = createPracticeAttempt(
+			id,
+			topic,
+			questions,
+			state.answers,
+			state.selfGrades,
+			selectedExamIds,
+		);
 		const answeredCount = Object.values(state.answers).filter(
 			(a) => a && a.trim() !== "",
 		).length;
 		track("practice_submit", {
 			subjectId,
 			topic,
-			score,
-			maxScore: questions.reduce((s, q) => s + q.points, 0),
+			score: attempt.score,
+			maxScore: attempt.maxScore,
 			questionsCount: questions.length,
 			answered: answeredCount,
 		});
-		saveAttempt(subjectId, {
-			id,
-			examId: "practice",
-			mode: "practice",
-			topic,
-			date: new Date().toISOString(),
-			score,
-			maxScore: questions.reduce((s, q) => s + q.points, 0),
-			answers: state.answers,
-		});
+		saveAttempt(subjectId, attempt);
 		dispatch({ type: "SUBMIT" });
-	}, [subjectId, topic, questions, state.answers, state.selfGrades]);
+	}, [
+		subjectId,
+		topic,
+		questions,
+		selectedExamIds,
+		state.answers,
+		state.selfGrades,
+	]);
 
 	const handleSelfGrade = useCallback(
 		(questionId: string, grade: "correct" | "incorrect") => {
 			track("practice_self_grade", { subjectId, topic, questionId, grade });
 			dispatch({ type: "SELF_GRADE", questionId, grade });
-			let score = 0;
+			if (!state.submitted) return;
+
 			const nextGrades = { ...state.selfGrades, [questionId]: grade };
-			for (const q of questions) {
-				score += getQuestionScore(q, state.answers[q.id] || "", nextGrades);
-			}
-			saveAttempt(subjectId, {
-				id: attemptIdRef.current || getNow().toString(),
-				examId: "practice",
-				mode: "practice",
+			const submittedQuestions = submittedQuestionsRef.current ?? questions;
+			const submittedExamIds = submittedExamIdsRef.current ?? selectedExamIds;
+			const attempt = createPracticeAttempt(
+				attemptIdRef.current,
 				topic,
-				date: new Date().toISOString(),
-				score,
-				maxScore: questions.reduce((s, q) => s + q.points, 0),
-				answers: state.answers,
-			});
+				submittedQuestions,
+				state.answers,
+				nextGrades,
+				submittedExamIds,
+			);
+			saveAttempt(subjectId, attempt);
 		},
-		[subjectId, topic, questions, state.answers, state.selfGrades],
+		[
+			subjectId,
+			topic,
+			questions,
+			selectedExamIds,
+			state.answers,
+			state.selfGrades,
+			state.submitted,
+		],
 	);
 
 	const handleCheckQuestion = useCallback(
