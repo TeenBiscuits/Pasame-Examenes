@@ -4,3 +4,22 @@ allowBuilds:
   puppeteer: true
   vue-demi: true
 minimumReleaseAge: 1440
+# Excepción temporal para instalar el parche de CVE-2026-102989 y sus dependencias
+# sin MINIMUM_RELEASE_AGE_VIOLATION. Retirar cuando estas versiones superen las 24 h.
+# https://tanstack.com/blog/tanstack-start-security-update-cve-2026-102989
+minimumReleaseAgeExclude:
+  - '@tanstack/react-router@1.170.41'
+  - '@tanstack/react-start-client@1.168.39'
+  - '@tanstack/react-start-rsc@0.1.59'
+  - '@tanstack/react-start-server@1.167.46'
+  - '@tanstack/react-start@1.168.60'
+  - '@tanstack/react-store@0.11.2'
+  - '@tanstack/router-cli@1.167.40'
+  - '@tanstack/router-core@1.171.34'
+  - '@tanstack/router-generator@1.167.40'
+  - '@tanstack/router-plugin@1.168.42'
+  - '@tanstack/start-client-core@1.170.34'
+  - '@tanstack/start-plugin-core@1.171.49'
+  - '@tanstack/start-server-core@1.169.39'
+  - '@tanstack/start-storage-context@1.167.36'
+  - '@tanstack/store@0.11.2'
