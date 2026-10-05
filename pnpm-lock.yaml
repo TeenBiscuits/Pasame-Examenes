@@ -39,8 +39,8 @@ importers:
         specifier: latest
         version: 1.168.60(crossws@0.4.12(srvx@0.11.22))(esbuild@0.28.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(rolldown@1.2.12)(vite@8.3.1(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
       appwrite:
-        specifier: ^26.2.0
-        version: 26.2.0
+        specifier: ^28.1.0
+        version: 28.1.0
       blobatar:
         specifier: ^2.7.0
         version: 2.7.0(react@19.3.0)(vue@3.5.43(typescript@6.0.3))
@@ -134,7 +134,7 @@ importers:
         version: 6.0.3
       unlighthouse:
         specifier: 0.18.1
-        version: 0.18.1(8190ecd1e95f28802ebe5de6ae5e720d)
+        version: 0.18.1(2ecbe3b486f3ffc8fe368febc3944d67)
       vite:
         specifier: ^8.3.1
         version: 8.3.1(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)
@@ -977,6 +977,8 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       '@inertiajs/vue3': ^2.0.7 || ^3
+      '@internationalized/date': ^3
+      '@internationalized/number': ^3
       '@nuxt/content': ^3
       '@tiptap/core': ^3
       '@tiptap/extension-bubble-menu': ^3
@@ -1006,6 +1008,10 @@ packages:
       zod: ^3.24.0 || ^4
     peerDependenciesMeta:
       '@inertiajs/vue3':
+        optional: true
+      '@internationalized/date':
+        optional: true
+      '@internationalized/number':
         optional: true
       '@nuxt/content':
         optional: true
@@ -2318,6 +2324,11 @@ packages:
 
   ajv-formats@3.0.1:
     resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
+    peerDependencies:
+      ajv: ^8.0.0
+    peerDependenciesMeta:
+      ajv:
+        optional: true
 
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
@@ -2353,8 +2364,8 @@ packages:
   anynum@1.0.1:
     resolution: {integrity: sha512-N6//FLET/tXYNM/F6ABca1oH6fWB+KlTt909Le28WMDBk8oaT4vY17DCrwg2MvmuqUKt3Ni4N5dGJ/EoBgcO6A==}
 
-  appwrite@26.2.0:
-    resolution: {integrity: sha512-8TCd4mMKhhUxGF9sjZ6W2V1gesnj43v1SFZoeAue/0O0ikMXIU92p96PiRn0D4nAVvFM/92bluTTb/PoXH5mnQ==}
+  appwrite@28.1.0:
+    resolution: {integrity: sha512-84XIXutjqO/6+5ezOn202aSi4T42ZKQp67vvlbGxlzXk/WpgdgrJ76GH56fCUf4om64NiZ24jMDw1Az4Kspu2Q==}
     engines: {node: '>=18.0.0'}
 
   argparse@1.0.10:
@@ -5815,12 +5826,10 @@ snapshots:
       pkg-types: 2.3.3
       std-env: 4.3.0
 
-  '@nuxt/ui@4.11.2(6e1b4031a3560910eb08795277603c24)':
+  '@nuxt/ui@4.11.2(e88cd40b468a8e209e623ad4997de6d7)':
     dependencies:
       '@floating-ui/dom': 1.8.0
       '@iconify/vue': 5.0.3(vue@3.5.43(typescript@6.0.3))
-      '@internationalized/date': 3.12.4
-      '@internationalized/number': 3.6.8
       '@nuxt/fonts': 0.14.0(db0@0.3.4)(esbuild@0.28.2)(magic-string@1.4.2)(rolldown@1.2.12)(vite@8.3.1(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
       '@nuxt/icon': 2.5.1(magic-string@1.4.2)(rolldown@1.2.12)(unplugin@3.4.0(esbuild@0.28.2)(rolldown@1.2.12)(vite@8.3.1(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)))(vite@8.3.1(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))(vue@3.5.43(typescript@6.0.3))
       '@nuxt/kit': 4.5.2(magic-string@1.4.2)(rolldown@1.2.12)(unplugin@3.4.0(esbuild@0.28.2)(rolldown@1.2.12)(vite@8.3.1(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)))
@@ -5884,6 +5893,8 @@ snapshots:
       vaul-vue: 0.4.1(reka-ui@2.10.4(vue@3.5.43(typescript@6.0.3)))(vue@3.5.43(typescript@6.0.3))
       vue-component-type-helpers: 3.3.11
     optionalDependencies:
+      '@internationalized/date': 3.12.4
+      '@internationalized/number': 3.6.8
       zod: 4.6.5
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -7104,12 +7115,12 @@ snapshots:
       - rollup
       - unloader
 
-  '@unlighthouse/cli@0.18.1(4d4fba3993d7775191a4c75e6b6321c0)':
+  '@unlighthouse/cli@0.18.1(a124997c14f3849974e78ade4f64251a)':
     dependencies:
       '@lhci/utils': 0.15.1
-      '@unlighthouse/client': 0.18.1(f12add254d048b1957850dfb47735eaf)
-      '@unlighthouse/core': 0.18.1(06effa8070ac5e3f7c250e9935764f74)
-      '@unlighthouse/server': 0.18.1(4d4fba3993d7775191a4c75e6b6321c0)
+      '@unlighthouse/client': 0.18.1(620e1e9563e23940997b47c8f9471198)
+      '@unlighthouse/core': 0.18.1(bf53ca3ead1bfdf16f051358f14ce7a9)
+      '@unlighthouse/server': 0.18.1(a124997c14f3849974e78ade4f64251a)
       cac: 7.0.0
       consola: 3.4.2
       defu: 6.1.7
@@ -7128,6 +7139,8 @@ snapshots:
       - '@deno/kv'
       - '@farmfe/core'
       - '@inertiajs/vue3'
+      - '@internationalized/date'
+      - '@internationalized/number'
       - '@netlify/blobs'
       - '@nuxt/content'
       - '@opentelemetry/core'
@@ -7212,9 +7225,9 @@ snapshots:
       - yup
       - zod
 
-  '@unlighthouse/client@0.18.1(f12add254d048b1957850dfb47735eaf)':
+  '@unlighthouse/client@0.18.1(620e1e9563e23940997b47c8f9471198)':
     dependencies:
-      '@nuxt/ui': 4.11.2(6e1b4031a3560910eb08795277603c24)
+      '@nuxt/ui': 4.11.2(e88cd40b468a8e209e623ad4997de6d7)
       '@tailwindcss/vite': 4.3.3(vite@8.3.1(@types/node@22.20.4)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
       defu: 6.1.7
       fuse.js: 7.5.0
@@ -7234,6 +7247,8 @@ snapshots:
       - '@deno/kv'
       - '@farmfe/core'
       - '@inertiajs/vue3'
+      - '@internationalized/date'
+      - '@internationalized/number'
       - '@netlify/blobs'
       - '@nuxt/content'
       - '@oxc-project/types'
@@ -7302,11 +7317,11 @@ snapshots:
       - yup
       - zod
 
-  '@unlighthouse/core@0.18.1(06effa8070ac5e3f7c250e9935764f74)':
+  '@unlighthouse/core@0.18.1(bf53ca3ead1bfdf16f051358f14ce7a9)':
     dependencies:
       '@clack/prompts': 1.8.1
       '@puppeteer/browsers': 3.2.3(yauzl@2.10.0)
-      '@unlighthouse/client': 0.18.1(f12add254d048b1957850dfb47735eaf)
+      '@unlighthouse/client': 0.18.1(620e1e9563e23940997b47c8f9471198)
       c12: 3.3.4
       chrome-launcher: 1.2.2
       consola: 3.4.2
@@ -7343,6 +7358,8 @@ snapshots:
       - '@deno/kv'
       - '@farmfe/core'
       - '@inertiajs/vue3'
+      - '@internationalized/date'
+      - '@internationalized/number'
       - '@netlify/blobs'
       - '@nuxt/content'
       - '@opentelemetry/core'
@@ -7420,9 +7437,9 @@ snapshots:
       - yup
       - zod
 
-  '@unlighthouse/server@0.18.1(4d4fba3993d7775191a4c75e6b6321c0)':
+  '@unlighthouse/server@0.18.1(a124997c14f3849974e78ade4f64251a)':
     dependencies:
-      '@unlighthouse/core': 0.18.1(06effa8070ac5e3f7c250e9935764f74)
+      '@unlighthouse/core': 0.18.1(bf53ca3ead1bfdf16f051358f14ce7a9)
       h3: 1.15.11
       listhen: 1.10.1(srvx@0.11.22)
     transitivePeerDependencies:
@@ -7436,6 +7453,8 @@ snapshots:
       - '@deno/kv'
       - '@farmfe/core'
       - '@inertiajs/vue3'
+      - '@internationalized/date'
+      - '@internationalized/number'
       - '@netlify/blobs'
       - '@nuxt/content'
       - '@opentelemetry/core'
@@ -7619,8 +7638,8 @@ snapshots:
 
   agent-base@7.1.4: {}
 
-  ajv-formats@3.0.1:
-    dependencies:
+  ajv-formats@3.0.1(ajv@8.20.0):
+    optionalDependencies:
       ajv: 8.20.0
 
   ajv@8.20.0:
@@ -7651,7 +7670,7 @@ snapshots:
 
   anynum@1.0.1: {}
 
-  appwrite@26.2.0:
+  appwrite@28.1.0:
     dependencies:
       json-bigint: 1.0.0
 
@@ -8667,7 +8686,7 @@ snapshots:
       '@paulirish/trace_engine': 0.0.65
       '@sentry/node': 10.75.3(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))
       ajv: 8.20.0
-      ajv-formats: 3.0.1
+      ajv-formats: 3.0.1(ajv@8.20.0)
       axe-core: 4.13.0
       chrome-launcher: 1.2.2
       configstore: 7.1.0
@@ -10314,11 +10333,11 @@ snapshots:
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
 
-  unlighthouse@0.18.1(8190ecd1e95f28802ebe5de6ae5e720d):
+  unlighthouse@0.18.1(2ecbe3b486f3ffc8fe368febc3944d67):
     dependencies:
-      '@unlighthouse/cli': 0.18.1(4d4fba3993d7775191a4c75e6b6321c0)
-      '@unlighthouse/client': 0.18.1(f12add254d048b1957850dfb47735eaf)
-      '@unlighthouse/core': 0.18.1(06effa8070ac5e3f7c250e9935764f74)
+      '@unlighthouse/cli': 0.18.1(a124997c14f3849974e78ade4f64251a)
+      '@unlighthouse/client': 0.18.1(620e1e9563e23940997b47c8f9471198)
+      '@unlighthouse/core': 0.18.1(bf53ca3ead1bfdf16f051358f14ce7a9)
     optionalDependencies:
       puppeteer: 25.12.0(yauzl@2.10.0)
       vue: 3.5.43(typescript@6.0.3)
@@ -10333,6 +10352,8 @@ snapshots:
       - '@deno/kv'
       - '@farmfe/core'
       - '@inertiajs/vue3'
+      - '@internationalized/date'
+      - '@internationalized/number'
       - '@netlify/blobs'
       - '@nuxt/content'
       - '@opentelemetry/core'

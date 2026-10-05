@@ -39,7 +39,7 @@
     "@tanstack/react-router": "latest",
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-start": "latest",
-    "appwrite": "^26.2.0",
+    "appwrite": "^28.1.0",
     "blobatar": "^2.7.0",
     "boneyard-js": "^1.10.0",
     "cuelume": "^0.2.4",
