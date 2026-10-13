@@ -46,11 +46,11 @@ export default function SecretToro() {
 
 		if (nextX + width < 0) {
 			nextX = container.clientWidth;
-			playSound("droplet");
+			playSound("close");
 		}
 		if (nextX > container.clientWidth) {
 			nextX = -width;
-			playSound("droplet");
+			playSound("close");
 		}
 
 		xRef.current = nextX;
@@ -92,8 +92,8 @@ export default function SecretToro() {
 		}
 		startToroRunning();
 
-		playSound("press");
-		if (wasRunning) playSound("tick");
+		playSound("tap");
+		if (wasRunning) playSound("select");
 		track("secret_toro_click", { count: nextClickCount });
 		if (nextClickCount >= 3) {
 			navigate({ to: `/${lang}/espain` as never });
@@ -103,7 +103,7 @@ export default function SecretToro() {
 	function handlePointerEnter() {
 		if (runningRef.current) return;
 		startToroRunning();
-		playSound("chime");
+		playSound("success");
 	}
 
 	return (

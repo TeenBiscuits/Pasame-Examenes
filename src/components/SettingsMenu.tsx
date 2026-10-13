@@ -292,7 +292,7 @@ export default function SettingsMenu() {
 		setOpen(false);
 		setUsernameDraft(profile.username);
 		setProfileStatus("idle");
-		playSound("droplet");
+		playSound("close");
 	});
 	useDialogClose(dialogRef, () => {
 		setOpen(false);
@@ -352,7 +352,7 @@ export default function SettingsMenu() {
 			completeNamePrompt();
 			setUsernameDraft(username);
 			setProfileStatus("saved");
-			playSound("chime");
+			playSound("success");
 		} catch {
 			setProfileStatus("error");
 		} finally {
@@ -371,7 +371,7 @@ export default function SettingsMenu() {
 			}
 			setNameShared(false);
 			setProfileStatus("saved");
-			playSound("droplet");
+			playSound("close");
 		} finally {
 			setIsSubmittingProfile(false);
 		}

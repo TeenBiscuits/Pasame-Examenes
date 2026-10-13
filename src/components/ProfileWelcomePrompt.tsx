@@ -81,7 +81,7 @@ export default function ProfileWelcomePrompt() {
 		dismissNamePrompt();
 		const dialog = dialogRef.current;
 		if (dialog?.open) dialog.close();
-		playSound("droplet");
+		playSound("close");
 	}
 
 	async function submit() {
@@ -103,7 +103,7 @@ export default function ProfileWelcomePrompt() {
 			completeNamePrompt();
 			const dialog = dialogRef.current;
 			if (dialog?.open) dialog.close();
-			playSound("chime");
+			playSound("success");
 		} catch {
 			setSubmitError("sharing");
 		} finally {

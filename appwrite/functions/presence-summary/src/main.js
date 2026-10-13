@@ -1,5 +1,12 @@
+import {
+	createCipheriv,
+	createHash,
+	pbkdf2Sync,
+	randomBytes,
+} from "node:crypto";
 import { Profanity } from "@2toad/profanity";
-import { getClient } from "@umami/api-client";
+import { isUmamiApiError, UmamiClient } from "@umami/api-client";
+import jwt from "jsonwebtoken";
 import { Client, Query, TablesDB } from "node-appwrite";
 
 const USERNAME_PATTERN = /^[a-z0-9_]{3,24}$/;
@@ -32,13 +39,32 @@ function getRequiredEnv(name) {
 	return value;
 }
 
-async function loginWithConfiguredCredentials(client, userId, secret) {
-	const response = await client.login(userId, secret);
-	const token = response.data?.token;
-	if (!response.ok || typeof token !== "string" || !token) return false;
+// Preserve the legacy user-id + APP_SECRET token format for existing deployments.
+function createLegacyUmamiToken(userId, secret) {
+	const key = createHash("sha512").update(secret).digest("hex");
+	const token = jwt.sign({ userId }, key);
+	const salt = randomBytes(64);
+	const iv = randomBytes(16);
+	const cipher = createCipheriv(
+		"aes-256-gcm",
+		pbkdf2Sync(key, salt, 10000, 32, "sha512"),
+		iv,
+	);
+	const encrypted = Buffer.concat([
+		cipher.update(token, "utf8"),
+		cipher.final(),
+	]);
+	return Buffer.concat([salt, iv, cipher.getAuthTag(), encrypted]).toString(
+		"base64",
+	);
+}
 
-	client.authToken = token;
-	return true;
+async function loginWithConfiguredCredentials(client, username, password) {
+	const response = await client.login({ username, password });
+	if (typeof response.token !== "string" || !response.token) {
+		throw new Error("Umami login did not return an authentication token");
+	}
+	return client.withToken(response.token);
 }
 
 function getVisitorCount(value) {
@@ -52,43 +78,38 @@ async function getUmamiVisitorCount() {
 	const secret = getRequiredEnv("UMAMI_API_CLIENT_SECRET").trim();
 	const endpoint = getRequiredEnv("UMAMI_API_CLIENT_ENDPOINT").trim();
 
-	const client = getClient({
-		userId,
-		secret,
-		apiEndpoint: endpoint,
+	let client = new UmamiClient({
+		baseUrl: endpoint,
+		token: UUID_PATTERN.test(userId)
+			? createLegacyUmamiToken(userId, secret)
+			: undefined,
 	});
-	let loginAttempted = false;
-
-	// The configured production account uses a read-only username and password
-	// in these historical env vars. UUID values use Umami's user-id + APP_SECRET
-	// token flow, which the client creates in its constructor.
 	if (!UUID_PATTERN.test(userId)) {
-		loginAttempted = true;
-		await loginWithConfiguredCredentials(client, userId, secret);
+		client = await loginWithConfiguredCredentials(client, userId, secret);
 	}
 
 	const endAt = Date.now();
 	const startAt = endAt - WEEK_IN_MS;
-	let response = await client.getWebsiteStats(UMAMI_WEBSITE_ID, {
+	const params = {
+		websiteId: UMAMI_WEBSITE_ID,
 		startAt,
 		endAt,
-	});
-
-	if (!response.ok && response.status === 401 && !loginAttempted) {
-		loginAttempted = true;
-		if (await loginWithConfiguredCredentials(client, userId, secret)) {
-			response = await client.getWebsiteStats(UMAMI_WEBSITE_ID, {
-				startAt,
-				endAt,
-			});
+	};
+	let response;
+	try {
+		response = await client.getWebsiteStats(params);
+	} catch (error) {
+		if (
+			!UUID_PATTERN.test(userId) ||
+			!isUmamiApiError(error) ||
+			error.status !== 401
+		) {
+			throw error;
 		}
+		client = await loginWithConfiguredCredentials(client, userId, secret);
+		response = await client.getWebsiteStats(params);
 	}
-
-	if (!response.ok) {
-		throw new Error(`Umami stats request failed: ${response.status}`);
-	}
-
-	const visitorCount = getVisitorCount(response.data?.visitors);
+	const visitorCount = getVisitorCount(response.visitors);
 	if (visitorCount === null || !Number.isFinite(visitorCount)) {
 		throw new Error("Umami stats response had no visitor count");
 	}

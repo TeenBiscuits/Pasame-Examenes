@@ -389,7 +389,7 @@ function ExamExitDialog({
 }: ExamExitDialogProps) {
 	const t = useT();
 
-	useDialogDismiss(dialogRef, () => playSound("droplet"));
+	useDialogDismiss(dialogRef, () => playSound("close"));
 
 	return (
 		<dialog
@@ -710,8 +710,8 @@ function ExamDialogs({
 }: ExamDialogsProps) {
 	const t = useT();
 
-	useDialogDismiss(submitDialogRef, () => playSound("droplet"));
-	useDialogDismiss(timeUpDialogRef, () => playSound("droplet"));
+	useDialogDismiss(submitDialogRef, () => playSound("close"));
+	useDialogDismiss(timeUpDialogRef, () => playSound("close"));
 	useDialogClose(timeUpDialogRef, () => {
 		if (!submitted) onSubmit();
 	});

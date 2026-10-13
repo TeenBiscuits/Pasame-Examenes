@@ -43,7 +43,7 @@ function StarIcon() {
 }
 
 function handleSparkle() {
-	playSound("sparkle");
+	playSound("success");
 }
 
 export default function StarPopup() {
@@ -56,7 +56,7 @@ export default function StarPopup() {
 		openRef.current = false;
 		writeDismissed();
 		closeDialog(dialogRef.current);
-		playSound(clickedStar ? "sparkle" : "droplet");
+		playSound(clickedStar ? "success" : "close");
 		track(clickedStar ? "star_popup_click" : "star_popup_dismiss");
 	}, []);
 

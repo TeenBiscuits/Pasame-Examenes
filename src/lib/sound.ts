@@ -1,4 +1,9 @@
-import { play, setVolume as setCuelumeVolume, setEnabled } from "cuelume";
+import {
+	play,
+	type SoundName,
+	setVolume as setCuelumeVolume,
+	setEnabled,
+} from "cuelume";
 
 const SOUND_ENABLED_KEY = "sound-enabled";
 const SOUND_VOLUME_KEY = "sound-volume";
@@ -64,7 +69,7 @@ export function updateSoundVolume(volume: number): number {
 	return nextVolume;
 }
 
-export function playSound(name?: Parameters<typeof play>[0]) {
+export function playSound(name?: SoundName) {
 	play(name);
 }
 

@@ -22,13 +22,11 @@ interface DragState {
 }
 
 const PLAYFUL_SOUNDS: readonly SoundName[] = [
-	"bloom",
-	"chime",
-	"droplet",
+	"open",
+	"success",
+	"close",
 	"ready",
-	"sparkle",
-	"tick",
-	"whisper",
+	"select",
 ];
 let lastSound: SoundName | undefined;
 
@@ -99,7 +97,7 @@ export default function FloatingEmoji({ emoji, style }: FloatingEmojiProps) {
 			return;
 		}
 		if (drag.current.moved) {
-			playSound("release");
+			playSound("tap");
 			setFlying(true);
 			setOffset({ x: 0, y: 0 });
 			window.setTimeout(() => setFlying(false), SPRING_MS);

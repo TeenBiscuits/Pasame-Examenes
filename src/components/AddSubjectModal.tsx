@@ -33,7 +33,7 @@ function AddSubjectModal({ onClose, ref }: AddSubjectModalProps) {
 
 	useDialogDismiss(dialogRef, (method) => {
 		closeMethodRef.current = method;
-		playSound("droplet");
+		playSound("close");
 	});
 	useDialogClose(dialogRef, () => {
 		track("modal_close", {

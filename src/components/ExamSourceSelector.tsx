@@ -28,7 +28,7 @@ export default function ExamSourceSelector({
 	const selected = new Set(selectedExamIds);
 	const allSelected = selected.size === exams.length;
 
-	useDialogDismiss(dialogRef, () => playSound("droplet"));
+	useDialogDismiss(dialogRef, () => playSound("close"));
 
 	function toggleExam(exam: Exam) {
 		const next = new Set(selected);

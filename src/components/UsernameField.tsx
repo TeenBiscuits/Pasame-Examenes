@@ -76,7 +76,7 @@ export default function UsernameField({
 			<button
 				type="button"
 				data-cuelume-press="bloom"
-				onClick={() => playSound("chime")}
+				onClick={() => playSound("success")}
 				aria-label={t.settings.playBlobatar}
 				title={t.settings.playBlobatar}
 				className="bg-surface-alt focus-visible:ring-accent mx-auto grid size-36 cursor-pointer place-items-center rounded-3xl shadow-sm outline outline-black/10 transition-[scale,box-shadow] duration-150 ease-out hover:shadow-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface active:scale-[0.96] sm:size-52 sm:rounded-[2rem] dark:outline-white/10"

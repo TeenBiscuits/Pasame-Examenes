@@ -71,7 +71,7 @@ function ModalShell({
 }) {
 	const t = useT();
 
-	useDialogDismiss(dialogRef, () => playSound("droplet"));
+	useDialogDismiss(dialogRef, () => playSound("close"));
 
 	return (
 		<dialog

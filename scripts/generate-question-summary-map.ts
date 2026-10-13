@@ -1,7 +1,8 @@
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import ts from "typescript";
+// TypeScript 7 supplies the CLI; the content parser needs the classic compiler API.
+import ts from "typescript6";
 
 interface QuestionSummary {
   id: string;

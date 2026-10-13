@@ -1,0 +1,4 @@
+minimumReleaseAge: 1440
+# Excepción temporal para la actualización a latest. Retirar tras 24 h.
+minimumReleaseAgeExclude:
+  - 'node-appwrite@29.3.1'

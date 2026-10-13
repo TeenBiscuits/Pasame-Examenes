@@ -79,7 +79,7 @@ function VolumeIcon({ volume }: { volume: number }) {
 }
 
 function commitVolume(nextVolume: number) {
-	if (nextVolume > 0) playSound("tick");
+	if (nextVolume > 0) playSound("select");
 	trackEvent("sound_volume_change", {
 		volume: nextVolume,
 		muted: nextVolume === 0,
@@ -167,7 +167,7 @@ export default function SettingsGeneralPanel() {
 
 	function toggleMuted() {
 		if (volume > 0) {
-			playSound("droplet");
+			playSound("close");
 			setVolumeState(updateSoundVolume(0));
 			trackEvent("sound_volume_change", { volume: 0, muted: true });
 			return;
