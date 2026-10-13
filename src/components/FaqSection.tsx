@@ -18,8 +18,10 @@ export default function FaqSection() {
 					<details
 						key={faq.question}
 						className="faq-item border-border bg-surface-alt overflow-hidden rounded-xl border-2"
-						onToggle={() => {
-							playSound("toggle");
+						onToggle={(event) => {
+							playSound(event.currentTarget.open ? "open" : "close", {
+								emphasis: "subtle",
+							});
 						}}
 					>
 						<summary className="faq-summary text-fg flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-left font-semibold sm:px-5">

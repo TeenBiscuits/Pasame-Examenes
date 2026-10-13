@@ -147,7 +147,7 @@ function PracticePlayerHeader({
 					activeOptions={{ exact: true }}
 					data-tour="practice-back"
 					data-cuelume-hover
-					data-cuelume-press
+					data-cuelume-navigate
 					className="text-accent-fg focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
 					onClick={() =>
 						track("nav_click", { target: "subject_home", from: "practice" })
@@ -528,7 +528,7 @@ function PracticeNavigationButton({
 			type="button"
 			ref={buttonRef}
 			aria-label={label}
-			data-cuelume-press="page"
+			data-cuelume-navigate
 			className={`border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2 ${direction === "prev" ? "order-1" : "order-3"}`}
 			onPointerEnter={(event) =>
 				dispatchPracticeHover(event, dispatchHover, {
@@ -609,7 +609,7 @@ function PracticeActionButtons({
 						<button
 							type="button"
 							aria-label={t.practice.clear}
-							data-cuelume-press="droplet"
+							data-cuelume-close
 							className="border-border text-fg-muted hover:text-fg-secondary hover:bg-surface focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
 							onPointerEnter={(event) =>
 								dispatchPracticeHover(event, dispatchHover, {
@@ -670,7 +670,7 @@ function PracticeActionButtons({
 				<button
 					type="button"
 					aria-label={t.practice.submit}
-					data-cuelume-press="ready"
+					data-cuelume-tap
 					className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
 					onPointerEnter={(event) =>
 						dispatchPracticeHover(event, dispatchHover, {
@@ -1056,7 +1056,7 @@ function PracticeTopicContent({
 			<Link
 				to={subject ? `/${subject.id}` : "/"}
 				data-cuelume-hover
-				data-cuelume-press
+				data-cuelume-navigate
 				className="text-accent-fg mt-4 inline-block hover:underline"
 				onClick={() => {
 					track("nav_click", { target: "home", from: "practice_empty" });

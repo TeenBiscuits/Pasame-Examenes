@@ -34,7 +34,7 @@ function playRandomSound() {
 	const choices = PLAYFUL_SOUNDS.filter((sound) => sound !== lastSound);
 	const sound = choices[Math.floor(Math.random() * choices.length)];
 	lastSound = sound;
-	playSound(sound);
+	playSound(sound, { theme: "bubble" });
 }
 
 const SPRING_MS = 500;

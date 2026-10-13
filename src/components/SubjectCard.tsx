@@ -22,7 +22,7 @@ export default function SubjectCard({ subject, stats }: SubjectCardProps) {
 		<Link
 			to={`/${subject.id}`}
 			data-cuelume-hover="tick"
-			data-cuelume-press
+			data-cuelume-navigate
 			className="interactive-card focus-visible:ring-accent flex min-h-[160px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
 			onClick={() => {
 				track("subject_card_click", {

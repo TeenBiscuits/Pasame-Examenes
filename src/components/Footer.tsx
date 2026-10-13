@@ -115,7 +115,7 @@ function LicensesModal({
 						target="_blank"
 						rel="noopener noreferrer"
 						data-cuelume-hover="tick"
-						data-cuelume-press
+						data-cuelume-navigate
 						className="interactive-card group flex h-full min-w-0 flex-col rounded-xl text-left focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
 						onClick={() => track("external_link_click", { target: "cc_by_sa" })}
 					>
@@ -147,7 +147,7 @@ function LicensesModal({
 						target="_blank"
 						rel="noopener noreferrer"
 						data-cuelume-hover="tick"
-						data-cuelume-press
+						data-cuelume-navigate
 						className="interactive-card group flex h-full min-w-0 flex-col rounded-xl text-left focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
 						onClick={() => track("external_link_click", { target: "apache_2" })}
 					>
@@ -229,7 +229,7 @@ export default function Footer() {
 							type="button"
 							className={footerTextLinkClass}
 							data-cuelume-hover="whisper"
-							data-cuelume-press="bloom"
+							data-cuelume-open
 							onClick={() => {
 								track("modal_open", { modal: "licenses" });
 								if (!licensesDialogRef.current?.open) {
@@ -245,7 +245,7 @@ export default function Footer() {
 							rel="nofollow"
 							className={footerTextLinkClass}
 							data-cuelume-hover="whisper"
-							data-cuelume-press="bloom"
+							data-cuelume-open
 							onClick={() => track("nav_click", { target: "privacy" })}
 						>
 							<PrivacyIcon />
@@ -257,7 +257,7 @@ export default function Footer() {
 							rel="noopener noreferrer"
 							className={footerTextLinkClass}
 							data-cuelume-hover="sparkle"
-							data-cuelume-press="sparkle"
+							data-cuelume-navigate
 							onClick={() => track("external_link_click", { target: "github" })}
 						>
 							<span className="footer-github-icon" aria-hidden="true" />

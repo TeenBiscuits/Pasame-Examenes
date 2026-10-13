@@ -118,7 +118,7 @@ export default function StarPopup() {
 						target="_blank"
 						rel="noopener noreferrer"
 						data-cuelume-hover="sparkle"
-						data-cuelume-press="sparkle"
+						data-cuelume-navigate
 						onClick={handleStar}
 						className="bg-reward text-on-reward hover:bg-reward-hover inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold no-underline transition-[background-color,scale] duration-150 ease-out active:scale-[0.96]"
 					>

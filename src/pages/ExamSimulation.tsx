@@ -97,7 +97,7 @@ function ExamStartScreen({
 					to={`/${subject.id}`}
 					activeOptions={{ exact: true }}
 					data-cuelume-hover
-					data-cuelume-press
+					data-cuelume-navigate
 					className="text-accent-fg focus-visible:ring-accent inline-flex items-center gap-1.5 rounded-md text-sm hover:underline focus-visible:ring-2 focus-visible:outline-none"
 					onClick={() =>
 						track("nav_click", {
@@ -179,7 +179,7 @@ function ExamStartScreen({
 				)}
 				<button
 					type="button"
-					data-cuelume-press="ready"
+					data-cuelume-tap
 					className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg py-3 font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
 					onClick={onStart}
 					disabled={loadError}
@@ -277,7 +277,7 @@ function ExamPlayerHeader({
 					to={`/${subject.id}`}
 					activeOptions={{ exact: true }}
 					data-cuelume-hover
-					data-cuelume-press="bloom"
+					data-cuelume-navigate
 					onClick={(e) => {
 						if (!submitted) {
 							e.preventDefault();
@@ -410,7 +410,7 @@ function ExamExitDialog({
 			<div className="flex gap-3">
 				<button
 					type="button"
-					data-cuelume-press="droplet"
+					data-cuelume-close
 					onClick={() => closeDialog(dialogRef.current)}
 					className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition-[background-color,border-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 				>
@@ -418,7 +418,7 @@ function ExamExitDialog({
 				</button>
 				<Link
 					to={`/${subject.id}`}
-					data-cuelume-press="droplet"
+					data-cuelume-close
 					className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg inline-flex flex-1 items-center justify-center rounded-lg px-4 py-2 text-center text-sm font-medium transition-[background-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 					onClick={(event) => {
 						event.preventDefault();
@@ -626,7 +626,7 @@ function ExamControls({
 				type="button"
 				ref={prevBtnRef}
 				aria-label={t.exam.previous}
-				data-cuelume-press="page"
+				data-cuelume-navigate
 				className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-1 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
 				onPointerEnter={(event) => {
 					if (event.pointerType === "mouse") setHoverPrev(true);
@@ -655,7 +655,7 @@ function ExamControls({
 					<button
 						type="button"
 						aria-label={t.exam.submitExam}
-						data-cuelume-press="bloom"
+						data-cuelume-open
 						className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex min-w-0 items-center gap-1.5 rounded-lg px-4 py-3 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 sm:py-2"
 						onClick={() => showDialog(submitDialogRef.current)}
 					>
@@ -670,7 +670,7 @@ function ExamControls({
 				type="button"
 				ref={nextBtnRef}
 				aria-label={t.exam.next}
-				data-cuelume-press="page"
+				data-cuelume-navigate
 				className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent order-3 flex min-w-0 items-center gap-1.5 rounded-lg border px-4 py-3 text-sm transition focus-visible:ring-2 focus-visible:outline-none active:scale-95 disabled:opacity-30 sm:py-2"
 				onPointerEnter={(event) => {
 					if (event.pointerType === "mouse") setHoverNext(true);
@@ -738,7 +738,7 @@ function ExamDialogs({
 					<div className="flex gap-3">
 						<button
 							type="button"
-							data-cuelume-press="droplet"
+							data-cuelume-close
 							onClick={() => closeDialog(submitDialogRef.current)}
 							className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition-[background-color,border-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 						>
@@ -746,7 +746,7 @@ function ExamDialogs({
 						</button>
 						<button
 							type="button"
-							data-cuelume-press="ready"
+							data-cuelume-tap
 							onClick={() => {
 								closeDialog(submitDialogRef.current, onSubmit);
 							}}
@@ -777,7 +777,7 @@ function ExamDialogs({
 					</p>
 					<button
 						type="button"
-						data-cuelume-press="ready"
+						data-cuelume-tap
 						onClick={() => closeDialog(timeUpDialogRef.current)}
 						className="bg-accent text-on-accent hover:bg-accent-hover focus-visible:ring-accent w-full rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 					>
@@ -1035,7 +1035,7 @@ function ExamEmptyState({ subject }: { subject: ExamSubject | undefined }) {
 			<Link
 				to={subject ? `/${subject.id}` : "/"}
 				data-cuelume-hover
-				data-cuelume-press
+				data-cuelume-navigate
 				className="text-accent-fg mt-4 inline-block hover:underline"
 				onClick={() => {
 					track("nav_click", { target: "home", from: "exam_empty" });

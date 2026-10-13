@@ -6,7 +6,6 @@
     "#/*": "./src/*"
   },
   "scripts": {
-    "intent": "node node_modules/@tanstack/intent/dist/cli.mjs",
     "generate-content-stats": "tsx scripts/generate-question-summary-map.ts",
     "generate-og-images": "tsx scripts/generate-og-images.ts",
     "generate-build-assets": "pnpm run generate-content-stats && pnpm run generate-og-images",

@@ -131,7 +131,7 @@ export default function AppUpdateToast() {
 						<button
 							type="button"
 							data-cuelume-hover="whisper"
-							data-cuelume-press
+							data-cuelume-tap
 							className="text-fg-muted hover:text-fg focus-visible:ring-accent inline-flex size-7 shrink-0 items-center justify-center rounded-md transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 							onClick={hideToast}
 							aria-label={t.appUpdate.dismiss}

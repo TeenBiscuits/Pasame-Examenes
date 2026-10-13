@@ -353,7 +353,7 @@ function ThemeChoice({
 	return (
 		<label
 			data-cuelume-hover="tick"
-			data-cuelume-press
+			data-cuelume-tap
 			className="interactive-card relative block min-w-0 cursor-pointer rounded-lg hover:shadow-md"
 		>
 			<input
@@ -509,7 +509,7 @@ export default function SettingsAppearancePanel() {
 						target="_blank"
 						rel="noopener noreferrer"
 						data-cuelume-hover="tick"
-						data-cuelume-press="bloom"
+						data-cuelume-navigate
 						className="interactive-card border-border text-fg-muted hover:border-accent hover:bg-accent-light/30 hover:text-accent-fg focus-visible:ring-accent flex min-h-20 min-w-0 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed p-4 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
 						onClick={() => trackEvent("add_theme_repository_open")}
 					>

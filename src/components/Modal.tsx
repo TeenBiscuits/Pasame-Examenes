@@ -47,7 +47,7 @@ export function ModalActionLink({
 			rel={rel}
 			onClick={onClick}
 			data-cuelume-hover="tick"
-			data-cuelume-press
+			data-cuelume-navigate
 			className={`${modalActionLinkClass} ${className}`}
 		>
 			<span className={`${modalActionIconClass} ${iconClassName}`}>{icon}</span>
@@ -83,7 +83,7 @@ export function ModalHeader({
 			</div>
 			<button
 				type="button"
-				data-cuelume-press="droplet"
+				data-cuelume-close
 				onClick={onClose}
 				className={modalCloseButtonClass}
 				aria-label={closeLabel}

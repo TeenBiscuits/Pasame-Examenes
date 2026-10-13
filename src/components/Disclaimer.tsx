@@ -70,7 +70,7 @@ export default function Disclaimer({
 				{t.disclaimer.text}{" "}
 				<a
 					data-cuelume-hover="whisper"
-					data-cuelume-press="whisper"
+					data-cuelume-navigate
 					href={buildDisclaimerReportUrl(
 						subjectId,
 						questionId,
@@ -102,7 +102,7 @@ export default function Disclaimer({
 						{t.disclaimer.originalMaterialPrefix}{" "}
 						<a
 							data-cuelume-hover="whisper"
-							data-cuelume-press="whisper"
+							data-cuelume-navigate
 							href={originalMaterial.href}
 							target="_blank"
 							rel="noopener noreferrer"

@@ -75,7 +75,7 @@ export default function ExamSourceSelector({
 						</span>
 						<button
 							type="button"
-							data-cuelume-press="toggle"
+							data-cuelume-toggle
 							className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent inline-flex shrink-0 items-center gap-1 rounded-md px-1 py-1 text-[0.625rem] leading-4 font-medium whitespace-nowrap underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:outline-none disabled:opacity-40 sm:gap-1.5 sm:px-2 sm:text-sm"
 							onClick={() => onChange(exams.map((exam) => exam.id))}
 							disabled={allSelected}

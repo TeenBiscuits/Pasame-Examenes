@@ -42,9 +42,11 @@ function prefersReducedMotion(): boolean {
 }
 
 function addTourSounds(popover: PopoverDOM, isLastStep: boolean) {
-	popover.previousButton.dataset.cuelumeToggle = "page";
-	popover.nextButton.dataset.cuelumeToggle = isLastStep ? "success" : "page";
-	popover.closeButton.dataset.cuelumeToggle = "droplet";
+	popover.previousButton.dataset.cuelumeNavigate = "navigate";
+	popover.nextButton.dataset.cuelumeNavigate = isLastStep
+		? "close"
+		: "navigate";
+	popover.closeButton.dataset.cuelumeClose = "close";
 }
 
 function removeDriverTargetAria(element: Element | undefined): void {

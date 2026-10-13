@@ -11,6 +11,7 @@ import {
 	getStoredLastAudibleVolume,
 	getStoredSoundVolume,
 	playSound,
+	unlockSound,
 	updateSoundVolume,
 } from "../lib/sound";
 import { track as trackEvent } from "../lib/umami";
@@ -111,7 +112,7 @@ export default function SettingsGeneralPanel() {
 	async function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
 		const nextLang = event.target.value as Lang;
 		if (nextLang === lang || isChangingLanguage) return;
-		playSound("toggle");
+		playSound("select");
 		setIsChangingLanguage(true);
 		const languagePromise = setLang(nextLang);
 
@@ -165,9 +166,8 @@ export default function SettingsGeneralPanel() {
 		setVolumeState(nextVolume);
 	}
 
-	function toggleMuted() {
+	async function toggleMuted() {
 		if (volume > 0) {
-			playSound("close");
 			setVolumeState(updateSoundVolume(0));
 			trackEvent("sound_volume_change", { volume: 0, muted: true });
 			return;
@@ -175,7 +175,7 @@ export default function SettingsGeneralPanel() {
 
 		const restoredVolume = getStoredLastAudibleVolume() || DEFAULT_SOUND_VOLUME;
 		setVolumeState(updateSoundVolume(restoredVolume));
-		playSound("toggle");
+		if (await unlockSound()) playSound("toggle");
 		trackEvent("sound_volume_change", {
 			volume: restoredVolume,
 			muted: false,

@@ -207,7 +207,8 @@ function DevelopmentDisclosure({
 		<div className="mt-3 space-y-3">
 			<button
 				type="button"
-				data-cuelume-press={isOpen ? "droplet" : "bloom"}
+				data-cuelume-tap={isOpen ? "close" : "open"}
+				data-cuelume-emphasis="subtle"
 				className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
 				onClick={() => {
 					const next = !isOpen;
@@ -265,7 +266,8 @@ function QuestionSolutionDisclosure({
 		<div className="mt-3 space-y-3">
 			<button
 				type="button"
-				data-cuelume-press={isOpen ? "droplet" : "bloom"}
+				data-cuelume-tap={isOpen ? "close" : "open"}
+				data-cuelume-emphasis="subtle"
 				className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
 				onClick={onToggle}
 			>
@@ -351,7 +353,7 @@ function MCOption({
 	return (
 		<button
 			type="button"
-			data-cuelume-press
+			data-cuelume-tap
 			className={getMCOptionClassName(showResult, isSelected, isCorrect)}
 			onClick={() => {
 				if (showResult) return;
@@ -521,7 +523,8 @@ function TextQuestion({
 				<div className="mt-3 space-y-3">
 					<button
 						type="button"
-						data-cuelume-press={isOpen ? "droplet" : "bloom"}
+						data-cuelume-tap={isOpen ? "close" : "open"}
+						data-cuelume-emphasis="subtle"
 						className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
 						onClick={() => {
 							const next = !isOpen;
@@ -669,7 +672,8 @@ function MultipleTextQuestion({
 							<div className="mt-3 space-y-3">
 								<button
 									type="button"
-									data-cuelume-press={isOpen ? "droplet" : "bloom"}
+									data-cuelume-tap={isOpen ? "close" : "open"}
+									data-cuelume-emphasis="subtle"
 									className="text-accent-fg hover:text-accent-hover focus-visible:ring-accent hover:border-accent-border inline-flex items-center gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm font-medium transition focus-visible:ring-2 focus-visible:outline-none active:scale-95"
 									onClick={() => {
 										const next = !isOpen;
@@ -1078,7 +1082,7 @@ function MatchingQuestion({
 									<button
 										type="button"
 										key={letter}
-										data-cuelume-press
+										data-cuelume-tap
 										className={cls}
 										onClick={() => {
 											track("question_answer", {
@@ -1231,7 +1235,7 @@ export default function QuestionCard(props: QuestionCardProps) {
 					<a
 						data-tour="report-issue"
 						data-cuelume-hover="whisper"
-						data-cuelume-press="whisper"
+						data-cuelume-navigate
 						href={buildReportUrl(
 							question,
 							questionProps.subjectId,

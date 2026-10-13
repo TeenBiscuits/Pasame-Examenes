@@ -39,7 +39,7 @@ export default function Header() {
 				<Link
 					to="/"
 					data-cuelume-hover="sparkle"
-					data-cuelume-press
+					data-cuelume-navigate
 					className="text-fg hover:text-accent-fg focus-visible:ring-accent group flex items-center gap-2 rounded-md text-lg font-bold transition-colors focus-visible:ring-2 focus-visible:outline-none"
 					onClick={() => {
 						track("nav_click", { target: "home" });
@@ -60,7 +60,7 @@ export default function Header() {
 							<Link
 								to={`/${subjectId}`}
 								data-cuelume-hover="tick"
-								data-cuelume-press
+								data-cuelume-navigate
 								className={acronymLinkClasses}
 								onClick={() => {
 									track("nav_click", {
@@ -75,7 +75,7 @@ export default function Header() {
 							<Link
 								to={`/${subjectId}`}
 								data-cuelume-hover="tick"
-								data-cuelume-press
+								data-cuelume-navigate
 								className={subjectLinkClasses}
 								onClick={() => {
 									track("nav_click", {

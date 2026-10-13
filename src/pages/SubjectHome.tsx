@@ -224,7 +224,7 @@ function ResetTopicProgressDialog({
 			<div className="flex gap-3">
 				<button
 					type="button"
-					data-cuelume-press="droplet"
+					data-cuelume-close
 					onClick={() => closeDialog(dialogRef.current)}
 					className="border-border text-fg-secondary hover:bg-surface focus-visible:ring-accent flex-1 rounded-lg border px-4 py-2 text-sm transition-[background-color,border-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 				>
@@ -232,7 +232,7 @@ function ResetTopicProgressDialog({
 				</button>
 				<button
 					type="button"
-					data-cuelume-press="error"
+					data-cuelume-tap
 					onClick={onConfirm}
 					className="bg-danger text-on-danger hover:bg-danger-hover focus-visible:ring-danger-fg flex-1 rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 				>
@@ -254,7 +254,7 @@ function SubjectNotFound() {
 			<Link
 				to="/"
 				data-cuelume-hover
-				data-cuelume-press
+				data-cuelume-navigate
 				className="text-accent-fg hover:underline"
 				onClick={() => {
 					track("nav_click", { target: "home", reason: "subject_not_found" });
@@ -354,7 +354,7 @@ function TopicsSection({
 					<button
 						type="button"
 						data-cuelume-hover="whisper"
-						data-cuelume-press="bloom"
+						data-cuelume-open
 						onClick={onOpenExamSources}
 						className="text-fg-muted hover:text-accent-fg focus-visible:ring-accent rounded p-1 transition-colors focus-visible:ring-2 focus-visible:outline-none"
 						aria-label={t.subjectHome.questionSources}
@@ -369,7 +369,7 @@ function TopicsSection({
 					<button
 						type="button"
 						data-cuelume-hover="whisper"
-						data-cuelume-press="bloom"
+						data-cuelume-open
 						onClick={onResetProgress}
 						className="text-fg-muted hover:text-incorrect-fg focus-visible:ring-accent rounded p-1 transition-colors focus-visible:ring-2 focus-visible:outline-none"
 						aria-label={t.subjectHome.resetTopicProgress}
@@ -519,7 +519,7 @@ function ExamCard({
 			to={`/${subject.id}/exam/${exam.id}`}
 			rel="nofollow"
 			data-cuelume-hover="tick"
-			data-cuelume-press
+			data-cuelume-navigate
 			className="interactive-card focus-visible:ring-accent flex min-h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
 			onClick={() => {
 				track("exam_card_click", {
@@ -571,7 +571,7 @@ function ExamActionButtons({
 			<button
 				type="button"
 				data-cuelume-hover="tick"
-				data-cuelume-press="bloom"
+				data-cuelume-open
 				onClick={() => {
 					onAddExam();
 					track("add_exam_modal_open", { subjectId });
@@ -586,7 +586,7 @@ function ExamActionButtons({
 			<button
 				type="button"
 				data-cuelume-hover="tick"
-				data-cuelume-press="bloom"
+				data-cuelume-open
 				onClick={() => {
 					onReportCopyright();
 					track("copyright_report_modal_open", { subjectId });
@@ -635,7 +635,7 @@ function PdfLinksSection({
 				<a
 					key={exam.id}
 					data-cuelume-hover="whisper"
-					data-cuelume-press
+					data-cuelume-navigate
 					href={`https://github.com/TeenBiscuits/Pasame-Examenes/raw/refs/heads/main/public/exams/${subject.id}/Exam-${exam.id}.pdf`}
 					target="_blank"
 					rel="noopener noreferrer"
@@ -674,7 +674,7 @@ function OriginalContentLinksSection({ subject }: { subject: SubjectMeta }) {
 				<a
 					key={exam.id}
 					data-cuelume-hover="whisper"
-					data-cuelume-press
+					data-cuelume-navigate
 					href={exam.originalUrl}
 					target="_blank"
 					rel="noopener noreferrer"

@@ -92,7 +92,7 @@ export default function TopicCard({
 			to={`/${subjectId}/practice/${topic.key}`}
 			rel="nofollow"
 			data-cuelume-hover="tick"
-			data-cuelume-press
+			data-cuelume-navigate
 			className="interactive-card focus-visible:ring-accent flex h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
 			onClick={() => {
 				track("topic_card_click", { subjectId, topic: topic.key });

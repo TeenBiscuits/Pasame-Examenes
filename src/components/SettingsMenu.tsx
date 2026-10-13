@@ -168,7 +168,7 @@ function SettingsSidebar({
 					target="_blank"
 					rel="noopener noreferrer"
 					data-cuelume-hover="whisper"
-					data-cuelume-press="sparkle"
+					data-cuelume-navigate
 					className="bg-code text-fg-secondary hover:bg-surface hover:text-fg focus-visible:ring-accent inline-flex shrink-0 cursor-pointer items-center rounded-md px-2 py-1 font-mono text-xs transition-[background-color,color,scale] duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 					aria-label={`${t.settings.openRepository}: ${APP_VERSION}`}
 					title={t.settings.openRepository}
@@ -384,7 +384,7 @@ export default function SettingsMenu() {
 			<button
 				type="button"
 				data-cuelume-hover="whisper"
-				data-cuelume-toggle="bloom"
+				data-cuelume-open
 				className="border-border hover:bg-surface group focus-visible:ring-accent relative inline-flex size-10 cursor-pointer items-center justify-center rounded-lg border transition-[background-color,scale] duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 				onClick={openDialog}
 				aria-label={t.settings.open}
@@ -423,7 +423,7 @@ export default function SettingsMenu() {
 						</div>
 						<button
 							type="button"
-							data-cuelume-press="droplet"
+							data-cuelume-close
 							onClick={() => requestClose("x")}
 							className="text-fg-muted hover:bg-surface hover:text-fg focus-visible:ring-accent inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-xl transition-[color,background-color,scale] duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 							aria-label={t.settings.close}

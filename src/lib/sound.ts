@@ -1,8 +1,10 @@
 import {
+	type PlayOptions,
 	play,
 	type SoundName,
 	setVolume as setCuelumeVolume,
 	setEnabled,
+	unlock,
 } from "cuelume";
 
 const SOUND_ENABLED_KEY = "sound-enabled";
@@ -47,6 +49,8 @@ export function getStoredLastAudibleVolume(): number {
 	return DEFAULT_SOUND_VOLUME;
 }
 
+export { unlock as unlockSound };
+
 export function initializeSound() {
 	applySoundVolume(getStoredSoundVolume());
 }
@@ -69,8 +73,8 @@ export function updateSoundVolume(volume: number): number {
 	return nextVolume;
 }
 
-export function playSound(name?: SoundName) {
-	play(name);
+export function playSound(name?: SoundName, options?: PlayOptions) {
+	play(name, options);
 }
 
 export function playSuccess() {

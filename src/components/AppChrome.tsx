@@ -25,8 +25,8 @@ export default function AppChrome({ children }: { children: ReactNode }) {
 	const t = useT();
 
 	useEffect(() => {
-		bindCuelume();
 		initializeSound();
+		return bindCuelume();
 	}, []);
 
 	return (

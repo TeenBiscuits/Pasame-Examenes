@@ -29,7 +29,7 @@ export default function NotFoundPage() {
 					to="/$lang"
 					params={{ lang }}
 					data-cuelume-hover="tick"
-					data-cuelume-press
+					data-cuelume-navigate
 					className="interactive-card border-border bg-surface-alt text-fg inline-flex items-center gap-2 rounded-xl border-2 px-5 py-4 font-semibold transition-[background-color,border-color,box-shadow,scale] duration-150 ease-out hover:shadow-md focus-visible:ring-accent focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
 				>
 					<ArrowLeft className="size-4" aria-hidden="true" />
