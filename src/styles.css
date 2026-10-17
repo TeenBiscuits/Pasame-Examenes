@@ -119,8 +119,31 @@ body {
     display: none;
 }
 
+.faq-item {
+    --faq-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Keep native disclosure semantics; unsupported browsers toggle instantly. */
+@supports (interpolate-size: allow-keywords) {
+    .faq-item::details-content {
+        interpolate-size: allow-keywords;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+            height 200ms var(--faq-ease-out),
+            opacity 200ms var(--faq-ease-out),
+            content-visibility 200ms allow-discrete;
+    }
+
+    .faq-item[open]::details-content {
+        height: auto;
+        opacity: 1;
+    }
+}
+
 .faq-chevron {
-    transition: transform 0.2s ease-out;
+    transition: transform 200ms var(--faq-ease-out);
 }
 
 .faq-item[open] .faq-chevron {
@@ -130,6 +153,11 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .simulator-skeleton-bone {
         animation: none !important;
+    }
+
+    .faq-item::details-content {
+        transition: opacity 150ms var(--faq-ease-out),
+            content-visibility 150ms allow-discrete;
     }
 
     .faq-chevron {

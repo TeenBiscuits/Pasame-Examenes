@@ -13,28 +13,36 @@ export default function FaqSection() {
 			>
 				{t.home.faqTitle}
 			</h2>
-			<div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
-				{t.home.faqs.map((faq) => (
-					<details
-						key={faq.question}
-						className="faq-item border-border bg-surface-alt overflow-hidden rounded-xl border-2"
-						onToggle={(event) => {
-							playSound(event.currentTarget.open ? "open" : "close", {
-								emphasis: "subtle",
-							});
-						}}
-					>
-						<summary className="faq-summary text-fg flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-left font-semibold sm:px-5">
-							<span>{faq.question}</span>
-							<AngleDown
-								className="faq-chevron text-fg-muted size-5 shrink-0"
-								aria-hidden="true"
-							/>
-						</summary>
-						<div className="bg-card-footer border-card-footer-border text-fg-secondary rounded-b-[calc(0.75rem-2px)] px-4 py-4 text-sm leading-relaxed sm:px-5">
-							<p>{faq.answer}</p>
-						</div>
-					</details>
+			<div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:items-start">
+				{[0, 1].map((column) => (
+					<div key={column} className="contents lg:flex lg:flex-col lg:gap-4">
+						{t.home.faqs.map(
+							(faq, index) =>
+								index % 2 === column && (
+									<details
+										key={faq.question}
+										style={{ order: index }}
+										className="faq-item border-border bg-surface-alt overflow-hidden rounded-xl border-2"
+										onToggle={(event) => {
+											playSound(event.currentTarget.open ? "open" : "close", {
+												emphasis: "subtle",
+											});
+										}}
+									>
+										<summary className="faq-summary text-fg flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-left font-semibold sm:px-5">
+											<span>{faq.question}</span>
+											<AngleDown
+												className="faq-chevron text-fg-muted size-5 shrink-0"
+												aria-hidden="true"
+											/>
+										</summary>
+										<div className="bg-card-footer border-card-footer-border text-fg-secondary rounded-b-[calc(0.75rem-2px)] px-4 py-4 text-sm leading-relaxed sm:px-5">
+											<p>{faq.answer}</p>
+										</div>
+									</details>
+								),
+						)}
+					</div>
 				))}
 			</div>
 		</section>
