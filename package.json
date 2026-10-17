@@ -7,13 +7,14 @@
     "#/*": "./src/*"
   },
   "scripts": {
+    "check:bones": "tsx scripts/check-bones.ts",
     "generate-content-stats": "tsx scripts/generate-question-summary-map.ts",
     "generate-og-images": "tsx scripts/generate-og-images.ts",
     "generate-build-assets": "pnpm run generate-content-stats && pnpm run generate-og-images",
     "predev": "pnpm run generate-build-assets",
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
-    "prebuild": "pnpm run generate-build-assets",
+    "prebuild": "pnpm run check:bones && pnpm run generate-build-assets",
     "build": "vite build",
     "preview": "vite preview",
     "perf:preview": "SITE_URL=http://127.0.0.1:4173 pnpm preview --host 127.0.0.1 --port 4173",

@@ -8,7 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
-import "../bones/registry";
+import "../lib/boneyard";
 import onestFontUrl from "@fontsource-variable/onest/files/onest-latin-wght-normal.woff2?url";
 import { isLang, type Lang } from "../i18n/context-value";
 import { ssrDuringBuildPrerender } from "../lib/ssr";

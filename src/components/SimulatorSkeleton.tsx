@@ -112,6 +112,8 @@ export default function SimulatorSkeleton({
 				loading={loading}
 				fixture={fixture}
 				fallback={fixture}
+				animate="shimmer"
+				boneClass="simulator-skeleton-bone"
 				color={SKELETON_COLOR}
 				darkColor={SKELETON_COLOR}
 				select="viewport"
