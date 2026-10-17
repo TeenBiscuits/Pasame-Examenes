@@ -1,6 +1,7 @@
 {
   "name": "pasame-examenes",
   "private": true,
+  "packageManager": "pnpm@12.14.0",
   "type": "module",
   "imports": {
     "#/*": "./src/*"
