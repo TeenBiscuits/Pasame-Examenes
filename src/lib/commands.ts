@@ -1,13 +1,13 @@
 import {
-	type Hotkey,
+	type HotkeyChord,
 	type HotkeySequence,
 	normalizeRegisterableHotkey,
 } from "@tanstack/react-hotkeys";
 
 export type CommandScope = "global" | "practice-exam" | "practice" | "exam";
 export type CommandAssignment =
-	| { type: "hotkeys"; hotkeys: readonly Hotkey[] }
-	| { type: "sequence"; sequence: readonly Hotkey[] };
+	| { type: "hotkeys"; hotkeys: readonly HotkeyChord[] }
+	| { type: "sequence"; sequence: readonly HotkeyChord[] };
 
 export interface CommandDefinition {
 	id: string;
@@ -225,4 +225,4 @@ export function getAssignmentKeys(
 	];
 }
 
-export type { Hotkey, HotkeySequence };
+export type { HotkeyChord, HotkeySequence };

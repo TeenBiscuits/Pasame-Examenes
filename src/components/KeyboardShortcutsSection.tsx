@@ -2,7 +2,6 @@ import {
 	formatForDisplay,
 	useHeldKeys,
 	useHotkeyRecorder,
-	useHotkeySequenceRecorder,
 } from "@tanstack/react-hotkeys";
 import { useRef, useState } from "react";
 import { Restart, TriangleWarning } from "reicon-react";
@@ -252,11 +251,15 @@ export default function KeyboardShortcutsSection() {
 		onCancel: finishRecording,
 	});
 
-	const sequenceRecorder = useHotkeySequenceRecorder({
+	const sequenceRecorder = useHotkeyRecorder({
+		maxSteps: Number.POSITIVE_INFINITY,
 		onRecord: (sequence) => {
 			const commandId = editingCommandRef.current;
 			if (!commandId) return;
-			setAssignment(commandId, { type: "sequence", sequence });
+			setAssignment(commandId, {
+				type: "sequence",
+				sequence: typeof sequence === "string" ? [sequence] : sequence,
+			});
 			track("keyboard_shortcut_change", {
 				commandId,
 				bindingType: "sequence",

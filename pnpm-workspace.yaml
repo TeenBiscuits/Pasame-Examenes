@@ -45,3 +45,5 @@ minimumReleaseAgeExclude:
   - 'unhead@3.4.3'
   - 'vue@3.5.44'
   - 'zod@4.6.7'
+patchedDependencies:
+  '@tanstack/devtools-vite@0.8.5': patches/@tanstack__devtools-vite@0.8.5.patch

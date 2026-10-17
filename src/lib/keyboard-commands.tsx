@@ -1,9 +1,5 @@
-import type { Hotkey } from "@tanstack/react-hotkeys";
-import {
-	HotkeysProvider,
-	useHotkeySequences,
-	useHotkeys,
-} from "@tanstack/react-hotkeys";
+import type { HotkeyChord } from "@tanstack/react-hotkeys";
+import { HotkeysProvider, useHotkeys } from "@tanstack/react-hotkeys";
 import { useLocation } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import {
@@ -196,7 +192,7 @@ function KeyboardBindingsRuntime() {
 			activeCommandIds.add(command.id);
 		}
 		const hotkeys: Array<{
-			hotkey: Hotkey;
+			hotkey: HotkeyChord;
 			callback: CommandHandler;
 			options: {
 				ignoreInputs: boolean;
@@ -205,7 +201,7 @@ function KeyboardBindingsRuntime() {
 			};
 		}> = [];
 		const sequences: Array<{
-			sequence: Array<Hotkey>;
+			hotkey: Array<HotkeyChord>;
 			callback: CommandHandler;
 			options: {
 				ignoreInputs: boolean;
@@ -247,7 +243,7 @@ function KeyboardBindingsRuntime() {
 				}
 			} else if (assignment.sequence.length > 0) {
 				sequences.push({
-					sequence: [...assignment.sequence],
+					hotkey: [...assignment.sequence],
 					callback,
 					options,
 				});
@@ -258,7 +254,7 @@ function KeyboardBindingsRuntime() {
 	})();
 
 	useHotkeys(hotkeys);
-	useHotkeySequences(sequences, { timeout: 750 });
+	useHotkeys(sequences, { timeout: 750 });
 
 	return null;
 }
@@ -375,10 +371,6 @@ export function KeyboardCommandProvider({ children }: { children: ReactNode }) {
 			<HotkeysProvider
 				defaultOptions={{
 					hotkey: {
-						preventDefault: true,
-						stopPropagation: true,
-					},
-					hotkeySequence: {
 						preventDefault: true,
 						stopPropagation: true,
 					},
