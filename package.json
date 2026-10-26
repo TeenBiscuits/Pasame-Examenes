@@ -37,7 +37,7 @@
     "@fontsource-variable/onest": "^5.3.1",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-devtools": "latest",
-    "@tanstack/react-hotkeys": "^0.14.5",
+    "@tanstack/react-hotkeys": "^0.16.0",
     "@tanstack/react-router": "latest",
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-start": "latest",
@@ -61,13 +61,13 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.15",
-    "@napi-rs/canvas": "^1.0.11",
+    "@biomejs/biome": "^2.6.2",
+    "@napi-rs/canvas": "^1.0.13",
     "@tailwindcss/typography": "^0.5.20",
     "@tanstack/devtools-vite": "latest",
     "@tanstack/intent": "^0.5.6",
-    "@tanstack/react-hotkeys-devtools": "^0.10.9",
-    "@tanstack/router-cli": "^1.167.45",
+    "@tanstack/react-hotkeys-devtools": "^0.11.0",
+    "@tanstack/router-cli": "^1.167.46",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -77,7 +77,7 @@
     "typescript": "^7.0.2",
     "typescript6": "npm:typescript@^6.0.3",
     "unlighthouse": "0.19.1",
-    "vite": "^8.3.4",
+    "vite": "^8.3.5",
     "vite-imagetools": "^12.0.1"
   },
   "intent": {
