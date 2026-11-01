@@ -13,6 +13,7 @@ import {
 	loadMathPlugins,
 	loadSyntaxHighlighter,
 } from "./markdown-preload";
+import { captureException } from "./umami";
 
 const SyntaxHighlighter = lazy(() => loadSyntaxHighlighter());
 
@@ -218,6 +219,10 @@ class CodeHighlightErrorBoundary extends Component<
 
 	static getDerivedStateFromError() {
 		return { hasError: true };
+	}
+
+	componentDidCatch(error: Error) {
+		captureException(error);
 	}
 
 	render() {

@@ -1,4 +1,8 @@
-import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+import {
+	createRouter as createTanStackRouter,
+	ErrorComponent,
+} from "@tanstack/react-router";
+import { captureException } from "./lib/umami";
 import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
@@ -7,6 +11,8 @@ export function getRouter() {
 		scrollRestoration: true,
 		defaultPreload: "intent",
 		defaultPreloadStaleTime: 0,
+		defaultErrorComponent: ErrorComponent,
+		defaultOnCatch: captureException,
 	});
 
 	return router;

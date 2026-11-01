@@ -249,7 +249,7 @@ export const gl: Translations = {
 		legalText: "Texto legal",
 		linksLabel: "Ligazóns legais e do proxecto",
 		privacyTitle: "Política de privacidade",
-		privacyLastUpdated: "Última actualización: 31 de agosto de 2026",
+		privacyLastUpdated: "Última actualización: 1 de novembro de 2026",
 		privacySummary:
 			"Pásame Exámenes é unha web educativa e de código aberto, sen rexistro nin contas visibles. Garda preferencias e progreso no navegador, usa Appwrite para a presenza semanal e analiza o uso para detectar erros e mellorar a web.",
 		privacySections: [
@@ -292,7 +292,7 @@ export const gl: Translations = {
 			{
 				title: "Base xurídica",
 				paragraphs: [
-					"Baixo o RGPD, a base xurídica principal é o interese lexítimo: manter a web dispoñible, segura, comprensible e útil para estudantes. Isto inclúe analítica, medición de rendemento, heatmaps e replays de sesión, limitados mediante minimización de datos e unha mostraxe aleatoria do 30% para replays e heatmaps.",
+					"Baixo o RGPD, a base xurídica principal é o interese lexítimo: manter a web dispoñible, segura, comprensible e útil para estudantes. Isto inclúe analítica, seguimento de erros, medición de rendemento, heatmaps e replays de sesión, limitados mediante minimización de datos e unha mostraxe aleatoria do 30% para replays e heatmaps.",
 					"As preferencias e o progreso local trátanse para proporcionar a funcionalidade solicitada pola persoa usuaria. Tamén poden aplicarse obrigas legais cando sexa necesario.",
 				],
 			},
@@ -311,6 +311,14 @@ export const gl: Translations = {
 					"O nome de estudante envíase como atributo de sesión xunto co identificador anónimo local de Umami; non se usa como identificador único. Tamén se envían o idioma e as preferencias de aparencia activas.",
 					"Umami está configurado para respectar Do Not Track no script estándar de analítica. Os replays de sesión e heatmaps úsanse para entender problemas de usabilidade e móstranse aleatoriamente no 30% das visitas.",
 					"Tamén se usa Ahrefs Analytics para entender tráfico e rendemento da web. Ahrefs trata datos conforme á súa propia política de privacidade.",
+				],
+			},
+			{
+				title: "Seguimento de erros",
+				paragraphs: [
+					"Só en produción, Umami rexistra erros de JavaScript non controlados, rexeitamentos de promesas sen xestionar e erros interceptados polos límites de erro da aplicación. Cada informe inclúe a mensaxe, a traza de execución, a ruta da páxina sen parámetros de consulta nin fragmentos, información do navegador e dispositivo, o contorno e a versión da web (commit de Git).",
+					"Os informes envíanse á mesma instancia propia de Umami para diagnosticar fallos e comprobar que versións están afectadas; poden asociarse á sesión de analítica e, cando exista, ao seu replay. Non se aplica aos erros a mostraxe do 30% dos replays. Respéctase Do Not Track e non se rexistran erros de desenvolvemento local nin de despregamentos de proba.",
+					"A captura de erros non recolle logs de consola, corpos de peticións, cookies nin variables locais. Umami intenta ocultar datos sensibles en mensaxes e trazas, pero este filtrado non garante eliminalos todos. Os informes seguen os prazos de conservación e os dereitos descritos nesta política.",
 				],
 			},
 			{

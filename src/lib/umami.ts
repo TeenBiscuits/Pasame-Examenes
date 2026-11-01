@@ -1,6 +1,16 @@
+import {
+	ERROR_TRACKING_ENABLED,
+	ERROR_TRACKING_ENVIRONMENT,
+	ERROR_TRACKING_RELEASE,
+} from "./error-tracking";
+
 declare global {
 	interface Window {
 		umami?: {
+			captureException?: (
+				error: unknown,
+				context: { release: string; environment: string },
+			) => void;
 			track(): void;
 			track(payload: Record<string, unknown>): void;
 			track(eventName: string): void;
@@ -48,6 +58,16 @@ function safeRun(fn: () => void) {
 export function track(eventName: string, eventData?: UmamiData): void {
 	const cleaned = clean(eventData);
 	safeRun(() => window.umami?.track(eventName, cleaned));
+}
+
+export function captureException(error: unknown): void {
+	if (!ERROR_TRACKING_ENABLED) return;
+	safeRun(() =>
+		window.umami?.captureException?.(error, {
+			release: ERROR_TRACKING_RELEASE,
+			environment: ERROR_TRACKING_ENVIRONMENT,
+		}),
+	);
 }
 
 export function identify(data: UmamiData & { id?: string }): void {

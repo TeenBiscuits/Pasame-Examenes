@@ -245,7 +245,7 @@ export const en = {
 		legalText: "Legal text",
 		linksLabel: "Legal and project links",
 		privacyTitle: "Privacy Policy",
-		privacyLastUpdated: "Last updated: August 31, 2026",
+		privacyLastUpdated: "Last updated: November 1, 2026",
 		privacySummary:
 			"Pásame Exámenes is an educational, open-source website with no sign-up or visible accounts. It keeps preferences and study progress in the browser, uses Appwrite for weekly presence, and analyses use to find errors and improve the website.",
 		privacySections: [
@@ -288,7 +288,7 @@ export const en = {
 			{
 				title: "Legal Basis",
 				paragraphs: [
-					"Under the GDPR, the main legal basis is legitimate interest: keeping the website available, secure, understandable, and useful for students. This includes analytics, performance measurement, heatmaps, and session replays, which are limited by data minimization and a 30% random sample rate for replays and heatmaps.",
+					"Under the GDPR, the main legal basis is legitimate interest: keeping the website available, secure, understandable, and useful for students. This includes analytics, error tracking, performance measurement, heatmaps, and session replays, which are limited by data minimization and a 30% random sample rate for replays and heatmaps.",
 					"Local preferences and progress are processed to provide the functionality requested by the user. Legal obligations may also apply where necessary.",
 				],
 			},
@@ -307,6 +307,14 @@ export const en = {
 					"The student name is sent as a session attribute alongside the anonymous local Umami identifier; it is not used as a unique identifier. The active language and appearance preferences are also sent.",
 					"Umami is configured to respect Do Not Track for the standard analytics script. Session replays and heatmaps are used to understand usability problems and are sampled randomly at 30% of visits.",
 					"Ahrefs Analytics is also used to understand traffic and website performance. Ahrefs processes data according to its own privacy policy.",
+				],
+			},
+			{
+				title: "Error Tracking",
+				paragraphs: [
+					"In production only, Umami records uncaught JavaScript errors, unhandled promise rejections, and errors caught by application error boundaries. Each report includes the message, stack trace, page path without query parameters or fragments, browser and device information, environment, and website version (Git commit).",
+					"Reports go to the same self-hosted Umami instance to diagnose failures and identify affected versions; they may be linked to the analytics session and its replay when available. The 30% replay sampling rate does not apply to errors. Do Not Track is respected, and errors from local development and preview deployments are not recorded.",
+					"Error tracking does not collect console logs, request bodies, cookies, or local variables. Umami attempts to redact sensitive data from messages and stack traces, but this filtering cannot guarantee that all such data is removed. Reports follow the retention periods and rights described in this policy.",
 				],
 			},
 			{

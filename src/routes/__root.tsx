@@ -11,6 +11,11 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import "../lib/boneyard";
 import onestFontUrl from "@fontsource-variable/onest/files/onest-latin-wght-normal.woff2?url";
 import { isLang, type Lang } from "../i18n/context-value";
+import {
+	ERROR_TRACKING_ENABLED,
+	ERROR_TRACKING_ENVIRONMENT,
+	ERROR_TRACKING_RELEASE,
+} from "../lib/error-tracking";
 import { ssrDuringBuildPrerender } from "../lib/ssr";
 import appCss from "../styles.css?url";
 
@@ -97,6 +102,9 @@ export const Route = createRootRoute({
 				src: "https://analytics.pablopl.dev/script.js",
 				"data-website-id": "63168f0e-a1cf-4ec6-a0c4-58fc7d57a0f4",
 				"data-performance": "true",
+				"data-errors": String(ERROR_TRACKING_ENABLED),
+				"data-release": ERROR_TRACKING_RELEASE,
+				"data-environment": ERROR_TRACKING_ENVIRONMENT,
 				"data-domains": "pe.pablopl.dev",
 				"data-do-not-track": "true",
 				defer: true,
