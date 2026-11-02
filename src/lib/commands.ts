@@ -1,7 +1,7 @@
 import {
 	type HotkeyChord,
 	type HotkeySequence,
-	normalizeRegisterableHotkey,
+	normalizeHotkey,
 } from "@tanstack/react-hotkeys";
 
 export type CommandScope = "global" | "practice-exam" | "practice" | "exam";
@@ -212,7 +212,7 @@ export function getAssignmentKeys(
 	if (assignment.type === "hotkeys") {
 		return assignment.hotkeys.reduce<Array<string>>((keys, hotkey) => {
 			if (hotkey.length > 0) {
-				keys.push(`hotkey:${normalizeRegisterableHotkey(hotkey)}`);
+				keys.push(`hotkey:${normalizeHotkey(hotkey)}`);
 			}
 			return keys;
 		}, []);
@@ -220,7 +220,7 @@ export function getAssignmentKeys(
 	if (assignment.sequence.length === 0) return [];
 	return [
 		`sequence:${assignment.sequence
-			.map((hotkey) => normalizeRegisterableHotkey(hotkey))
+			.map((hotkey) => normalizeHotkey(hotkey))
 			.join("|")}`,
 	];
 }

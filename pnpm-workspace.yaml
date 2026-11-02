@@ -7,6 +7,11 @@ minimumReleaseAge: 1440
 # Excepciones temporales para las versiones recientes de esta actualización.
 # Retirar cuando estas versiones superen las 24 h.
 minimumReleaseAgeExclude:
+  - '@tanstack/redact@0.2.4'
+  - '@tanstack/react-hotkeys@0.22.0'
+  - '@tanstack/react-hotkeys-devtools@0.14.1'
+  - '@tanstack/hotkeys@0.24.0'
+  - '@tanstack/hotkeys-devtools@1.8.1'
   - '@tanstack/react-router@1.170.44'
   - '@tanstack/react-start-client@1.168.42'
   - '@tanstack/react-start-rsc@0.1.62'
@@ -45,5 +50,3 @@ minimumReleaseAgeExclude:
   - 'unhead@3.4.3'
   - 'vue@3.5.44'
   - 'zod@4.6.7'
-patchedDependencies:
-  '@tanstack/devtools-vite@0.8.5': patches/@tanstack__devtools-vite@0.8.5.patch
