@@ -42,7 +42,7 @@
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-start": "latest",
     "@tanstack/redact": "^0.2.4",
-    "appwrite": "^28.3.0",
+    "appwrite": "^29.2.0",
     "blobatar": "^2.7.0",
     "boneyard-js": "^1.10.0",
     "cuelume": "^0.2.8",
