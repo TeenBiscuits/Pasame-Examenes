@@ -42,7 +42,7 @@ La aplicación permite:
 
 ## Arquitectura
 
-La aplicación usa React, TanStack Start, TanStack Router, Vite y TypeScript.
+La aplicación usa las APIs de React con TanStack Redact como runtime, TanStack Start, TanStack Router, Vite y TypeScript. La integración de Redact en `vite.config.ts` se aplica al renderizado del servidor y a la hidratación del navegador; se mantienen las dependencias y los imports de React y React DOM.
 
 Home y las páginas públicas de asignatura generan su HTML durante el build para que los buscadores puedan leer su contenido. Las rutas de práctica y examen se cargan de forma interactiva en el navegador.
 

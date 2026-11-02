@@ -1,5 +1,6 @@
 import {
 	formatForDisplay,
+	type HotkeyChord,
 	useHeldKeys,
 	useHotkeyRecorder,
 } from "@tanstack/react-hotkeys";
@@ -16,13 +17,15 @@ import {
 import { useKeyboardCommands } from "../lib/keyboard-commands";
 import { track } from "../lib/umami";
 
-function getAssignmentKeys(assignment: CommandAssignment): readonly string[] {
+function getAssignmentKeys(
+	assignment: CommandAssignment,
+): readonly HotkeyChord[] {
 	return assignment.type === "hotkeys"
 		? assignment.hotkeys
 		: assignment.sequence;
 }
 
-function getKeyedValues(values: readonly string[]) {
+function getKeyedValues<T extends string>(values: readonly T[]) {
 	const occurrences = new Map<string, number>();
 
 	return values.map((value) => {
@@ -32,7 +35,7 @@ function getKeyedValues(values: readonly string[]) {
 	});
 }
 
-function HotkeyKeycaps({ hotkey }: { hotkey: string }) {
+function HotkeyKeycaps({ hotkey }: { hotkey: HotkeyChord }) {
 	const displayKeys = getKeyedValues(
 		formatForDisplay(hotkey).split(/\s+/).filter(Boolean),
 	);
@@ -106,7 +109,7 @@ function HeldKeysIndicator() {
 						key={key}
 						className="bg-surface text-fg rounded border border-current/15 px-1.5 py-0.5 font-mono text-[0.7rem]"
 					>
-						{formatForDisplay(key)}
+						{formatForDisplay({ key })}
 					</kbd>
 				))}
 			</span>
@@ -126,7 +129,7 @@ function ShortcutBinding({
 	assignment: CommandAssignment;
 	hasConflict: boolean;
 	isRecording: boolean;
-	recordedSteps: readonly string[];
+	recordedSteps: readonly HotkeyChord[];
 	onStart: () => void;
 	onCommit: () => void;
 	onCancel: () => void;

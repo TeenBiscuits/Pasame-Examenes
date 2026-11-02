@@ -4,8 +4,8 @@ import { fileURLToPath } from "node:url";
 
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
-
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { redact } from "@tanstack/redact/vite";
 
 import viteReact from "@vitejs/plugin-react";
 import { boneyardPlugin } from "boneyard-js/vite";
@@ -52,6 +52,8 @@ const prerenderPages = [
 
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
+	// Bundle SSR dependencies so Redact also redirects their React imports.
+	ssr: { noExternal: true },
 	build: {
 		// The shared Markdown runtime stays below this threshold after the
 		// syntax highlighter is split into its own on-demand chunk.
@@ -90,6 +92,7 @@ const config = defineConfig({
 			},
 		}),
 		viteReact(),
+		redact(),
 	],
 });
 
