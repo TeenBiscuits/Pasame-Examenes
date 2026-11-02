@@ -17,6 +17,32 @@ import { isIndexableSubject } from "./src/subjects/visibility.ts";
 
 const LANGS = ["en", "es", "gl"] as const;
 
+async function getGitHubStarCount(): Promise<number | null> {
+	try {
+		const response = await fetch(
+			"https://api.github.com/repos/TeenBiscuits/Pasame-Examenes",
+			{
+				headers: { Accept: "application/vnd.github+json" },
+				signal: AbortSignal.timeout(5_000),
+			},
+		);
+		if (!response.ok) throw new Error(`HTTP ${response.status}`);
+		const data = await response.json();
+		const count: unknown = data.stargazers_count;
+		if (
+			typeof count !== "number" ||
+			!Number.isSafeInteger(count) ||
+			count < 0
+		) {
+			throw new Error("Invalid GitHub star count");
+		}
+		return count;
+	} catch (error) {
+		console.warn("Could not fetch GitHub stars; omitting the count.", error);
+		return null;
+	}
+}
+
 function getAppVersion(): string {
 	const vercelCommit = process.env.VERCEL_GIT_COMMIT_SHA?.trim();
 	if (vercelCommit) return vercelCommit.slice(0, 7);
@@ -96,4 +122,12 @@ const config = defineConfig({
 	],
 });
 
-export default config;
+export default defineConfig(async ({ command }) => ({
+	...config,
+	define: {
+		...config.define,
+		__GITHUB_STAR_COUNT__: JSON.stringify(
+			command === "build" ? await getGitHubStarCount() : null,
+		),
+	},
+}));

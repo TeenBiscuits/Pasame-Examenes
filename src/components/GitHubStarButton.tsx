@@ -1,82 +1,11 @@
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Star } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import { track } from "../lib/umami";
 
 const REPO = "TeenBiscuits/Pasame-Examenes";
-const CACHE_KEY = "gh_star_count";
-const CACHE_TS_KEY = "gh_star_count_ts";
-const CACHE_TTL = 60 * 60 * 1000;
 const COUNT_ANIMATION_DURATION_MS = 1_200;
-
-let cachedCount: number | null = null;
-let fetchPromise: Promise<void> | null = null;
-const subscribers = new Set<() => void>();
-
-function notify() {
-	subscribers.forEach((fn) => {
-		fn();
-	});
-}
-
-function subscribe(fn: () => void) {
-	subscribers.add(fn);
-	ensureCountLoaded();
-	return () => {
-		subscribers.delete(fn);
-	};
-}
-
-function getStoredCount(): number | null {
-	try {
-		const stored = sessionStorage.getItem(CACHE_KEY);
-		const storedTs = sessionStorage.getItem(CACHE_TS_KEY);
-		if (stored && storedTs) {
-			const age = Date.now() - Number(storedTs);
-			if (age < CACHE_TTL) return Number(stored);
-		}
-	} catch {
-		/* sessionStorage unavailable */
-	}
-	return null;
-}
-
-function ensureCountLoaded() {
-	if (cachedCount !== null || fetchPromise !== null) return;
-
-	cachedCount = getStoredCount();
-	if (cachedCount !== null) {
-		notify();
-		return;
-	}
-
-	fetchPromise = fetch(`https://api.github.com/repos/${REPO}`)
-		.then((res) => {
-			if (!res.ok) throw new Error(`HTTP ${res.status}`);
-			return res.json();
-		})
-		.then((data: { stargazers_count?: number }) => {
-			cachedCount = data.stargazers_count ?? null;
-			try {
-				sessionStorage.setItem(CACHE_KEY, String(cachedCount ?? 0));
-				sessionStorage.setItem(CACHE_TS_KEY, String(Date.now()));
-			} catch {
-				/* unavailable */
-			}
-			notify();
-		})
-		.catch(() => {
-			fetchPromise = null;
-		});
-}
-
-function getStarCount(): number | null {
-	return cachedCount;
-}
-
-function getServerStarCount(): null {
-	return null;
-}
+const count = __GITHUB_STAR_COUNT__;
 
 function formatCount(n: number): string {
 	if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
@@ -166,11 +95,6 @@ function StarIcon({ className }: { className?: string }) {
 
 export default function GitHubStarButton() {
 	const t = useT();
-	const count = useSyncExternalStore(
-		subscribe,
-		getStarCount,
-		getServerStarCount,
-	);
 
 	const href = `https://github.com/${REPO}`;
 
