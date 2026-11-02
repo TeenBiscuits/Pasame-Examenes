@@ -46,6 +46,8 @@ La aplicación usa las APIs de React con TanStack Redact como runtime, TanStack 
 
 Home y las páginas públicas de asignatura generan su HTML durante el build para que los buscadores puedan leer su contenido. Las rutas de práctica y examen se cargan de forma interactiva en el navegador.
 
+El recuento de estrellas de GitHub se consulta una vez durante el build y se incluye en la web hasta la siguiente compilación. Las visitas no consultan la API de GitHub. En desarrollo, o si la consulta falla, el botón se muestra sin recuento.
+
 ## Desarrollo local
 
 ### Requisitos
