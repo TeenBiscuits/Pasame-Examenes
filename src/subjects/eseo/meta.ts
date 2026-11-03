@@ -5,6 +5,7 @@ export const meta: SubjectMeta = {
 	lastmod: "2026-08-09",
 	name: "Sistemas Operativos",
 	degree: "Grao en Enxeñaría informática",
+	degreeAbbreviation: "GEI",
 	course: 2,
 	courseCode: "202318",
 	icon: "💽",

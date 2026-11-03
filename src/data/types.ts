@@ -56,8 +56,11 @@ export interface Question {
 
 export type QuestionSummary = Pick<
 	Question,
-	"id" | "examId" | "topic" | "points" | "repeated"
->;
+	"id" | "examId" | "topic" | "type" | "points" | "repeated"
+> & {
+	optionCount?: number;
+	textPartCount?: number;
+};
 
 export interface Topic {
 	key: string;
@@ -103,6 +106,8 @@ export interface SubjectMeta {
 	lastmod: string;
 	name: string;
 	degree: string;
+	/** Null for content that does not belong to an academic degree. */
+	degreeAbbreviation: string | null;
 	course: number;
 	courseCode: string;
 	icon: string;

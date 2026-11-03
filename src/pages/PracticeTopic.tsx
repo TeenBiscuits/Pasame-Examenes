@@ -17,10 +17,11 @@ import {
 	Trophy,
 } from "reicon-react";
 import Disclaimer from "../components/Disclaimer";
+import { PracticeTopicLoading } from "../components/PracticeTopicLoading";
 import QuestionCard from "../components/QuestionCard";
 import QuestionNavChips from "../components/QuestionNavChips";
 import ScoreProgress from "../components/ScoreProgress";
-import SimulatorSkeleton from "../components/SimulatorSkeleton";
+import SimulatorLayout from "../components/SimulatorLayout";
 import type { Question } from "../data/types";
 import {
 	filterQuestionsByExamSelection,
@@ -902,10 +903,7 @@ function PracticePlayer({
 	}, [hasScoreSummary]);
 
 	return (
-		<div
-			className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8"
-			style={{ overflowAnchor: "none" }}
-		>
+		<SimulatorLayout>
 			<PracticePlayerHeader
 				subject={subject}
 				topic={topic}
@@ -988,7 +986,7 @@ function PracticePlayer({
 				questionType={currentQuestion.type}
 				exam={currentExam}
 			/>
-		</div>
+		</SimulatorLayout>
 	);
 }
 
@@ -1117,13 +1115,14 @@ function PracticeTopicContent({
 		) : null;
 
 	return (
-		<SimulatorSkeleton
-			kind="practice"
+		<PracticeTopicLoading
+			subjectId={subject?.id}
+			topic={topic}
+			question={questions[currentIndex]}
 			loading={isLoading}
-			loadingLabel={t.practice.loadingQuestions}
 		>
 			{player}
-		</SimulatorSkeleton>
+		</PracticeTopicLoading>
 	);
 }
 
@@ -1172,18 +1171,6 @@ export default function PracticeTopic() {
 			retry={retry}
 			session={session}
 			navigation={navigation}
-		/>
-	);
-}
-
-export function PracticeTopicPending() {
-	const t = useT();
-
-	return (
-		<SimulatorSkeleton
-			kind="practice"
-			loading
-			loadingLabel={t.practice.loadingQuestions}
 		/>
 	);
 }

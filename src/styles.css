@@ -2,6 +2,7 @@
    their selected Latin files with the same load path as the rest of the CSS. */
 @import "tailwindcss";
 @import "tailwind-animations";
+@import "skullet/styles.css";
 @import "blobatar/motion.css";
 @import "blobatar/gaze.css";
 
@@ -151,10 +152,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .simulator-skeleton-bone {
-        animation: none !important;
-    }
-
     .faq-item::details-content {
         transition: opacity 150ms var(--faq-ease-out),
             content-visibility 150ms allow-discrete;
@@ -196,6 +193,12 @@ body {
 
 .safe-area-top {
     padding-block-start: env(safe-area-inset-top);
+}
+
+/* Keep sticky headers beneath Skullet's measured overlay while loading. */
+.simulator-loading [skullet-loading] .sticky-player-header {
+    position: static;
+    z-index: auto;
 }
 
 .sticky-player-header {

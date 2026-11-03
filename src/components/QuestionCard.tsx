@@ -1143,7 +1143,10 @@ export default function QuestionCard(props: QuestionCardProps) {
 	const t = useT();
 
 	return (
-		<div className="flex flex-col rounded-xl shadow-sm">
+		<div
+			className="flex flex-col rounded-xl shadow-sm"
+			data-question-type={question.type}
+		>
 			<div className="border-border bg-surface-alt rounded-t-xl border-x-2 border-t-2 px-4 py-4 sm:px-6 sm:py-6">
 				<div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
 					<span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">

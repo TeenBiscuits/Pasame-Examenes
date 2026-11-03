@@ -7,15 +7,15 @@
     "#/*": "./src/*"
   },
   "scripts": {
+    "check:practice-loading": "pnpm run generate-content-stats && tsx scripts/check-practice-loading.ts && tsx scripts/check-loading-view.ts",
     "check:aquarium": "node scripts/check-aquarium-overflow.mjs",
-    "check:bones": "tsx scripts/check-bones.ts",
     "generate-content-stats": "tsx scripts/generate-question-summary-map.ts",
     "generate-og-images": "tsx scripts/generate-og-images.ts",
     "generate-build-assets": "pnpm run generate-content-stats && pnpm run generate-og-images",
     "predev": "pnpm run generate-build-assets",
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
-    "prebuild": "pnpm run check:bones && pnpm run generate-build-assets",
+    "prebuild": "pnpm run generate-build-assets",
     "build": "vite build",
     "preview": "vite preview",
     "perf:preview": "SITE_URL=http://127.0.0.1:4173 pnpm preview --host 127.0.0.1 --port 4173",
@@ -44,7 +44,6 @@
     "@tanstack/react-start": "latest",
     "@tanstack/redact": "^0.2.4",
     "blobatar": "^2.7.0",
-    "boneyard-js": "^1.10.0",
     "cuelume": "^0.2.8",
     "driver.js": "^1.10.2",
     "katex": "^0.19.0",
@@ -58,6 +57,7 @@
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
+    "skullet": "^0.0.3",
     "tailwind-animations": "^1.0.2",
     "tailwindcss": "^4.3.3"
   },

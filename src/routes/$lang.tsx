@@ -7,6 +7,7 @@ import {
 import { Suspense, useEffect } from "react";
 import AppChrome from "../components/AppChrome";
 import LangNotFound from "../components/LangNotFound";
+import LoadingProvider from "../components/LoadingProvider";
 import { I18nProvider } from "../i18n/context";
 import { isLang } from "../i18n/context-value";
 import { detectPreferredLang } from "../i18n/detect-lang";
@@ -84,9 +85,11 @@ function LangLayout() {
 		<ThemeProvider>
 			<Suspense fallback={<LanguageLoadingFallback />}>
 				<I18nProvider initialLang={lang}>
-					<AppChrome>
-						<Outlet />
-					</AppChrome>
+					<LoadingProvider>
+						<AppChrome>
+							<Outlet />
+						</AppChrome>
+					</LoadingProvider>
 				</I18nProvider>
 			</Suspense>
 		</ThemeProvider>

@@ -5,6 +5,7 @@ export const meta: SubjectMeta = {
 	lastmod: "2026-07-28",
 	name: "Nacionalidad Española",
 	degree: "¿Eres español/a?",
+	degreeAbbreviation: null,
 	course: 1,
 	courseCode: "ESPAÑA",
 	icon: "🇪🇸",
