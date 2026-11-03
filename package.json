@@ -7,6 +7,7 @@
     "#/*": "./src/*"
   },
   "scripts": {
+    "check:aquarium": "node scripts/check-aquarium-overflow.mjs",
     "check:bones": "tsx scripts/check-bones.ts",
     "generate-content-stats": "tsx scripts/generate-question-summary-map.ts",
     "generate-og-images": "tsx scripts/generate-og-images.ts",
@@ -25,13 +26,13 @@
     "pretypecheck": "pnpm run generate-content-stats",
     "typecheck": "tsc --noEmit",
     "readme": "tsx scripts/update-readme-subjects.ts",
+    "update-contributors": "tsx scripts/update-contributors.ts",
     "format": "biome format",
     "lint": "biome lint",
     "check": "biome check",
     "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
-    "@2toad/profanity": "^3.3.0",
     "@blobatar/react": "^2.7.0",
     "@fontsource-variable/cascadia-code": "^5.3.0",
     "@fontsource-variable/onest": "^5.3.1",
@@ -42,7 +43,6 @@
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-start": "latest",
     "@tanstack/redact": "^0.2.4",
-    "appwrite": "^28.3.0",
     "blobatar": "^2.7.0",
     "boneyard-js": "^1.10.0",
     "cuelume": "^0.2.8",

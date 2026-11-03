@@ -130,3 +130,19 @@ Si el cambio afecta a la interfaz, prueba al menos una pantalla móvil, los tres
 No incluyas secretos, archivos temporales, PDFs sin autorización ni artefactos generados que no sean necesarios para revisar el cambio.
 
 Para las normas de convivencia, consulta el [código de conducta](./CODE_OF_CONDUCT.md).
+
+## Tu Blobatar en la pecera
+
+Cualquier aportación cuenta: código, documentación, material autorizado, issues y comentarios por correo. Indica tu @ de GitHub para que podamos reconocerte. Para actualizar los Blobatars de la pecera:
+
+```bash
+pnpm update-contributors
+```
+
+Necesitas GitHub CLI (`gh`) instalado y autenticado con `gh auth login`. El script consulta todas las páginas de contribuidores y commits de la rama predeterminada, incluye los coautores de las firmas `Co-authored-by` y excluye únicamente a Dependabot. Verifica los handles con GitHub y genera `src/data/contributors.ts`. Incluye este archivo en el commit y despliega la web para publicar los nuevos Blobatars; no hay consultas a GitHub desde la pecera ni durante el build.
+
+Para reconocer aportaciones por issues o correo, añade el handle (sin `@`) a `additionalContributors` en `scripts/contributors.manual.ts` y ejecuta el mismo comando. Si un correo de coautor no puede resolverse, el script pedirá añadir su correspondencia a `coauthorHandles` en ese archivo. Las aportaciones manuales se conservan en las siguientes actualizaciones.
+
+El script no modifica la lista si falla alguna consulta. Puedes usar `pnpm update-contributors --check` para comprobar si está al día sin escribir archivos.
+
+Para comprobar que la pecera no provoca scroll horizontal, inicia `pnpm dev` y ejecuta `pnpm check:aquarium` en otra terminal. La prueba utiliza el navegador de Unlighthouse ya instalado, recorre las posiciones de la animación y comprueba etiquetas ocultas, visibles, nombres largos y arrastre a ambos bordes. Puedes indicar otro servidor con `SITE_URL=http://127.0.0.1:4173 pnpm check:aquarium`.

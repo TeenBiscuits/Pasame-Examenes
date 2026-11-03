@@ -38,7 +38,6 @@ minimumReleaseAgeExclude:
   - '@vue/runtime-dom@3.5.44'
   - '@vue/server-renderer@3.5.44'
   - '@vue/shared@3.5.44'
-  - 'appwrite@28.2.0'
   - 'bare-url@2.5.5'
   - 'cuelume@0.2.6'
   - 'electron-to-chromium@1.5.453'

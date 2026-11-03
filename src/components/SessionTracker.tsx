@@ -1,7 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useLang } from "../i18n/hooks";
 import { getDistinctId, identify } from "../lib/umami";
-import { useProfile } from "../profile/hooks";
 import { useTheme } from "../theme/hooks";
 
 const RECORDER_SCRIPT_ID = "umami-recorder";
@@ -39,22 +38,19 @@ function scheduleAfterIdle(callback: () => void): () => void {
 
 export default function SessionTracker() {
 	const { lang } = useLang();
-	const { profile, isReady: isProfileReady } = useProfile();
 	const { theme, colorScheme, lightTheme, darkTheme } = useTheme();
 	const sessionData = useMemo(
 		() => ({
-			"student-username": profile.username,
 			lang,
 			theme,
 			"theme-color-scheme": colorScheme,
 			"theme-light": lightTheme,
 			"theme-dark": darkTheme,
 		}),
-		[profile.username, lang, theme, colorScheme, lightTheme, darkTheme],
+		[lang, theme, colorScheme, lightTheme, darkTheme],
 	);
 
 	useEffect(() => {
-		if (!isProfileReady) return;
 		const id = getDistinctId();
 		if (!id) return;
 
@@ -64,7 +60,7 @@ export default function SessionTracker() {
 		const trackerScript = document.getElementById(UMAMI_SCRIPT_ID);
 		trackerScript?.addEventListener("load", identifySession);
 		return () => trackerScript?.removeEventListener("load", identifySession);
-	}, [isProfileReady, sessionData]);
+	}, [sessionData]);
 
 	useEffect(() => {
 		return scheduleAfterIdle(() => {

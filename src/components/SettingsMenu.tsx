@@ -1,5 +1,5 @@
 import { type ReactNode, useRef, useState } from "react";
-import { Gear, Keyboard, Palette, Sliders, Users, XSquare } from "reicon-react";
+import { Gear, Keyboard, Palette, Sliders, XSquare } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import {
 	closeDialog,
@@ -11,30 +11,16 @@ import { useCommandHandlers } from "../lib/keyboard-commands";
 import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
 import { APP_VERSION } from "../lib/version";
-import { usePresence } from "../presence/hooks";
-import { useProfile } from "../profile/hooks";
-import {
-	getBlobatarColor,
-	isValidUsername,
-	sanitizeUsername,
-} from "../profile/profile";
 import KeyboardShortcutsSection from "./KeyboardShortcutsSection";
 import { settingsModalDialogClass } from "./Modal";
-import ProfileAvatar from "./ProfileAvatar";
 import SettingsAppearancePanel from "./SettingsAppearancePanel";
 import SettingsGeneralPanel from "./SettingsGeneralPanel";
-import SettingsProfilePanel from "./SettingsProfilePanel";
 
-type SettingsTab = "profile" | "general" | "appearance" | "shortcuts";
+type SettingsTab = "general" | "appearance" | "shortcuts";
 type TabPlacement = "desktop" | "mobile";
 
 const GITHUB_REPOSITORY_URL = "https://github.com/TeenBiscuits/Pasame-Examenes";
-const tabOrder: readonly SettingsTab[] = [
-	"general",
-	"profile",
-	"appearance",
-	"shortcuts",
-];
+const tabOrder: readonly SettingsTab[] = ["general", "appearance", "shortcuts"];
 
 function TabButton({
 	tab,
@@ -116,14 +102,6 @@ function SettingsTabButtons({
 				onSelect={onSelect}
 			/>
 			<TabButton
-				tab="profile"
-				placement={placement}
-				active={activeTab === "profile"}
-				icon={<Users size={18} />}
-				label={t.settings.profileSocial}
-				onSelect={onSelect}
-			/>
-			<TabButton
 				tab="appearance"
 				placement={placement}
 				active={activeTab === "appearance"}
@@ -199,42 +177,8 @@ function SettingsMobileTabs({
 	);
 }
 
-type ProfileStatus = "idle" | "saved" | "error";
-
-interface SettingsTabPanelProps {
-	activeTab: SettingsTab;
-	username: string;
-	onUsernameChange: (value: string) => void;
-	onShare: () => void;
-	onStopSharing: () => void;
-	isNameShared: boolean;
-	isSubmitting: boolean;
-	status: ProfileStatus;
-	isStudyPresenceBadgeVisible: boolean;
-	onStudyPresenceBadgeVisibilityChange: (visible: boolean) => void;
-}
-
-function SettingsTabPanel({
-	activeTab,
-	username,
-	onUsernameChange,
-	onShare,
-	onStopSharing,
-	isNameShared,
-	isSubmitting,
-	status,
-	isStudyPresenceBadgeVisible,
-	onStudyPresenceBadgeVisibilityChange,
-}: SettingsTabPanelProps) {
-	const panelTitleId =
-		activeTab === "profile"
-			? "settings-profile-title"
-			: activeTab === "general"
-				? "settings-general-title"
-				: activeTab === "appearance"
-					? "settings-appearance-title"
-					: "settings-shortcuts-title";
-
+function SettingsTabPanel({ activeTab }: { activeTab: SettingsTab }) {
+	const panelTitleId = `settings-${activeTab}-title`;
 	return (
 		<div
 			id={`settings-panel-${activeTab}`}
@@ -242,21 +186,7 @@ function SettingsTabPanel({
 			aria-labelledby={panelTitleId}
 			className="min-h-full p-5 outline-none sm:p-8"
 		>
-			{activeTab === "profile" ? (
-				<SettingsProfilePanel
-					username={username}
-					onUsernameChange={onUsernameChange}
-					onShare={onShare}
-					onStopSharing={onStopSharing}
-					isNameShared={isNameShared}
-					isSubmitting={isSubmitting}
-					status={status}
-					isStudyPresenceBadgeVisible={isStudyPresenceBadgeVisible}
-					onStudyPresenceBadgeVisibilityChange={
-						onStudyPresenceBadgeVisibilityChange
-					}
-				/>
-			) : activeTab === "general" ? (
+			{activeTab === "general" ? (
 				<SettingsGeneralPanel />
 			) : activeTab === "appearance" ? (
 				<SettingsAppearancePanel />
@@ -269,35 +199,18 @@ function SettingsTabPanel({
 
 export default function SettingsMenu() {
 	const t = useT();
-	const {
-		profile,
-		saveUsername,
-		completeNamePrompt,
-		setNameShared,
-		setStudyPresenceBadgeVisible,
-	} = useProfile();
-	const { shareUsername, stopSharingUsername } = usePresence();
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const closeMethodRef = useRef<"x" | "backdrop" | "esc">("x");
 	const [open, setOpen] = useState(false);
 	const [activeTab, setActiveTab] = useState<SettingsTab>("general");
-	const [usernameDraft, setUsernameDraft] = useState(profile.username);
-	const [profileStatus, setProfileStatus] = useState<
-		"idle" | "saved" | "error"
-	>("idle");
-	const [isSubmittingProfile, setIsSubmittingProfile] = useState(false);
 
 	useDialogDismiss(dialogRef, (method) => {
 		closeMethodRef.current = method;
 		setOpen(false);
-		setUsernameDraft(profile.username);
-		setProfileStatus("idle");
 		playSound("close");
 	});
 	useDialogClose(dialogRef, () => {
 		setOpen(false);
-		setUsernameDraft(profile.username);
-		setProfileStatus("idle");
 		track("modal_close", {
 			modal: "settings",
 			method: closeMethodRef.current,
@@ -305,8 +218,6 @@ export default function SettingsMenu() {
 	});
 
 	function openDialog() {
-		setUsernameDraft(profile.username);
-		setProfileStatus("idle");
 		closeMethodRef.current = "x";
 		setOpen(true);
 		showDialog(dialogRef.current);
@@ -327,58 +238,6 @@ export default function SettingsMenu() {
 		setActiveTab(tab);
 	}
 
-	function updateUsernameDraft(value: string) {
-		const sanitized = sanitizeUsername(value);
-		setUsernameDraft(sanitized);
-		setProfileStatus("idle");
-	}
-
-	async function shareUsernameDraft() {
-		const username = sanitizeUsername(usernameDraft);
-		if (!isValidUsername(username) || !saveUsername(username)) {
-			setProfileStatus("error");
-			return;
-		}
-
-		setIsSubmittingProfile(true);
-		setProfileStatus("idle");
-		try {
-			const result = await shareUsername(username);
-			if (!result || result.isRateLimited) {
-				setProfileStatus("error");
-				return;
-			}
-			setNameShared(result.isPublic);
-			completeNamePrompt();
-			setUsernameDraft(username);
-			setProfileStatus("saved");
-			playSound("success");
-		} catch {
-			setProfileStatus("error");
-		} finally {
-			setIsSubmittingProfile(false);
-		}
-	}
-
-	async function stopSharingName() {
-		setIsSubmittingProfile(true);
-		setProfileStatus("idle");
-		try {
-			const didStopSharing = await stopSharingUsername();
-			if (!didStopSharing) {
-				setProfileStatus("error");
-				return;
-			}
-			setNameShared(false);
-			setProfileStatus("saved");
-			playSound("close");
-		} finally {
-			setIsSubmittingProfile(false);
-		}
-	}
-
-	const usernameColor = getBlobatarColor(profile.username);
-
 	return (
 		<>
 			<button
@@ -391,19 +250,7 @@ export default function SettingsMenu() {
 				aria-haspopup="dialog"
 				aria-expanded={open}
 			>
-				<ProfileAvatar
-					username={profile.username}
-					size={32}
-					animated
-					className="rounded-md"
-				/>
-				<span
-					role="tooltip"
-					style={{ color: usernameColor }}
-					className="border-border bg-surface-alt pointer-events-none absolute top-full right-0 z-50 mt-2 rounded-md border px-2 py-1 font-mono text-xs font-semibold whitespace-nowrap opacity-0 shadow-md transition-opacity duration-100 group-hover:opacity-100 group-focus-visible:opacity-100"
-				>
-					@{profile.username}
-				</span>
+				<Gear size={22} aria-hidden="true" />
 			</button>
 
 			<dialog
@@ -436,22 +283,7 @@ export default function SettingsMenu() {
 						<SettingsSidebar activeTab={activeTab} onSelect={selectTab} />
 
 						<div className="settings-menu__scroll min-h-0 min-w-0 flex-1">
-							<SettingsTabPanel
-								activeTab={activeTab}
-								username={usernameDraft}
-								onUsernameChange={updateUsernameDraft}
-								onShare={() => void shareUsernameDraft()}
-								onStopSharing={() => void stopSharingName()}
-								isNameShared={profile.isNameShared}
-								isSubmitting={isSubmittingProfile}
-								status={profileStatus}
-								isStudyPresenceBadgeVisible={
-									profile.isStudyPresenceBadgeVisible
-								}
-								onStudyPresenceBadgeVisibilityChange={
-									setStudyPresenceBadgeVisible
-								}
-							/>
+							<SettingsTabPanel activeTab={activeTab} />
 						</div>
 
 						<SettingsMobileTabs activeTab={activeTab} onSelect={selectTab} />
