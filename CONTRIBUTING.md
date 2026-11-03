@@ -133,7 +133,11 @@ Para las normas de convivencia, consulta el [código de conducta](./CODE_OF_COND
 
 ## Tu Blobatar en la pecera
 
-Cualquier aportación cuenta: código, documentación, material autorizado, issues y comentarios por correo. Indica tu @ de GitHub para que podamos reconocerte. Para actualizar los Blobatars de la pecera:
+Cualquier aportación cuenta: código, documentación, material autorizado, issues y comentarios por correo. No hace falta tener ni indicar una cuenta de GitHub para escribir un correo o aportar al proyecto.
+
+El creador del modal es solo una demo local: su nombre es libre, puede quedar vacío y no se valida, guarda ni incorpora al correo. No es un registro ni un formulario de identificación. La ausencia de validación y de un recordatorio de incluir el @ en el botón de correo es una excepción intencionada; consulta el [ADR 0006](docs/adr/0006-pecera-de-contribuidores-sin-backend.md#excepción-intencionada-nombre-libre-en-la-demo-local).
+
+La lista pública de la pecera sí usa handles verificados de GitHub. Para actualizar sus Blobatars:
 
 ```bash
 pnpm update-contributors

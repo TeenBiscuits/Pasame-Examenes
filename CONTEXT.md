@@ -11,6 +11,9 @@ _Evitar_: Usuario, cliente
 
 **Contribuidor**: Persona que ayuda al proyecto con código, preguntas, documentación, propuestas, avisos de errores o aportaciones por correo. Se reconoce en la pecera de la landing mediante su @ de GitHub y un Blobatar generado de forma determinista. La lista se mantiene en el repositorio, sin perfiles de estudiantes ni servicio de presencia.
 
+**Demo de Blobatar**: Vista previa privada y temporal de un Blobatar generado a partir de un nombre libre. Ese nombre no identifica una cuenta de GitHub ni un perfil de estudiante, y probar la demo no equivale a contribuir ni a aparecer en la pecera pública.
+_Evitar_: Registro, perfil, handle verificado
+
 ### Catálogo académico
 
 **Asignatura**: Unidad académica de un grado que reúne sus temas, exámenes y preguntas. Su código oficial dentro del grado es su identidad académica; el identificador corto es una referencia de navegación.
