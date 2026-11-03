@@ -15,7 +15,8 @@ import { compactModalDialogClass, ModalHeader } from "../components/Modal";
 import QuestionCard from "../components/QuestionCard";
 import QuestionNavChips from "../components/QuestionNavChips";
 import ScoreProgress from "../components/ScoreProgress";
-import SimulatorSkeleton from "../components/SimulatorSkeleton";
+import SimulatorLayout from "../components/SimulatorLayout";
+import SimulatorLoading from "../components/SimulatorLoading";
 import type { Exam, Question } from "../data/types";
 import { useExamSession } from "../hooks/useExamSession";
 import { useT } from "../i18n/hooks";
@@ -926,10 +927,7 @@ function ExamPlayer({
 	}, [hasScoreSummary]);
 
 	return (
-		<div
-			className="animate-fade-in animate-duration-fast mx-auto max-w-3xl px-4 py-4 sm:py-8"
-			style={{ overflowAnchor: "none" }}
-		>
+		<SimulatorLayout>
 			<ExamPlayerHeader
 				subject={subject}
 				examInfo={examInfo}
@@ -1022,7 +1020,7 @@ function ExamPlayer({
 				dialogRef={exitDialogRef}
 				onExit={onExit}
 			/>
-		</div>
+		</SimulatorLayout>
 	);
 }
 
@@ -1567,13 +1565,15 @@ function ExamSimulationContent({
 	});
 
 	return (
-		<SimulatorSkeleton
+		<SimulatorLoading
 			kind="exam"
+			title={examInfo.title}
+			questionCount={questionCount}
 			loading={loadingSimulator}
 			loadingLabel={t.exam.loadingQuestions}
 		>
 			{content}
-		</SimulatorSkeleton>
+		</SimulatorLoading>
 	);
 }
 
@@ -1714,7 +1714,7 @@ export function ExamSimulationPending() {
 
 	if (!subject || !examInfo || !generatedStats) {
 		return (
-			<SimulatorSkeleton
+			<SimulatorLoading
 				kind="exam"
 				loading
 				loadingLabel={t.exam.loadingQuestions}

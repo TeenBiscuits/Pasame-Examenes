@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import PracticeTopicPending from "../components/PracticeTopicLoading";
 import { isLang } from "../i18n/context-value";
 import { preloadSimulatorDependencies } from "../lib/route-preloads";
 import { createPageHead } from "../seo/head";
@@ -7,6 +8,7 @@ import { getQuestionsByTopic, getTopicMegaTopicLabel } from "../subjects";
 import { topicRouteData } from "./-route-data";
 
 export const Route = createFileRoute("/$lang/$subjectId_/practice_/$topic")({
+	pendingComponent: PracticeTopicPending,
 	pendingMs: 0,
 	pendingMinMs: 300,
 	loader: async ({ params }) => {

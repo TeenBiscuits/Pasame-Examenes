@@ -1,3 +1,4 @@
+import onestFontUrl from "@fontsource-variable/onest/files/onest-latin-wght-normal.woff2?url";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { hotkeysDevtoolsPlugin } from "@tanstack/react-hotkeys-devtools";
 import {
@@ -7,9 +8,6 @@ import {
 	useRouterState,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-
-import "../lib/boneyard";
-import onestFontUrl from "@fontsource-variable/onest/files/onest-latin-wght-normal.woff2?url";
 import { isLang, type Lang } from "../i18n/context-value";
 import {
 	ERROR_TRACKING_ENABLED,

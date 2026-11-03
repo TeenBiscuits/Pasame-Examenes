@@ -85,6 +85,8 @@ interface QuestionCardProps {
 	examId?: string;
 	mode?: "practice" | "exam";
 	onAnswer: (questionId: string, answer: string) => void;
+	/** Disable shortcuts when rendering an inert loading sample or demo. */
+	keyboardEnabled?: boolean;
 	savedAnswer?: string;
 	showResult?: boolean;
 	selfGrade?: "correct" | "incorrect";
@@ -393,6 +395,7 @@ function MCQuestion({
 	topicKey,
 	examId,
 	mode,
+	keyboardEnabled = true,
 }: QuestionCardProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const t = useT();
@@ -414,7 +417,7 @@ function MCQuestion({
 		onAnswer(question.id, letter);
 	}
 
-	const canAnswer = !showResult && !!question.options;
+	const canAnswer = keyboardEnabled && !showResult && !!question.options;
 	useCommandHandlers("question-card", {
 		"answer-a": canAnswer ? () => answerWithShortcut("a") : undefined,
 		"answer-b": canAnswer ? () => answerWithShortcut("b") : undefined,
@@ -1143,7 +1146,10 @@ export default function QuestionCard(props: QuestionCardProps) {
 	const t = useT();
 
 	return (
-		<div className="flex flex-col rounded-xl shadow-sm">
+		<div
+			className="flex flex-col rounded-xl shadow-sm"
+			data-question-type={question.type}
+		>
 			<div className="border-border bg-surface-alt rounded-t-xl border-x-2 border-t-2 px-4 py-4 sm:px-6 sm:py-6">
 				<div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
 					<span className="bg-code text-fg-secondary rounded px-2 py-0.5 font-mono text-xs">

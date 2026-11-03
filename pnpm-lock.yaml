@@ -199,9 +199,6 @@ importers:
       blobatar:
         specifier: ^2.7.0
         version: 2.7.0(react@19.3.1)(vue@3.5.44(typescript@7.0.2))
-      boneyard-js:
-        specifier: ^1.10.0
-        version: 1.10.0(react@19.3.1)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))(vue@3.5.44(typescript@7.0.2))
       cuelume:
         specifier: ^0.2.8
         version: 0.2.8
@@ -241,6 +238,9 @@ importers:
       remark-math:
         specifier: ^6.0.0
         version: 6.0.0
+      skullet:
+        specifier: ^0.0.3
+        version: 0.0.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vue@3.5.44(typescript@7.0.2))
       tailwind-animations:
         specifier: ^1.0.2
         version: 1.0.2(tailwindcss@4.3.3)
@@ -449,9 +449,6 @@ packages:
   '@capsizecss/unpack@4.0.1':
     resolution: {integrity: sha512-CuNiSqg7+e1cO/GjffyMOm5Tt2jUF9CWHHnvQ/UkqvtkGfHdgwEC0wpmq7fkN3gxwpRnrAN0WzO3vREKmNolMQ==}
     engines: {node: '>=18'}
-
-  '@chenglou/pretext@0.0.5':
-    resolution: {integrity: sha512-A8GZN10REdFGsyuiUgLV8jjPDDFMg5GmgxGWV0I3igxBOnzj+jgz2VMmVD7g+SFyoctfeqHFxbNatKSzVRWtRg==}
 
   '@clack/core@1.5.1':
     resolution: {integrity: sha512-iHTrHA8MtVuLl2TfZySmcKv1qO2PoyC9Z7pfSDozEuV5vtY3/wcOPKJXlqJ5Oq2Cx5DDGQGAMVx6HZfRRoVEbQ==}
@@ -2776,33 +2773,6 @@ packages:
       vue:
         optional: true
 
-  boneyard-js@1.10.0:
-    resolution: {integrity: sha512-bHyZFdBHswa6Rt2aP0F1pNpPn4/lRcTMRWAt1d7tbFZLoPnwjztr6cmAVa/vaQwTOH9ETD3Lz4vW1iuvQDJNqg==}
-    hasBin: true
-    peerDependencies:
-      '@angular/core': '>=14'
-      preact: '>=10'
-      react: '>=18'
-      react-native: '>=0.71'
-      svelte: '>=5.29'
-      vite: '>=5'
-      vue: '>=3'
-    peerDependenciesMeta:
-      '@angular/core':
-        optional: true
-      preact:
-        optional: true
-      react:
-        optional: true
-      react-native:
-        optional: true
-      svelte:
-        optional: true
-      vite:
-        optional: true
-      vue:
-        optional: true
-
   browserslist@4.29.4:
     resolution: {integrity: sha512-2TcbbiwXEq+N0kD36tykpCfyyQigUXmuwNQbnPp4Xk4PX9JOqVIKjJlIDjpH7uY6tmRGoAd+apeT1p60T8wsdA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -4234,16 +4204,6 @@ packages:
   pkg-types@2.4.0:
     resolution: {integrity: sha512-07Fys7iVx0X6TcviMOgogM1Lk33ZyqOezMnU79S+kffWqwolG/5W9V8EgQSeYCIfFTYVgssRbnH630Oa2+soBA==}
 
-  playwright-core@1.64.1:
-    resolution: {integrity: sha512-BC4s8y6SEVA6Q1rSxZTto8hI1KUI3xXlHGZgvGqP4IqPdI/a6FX9H29IDNz7vKo9l21b6LfYosScPL6M3xxyDQ==}
-    engines: {node: '>=20'}
-    hasBin: true
-
-  playwright@1.64.1:
-    resolution: {integrity: sha512-HCrVhHr5QQuwYoswEUGTb7gGp522yflbv/ST8nF4sFWGuLjQCt17Q/EubpGGSNKYn1tsTCPZxqHhHCfVURu7UA==}
-    engines: {node: '>=20'}
-    hasBin: true
-
   postcss-selector-parser@6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
     engines: {node: '>=4'}
@@ -4527,6 +4487,23 @@ packages:
     resolution: {integrity: sha512-EI2dvLWzPw7+FI6LQPjdo6P4IZ4HFv0vNmssE3Hloqq/sVO9URGMPmrcP4PCNgydCBGIETAZnVmW86h8vwbHrA==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
+
+  skullet@0.0.3:
+    resolution: {integrity: sha512-YPKHasYQxuZTQ6Tf6ap61lseIjdAklQlScg48HMKJW/AiGg8HaVdbfzg5XW/j6OdRuJbITpwsG5vJ8LAapmMJA==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+      svelte: '>=5'
+      vue: '>=3'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
 
   slugify@1.6.9:
     resolution: {integrity: sha512-vZ7rfeehZui7wQs438JXBckYLkIIdfHOXsaVEUMyS5fHo1483l1bMdo0EDSWYclY0yZKFOipDy4KHuKs6ssvdg==}
@@ -5397,9 +5374,6 @@ snapshots:
   '@capsizecss/unpack@4.0.1':
     dependencies:
       fontkitten: 1.0.3
-
-  '@chenglou/pretext@0.0.5':
-    optional: true
 
   '@clack/core@1.5.1':
     dependencies:
@@ -8000,15 +7974,6 @@ snapshots:
       react: 19.3.1
       vue: 3.5.44(typescript@7.0.2)
 
-  boneyard-js@1.10.0(react@19.3.1)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))(vue@3.5.44(typescript@7.0.2)):
-    dependencies:
-      playwright: 1.64.1
-    optionalDependencies:
-      '@chenglou/pretext': 0.0.5
-      react: 19.3.1
-      vite: 8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)
-      vue: 3.5.44(typescript@7.0.2)
-
   browserslist@4.29.4:
     dependencies:
       baseline-browser-mapping: 2.11.30
@@ -9756,12 +9721,6 @@ snapshots:
       exsolve: 1.1.3
       pathe: 2.0.3
 
-  playwright-core@1.64.1: {}
-
-  playwright@1.64.1:
-    dependencies:
-      playwright-core: 1.64.1
-
   postcss-selector-parser@6.0.10:
     dependencies:
       cssesc: 3.0.0
@@ -10188,6 +10147,12 @@ snapshots:
       fast-xml-parser: 5.11.2
       got: 13.0.0
       p-limit: 6.2.0
+
+  skullet@0.0.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vue@3.5.44(typescript@7.0.2)):
+    optionalDependencies:
+      react: 19.3.1
+      react-dom: 19.3.1(react@19.3.1)
+      vue: 3.5.44(typescript@7.0.2)
 
   slugify@1.6.9: {}
 

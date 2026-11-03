@@ -280,7 +280,11 @@ function SubjectHeader({
 			<p className="text-fg-muted mb-3 flex items-center justify-center gap-2 font-mono text-xs tracking-widest uppercase">
 				<ContentPolicyIcon subject={subject} className="size-4" svgOnly />
 				<span>
-					{subject.courseCode} &middot; {subject.degree} &middot;{" "}
+					{subject.courseCode} &middot;{" "}
+					<abbr className="no-underline sm:hidden" title={subject.degree}>
+						{subject.degreeAbbreviation ?? subject.degree}
+					</abbr>
+					<span className="hidden sm:inline">{subject.degree}</span> &middot;{" "}
 					{t.subjectCard.course.replace("{course}", String(subject.course))}
 				</span>
 			</p>

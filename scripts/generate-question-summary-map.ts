@@ -3,14 +3,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 // TypeScript 7 supplies the CLI; the content parser needs the classic compiler API.
 import ts from "typescript6";
-
-interface QuestionSummary {
-  id: string;
-  examId: string;
-  topic: string;
-  points: number;
-  repeated?: boolean;
-}
+import type { QuestionSummary } from "../src/data/types";
 
 interface TopicStats {
 	questionCount: number;
@@ -18,6 +11,7 @@ interface TopicStats {
 }
 
 interface GeneratedSubjectBuildStats {
+	topicFirstQuestions: Record<string, QuestionSummary[]>;
 	questionCount: number;
 	repeatedQuestionCount: number;
 	topicStats: Record<string, TopicStats>;
@@ -55,6 +49,12 @@ function numberValue(node: ts.Expression): number | undefined {
   return undefined;
 }
 
+function isQuestionType(value: string | undefined): value is QuestionSummary["type"] {
+  return value !== undefined && [
+    "mc", "text", "multiple-text", "matching", "fill", "table-fill",
+  ].includes(value);
+}
+
 function parseQuestion(
   node: ts.Expression,
   sourcePath: string,
@@ -73,19 +73,25 @@ function parseQuestion(
   const id = values.get("id") && stringValue(values.get("id")!);
   const examId = values.get("examId") && stringValue(values.get("examId")!);
   const topic = values.get("topic") && stringValue(values.get("topic")!);
+  const type = values.get("type") && stringValue(values.get("type")!);
   const points = values.get("points") && numberValue(values.get("points")!);
   const repeatedNode = values.get("repeated");
   const repeated = repeatedNode?.kind === ts.SyntaxKind.TrueKeyword;
 
-  if (!id || !examId || !topic || points === undefined) {
+  if (!id || !examId || !topic || !isQuestionType(type) || points === undefined) {
     throw new Error(
       `Question summary fields must be literals in ${sourcePath}`,
     );
   }
 
-  return repeated
-    ? { id, examId, topic, points, repeated }
-    : { id, examId, topic, points };
+  const options = values.get("options");
+  const textParts = values.get("textParts");
+  return {
+    id, examId, topic, type, points,
+    ...(repeated ? { repeated } : {}),
+    ...(options && ts.isArrayLiteralExpression(options) ? { optionCount: options.elements.length } : {}),
+    ...(textParts && ts.isArrayLiteralExpression(textParts) ? { textPartCount: textParts.elements.length } : {}),
+  };
 }
 
 function parseQuestions(sourcePath: string): QuestionSummary[] {
@@ -131,12 +137,17 @@ function addPoints(
 }
 
 function buildStats(questions: QuestionSummary[]): GeneratedSubjectBuildStats {
+	const topicFirstQuestions: Record<string, QuestionSummary[]> = {};
 	const topicStats: Record<string, TopicStats> = {};
 	const examStats: Record<string, TopicStats> = {};
 	const topicStatsByExam: Record<string, Record<string, TopicStats>> = {};
 	const repeatedQuestionCountByExam: Record<string, number> = {};
 
 	for (const question of questions) {
+		const previews = (topicFirstQuestions[question.topic] ??= []);
+		if (!previews.some((preview) => preview.examId === question.examId)) {
+			previews.push(question);
+		}
 		addPoints(topicStats, question.topic, question.points);
 		addPoints(examStats, question.examId, question.points);
 		const examTopics = (topicStatsByExam[question.examId] ??= {});
@@ -148,6 +159,7 @@ function buildStats(questions: QuestionSummary[]): GeneratedSubjectBuildStats {
 	}
 
 	return {
+		topicFirstQuestions,
 		questionCount: questions.length,
 		repeatedQuestionCount: questions.filter((question) => question.repeated)
 			.length,

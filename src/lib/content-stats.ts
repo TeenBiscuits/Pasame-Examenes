@@ -1,4 +1,4 @@
-import type { SubjectMeta } from "../data/types";
+import type { QuestionSummary, SubjectMeta } from "../data/types";
 import type { ExamQuestionStats } from "./exam-stats";
 
 export interface TopicBuildStats {
@@ -7,6 +7,8 @@ export interface TopicBuildStats {
 }
 
 export interface GeneratedSubjectBuildStats {
+	/** First question per source and topic, in the same order as the question bank. */
+	topicFirstQuestions: Record<string, QuestionSummary[]>;
 	questionCount: number;
 	repeatedQuestionCount: number;
 	topicStats: Record<string, TopicBuildStats>;
