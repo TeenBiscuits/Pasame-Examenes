@@ -85,8 +85,6 @@ interface QuestionCardProps {
 	examId?: string;
 	mode?: "practice" | "exam";
 	onAnswer: (questionId: string, answer: string) => void;
-	/** Disable shortcuts when rendering an inert loading sample or demo. */
-	keyboardEnabled?: boolean;
 	savedAnswer?: string;
 	showResult?: boolean;
 	selfGrade?: "correct" | "incorrect";
@@ -395,7 +393,6 @@ function MCQuestion({
 	topicKey,
 	examId,
 	mode,
-	keyboardEnabled = true,
 }: QuestionCardProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const t = useT();
@@ -417,7 +414,7 @@ function MCQuestion({
 		onAnswer(question.id, letter);
 	}
 
-	const canAnswer = keyboardEnabled && !showResult && !!question.options;
+	const canAnswer = !showResult && !!question.options;
 	useCommandHandlers("question-card", {
 		"answer-a": canAnswer ? () => answerWithShortcut("a") : undefined,
 		"answer-b": canAnswer ? () => answerWithShortcut("b") : undefined,
