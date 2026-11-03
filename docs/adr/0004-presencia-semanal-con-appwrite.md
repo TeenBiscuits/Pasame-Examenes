@@ -2,6 +2,8 @@
 status: superseded
 ---
 
+> Sustituido por [ADR 0006](./0006-pecera-de-contribuidores-sin-backend.md). La web ya no usa presencia ni perfiles de estudiantes.
+
 # Presencia semanal con Appwrite
 
 > El recuento agregado de visitantes fue sustituido por [ADR 0005](./0005-recuento-semanal-de-visitantes-con-umami.md). Appwrite sigue siendo la fuente de los alias públicos y de la sesión técnica que permite gestionarlos.

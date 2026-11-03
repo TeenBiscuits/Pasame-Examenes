@@ -1,8 +1,8 @@
 import { Blobatar } from "@blobatar/react";
 import type { DragEvent } from "react";
-import { BLOBATAR_TONE } from "../profile/profile";
+import { BLOBATAR_TONE } from "../lib/blobatar";
 
-export default function ProfileAvatar({
+export default function ContributorAvatar({
 	username,
 	size,
 	animated = false,

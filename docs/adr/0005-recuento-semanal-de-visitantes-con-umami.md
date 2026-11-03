@@ -1,6 +1,8 @@
 ---
-status: accepted
+status: superseded
 ---
+
+> Sustituido por [ADR 0006](./0006-pecera-de-contribuidores-sin-backend.md). La web ya no usa presencia ni perfiles de estudiantes.
 
 # Recuento semanal de visitantes con Umami
 

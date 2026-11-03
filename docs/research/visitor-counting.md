@@ -1,5 +1,7 @@
 # Investigación: visitantes únicos y presencia en tiempo real
 
+> Documento histórico. El contador y Appwrite se retiraron según el [ADR 0006](../adr/0006-pecera-de-contribuidores-sin-backend.md).
+
 Fecha de revisión: 8 de septiembre de 2026. El análisis combina el código de la aplicación, los datos del proyecto de Appwrite y la implementación pública de Umami y BrandMyMac.
 
 ## Conclusión

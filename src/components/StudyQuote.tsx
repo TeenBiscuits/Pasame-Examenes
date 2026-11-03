@@ -3,14 +3,19 @@ import {
 	type KeyboardEvent,
 	type PointerEvent as ReactPointerEvent,
 	type RefObject,
+	useEffect,
 	useRef,
 	useState,
 } from "react";
+import { ArrowRightUp } from "reicon-react";
+import { CONTRIBUTORS } from "../data/contributors";
 import { useT } from "../i18n/hooks";
-import { usePresence } from "../presence/hooks";
-import { useProfile } from "../profile/hooks";
-import { getBlobatarColor } from "../profile/profile";
-import ProfileAvatar from "./ProfileAvatar";
+import { getBlobatarColor } from "../lib/blobatar";
+import { showDialog } from "../lib/dialog";
+import ContributeModal from "./ContributeModal";
+import ContributorAvatar from "./ContributorAvatar";
+
+const NAME_GRACE_PERIOD_MS = 2000;
 
 const quoteAvatars = [
 	{ x: 10, y: 20, mobileX: 8, mobileY: 13, delay: -2.4 },
@@ -54,6 +59,10 @@ type DragState = {
 
 function clamp(value: number, min: number, max: number) {
 	return Math.min(Math.max(value, min), max);
+}
+
+function getTooltipPlacement(position: Position) {
+	return { below: position.y < 25, side: position.x < 50 ? "start" : "end" };
 }
 
 function getSafePosition(
@@ -100,25 +109,68 @@ function getCurrentPosition(
 	};
 }
 
+function useNameGracePeriod(onActivate?: () => void) {
+	const [isNamePinned, setIsNamePinned] = useState(false);
+	const nameTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+	useEffect(() => {
+		return () => {
+			if (nameTimerRef.current !== null) clearTimeout(nameTimerRef.current);
+		};
+	}, []);
+
+	function keepNameVisible() {
+		if (nameTimerRef.current !== null) clearTimeout(nameTimerRef.current);
+		setIsNamePinned(true);
+	}
+
+	function showNameBriefly() {
+		keepNameVisible();
+		nameTimerRef.current = setTimeout(() => {
+			setIsNamePinned(false);
+			nameTimerRef.current = null;
+		}, NAME_GRACE_PERIOD_MS);
+	}
+
+	return {
+		isNamePinned,
+		activate: onActivate ?? showNameBriefly,
+		onPointerEnter: (event: ReactPointerEvent) => {
+			if (event.pointerType === "mouse") keepNameVisible();
+		},
+		onPointerLeave: (event: ReactPointerEvent) => {
+			if (event.pointerType === "mouse") showNameBriefly();
+		},
+	};
+}
+
 function QuoteAvatar({
 	username,
 	placement,
 	index,
 	sectionRef,
+	onActivate,
 }: {
 	username: string;
 	placement: (typeof quoteAvatars)[number];
 	index: number;
 	sectionRef: RefObject<HTMLDivElement | null>;
+	onActivate?: () => void;
 }) {
 	const t = useT();
 	const avatarRef = useRef<HTMLSpanElement>(null);
 	const dragRef = useRef<DragState>(null);
+	const movedRef = useRef(false);
+	const startRef = useRef({ x: 0, y: 0 });
 	const lastPositionRef = useRef<Position | null>(null);
 	const [customPosition, setCustomPosition] = useState<Position | null>(null);
 	const [dragging, setDragging] = useState(false);
+	const { isNamePinned, activate, onPointerEnter, onPointerLeave } =
+		useNameGracePeriod(onActivate);
 	const tooltipId = `study-quote-${username}`;
-	const tooltipBelow = (customPosition?.y ?? placement.y) < 25;
+	const { below: tooltipBelow, side: tooltipSide } = getTooltipPlacement(
+		customPosition ?? placement,
+	);
 
 	const style = {
 		"--home-quote-x": `${placement.x}%`,
@@ -150,6 +202,7 @@ function QuoteAvatar({
 		);
 		avatar.style.left = `${safePosition.x}%`;
 		avatar.style.top = `${safePosition.y}%`;
+		avatar.dataset.tooltipSide = getTooltipPlacement(safePosition).side;
 		lastPositionRef.current = safePosition;
 		return safePosition;
 	}
@@ -164,6 +217,8 @@ function QuoteAvatar({
 		const avatar = avatarRef.current;
 		if (!avatar) return;
 		event.preventDefault();
+		movedRef.current = false;
+		startRef.current = { x: event.clientX, y: event.clientY };
 		const bounds = avatar.getBoundingClientRect();
 		dragRef.current = {
 			pointerId: event.pointerId,
@@ -183,6 +238,13 @@ function QuoteAvatar({
 		const section = sectionRef.current;
 		if (!drag || drag.pointerId !== event.pointerId || !section) return;
 		const bounds = section.getBoundingClientRect();
+		if (
+			Math.hypot(
+				event.clientX - startRef.current.x,
+				event.clientY - startRef.current.y,
+			) > 5
+		)
+			movedRef.current = true;
 		event.preventDefault();
 		applyPosition({
 			x: ((event.clientX - drag.offsetX - bounds.left) / bounds.width) * 100,
@@ -227,75 +289,107 @@ function QuoteAvatar({
 			ref={avatarRef}
 			className={`home-quote-avatar ${dragging ? "home-quote-avatar--dragging" : ""} ${tooltipBelow ? "home-quote-avatar--tooltip-below" : ""}`}
 			style={style}
+			data-name-pinned={isNamePinned}
+			data-tooltip-side={tooltipSide}
+			onPointerEnter={onPointerEnter}
+			onPointerLeave={onPointerLeave}
 		>
-			<button
-				type="button"
-				className="home-quote-avatar__swim group focus-visible:ring-accent cursor-grab touch-none rounded-full focus-visible:ring-2 focus-visible:outline-none active:cursor-grabbing"
-				aria-label={`${t.presence.moveAvatar}: @${username}`}
-				aria-describedby={`${tooltipId} study-quote-avatar-hint`}
-				onPointerDown={handlePointerDown}
-				onPointerMove={handlePointerMove}
-				onPointerUp={handlePointerUp}
-				onPointerCancel={finishDrag}
-				onDragStart={(event) => event.preventDefault()}
-				onKeyDown={handleKeyDown}
-			>
-				<ProfileAvatar
-					username={username}
-					size={72}
-					animated
-					className="home-quote-avatar__face size-12 rounded-full sm:size-18"
-				/>
+			<span className="home-quote-avatar__swim">
+				<button
+					type="button"
+					className="group focus-visible:ring-accent block cursor-grab touch-none rounded-full focus-visible:ring-2 focus-visible:outline-none active:cursor-grabbing"
+					aria-label={
+						onActivate
+							? t.contributors.invite
+							: `${t.contributors.moveAvatar}: @${username}`
+					}
+					aria-haspopup={onActivate ? "dialog" : undefined}
+					onClick={(event) => {
+						if (event.detail === 0 || !movedRef.current) activate();
+					}}
+					aria-describedby={`${tooltipId} study-quote-avatar-hint`}
+					onPointerDown={handlePointerDown}
+					onPointerMove={handlePointerMove}
+					onPointerUp={handlePointerUp}
+					onPointerCancel={finishDrag}
+					onDragStart={(event) => event.preventDefault()}
+					onKeyDown={handleKeyDown}
+				>
+					{onActivate ? (
+						<span
+							aria-hidden="true"
+							className="contributor-invite size-12 sm:size-18"
+						>
+							+
+						</span>
+					) : (
+						<ContributorAvatar
+							username={username}
+							size={72}
+							animated
+							className="home-quote-avatar__face size-12 rounded-full sm:size-18"
+						/>
+					)}
+				</button>
 				<span
 					id={tooltipId}
-					role="tooltip"
 					style={{ color: getBlobatarColor(username) }}
-					className="home-quote-avatar__tooltip border-border bg-surface-alt pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-md border px-2 py-1 font-mono text-[0.68rem] font-semibold whitespace-nowrap shadow-md transition-opacity duration-150"
+					className="home-quote-avatar__tooltip border-border bg-surface-alt absolute bottom-full z-10 mb-2 rounded-md border font-mono text-[0.68rem] font-semibold shadow-md transition-opacity duration-150"
 				>
-					@{username}
+					{onActivate ? (
+						<span className="block px-3 py-2">{t.contributors.invite}</span>
+					) : (
+						<a
+							href={`https://github.com/${encodeURIComponent(username)}`}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="focus-visible:ring-accent flex min-h-11 items-center gap-1.5 rounded-md px-3 py-2 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:outline-none"
+						>
+							<span className="min-w-0">@{username}</span>
+							<ArrowRightUp
+								weight="Filled"
+								className="size-3.5 shrink-0"
+								aria-hidden="true"
+							/>
+						</a>
+					)}
 				</span>
-			</button>
+			</span>
 		</span>
 	);
 }
 
 export default function StudyQuote({ quote }: { quote: string }) {
 	const t = useT();
-	const { profile } = useProfile();
-	const { students: weeklyStudents } = usePresence();
 	const sectionRef = useRef<HTMLDivElement>(null);
-	const students = [
-		...(profile.isNameShared
-			? [{ username: profile.username, profileKey: "local-student" }]
-			: []),
-		...weeklyStudents.filter((student) => !student.isCurrentStudent),
-	];
+	const dialogRef = useRef<HTMLDialogElement>(null);
+	const entries = ["contribute", ...CONTRIBUTORS];
 
 	return (
-		<section className="home-quote">
+		<section className="home-quote" aria-label={t.contributors.title}>
 			<div ref={sectionRef} className="home-quote__viewport">
 				<p id="study-quote-avatar-hint" className="sr-only">
-					{t.presence.moveAvatarHint}
+					{t.contributors.moveAvatarHint}
 				</p>
 				<div className="home-quote-avatars">
-					{quoteAvatars.map((placement, index) => {
-						const student = students[index];
-						if (!student) return null;
-						return (
-							<QuoteAvatar
-								key={student.profileKey}
-								username={student.username}
-								placement={placement}
-								index={index}
-								sectionRef={sectionRef}
-							/>
-						);
-					})}
+					{entries.map((username, index) => (
+						<QuoteAvatar
+							key={username}
+							username={username}
+							placement={quoteAvatars[index % quoteAvatars.length]}
+							index={index}
+							sectionRef={sectionRef}
+							onActivate={
+								index === 0 ? () => showDialog(dialogRef.current) : undefined
+							}
+						/>
+					))}
 				</div>
 				<blockquote className="home-quote__text border-border bg-surface-alt/70 text-fg-secondary max-w-2xl border-b px-8 py-8 text-center text-xl font-medium italic sm:px-12 sm:py-10 sm:text-2xl">
 					“{quote}”
 				</blockquote>
 			</div>
+			<ContributeModal dialogRef={dialogRef} />
 		</section>
 	);
 }

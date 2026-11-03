@@ -181,16 +181,6 @@ body {
     font-size: 1rem;
 }
 
-.username-field__input {
-    font-size: 1.25rem !important;
-}
-
-@media (min-width: 640px) {
-    .username-field__input {
-        font-size: 1.5rem !important;
-    }
-}
-
 @media (pointer: coarse) {
     :where(button, a, [role="button"]):active:not(:disabled) {
         opacity: 0.88;
@@ -1197,6 +1187,8 @@ html[data-theme="mocha"] {
     margin: 0 auto;
     place-items: center;
     isolation: isolate;
+    /* Contain the aquarium without hiding horizontal overflow on the whole page. */
+    overflow-x: clip;
 }
 
 .home-quote-avatars {
@@ -1231,10 +1223,6 @@ html[data-theme="mocha"] {
     .home-quote-avatar__swim {
         animation: home-quote-school var(--home-quote-duration) cubic-bezier(0.77, 0, 0.175, 1) var(--home-quote-delay) infinite;
     }
-
-    .presence-card-avatar {
-        animation: presence-card-avatar-in 0.48s cubic-bezier(0.23, 1, 0.32, 1) var(--presence-card-delay, 0ms) both;
-    }
 }
 
 @keyframes home-quote-school {
@@ -1259,12 +1247,27 @@ html[data-theme="mocha"] {
     }
 }
 
-.home-quote-avatar--dragging .home-quote-avatar__swim {
+.home-quote-avatar--dragging .home-quote-avatar__swim,
+.home-quote-avatar[data-name-pinned="true"] .home-quote-avatar__swim,
+.home-quote-avatar:has(:focus-visible) .home-quote-avatar__swim {
     animation-play-state: paused;
 }
 
 .home-quote-avatar__tooltip {
+    /* Anchor names toward the middle, including during the swimming motion. */
+    left: 0;
+    width: max-content;
+    max-width: min(22rem, calc(50vw - 1rem));
+    white-space: normal;
+    overflow-wrap: anywhere;
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.home-quote-avatar[data-tooltip-side="end"] .home-quote-avatar__tooltip {
+    left: auto;
+    right: 0;
 }
 
 .home-quote-avatar--tooltip-below .home-quote-avatar__tooltip {
@@ -1274,24 +1277,31 @@ html[data-theme="mocha"] {
     margin-bottom: 0;
 }
 
-.home-quote-avatar:focus-within .home-quote-avatar__tooltip {
+.home-quote-avatar[data-name-pinned="true"] .home-quote-avatar__tooltip,
+.home-quote-avatar:has(:focus-visible) .home-quote-avatar__tooltip {
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.home-quote-avatar[data-name-pinned="true"],
+.home-quote-avatar:has(:focus-visible) {
+    z-index: 3;
 }
 
 @media (hover: hover) and (pointer: fine) {
+    .home-quote-avatar:hover {
+        z-index: 3;
+    }
+
+    .home-quote-avatar:hover .home-quote-avatar__swim {
+        animation-play-state: paused;
+    }
+
     .home-quote-avatar:hover .home-quote-avatar__tooltip {
         opacity: 1;
-    }
-}
-
-@keyframes presence-card-avatar-in {
-    from {
-        opacity: 0;
-        transform: translateX(-8px) scale(0.96);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
+        visibility: visible;
+        pointer-events: auto;
     }
 }
 
@@ -1532,4 +1542,14 @@ html[data-theme="mocha"] {
         background: var(--color-accent-hover);
         border-color: var(--color-accent-hover);
     }
+}
+
+.contributor-invite {
+    display: grid;
+    place-items: center;
+    border: 2px dashed var(--color-fg-muted);
+    border-radius: 44% 56% 48% 52%;
+    background: transparent;
+    color: var(--color-fg-muted);
+    font-size: 1.75rem;
 }
