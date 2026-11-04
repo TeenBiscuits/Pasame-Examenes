@@ -44,6 +44,7 @@ import { formatPoints } from "../lib/points";
 import { playSound } from "../lib/sound";
 import { track } from "../lib/umami";
 import { getSubject } from "../subjects";
+import { getQuestionSummaries } from "../subjects/questionSummaries.generated";
 
 const subscribeToHydration = () => () => {};
 
@@ -89,10 +90,8 @@ export default function SubjectHome({
 		subject && questionsLoaded && storageReady
 			? getTopicProgress(
 					subject.id,
-					Object.entries(selectedStats.topicStats).map(([topic, stats]) => ({
-						topic,
-						points: stats.points,
-					})),
+					getQuestionSummaries(subject.id),
+					selectedExamIds,
 				)
 			: {};
 	if (!subject) {
