@@ -47,7 +47,7 @@
     "blobatar": "^2.7.0",
     "cuelume": "^0.2.8",
     "driver.js": "^1.10.2",
-    "katex": "^0.19.0",
+    "katex": "^0.19.1",
     "nitro": "3.0.260903-beta",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
