@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from "react";
 import type { Question } from "../data/types";
 import { getQuestionScore } from "../lib/grading";
+import { recordStarPopupQuestions } from "../lib/star-popup";
 import { track } from "../lib/umami";
 
 const getNow = () => Date.now();
@@ -116,6 +117,10 @@ export function useExamSession(
 				answered: answeredCount,
 			});
 			dispatch({ type: "SUBMIT", elapsed });
+			recordStarPopupQuestions(
+				subjectId,
+				questions.filter((q) => state.answers[q.id]?.trim()).map((q) => q.id),
+			);
 		},
 		[subjectId, examId, questions, state.answers, state.selfGrades, t],
 	);
@@ -124,6 +129,7 @@ export function useExamSession(
 		(questionId: string, grade: "correct" | "incorrect") => {
 			track("exam_self_grade", { subjectId, examId, questionId, grade });
 			dispatch({ type: "SELF_GRADE", questionId, grade });
+			recordStarPopupQuestions(subjectId, [questionId]);
 		},
 		[subjectId, examId],
 	);

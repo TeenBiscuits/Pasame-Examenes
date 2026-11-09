@@ -574,10 +574,11 @@ export const en = {
 		},
 	},
 	starPopup: {
-		title: "Would you give us a star?",
-		subtitle: "We don't want your money, just a star on GitHub.",
+		title: "Support Pásame Exámenes",
+		subtitle:
+			"Pásame Exámenes is free and open source. A star on GitHub helps spread the word and supports continued development.",
 		sparkleButton: "Make the star sparkle",
-		starButton: "Give us a star!",
+		starButton: "Star on GitHub",
 		dismiss: "Not now",
 	},
 	disclaimer: {

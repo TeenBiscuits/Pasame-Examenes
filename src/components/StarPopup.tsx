@@ -3,40 +3,14 @@ import { StarSparkle } from "reicon-react";
 import { useT } from "../i18n/hooks";
 import { closeDialog, showDialog, useDialogDismiss } from "../lib/dialog";
 import { playSound } from "../lib/sound";
+import {
+	claimStarPopupMilestone,
+	STAR_POPUP_PROGRESS_EVENT,
+	shouldShowRandomStarPopup,
+	writeStarPopupDismissed,
+} from "../lib/star-popup";
 import { track } from "../lib/umami";
 import { compactModalDialogClass } from "./Modal";
-
-const STORAGE_KEY_DISMISSED = "star_popup_dismissed";
-const STORAGE_KEY_VISITS = "star_popup_visits";
-const MIN_VISITS = 5;
-const SHOW_CHANCE = 0.2;
-const COOLDOWN_DAYS = 7;
-
-function shouldShow(): boolean {
-	try {
-		const dismissed = localStorage.getItem(STORAGE_KEY_DISMISSED);
-		if (dismissed) {
-			const timestamp = Number(dismissed);
-			const daysSince = (Date.now() - timestamp) / (1000 * 60 * 60 * 24);
-			if (daysSince < COOLDOWN_DAYS) return false;
-		}
-
-		const visits = Number(localStorage.getItem(STORAGE_KEY_VISITS) || "0") + 1;
-		localStorage.setItem(STORAGE_KEY_VISITS, String(visits));
-
-		return visits >= MIN_VISITS && Math.random() < SHOW_CHANCE;
-	} catch {
-		return false;
-	}
-}
-
-function writeDismissed() {
-	try {
-		localStorage.setItem(STORAGE_KEY_DISMISSED, String(Date.now()));
-	} catch {
-		/* localStorage unavailable */
-	}
-}
 
 function StarIcon() {
 	return <StarSparkle size={20} weight="Filled" aria-hidden="true" />;
@@ -50,14 +24,17 @@ export default function StarPopup() {
 	const t = useT();
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const openRef = useRef<boolean | null>(null);
+	const triggerRef = useRef<"first_questions" | "random">("random");
 
 	const finish = useCallback((clickedStar: boolean) => {
 		if (!openRef.current) return;
 		openRef.current = false;
-		writeDismissed();
+		writeStarPopupDismissed();
 		closeDialog(dialogRef.current);
 		playSound(clickedStar ? "success" : "close");
-		track(clickedStar ? "star_popup_click" : "star_popup_dismiss");
+		track(clickedStar ? "star_popup_click" : "star_popup_dismiss", {
+			trigger: triggerRef.current,
+		});
 	}, []);
 
 	const dismiss = useCallback(() => finish(false), [finish]);
@@ -66,19 +43,36 @@ export default function StarPopup() {
 	useDialogDismiss(dialogRef, () => dismissRef.current());
 
 	useEffect(() => {
-		if (openRef.current === null) {
-			openRef.current = shouldShow();
-		}
-		if (!openRef.current) return;
-
 		const dialog = dialogRef.current;
 		if (!dialog) return;
 
+		const showMilestone = () => {
+			if (!claimStarPopupMilestone()) return;
+			triggerRef.current = "first_questions";
+			openRef.current = true;
+			if (!dialog.open) {
+				showDialog(dialog);
+				track("star_popup_show", { trigger: triggerRef.current });
+			}
+		};
 		const handleClose = () => dismissRef.current();
-
-		if (!dialog.open) showDialog(dialog);
 		dialog.addEventListener("close", handleClose);
-		return () => dialog.removeEventListener("close", handleClose);
+		window.addEventListener(STAR_POPUP_PROGRESS_EVENT, showMilestone);
+		window.addEventListener("storage", showMilestone);
+
+		showMilestone();
+		if (openRef.current === null) {
+			openRef.current = shouldShowRandomStarPopup();
+		}
+		if (openRef.current && !dialog.open) {
+			showDialog(dialog);
+			track("star_popup_show", { trigger: triggerRef.current });
+		}
+		return () => {
+			dialog.removeEventListener("close", handleClose);
+			window.removeEventListener(STAR_POPUP_PROGRESS_EVENT, showMilestone);
+			window.removeEventListener("storage", showMilestone);
+		};
 	}, []);
 
 	function handleStar() {

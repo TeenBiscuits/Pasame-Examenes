@@ -578,10 +578,11 @@ export const gl: Translations = {
 		},
 	},
 	starPopup: {
-		title: "Daríasnos unha estrela?",
-		subtitle: "Non queremos o teu diñeiro, só unha estrela en GitHub.",
+		title: "Apoia Pásame Exámenes",
+		subtitle:
+			"Pásame Exámenes é gratuíto e de código aberto. Unha estrela en GitHub axúdanos a dalo a coñecer e a seguir mellorándoo.",
 		sparkleButton: "Fai brillar a estrela",
-		starButton: "Dame unha estrela!",
+		starButton: "Dar unha estrela en GitHub",
 		dismiss: "Agora non",
 	},
 	disclaimer: {

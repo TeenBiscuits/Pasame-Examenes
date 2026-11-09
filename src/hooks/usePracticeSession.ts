@@ -3,6 +3,7 @@ import { saveAttempt } from "../data/store";
 import type { Question } from "../data/types";
 import { getQuestionScore, isSelfGradedQuestion } from "../lib/grading";
 import { playError, playSound, playSuccess } from "../lib/sound";
+import { recordStarPopupQuestions } from "../lib/star-popup";
 import { track } from "../lib/umami";
 
 const getNow = () => Date.now();
@@ -120,12 +121,17 @@ export function usePracticeSession(
 			answers: state.answers,
 		});
 		dispatch({ type: "SUBMIT" });
+		recordStarPopupQuestions(
+			subjectId,
+			questions.filter((q) => state.answers[q.id]?.trim()).map((q) => q.id),
+		);
 	}, [subjectId, topic, questions, state.answers, state.selfGrades]);
 
 	const handleSelfGrade = useCallback(
 		(questionId: string, grade: "correct" | "incorrect") => {
 			track("practice_self_grade", { subjectId, topic, questionId, grade });
 			dispatch({ type: "SELF_GRADE", questionId, grade });
+			recordStarPopupQuestions(subjectId, [questionId]);
 			let score = 0;
 			const nextGrades = { ...state.selfGrades, [questionId]: grade };
 			for (const q of questions) {
@@ -166,6 +172,9 @@ export function usePracticeSession(
 			}
 			track("practice_check_question", { subjectId, topic, questionId });
 			dispatch({ type: "CHECK_QUESTION", questionId });
+			if (question && state.answers[questionId]?.trim()) {
+				recordStarPopupQuestions(subjectId, [questionId]);
+			}
 		},
 		[subjectId, topic, questions, state.answers],
 	);

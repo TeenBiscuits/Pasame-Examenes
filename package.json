@@ -8,6 +8,7 @@
   },
   "scripts": {
     "check:practice-loading": "pnpm run generate-content-stats && tsx scripts/check-practice-loading.ts && tsx scripts/check-loading-view.ts",
+    "check:star-popup": "tsx scripts/check-star-popup.ts",
     "check:aquarium": "node scripts/check-aquarium-overflow.mjs",
     "generate-content-stats": "tsx scripts/generate-question-summary-map.ts",
     "generate-og-images": "tsx scripts/generate-og-images.ts",
