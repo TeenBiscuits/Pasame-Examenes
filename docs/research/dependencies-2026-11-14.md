@@ -4,8 +4,8 @@
 
 Actualización con `pnpm update --latest '!typescript6'`, seguida de la migración
 del alias de compatibilidad de TypeScript. Se conserva `minimumReleaseAge: 1440`
-y la lista `allowBuilds`, sin añadir excepciones. La eliminación previa de
-`minimumReleaseAgeExclude` pertenece al estado inicial del workspace.
+y la lista `allowBuilds`, sin añadir excepciones. Esta actualización elimina
+las excepciones temporales de `minimumReleaseAgeExclude`.
 
 Las versiones publicadas hoy de `@tanstack/react-hotkeys` (0.25.1) y
 `@tanstack/react-hotkeys-devtools` (0.14.10) quedan excluidas por antigüedad.
