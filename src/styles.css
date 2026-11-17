@@ -1,41 +1,16 @@
-/* Keep the two application font faces in the main stylesheet so Vite emits
-   their selected Latin files with the same load path as the rest of the CSS. */
+/* Allo by Josh Puckett — https://allo.joshpuckett.me
+   Package font faces are bundled by Vite; OFL served at /fonts/allo/OFL.txt. */
+@import "allo-font";
 @import "tailwindcss";
 @import "tailwind-animations";
 @import "skullet/styles.css";
 @import "blobatar/motion.css";
 @import "blobatar/gaze.css";
 
-/* The app uses Western European Latin text in both families. Keep the
-   variable fonts to one normal Latin face so the browser can select every
-   used weight without shipping unused scripts or an italic file. */
-@font-face {
-    font-family: "Cascadia Code Variable";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 200 700;
-    src: url("@fontsource-variable/cascadia-code/files/cascadia-code-latin-wght-normal.woff2")
-        format("woff2-variations");
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-        U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-    font-family: "Onest Variable";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 100 900;
-    src: url("@fontsource-variable/onest/files/onest-latin-wght-normal.woff2")
-        format("woff2-variations");
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-        U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 html {
+    font-optical-sizing: auto;
+    font-variation-settings: "ROND" 50;
     scroll-behavior: smooth;
     color-scheme: light dark;
     accent-color: var(--color-accent);
@@ -43,6 +18,20 @@ html {
     min-height: 100%;
     overscroll-behavior: none;
     -webkit-tap-highlight-color: transparent;
+}
+
+/* A softer heading cut; optical size continues to follow the text size. */
+:where(h1, h2, h3, h4, h5, h6) {
+    font-variation-settings: "ROND" 75;
+}
+
+/* Distinguish I/l/1/0 in technical text. Disable contextual substitutions
+   as recommended by Allo, while preserving standard ligatures. */
+:where(.font-mono, code, pre, kbd, samp) {
+    font-variation-settings: "ROND" 0;
+    font-feature-settings: "ss02" 1;
+    font-variant-numeric: tabular-nums slashed-zero;
+    font-variant-ligatures: no-contextual;
 }
 
 html[data-theme="light"] {
@@ -215,8 +204,9 @@ body {
    Values are authored in OKLCH. `light-dark()` keeps the contract in one
    place while the `data-theme` attribute controls the browser appearance. */
 @theme {
-    --font-sans: "Onest Variable", sans-serif;
-    --font-mono: "Cascadia Code Variable", monospace;
+    --font-sans: "Allo", system-ui, sans-serif;
+    /* Allo is proportional, including in the former monospace roles. */
+    --font-mono: "Allo", ui-monospace, monospace;
     --color-surface: light-dark(
         oklch(0.985 0.002 247.839),
         oklch(0.21 0.032 264.665)
@@ -1458,7 +1448,7 @@ html[data-theme="mocha"] {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-sans);
     color: var(--color-fg-muted);
 }
 

@@ -1,4 +1,3 @@
-import onestFontUrl from "@fontsource-variable/onest/files/onest-latin-wght-normal.woff2?url";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { hotkeysDevtoolsPlugin } from "@tanstack/react-hotkeys-devtools";
 import {
@@ -8,6 +7,7 @@ import {
 	useRouterState,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import alloFontUrl from "allo-font/fonts/webfonts/AlloVariable.woff2?url";
 import { isLang, type Lang } from "../i18n/context-value";
 import {
 	ERROR_TRACKING_ENABLED,
@@ -56,7 +56,7 @@ export const Route = createRootRoute({
 				rel: "preload",
 				as: "font",
 				type: "font/woff2",
-				href: onestFontUrl,
+				href: alloFontUrl,
 				crossOrigin: "anonymous",
 			},
 			{

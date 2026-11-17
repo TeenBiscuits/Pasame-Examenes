@@ -4,3 +4,5 @@ allowBuilds:
   puppeteer: true
   vue-demi: true
 minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - allo-font
