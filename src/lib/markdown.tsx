@@ -45,8 +45,7 @@ function useMathPlugins(children: string): MathPlugins | null {
 	return needsMath ? mathPlugins : null;
 }
 
-const codeFont =
-	'"Cascadia Code Variable", "Cascadia Code", Consolas, "Courier New", monospace';
+const codeFont = "var(--font-mono)";
 
 const languageAliases = {
 	html: "markup",

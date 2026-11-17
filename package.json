@@ -35,8 +35,6 @@
   },
   "dependencies": {
     "@blobatar/react": "^2.7.0",
-    "@fontsource-variable/cascadia-code": "^5.3.0",
-    "@fontsource-variable/onest": "^5.3.1",
     "@tailwindcss/vite": "^4.3.5",
     "@tanstack/react-devtools": "latest",
     "@tanstack/react-hotkeys": "^0.25.0",
@@ -44,6 +42,7 @@
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-start": "latest",
     "@tanstack/redact": "^0.3.1",
+    "allo-font": "1.0.1",
     "blobatar": "^2.7.0",
     "cuelume": "^0.2.8",
     "driver.js": "^1.14.0",

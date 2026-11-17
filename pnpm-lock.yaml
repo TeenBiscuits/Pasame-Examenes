@@ -169,12 +169,6 @@ importers:
       '@blobatar/react':
         specifier: ^2.7.0
         version: 2.7.0(blobatar@2.7.0(react@19.3.1)(vue@3.5.44(typescript@7.0.2)))(react@19.3.1)
-      '@fontsource-variable/cascadia-code':
-        specifier: ^5.3.0
-        version: 5.3.0
-      '@fontsource-variable/onest':
-        specifier: ^5.3.1
-        version: 5.3.1
       '@tailwindcss/vite':
         specifier: ^4.3.5
         version: 4.3.5(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
@@ -196,6 +190,9 @@ importers:
       '@tanstack/redact':
         specifier: ^0.3.1
         version: 0.3.1(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
+      allo-font:
+        specifier: 1.0.1
+        version: 1.0.1
       blobatar:
         specifier: ^2.7.0
         version: 2.7.0(react@19.3.1)(vue@3.5.44(typescript@7.0.2))
@@ -807,12 +804,6 @@ packages:
     resolution: {integrity: sha512-043dyEKD9TDSfz080YH2vobubgg+NIo/9Fw4RAl7sEMpD8Am1DNrrSTl/GpMBjyGHoD/FbJY2QLawY+HSQsEIA==}
     peerDependencies:
       vue: '>=3.3.0'
-
-  '@fontsource-variable/cascadia-code@5.3.0':
-    resolution: {integrity: sha512-6I6M029Lum62MGmP0o+rXRrIBiIiptNDC4slPKLPUJiSB7NHZTLb+Ihk9G7jLvUfWziGXHJLjJPJLBzlEPjS1g==}
-
-  '@fontsource-variable/onest@5.3.1':
-    resolution: {integrity: sha512-xaaw6G4HDB2/RczsWLD/2bnib4ykmQlTlBUN3GOEOiyErilZukQWVJG95h9zwAy0i8KY+QzDa+COPfqhI72Acw==}
 
   '@formatjs/ecma402-abstract@2.3.6':
     resolution: {integrity: sha512-HJnTFeRM2kVFVr5gr5kH1XP6K0JcJtE7Lzvtr3FS/so5f1kpsqqqxy5JF+FRaO6H2qmcMfAUIox7AJteieRtVw==}
@@ -2775,6 +2766,9 @@ packages:
 
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
+
+  allo-font@1.0.1:
+    resolution: {integrity: sha512-o6Ne+QhcrsComAekX6KdXWmYarXY7C7jdD/3KK4DS9JufApRBJDulTejbl1DNdvBL6iRI8PxDymyoq8tRuz18Q==}
 
   ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
@@ -5756,10 +5750,6 @@ snapshots:
       '@floating-ui/utils': 0.2.12
       vue: 3.5.44(typescript@7.0.2)
 
-  '@fontsource-variable/cascadia-code@5.3.0': {}
-
-  '@fontsource-variable/onest@5.3.1': {}
-
   '@formatjs/ecma402-abstract@2.3.6':
     dependencies:
       '@formatjs/fast-memoize': 2.2.7
@@ -8141,6 +8131,8 @@ snapshots:
       fast-uri: 3.1.9
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
+
+  allo-font@1.0.1: {}
 
   ansi-colors@4.1.3: {}
 
