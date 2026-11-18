@@ -157,7 +157,7 @@ function ScrollableTable({ children }: { children: ReactNode }) {
 	}, []);
 
 	return (
-		<div className="not-prose markdown-table relative m-0 max-w-full">
+		<div className="not-typeset markdown-table relative m-0 max-w-full">
 			<div
 				ref={scrollRef}
 				className="max-w-full overflow-x-auto overflow-y-hidden"
@@ -192,7 +192,7 @@ function PlainCodeBlock({
 	language?: string;
 }) {
 	return (
-		<div className="not-prose markdown-code-block bg-code-block border-border overflow-hidden rounded-lg border">
+		<div className="not-typeset markdown-code-block bg-code-block border-border overflow-hidden rounded-lg border">
 			{language && (
 				<div className="border-border/50 flex items-center border-b px-4 py-1.5">
 					<span className="text-fg-muted font-mono text-[11px] font-semibold tracking-wider uppercase">
@@ -347,7 +347,7 @@ function CodeRenderer({ className, children }: ComponentProps<"code">) {
 	}
 
 	return (
-		<div className="not-prose markdown-code-block bg-code-block border-border overflow-hidden rounded-lg border">
+		<div className="not-typeset markdown-code-block bg-code-block border-border overflow-hidden rounded-lg border">
 			<div className="border-border/50 flex items-center border-b px-4 py-1.5">
 				<span className="text-fg-muted font-mono text-[11px] font-semibold tracking-wider uppercase">
 					{language}
@@ -374,9 +374,7 @@ export function Markdown({
 		: basicRemarkPlugins;
 	const rehypePlugins = mathPlugins ? [mathPlugins.rehype] : basicRehypePlugins;
 	return (
-		<div
-			className={`markdown-body prose prose-sm max-w-none ${className ?? ""}`}
-		>
+		<div className={`markdown-body typeset typeset-study ${className ?? ""}`}>
 			<ReactMarkdown
 				remarkPlugins={remarkPlugins}
 				rehypePlugins={rehypePlugins}

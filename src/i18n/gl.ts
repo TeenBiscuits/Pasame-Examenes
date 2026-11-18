@@ -4,8 +4,8 @@ export const gl: Translations = {
 	home: {
 		title: "Pásame Exámenes",
 		subtitle:
-			"Plataforma de código aberto para practicar preguntas de exames da FIC. Elixe unha materia para estudar por tema ou en modo cronometrado.",
-		addSubject: "Engadir materia?",
+			"Prepara as túas materias da FIC. Practica por tema ou ponte a proba cunha simulación cronometrada.",
+		addSubject: "Engadir materia",
 		recentlyVisited: "Visitadas recentemente",
 		clearRecent: "Limpar materias recentes",
 		quote: "Os exames non se repiten, pero riman.",
@@ -19,13 +19,13 @@ export const gl: Translations = {
 			{
 				question: "Como comezo a practicar unha materia?",
 				answer:
-					"Abre a tarxeta dunha materia e escolle un tema, unha práctica ou un exame desde a súa páxina.",
+					"Elixe unha materia. Na súa páxina podes practicar por tema ou iniciar unha simulación dun exame ou dunha recompilación.",
 			},
 			{
 				question:
 					"Que diferenza hai entre practicar por tema e facer un exame?",
 				answer:
-					"A práctica por tema céntrase nun bloque concreto. O modo exame e a práctica cronometrada simulan unha sesión completa cun tempo limitado.",
+					"A práctica por tema céntrase nun bloque concreto. A simulación dun exame ou dunha recompilación aplica as súas regras de puntuación e duración.",
 			},
 			{
 				question: "Que formatos de preguntas podo practicar?",
@@ -33,7 +33,7 @@ export const gl: Translations = {
 					"Podes practicar preguntas tipo test, de texto, de emparellamento, de encher ocos e con varias partes. As de test e emparellamento corríxense automaticamente; as preguntas abertas autoavalíanse coa axuda da resposta modelo.",
 			},
 			{
-				question: "Para que serven as respostas modelo?",
+				question: "Para que serven as solucións modelo?",
 				answer:
 					"Son solucións de referencia que che axudan a revisar e valorar as túas respostas. Proceden de materiais orixinais ou das achegas das persoas colaboradoras.",
 			},
@@ -68,9 +68,9 @@ export const gl: Translations = {
 		notFound: "Materia non atopada",
 		returnHome: "Volver ao inicio",
 		description:
-			"Practica {count} preguntas{repeated} de {exams} exames con respostas modelo e autocorrección.",
+			"Practica {count} preguntas{repeated} de {exams} exames con solucións modelo para revisar as túas respostas.",
 		communityDescription:
-			"Practica {count} preguntas{repeated} de {exams} recompilacións con respostas modelo e autocorrección.",
+			"Practica {count} preguntas{repeated} de {exams} recompilacións con solucións modelo para revisar as túas respostas.",
 		questionSources: "Fontes das preguntas",
 		questionSourcesDescription:
 			"Elixe de que exames ou recompilacións saen as preguntas dos teus temas. Podes cambialo cando queiras.",
@@ -98,7 +98,7 @@ export const gl: Translations = {
 		acknowledgments: "Agradecementos e exención de responsabilidade",
 		legalInformation: "Información legal da materia",
 		contentLicense: "Licenza do contido",
-		addExam: "Engadir?",
+		addExam: "Engadir recompilación ou exame",
 		reportCopyright: "Reportar",
 		copyrightRemoved: "Retirada por dereitos de autor",
 		repeatedSuffix: "{count} repetidas ao longo dos anos",
@@ -485,6 +485,11 @@ export const gl: Translations = {
 		repeated: "Repetida",
 	},
 	subjectCard: {
+		topic: "tema",
+		question: "pregunta",
+		point: "punto",
+		exam: "exame",
+		practiceSet: "recompilación",
 		topics: "temas",
 		questions: "preguntas",
 		points: "puntos",
@@ -619,25 +624,25 @@ export const gl: Translations = {
 		topicAuthorizedTitle: "{topicName}: {subjectName}",
 		topicCommunityTitle: "{topicName}: {subjectName}",
 		topicAuthorizedDescription:
-			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Consulta respostas modelo.",
+			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Consulta solucións modelo.",
 		topicCommunityDescription:
-			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Consulta respostas modelo.",
+			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Consulta solucións modelo.",
 		topicAuthorizedDescriptionShort:
-			"Practica {count}{questionLabel} de {topicName}. Consulta respostas modelo.",
+			"Practica {count}{questionLabel} de {topicName}. Consulta solucións modelo.",
 		topicCommunityDescriptionShort:
-			"Practica {count}{questionLabel} de {topicName}. Consulta respostas modelo.",
+			"Practica {count}{questionLabel} de {topicName}. Consulta solucións modelo.",
 		examAuthorizedTitle: "{examName}: {subjectName} | simulador",
 		examPracticeTitle: "{examName}: {subjectName} | práctica",
 		examAuthorizedShortTitle: "{examName}: simulador",
 		examPracticeShortTitle: "{examName}: práctica",
 		examAuthorizedDescription:
-			"Practica o exame {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e inclúe respostas modelo.",
+			"Practica o exame {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e inclúe solucións modelo.",
 		examPracticeDescription:
-			"Practica a recompilación {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e inclúe respostas modelo.",
+			"Practica a recompilación {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e inclúe solucións modelo.",
 		examAuthorizedDescriptionShort:
-			"Practica o exame {examName}{questionCount}. Dura {durationMinutes} minutos e inclúe respostas modelo.",
+			"Practica o exame {examName}{questionCount}. Dura {durationMinutes} minutos e inclúe solucións modelo.",
 		examPracticeDescriptionShort:
-			"Practica a recompilación {examName}{questionCount}. Dura {durationMinutes} minutos e inclúe respostas modelo.",
+			"Practica a recompilación {examName}{questionCount}. Dura {durationMinutes} minutos e inclúe solucións modelo.",
 		questionCountSuffix: " con {count} {questionLabel}",
 	},
 };

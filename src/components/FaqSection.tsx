@@ -7,10 +7,7 @@ export default function FaqSection() {
 
 	return (
 		<section className="mt-14 text-left" aria-labelledby="faq-title">
-			<h2
-				id="faq-title"
-				className="text-fg mb-5 text-center text-2xl font-semibold sm:text-3xl"
-			>
+			<h2 id="faq-title" className="type-section text-fg mb-5 text-center">
 				{t.home.faqTitle}
 			</h2>
 			<div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:items-start">
@@ -36,7 +33,7 @@ export default function FaqSection() {
 												aria-hidden="true"
 											/>
 										</summary>
-										<div className="bg-card-footer border-card-footer-border text-fg-secondary rounded-b-[calc(0.75rem-2px)] px-4 py-4 text-sm leading-relaxed sm:px-5">
+										<div className="bg-card-footer border-card-footer-border text-fg-secondary rounded-b-[calc(0.75rem-2px)] px-4 py-4 text-base leading-relaxed text-pretty sm:px-5">
 											<p>{faq.answer}</p>
 										</div>
 									</details>

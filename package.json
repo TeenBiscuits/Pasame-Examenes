@@ -64,7 +64,6 @@
   "devDependencies": {
     "@biomejs/biome": "^2.6.7",
     "@napi-rs/canvas": "^1.1.1",
-    "@tailwindcss/typography": "^0.5.20",
     "@tanstack/devtools-vite": "^0.8.6",
     "@tanstack/intent": "^0.5.6",
     "@tanstack/react-hotkeys-devtools": "^0.14.9",

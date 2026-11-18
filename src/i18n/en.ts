@@ -2,8 +2,8 @@ export const en = {
 	home: {
 		title: "Pásame Exámenes",
 		subtitle:
-			"Open-source platform for practicing FIC exam questions. Choose a subject below to study by topic or timed practice set.",
-		addSubject: "Add Subject?",
+			"Prepare for your FIC subjects. Practice by topic or test yourself with a timed simulation.",
+		addSubject: "Add subject",
 		recentlyVisited: "Recently visited",
 		clearRecent: "Clear recent subjects",
 		quote: "Exams don't repeat, but they rhyme.",
@@ -17,12 +17,12 @@ export const en = {
 			{
 				question: "How do I start practicing a subject?",
 				answer:
-					"Open a subject card, then choose a topic, practice set, or exam from its page.",
+					"Choose a subject. From its page, practice by topic or start an exam or compilation simulation.",
 			},
 			{
 				question: "What's the difference between topic practice and an exam?",
 				answer:
-					"Topic practice focuses on one part of the syllabus. Exam mode and timed practice simulate a complete session with a time limit.",
+					"Topic practice focuses on one part of the syllabus. Simulating an exam or compilation applies its scoring rules and time limit.",
 			},
 			{
 				question: "Which question formats can I practice?",
@@ -65,9 +65,9 @@ export const en = {
 		notFound: "Subject Not Found",
 		returnHome: "Return to Home",
 		description:
-			"Practice {count} questions{repeated} from {exams} exams with model answers and self-grading.",
+			"Practice {count} questions{repeated} from {exams} exams with model answers to review your responses.",
 		communityDescription:
-			"Practice {count} questions{repeated} from {exams} compilations with model answers and self-grading.",
+			"Practice {count} questions{repeated} from {exams} compilations with model answers to review your responses.",
 		questionSources: "Question sources",
 		questionSourcesDescription:
 			"Choose which exams or compilations provide questions for your topics. You can change this at any time.",
@@ -95,7 +95,7 @@ export const en = {
 		acknowledgments: "Acknowledgments and Disclaimer",
 		legalInformation: "Subject legal information",
 		contentLicense: "Content license",
-		addExam: "Add?",
+		addExam: "Add compilation or exam",
 		reportCopyright: "Report",
 		copyrightRemoved: "Removed for copyright reasons",
 		repeatedSuffix: "{count} repeated questions across years",
@@ -481,6 +481,11 @@ export const en = {
 		repeated: "Repeated",
 	},
 	subjectCard: {
+		topic: "topic",
+		question: "question",
+		point: "point",
+		exam: "exam",
+		practiceSet: "compilation",
 		topics: "topics",
 		questions: "questions",
 		points: "points",

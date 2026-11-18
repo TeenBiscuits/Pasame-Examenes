@@ -288,12 +288,10 @@ function SubjectHeader({
 					{t.subjectCard.course.replace("{course}", String(subject.course))}
 				</span>
 			</p>
-			<h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+			<h1 className="type-display text-fg mx-auto mb-4 max-w-[22ch]">
 				{subject.name}
 			</h1>
-			<p className="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl">
-				{description}
-			</p>
+			<p className="type-intro text-fg-secondary mx-auto">{description}</p>
 		</Hero>
 	);
 }
@@ -351,7 +349,7 @@ function TopicsSection({
 	return (
 		<>
 			<div className="mb-4 flex items-center justify-between">
-				<h2 className="text-fg text-lg font-semibold">
+				<h2 className="type-section text-fg">
 					{t.subjectHome.practiceByTopic}
 				</h2>
 				<div className="flex items-center gap-1">
@@ -395,7 +393,7 @@ function TopicsSection({
 						if (megatopicTopics.length === 0) return null;
 						return (
 							<div key={megatopic.key} className="mb-8">
-								<h2 className="text-md text-fg-secondary mt-2 mb-3 font-medium">
+								<h2 className="text-fg-secondary mt-2 mb-3 text-lg leading-normal font-semibold">
 									{megatopic.label}
 								</h2>
 								<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -459,7 +457,7 @@ function ExamSimulationsSection({
 
 	return (
 		<>
-			<h2 className="text-fg mb-4 text-lg font-semibold">
+			<h2 className="type-section text-fg mb-4">
 				{hasAuthorizedExams
 					? t.subjectHome.examSimulations
 					: t.subjectHome.practiceSimulations}
@@ -496,9 +494,7 @@ function RemovedExamCard({ title }: { title: string }) {
 				<div className="flex items-start justify-between gap-4">
 					<Copyright className="text-danger-fg size-7" aria-hidden="true" />
 				</div>
-				<h2 className="text-fg mt-3 text-base leading-snug font-semibold">
-					{title}
-				</h2>
+				<h3 className="type-card-title text-fg mt-3">{title}</h3>
 			</div>
 			<div className="border-danger-border bg-danger-light text-danger-fg flex flex-1 flex-wrap items-center rounded-b-xl border-x-2 border-b-2 border-dashed px-4 py-1 text-sm">
 				<span>{t.subjectHome.copyrightRemoved}</span>
@@ -539,9 +535,7 @@ function ExamCard({
 					</div>
 					<ContentPolicyIcon subject={subject} variant="verified" />
 				</div>
-				<h2 className="text-fg mt-3 text-base leading-snug font-semibold">
-					{exam.title}
-				</h2>
+				<h3 className="type-card-title text-fg mt-3">{exam.title}</h3>
 			</div>
 			<div className="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-4 py-1 text-sm">
 				<span>
@@ -723,14 +717,14 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
 	const hasAcknowledgments = Boolean(subject.acknowledgments);
 	const hasSpecificLicense = Boolean(specificLicense);
 	const contentWidthClass =
-		hasAcknowledgments && hasSpecificLicense ? "max-w-prose" : "max-w-4xl";
+		hasAcknowledgments && hasSpecificLicense ? "max-w-prose" : "max-w-[70ch]";
 
 	if (!hasAcknowledgments && !hasSpecificLicense) return null;
 
 	return (
 		<aside
 			aria-labelledby="subject-legal-notes-title"
-			className="border-border text-fg-muted mt-10 border-t pt-5 text-sm"
+			className="border-border text-fg-muted mt-10 border-t pt-5 text-base leading-relaxed"
 		>
 			<h2 id="subject-legal-notes-title" className="sr-only">
 				{t.subjectHome.legalInformation}
@@ -744,7 +738,7 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
 			>
 				{hasAcknowledgments ? (
 					<div className={contentWidthClass}>
-						<h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
+						<h3 className="text-fg-secondary mb-2 text-base leading-normal font-semibold">
 							{t.subjectHome.acknowledgments}
 						</h3>
 						<p className="leading-relaxed">{subject.acknowledgments}</p>
@@ -752,7 +746,7 @@ function ContentNotes({ subject }: { subject: SubjectMeta }) {
 				) : null}
 				{specificLicense ? (
 					<div className={contentWidthClass}>
-						<h3 className="text-fg-secondary mb-1 text-xs font-semibold tracking-wide">
+						<h3 className="text-fg-secondary mb-2 text-base leading-normal font-semibold">
 							{t.subjectHome.contentLicense}
 						</h3>
 						<p>
