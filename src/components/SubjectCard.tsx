@@ -15,8 +15,12 @@ interface SubjectCardProps {
 export default function SubjectCard({ subject, stats }: SubjectCardProps) {
 	const t = useT();
 	const examCountLabel = hasAuthorizedExamContent(subject)
-		? t.subjectCard.exams
-		: t.subjectCard.practiceSets;
+		? stats.examCount === 1
+			? t.subjectCard.exam
+			: t.subjectCard.exams
+		: stats.examCount === 1
+			? t.subjectCard.practiceSet
+			: t.subjectCard.practiceSets;
 
 	return (
 		<Link
@@ -44,11 +48,9 @@ export default function SubjectCard({ subject, stats }: SubjectCardProps) {
 						</span>
 					</div>
 				</div>
-				<h2 className="text-fg mb-0.5 text-base font-semibold">
-					{subject.name}
-				</h2>
+				<h2 className="type-card-title text-fg mb-1">{subject.name}</h2>
 				<div className="text-fg-muted flex min-w-0 items-center justify-between gap-2 text-sm">
-					<span className="min-w-0 truncate" title={subject.degree}>
+					<span className="min-w-0 leading-normal" title={subject.degree}>
 						{subject.degree}
 					</span>
 					<span className="shrink-0">
@@ -56,13 +58,19 @@ export default function SubjectCard({ subject, stats }: SubjectCardProps) {
 					</span>
 				</div>
 			</div>
-			<div className="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-5 py-1 text-xs">
+			<div className="bg-card-footer border-card-footer-border text-fg flex flex-1 flex-wrap items-center justify-between gap-x-2 gap-y-1 rounded-b-xl border-x-2 border-b-2 px-5 py-2 text-[0.8125rem] tabular-nums">
 				<span>
-					{stats.questionCount} {t.subjectCard.questions}
+					{stats.questionCount}{" "}
+					{stats.questionCount === 1
+						? t.subjectCard.question
+						: t.subjectCard.questions}
 				</span>
 				<div className="flex shrink-0 items-center gap-2">
 					<span>
-						{stats.topicCount} {t.subjectCard.topics}
+						{stats.topicCount}{" "}
+						{stats.topicCount === 1
+							? t.subjectCard.topic
+							: t.subjectCard.topics}
 					</span>
 					<span aria-hidden="true">&middot;</span>
 					<span>

@@ -299,7 +299,7 @@ function ExamPlayerHeader({
 				<div className="flex items-center justify-between gap-4">
 					<div className="min-w-0">
 						<span className="inline-flex max-w-full items-center gap-2">
-							<span className="text-fg truncate text-xl font-semibold sm:text-2xl">
+							<span className="type-section text-fg min-w-0">
 								{examInfo.title}
 							</span>
 							{isAuthorized && (

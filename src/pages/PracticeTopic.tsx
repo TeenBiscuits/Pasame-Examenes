@@ -162,7 +162,7 @@ function PracticePlayerHeader({
 			<div className="sticky-player-header bg-surface border-border sticky z-40 -mx-4 mb-4 border-b px-4 pt-2 pb-3 sm:mb-6">
 				<div className="flex items-center justify-between gap-4">
 					<div className="min-w-0">
-						<h1 className="text-fg truncate text-xl font-semibold sm:text-2xl">
+						<h1 className="type-section text-fg min-w-0">
 							{topicInfo?.icon} {topicInfo?.label || topic}
 						</h1>
 						<p className="text-fg-muted mt-1 text-sm">

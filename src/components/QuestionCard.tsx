@@ -234,7 +234,7 @@ function DevelopmentDisclosure({
 					<h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
 						{t.questionCard.development}
 					</h4>
-					<Markdown className="text-fg-secondary font-sans text-xs">
+					<Markdown className="text-fg-secondary font-sans">
 						{development}
 					</Markdown>
 				</div>
@@ -277,7 +277,7 @@ function QuestionSolutionDisclosure({
 			{isOpen && (
 				<div className={solutionPanelClass}>
 					{explanation != null && (
-						<Markdown className="text-fg-muted text-xs italic">
+						<Markdown className="text-fg-secondary italic">
 							{explanation}
 						</Markdown>
 					)}
@@ -321,7 +321,7 @@ function getMCOptionClassName(
 	isCorrect: boolean,
 ) {
 	let className =
-		"text-fg w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left text-sm flex items-start gap-3";
+		"text-fg w-full p-3 rounded-lg border-2 cursor-pointer active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none transition duration-150 text-left type-answer flex items-start gap-3";
 	if (showResult && isCorrect) {
 		className += " bg-correct-bg border-correct-border";
 	} else if (isSelected && showResult && !isCorrect) {
@@ -497,7 +497,7 @@ function TextQuestion({
 			<textarea
 				id={`answer-${question.id}`}
 				aria-label={t.questionCard.yourAnswer}
-				className="border-border bg-surface-alt text-fg focus:border-accent focus-visible:ring-accent min-h-[120px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
+				className="border-border bg-surface-alt text-fg focus:border-accent focus-visible:ring-accent min-h-[120px] w-full resize-y rounded-lg border-2 p-3 text-base leading-relaxed focus-visible:ring-2 focus-visible:outline-none"
 				placeholder={t.questionCard.typeAnswer}
 				autoComplete="off"
 				spellCheck={false}
@@ -546,13 +546,13 @@ function TextQuestion({
 							<h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
 								{t.questionCard.modelSolution}
 							</h4>
-							<Markdown className="text-fg-secondary font-sans text-xs">
+							<Markdown className="text-fg-secondary font-sans">
 								{typeof question.correctAnswer === "string"
 									? question.correctAnswer
 									: JSON.stringify(question.correctAnswer, null, 2)}
 							</Markdown>
 							{question.explanation != null && (
-								<Markdown className="text-fg-muted text-xs italic">
+								<Markdown className="text-fg-secondary italic">
 									{question.explanation}
 								</Markdown>
 							)}
@@ -626,10 +626,10 @@ function MultipleTextQuestion({
 							<span className="bg-code text-fg-secondary shrink-0 rounded px-1.5 py-0.5 font-mono text-xs font-bold">
 								{part.label || defaultLabel(partIndex)}
 							</span>
-							<span className="text-fg-secondary flex-1 text-sm">
+							<span className="text-fg-secondary type-answer min-w-0 flex-1">
 								<InlineMarkdown>{part.text}</InlineMarkdown>
 							</span>
-							<span className="bg-accent-light text-accent-fg shrink-0 rounded px-1.5 py-0.5 font-mono text-xs whitespace-nowrap">
+							<span className="bg-accent-light text-accent-fg shrink-0 rounded px-1.5 py-0.5 font-mono text-xs">
 								{formatPoints(getTextPartPoints(question, partIndex))}
 								{t.questionCard.pointsShort}
 							</span>
@@ -644,7 +644,7 @@ function MultipleTextQuestion({
 						<textarea
 							id={`answer-${question.id}-${partIndex}`}
 							aria-label={`${part.label || defaultLabel(partIndex)} ${t.questionCard.yourAnswer}`}
-							className="border-border bg-surface-alt text-fg focus:border-accent focus-visible:ring-accent min-h-[100px] w-full resize-y rounded-lg border-2 p-3 text-sm focus-visible:ring-2 focus-visible:outline-none"
+							className="border-border bg-surface-alt text-fg focus:border-accent focus-visible:ring-accent min-h-[100px] w-full resize-y rounded-lg border-2 p-3 text-base leading-relaxed focus-visible:ring-2 focus-visible:outline-none"
 							placeholder={t.questionCard.typeAnswer}
 							autoComplete="off"
 							spellCheck={false}
@@ -696,7 +696,7 @@ function MultipleTextQuestion({
 										<h4 className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
 											{t.questionCard.modelSolution}
 										</h4>
-										<Markdown className="text-fg-secondary font-sans text-xs">
+										<Markdown className="text-fg-secondary font-sans">
 											{solutions[partIndex]}
 										</Markdown>
 										{part.explanationImage && (
@@ -759,7 +759,7 @@ function FillQuestion({
 					<div
 						// biome-ignore lint/suspicious/noArrayIndexKey: statements are static question data
 						key={`${question.id}-fill-${statementIndex}`}
-						className="text-fg-secondary flex items-baseline gap-2 text-sm leading-relaxed"
+						className="text-fg-secondary flex items-baseline gap-2 type-answer"
 					>
 						{statement.label && (
 							<span className="text-fg-muted shrink-0 font-semibold">
@@ -809,7 +809,7 @@ function FillQuestion({
 														});
 													}}
 													disabled={!!showResult}
-													className={`mx-1 inline-block min-h-8 ${getFillInputWidth(correctAnswers[currentBlankIndex] || "")} focus-visible:ring-accent max-w-[min(100%,13rem)] rounded-md border-2 px-1.5 py-0.5 align-middle text-sm transition-colors transition-shadow duration-200 focus-visible:ring-2 focus-visible:outline-none ${
+													className={`mx-1 inline-block min-h-8 ${getFillInputWidth(correctAnswers[currentBlankIndex] || "")} focus-visible:ring-accent max-w-[min(100%,13rem)] rounded-md border-2 px-1.5 py-0.5 align-middle text-base transition-colors transition-shadow duration-200 focus-visible:ring-2 focus-visible:outline-none ${
 														showResult
 															? isFillAnswerCorrect(
 																	savedAnswer,
@@ -958,7 +958,7 @@ function TableFillQuestion({
 																		});
 																	}}
 																	disabled={!!showResult}
-																	className={`mx-1 inline-block min-h-8 ${getFillInputWidth(correctAnswers[currentBlankIndex] || "")} focus-visible:ring-accent max-w-[min(100%,13rem)] rounded-md border-2 px-1.5 py-0.5 align-middle text-sm transition-colors transition-shadow duration-200 focus-visible:ring-2 focus-visible:outline-none ${
+																	className={`mx-1 inline-block min-h-8 ${getFillInputWidth(correctAnswers[currentBlankIndex] || "")} focus-visible:ring-accent max-w-[min(100%,13rem)] rounded-md border-2 px-1.5 py-0.5 align-middle text-base transition-colors transition-shadow duration-200 focus-visible:ring-2 focus-visible:outline-none ${
 																		showResult
 																			? isFillAnswerCorrect(
 																					savedAnswer,
@@ -1054,7 +1054,7 @@ function MatchingQuestion({
 				const userAnswer = selected[item];
 
 				return (
-					<div key={item} className="flex items-center gap-3 text-sm">
+					<div key={item} className="flex items-center gap-3 type-answer">
 						<span className="text-fg-muted w-6 text-center font-mono text-xs">
 							{i + 1}.
 						</span>
@@ -1157,10 +1157,10 @@ export default function QuestionCard(props: QuestionCardProps) {
 						{formatPoints(question.points)}
 						{t.questionCard.pointsShort}
 					</span>
-					<span className="text-fg-muted order-last flex w-full min-w-0 items-center gap-0.5 text-xs sm:order-none sm:w-auto sm:flex-1">
+					<span className="text-fg-muted order-last flex w-full min-w-0 flex-wrap items-center gap-0.5 text-xs sm:order-none sm:w-auto sm:flex-1">
 						{questionProps.megatopicLabel && (
 							<>
-								<span className="truncate">{questionProps.megatopicLabel}</span>
+								<span className="min-w-0">{questionProps.megatopicLabel}</span>
 								<CaretRight
 									size={12}
 									weight="Filled"
@@ -1169,18 +1169,18 @@ export default function QuestionCard(props: QuestionCardProps) {
 								/>
 							</>
 						)}
-						<span className="truncate">{questionProps.topicLabel}</span>
+						<span className="min-w-0">{questionProps.topicLabel}</span>
 					</span>
 					{(question.repeated || questionProps.examTitle) && (
 						<div className="ml-auto flex items-center gap-2 sm:ml-0">
 							{question.repeated && (
-								<span className="border-reward-border bg-reward-light text-reward-fg flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[10px] font-semibold">
+								<span className="border-reward-border bg-reward-light text-reward-fg flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-xs font-semibold">
 									<Restart size={10} aria-hidden="true" />
 									{t.questionCard.repeated}
 								</span>
 							)}
 							{questionProps.examTitle && (
-								<span className="text-fg-muted flex items-center gap-1 text-right text-xs whitespace-nowrap">
+								<span className="text-fg-muted flex items-center gap-1 text-right text-xs">
 									<DocText size={14} aria-hidden="true" />
 									{questionProps.examTitle}
 								</span>
@@ -1189,9 +1189,7 @@ export default function QuestionCard(props: QuestionCardProps) {
 					)}
 				</div>
 				<div>
-					<Markdown className="text-fg mb-4 text-sm font-medium">
-						{question.question}
-					</Markdown>
+					<Markdown className="text-fg mb-5">{question.question}</Markdown>
 					{question.image && (
 						<div className="mb-4">
 							<QuestionImage
@@ -1232,7 +1230,7 @@ export default function QuestionCard(props: QuestionCardProps) {
 					<span className="hidden truncate sm:inline">Pásame Exámenes</span>
 				</span>
 				<div className="flex min-w-0 items-center justify-end gap-2">
-					<span className="text-fg-muted min-w-0 truncate font-mono text-[10px] select-all">
+					<span className="text-fg-muted min-w-0 break-all font-mono text-xs select-all">
 						{question.id}
 					</span>
 					<a

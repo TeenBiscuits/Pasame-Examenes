@@ -4,8 +4,8 @@ export const es: Translations = {
 	home: {
 		title: "Pásame Exámenes",
 		subtitle:
-			"Plataforma de código abierto para practicar preguntas de exámenes de la FIC. Elige una asignatura para estudiar por tema o en modo cronometrado.",
-		addSubject: "¿Añadir asignatura?",
+			"Prepara tus asignaturas de la FIC. Practica por tema o ponte a prueba con una simulación cronometrada.",
+		addSubject: "Añadir asignatura",
 		recentlyVisited: "Visitadas recientemente",
 		clearRecent: "Limpiar asignaturas recientes",
 		quote: "Los exámenes no se repiten, pero riman",
@@ -19,20 +19,20 @@ export const es: Translations = {
 			{
 				question: "¿Cómo empiezo a practicar una asignatura?",
 				answer:
-					"Abre la tarjeta de una asignatura y elige un tema, una práctica o un examen desde su página.",
+					"Elige una asignatura. En su página puedes practicar por tema o iniciar una simulación de un examen o recopilatorio.",
 			},
 			{
-				question: "¿Practicar por tema o hacer un examen?",
+				question: "¿Práctica por tema o simulación de examen?",
 				answer:
-					"La práctica por tema se centra en un bloque concreto. El modo examen y la práctica cronometrada simulan una sesión completa con tiempo limitado.",
+					"Practica un tema sin límite de tiempo o simula un examen o recopilatorio completo con sus reglas de puntuación y duración.",
 			},
 			{
-				question: "¿Qué formatos de preguntas puedo practicar?",
+				question: "¿Qué tipos de pregunta puedo practicar?",
 				answer:
-					"Puedes practicar preguntas tipo test, de texto, de emparejamiento, de rellenar huecos y con varias partes. Las de test y emparejamiento se corrigen automáticamente; las preguntas abiertas se autoevalúan con ayuda de la respuesta modelo.",
+					"Puedes practicar preguntas de test, texto, texto con varias partes, emparejamiento, rellenar huecos y rellenar tablas. Las respuestas cerradas se corrigen automáticamente. En las abiertas, comparas tu respuesta con la solución modelo y te autoevalúas.",
 			},
 			{
-				question: "¿Para qué sirven las respuestas modelo?",
+				question: "¿Para qué sirven las soluciones modelo?",
 				answer:
 					"Son soluciones de referencia que te ayudan a revisar y valorar tus respuestas. Proceden de materiales originales o de las aportaciones de personas colaboradoras.",
 			},
@@ -67,12 +67,12 @@ export const es: Translations = {
 		notFound: "Asignatura no encontrada",
 		returnHome: "Volver al inicio",
 		description:
-			"Practica {count} preguntas{repeated} de {exams} exámenes con respuestas modelo y autocorrección.",
+			"Practica {count} preguntas{repeated} de {exams} exámenes con soluciones modelo para revisar tus respuestas.",
 		communityDescription:
-			"Practica {count} preguntas{repeated} de {exams} recopilatorios con respuestas modelo y autocorrección.",
+			"Practica {count} preguntas{repeated} de {exams} recopilatorios con soluciones modelo para revisar tus respuestas.",
 		questionSources: "Fuentes de las preguntas",
 		questionSourcesDescription:
-			"Elige de qué exámenes o recopilatorios salen las preguntas de tus temas. Puedes cambiarlo cuando quieras.",
+			"Selecciona las fuentes para practicar por tema y consultar tu progreso. Puedes cambiar la selección cuando quieras.",
 		selectedSources: "{selected} de {total} fuentes seleccionadas",
 		selectAllSources: "Seleccionar todas",
 		practiceByTopic: "Temas",
@@ -97,7 +97,7 @@ export const es: Translations = {
 		acknowledgments: "Agradecimientos y exención de responsabilidad",
 		legalInformation: "Información legal de la asignatura",
 		contentLicense: "Licencia del contenido",
-		addExam: "¿Añadir?",
+		addExam: "Añadir recopilatorio o examen",
 		reportCopyright: "Reportar",
 		copyrightRemoved: "Retirada por derechos de autor",
 		repeatedSuffix: "{count} repetidas a lo largo de los años",
@@ -486,6 +486,11 @@ export const es: Translations = {
 		repeated: "Repetida",
 	},
 	subjectCard: {
+		topic: "tema",
+		question: "pregunta",
+		point: "punto",
+		exam: "examen",
+		practiceSet: "recopilatorio",
 		topics: "temas",
 		questions: "preguntas",
 		points: "puntos",
@@ -620,25 +625,25 @@ export const es: Translations = {
 		topicAuthorizedTitle: "{topicName}: {subjectName}",
 		topicCommunityTitle: "{topicName}: {subjectName}",
 		topicAuthorizedDescription:
-			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Revisa las respuestas modelo.",
+			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Revisa las soluciones modelo.",
 		topicCommunityDescription:
-			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Revisa las respuestas modelo.",
+			"Practica {count}{questionLabel} de {topicName} de {subjectName}. Revisa las soluciones modelo.",
 		topicAuthorizedDescriptionShort:
-			"Practica {count}{questionLabel} de {topicName}. Revisa las respuestas modelo.",
+			"Practica {count}{questionLabel} de {topicName}. Revisa las soluciones modelo.",
 		topicCommunityDescriptionShort:
-			"Practica {count}{questionLabel} de {topicName}. Revisa las respuestas modelo.",
+			"Practica {count}{questionLabel} de {topicName}. Revisa las soluciones modelo.",
 		examAuthorizedTitle: "{examName}: {subjectName} | simulador",
 		examPracticeTitle: "{examName}: {subjectName} | práctica",
 		examAuthorizedShortTitle: "{examName}: simulador",
 		examPracticeShortTitle: "{examName}: práctica",
 		examAuthorizedDescription:
-			"Practica el examen {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e incluye respuestas modelo.",
+			"Practica el examen {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e incluye soluciones modelo.",
 		examPracticeDescription:
-			"Practica el recopilatorio {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e incluye respuestas modelo.",
+			"Practica el recopilatorio {examName} de {subjectName}{questionCount}. Dura {durationMinutes} minutos e incluye soluciones modelo.",
 		examAuthorizedDescriptionShort:
-			"Practica el examen {examName}{questionCount}. Dura {durationMinutes} minutos e incluye respuestas modelo.",
+			"Practica el examen {examName}{questionCount}. Dura {durationMinutes} minutos e incluye soluciones modelo.",
 		examPracticeDescriptionShort:
-			"Practica el recopilatorio {examName}{questionCount}. Dura {durationMinutes} minutos e incluye respuestas modelo.",
+			"Practica el recopilatorio {examName}{questionCount}. Dura {durationMinutes} minutos e incluye soluciones modelo.",
 		questionCountSuffix: " con {count} {questionLabel}",
 	},
 };

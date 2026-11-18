@@ -93,29 +93,32 @@ export default function TopicCard({
 			rel="nofollow"
 			data-cuelume-hover="tick"
 			data-cuelume-navigate
-			className="interactive-card focus-visible:ring-accent flex h-[122px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
+			className="interactive-card focus-visible:ring-accent flex h-full min-h-[142px] flex-col rounded-xl hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
 			onClick={() => {
 				track("topic_card_click", { subjectId, topic: topic.key });
 			}}
 		>
-			<div className="border-border bg-surface-alt flex flex-col rounded-t-xl border-x-2 border-t-2 px-3 pt-2 pb-1">
+			<div className="border-border bg-surface-alt flex flex-1 flex-col rounded-t-xl border-x-2 border-t-2 px-3 pt-2 pb-1">
 				<div className="flex items-start justify-between gap-4">
 					<span className="text-3xl leading-none" aria-hidden="true">
 						{topic.icon}
 					</span>
 					<span className="bg-code text-fg-secondary inline-flex shrink-0 items-center rounded px-2 py-1 text-xs font-semibold whitespace-nowrap tabular-nums">
-						{questionCount} {t.subjectCard.questions}
+						{questionCount}{" "}
+						{questionCount === 1
+							? t.subjectCard.question
+							: t.subjectCard.questions}
 					</span>
 				</div>
-				<h2
-					className="text-fg mt-1 min-w-0 truncate text-base leading-snug font-semibold"
+				<h3
+					className="type-card-title text-fg mt-2 min-w-0"
 					title={topic.label}
 				>
 					{topic.label}
-				</h2>
+				</h3>
 			</div>
 			<div
-				className={`${variant.lower} ${variant.lowerBorder} text-fg-muted flex-1 rounded-b-xl px-3 py-2 text-sm`}
+				className={`${variant.lower} ${variant.lowerBorder} text-fg-muted shrink-0 rounded-b-xl px-3 py-2 text-sm`}
 			>
 				<div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
 					<span>

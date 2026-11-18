@@ -83,10 +83,10 @@ export default function Home({
 				emojis={subjects.map((s) => s.icon)}
 				className="animate-fade-in animate-duration-fast"
 			>
-				<h1 className="text-fg mb-3 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+				<h1 className="type-display text-fg mx-auto mb-4 max-w-[22ch] lg:text-[5rem]">
 					{t.home.title}
 				</h1>
-				<p className="text-fg-secondary mx-auto max-w-2xl text-base sm:text-lg lg:text-xl">
+				<p className="type-intro text-fg-secondary mx-auto">
 					{t.home.subtitle}
 				</p>
 			</Hero>

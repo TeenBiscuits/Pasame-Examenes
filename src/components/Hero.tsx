@@ -52,7 +52,7 @@ function buildDesktopStyle(
 		transform: `rotate(${rotation.toFixed(1)}deg)`,
 		animationDelay: `${delay.toFixed(2)}s`,
 		fontSize: `clamp(3rem, 4.4vw, ${fontRem.toFixed(2)}rem)`,
-		opacity: 0.9,
+		opacity: 0.45,
 	};
 }
 
@@ -94,7 +94,7 @@ function buildMobileStyle(
 			transform: `rotate(${rotation.toFixed(1)}deg)`,
 			animationDelay: `${delay.toFixed(2)}s`,
 			fontSize: `clamp(1.65rem, 8.8vw, ${fontRem.toFixed(2)}rem)`,
-			opacity: 0.78,
+			opacity: 0.3,
 		};
 	}
 
@@ -116,7 +116,7 @@ function buildMobileStyle(
 		transform: `rotate(${rotation.toFixed(1)}deg)`,
 		animationDelay: `${delay.toFixed(2)}s`,
 		fontSize: `clamp(1.65rem, 8.8vw, ${fontRem.toFixed(2)}rem)`,
-		opacity: 0.78,
+		opacity: 0.3,
 	};
 }
 

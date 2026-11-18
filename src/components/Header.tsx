@@ -30,7 +30,7 @@ export default function Header() {
 			? "bg-accent-light text-accent-fg"
 			: "text-fg-secondary hover:text-fg"
 	}`;
-	const acronymLinkClasses = `inline-flex px-1.5 sm:hidden ${subjectLinkBase}`;
+	const acronymLinkClasses = `inline-flex shrink-0 whitespace-nowrap px-1.5 sm:hidden ${subjectLinkBase}`;
 	const subjectLinkClasses = `hidden min-w-0 truncate px-3 sm:inline-flex ${subjectLinkBase}`;
 
 	return (
