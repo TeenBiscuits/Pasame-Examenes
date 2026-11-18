@@ -63,12 +63,14 @@
 	min-inline-size: 0;
 }
 
-.markdown-body > :where(.markdown-code-block, .markdown-table) {
+.markdown-body :where(.markdown-code-block, .markdown-table) {
 	max-inline-size: 100%;
 	margin-block-start: var(--typeset-flow);
 }
 
-.markdown-body > :first-child {
+/* Custom wrappers opt out of Typeset, including its first-child reset. */
+.markdown-body > :first-child,
+.markdown-body :where(.markdown-code-block, .markdown-table):first-child {
 	margin-block-start: 0;
 }
 

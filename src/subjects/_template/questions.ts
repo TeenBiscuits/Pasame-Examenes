@@ -787,6 +787,40 @@ $$
 \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}
 $$
 
+## Nested block spacing
+
+1. A paragraph before a nested code block.
+
+   \`\`\`typescript
+   const nested = true;
+   \`\`\`
+
+2. A paragraph before a nested table.
+
+   | Nested | Value |
+   | --- | --- |
+   | List | 1 |
+
+> A paragraph before a quoted code block.
+>
+> \`\`\`typescript
+> const quoted = true;
+> \`\`\`
+
+> A paragraph before a quoted table.
+>
+> | Nested | Value |
+> | --- | --- |
+> | Quote | 2 |
+
+> \`\`\`typescript
+> const firstInQuote = true;
+> \`\`\`
+
+> | First block | Value |
+> | --- | --- |
+> | Quote | 3 |
+
 Here is a footnote reference.[^fixture]
 
 [^fixture]: Footnotes are part of the GFM fixture too.

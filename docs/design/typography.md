@@ -132,3 +132,13 @@ En Redes, a 1024 px, una fila mezcla títulos de una y dos líneas. El `flex-1` 
 Se traslada `flex-1` a la cabecera y se aplica `shrink-0` al pie. Cada fila de la cuadrícula conserva su altura natural y el espacio sobrante queda bajo el título. No se fijan alturas de texto ni se truncan los títulos.
 
 Verificado con T3 Code en `/es/redes`: a 1024 px, los seis primeros pies miden 50 px y las divisiones coinciden por fila; a 768 px se mantiene la alineación en dos columnas; a 320 px los títulos siguen completos y no hay desbordamiento horizontal. Biome y `git diff --check` pasan.
+
+## Corrección posterior: bloques anidados
+
+Comentario de revisión válido en `src/markdown.css:66`: el selector de hijo directo solo añadía margen a los wrappers de código y tablas en la raíz. Dentro de listas y citas, `not-typeset` excluía también el espaciado de Typeset y los wrappers quedaban pegados al párrafo anterior.
+
+Reproducido en T3 Code con el renderer real, ampliando la fixture `markdown-complete_q1` con código y tablas dentro de listas numeradas y citas, además de código y tabla como primer elemento de una cita. Antes: cuatro wrappers anidados posteriores a un párrafo con `margin-block-start: 0px`; los wrappers directos tenían 13.6 px.
+
+Se cambia el selector a descendiente y se conserva el reinicio del primer hijo de `.markdown-body`. Se añade el reinicio de wrappers que sean primer hijo de su contenedor, porque `not-typeset` también los excluye de ese reinicio en Typeset.
+
+Verificación en T3 Code a 1440 px y 320 px: los cuatro wrappers anidados posteriores a párrafos tienen 13.6 px; los dos wrappers que abren una cita mantienen 0 px; los wrappers directos posteriores a contenido conservan 13.6 px. Sin desbordamiento de página en móvil. Biome, TypeScript y `git diff --check` pasan. La fixture queda en la asignatura interna de prueba para repetir la revisión.
