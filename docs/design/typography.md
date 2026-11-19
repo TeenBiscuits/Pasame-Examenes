@@ -48,7 +48,7 @@ Los metadatos secundarios usan 12–14 px; no se emplean para soluciones ni inst
 
 ## Allo by Josh Puckett
 
-Se mantiene `allo-font` **1.0.1**, la dependencia que ya tenía el proyecto. Los documentos públicos consultados describen 1.0.3; esta tarea no actualiza los binarios. El CSS instalado registra la variable normal 100–900 y nueve oblicuas reales, 100–900, con `font-display: swap`.
+El proyecto usa `allo-font` **1.0.3**. El CSS del paquete registra la variable normal 100–900 y nueve oblicuas reales, 100–900, con `font-display: swap`.
 
 | Capacidad disponible | Decisión |
 | --- | --- |
