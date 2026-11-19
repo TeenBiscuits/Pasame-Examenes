@@ -19,11 +19,53 @@ import StarPopup from "./StarPopup";
 
 export default function AppChrome({ children }: { children: ReactNode }) {
 	const t = useT();
+	const awayTitle = t.tab.awayTitle;
 
 	useEffect(() => {
 		initializeSound();
 		return bindCuelume();
 	}, []);
+
+	useEffect(() => {
+		let pageTitle: string | undefined;
+
+		function showAwayTitle() {
+			if (document.title === awayTitle) return;
+			pageTitle = document.title;
+			document.title = awayTitle;
+		}
+
+		// The router can replace the page title while a background tab is loading.
+		const observer = new MutationObserver(showAwayTitle);
+
+		function restorePageTitle() {
+			observer.disconnect();
+			if (pageTitle !== undefined && document.title === awayTitle) {
+				document.title = pageTitle;
+			}
+			pageTitle = undefined;
+		}
+
+		function updateTitle() {
+			if (document.hidden) {
+				showAwayTitle();
+				observer.observe(document.head, {
+					childList: true,
+					characterData: true,
+					subtree: true,
+				});
+			} else {
+				restorePageTitle();
+			}
+		}
+
+		document.addEventListener("visibilitychange", updateTitle);
+		updateTitle();
+		return () => {
+			document.removeEventListener("visibilitychange", updateTitle);
+			restorePageTitle();
+		};
+	}, [awayTitle]);
 
 	return (
 		<KeyboardCommandProvider>

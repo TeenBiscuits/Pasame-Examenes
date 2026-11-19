@@ -1,4 +1,7 @@
 export const en = {
+	tab: {
+		awayTitle: "Aren’t you going to keep studying?",
+	},
 	home: {
 		title: "Pásame Exámenes",
 		subtitle:

@@ -1,6 +1,9 @@
 import type { Translations } from "./en";
 
 export const es: Translations = {
+	tab: {
+		awayTitle: "¿No vas a seguir estudiando?",
+	},
 	home: {
 		title: "Pásame Exámenes",
 		subtitle:

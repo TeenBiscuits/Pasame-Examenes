@@ -1,6 +1,9 @@
 import type { Translations } from "./en";
 
 export const gl: Translations = {
+	tab: {
+		awayTitle: "Non vas seguir estudando?",
+	},
 	home: {
 		title: "Pásame Exámenes",
 		subtitle:
