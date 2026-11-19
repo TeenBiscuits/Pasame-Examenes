@@ -54,10 +54,14 @@ export function recordStarPopupQuestions(
 	try {
 		if (localStorage.getItem(MILESTONE_KEY)) return;
 		const questions = readQuestions();
+		const questionKeys = new Set(questions);
 		for (const questionId of questionIds) {
 			if (questions.length >= FIRST_QUESTIONS) break;
 			const key = JSON.stringify([subjectId, questionId]);
-			if (!questions.includes(key)) questions.push(key);
+			if (!questionKeys.has(key)) {
+				questions.push(key);
+				questionKeys.add(key);
+			}
 		}
 		localStorage.setItem(QUESTIONS_KEY, JSON.stringify(questions));
 		window.dispatchEvent(new Event(STAR_POPUP_PROGRESS_EVENT));
