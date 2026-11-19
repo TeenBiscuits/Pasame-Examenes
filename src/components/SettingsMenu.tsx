@@ -61,12 +61,18 @@ function TabButton({
 			tabIndex={active ? 0 : -1}
 			onClick={() => onSelect(tab)}
 			onKeyDown={handleKeyDown}
-			className={`focus-visible:ring-accent flex min-h-11 items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-[background-color,color,scale] duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] ${placement === "mobile" ? "min-w-0 flex-1 justify-center" : ""} ${active ? "bg-accent-light text-accent-fg font-semibold" : "text-fg-secondary hover:bg-surface hover:text-fg"}`}
+			className={`focus-visible:ring-accent flex min-h-11 items-center rounded-lg text-sm transition-[background-color,color,scale] duration-150 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] ${placement === "mobile" ? "min-w-0 flex-col gap-1 px-1 py-2 text-center leading-tight" : "gap-3 px-3 py-2.5 text-left"} ${active ? "bg-accent-light text-accent-fg font-semibold" : "text-fg-secondary hover:bg-surface hover:text-fg"}`}
 		>
 			<span className="shrink-0" aria-hidden="true">
 				{icon}
 			</span>
-			<span className="min-w-0 truncate">{label}</span>
+			<span
+				className={
+					placement === "mobile" ? "w-full wrap-anywhere" : "min-w-0 truncate"
+				}
+			>
+				{label}
+			</span>
 		</button>
 	);
 }
@@ -87,7 +93,7 @@ function SettingsTabButtons({
 			className={
 				placement === "desktop"
 					? "flex flex-1 flex-col gap-1.5 p-3"
-					: "border-border flex shrink-0 gap-2 overflow-x-auto border-t p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]"
+					: "settings-menu__mobile-tabs border-border bg-surface-alt grid shrink-0 grid-cols-3 gap-1 border-t sm:hidden"
 			}
 			role="tablist"
 			aria-label={t.settings.menuNavigation}
@@ -114,7 +120,7 @@ function SettingsTabButtons({
 				placement={placement}
 				active={activeTab === "shortcuts"}
 				icon={<Keyboard size={18} />}
-				label={t.settings.keyboardShortcuts}
+				label={t.settings.shortcutsTab}
 				onSelect={onSelect}
 			/>
 		</div>
@@ -156,24 +162,6 @@ function SettingsSidebar({
 				</a>
 			</div>
 		</aside>
-	);
-}
-
-function SettingsMobileTabs({
-	activeTab,
-	onSelect,
-}: {
-	activeTab: SettingsTab;
-	onSelect: (tab: SettingsTab) => void;
-}) {
-	return (
-		<div className="border-border bg-surface-alt sm:hidden">
-			<SettingsTabButtons
-				activeTab={activeTab}
-				placement="mobile"
-				onSelect={onSelect}
-			/>
-		</div>
 	);
 }
 
@@ -286,7 +274,11 @@ export default function SettingsMenu() {
 							<SettingsTabPanel activeTab={activeTab} />
 						</div>
 
-						<SettingsMobileTabs activeTab={activeTab} onSelect={selectTab} />
+						<SettingsTabButtons
+							activeTab={activeTab}
+							placement="mobile"
+							onSelect={selectTab}
+						/>
 					</div>
 				</div>
 			</dialog>

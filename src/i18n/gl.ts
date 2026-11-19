@@ -146,6 +146,7 @@ export const gl: Translations = {
 		addTheme: "Engadir paleta",
 		mute: "Silenciar os sons",
 		unmute: "Activar os sons",
+		shortcutsTab: "Atallos",
 		keyboardShortcuts: "Atallos de teclado",
 		keyboardShortcutsDescription:
 			"Personaliza os comandos de cada parte da aplicación. Os cambios gárdanse neste navegador.",

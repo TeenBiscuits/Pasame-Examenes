@@ -1354,6 +1354,7 @@ html[data-theme="mocha"] {
    The animation itself comes from tailwind-animations' `animate-dialog`
    utility. These classes only define the app's surface, spacing and sizes. */
 .modal-dialog {
+    --modal-radius: 1.5rem;
     box-sizing: border-box;
     width: min(32rem, calc(100% - 2rem));
     max-width: calc(100% - 2rem);
@@ -1364,7 +1365,7 @@ html[data-theme="mocha"] {
     overscroll-behavior: contain;
     scrollbar-gutter: stable;
     border: 0;
-    border-radius: 1.5rem;
+    border-radius: var(--modal-radius);
     padding: 1.5rem;
     background-color: var(--color-surface-alt);
     color: var(--color-fg);
@@ -1400,6 +1401,23 @@ html[data-theme="mocha"] {
     scrollbar-gutter: stable;
 }
 
+.settings-menu__mobile-tabs {
+    --tabs-inset: 0.5rem;
+    --tabs-bottom-inset: calc(var(--tabs-inset) + env(safe-area-inset-bottom));
+    --tab-corner-inline: max(0px, calc(var(--modal-radius) - var(--tabs-inset)));
+    --tab-corner-block: max(0px, calc(var(--modal-radius) - var(--tabs-bottom-inset)));
+    padding: var(--tabs-inset);
+    padding-block-end: var(--tabs-bottom-inset);
+}
+
+.settings-menu__mobile-tabs > :first-child {
+    border-end-start-radius: var(--tab-corner-inline) var(--tab-corner-block);
+}
+
+.settings-menu__mobile-tabs > :last-child {
+    border-end-end-radius: var(--tab-corner-inline) var(--tab-corner-block);
+}
+
 .modal-dialog__scroll {
     max-height: min(calc(86svh - 7rem), 41rem);
     overflow-y: auto;
@@ -1409,7 +1427,7 @@ html[data-theme="mocha"] {
 
 @media (max-width: 30rem) {
     .modal-dialog {
-        border-radius: 1.25rem;
+        --modal-radius: 1.25rem;
         padding: 1.25rem;
     }
 

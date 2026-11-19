@@ -143,6 +143,7 @@ export const en = {
 		addTheme: "Add palette",
 		mute: "Mute sounds",
 		unmute: "Turn sounds on",
+		shortcutsTab: "Shortcuts",
 		keyboardShortcuts: "Keyboard shortcuts",
 		keyboardShortcutsDescription:
 			"Customize commands for each part of the app. Changes are saved in this browser.",

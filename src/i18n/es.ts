@@ -146,6 +146,7 @@ export const es: Translations = {
 		addTheme: "Añadir paleta",
 		mute: "Silenciar sonidos",
 		unmute: "Activar sonidos",
+		shortcutsTab: "Atajos",
 		keyboardShortcuts: "Atajos de teclado",
 		keyboardShortcutsDescription:
 			"Personaliza los comandos de cada parte de la aplicación. Los cambios se guardan en este navegador.",
